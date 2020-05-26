@@ -11,8 +11,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.10.3",
+    "@nuxtjs/tailwindcss": "^2.0.0",
+    "element-ui": "^2.4.11",
     "nuxt": "^2.0.0",
-    "element-ui": "^2.4.11"
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {}
 }
