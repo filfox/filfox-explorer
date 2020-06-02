@@ -1,4 +1,3 @@
-
 export default {
   mode: 'universal',
   /*
@@ -29,7 +28,7 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -42,6 +41,7 @@ export default {
   */
   buildModules: [
     '@nuxtjs/tailwindcss',
+    '@nuxt/components'
   ],
   /*
   ** Nuxt.js modules
