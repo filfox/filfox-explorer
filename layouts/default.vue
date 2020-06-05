@@ -1,9 +1,8 @@
 <template>
-  <div class="flex flex-col min-h-screen">
-    <Header />
-    <nuxt class="flex-grow" />
-    <footer />
-    <test />
+  <div class="flex flex-col min-h-screen bg-background">
+    <page-header />
+    <nuxt class="flex-grow " />
+    <page-footer />
   </div>
 </template>
 

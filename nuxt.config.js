@@ -1,5 +1,8 @@
+import messages from './locales'
+
 export default {
   mode: 'universal',
+  components: true,
   /*
   ** Headers of the page
   */
@@ -34,8 +37,16 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '~/plugins/i18n.js',
   ],
+  extendPlugins(plugins) {
+    const pluginIndex = plugins.findIndex(src => src === '~/plugins/i18n.js')
+    const shouldBeFirstPlugin = plugins[pluginIndex]
+    plugins.splice(pluginIndex, 1)
+    plugins.unshift(shouldBeFirstPlugin)
+    return plugins
+  },
   /*
   ** Nuxt.js dev-modules
   */
@@ -47,8 +58,34 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-i18n'
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+      },
+      {
+        code: 'zh',
+        iso: 'zh-CN',
+        name: '中文',
+      },
+    ],
+    defaultLocale: 'zh',
+    strategy: 'prefix',
+    vueI18n: {
+      fallbackLocale: 'zh',
+      messages,
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      // alwaysRedirect: true,
+    },
+    seo: true,
+  },
   /*
   ** Build configuration
   */
