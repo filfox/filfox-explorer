@@ -1,6 +1,6 @@
 <template>
- <div class="container mx-auto h-12 flex flex-row items-center ">
-   <div class="m-5 text-background text-sm cursor-pointer" onclick="handleHomeSelect">
+ <div class="container mx-auto h-12 flex flex-row items-center">
+   <div class="m-5 text-background text-sm cursor-pointer" @click="handleHomeSelect">
      {{$t('nav.home.title')}}
    </div>
    
@@ -13,7 +13,7 @@
       </el-dropdown-menu>
    </el-dropdown>
 
-   <div class="m-5 text-background text-sm cursor-pointer">
+   <div class="m-5 text-background text-sm cursor-pointer" @click="handleRanksSelect">
      {{$t('nav.ranks.title')}}
    </div>
 
@@ -53,8 +53,8 @@ export default {
     handleHomeSelect() {
       this.$message('首页')
     },
-    handleChartsSelect() {
-      this.$message('图表')
+    handleRanksSelect() {
+      this.$message('排行榜')
     },
     handleBlocksCommand(index) {
       this.$message('区块链:' + index)
