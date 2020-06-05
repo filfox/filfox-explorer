@@ -27,7 +27,7 @@
     </div>
     <!-- 挖矿排行榜 -->
     <div class="flex flex-grow flex-col mb-5 bg-white rounded-md">
-      <div class="flex h-16 items-center ml-5">{{$t('home.overview.rankTitle')}}</div>
+      <div class="flex h-16 items-center ml-5">{{$t('home.minerRanks.title')}}</div>
       <div class="h-12"></div>
       <table class="table-auto border-t-2 border-background">
         <thead>
@@ -47,7 +47,7 @@
     <div class="flex flex-row mb-5">
       <!-- 最新区块 -->
       <div class="flex flex-grow flex-col bg-white mr-2 rounded-md">
-        <div class="flex h-12 items-center ml-5">{{$t('home.overview.lastBlocksTitle')}}</div>
+        <div class="flex h-12 items-center ml-5">{{$t('home.lastBlocks.title')}}</div>
         <table class="table-auto border-t-2 border-background">
           <thead>
             <tr>
@@ -64,7 +64,7 @@
       </div>
       <!-- 富豪榜 -->
       <div class="flex flex-grow flex-col bg-white mr-2 rounded-md">
-        <div class="flex h-12 items-center ml-5">{{$t('home.overview.richManRanksTitle')}}</div>
+        <div class="flex h-12 items-center ml-5">{{$t('home.richManRanks.title')}}</div>
         <table class="table-auto border-t-2 border-background">
           <thead>
             <tr>
@@ -93,9 +93,9 @@ export default {
     return {
       overviewExpanded: false,
       overviewTitles: this.$t("home.overview.titles"),
-      rankTableHeaders: this.$t("home.overview.rankTable"),
-      lastBlocksHeaders: this.$t("home.overview.lastBlocksTable"),
-      richManRanksHeaders:this.$t("home.overview.richManRanksTable")
+      rankTableHeaders: this.$t("home.minerRanks.tableHeaders"),
+      lastBlocksHeaders: this.$t("home.lastBlocks.tableHeaders"),
+      richManRanksHeaders:this.$t("home.richManRanks.tableHeaders")
     };
   }
 };
