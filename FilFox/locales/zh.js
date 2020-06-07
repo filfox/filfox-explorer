@@ -1,4 +1,7 @@
 export default {
+    shared: {
+        tableEmptyText:'暂无数据',
+    },
     nav: {
         home: {
             title:'首页'
