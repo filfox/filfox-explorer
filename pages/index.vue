@@ -20,65 +20,40 @@
         </div>
       </div>
     </div>
+
     <!-- 图表 -->
     <div class="flex flex-row mb-5">
       <div class="flex-grow bg-white h-64 mr-2 rounded-md"></div>
       <div class="flex-grow bg-white h-64 ml-2 rounded-md"></div>
     </div>
+
     <!-- 挖矿排行榜 -->
     <div class="flex flex-grow flex-col mb-5 bg-white rounded-md">
-      <div class="flex h-16 items-center ml-5">{{$t('home.minerRanks.title')}}</div>
-      <div class="h-12"></div>
-      <table class="table-auto border-t-2 border-background">
-        <thead>
-          <tr>
-            <th class="py-2 text-xs text-gray-500" v-for="(value,key) in rankTableHeaders" :key="key"> {{ value }} </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <!-- 挖矿列表 -->
-            <th></th>
-          </tr>
-        </tbody>
-      </table>
+      <div class="flex h-12 items-center ml-5">{{$t('home.minerRanks.title')}}</div>
+      <div class="h-8"></div>
+      <el-table :data="minerRanks" class="m-5 w-auto" :empty-text="$t('shared.tableEmptyText')">
+        <el-table-column v-for="(value,key) in rankTableHeaders" :key="key" :label="value" ></el-table-column>
+      </el-table>
     </div>
+
     <!-- 最新区块 富豪榜  -->
     <div class="flex flex-row mb-5">
       <!-- 最新区块 -->
       <div class="flex flex-grow flex-col bg-white mr-2 rounded-md">
         <div class="flex h-12 items-center ml-5">{{$t('home.lastBlocks.title')}}</div>
-        <table class="table-auto border-t-2 border-background">
-          <thead>
-            <tr>
-              <th class="py-2 text-xs text-gray-500" v-for="(value,key) in lastBlocksHeaders" :key="key"> {{ value }} </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <!-- 最新区块列表 -->
-              <th></th>
-            </tr>
-          </tbody>
-        </table>
+        <el-table :data="minerRanks" class="m-5 w-auto" :empty-text="$t('shared.tableEmptyText')">
+         <el-table-column v-for="(value,key) in lastBlocksHeaders" :key="key" :label="value" ></el-table-column>
+        </el-table>
       </div>
+
       <!-- 富豪榜 -->
       <div class="flex flex-grow flex-col bg-white mr-2 rounded-md">
         <div class="flex h-12 items-center ml-5">{{$t('home.richManRanks.title')}}</div>
-        <table class="table-auto border-t-2 border-background">
-          <thead>
-            <tr>
-              <th class="py-2 text-xs text-gray-500" v-for="(value,key) in richManRanksHeaders" :key="key"> {{ value }} </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <!-- 最新区块列表 -->
-              <th></th>
-            </tr>
-          </tbody>
-        </table>
+        <el-table :data="minerRanks" class="m-5 w-auto" :empty-text="$t('shared.tableEmptyText')">
+         <el-table-column v-for="(value,key) in richManRanksHeaders" :key="key" :label="value" ></el-table-column>
+        </el-table>
       </div>
+
     </div>
   </div>
 </template>
@@ -95,7 +70,13 @@ export default {
       overviewTitles: this.$t("home.overview.titles"),
       rankTableHeaders: this.$t("home.minerRanks.tableHeaders"),
       lastBlocksHeaders: this.$t("home.lastBlocks.tableHeaders"),
-      richManRanksHeaders:this.$t("home.richManRanks.tableHeaders")
+      richManRanksHeaders:this.$t("home.richManRanks.tableHeaders"),
+      minerRanks: [],
+      lastBlocks: [],
+      richManRanks: [],
+      minerRanksLoading: true,
+      lastBlocksLoading: true,
+      richManRanksLoading: true,
     };
   }
 };

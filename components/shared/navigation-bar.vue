@@ -34,6 +34,9 @@
          <el-dropdown-item v-for="(title,i) in resourcesSubMenus" :key="i" :command='i'> {{ title }} </el-dropdown-item>
       </el-dropdown-menu>
    </el-dropdown>
+
+  <div class="flex flex-grow"></div>
+  <el-input size="small" prefix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2"></el-input>
  </div>
 </template>
 
@@ -45,7 +48,8 @@ export default {
       activeIndex:'0',
       blocksSubMenus: this.$t('nav.blocks.subMenus'),
       chartsSubMenus: this.$t('nav.charts.subMenus'),
-      resourcesSubMenus: this.$t('nav.resources.subMenus')
+      resourcesSubMenus: this.$t('nav.resources.subMenus'),
+      searchText:''
     }
   },
   created() {},
