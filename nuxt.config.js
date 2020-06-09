@@ -31,7 +31,6 @@ export default {
   ** Global CSS
   */
   css: [
-
   ],
   /*
   ** Plugins to load before mounting the App
@@ -39,6 +38,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '~/plugins/i18n.js',
+    '@/plugins/filters',
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '~/plugins/i18n.js')
@@ -59,8 +59,20 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     'nuxt-i18n'
   ],
+  axios: {
+    proxy: true,
+    prefix:'/api/v0',
+    credentials: true
+  },
+  proxy: {
+    '/api': {
+        target:'https://interop.filfox.io/',
+        changeOrigin: true
+    }
+  },
   i18n: {
     locales: [
       {

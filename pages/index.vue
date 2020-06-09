@@ -11,12 +11,23 @@
       </div>
       <div class="bg-white p-5 rounded-b-md">
         <div class="grid grid-flow-row grid-cols-5 gap-4 text-center">
-          <template v-if="overviewExpanded">
-            <overviewCell v-for="(title,i) in overviewTitles" :key="i" :name="title" />
-          </template>
-          <template v-else>
-            <overviewCell v-for="(title,i) in overviewTitles.slice(0,10)" :key="i" :name="title" />
-          </template>
+            <overviewCell :name="$t('home.overview.titles.height')" :value="overview.height.toString()">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.timestamp')" :value="overview.timestamp.toString() | timestamp('time')">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.qualityAdjPower')" :value="overview.qualityAdjPower.toString() | size_metric(2)">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.activeMiners')" :value="overview.activeMiners.toString()">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.price')" :value="'$ ' + overview.price.toFixed(2).toString()">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.blockReward')" :value="overview.blockReward.toString() | filecoin(4)">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.accounts')" :value="overview.accounts.toString()">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.averageTipsetInterval')" :value="overview.averageTipsetInterval.toFixed(2).toString()">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.averageBlockSize')" :value="overview.averageBlockSize.toFixed(2).toString()">  </overviewCell>
+            <overviewCell :name="$t('home.overview.titles.averageTipsetBlocks')" :value="overview.averageTipsetBlocks.toFixed(2).toString()">  </overviewCell> 
+            <template v-if="overviewExpanded">
+              <overviewCell :name="$t('home.overview.titles.rawBytePower')" :value="overview.rawBytePower.toString() | size_metric(2)">  </overviewCell>
+              <overviewCell :name="$t('home.overview.titles.averageGasPrice')" :value="overview.averageGasPrice.toFixed(2).toString() + ' AttoFIL'">  </overviewCell>
+              <overviewCell :name="$t('home.overview.titles.circulatingSupply')" :value="overview.circulatingSupply.toString() | filecoin(0)">  </overviewCell>
+              <overviewCell :name="$t('home.overview.titles.burntSupply')" :value="overview.burntSupply.toString() | filecoin(4)">  </overviewCell>
+              <overviewCell :name="$t('home.overview.titles.totalSupply')" :value="overview.totalSupply.toString() | filecoin(0)">  </overviewCell>  
+            </template>
         </div>
       </div>
     </div>
@@ -60,7 +71,36 @@
 
 <script>
 import overviewCell from "~/components/home/overview-cell";
+
 export default {
+    async asyncData({$axios, error}) {
+    try {
+      const [
+        overview,
+        recentTipsets,
+        {miners: topMinerPowers},
+        {miners: topMinerBlocks, tipsetCount: last24hTipsetCount}
+      ] = await Promise.all([
+        $axios.$get('/overview'),
+        $axios.$get('/tipset/recent', {params: {count: 10}}),
+        $axios.$get('/miner/top-miners/power', {params: {count: 10}}),
+        $axios.$get('/miner/top-miners/blocks', {params: {count: 10, duration: 86400}})
+      ])
+      return {
+        overview,
+        recentTipsets,
+        topMinerPowers,
+        topMinerBlocks,
+        last24hTipsetCount
+      }
+    } catch (err) {
+      if (err?.response) {
+        error({code: err.response.status, message: err.response.statusText})
+      } else {
+        error({code: 500, message: err.toString()})
+      }
+    }
+  },
   components: {
     overviewCell
   },
@@ -68,16 +108,20 @@ export default {
     return {
       overviewExpanded: false,
       overviewTitles: this.$t("home.overview.titles"),
+      overview: {},
       rankTableHeaders: this.$t("home.minerRanks.tableHeaders"),
       lastBlocksHeaders: this.$t("home.lastBlocks.tableHeaders"),
       richManRanksHeaders:this.$t("home.richManRanks.tableHeaders"),
       minerRanks: [],
       lastBlocks: [],
       richManRanks: [],
-      minerRanksLoading: true,
-      lastBlocksLoading: true,
-      richManRanksLoading: true,
     };
+  },
+  mounted() {
+
+  },
+  methods: {
   }
+
 };
 </script>
