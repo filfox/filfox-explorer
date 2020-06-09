@@ -1,4 +1,5 @@
 import messages from './locales'
+import webpack from 'webpack'
 
 export default {
   mode: 'universal',
@@ -39,6 +40,7 @@ export default {
     '@/plugins/element-ui',
     '~/plugins/i18n.js',
     '@/plugins/filters',
+    '@/plugins/websocket.client'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '~/plugins/i18n.js')
@@ -103,10 +105,19 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
+    babel: {
+      plugins: [
+        '@babel/plugin-proposal-nullish-coalescing-operator',
+        '@babel/plugin-proposal-optional-chaining'
+      ]
+    },
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      config.plugins.push(new webpack.DefinePlugin({
+        'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL)
+      }))
     }
   }
 }

@@ -118,9 +118,16 @@ export default {
     };
   },
   mounted() {
-
+      this.$onUpdateOverview = this.onUpdateOverview.bind(this)
+      this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
+  },
+  beforeDestroy() {
+    this.$unsubscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
   },
   methods: {
+    onUpdateOverview(overview) {
+      this.overview = overview
+    },
   }
 
 };

@@ -5,12 +5,14 @@
   "author": "6block team",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "WEBSOCKET_URL=wss://interopnet.filfox.io/ nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.1",
     "@nuxt/components": "^0.3.3",
     "@nuxtjs/axios": "^5.10.3",
     "@nuxtjs/proxy": "^1.3.3",
@@ -19,6 +21,7 @@
     "moment": "^2.26.0",
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^6.12.2",
+    "socket.io-client": "^2.3.0",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.4.6"
   },
