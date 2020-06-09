@@ -36,7 +36,7 @@
    </el-dropdown>
 
   <div class="flex flex-grow"></div>
-  <el-input size="small" prefix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2"></el-input>
+  <el-input size="small" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2"></el-input>
  </div>
 </template>
 
