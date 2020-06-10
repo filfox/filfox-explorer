@@ -1,6 +1,13 @@
 export default {
     shared: {
         tableEmptyText:'暂无数据',
+        time: {
+            justNow:'刚刚',
+            hour:'时',
+            min:'分',
+            sec:'秒',
+            ago:'前',
+        }
     },
     nav: {
         home: {
@@ -42,6 +49,7 @@ export default {
                 rawBytePower:'全网原值算力',
                 averageGasPrice:'平均gas费率',
                 circulatingSupply:'FIL流通量',
+                totalPledgeCollateral:'FIL质押量',
                 burntSupply:'FIL销毁量',
                 totalSupply:'FIL总供给量',
         }
@@ -59,7 +67,7 @@ export default {
                 powerIncreaseSpeed:'算力增速'
             },
         },
-        lastBlocks: {
+        recentTipsets: {
             title: '最新区块',
             tableHeaders: {
                 height: '高度',
@@ -67,7 +75,6 @@ export default {
                 miner: '矿工',
                 message:'消息',
                 award:'奖励'
-
             },
         },
         richManRanks: {
