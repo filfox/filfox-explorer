@@ -40,7 +40,8 @@ export default {
     '@/plugins/element-ui',
     '~/plugins/i18n.js',
     '@/plugins/filters',
-    '@/plugins/websocket.client'
+    '@/plugins/websocket.client',
+    '@/plugins/components'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '~/plugins/i18n.js')
