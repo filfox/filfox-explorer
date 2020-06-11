@@ -44,18 +44,35 @@
       <div class="justify-between flex flex-row">
         <div class="flex h-12 items-center ml-5">{{$t('home.minerRanks.title')}}</div>
         <div class="flex h-12 items-end mr-5">
-          <el-radio-group v-model="currentSelectedMinerRanksOption" size="mini" @change="onUpdateSelectedMinerRanksOption" fill="#1a4fc9">
-            <el-radio-button :label=0> {{ '24' + $t('shared.time.hour') }} </el-radio-button>
-            <el-radio-button :label=1>  {{'7' + $t('shared.time.day')}} </el-radio-button>
-            <el-radio-button :label=2>  {{'30' + $t('shared.time.day')}} </el-radio-button>
-            <el-radio-button :label=3> {{'1' + $t('shared.time.year')}} </el-radio-button>
+          <el-radio-group v-model="duration" size="mini" @change="onUpdateSelectedMinerRanksOption" fill="#1a4fc9">
+            <el-radio-button label="24h"> {{ '24' + $t('shared.time.hour') }} </el-radio-button>
+            <el-radio-button label="7d">  {{'7' + $t('shared.time.day')}} </el-radio-button>
+            <el-radio-button label="30d">  {{'30' + $t('shared.time.day')}} </el-radio-button>
+            <el-radio-button label="1y"> {{'1' + $t('shared.time.year')}} </el-radio-button>
           </el-radio-group>
         </div>
         </div>
       <div class="h-8"></div>
-      <el-table :data="minerRanks" class="m-5 w-auto" :empty-text="$t('shared.tableEmptyText')">
-        <el-table-column v-for="(value,key) in rankTableHeaders" :key="key" :label="value" ></el-table-column>
-      </el-table>
+
+      <table class="w-full table-auto" >
+        <thead class="text-gray-600 text-sm m-2">
+          <tr>
+            <th v-for="(title, index) in rankTableHeaders" :key="index"> {{title}} </th>
+          </tr>
+        </thead>
+        <tbody class="text-sm text-center">
+          <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10"> 
+            <td> {{index}} </td>
+            <td> {{ miner.address }} </td>
+            <td> 未知 </td>
+            <td> {{ miner.qualityAdjPower | size_metric(2) }} </td>
+            <td> {{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower).toFixed(2) }} </td>
+            <td> {{ miner.blocksMined }} </td>
+            <td> {{ miner.qualityAdjPowerDelta | size_metric(2)}} </td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
     <!-- 最新区块 富豪榜  -->
@@ -166,8 +183,10 @@ export default {
       overviewTitles: this.$t("home.overview.titles"),
       overview: {},
       rankTableHeaders: this.$t("home.minerRanks.tableHeaders"),
-      currentSelectedMinerRanksOption:0,
-      minerRanks: [],
+      duration:'24h',
+      topMinersByPower: {},
+      topMinerBlocks: [],
+      topMinerPowerDelta: [],
       richManRanksHeaders:this.$t("home.richManRanks.tableHeaders"),
       recentTipsets: [],
       richList: {},
@@ -178,12 +197,19 @@ export default {
       this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
       this.$onUpdateRichList = this.onUpdateRichList.bind(this)
       this.$subscribe('account', 'account/rich-list', this.$onUpdateRichList)
+      this.getTopMinersByPowers()
   },
   beforeDestroy() {
     this.$unsubscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
     this.$unsubscribe('account', 'account/rich-list', this.$onUpdateRichList)
   },
   methods: {
+    getTopMinersByPowers() {
+      this.$axios.get('/miner/top-miners/power', {params: {count: 10}})
+      .then(res => {
+          this.topMinersByPower = res.data
+      })
+    },
     onUpdateSelectedMinerRanksOption(label) {
       // TODO 
       // Switch to request & refresh
