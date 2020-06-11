@@ -1,6 +1,7 @@
 <template>
-    <nav class="mx-auto bg-main h-24 w-full">
-       <div class="flex h-12">
+    <nav class="mx-auto bg-main h-28 w-full">
+       <div class="flex h-16 container mx-auto items-center">
+           <img src="~/assets/img/home/Logo.svg" alt="filFox.io" class="cursor-pointer">
        </div>
        <navigationBar/>
     </nav>
