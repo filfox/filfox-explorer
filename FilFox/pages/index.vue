@@ -51,49 +51,66 @@
     <!-- 最新区块 富豪榜  -->
     <div class="flex flex-row mb-5">
       <!-- 最新区块 -->
-      <div class="bg-white mr-1 rounded-md w-1/2">
-        <div class="flex h-12 items-center ml-5 border-b border-background">{{$t('home.recentTipsets.title')}}</div>
-        <table class="w-full table-auto mt-2">
-          <thead class="text-gray-600 text-sm m-2">
-            <tr>
-              <th> {{$t('home.recentTipsets.tableHeaders.height')}} </th>
-              <th> {{$t('home.recentTipsets.tableHeaders.blockId')}} </th>
-              <th> {{$t('home.recentTipsets.tableHeaders.miner')}} </th>
-              <th> {{$t('home.recentTipsets.tableHeaders.message')}} </th>
-              <th> {{$t('home.recentTipsets.tableHeaders.award')}} </th>
-            </tr>
-          </thead>
-          <tbody class="text-center">
-            <template v-for="(tipset, tipsetIndex) in recentTipsets">
-                <tr v-for="(block, blockIndex) in tipset.blocks" :key="block.hash"
+      <div class="bg-white mr-1 rounded-md w-1/2 flex flex-col overflow-hidden">
+        <div class="flex h-12 items-center ml-5 mr-5 border-b border-background">{{$t('home.recentTipsets.title')}}</div>
+        <div class="mt-2 overflow-y-scroll flex-grow relative">
+          <table class="w-full table-auto absolute">
+             <thead class="text-gray-600 text-sm m-2">
+               <tr>
+                   <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.height')}} </th>
+                   <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.blockId')}} </th>
+                   <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.miner')}} </th>
+                   <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.message')}} </th>
+                   <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.award')}} </th>
+               </tr>
+            </thead>
+            <tbody class="text-center">
+               <template v-for="(tipset, tipsetIndex) in recentTipsets">
+                   <tr v-for="(block, blockIndex) in tipset.blocks" :key="block.hash"
                     :class="{'bg-gray-200': tipsetIndex % 2, 'smb:hidden': tipsetIndex >= 5}">
-                  <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
-                    <div class="flex flex-col">
-                      <TipsetLink :id="tipset.height" class="text-main text-base" />
-                      <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-sm"/>
-                    </div>
+                   <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
+                      <div class="flex flex-col">
+                        <TipsetLink :id="tipset.height" class="text-main text-base" />
+                        <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-sm"/>
+                     </div>
                   </td>
                   <td>
-                    <BlockLink :id="block.cid" :format="5" class="md:hidden text-sm"/>
-                    <BlockLink :id="block.cid" :format="8" class="mdb:hidden text-sm" />
+                      <BlockLink :id="block.cid" :format="5" class="md:hidden text-sm"/>
+                      <BlockLink :id="block.cid" :format="8" class="mdb:hidden text-sm" />
                   </td>
                   <td>
                     <AddressLink :id="block.miner" class="text-sm"/>
                   </td>
                   <td class="smb:hidden text-sm">{{ block.messageCount }}</td>
-                  <td class="text-sm"> {{ block.size }} </td>
-                </tr>
-              </template>
-          </tbody>
-        </table>
+                  <td class="text-sm"> {{ block.reward | filecoin(2)  }} </td>
+                  </tr>
+                </template>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- 富豪榜 -->
       <div class="flex flex-col w-1/2 bg-white ml-1 rounded-md">
-        <div class="flex h-12 items-center ml-5">{{$t('home.richManRanks.title')}}</div>
-        <el-table :data="minerRanks" class="m-5 w-auto" :empty-text="$t('shared.tableEmptyText')">
-         <el-table-column v-for="(value,key) in richManRanksHeaders" :key="key" :label="value" ></el-table-column>
-        </el-table>
+        <div class="flex h-12 items-center ml-5 mr-5 border-b border-background">{{$t('home.richManRanks.title')}}</div>
+        <table class="w-full table-fixed mt-2">
+            <thead class="text-gray-600 text-sm">
+              <tr>
+                <th> {{$t('home.richManRanks.tableHeaders.order')}} </th>
+                <th> {{$t('home.richManRanks.tableHeaders.address')}} </th>
+                <th> {{$t('home.richManRanks.tableHeaders.balance')}} </th>
+              </tr>
+            </thead>
+            <tbody class="text-center text-sm">
+              <tr v-for="(rich, index) in richList.list" :key="index" class="border-b border-background h-10">
+                  <td> {{index + 1}} </td>
+                  <td>
+                    <AddressLink :id="rich.address" :format="10"/>
+                  </td>
+                  <td> {{rich.balance | filecoin(0)}} </td>
+              </tr>
+            </tbody>
+        </table>
       </div>
 
     </div>
@@ -110,20 +127,16 @@ export default {
       const [
         overview,
         recentTipsets,
-        {miners: topMinerPowers},
-        {miners: topMinerBlocks, tipsetCount: last24hTipsetCount}
+        richList,
       ] = await Promise.all([
         $axios.$get('/overview'),
         $axios.$get('/tipset/recent', {params: {count: 10}}),
-        $axios.$get('/miner/top-miners/power', {params: {count: 10}}),
-        $axios.$get('/miner/top-miners/blocks', {params: {count: 10, duration: 86400}})
+        $axios.$get('/rich-list', {params: {pageSize: 10,page: 0}}),
       ])
       return {
         overview,
         recentTipsets,
-        topMinerPowers,
-        topMinerBlocks,
-        last24hTipsetCount
+        richList,
       }
     } catch (err) {
       if (err?.response) {
@@ -146,20 +159,26 @@ export default {
       richManRanksHeaders:this.$t("home.richManRanks.tableHeaders"),
       minerRanks: [],
       recentTipsets: [],
-      richManRanks: [],
+      richList: {},
     };
   },
   mounted() {
       this.$onUpdateOverview = this.onUpdateOverview.bind(this)
       this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
+      this.$onUpdateRichList = this.onUpdateRichList.bind(this)
+      this.$subscribe('account', 'account/rich-list', this.$onUpdateRichList)
   },
   beforeDestroy() {
     this.$unsubscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
+    this.$unsubscribe('account', 'account/rich-list', this.$onUpdateRichList)
   },
   methods: {
     onUpdateOverview(overview) {
       this.overview = overview
     },
+    onUpdateRichList(richList) {
+      this.richList = richList
+    }
   }
 
 };
