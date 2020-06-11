@@ -7,6 +7,8 @@ export default {
             min:'分',
             sec:'秒',
             ago:'前',
+            day:'天',
+            year:'年'
         }
     },
     nav: {

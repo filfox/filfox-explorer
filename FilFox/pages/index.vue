@@ -41,7 +41,17 @@
 
     <!-- 挖矿排行榜 -->
     <div class="flex flex-grow flex-col mb-5 bg-white rounded-md">
-      <div class="flex h-12 items-center ml-5">{{$t('home.minerRanks.title')}}</div>
+      <div class="justify-between flex flex-row">
+        <div class="flex h-12 items-center ml-5">{{$t('home.minerRanks.title')}}</div>
+        <div class="flex h-12 items-end mr-5">
+          <el-radio-group v-model="currentSelectedMinerRanksOption" size="mini" @change="onUpdateSelectedMinerRanksOption" fill="#1a4fc9">
+            <el-radio-button :label=0> {{ '24' + $t('shared.time.hour') }} </el-radio-button>
+            <el-radio-button :label=1>  {{'7' + $t('shared.time.day')}} </el-radio-button>
+            <el-radio-button :label=2>  {{'30' + $t('shared.time.day')}} </el-radio-button>
+            <el-radio-button :label=3> {{'1' + $t('shared.time.year')}} </el-radio-button>
+          </el-radio-group>
+        </div>
+        </div>
       <div class="h-8"></div>
       <el-table :data="minerRanks" class="m-5 w-auto" :empty-text="$t('shared.tableEmptyText')">
         <el-table-column v-for="(value,key) in rankTableHeaders" :key="key" :label="value" ></el-table-column>
@@ -156,8 +166,9 @@ export default {
       overviewTitles: this.$t("home.overview.titles"),
       overview: {},
       rankTableHeaders: this.$t("home.minerRanks.tableHeaders"),
-      richManRanksHeaders:this.$t("home.richManRanks.tableHeaders"),
+      currentSelectedMinerRanksOption:0,
       minerRanks: [],
+      richManRanksHeaders:this.$t("home.richManRanks.tableHeaders"),
       recentTipsets: [],
       richList: {},
     };
@@ -173,6 +184,10 @@ export default {
     this.$unsubscribe('account', 'account/rich-list', this.$onUpdateRichList)
   },
   methods: {
+    onUpdateSelectedMinerRanksOption(label) {
+      // TODO 
+      // Switch to request & refresh
+    },
     onUpdateOverview(overview) {
       this.overview = overview
     },
