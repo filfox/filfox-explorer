@@ -20,6 +20,9 @@ Vue.filter('coin', (value, precision = null) => {
 })
 
 Vue.filter('filecoin', (value, precision = null) => {
+  if (value == null) {
+    return 'N/A'
+  }
   if (value === '0') {
     return '0 FIL'
   } else if (value.length <= 9) {
@@ -45,13 +48,18 @@ Vue.filter('size_metric', (number, precision = null) => {
   const metrics = 'kMGTPEZY'
   let metricIndex = -1
   number = Number(number)
+  var flag = false
+  if (number < 0) {
+      number = -number
+      flag = true
+  }
   while (number >= 2 ** 10) {
     ++metricIndex
     number /= 2 ** 10
   }
   if (precision == null) {
-    return `${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
+    return flag? `-${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
   } else {
-    return `${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
+    return flag? `-${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
   }
 })

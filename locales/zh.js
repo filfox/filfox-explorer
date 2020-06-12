@@ -59,9 +59,27 @@ export default {
         },
         minerRanks: {
             title: '挖矿排行榜',
-            tableHeaders: {
+            tableHeadersByPower: {
                 rank:'排名',
-                miner:'矿工',
+                miner:'矿工及标签',
+                area:'地区',
+                validPower:'有效算力',
+                validPowerRate:'有效算力占比',
+                blockNums:'出块数量',
+                powerIncreaseSpeed:'算力增速'
+            },
+            tableHeadersByBlock: {
+                rank:'排名',
+                miner:'矿工及标签',
+                area:'地区',
+                blockNums:'出块数',
+                blockRate:'出块数占比',
+                totalRewards:'出块奖励',
+                luckyValue:'幸运值',
+            },
+            tableHeadersByPowerDelta: {
+                rank:'排名',
+                miner:'矿工及标签',
                 area:'地区',
                 validPower:'有效算力',
                 validPowerRate:'有效算力占比',
@@ -72,9 +90,9 @@ export default {
         recentTipsets: {
             title: '最新区块',
             tableHeaders: {
-                height: '高度',
-                blockId: '区块ID',
-                miner: '矿工',
+                height:'高度',
+                blockId:'区块ID',
+                miner:'矿工',
                 message:'消息',
                 award:'奖励'
             },
