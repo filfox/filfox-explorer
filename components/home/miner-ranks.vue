@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-grow flex-col mb-5 bg-white rounded-md">
+  <div class="flex flex-grow flex-col mb-4 bg-white rounded-md">
     <div class="flex flex-col border-b border-background">
       <homeTitle type="minerRanks" />
       <div class="justify-between flex flex-row">
-        <div class="flex h-12 ml-5 items-center">
+        <div class="flex h-12 ml-4 items-center">
           <el-row>
             <el-button
               size="mini"
@@ -22,7 +22,7 @@
             >{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
           </el-row>
         </div>
-        <div class="flex h-12 items-center mr-5">
+        <div class="flex h-12 items-center mr-4">
           <el-radio-group
             v-model="duration"
             size="mini"
@@ -58,7 +58,7 @@
             :key="index"
             class="border-b border-background h-10"
           >
-            <td>{{index}}</td>
+            <td>{{index+1}}</td>
             <td>{{ miner.address }}</td>
             <td>未知</td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
