@@ -92,10 +92,10 @@ export default {
                 rank:'排名',
                 miner:'矿工及标签',
                 area:'地区',
-                validPower:'有效算力',
-                validPowerRate:'有效算力占比',
-                blockNums:'出块数量',
-                powerIncreaseSpeed:'算力增速'
+                validPower:'算力增速',
+                validPowerRate:'矿机数量',
+                blockNums:'算力增量',
+                powerIncreaseSpeed:'有效算力'
             },
         },
         recentTipsets: {
