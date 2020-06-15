@@ -3,11 +3,13 @@
     <!-- 全网概览 -->
     <div class="my-5">
       <div class="bg-white flex justify-between h-12 border-b border-background rounded-t-md">
-        <div class="flex items-center ml-5">{{ $t('home.overview.title') }}</div>
-        <button
-          class="mr-5 text-center items-center"
+        <homeTitle type="overview" />
+        <div class="flex items-center mr-5"> 
+          <el-button
+          class="focus:no-outline no-outline"
           v-on:click="overviewExpanded = !overviewExpanded"
-        >{{ $t('home.overview.foldBtn')}}</button>
+         round size="mini"> {{ overviewExpanded ? $t('home.overview.foldBtn'): $t('home.overview.unfoldBtn') }}</el-button>
+        </div>
       </div>
       <div class="bg-white p-5 rounded-b-md">
         <div class="grid grid-flow-row grid-cols-5 gap-4 text-center">
@@ -34,9 +36,20 @@
     </div>
 
     <!-- 图表 -->
-    <div class="flex flex-row mb-5">
-      <div class="flex-grow bg-white h-64 mr-2 rounded-md"></div>
-      <div class="flex-grow bg-white h-64 ml-2 rounded-md"></div>
+    <div class="grid grid-flow-col grid-rows-1 grid-cols-2 mb-5">
+      <div class="flex flex-col bg-white ml-2 rounded-md">
+        <homeTitle type="powerDistribution" class="border-b border-background h-12 mr-5" />
+        <client-only>
+            <PowerDistributionChart class="mx-5 mt-12"/>
+        </client-only>
+      </div>
+      
+      <div class="flex flex-col bg-white ml-2 rounded-md">
+        <homeTitle type="powerDelta" class="border-b border-background h-12 mr-5" />
+        <client-only>
+            <PowerDeltaChart class="mx-5 mt-12"/>
+        </client-only>
+      </div>
     </div>
 
     <!-- 挖矿排行榜 -->
@@ -46,7 +59,7 @@
     <div class="flex flex-row mb-5">
       <!-- 最新区块 -->
       <div class="bg-white mr-1 rounded-md w-1/2 flex flex-col overflow-hidden">
-        <div class="flex h-12 items-center ml-5 mr-5 border-b border-background">{{$t('home.recentTipsets.title')}}</div>
+        <homeTitle type="recentTipsets" class="ml-5 mr-5 border-b border-background"/>
         <div class="mt-2 overflow-y-scroll flex-grow relative">
           <table class="w-full table-auto absolute">
              <thead class="text-gray-600 text-sm m-2">
@@ -86,7 +99,7 @@
 
       <!-- 富豪榜 -->
       <div class="flex flex-col w-1/2 bg-white ml-1 rounded-md">
-        <div class="flex h-12 items-center ml-5 mr-5 border-b border-background">{{$t('home.richManRanks.title')}}</div>
+        <homeTitle type="richManRanks" class="ml-5 mr-5 border-b border-background"/>
         <table class="w-full table-fixed mt-2">
             <thead class="text-gray-600 text-sm">
               <tr>
@@ -112,9 +125,12 @@
 </template>
 
 <script>
+import homeTitle from "~/components/home/home-title"
 import overviewCell from "~/components/home/overview-cell"
 import FromNow from '@/components/from-now'
 import MinerRanksTable from '@/components/home/miner-ranks'
+import PowerDeltaChart from '@/components/home/power-delta-chart'
+import PowerDistributionChart from '@/components/home/power-distribution-chart'
 
 export default {
     async asyncData({$axios, error}) {
@@ -142,9 +158,12 @@ export default {
     }
   },
   components: {
+    homeTitle,
     overviewCell,
     FromNow,
-    MinerRanksTable
+    MinerRanksTable,
+    PowerDeltaChart,
+    PowerDistributionChart
   },
   data() {
     return {

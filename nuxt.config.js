@@ -13,12 +13,12 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      {name: 'apple-mobile-web-app-capable', content: 'yes'},
-      {name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent'},
-      {name: 'apple-mobile-web-app-title', content: 'filfox.io'},
-      {name: 'mobile-web-app-capable', content: 'yes'},
-      {name: 'theme-color', content: '#5dcfd4'},
-      {name: 'application-name', content: 'filfox.io'}
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      { name: 'apple-mobile-web-app-title', content: 'filfox.io' },
+      { name: 'mobile-web-app-capable', content: 'yes' },
+      { name: 'theme-color', content: '#5dcfd4' },
+      { name: 'application-name', content: 'filfox.io' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -41,7 +41,8 @@ export default {
     '~/plugins/i18n.js',
     '@/plugins/filters',
     '@/plugins/websocket.client',
-    '@/plugins/components'
+    '@/plugins/components',
+    '@/plugins/chart.client'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '~/plugins/i18n.js')
@@ -67,12 +68,12 @@ export default {
   ],
   axios: {
     proxy: true,
-    prefix:'/api/v0',
+    prefix: '/api/v0',
   },
   proxy: {
     '/api': {
-        target:'https://interop.filfox.io/',
-        changeOrigin: true
+      target: 'https://interop.filfox.io/',
+      changeOrigin: true
     }
   },
   i18n: {
@@ -114,9 +115,9 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
       config.plugins.push(new webpack.DefinePlugin({
-        'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL)
+        'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL),
       }))
     }
   }
