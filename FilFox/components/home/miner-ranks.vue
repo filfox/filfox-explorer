@@ -5,24 +5,12 @@
       <div class="justify-between flex flex-row">
         <div class="flex h-12 ml-4 items-center">
           <el-row>
-            <el-button
-              size="mini"
-              round
-              class="outline-none"
-            >{{ $t('home.minerRanks.filters.qualityAdjPower') }}</el-button>
-            <el-button
-              size="mini"
-              round
-              class="outline-none"
-            >{{ $t('home.minerRanks.filters.blocks') }}</el-button>
-            <el-button
-              size="mini"
-              round
-              class="outline-none"
-            >{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
+            <el-button size="mini" round class="outline-none" v-on:click="didRankTypeSwitched(0)"> {{ $t('home.minerRanks.filters.qualityAdjPower') }} </el-button>
+            <el-button size="mini" round class="outline-none" v-on:click="didRankTypeSwitched(1)">{{ $t('home.minerRanks.filters.blocks') }}</el-button>
+            <el-button size="mini" round class="outline-none" v-on:click="didRankTypeSwitched(2)">{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
           </el-row>
         </div>
-        <div class="flex h-12 items-center mr-4">
+        <div class="flex h-12 items-center mr-4" v-if="type != 0">
           <el-radio-group
             v-model="duration"
             size="mini"
@@ -46,18 +34,14 @@
             <th v-for="(title, index) in rankTableHeadersByPowers" :key="index">{{title}}</th>
           </tr>
           <tr v-if="type === 1">
-            <th v-for="(title, index) in rankTableHeadersByPowers" :key="index">{{title}}</th>
+            <th v-for="(title, index) in rankTableHeadersByBlocks" :key="index">{{title}}</th>
           </tr>
           <tr v-if="type === 2">
-            <th v-for="(title, index) in rankTableHeadersByPowers" :key="index">{{title}}</th>
+            <th v-for="(title, index) in rankTableHeadersByPowerDelta" :key="index">{{title}}</th>
           </tr>
         </thead>
         <tbody class="text-sm text-center">
-          <tr
-            v-for="(miner, index) in topMinersByPower.miners"
-            :key="index"
-            class="border-b border-background h-10"
-          >
+          <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10" v-if="type===0">
             <td>{{index+1}}</td>
             <td>{{ miner.address }}</td>
             <td>未知</td>
@@ -65,6 +49,24 @@
             <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower).toFixed(2) }}</td>
             <td>{{ miner.blocksMined }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2)}}</td>
+          </tr>
+          <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10" v-if="type===1">
+            <td>{{index+1}}</td>
+            <td>{{ miner.address }}</td>
+            <td>未知</td>
+            <td>{{ miner.blocksMined }}</td>
+            <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount).toFixed(2) }}</td>
+            <td>{{ miner.totalRewards | filecoin(2) }}</td>
+            <td>{{ miner.luckyValue.toFixed(2) }}</td>
+          </tr>
+          <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10" v-if="type===2">
+            <td>{{index+1}}</td>
+            <td>{{ miner.address }}</td>
+            <td>未知</td>
+            <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
+            <td> N/A </td>
+            <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
+            <td>{{ miner.qualityAdjPower | size_metric(2)}}</td>
           </tr>
         </tbody>
       </table>
@@ -87,9 +89,9 @@ export default {
       duration: "24h",
       type: 0,
       rankTableHeadersByPowers: this.$t("home.minerRanks.tableHeadersByPower"),
-      rankTableHeadersByBlocks: this.$t("home.minerRanks.tableHeadersByPower"),
+      rankTableHeadersByBlocks: this.$t("home.minerRanks.tableHeadersByBlock"),
       rankTableHeadersByPowerDelta: this.$t(
-        "home.minerRanks.tableHeadersByPower"
+        "home.minerRanks.tableHeadersByPowerDelta"
       )
     };
   },
@@ -98,11 +100,41 @@ export default {
   },
   methods: {
     getTopMinersByPowers() {
-      this.$axios
-        .get("/miner/top-miners/power", { params: { count: 10 } })
+        this.$axios
+        .get("/miner/top-miners/power", { params: { count: 10, duration:this.duration } })
         .then(res => {
           this.topMinersByPower = res.data;
         });
+    },
+    getTopMinersByBlocks() {
+        this.$axios
+        .get("/miner/top-miners/blocks", { params: { count: 10, duration:this.duration } })
+        .then(res => {
+          this.topMinersByBlocks = res.data;
+        });
+    },
+    getTopMinersByPowerDelta() {
+        this.$axios
+        .get("/miner/top-miners/power-delta", { params: { count: 10, duration:this.duration } })
+        .then(res => {
+          this.topMinersByPowerDelta = res.data;
+        });
+    },
+    didRankTypeSwitched(type) {
+        this.type = type
+        switch(type) {
+            case 0:
+            this.getTopMinersByPowers()
+            break;
+            case 1:
+            this.getTopMinersByBlocks()
+            break;
+            case 2:
+            this.getTopMinersByPowerDelta()
+            break;
+            default:
+            break;
+        }
     },
     onUpdateCurrentDuration() {}
   }
