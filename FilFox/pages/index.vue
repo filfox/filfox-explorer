@@ -37,7 +37,7 @@
 
     <!-- 图表 -->
     <div class="grid grid-flow-col grid-rows-1 grid-cols-2 mb-5">
-      <div class="flex flex-col bg-white ml-2 rounded-md">
+      <div class="flex flex-col bg-white rounded-md">
         <homeTitle type="powerDistribution" class="border-b border-background h-12 mr-5" />
         <client-only>
             <PowerDistributionChart class="mx-5 mt-12"/>
