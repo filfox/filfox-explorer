@@ -11,12 +11,7 @@
           </el-row>
         </div>
         <div class="flex h-12 items-center mr-4" v-if="type != 0">
-          <el-radio-group
-            v-model="duration"
-            size="mini"
-            @change="onUpdateCurrentDuration"
-            fill="#1a4fc9"
-          >
+          <el-radio-group v-model="duration" size="mini" @change="didDurationSwitched" fill="#1a4fc9">
             <el-radio-button label="24h">{{ '24' + $t('shared.time.hour') }}</el-radio-button>
             <el-radio-button label="7d">{{'7' + $t('shared.time.day')}}</el-radio-button>
             <el-radio-button label="30d">{{'30' + $t('shared.time.day')}}</el-radio-button>
@@ -136,7 +131,14 @@ export default {
             break;
         }
     },
-    onUpdateCurrentDuration() {}
+    didDurationSwitched() {
+        if (this.type === 1) {
+            this.getTopMinersByBlocks()
+        }
+        else if (this.type === 2) {
+            this.getTopMinersByPowerDelta()
+        }
+    }
   }
 };
 </script>>

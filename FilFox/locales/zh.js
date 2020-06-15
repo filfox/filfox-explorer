@@ -54,8 +54,7 @@ export default {
                 totalPledgeCollateral:'FIL质押量',
                 burntSupply:'FIL销毁量',
                 totalSupply:'FIL总供给量',
-        }
-            //['区块高度','最新区块时间','全网有效算力','活跃矿工数','最新价格','每区块奖励','总账户数','平均区块间隔','平均区块大小','平均每高度区块数量','全网原值算力','平均gas费率','FIL流通量','FIL质押量','FIL销毁量','FIL总供给量','FIL流通率'],
+            }
         },
         powerDistribution: {
             title: '有效算力分布'
@@ -77,7 +76,7 @@ export default {
                 validPower:'有效算力',
                 validPowerRate:'有效算力占比',
                 blockNums:'出块数量',
-                powerIncreaseSpeed:'算力增速'
+                powerIncrease:'算力增量'
             },
             tableHeadersByBlock: {
                 rank:'排名',
