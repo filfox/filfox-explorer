@@ -35,8 +35,8 @@ export default {
     home: {
         overview: {
             title: '全网概览',
-            foldBtn: '展开全部',
-            unfoldBtn: '收起',
+            unfoldBtn: '展开全部',
+            foldBtn: '收起',
             titles: {
                 height:'区块高度',
                 timestamp:'最新区块时间',
@@ -57,8 +57,19 @@ export default {
         }
             //['区块高度','最新区块时间','全网有效算力','活跃矿工数','最新价格','每区块奖励','总账户数','平均区块间隔','平均区块大小','平均每高度区块数量','全网原值算力','平均gas费率','FIL流通量','FIL质押量','FIL销毁量','FIL总供给量','FIL流通率'],
         },
+        powerDistribution: {
+            title: '算力分布'
+        },
+        powerDelta: {
+            title: '算力增量（Top5）'
+        },
         minerRanks: {
             title: '挖矿排行榜',
+            filters: {
+                qualityAdjPower: '有效算力',
+                blocks: '出块数',
+                powerDelta: '算力增速'
+            },
             tableHeadersByPower: {
                 rank:'排名',
                 miner:'矿工及标签',

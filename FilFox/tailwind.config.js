@@ -1,5 +1,8 @@
 module.exports = {
   purge: [],
+  corePlugins: {
+    outline: false
+  },
   theme: {
     extend: {
       colors: {
@@ -10,6 +13,7 @@ module.exports = {
       }
     },
   },
-  variants: {},
+  variants: {
+  },
   plugins: [],
 }
