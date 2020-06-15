@@ -1,17 +1,17 @@
 <template>
   <div class="container mx-auto">
     <!-- 全网概览 -->
-    <div class="my-5">
+    <div class="my-4">
       <div class="bg-white flex justify-between h-12 border-b border-background rounded-t-md">
         <homeTitle type="overview" />
-        <div class="flex items-center mr-5"> 
+        <div class="flex items-center mr-4"> 
           <el-button
           class="focus:no-outline no-outline"
           v-on:click="overviewExpanded = !overviewExpanded"
          round size="mini"> {{ overviewExpanded ? $t('home.overview.foldBtn'): $t('home.overview.unfoldBtn') }}</el-button>
         </div>
       </div>
-      <div class="bg-white p-5 rounded-b-md">
+      <div class="bg-white p-4 rounded-b-md">
         <div class="grid grid-flow-row grid-cols-5 gap-4 text-center">
             <overviewCell :name="$t('home.overview.titles.height')" :value="overview.height.toString()">  </overviewCell>
             <overviewCell :name="$t('home.overview.titles.timestamp')" :value="overview.timestamp.toString() | timestamp('time')">  </overviewCell>
@@ -36,18 +36,18 @@
     </div>
 
     <!-- 图表 -->
-    <div class="grid grid-flow-col grid-rows-1 grid-cols-2 mb-5">
-      <div class="flex flex-col bg-white rounded-md">
-        <homeTitle type="powerDistribution" class="border-b border-background h-12 mr-5" />
+    <div class="grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
+      <div class="flex flex-col bg-white rounded-md mr-2">
+        <homeTitle type="powerDistribution" class="border-b border-background h-12 mr-4" />
         <client-only>
-            <PowerDistributionChart class="mx-5 mt-12"/>
+            <PowerDistributionChart class="mx-4 mt-12"/>
         </client-only>
       </div>
       
       <div class="flex flex-col bg-white ml-2 rounded-md">
-        <homeTitle type="powerDelta" class="border-b border-background h-12 mr-5" />
+        <homeTitle type="powerDelta" class="border-b border-background h-12 mr-4" />
         <client-only>
-            <PowerDeltaChart class="mx-5 mt-12"/>
+            <PowerDeltaChart class="mx-4 mt-12"/>
         </client-only>
       </div>
     </div>
@@ -56,10 +56,10 @@
     <MinerRanksTable/>
 
     <!-- 最新区块 富豪榜  -->
-    <div class="flex flex-row mb-5">
+    <div class="flex flex-row mb-4">
       <!-- 最新区块 -->
-      <div class="bg-white mr-1 rounded-md w-1/2 flex flex-col overflow-hidden">
-        <homeTitle type="recentTipsets" class="ml-5 mr-5 border-b border-background"/>
+      <div class="bg-white mr-2 rounded-md w-1/2 flex flex-col overflow-hidden">
+        <homeTitle type="recentTipsets" class="ml-4 mr-4 border-b border-background"/>
         <div class="mt-2 overflow-y-scroll flex-grow relative">
           <table class="w-full table-auto absolute">
              <thead class="text-gray-600 text-sm m-2">
@@ -98,8 +98,8 @@
       </div>
 
       <!-- 富豪榜 -->
-      <div class="flex flex-col w-1/2 bg-white ml-1 rounded-md">
-        <homeTitle type="richManRanks" class="ml-5 mr-5 border-b border-background"/>
+      <div class="flex flex-col w-1/2 bg-white ml-2 rounded-md">
+        <homeTitle type="richManRanks" class="ml-4 mr-4 border-b border-background"/>
         <table class="w-full table-fixed mt-2">
             <thead class="text-gray-600 text-sm">
               <tr>
