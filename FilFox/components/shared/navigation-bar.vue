@@ -55,19 +55,37 @@ export default {
   created() {},
   methods: {
     handleHomeSelect() {
-      this.$message('首页')
+      this.$router.push(this.localePath('/'))
     },
     handleRanksSelect() {
-      this.$message('排行榜')
+      this.$router.push(this.localePath('/ranks'))
     },
     handleBlocksCommand(index) {
-      this.$message('区块链:' + index)
+      if (index == 0) {
+        this.$router.push(this.localePath('/blockchain/blocks'))
+      }
+      else if (index == 1) {
+        this.$router.push(this.localePath('/blockchain/messages'))
+      }
+      else {
+        this.$router.push(this.localePath('/blockchain/accounts'))
+      }
     },
     handleChartsCommand(index) {
-      this.$message('图表:' + index)
+      if (index == 0) {
+        this.$router.push(this.localePath('/charts/miner'))
+      }
+      else if (index == 1) {
+        this.$router.push(this.localePath('/charts/fil'))
+      }
     },
     handleResourcesCommand(index) {
-      this.$message('资源:' + index)
+      if (index == 0) {
+        this.$router.push(this.localePath('/resources/tools'))
+      }
+      else if (index == 1) {
+        this.$router.push(this.localePath('/resources/wiki'))
+      }
     }
   }
 }

@@ -1,8 +1,7 @@
 <template>
-  <div class="root">
+  <div class="container mx-auto">
   </div>
 </template>
 
 <script>
-
 </script>

@@ -136,7 +136,7 @@
 <script>
 import HomeTitle from "~/components/home/home-title"
 import OverviewCell from "~/components/home/overview-cell"
-import FromNow from '@/components/from-now'
+import FromNow from '@/components/shared/from-now'
 import MinerRanksTable from '@/components/home/miner-ranks'
 import PowerDeltaChart from '@/components/home/power-delta-chart'
 import PowerDistributionChart from '@/components/home/power-distribution-chart'

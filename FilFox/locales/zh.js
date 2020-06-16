@@ -118,5 +118,10 @@ export default {
                 balance:'余额'
             },
         }
+    },
+    footer: {
+        contact: '联系方式: contact@6block.com',
+        intro: 'Filfox.io是Filecoin区块链浏览器，提供相关数据查询服务，由6block提供技术支持',
     }
+
 }
