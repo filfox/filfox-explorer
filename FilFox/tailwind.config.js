@@ -1,7 +1,14 @@
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: process.env.NODE_ENV === 'production',
+    content: [
+      'pages/**/*.vue',
+      'components/**/*.vue',
+      'layouts/**/*.vue',
+      'plugins/**/*.vue',
+    ]
+  },
   corePlugins: {
-    outline: false
   },
   theme: {
     extend: {

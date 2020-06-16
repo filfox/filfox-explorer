@@ -6,7 +6,7 @@
         <homeTitle type="overview" />
         <div class="flex items-center mr-4"> 
           <el-button
-          class="focus:no-outline no-outline"
+          class="focus:outline-none outline-none"
           v-on:click="overviewExpanded = !overviewExpanded"
          round size="mini"> {{ overviewExpanded ? $t('home.overview.foldBtn'): $t('home.overview.unfoldBtn') }}</el-button>
         </div>
