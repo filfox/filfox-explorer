@@ -99,6 +99,7 @@ export default {
                 blockNums:'算力增量',
                 powerIncreaseSpeed:'有效算力'
             },
+            moreBtn: '查看更多'
         },
         recentTipsets: {
             title: '最新区块',
