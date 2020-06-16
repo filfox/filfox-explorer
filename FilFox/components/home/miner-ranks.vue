@@ -35,9 +35,11 @@
             <th v-for="(title, index) in rankTableHeadersByPowerDelta" :key="index">{{title}}</th>
           </tr>
         </thead>
-        <tbody class="text-sm text-center">
-          <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10" v-if="type===0">
-            <td>{{index+1}}</td>
+        <tbody class="text-sm text-center" v-if="type===0">
+          <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10">
+            <td>
+              <rankIndex :index="index+1"/>
+            </td>
             <td>{{ miner.address }}</td>
             <td>未知</td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
@@ -45,7 +47,9 @@
             <td>{{ miner.blocksMined }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2)}}</td>
           </tr>
-          <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10" v-if="type===1">
+        </tbody>
+        <tbody class="text-sm text-center" v-if="type===1">
+          <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10">
             <td>{{index+1}}</td>
             <td>{{ miner.address }}</td>
             <td>未知</td>
@@ -54,7 +58,9 @@
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.luckyValue.toFixed(2) }}</td>
           </tr>
-          <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10" v-if="type===2">
+        </tbody>
+        <tbody class="text-sm text-center" v-if="type===2">
+          <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10">
             <td>{{index+1}}</td>
             <td>{{ miner.address }}</td>
             <td>未知</td>
@@ -75,10 +81,12 @@
 
 <script>
 import homeTitle from "~/components/home/home-title";
+import rankIndex from "~/components/home/rank-index"
 
 export default {
   components: {
-    homeTitle
+    homeTitle,
+    rankIndex
   },
   data() {
     return {

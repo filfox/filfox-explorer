@@ -3,7 +3,7 @@
     <!-- 全网概览 -->
     <div class="my-4">
       <div class="bg-white flex justify-between h-12 border-b border-background rounded-t-md">
-        <homeTitle type="overview" />
+        <HomeTitle type="overview" />
         <div class="flex items-center mr-4"> 
           <el-button
           class="focus:outline-none outline-none"
@@ -13,23 +13,23 @@
       </div>
       <div class="bg-white p-4 rounded-b-md">
         <div class="grid grid-flow-row grid-cols-5 gap-4 text-center">
-            <overviewCell :name="$t('home.overview.titles.height')" :value="overview.height.toString()">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.timestamp')" :value="overview.timestamp.toString() | timestamp('time')">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.qualityAdjPower')" :value="overview.qualityAdjPower.toString() | size_metric(2)">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.activeMiners')" :value="overview.activeMiners.toString()">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.price')" :value="'$ ' + overview.price.toFixed(2).toString()">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.blockReward')" :value="overview.blockReward.toString() | filecoin(4)">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.accounts')" :value="overview.accounts.toString()">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.averageTipsetInterval')" :value="overview.averageTipsetInterval.toFixed(2).toString()">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.averageBlockSize')" :value="overview.averageBlockSize.toFixed(2).toString()">  </overviewCell>
-            <overviewCell :name="$t('home.overview.titles.averageTipsetBlocks')" :value="overview.averageTipsetBlocks.toFixed(2).toString()">  </overviewCell> 
+            <OverviewCell :name="$t('home.overview.titles.height')" :value="overview.height.toString()">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.timestamp')" :value="overview.timestamp.toString() | timestamp('time')">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.qualityAdjPower')" :value="overview.qualityAdjPower.toString() | size_metric(2)">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.activeMiners')" :value="overview.activeMiners.toString()">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.price')" :value="'$ ' + overview.price.toFixed(2).toString()">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.blockReward')" :value="overview.blockReward.toString() | filecoin(4)">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.accounts')" :value="overview.accounts.toString()">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.averageTipsetInterval')" :value="overview.averageTipsetInterval.toFixed(2).toString()">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.averageBlockSize')" :value="overview.averageBlockSize.toFixed(2).toString()">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.averageTipsetBlocks')" :value="overview.averageTipsetBlocks.toFixed(2).toString()">  </OverviewCell> 
             <template v-if="overviewExpanded">
-              <overviewCell :name="$t('home.overview.titles.rawBytePower')" :value="overview.rawBytePower.toString() | size_metric(2)">  </overviewCell>
-              <overviewCell :name="$t('home.overview.titles.averageGasPrice')" :value="overview.averageGasPrice.toFixed(2).toString() + ' AttoFIL'">  </overviewCell>
-              <overviewCell :name="$t('home.overview.titles.circulatingSupply')" :value="overview.circulatingSupply.toString() | filecoin(0)">  </overviewCell>
-              <overviewCell :name="$t('home.overview.titles.totalPledgeCollateral')" :value="overview.totalPledgeCollateral.toString() | filecoin(0)">  </overviewCell>
-              <overviewCell :name="$t('home.overview.titles.burntSupply')" :value="overview.burntSupply.toString() | filecoin(4)">  </overviewCell>
-              <overviewCell :name="$t('home.overview.titles.totalSupply')" :value="overview.totalSupply.toString() | filecoin(0)">  </overviewCell>  
+              <OverviewCell :name="$t('home.overview.titles.rawBytePower')" :value="overview.rawBytePower.toString() | size_metric(2)">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.averageGasPrice')" :value="overview.averageGasPrice.toFixed(2).toString() + ' AttoFIL'">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.circulatingSupply')" :value="overview.circulatingSupply.toString() | filecoin(0)">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.totalPledgeCollateral')" :value="overview.totalPledgeCollateral.toString() | filecoin(0)">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.burntSupply')" :value="overview.burntSupply.toString() | filecoin(4)">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.totalSupply')" :value="overview.totalSupply.toString() | filecoin(0)">  </OverviewCell>  
             </template>
         </div>
       </div>
@@ -38,14 +38,14 @@
     <!-- 图表 -->
     <div class="grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
       <div class="flex flex-col bg-white rounded-md mr-2">
-        <homeTitle type="powerDistribution" class="border-b border-background h-12 mr-4" />
+        <HomeTitle type="powerDistribution" class="border-b border-background h-12 mr-4" />
         <client-only>
             <PowerDistributionChart class="mx-4 mt-12"/>
         </client-only>
       </div>
       
       <div class="flex flex-col bg-white ml-2 rounded-md">
-        <homeTitle type="powerDelta" class="border-b border-background h-12 mr-4" />
+        <HomeTitle type="powerDelta" class="border-b border-background h-12 mr-4" />
         <client-only>
             <PowerDeltaChart class="mx-4 mt-12"/>
         </client-only>
@@ -59,7 +59,7 @@
     <div class="flex flex-row mb-4">
       <!-- 最新区块 -->
       <div class="bg-white mr-2 rounded-md w-1/2 flex flex-col overflow-hidden">
-        <homeTitle type="recentTipsets" class="ml-4 mr-4 border-b border-background"/>
+        <HomeTitle type="recentTipsets" class="ml-4 mr-4 border-b border-background"/>
         <div class="mt-2 overflow-y-scroll flex-grow relative">
           <table class="w-full table-auto absolute">
              <thead class="text-gray-600 text-sm m-2">
@@ -99,7 +99,7 @@
 
       <!-- 富豪榜 -->
       <div class="flex flex-col w-1/2 bg-white ml-2 rounded-md">
-        <homeTitle type="richManRanks" class="ml-4 mr-4 border-b border-background"/>
+        <HomeTitle type="richManRanks" class="ml-4 mr-4 border-b border-background"/>
         <table class="w-full table-fixed mt-2">
             <thead class="text-gray-600 text-sm">
               <tr>
@@ -110,7 +110,9 @@
             </thead>
             <tbody class="text-center text-sm">
               <tr v-for="(rich, index) in richList.list" :key="index" class="border-b border-background h-10">
-                  <td> {{index + 1}} </td>
+                  <td> 
+                    <RankIndex :index="index+1"/>  
+                  </td>
                   <td>
                     <AddressLink :id="rich.address" :format="10"/>
                   </td>
@@ -125,12 +127,13 @@
 </template>
 
 <script>
-import homeTitle from "~/components/home/home-title"
-import overviewCell from "~/components/home/overview-cell"
+import HomeTitle from "~/components/home/home-title"
+import OverviewCell from "~/components/home/overview-cell"
 import FromNow from '@/components/from-now'
 import MinerRanksTable from '@/components/home/miner-ranks'
 import PowerDeltaChart from '@/components/home/power-delta-chart'
 import PowerDistributionChart from '@/components/home/power-distribution-chart'
+import RankIndex from '@/components/home/rank-index'
 
 export default {
     async asyncData({$axios, error}) {
@@ -158,12 +161,13 @@ export default {
     }
   },
   components: {
-    homeTitle,
-    overviewCell,
+    HomeTitle,
+    OverviewCell,
     FromNow,
     MinerRanksTable,
     PowerDeltaChart,
-    PowerDistributionChart
+    PowerDistributionChart,
+    RankIndex
   },
   data() {
     return {
