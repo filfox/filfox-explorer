@@ -19,7 +19,7 @@ export default {
         },
         blocks: {
             title: '区块链',
-            subMenus: ['区块','消息','账户']
+            subMenus: ['区块','消息','富豪榜']
         },
         ranks: {
             title: '排行榜',

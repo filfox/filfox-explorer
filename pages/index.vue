@@ -147,17 +147,11 @@ export default {
     try {
       const [
         overview,
-        recentTipsets,
-        richList,
       ] = await Promise.all([
         $axios.$get('/overview'),
-        $axios.$get('/tipset/recent', {params: {count: 10}}),
-        $axios.$get('/rich-list', {params: {pageSize: 10,page: 0}}),
       ])
       return {
         overview,
-        recentTipsets,
-        richList,
       }
     } catch (err) {
       if (err?.response) {
@@ -187,6 +181,8 @@ export default {
     };
   },
   mounted() {
+      this.getRecentTipsets()
+      this.getRichList()
       this.$onUpdateOverview = this.onUpdateOverview.bind(this)
       this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
       this.$onUpdateRichList = this.onUpdateRichList.bind(this)
@@ -200,6 +196,20 @@ export default {
     this.$unsubscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
   },
   methods: {
+    getRecentTipsets() {
+        this.$axios
+        .get("/tipset/recent", { params: { count: 10 } })
+        .then(res => {
+          this.recentTipsets = res.data;
+        });
+    },
+    getRichList() {
+        this.$axios
+        .get("/rich-list", { params: {pageSize: 10,page: 0} })
+        .then(res => {
+          this.richList = res.data;
+        });
+    },
     onUpdateOverview(overview) {
       this.overview = overview
     },
@@ -210,10 +220,10 @@ export default {
       this.recentTipsets = tipsets
     },
     didRecentTipsetsMoreBtnClicked() {
-
+      this.$router.push(this.localePath('/blockchain/blocks'))
     },
     didRichManListMoreBtnClicked() {
-
+      this.$router.push(this.localePath('/blockchain/rich-list'))
     }
   }
 

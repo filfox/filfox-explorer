@@ -5,7 +5,7 @@
       <div class="justify-between flex flex-row">
         <div class="flex h-12 ml-4 items-center">
           <el-row>
-            <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(0)" autofocus="true"> {{ $t('home.minerRanks.filters.qualityAdjPower') }} </el-button>
+            <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(0)" :autofocus='true'> {{ $t('home.minerRanks.filters.qualityAdjPower') }} </el-button>
             <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(1)">{{ $t('home.minerRanks.filters.blocks') }}</el-button>
             <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(2)">{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
           </el-row>
@@ -83,7 +83,7 @@
       </table>
     </div>
     <div class="flex flex-grow items-center text-center h-16">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round> 查看更多 </el-button> 
+        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didMoreBtnClicked"> 查看更多 </el-button> 
     </div>
 
   </div>
@@ -162,6 +162,9 @@ export default {
         else if (this.type === 2) {
             this.getTopMinersByPowerDelta()
         }
+    },
+    didMoreBtnClicked() {
+       this.$router.push(this.localePath('/ranks'))
     }
   }
 };
