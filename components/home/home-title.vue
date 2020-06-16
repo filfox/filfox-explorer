@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row h-12 items-center ml-5">
+    <div class="flex flex-row h-12 items-center ml-4">
         <img v-if="type == 'overview'" src="~/assets/img/home/overview.svg" alt="icon" class="w-5"/>
         <img v-if="type == 'powerDistribution'" src="~/assets/img/home/power-distribution.svg" alt="icon" class="w-5"/>
         <img v-if="type == 'powerDelta'" src="~/assets/img/home/power-delta.svg" alt="icon" class="w-5"/>

@@ -9,7 +9,8 @@ export default {
             ago:'前',
             day:'天',
             year:'年'
-        }
+        },
+        more: '更多'
     },
     nav: {
         home: {
