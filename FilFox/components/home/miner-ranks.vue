@@ -66,6 +66,10 @@
         </tbody>
       </table>
     </div>
+    <div class="flex flex-grow items-center text-center h-16">
+        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round> 查看更多 </el-button> 
+    </div>
+
   </div>
 </template>>
 
