@@ -40,12 +40,14 @@
             <td>
               <rankIndex :index="index+1"/>
             </td>
-            <td>{{ miner.address }}</td>
+            <td>
+              <AddressLink :id="miner.address" :format="10"/>
+            </td>
             <td>
               <rankLocation/>
             </td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
-            <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower).toFixed(2) }}</td>
+            <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}</td>
             <td>{{ miner.blocksMined }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2)}}</td>
           </tr>
@@ -55,12 +57,14 @@
             <td>
               <rankIndex :index="index+1"/>
             </td>
-            <td>{{ miner.address }}</td>
+            <td>
+              <AddressLink :id="miner.address" :format="10"/>
+            </td>
             <td>
                 <rankLocation/>
             </td>
             <td>{{ miner.blocksMined }}</td>
-            <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount).toFixed(2) }}</td>
+            <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}</td>
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.luckyValue.toFixed(2) }}</td>
           </tr>
@@ -70,7 +74,9 @@
             <td>
               <rankIndex :index="index+1"/>
             </td>
-            <td>{{ miner.address }}</td>
+            <td>
+              <AddressLink :id="miner.address" :format="10"/>
+            </td>
             <td>
               <rankLocation/>
             </td>
