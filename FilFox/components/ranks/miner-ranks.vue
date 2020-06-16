@@ -22,8 +22,8 @@
       <div class="flex h-2"></div>
     </div>
 
-    <div class="flex mt-3">
-      <table class="w-full table-auto">
+    <div class="flex mt-3">  
+      <table class="w-full table-auto" v-loading="loading">
         <thead class="text-gray-600 text-sm">
           <tr v-if="type === 0">
             <th v-for="(title, index) in rankTableHeadersByPowers" :key="index" class="sticky top-0 bg-white z-30 h-8">{{title}}</th>
@@ -89,11 +89,17 @@
       </table>
     </div>
     <div class="flex flex-grow items-center text-center h-16">
-        <el-pagination layout="prev, pager, next" :page-count="totalPageCount" :hide-on-single-page="true" @current-change="didCurrentPageChanged" class="mx-auto"> </el-pagination>
+        <el-pagination layout="prev, pager, next" :page-count="totalPageCount" @current-change="didCurrentPageChanged" class="mx-auto"> </el-pagination>
     </div>
 
   </div>
-</template>>
+</template>
+
+<style>
+  svg {
+    display: inline
+  }
+</style>
 
 <script>
 import homeTitle from "~/components/home/home-title";
@@ -120,7 +126,8 @@ export default {
       ),
       totalPageCount: 0,
       pageSize: 20,
-      page: 0
+      page: 0,
+      loading: false
     };
   },
   mounted() {
@@ -128,27 +135,33 @@ export default {
   },
   methods: {
     getTopMinersByPowers() {
+        this.loading = true
         this.$axios
         .get("/miner/list/power", { params: { pageSize:this.pageSize, page:this.page} })
         .then(res => {
           this.topMinersByPower = res.data;
           this.getTotalPageCount()
+          this.loading = false
         });
     },
     getTopMinersByBlocks() {
+        this.loading = true
         this.$axios
         .get("/miner/list/blocks", { params: { pageSize:this.pageSize, page:this.page, duration:this.duration } })
         .then(res => {
           this.topMinersByBlocks = res.data;
           this.getTotalPageCount()
+          this.loading = false
         });
     },
     getTopMinersByPowerDelta() {
+        this.loading = true
         this.$axios
         .get("/miner/list/power-delta", { params: { pageSize:this.pageSize, page:this.page, duration:this.duration } })
         .then(res => {
           this.topMinersByPowerDelta = res.data;
           this.getTotalPageCount()
+          this.loading = false
         });
     },
     didRankTypeSwitched(type) {
