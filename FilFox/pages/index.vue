@@ -180,10 +180,13 @@ export default {
       this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
       this.$onUpdateRichList = this.onUpdateRichList.bind(this)
       this.$subscribe('account', 'account/rich-list', this.$onUpdateRichList)
+      this.$onUpdateRecentTipsets = this.onUpdateRecentTipsets.bind(this)
+      this.$subscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
   },
   beforeDestroy() {
     this.$unsubscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
     this.$unsubscribe('account', 'account/rich-list', this.$onUpdateRichList)
+    this.$unsubscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
   },
   methods: {
     onUpdateOverview(overview) {
@@ -191,7 +194,10 @@ export default {
     },
     onUpdateRichList(richList) {
       this.richList = richList
-    }
+    },
+    onUpdateRecentTipsets(tipsets) {
+      this.recentTipsets = tipsets
+    },
   }
 
 };

@@ -1,7 +1,9 @@
 <template>
   <div class="bg-footer">
     <div class="w-full">
-        <div class="container mx-auto h-20"></div>
+        <div class="flex container mx-auto h-20 items-center">
+            <img src="~/assets/img/home/logo.svg" alt="filFox.io" class="cursor-pointer">
+        </div>
         <div class="container flex mx-auto justify-between h-10">
             <div class="text-xs text-footerText">Filfox.io是Filecoin区块链浏览器，提供相关数据查询服务，由6block提供技术支持</div>
             <div class="text-xs text-footerText">联系方式: contact@6block.com</div>
