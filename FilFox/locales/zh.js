@@ -56,6 +56,7 @@ export default {
                 totalPledgeCollateral:'FIL质押量',
                 burntSupply:'FIL销毁量',
                 totalSupply:'FIL总供给量',
+                totalMarketBalance: '订单锁定量'
             }
         },
         powerDistribution: {
