@@ -97,7 +97,7 @@
 
 <style>
   svg {
-    display: inline
+    display: inline-block
   }
 </style>
 
