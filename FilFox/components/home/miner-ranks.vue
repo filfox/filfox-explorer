@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex mt-3">
-      <table class="w-full table-auto">
+      <table class="w-full table-auto" v-loading="loading">
         <thead class="text-gray-600 text-sm m-2">
           <tr v-if="type === 0">
             <th v-for="(title, index) in rankTableHeadersByPowers" :key="index">{{title}}</th>
@@ -93,7 +93,13 @@
     </div>
 
   </div>
-</template>>
+</template>
+
+<style>
+  svg {
+    display: inline-block
+  }
+</style>
 
 <script>
 import homeTitle from "~/components/home/home-title";
@@ -117,7 +123,8 @@ export default {
       rankTableHeadersByBlocks: this.$t("home.minerRanks.tableHeadersByBlock"),
       rankTableHeadersByPowerDelta: this.$t(
         "home.minerRanks.tableHeadersByPowerDelta"
-      )
+      ),
+      loading: false
     };
   },
   mounted() {
@@ -125,24 +132,30 @@ export default {
   },
   methods: {
     getTopMinersByPowers() {
+        this.loading = true
         this.$axios
         .get("/miner/top-miners/power", { params: { count: 10 } })
         .then(res => {
           this.topMinersByPower = res.data;
+          this.loading = false
         });
     },
     getTopMinersByBlocks() {
+        this.loading = true
         this.$axios
         .get("/miner/top-miners/blocks", { params: { count: 10, duration:this.duration } })
         .then(res => {
           this.topMinersByBlocks = res.data;
+          this.loading = false
         });
     },
     getTopMinersByPowerDelta() {
+        this.loading = true
         this.$axios
         .get("/miner/top-miners/power-delta", { params: { count: 10, duration:this.duration } })
         .then(res => {
           this.topMinersByPowerDelta = res.data;
+          this.loading = false
         });
     },
     didRankTypeSwitched(type) {

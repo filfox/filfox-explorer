@@ -65,7 +65,7 @@
           <el-button round size="mini" class="mr-4 focus:outline-none outline-none" v-on:click="didRecentTipsetsMoreBtnClicked"> {{ $t('shared.more') }} </el-button>
         </div>
         <div class="mt-2 overflow-y-scroll flex-grow relative">
-          <table class="w-full table-auto absolute">
+          <table class="w-full table-auto absolute" v-if="!recentTipsetsLoading">
              <thead class="text-gray-600 text-sm m-2">
                <tr>
                    <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.height')}} </th>
@@ -98,6 +98,7 @@
                 </template>
             </tbody>
           </table>
+          <div class="flex h-24" v-if="recentTipsetsLoading" v-loading="recentTipsetsLoading"></div>
         </div>
       </div>
 
@@ -107,7 +108,7 @@
           <HomeTitle type="richManRanks" class="ml-4 flex flex-grow"/>
           <el-button round size="mini" class="mr-4 focus:outline-none outline-none" v-on:click="didRichManListMoreBtnClicked"> {{ $t('shared.more') }} </el-button>
         </div>
-        <table class="w-full table-fixed mt-2">
+        <table class="w-full table-fixed mt-2" v-if="!richListLoading">
             <thead class="text-gray-600 text-sm">
               <tr>
                 <th> {{$t('home.richManRanks.tableHeaders.order')}} </th>
@@ -127,11 +128,18 @@
               </tr>
             </tbody>
         </table>
+        <div class="flex h-24" v-if="richListLoading" v-loading="richListLoading"></div>
       </div>
 
     </div>
   </div>
 </template>
+
+<style>
+ svg {
+   display: inline-block
+ }
+</style>
 
 <script>
 import HomeTitle from "~/components/home/home-title"
@@ -178,6 +186,8 @@ export default {
       recentTipsets: [],
       richManRanksHeaders:this.$t("home.richManRanks.tableHeaders"),
       richList: {},
+      recentTipsetsLoading: false,
+      richListLoading: false,
     };
   },
   mounted() {
@@ -197,17 +207,21 @@ export default {
   },
   methods: {
     getRecentTipsets() {
+        this.recentTipsetsLoading = true
         this.$axios
         .get("/tipset/recent", { params: { count: 10 } })
         .then(res => {
           this.recentTipsets = res.data;
+          this.recentTipsetsLoading = false
         });
     },
     getRichList() {
+        this.richListLoading = true
         this.$axios
         .get("/rich-list", { params: {pageSize: 10,page: 0} })
         .then(res => {
           this.richList = res.data;
+          this.richListLoading = false
         });
     },
     onUpdateOverview(overview) {
