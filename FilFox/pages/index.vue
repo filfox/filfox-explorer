@@ -59,7 +59,10 @@
     <div class="flex flex-row mb-4">
       <!-- 最新区块 -->
       <div class="bg-white mr-2 rounded-md w-1/2 flex flex-col overflow-hidden">
-        <HomeTitle type="recentTipsets" class="ml-4 mr-4 border-b border-background"/>
+        <div class="flex flex-row items-center justify-between border-b border-background">
+          <HomeTitle type="recentTipsets" class="ml-4 flex flex-grow"/>
+          <el-button round size="mini" class="mr-4 focus:outline-none outline-none" v-on:click="didRecentTipsetsMoreBtnClicked"> {{ $t('shared.more') }} </el-button>
+        </div>
         <div class="mt-2 overflow-y-scroll flex-grow relative">
           <table class="w-full table-auto absolute">
              <thead class="text-gray-600 text-sm m-2">
@@ -99,7 +102,10 @@
 
       <!-- 富豪榜 -->
       <div class="flex flex-col w-1/2 bg-white ml-2 rounded-md">
-        <HomeTitle type="richManRanks" class="ml-4 mr-4 border-b border-background"/>
+        <div class="flex flex-row items-center justify-between border-b border-background">
+          <HomeTitle type="richManRanks" class="ml-4 flex flex-grow"/>
+          <el-button round size="mini" class="mr-4 focus:outline-none outline-none" v-on:click="didRichManListMoreBtnClicked"> {{ $t('shared.more') }} </el-button>
+        </div>
         <table class="w-full table-fixed mt-2">
             <thead class="text-gray-600 text-sm">
               <tr>
@@ -202,6 +208,12 @@ export default {
     onUpdateRecentTipsets(tipsets) {
       this.recentTipsets = tipsets
     },
+    didRecentTipsetsMoreBtnClicked() {
+
+    },
+    didRichManListMoreBtnClicked() {
+
+    }
   }
 
 };
