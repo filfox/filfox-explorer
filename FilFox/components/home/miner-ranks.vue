@@ -83,7 +83,7 @@
       </table>
     </div>
     <div class="flex flex-grow items-center text-center h-16">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didMoreBtnClicked"> 查看更多 </el-button> 
+        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
     </div>
 
   </div>
