@@ -50,7 +50,9 @@
         </tbody>
         <tbody class="text-sm text-center" v-if="type===1">
           <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10">
-            <td>{{index+1}}</td>
+            <td>
+              <rankIndex :index="index+1"/>
+            </td>
             <td>{{ miner.address }}</td>
             <td>未知</td>
             <td>{{ miner.blocksMined }}</td>
@@ -61,7 +63,9 @@
         </tbody>
         <tbody class="text-sm text-center" v-if="type===2">
           <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10">
-            <td>{{index+1}}</td>
+            <td>
+              <rankIndex :index="index+1"/>
+            </td>
             <td>{{ miner.address }}</td>
             <td>未知</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
