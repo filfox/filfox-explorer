@@ -80,7 +80,7 @@
             <td>
               <rankLocation/>
             </td>
-            <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
+            <td>{{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} </td>
             <td> N/A </td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td>{{ miner.qualityAdjPower | size_metric(2)}}</td>
@@ -171,6 +171,20 @@ export default {
     },
     didMoreBtnClicked() {
        this.$router.push(this.localePath('/ranks'))
+    },
+    convertedDurationByDay() {
+      if (this.duration === '24h') {
+        return 1
+      }
+      else if (this.duration === '7d') {
+        return 7
+      }
+      else if (this.duration === '30d') {
+        return 30
+      }
+      else {
+        return 365
+      }
     }
   }
 };
