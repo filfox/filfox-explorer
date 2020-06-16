@@ -41,7 +41,9 @@
               <rankIndex :index="index+1"/>
             </td>
             <td>{{ miner.address }}</td>
-            <td>未知</td>
+            <td>
+              <rankLocation/>
+            </td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
             <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower).toFixed(2) }}</td>
             <td>{{ miner.blocksMined }}</td>
@@ -54,7 +56,9 @@
               <rankIndex :index="index+1"/>
             </td>
             <td>{{ miner.address }}</td>
-            <td>未知</td>
+            <td>
+                <rankLocation/>
+            </td>
             <td>{{ miner.blocksMined }}</td>
             <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount).toFixed(2) }}</td>
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
@@ -67,7 +71,9 @@
               <rankIndex :index="index+1"/>
             </td>
             <td>{{ miner.address }}</td>
-            <td>未知</td>
+            <td>
+              <rankLocation/>
+            </td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td> N/A </td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
@@ -86,11 +92,13 @@
 <script>
 import homeTitle from "~/components/home/home-title";
 import rankIndex from "~/components/home/rank-index"
+import rankLocation from "~/components/home/rank-location"
 
 export default {
   components: {
     homeTitle,
-    rankIndex
+    rankIndex,
+    rankLocation
   },
   data() {
     return {

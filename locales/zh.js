@@ -10,7 +10,8 @@ export default {
             day:'天',
             year:'年'
         },
-        more: '更多'
+        more: '更多',
+        unknown: '未知'
     },
     nav: {
         home: {
