@@ -5,7 +5,7 @@
       <div class="justify-between flex flex-row">
         <div class="flex h-12 ml-4 items-center">
           <el-row>
-            <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(0)"> {{ $t('home.minerRanks.filters.qualityAdjPower') }} </el-button>
+            <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(0)" autofocus="true"> {{ $t('home.minerRanks.filters.qualityAdjPower') }} </el-button>
             <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(1)">{{ $t('home.minerRanks.filters.blocks') }}</el-button>
             <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(2)">{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
           </el-row>
