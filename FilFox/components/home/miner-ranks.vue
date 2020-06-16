@@ -5,17 +5,17 @@
       <div class="justify-between flex flex-row">
         <div class="flex h-12 ml-4 items-center">
           <el-row>
-            <el-button size="mini" round class="outline-none" v-on:click="didRankTypeSwitched(0)"> {{ $t('home.minerRanks.filters.qualityAdjPower') }} </el-button>
-            <el-button size="mini" round class="outline-none" v-on:click="didRankTypeSwitched(1)">{{ $t('home.minerRanks.filters.blocks') }}</el-button>
-            <el-button size="mini" round class="outline-none" v-on:click="didRankTypeSwitched(2)">{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
+            <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(0)"> {{ $t('home.minerRanks.filters.qualityAdjPower') }} </el-button>
+            <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(1)">{{ $t('home.minerRanks.filters.blocks') }}</el-button>
+            <el-button size="mini" round class="focus:outline-none outline-none" v-on:click="didRankTypeSwitched(2)">{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
           </el-row>
         </div>
         <div class="flex h-12 items-center mr-4" v-if="type != 0">
           <el-radio-group v-model="duration" size="mini" @change="didDurationSwitched" fill="#1a4fc9">
-            <el-radio-button label="24h">{{ '24' + $t('shared.time.hour') }}</el-radio-button>
-            <el-radio-button label="7d">{{'7' + $t('shared.time.day')}}</el-radio-button>
-            <el-radio-button label="30d">{{'30' + $t('shared.time.day')}}</el-radio-button>
-            <el-radio-button label="1y">{{'1' + $t('shared.time.year')}}</el-radio-button>
+            <el-radio-button class="focus:outline-none outline-none" label="24h">{{ '24' + $t('shared.time.hour') }}</el-radio-button>
+            <el-radio-button class="focus:outline-none outline-none" label="7d">{{'7' + $t('shared.time.day')}}</el-radio-button>
+            <el-radio-button class="focus:outline-none outline-none" label="30d">{{'30' + $t('shared.time.day')}}</el-radio-button>
+            <el-radio-button class="focus:outline-none outline-none" label="1y">{{'1' + $t('shared.time.year')}}</el-radio-button>
           </el-radio-group>
         </div>
       </div>
