@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-grow flex-col mb-4 bg-white rounded-md">
+  <div class="flex flex-grow flex-col my-4 bg-white rounded-md">
     <div class="flex flex-col border-b border-background">
       <homeTitle type="minerRanks" />
       <div class="justify-between flex flex-row">
@@ -24,21 +24,21 @@
 
     <div class="flex mt-3">
       <table class="w-full table-auto">
-        <thead class="text-gray-600 text-sm m-2">
+        <thead class="text-gray-600 text-sm">
           <tr v-if="type === 0">
-            <th v-for="(title, index) in rankTableHeadersByPowers" :key="index">{{title}}</th>
+            <th v-for="(title, index) in rankTableHeadersByPowers" :key="index" class="sticky top-0 bg-white z-30 h-8">{{title}}</th>
           </tr>
           <tr v-if="type === 1">
-            <th v-for="(title, index) in rankTableHeadersByBlocks" :key="index">{{title}}</th>
+            <th v-for="(title, index) in rankTableHeadersByBlocks" :key="index" class="sticky top-0 bg-white z-30 h-8">{{title}}</th>
           </tr>
           <tr v-if="type === 2">
-            <th v-for="(title, index) in rankTableHeadersByPowerDelta" :key="index">{{title}}</th>
+            <th v-for="(title, index) in rankTableHeadersByPowerDelta" :key="index" class="sticky top-0 bg-white z-30 h-8">{{title}}</th>
           </tr>
         </thead>
         <tbody class="text-sm text-center" v-if="type===0">
           <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10">
             <td>
-              <rankIndex :index="index+1"/>
+              <rankIndex :index="page * pageSize + index+1"/>
             </td>
             <td>
               <AddressLink :id="miner.address" :format="10"/>
@@ -55,7 +55,7 @@
         <tbody class="text-sm text-center" v-if="type===1">
           <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10">
             <td>
-              <rankIndex :index="index+1"/>
+              <rankIndex :index="page * pageSize + index+1"/>
             </td>
             <td>
               <AddressLink :id="miner.address" :format="10"/>
@@ -72,7 +72,7 @@
         <tbody class="text-sm text-center" v-if="type===2">
           <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10">
             <td>
-              <rankIndex :index="index+1"/>
+              <rankIndex :index="page * pageSize + index+1"/>
             </td>
             <td>
               <AddressLink :id="miner.address" :format="10"/>
@@ -89,7 +89,7 @@
       </table>
     </div>
     <div class="flex flex-grow items-center text-center h-16">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+        <el-pagination layout="prev, pager, next" :page-count="totalPageCount" :hide-on-single-page="true" @current-change="didCurrentPageChanged" class="mx-auto"> </el-pagination>
     </div>
 
   </div>
@@ -117,7 +117,10 @@ export default {
       rankTableHeadersByBlocks: this.$t("home.minerRanks.tableHeadersByBlock"),
       rankTableHeadersByPowerDelta: this.$t(
         "home.minerRanks.tableHeadersByPowerDelta"
-      )
+      ),
+      totalPageCount: 0,
+      pageSize: 20,
+      page: 0
     };
   },
   mounted() {
@@ -126,23 +129,26 @@ export default {
   methods: {
     getTopMinersByPowers() {
         this.$axios
-        .get("/miner/top-miners/power", { params: { count: 10 } })
+        .get("/miner/list/power", { params: { pageSize:this.pageSize, page:this.page} })
         .then(res => {
           this.topMinersByPower = res.data;
+          this.getTotalPageCount()
         });
     },
     getTopMinersByBlocks() {
         this.$axios
-        .get("/miner/top-miners/blocks", { params: { count: 10, duration:this.duration } })
+        .get("/miner/list/blocks", { params: { pageSize:this.pageSize, page:this.page, duration:this.duration } })
         .then(res => {
           this.topMinersByBlocks = res.data;
+          this.getTotalPageCount()
         });
     },
     getTopMinersByPowerDelta() {
         this.$axios
-        .get("/miner/top-miners/power-delta", { params: { count: 10, duration:this.duration } })
+        .get("/miner/list/power-delta", { params: { pageSize:this.pageSize, page:this.page, duration:this.duration } })
         .then(res => {
           this.topMinersByPowerDelta = res.data;
+          this.getTotalPageCount()
         });
     },
     didRankTypeSwitched(type) {
@@ -160,6 +166,7 @@ export default {
             default:
             break;
         }
+        this.getTotalPageCount()
     },
     didDurationSwitched() {
         if (this.type === 1) {
@@ -185,6 +192,33 @@ export default {
       else {
         return 365
       }
+    },
+    getTotalPageCount() {
+        if (this.type === 0) {
+            this.totalPageCount = this.topMinersByPower == null ? 0 : Math.ceil(this.topMinersByPower.totalCount / this.pageSize)
+        }
+        else if (this.type == 1) {
+            this.totalPageCount = this.topMinersByBlocks.miners == null ? 0 : Math.ceil(this.topMinersByBlocks.totalCount / this.pageSize)
+        }
+        else {
+            this.totalPageCount = this.topMinersByPowerDelta.miners == null ? 0 : Math.ceil(this.topMinersByPowerDelta.totalCount / this.pageSize)
+        }
+    },
+    didCurrentPageChanged(currentPage) {
+        this.page = currentPage - 1
+        switch(this.type) {
+            case 0:
+            this.getTopMinersByPowers()
+            break;
+            case 1:
+            this.getTopMinersByBlocks()
+            break;
+            case 2:
+            this.getTopMinersByPowerDelta()
+            break;
+            default:
+            break;
+        }
     }
   }
 };
