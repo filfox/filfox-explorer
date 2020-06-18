@@ -237,7 +237,7 @@ export default {
       this.$router.push(this.localePath('/blockchain/blocks'))
     },
     didRichManListMoreBtnClicked() {
-      this.$router.push(this.localePath('/blockchain/rich-list'))
+      this.$router.push(this.localePath('/blockchain/rich'))
     }
   }
 
