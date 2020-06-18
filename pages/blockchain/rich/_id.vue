@@ -1,0 +1,157 @@
+<template>
+  <div class="container mx-auto flex flex-col">
+      <div class="flex flex-grow-0 mt-6"> {{ $t('richList.title') }} </div>
+      <div class="flex flex-col w-full bg-white rounded-md mt-3 mb-4">
+        <div class="flex flex-row items-center justify-between border-b border-background">
+          <p class="flex ml-4 h-12 items-center text-sm"> {{ $t('richList.info.total') + ' ' + total + ' ' + $t('richList.info.accounts')}} </p>
+          <el-select v-model="type" placeholder="请选择" size="mini" class="mr-4" @change="didSelectChanged"> 
+             <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type">
+             </el-option>
+        </el-select>
+        </div>
+        <table class="w-full table-fixed mt-2" v-if="!loading">
+            <thead class="text-gray-600 text-sm">
+              <tr>
+                <th> {{$t('richList.tableHeaders.order')}} </th>
+                <th> {{$t('richList.tableHeaders.address')}} </th>
+                <th> {{$t('richList.tableHeaders.balance')}} </th>
+                <th> {{$t('richList.tableHeaders.type')}} </th>
+                <th> {{$t('richList.tableHeaders.createTime')}} </th>
+                <th> {{$t('richList.tableHeaders.lastSeenTime')}} </th>
+              </tr>
+            </thead>
+            <tbody class="text-center text-sm">
+              <tr v-for="(rich, index) in richList.list" :key="index" class="border-b border-background h-10">
+                  <td> 
+                    <RankIndex :index="index+1 + page * pageSize"/>  
+                  </td>
+                  <td>
+                    <AddressLink :id="rich.address" :format="10"/>
+                  </td>
+                  <td> {{rich.balance | filecoin(4)}} </td>
+                  <td> {{ rich.actor === 'fil/1/account' ?  $t('richList.type.normal') : $t('richList.type.miner')}} </td>
+                  <td> {{ rich.createTimestamp | timestamp('datetime') }} </td>
+                  <td> {{ rich.lastSeenTimestamp | timestamp('datetime') }} </td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="flex h-24" v-if="loading" v-loading="loading"></div>
+        <div class="flex flex-grow items-center text-center h-16">
+        <el-pagination
+          layout="prev, pager, next"
+          :page-count="totalPageCount"
+          @current-change="didCurrentPageChanged"
+          class="mx-auto"
+        ></el-pagination>
+      </div>
+      </div>
+  </div>
+</template>
+
+<style>
+ svg {
+   display: inline-block
+ }
+</style>
+
+<script>
+export default {
+  data() {
+    return {
+      page:0,
+      pageSize:20,
+      totalPageCount:0,
+      loading: false,
+      richList:{},
+      total:0,
+      type: 0,
+      options:[{
+        type: 0,
+        label: this.$t('richList.type.all')
+      },
+      {
+        type: 1,
+        label: this.$t('richList.type.miner')
+      },
+      {
+        type: 2,
+        label: this.$t('richList.type.normal')
+      }
+      ]
+    }
+  },
+  mounted() {
+    this.getRichList()
+  },
+  methods: {
+    getRichList() {
+        this.loading = true
+        this.$axios
+        .get("/rich-list", { params: {pageSize: this.pageSize,page: this.page} })
+        .then(res => {
+          this.richList = res.data;
+          this.total = this.richList.totalCount
+          this.loading = false
+          this.getTotalPageCount()
+        });
+    },
+    getMinersRichList() {
+        this.loading = true
+        this.$axios
+        .get("/rich-list", { params: {pageSize: this.pageSize,page: this.page, actor: 'fil/1/storageminer'} })
+        .then(res => {
+          this.richList = res.data;
+          this.total = this.richList.totalCount
+          this.loading = false
+          this.getTotalPageCount()
+        });
+    },
+    getNormalAccountsRichList() {
+        this.loading = true
+        this.$axios
+        .get("/rich-list", { params: {pageSize: this.pageSize,page: this.page, actor: 'fil/1/account'} })
+        .then(res => {
+          this.richList = res.data;
+          this.total = this.richList.totalCount
+          this.loading = false
+          this.getTotalPageCount()
+        });
+    },
+    getTotalPageCount() {
+        this.totalPageCount = Math.ceil(this.total / this.pageSize)
+    },
+    didCurrentPageChanged(currentPage) {
+      this.page = currentPage - 1;
+      switch (this.type) {
+        case 0:
+          this.getRichList();
+          break;
+        case 1:
+          this.getMinersRichList();
+          break;
+        case 2:
+          this.getNormalAccountsRichList();
+          break;
+        default:
+          break;
+      }
+    },
+    didSelectChanged(currentType) {
+      this.type = currentType
+      switch (this.type) {
+        case 0:
+          this.getRichList();
+          break;
+        case 1:
+          this.getMinersRichList();
+          break;
+        case 2:
+          this.getNormalAccountsRichList();
+          break;
+        default:
+          break;
+      }
+    }
+  }
+}
+</script>>
