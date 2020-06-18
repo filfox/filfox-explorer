@@ -41,6 +41,7 @@
           layout="prev, pager, next"
           :page-count="totalPageCount"
           @current-change="didCurrentPageChanged"
+          :current-page="page+1"
           class="mx-auto"
         ></el-pagination>
       </div>
@@ -138,6 +139,8 @@ export default {
     },
     didSelectChanged(currentType) {
       this.type = currentType
+      this.page = 0
+      this.totalPageCount = 1
       switch (this.type) {
         case 0:
           this.getRichList();

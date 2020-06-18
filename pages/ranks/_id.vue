@@ -151,6 +151,7 @@
           layout="prev, pager, next"
           :page-count="totalPageCount"
           @current-change="didCurrentPageChanged"
+          :current-page="page + 1"
           class="mx-auto"
         ></el-pagination>
       </div>
@@ -243,6 +244,8 @@ export default {
     },
     didRankTypeSwitched(type) {
       this.type = type;
+      this.page = 0;
+      this.totalPageCount = 1;
       switch (type) {
         case 0:
           this.getTopMinersByPowers();
@@ -259,6 +262,8 @@ export default {
       this.getTotalPageCount();
     },
     didDurationSwitched() {
+      this.page = 0;
+      this.totalPageCount = 1;
       if (this.type === 1) {
         this.getTopMinersByBlocks();
       } else if (this.type === 2) {
