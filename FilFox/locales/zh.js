@@ -120,25 +120,39 @@ export default {
             },
         }
     },
-    richList: {
-        title: '富豪榜',
-        info: {
-            total: '共',
-            accounts: '个账户',
+    blockchain: {
+        block: {
+            title: '区块列表',
+            tableHeaders: {
+                height:'高度',
+                time: '时间/块龄',
+                size: '区块大小',
+                hash:'哈希',
+                miner:'矿工',
+                message:'消息',
+                award:'奖励'
+            }
         },
-        tableHeaders: {
-            order:'排名',
-            address:'账户名',
-            balance:'余额',
-            type: '类型',
-            createTime: '创建时间',
-            lastSeenTime: '最新交易'
+        richList: {
+            title: '富豪榜',
+            info: {
+                total: '共',
+                accounts: '个账户',
+            },
+            tableHeaders: {
+                order:'排名',
+                address:'账户名',
+                balance:'余额',
+                type: '类型',
+                createTime: '创建时间',
+                lastSeenTime: '最新交易'
+            },
+            type: {
+                all: '全部类型',
+                normal: '普通账户',
+                miner: '矿工账户'
+            }
         },
-        type: {
-            all: '全部类型',
-            normal: '普通账户',
-            miner: '矿工账户'
-        }
     },
     footer: {
         contact: '联系方式: contact@6block.com',

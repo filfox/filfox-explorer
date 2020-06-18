@@ -1,9 +1,9 @@
 <template>
   <div class="container mx-auto flex flex-col">
-      <div class="flex flex-grow-0 mt-6"> {{ $t('richList.title') }} </div>
+      <div class="flex flex-grow-0 mt-6"> {{ $t('blockchain.richList.title') }} </div>
       <div class="flex flex-col w-full bg-white rounded-md mt-3 mb-4">
         <div class="flex flex-row items-center justify-between border-b border-background">
-          <p class="flex ml-4 h-12 items-center text-sm"> {{ $t('richList.info.total') + ' ' + total + ' ' + $t('richList.info.accounts')}} </p>
+          <p class="flex ml-4 h-12 items-center text-sm"> {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts')}} </p>
           <el-select v-model="type" placeholder="请选择" size="mini" class="mr-4" @change="didSelectChanged"> 
              <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type">
              </el-option>
@@ -12,12 +12,12 @@
         <table class="w-full table-fixed mt-2" v-if="!loading">
             <thead class="text-gray-600 text-sm">
               <tr>
-                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.order')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.address')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.balance')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.type')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.createTime')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.lastSeenTime')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.order')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.address')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.balance')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.type')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.createTime')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.lastSeenTime')}} </th>
               </tr>
             </thead>
             <tbody class="text-center text-sm">
@@ -29,7 +29,7 @@
                     <AddressLink :id="rich.address" :format="10"/>
                   </td>
                   <td> {{rich.balance | filecoin(4)}} </td>
-                  <td> {{ rich.actor === 'fil/1/account' ?  $t('richList.type.normal') : $t('richList.type.miner')}} </td>
+                  <td> {{ rich.actor === 'fil/1/account' ?  $t('blockchain.richList.type.normal') : $t('blockchain.richList.type.miner')}} </td>
                   <td> {{ rich.createTimestamp | timestamp('datetime') }} </td>
                   <td> {{ rich.lastSeenTimestamp | timestamp('datetime') }} </td>
               </tr>
@@ -68,15 +68,15 @@ export default {
       type: 0,
       options:[{
         type: 0,
-        label: this.$t('richList.type.all')
+        label: this.$t('blockchain.richList.type.all')
       },
       {
         type: 1,
-        label: this.$t('richList.type.miner')
+        label: this.$t('blockchain.richList.type.miner')
       },
       {
         type: 2,
-        label: this.$t('richList.type.normal')
+        label: this.$t('blockchain.richList.type.normal')
       }
       ]
     }
