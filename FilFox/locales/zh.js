@@ -120,6 +120,26 @@ export default {
             },
         }
     },
+    richList: {
+        title: '富豪榜',
+        info: {
+            total: '共',
+            accounts: '个账户',
+        },
+        tableHeaders: {
+            order:'排名',
+            address:'账户名',
+            balance:'余额',
+            type: '类型',
+            createTime: '创建时间',
+            lastSeenTime: '最新交易'
+        },
+        type: {
+            all: '全部类型',
+            normal: '普通账户',
+            miner: '矿工账户'
+        }
+    },
     footer: {
         contact: '联系方式: contact@6block.com',
         intro: 'Filfox.io是Filecoin区块链浏览器，提供相关数据查询服务，由6block提供技术支持',

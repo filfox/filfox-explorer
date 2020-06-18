@@ -68,7 +68,7 @@ export default {
         this.$router.push(this.localePath('/blockchain/messages'))
       }
       else {
-        this.$router.push(this.localePath('/blockchain/rich-list'))
+        this.$router.push(this.localePath('/blockchain/rich'))
       }
     },
     handleChartsCommand(index) {
