@@ -17,8 +17,7 @@
         </thead>
         <tbody class="text-center">
           <template v-for="(tipset, tipsetIndex) in tipsetsList.tipsets">
-            <tr
-              v-for="(block, blockIndex) in tipset.blocks"
+            <tr v-for="(block, blockIndex) in tipset.blocks"
               :key="block.hash"
               :class="{'bg-gray-200': tipsetIndex % 2, 'smb:hidden': tipsetIndex >= 5}"
             >
