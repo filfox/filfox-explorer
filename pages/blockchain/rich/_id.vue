@@ -12,12 +12,12 @@
         <table class="w-full table-fixed mt-2" v-if="!loading">
             <thead class="text-gray-600 text-sm">
               <tr>
-                <th> {{$t('richList.tableHeaders.order')}} </th>
-                <th> {{$t('richList.tableHeaders.address')}} </th>
-                <th> {{$t('richList.tableHeaders.balance')}} </th>
-                <th> {{$t('richList.tableHeaders.type')}} </th>
-                <th> {{$t('richList.tableHeaders.createTime')}} </th>
-                <th> {{$t('richList.tableHeaders.lastSeenTime')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.order')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.address')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.balance')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.type')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.createTime')}} </th>
+                <th class="sticky top-0 bg-white z-30"> {{$t('richList.tableHeaders.lastSeenTime')}} </th>
               </tr>
             </thead>
             <tbody class="text-center text-sm">
@@ -141,6 +141,7 @@ export default {
       this.type = currentType
       this.page = 0
       this.totalPageCount = 1
+      this.total = 0
       switch (this.type) {
         case 0:
           this.getRichList();
