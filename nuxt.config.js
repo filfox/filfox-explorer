@@ -69,7 +69,7 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'https://interop.filfox.io/',
+      target: 'https://filfox.io/',
       changeOrigin: true
     }
   },
