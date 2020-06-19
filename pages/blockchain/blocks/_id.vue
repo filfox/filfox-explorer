@@ -21,7 +21,7 @@
               :key="block.hash"
               :class="{'bg-gray-200': tipsetIndex % 2, 'smb:hidden': tipsetIndex >= 5}"
             >
-              <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
+              <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" :class="{'h-10': tipset.blocks.length == 1 }">
                 <div class="flex flex-col">
                   <TipsetLink :id="tipset.height" class="text-main text-base" />
                 </div>
