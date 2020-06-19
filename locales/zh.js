@@ -148,6 +148,9 @@ export default {
                 method: '方法',
                 value: '金额',
                 exitCode: '状态'
+            },
+            methods: {
+                all: '全部'
             }
         },
         richList: {

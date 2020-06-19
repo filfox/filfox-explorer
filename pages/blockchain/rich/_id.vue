@@ -4,10 +4,10 @@
       <div class="flex flex-col w-full bg-white rounded-md mt-4 mb-4">
         <div class="flex flex-row items-center justify-between border-b border-background">
           <p class="flex ml-4 h-12 items-center text-sm"> {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts')}} </p>
-          <el-select v-model="type" placeholder="请选择" size="mini" class="mr-4" @change="didSelectChanged"> 
+          <el-select v-model="type" placeholder="" size="mini" class="mr-4" @change="didSelectChanged"> 
              <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type">
              </el-option>
-        </el-select>
+          </el-select>
         </div>
         <table class="w-full table-fixed mt-2" v-if="!loading">
             <thead class="text-gray-600 text-sm">
