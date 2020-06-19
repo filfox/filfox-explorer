@@ -1,11 +1,11 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex flex-col rounded-md my-4 bg-white rounded-md my-4 overflow-hidden">
+    <div class="flex flex-col rounded-md my-4 bg-white">
       <div class="flex h-12 pl-4 items-center border-b border-background"> {{ $t('blockchain.block.title') }} </div>
-      <div class="flex">
+      <div>
        <table class="w-full table-auto" v-if="!loading">
         <thead class="text-gray-600 text-sm m-2">
-          <tr class="h-10">
+          <tr class="h-8">
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.height')}}</th>
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.time')}}</th>
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.size')}}</th>
