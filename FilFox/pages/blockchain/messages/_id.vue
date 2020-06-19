@@ -3,7 +3,7 @@
     <div class="flex flex-grow-0 mt-6 font-medium"> {{ $t('blockchain.message.title') }} </div>
     <div class="flex flex-col rounded-md my-4 bg-white">
       <div class="flex h-12 pl-4 items-center border-b border-background text-sm"> {{ $t('blockchain.message.info.total') + ' ' + total + ' ' +$t('blockchain.message.info.messages')}} </div>
-      <div>
+      <div class="flex mx-4">
        <table class="w-full table-auto" v-if="!loading">
         <thead class="text-gray-600 text-sm m-2">
           <tr class="h-8">
@@ -18,41 +18,33 @@
           </tr>
         </thead>
         <tbody class="text-center">
-          <template v-for="(tipset, tipsetIndex) in tipsetsList.tipsets">
-            <tr v-for="(block, blockIndex) in tipset.blocks"
-              :key="block.hash"
-              :class="{'bg-gray-200': tipsetIndex % 2, 'smb:hidden': tipsetIndex >= 5}"
-            >
-              <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" :class="{'h-10': tipset.blocks.length == 1 }">
-                <div class="flex flex-col">
-                  <TipsetLink :id="tipset.height" class="text-main text-base" />
-                </div>
-              </td>
-              <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
-                <div class="flex flex-col">
-                  <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-sm" />
-                </div>
-              </td>
-
-              <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
-                <div class="flex flex-col">
-                    {{ tipset.blockSize  }}
-                </div>
-              </td>
-
+            <tr v-for="(message, index) in messagesList.messages" :key="index"  class="h-12 border-b border-background">
               <td>
-                <BlockLink :id="block.cid" :format="5" class="md:hidden text-sm" />
-                <BlockLink :id="block.cid" :format="8" class="mdb:hidden text-sm" />
+                <MessageLink :id="message.cid" :format="8" />
               </td>
-
               <td>
-                <AddressLink :id="block.miner" class="text-sm" />
+                <TipsetLink :id="message.height" class="text-main" />
               </td>
-
-              <td class="smb:hidden text-sm">{{ block.messageCount }}</td>
-              <td class="text-sm">{{ block.reward | filecoin(2) }}</td>
+              <td>
+                {{ message.timestamp | timestamp('datetime') }}
+              </td>
+              <td>
+                <AddressLink :id="message.from" :format="8" />
+              </td>
+              <td>
+                <AddressLink :id="message.to" :format="8" />
+              </td>
+              <td>
+                {{ message.method }}
+              </td>
+              <td>
+                {{ message.value | filecoin() }}
+              </td>
+              <td v-if="message.receipt">
+                {{ message.receipt.exitCode | exit-code }}
+              </td>
+              <td v-else> N/A </td>
             </tr>
-          </template>
         </tbody>
        </table>
       </div>
@@ -80,7 +72,8 @@
 export default {
   data() {
     return {
-      tipsetsList:{},
+      messagesList:{},
+      methodOptions:[],
       page:0,
       pageSize:20,
       totalPageCount:0,
@@ -89,17 +82,18 @@ export default {
     }
   },
   mounted() {
-    this.getTipsetsList()
+    this.getMessagesList()
   },
   methods: {
-    getTipsetsList() {
+    getMessagesList() {
         this.loading = true
         this.$axios
-        .get("/tipset/list", { params: {pageSize: this.pageSize,page: this.page} })
+        .get("/message/list", { params: {pageSize: this.pageSize,page: this.page} })
         .then(res => {
-          this.tipsetsList = res.data;
+          this.messagesList = res.data;
+          this.methodOptions = res.data.methods
           this.loading = false
-          this.total = this.tipsetsList.totalCount
+          this.total = this.messagesList.totalCount
           this.getTotalPageCount()
         });
     },
@@ -108,7 +102,7 @@ export default {
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1;
-      this.getTipsetsList()
+      this.getMessagesList()
     }
   }
 }
