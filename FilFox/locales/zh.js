@@ -133,6 +133,23 @@ export default {
                 award:'奖励'
             }
         },
+        message: {
+            title: '消息列表',
+            info: {
+                total: '共',
+                messages: '条消息',
+            },
+            tableHeaders: {
+                id: '消息ID',
+                height: '区块高度',
+                time: '时间/块龄',
+                from: '发送方',
+                to: '接收方',
+                method: '方法',
+                value: '金额',
+                exitCode: '状态'
+            }
+        },
         richList: {
             title: '富豪榜',
             info: {
