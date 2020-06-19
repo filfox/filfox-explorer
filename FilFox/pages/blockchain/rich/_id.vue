@@ -11,7 +11,7 @@
         </div>
         <table class="w-full table-fixed mt-2" v-if="!loading">
             <thead class="text-gray-600 text-sm">
-              <tr>
+              <tr class="h-8">
                 <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.order')}} </th>
                 <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.address')}} </th>
                 <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.balance')}} </th>
