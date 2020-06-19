@@ -2,7 +2,13 @@
   <div class="container mx-auto flex flex-col">
     <div class="flex flex-grow-0 mt-6 font-medium"> {{ $t('blockchain.message.title') }} </div>
     <div class="flex flex-col rounded-md my-4 bg-white">
-      <div class="flex h-12 pl-4 items-center border-b border-background text-sm"> {{ $t('blockchain.message.info.total') + ' ' + total + ' ' +$t('blockchain.message.info.messages')}} </div>
+      <div class="flex flex-row items-center justify-between border-b border-background">
+          <p class="flex ml-4 h-12 items-center text-sm"> {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages')}} </p>
+          <el-select v-model="method" placeholder="" size="mini" class="mr-4" @change="didSelectChanged"> 
+             <el-option v-for="item in methodOptions" :key="item" :label="item == 'All' ? $t('blockchain.message.methods.all') : item" :value="item">
+             </el-option>
+          </el-select>
+      </div>
       <div class="flex mx-4">
        <table class="w-full table-auto" v-if="!loading">
         <thead class="text-gray-600 text-sm m-2">
@@ -73,12 +79,13 @@ export default {
   data() {
     return {
       messagesList:{},
-      methodOptions:[],
+      methodOptions:['All'],
       page:0,
       pageSize:20,
       totalPageCount:0,
       loading: false,
       total: 0,
+      method: 'All'
     }
   },
   mounted() {
@@ -87,11 +94,16 @@ export default {
   methods: {
     getMessagesList() {
         this.loading = true
+        var params = {pageSize: this.pageSize,page: this.page}
+        if (this.method != 'All') {
+          params['method'] = this.method
+        }
         this.$axios
-        .get("/message/list", { params: {pageSize: this.pageSize,page: this.page} })
+        .get("/message/list", { params: params })
         .then(res => {
           this.messagesList = res.data;
-          this.methodOptions = res.data.methods
+          this.methodOptions = ['All']
+          this.methodOptions = this.methodOptions.concat(res.data.methods)
           this.loading = false
           this.total = this.messagesList.totalCount
           this.getTotalPageCount()
@@ -102,6 +114,13 @@ export default {
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1;
+      this.getMessagesList()
+    },
+    didSelectChanged(selectedMethod) {
+      this.method = selectedMethod
+      this.page = 0
+      this.totalPageCount = 1
+      this.total = 0
       this.getMessagesList()
     }
   }
