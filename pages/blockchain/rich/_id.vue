@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto flex flex-col">
-      <div class="flex flex-grow-0 mt-6"> {{ $t('blockchain.richList.title') }} </div>
-      <div class="flex flex-col w-full bg-white rounded-md mt-3 mb-4">
+      <div class="flex flex-grow-0 mt-6 font-medium"> {{ $t('blockchain.richList.title') }} </div>
+      <div class="flex flex-col w-full bg-white rounded-md mt-4 mb-4">
         <div class="flex flex-row items-center justify-between border-b border-background">
           <p class="flex ml-4 h-12 items-center text-sm"> {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts')}} </p>
           <el-select v-model="type" placeholder="请选择" size="mini" class="mr-4" @change="didSelectChanged"> 
