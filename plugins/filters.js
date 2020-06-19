@@ -1,5 +1,6 @@
 import moment from 'moment'
 import Vue from 'vue'
+import exitCodes from '@/filecoin/exit-codes.json'
 
 Vue.filter('percentage', (x, decimals = 2) => `${(x * 100).toFixed(decimals)}%`)
 
@@ -63,3 +64,19 @@ Vue.filter('size_metric', (number, precision = null) => {
     return flag? `-${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
   }
 })
+
+Vue.filter('actor', actor => ({
+  'fil/1/account': 'Account',
+  'fil/1/cron': 'Cron',
+  'fil/1/init': 'Init',
+  'fil/1/multisig': 'Multisig',
+  'fil/1/paymentchannel': 'Payment Channel',
+  'fil/1/reward': 'Reward',
+  'fil/1/storagemarket': 'Storage Market',
+  'fil/1/storageminer': 'Storage Miner',
+  'fil/1/storagepower': 'Storage Power',
+  'fil/1/system': 'System',
+  'fil/1/verifiedregistry': 'Verified Registry'
+}[actor]))
+
+Vue.filter('exit-code', code => exitCodes[code] ?? code)
