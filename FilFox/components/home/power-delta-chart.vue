@@ -35,6 +35,7 @@ export default {
         columns:[],
         rows:[]
       },
+      maxCount:5,
       loading: false,
       dataEmpty: false
     };
@@ -45,7 +46,7 @@ export default {
   methods: {
     getlineChartData() {
       this.loading = true
-      this.$axios.get("/stats/miner/power-delta", { params: { count: 5, duration: '24h' } } ).then(res => {
+      this.$axios.get("/stats/miner/power-delta", { params: { count: this.maxCount, duration: '24h' } } ).then(res => {
         this.convertData(res.data)
       });
     },
@@ -61,7 +62,8 @@ export default {
         for (let info of data) {
             var row = { time: this.getTime(info.timestamp) } 
             for (let miner of info.miners) {
-              if (columns.length < 6) {
+              // max is 5
+              if (columns.length <= this.maxCount && columns.length <= data.length) {
                  columns.push(miner.address)
               }
               row[miner.address] = this.getPower(miner.powerDelta)
