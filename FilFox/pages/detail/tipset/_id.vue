@@ -14,7 +14,7 @@
           </dl>
       </div>
       <p class="text-base my-4 ml-8"> {{$t('detail.tipset.all')}} </p>
-      <div class="bg-background mx-8 mb-4 rounded-md flex flex-col py-2" v-for="(block, index) in tipset.blocks" :key="block.hash">
+      <div class="bg-background mx-8 mb-4 rounded-md flex flex-col py-2" v-for="(block, index) in tipset.blocks" :key="index">
         <dl class="flex flex-row my-1 items-center">
            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.id') }} </dt>
            <dd class="flex mr-4"> 
