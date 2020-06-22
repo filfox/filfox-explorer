@@ -197,6 +197,18 @@ export default {
                 error: '错误'
             },
             null: '（无）'
+        },
+        tipset: {
+            title: '区块高度',
+            all: '所有区块',
+            headers: {
+                time: '区块时间',
+                size: '大小',
+                id: '区块ID',
+                miner: '矿工',
+                bonus: '奖励',
+                messageCount: '消息数'
+            }
         }
     },
     footer: {
