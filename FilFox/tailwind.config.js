@@ -19,6 +19,17 @@ module.exports = {
         background: '#f0f6fb'
       }
     },
+    minHeight: {
+      'message': '3rem'
+    },
+    minWidth: {
+      '0': '0',
+      '1/8': '15%',
+      '1/4': '25%',
+      '1/2': '50%',
+      '3/4': '75%',
+      'full': '100%'
+    }
   },
   variants: {
   },
