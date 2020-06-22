@@ -2,6 +2,14 @@ import moment from 'moment'
 import Vue from 'vue'
 import exitCodes from '@/filecoin/exit-codes.json'
 
+Vue.filter('locale', value => {
+  if (typeof value === 'number') {
+    return value.toLocaleString()
+  } else {
+    return addAmountDelimiters(value)
+  }
+})
+
 Vue.filter('percentage', (x, decimals = 2) => `${(x * 100).toFixed(decimals)}%`)
 
 function addAmountDelimiters(string) {

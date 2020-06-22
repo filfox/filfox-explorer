@@ -174,6 +174,30 @@ export default {
             }
         },
     },
+    detail: {
+        message: {
+            title: '消息详情',
+            headers: {
+                cid: '消息ID',
+                height: '高度',
+                time: '时间',
+                inBlocks: '所属区块',
+                version: '版本',
+                from: '发送方',
+                to: '接收方',
+                nonce: 'Nonce',
+                method: '方法',
+                params: '参数',
+                value: '金额',
+                gasPrice: 'Gas价格',
+                gasLimit: 'Gas限额',
+                gasUsed: 'Gas使用量',
+                exitCode: '状态',
+                return: '返回值',
+                error: '错误'
+            }
+        }
+    },
     footer: {
         contact: '联系方式: contact@6block.com',
         intro: 'Filfox.io是Filecoin区块链浏览器，提供相关数据查询服务，由6block提供技术支持',
