@@ -195,7 +195,8 @@ export default {
                 exitCode: '状态',
                 return: '返回值',
                 error: '错误'
-            }
+            },
+            null: '（无）'
         }
     },
     footer: {
