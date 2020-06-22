@@ -1,5 +1,6 @@
 import mergeProps from '@/utils/merge-props'
 import './style.pcss'
+import Vue from 'vue'
 
 const Link = {
   name: 'Link',
@@ -7,6 +8,7 @@ const Link = {
   props: {
     id: {type: null, required: true},
     route: {type: String, required: true},
+    routeQuery: {type: Object, default: () => {}},
     plain: {type: Boolean, default: false},
     format: {
       validator(value) {
@@ -16,13 +18,15 @@ const Link = {
     },
     colorClass: {type: String, default: 'text-filecoin'}
   },
-  render(createElement, {data, props, slots}) {
+  render(createElement, {data, props, slots, parent}) {
     const id = props.id == null ? '' : String(props.id)
     let tag
     const node = {
       class: ['filecoin-link']
     }
     let linkSlots
+    // force to add detail path
+    let detailRoute = 'detail-' + props.route
     if (props.plain || !props.id) {
       tag = 'span'
       node.class.push('plain')
@@ -30,7 +34,7 @@ const Link = {
       tag = 'nuxt-link'
       node.class.push(props.colorClass)
       node.props = {
-        to: {name: props.route, params: {id}}
+        to: parent.localePath({name: detailRoute, params: {id}, query: props.routeQuery})
       }
     }
     if (props.format == null) {
