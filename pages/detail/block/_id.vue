@@ -2,7 +2,7 @@
   <div class="container mx-auto flex flex-col">
     <div class="flex flex-grow-0 mt-6 font-medium">{{ $t('detail.block.title') }}</div>
     <div class="flex flex-col rounded-md my-4 bg-white pb-2">
-      <div class="flex ml-8 py-4 font-medium border-b border-background">{{ $t('detail.block.overview') }}</div>
+      <div class="flex pl-8 py-4 font-medium border-b border-background">{{ $t('detail.block.overview') }}</div>
       <dl class="flex flex-row my-2 items-center">
         <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.cid') }}</dt>
         <dd class="flex mr-4">
@@ -74,7 +74,7 @@
           ></el-option>
         </el-select>
       </div>
-      <div class="flex mx-4">
+      <div class="flex mx-4 mt-2">
         <table class="w-full table-auto" v-if="!loading">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
