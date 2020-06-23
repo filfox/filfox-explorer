@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex mt-3">
-      <table class="w-full table-auto" v-loading="loading">
+      <table class="w-full table-auto mx-4" v-loading="loading">
         <thead class="text-gray-600 text-sm m-2">
           <tr v-if="type === 0">
             <th v-for="(title, index) in rankTableHeadersByPowers" :key="index">{{title}}</th>
@@ -44,6 +44,9 @@
               <AddressLink :id="miner.address" :format="10"/>
             </td>
             <td>
+              {{ miner.tag ? miner.tag : '--'}}
+            </td>
+            <td>
               <rankLocation/>
             </td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
@@ -61,6 +64,9 @@
               <AddressLink :id="miner.address" :format="10"/>
             </td>
             <td>
+              {{ miner.tag ? miner.tag : '--'}}
+            </td>
+            <td>
                 <rankLocation/>
             </td>
             <td>{{ miner.blocksMined }}</td>
@@ -76,6 +82,9 @@
             </td>
             <td>
               <AddressLink :id="miner.address" :format="10"/>
+            </td>
+            <td>
+              {{ miner.tag ? miner.tag : '--'}}
             </td>
             <td>
               <rankLocation/>
