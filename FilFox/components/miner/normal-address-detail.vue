@@ -22,7 +22,7 @@
         >{{ $t('detail.address.normal.headers.actor') }}</dt>
         <dd
           class="flex mr-4"
-        >{{ addressData.actor === 'fil/1/account' ? $t('blockchain.richList.type.normal') : $t('blockchain.richList.type.miner') }}</dd>
+        >{{ $t('actor.' + addressData.actor) }}</dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">

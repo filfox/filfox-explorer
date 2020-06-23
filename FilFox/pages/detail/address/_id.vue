@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto flex flex-col">
-      <NormalAddressDetail :addressData="addressData" v-if="addressData.actor === 'fil/1/account'"/>
-      <MinerAddressDetail v-else :addressData="addressData"/>
+      <MinerAddressDetail v-if="addressData.actor === 'fil/1/storageminer'" :addressData="addressData"/>
+      <NormalAddressDetail :addressData="addressData" v-else/>
   </div>
 </template>
 

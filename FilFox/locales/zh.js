@@ -250,6 +250,19 @@ export default {
             }
         }
     },
+    actor: {
+        'fil/1/account': '普通账户',
+        'fil/1/cron': 'Cron',
+        'fil/1/init': '初始化',
+        'fil/1/multisig': '多重签名',
+        'fil/1/paymentchannel': '付款通道',
+        'fil/1/reward': '奖励',
+        'fil/1/storagemarket': '存储市场',
+        'fil/1/storageminer': '矿工账户',
+        'fil/1/storagepower': '存储算力',
+        'fil/1/system': '系统',
+        'fil/1/verifiedregistry': '注册确认'
+    },
     footer: {
         contact: '联系方式: contact@6block.com',
         intro: 'Filfox.io是Filecoin区块链浏览器，提供相关数据查询服务，由6block提供技术支持',

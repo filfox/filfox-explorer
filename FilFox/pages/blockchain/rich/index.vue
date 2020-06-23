@@ -29,7 +29,7 @@
                     <AddressLink :id="rich.address" :format="10"/>
                   </td>
                   <td> {{rich.balance | filecoin(4)}} </td>
-                  <td> {{ rich.actor === 'fil/1/account' ?  $t('blockchain.richList.type.normal') : $t('blockchain.richList.type.miner')}} </td>
+                  <td> {{ $t('actor.' + rich.actor) }} </td>
                   <td> {{ rich.createTimestamp | timestamp('datetime') }} </td>
                   <td> {{ rich.lastSeenTimestamp | timestamp('datetime') }} </td>
               </tr>
