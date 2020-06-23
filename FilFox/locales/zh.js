@@ -74,7 +74,8 @@ export default {
             },
             tableHeadersByPower: {
                 rank:'排名',
-                miner:'矿工及标签',
+                miner:'矿工',
+                tag: '标签',
                 area:'地区',
                 validPower:'有效算力',
                 validPowerRate:'有效算力占比',
@@ -83,7 +84,8 @@ export default {
             },
             tableHeadersByBlock: {
                 rank:'排名',
-                miner:'矿工及标签',
+                miner:'矿工',
+                tag: '标签',
                 area:'地区',
                 blockNums:'出块数',
                 blockRate:'出块数占比',
@@ -92,7 +94,8 @@ export default {
             },
             tableHeadersByPowerDelta: {
                 rank:'排名',
-                miner:'矿工及标签',
+                miner:'矿工',
+                tag: '标签',
                 area:'地区',
                 validPower:'算力增速',
                 validPowerRate:'矿机数量',
@@ -208,6 +211,12 @@ export default {
                 miner: '矿工',
                 bonus: '奖励',
                 messageCount: '消息数'
+            }
+        },
+        block: {
+            title: '节点详情',
+            headers: {
+
             }
         }
     },

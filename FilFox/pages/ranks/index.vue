@@ -94,6 +94,9 @@
                 <AddressLink :id="miner.address" :format="10" />
               </td>
               <td>
+              {{ miner.tag ? miner.tag : '--'}}
+              </td>
+              <td>
                 <rankLocation />
               </td>
               <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
@@ -115,6 +118,9 @@
                 <AddressLink :id="miner.address" :format="10" />
               </td>
               <td>
+               {{ miner.tag ? miner.tag : '--'}}
+              </td>
+              <td>
                 <rankLocation />
               </td>
               <td>{{ miner.blocksMined }}</td>
@@ -134,6 +140,9 @@
               </td>
               <td>
                 <AddressLink :id="miner.address" :format="10" />
+              </td>
+              <td>
+               {{ miner.tag ? miner.tag : '--'}}
               </td>
               <td>
                 <rankLocation />
