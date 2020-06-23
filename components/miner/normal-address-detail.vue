@@ -1,62 +1,76 @@
 <template>
-  <div class="container mx-auto flex flex-col">
-    <div class="flex flex-grow-0 mt-6 font-medium">{{ $t('detail.block.title') }}</div>
+  <div class="flex flex-col">
+    <div
+      class="flex flex-grow-0 mt-6 font-medium"
+    >{{ $t('detail.address.normal.title') + ' ' + addressData.address }}</div>
     <div class="flex flex-col rounded-md my-4 bg-white pb-2">
-      <div class="flex pl-8 py-4 font-medium border-b border-background">{{ $t('detail.block.overview') }}</div>
+      <div
+        class="flex pl-8 py-4 font-medium border-b border-background"
+      >{{ $t('detail.address.normal.headers.overview') }}</div>
       <dl class="flex flex-row my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.cid') }}</dt>
-        <dd class="flex mr-4">
-          <BlockLink :id="block.cid" plain />
-        </dd>
-      </dl>
-
-      <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.height') }}</dt>
-        <dd class="flex mr-4 text-main">
-          <TipsetLink :id="block.height" />
-        </dd>
-      </dl>
-
-      <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.time') }}</dt>
-        <dd class="flex mr-4">{{ block.timestamp | timestamp }}</dd>
-      </dl>
-
-      <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.size') }}</dt>
-        <dd class="flex mr-4">{{ block.size }} Bytes</dd>
-      </dl>
-
-      <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.messages') }}</dt>
-        <dd class="flex mr-4">{{ block.messageCount | locale }}</dd>
-      </dl>
-
-      <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.reward') }}</dt>
-        <dd class="flex mr-4">{{ block.reward | filecoin }}</dd>
-      </dl>
-
-      <dl class="flex flex-row items-center my-2">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2 items-center"
-        >{{ $t('detail.block.headers.parents') }}</dt>
+          class="min-w-1/8 pl-8 text-gray-600 px-2"
+        >{{ $t('detail.address.normal.headers.address') }}</dt>
+        <dd class="flex mr-4">
+          <AddressLink :id="addressData.address" />
+        </dd>
+      </dl>
+
+      <dl class="flex flex-row my-2 items-center">
+        <dt
+          class="min-w-1/8 pl-8 text-gray-600 px-2"
+        >{{ $t('detail.address.normal.headers.actor') }}</dt>
+        <dd
+          class="flex mr-4"
+        >{{ addressData.actor === 'fil/1/account' ? $t('blockchain.richList.type.normal') : $t('blockchain.richList.type.miner') }}</dd>
+      </dl>
+
+      <dl class="flex flex-row my-2 items-center">
+        <dt
+          class="min-w-1/8 pl-8 text-gray-600 px-2"
+        >{{ $t('detail.address.normal.headers.balance') }}</dt>
+        <dd class="flex mr-4">{{ addressData.balance | filecoin }}</dd>
+      </dl>
+
+      <dl class="flex flex-row my-2 items-center">
+        <dt
+          class="min-w-1/8 pl-8 text-gray-600 px-2"
+        >{{ $t('detail.address.normal.headers.messages') }}</dt>
+        <dd class="flex mr-4">{{ addressData.messageCount }}</dd>
+      </dl>
+
+      <dl class="flex flex-row my-2 items-center">
+        <dt
+          class="min-w-1/8 pl-8 text-gray-600 px-2"
+        >{{ $t('detail.address.normal.headers.createTime') }}</dt>
+        <dd class="flex mr-4">{{ addressData.createTimestamp | timestamp(datetime) }}</dd>
+      </dl>
+
+      <dl class="flex flex-row my-2 items-center">
+        <dt
+          class="min-w-1/8 pl-8 text-gray-600 px-2"
+        >{{ $t('detail.address.normal.headers.lastSeenTime') }}</dt>
+        <dd class="flex mr-4">{{ addressData.lastSeenTimestamp | timestamp(datetime) }}</dd>
+      </dl>
+
+      <dl class="flex flex-row items-center my-2" v-if="addressData.ownedMiners.length > 0">
+        <dt class="min-w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.ownedMiners') }}</dt>
         <dd class="flex flex-col mr-4">
-          <p v-for="parent in block.parents" :key="parent" class="items-center flex text-main">
-            <BlockLink :id="parent" />
+          <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="items-center flex text-main">
+            <AddressLink :id="ownedMiner" />
           </p>
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.parentWeight') }}</dt>
-        <dd class="flex mr-4">{{ block.parentWeight | locale }}</dd>
+      <dl class="flex flex-row items-center my-2" v-if="addressData.workerMiners.length > 0">
+        <dt class="min-w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.workers') }}</dt>
+        <dd class="flex flex-col mr-4">
+          <p v-for="worker in addressData.workerMiners" :key="worker" class="items-center flex text-main">
+            <AddressLink :id="worker" />
+          </p>
+        </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center" v-if="block.penalty">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.parentWeight') }}</dt>
-        <dd class="flex mr-4">{{ block.penalty | filecoin }}</dd>
-      </dl>
     </div>
 
     <div class="flex flex-col rounded-md my-4 bg-white">
@@ -79,6 +93,10 @@
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
               <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.id')}}</th>
+              <th
+                class="sticky top-0 bg-white z-10"
+              >{{$t('blockchain.message.tableHeaders.height')}}</th>
+              <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.time')}}</th>
               <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.from')}}</th>
               <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.to')}}</th>
               <th
@@ -99,6 +117,10 @@
               <td>
                 <MessageLink :id="message.cid" :format="8" />
               </td>
+              <td>
+                <TipsetLink :id="message.height" class="text-main" />
+              </td>
+              <td>{{ message.timestamp | timestamp('datetime') }}</td>
               <td>
                 <AddressLink :id="message.from" :format="8" />
               </td>
@@ -129,30 +151,15 @@
 
 <script>
 export default {
-  async asyncData({ $axios, params, query, error }) {
-    const id = params.id;
-    try {
-      const block = await $axios.$get(`/block/${id}`, { params: query });
-      return { block };
-    } catch (err) {
-      if (err?.response) {
-        if (err.response.code === 404) {
-          error({ code: 404, message: `Block ${id} not found` });
-        } else {
-          error({
-            code: err.response.status,
-            message: err.response.statusText
-          });
-        }
-      } else {
-        error({ code: 500, message: err.toString() });
-      }
+  props: {
+    addressData: {
+      type: Object,
+      default: {}
     }
   },
   data() {
     return {
-      block: {},
-      messagesList:{},
+      messagesList: {},
       methodOptions: ["All"],
       page: 0,
       pageSize: 20,
@@ -172,14 +179,18 @@ export default {
       if (this.method != "All") {
         params["method"] = this.method;
       }
-      this.$axios.get(`/block/${this.block.cid}/messages`, { params: params }).then(res => {
-        this.messagesList = res.data;
-        this.methodOptions = ["All"];
-        this.methodOptions = this.methodOptions.concat(res.data.methods);
-        this.loading = false;
-        this.total = this.messagesList.totalCount;
-        this.getTotalPageCount();
-      });
+      this.$axios
+        .get(`/address/${this.addressData.address}/messages`, {
+          params: params
+        })
+        .then(res => {
+          this.messagesList = res.data;
+          this.methodOptions = ["All"];
+          this.methodOptions = this.methodOptions.concat(res.data.methods);
+          this.loading = false;
+          this.total = this.messagesList.totalCount;
+          this.getTotalPageCount();
+        });
     },
     getTotalPageCount() {
       this.totalPageCount = Math.ceil(this.total / this.pageSize);
