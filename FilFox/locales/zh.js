@@ -207,6 +207,7 @@ export default {
             headers: {
                 time: '区块时间',
                 size: '大小',
+                totalMsgCount:'累计消息数（去重）',
                 id: '区块ID',
                 miner: '矿工',
                 bonus: '奖励',
@@ -214,9 +215,19 @@ export default {
             }
         },
         block: {
-            title: '节点详情',
+            title: '区块详情',
+            overview: '区块概览',
             headers: {
-
+                cid: '区块ID',
+                height: '高度',
+                time: '时间',
+                size: '大小',
+                messages: '消息',
+                reward: '奖励',
+                miner: '矿工',
+                parents: '父区块',
+                parentWeight: '父区块权重',
+                penalty: '罚金'
             }
         }
     },
