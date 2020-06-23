@@ -229,6 +229,25 @@ export default {
                 parentWeight: '父区块权重',
                 penalty: '罚金'
             }
+        },
+        address: {
+            normal: {
+                title: '账户',
+                headers: {
+                    overview: '账户概览',
+                    address: '地址',
+                    actor: '类型',
+                    balance: '余额',
+                    messages: '消息数',
+                    createTime: '创建时间',
+                    lastSeenTime: '最新交易',
+                    ownedMiners: '名下矿工',
+                    workers: '实际工作矿工'
+                }
+            },
+            miner: {
+
+            }
         }
     },
     footer: {
