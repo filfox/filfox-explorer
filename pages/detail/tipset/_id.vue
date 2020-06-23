@@ -9,6 +9,11 @@
           </dl>
 
           <dl class="flex flex-row my-2 items-center">
+           <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.totalMsgCount') }} </dt>
+           <dd class="flex mr-4">  {{ tipset.messageCount }} </dd>
+          </dl>
+
+          <dl class="flex flex-row my-2 items-center">
            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.size') }} </dt>
            <dd class="flex mr-4">  {{ tipset.blockSize }} bytes </dd>
           </dl>
