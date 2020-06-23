@@ -94,7 +94,7 @@
                 <AddressLink :id="miner.address" :format="10" />
               </td>
               <td>
-              {{ miner.tag ? miner.tag : '--'}}
+                {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
               <td>
                 <rankLocation />
@@ -118,7 +118,7 @@
                 <AddressLink :id="miner.address" :format="10" />
               </td>
               <td>
-               {{ miner.tag ? miner.tag : '--'}}
+                {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
               <td>
                 <rankLocation />
@@ -142,7 +142,7 @@
                 <AddressLink :id="miner.address" :format="10" />
               </td>
               <td>
-               {{ miner.tag ? miner.tag : '--'}}
+               {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
               <td>
                 <rankLocation />
