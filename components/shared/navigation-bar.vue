@@ -100,17 +100,14 @@ export default {
       case 'tipset':
         this.searchString = ''
         this.$router.push(this.localePath('/detail/tipset/' + result.height))
-        console.log('1')
         break
       case 'block':
         this.searchString = ''
         this.$router.push(this.localePath('/detail/block/' + result.cid))
-        console.log('2')
         break
       case 'message':
         this.searchString = ''
         this.$router.push(this.localePath('/detail/message/' + result.cid))
-        console.log('3')
         break
       case 'address':
         this.searchString = ''
@@ -119,10 +116,8 @@ export default {
       case 'peer':
         this.searchString = ''
         this.$router.push(this.localePath('/detail/peer/' + result.id))
-        console.log('5')
         break
       default:
-        console.log('6')
         this.$message.error(this.$t('shared.noSearchResult'));
       }
       this.loading = false
