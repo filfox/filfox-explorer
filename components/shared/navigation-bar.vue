@@ -35,12 +35,13 @@
       </el-dropdown-menu>
    </el-dropdown>
 
-  <div class="flex flex-grow"></div>
-  <el-input size="small" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2"></el-input>
+  <div class="flex flex-grow" v-loading.fullscreen.lock="loading"></div>
+  <el-input size="small" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2" @keyup.enter.native="search"></el-input>
  </div>
 </template>
 
 <script>
+
 export default {
   name: 'navBar',
   data() {
@@ -49,7 +50,8 @@ export default {
       blocksSubMenus: this.$t('nav.blocks.subMenus'),
       chartsSubMenus: this.$t('nav.charts.subMenus'),
       resourcesSubMenus: this.$t('nav.resources.subMenus'),
-      searchText:''
+      searchText:'',
+      loading: false
     }
   },
   created() {},
@@ -86,6 +88,44 @@ export default {
       else if (index == 1) {
         this.$router.push(this.localePath('/resources/wiki'))
       }
+    },
+    async search() {
+      const id = this.searchText.trim()
+      if (!id) {
+        return
+      }
+      this.loading = true
+      const result = await this.$axios.$get('/search', {params: {id}})
+      switch (result?.type) {
+      case 'tipset':
+        this.searchString = ''
+        this.$router.push(this.localePath('/detail/tipset/' + result.height))
+        console.log('1')
+        break
+      case 'block':
+        this.searchString = ''
+        this.$router.push(this.localePath('/detail/block/' + result.cid))
+        console.log('2')
+        break
+      case 'message':
+        this.searchString = ''
+        this.$router.push(this.localePath('/detail/message/' + result.cid))
+        console.log('3')
+        break
+      case 'address':
+        this.searchString = ''
+        this.$router.push(this.localePath('/detail/address/' + result.address))
+        break
+      case 'peer':
+        this.searchString = ''
+        this.$router.push(this.localePath('/detail/peer/' + result.id))
+        console.log('5')
+        break
+      default:
+        console.log('6')
+        this.$message.error(this.$t('shared.noSearchResult'));
+      }
+      this.loading = false
     }
   }
 }

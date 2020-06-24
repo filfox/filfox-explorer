@@ -11,7 +11,8 @@ export default {
             year:'年'
         },
         more: '更多',
-        unknown: '未知'
+        unknown: '未知',
+        noSearchResult: '无法搜寻到此内容'
     },
     nav: {
         home: {
