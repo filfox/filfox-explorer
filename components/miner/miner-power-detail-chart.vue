@@ -18,12 +18,13 @@ export default {
   },
   data() {
     this.chartSettings = {
+        showLine: [this.$t('detail.address.miner.powerChange.charts.qualityAdjPower')]
     }
     this.chartExtend = {
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter:'{value} FIL'
+          formatter:'{value} TiB'
         }
       },
       tooltip: {
@@ -32,7 +33,8 @@ export default {
         {
           var relVal = params[0].name
           for (var i = 0, l = params.length; i < l; i++) {
-              relVal += '<br/>' + params[i].marker + params[i].seriesName + ': ' + params[i].value[1] + ' FIL'
+              relVal += '<br/>' + params[i].marker + params[i].seriesName + ': ' + params[i].value.toFixed(4) + ' TiB'
+              console.log(params)
           }
           return relVal
         }
@@ -40,7 +42,7 @@ export default {
     }
     return {
       chartData: {
-        columns:['time',this.$t('detail.address.miner.accountChange.charts.balance'),this.$t('detail.address.miner.accountChange.charts.availableBalance'),this.$t('detail.address.miner.accountChange.charts.pledgeBalance')],
+        columns:['time',this.$t('detail.address.miner.powerChange.charts.qualityAdjPower'),this.$t('detail.address.miner.powerChange.charts.qualityAdjPowerDelta')],
         rows:[]
       },
       loading: false,
@@ -59,7 +61,7 @@ export default {
   methods: {
     getlineChartData() {
       this.loading = true
-      this.$axios.get(`/address/${this.addressData.address}/power-stats`).then(res => {
+      this.$axios.get(`/miner/${this.addressData.address}/power-stats`).then(res => {
         this.convertData(res.data)
       });
     },
@@ -73,9 +75,8 @@ export default {
         for (let info of data) {
             var row = {}
             row['time'] = this.getTime(info.timestamp)
-            row[this.$t('detail.address.miner.accountChange.charts.balance')] = this.getFilecoin(info.balance,2)
-            row[this.$t('detail.address.miner.accountChange.charts.availableBalance')] = this.getFilecoin(info.availableBalance,2)
-            row[this.$t('detail.address.miner.accountChange.charts.pledgeBalance')] = this.getFilecoin(info.pledgeBalance,2)
+            row[this.$t('detail.address.miner.powerChange.charts.qualityAdjPower')] = this.getPower(info.qualityAdjPower)
+            row[this.$t('detail.address.miner.powerChange.charts.qualityAdjPowerDelta')] = this.getPower(info.qualityAdjPowerDelta)
             rows.push(row)
         }
         this.chartData.rows = rows
@@ -84,13 +85,12 @@ export default {
     getTime(time) {
       return moment(time * 1000).format('YYYY-MM-DD HH:mm:ss')
     },
-    getFilecoin(value, precision) {
-      if (precision == null) {
-        const s = value.toString().padStart(19, "0");
-        return `${s.slice(0, -18)}.${s.slice(-18)}`.replace(/\.?0*$/g, "")
-      } else {
-        return (value / 1e18).toFixed(precision)
-      }
+    getPower(number) {
+       var res = number
+       for (var i = 0 ; i < 4; i ++) {
+          res /= (2 ** 10)
+       }
+       return res
     }
 
   }
