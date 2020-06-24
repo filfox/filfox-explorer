@@ -245,14 +245,60 @@ export default {
                     workers: '实际工作矿工'
                 }
             },
-            miner: {
+            miner: {    
+                minerOverview: {
+                    title: '矿工概览',
+                    headers: {
+                        balance: '账户余额',
+                        availableBalance : '可用余额',
+                        pledgeBalance: '质押余额',
+                        miningPenalty: '处罚金额',
+                        qualityAdjPower: '有效算力',
+                        rawBytePower: '原值算力',
+                        rate: '占比',
+                        rank: '排名',
+                        sectorSize: '扇区大小',
+                        blockNums: '累计出块数量',
+                        blocksReward: '累计出块奖励',
+                        qualityAdjPowerDelta24h: '近24h有效算力增量',
+                        qualityAdjPowerDeltaSpeed24h:'近24h有效算力增速'
+
+                    }
+                },
+                accountChange: {
+                    title: '账户变化',
+                    charts: {
+                        balance: '总余额',
+                        availableBalance: '可用余额',
+                        pledgeBalance: '质押金额',
+                    }
+                },
+                powerChange: {
+                    title: '算力变化',
+                    charts: {
+                        qualityAdjPower: '有效算力',
+                        qualityAdjPowerDelta: '有效算力增量'
+                    }
+                },
+                accountOverview: {
+                    title: '账户概览',
+                    headers: {
+                        address: '地址',
+                        actor: '类型',
+                        messageCount: '消息数',
+                        owner: 'Owner',
+                        worker: 'Worker',
+                        peerID: '节点ID',
+                        sectors: '扇区'
+                    }
+                }
 
             }
         }
     },
     actor: {
         'fil/1/account': '普通账户',
-        'fil/1/cron': 'Cron',
+        'fil/1/cron': '执行定时任务',
         'fil/1/init': '初始化',
         'fil/1/multisig': '多重签名',
         'fil/1/paymentchannel': '付款通道',
