@@ -24,6 +24,50 @@
       </div>
     </div>
 
+    <div class="flex flex-col rounded-md mt-4 bg-white pb-2">
+        <p class="px-8 flex flex-grow mt-4 border-b border-background pb-4"> {{ $t('detail.address.miner.accountOverview.title') }} </p>
+        <div class="grid grid-rows-1 grid-cols-2 gap-4 mx-8 my-4">
+            <div class="flex flex-col mr-2">
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.address')}}: </p>
+                <p class="text-sm mt-2"> {{ addressData.alias }} </p>
+              </div>
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.messageCount')}}: </p>
+                <p class="text-sm mt-2"> {{ addressData.messageCount }} </p>
+              </div>
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.actor')}}: </p>
+                <p class="text-sm mt-2"> {{ $t('actor.' + addressData.actor) }} </p>
+              </div>
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.createTime')}}: </p>
+                <p class="text-sm mt-2"> {{ addressData.createTimestamp | timestamp('datetime') }} </p>
+              </div>
+            </div>
+            <div class="flex flex-col ml-2">
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.peerID')}}: </p>
+                <PeerLink :id="addressData.miner.peerId" class="text-sm mt-2"/>
+              </div>
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.sectors')}}: </p>
+                <p class="text-sm mt-2"> {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.provingSectors | locale }} proving, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries</p>
+              </div>
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.owner')}}: </p>
+                <AddressLink :id="addressData.miner.owner" class="text-sm mt-2 text-main"/>
+              </div>
+              <div class="flex flex-row justify-between">
+                <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.worker')}}: </p>
+                <AddressLink :id="addressData.miner.worker" class="text-sm mt-2 text-main"/>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="flex flex-col rounded-md my-4 bg-white">
       <div class="flex ml-8 mt-4 font-medium">{{ $t('blockchain.message.title') }}</div>
       <div class="flex flex-row items-center justify-between border-b border-background">
