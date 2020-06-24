@@ -289,7 +289,8 @@ export default {
                         owner: 'Owner',
                         worker: 'Worker',
                         peerID: '节点ID',
-                        sectors: '扇区'
+                        sectors: '扇区',
+                        createTime: '创建时间'
                     }
                 }
 
