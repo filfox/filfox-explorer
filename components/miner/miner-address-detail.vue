@@ -1,6 +1,9 @@
 <template>
   <div class="flex flex-col">
-    <div class="flex flex-grow-0 mt-6 font-medium">{{ $t('detail.address.normal.title') + ' ' + addressData.address }}</div>
+    <div class="flex flex-row items-center mt-6">
+      <div class="flex flex-grow-0 font-medium">{{ $t('detail.address.normal.title') + ' ' + addressData.address }} </div>
+      <div v-if="addressData.tag" class="flex ml-2 text-xs rounded-full px-2 border border-gray-400"> {{ addressData.tag[$i18n.locale] }} </div>
+    </div>
     <div class="flex flex-col rounded-md mt-4 bg-white pb-2">
         <p class="mx-8 flex flex-grow mt-4"> {{ $t('detail.address.miner.minerOverview.title') }} </p>
         <div class="grid grid-rows-1 grid-cols-2 gap-4 my-4 mx-8">
