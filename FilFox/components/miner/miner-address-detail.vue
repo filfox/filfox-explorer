@@ -13,6 +13,17 @@
         </div>
     </div>
 
+    <div class="flex flex-row mt-4 justify-between">
+      <div class="rounded-md bg-white flex-grow flex-col flex mr-2 w-1/2">
+        <p class="px-8 flex py-4 border-b border-background"> {{ $t('detail.address.miner.accountChange.title') }} </p>
+        <MinerBalanceDetailChart :addressData="addressData" class="mt-4 mx-4"/>
+      </div>
+      <div class="rounded-md bg-white  flex-col flex ml-2 w-1/2">
+        <p class="px-8 flex py-4 border-b border-background"> {{ $t('detail.address.miner.powerChange.title') }} </p>
+        <MinerPowerDetailChart :addressData="addressData" class="mt-4 mx-4"/>
+      </div>
+    </div>
+
     <div class="flex flex-col rounded-md my-4 bg-white">
       <div class="flex ml-8 mt-4 font-medium">{{ $t('blockchain.message.title') }}</div>
       <div class="flex flex-row items-center justify-between border-b border-background">
