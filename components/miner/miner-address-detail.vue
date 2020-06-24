@@ -1,10 +1,16 @@
 <template>
   <div class="flex flex-col">
-    <div
-      class="flex flex-grow-0 mt-6 font-medium"
-    >{{ $t('detail.address.normal.title') + ' ' + addressData.address }}</div>
-    <div class="flex flex-col rounded-md my-4 bg-white pb-2">
-
+    <div class="flex flex-grow-0 mt-6 font-medium">{{ $t('detail.address.normal.title') + ' ' + addressData.address }}</div>
+    <div class="flex flex-col rounded-md mt-4 bg-white pb-2">
+        <p class="mx-8 flex flex-grow mt-4"> {{ $t('detail.address.miner.minerOverview.title') }} </p>
+        <div class="grid grid-rows-1 grid-cols-2 gap-4 my-4 mx-8">
+          <div class="border border-background rounded-sm">
+            <MinerBalance :addressData="addressData"/>
+          </div>
+          <div class="border border-background rounded-sm">
+            <MinerPower :addressData="addressData"/>
+          </div>
+        </div>
     </div>
 
     <div class="flex flex-col rounded-md my-4 bg-white">
