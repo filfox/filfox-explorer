@@ -295,6 +295,14 @@ export default {
                 }
 
             }
+        },
+        peer: {
+            title: '节点详情',
+            headers: {
+                id: 'ID',
+                miners: '矿工',
+                IP: 'IP列表'
+            }
         }
     },
     actor: {
