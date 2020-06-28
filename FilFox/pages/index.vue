@@ -132,7 +132,7 @@
                     <RankIndex :index="index+1"/>  
                   </td>
                   <td>
-                    <AddressLink :id="rich.address" :format="10"/>
+                    <AddressLink :id="rich.address" :format="5"/>
                   </td>
                   <td>
                     {{ rich.tag ? rich.tag[$i18n.locale] : '--' }}
