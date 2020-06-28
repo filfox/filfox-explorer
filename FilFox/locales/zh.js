@@ -84,8 +84,8 @@ export default {
                 area:'地区',
                 validPower:'有效算力',
                 validPowerRate:'有效算力占比',
-                blockNums:'出块数量',
-                powerIncrease:'算力增量'
+                blockNums:'24h出块数量',
+                powerIncrease:'24h算力增量'
             },
             tableHeadersByBlock: {
                 rank:'排名',
@@ -93,7 +93,7 @@ export default {
                 tag: '标签',
                 area:'地区',
                 blockNums:'出块数',
-                blockRate:'出块数占比',
+                blockRate:'出块数率',
                 totalRewards:'出块奖励',
                 luckyValue:'幸运值',
             },
@@ -126,7 +126,8 @@ export default {
                 order:'排名',
                 address:'地址',
                 tag: '标签',
-                balance:'余额'
+                balance:'余额',
+                balanceRate: '余额占比'
             },
         }
     },
