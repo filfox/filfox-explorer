@@ -90,7 +90,7 @@
               <rankLocation/>
             </td>
             <td>{{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} </td>
-            <td> N/A </td>
+            <td> {{ miner.equivalentMiners.toFixed(2) }} </td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td>{{ miner.qualityAdjPower | size_metric(2)}}</td>
           </tr>

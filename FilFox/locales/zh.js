@@ -103,7 +103,7 @@ export default {
                 tag: '标签',
                 area:'地区',
                 validPower:'算力增速',
-                validPowerRate:'矿机数量',
+                equivalentMiners:'矿机当量',
                 blockNums:'算力增量',
                 powerIncreaseSpeed:'有效算力'
             },
