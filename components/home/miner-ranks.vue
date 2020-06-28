@@ -46,7 +46,14 @@
             <td>
               {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
             </td>
-            <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
+            <td>
+              <div class="flex flex-row items-center">
+                <el-progress :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 mx-2"></el-progress>
+                <div class="flex">
+                 {{ miner.qualityAdjPower | size_metric(2) }}
+                </div>
+              </div>
+            </td>
             <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}</td>
             <td>{{ miner.blocksMined }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2)}}</td>
