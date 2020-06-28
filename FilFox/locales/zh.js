@@ -47,7 +47,7 @@ export default {
                 activeMiners:'活跃矿工数',
                 price:'最新价格',
                 blockReward:'每区块奖励',
-                averageRewardPerByte: '平均挖矿收益',
+                averageRewardPerByte: '24h平均挖矿收益',
                 output24h: '近24h产出量',
                 circulatingSupply:'FIL流通量',
                 totalPledgeCollateral:'FIL质押量',
