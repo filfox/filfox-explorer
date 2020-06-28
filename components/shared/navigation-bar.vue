@@ -99,23 +99,23 @@ export default {
       switch (result?.type) {
       case 'tipset':
         this.searchString = ''
-        this.$router.push(this.localePath('/detail/tipset/' + result.height))
+        this.$router.push(this.localePath('/tipset/' + result.height))
         break
       case 'block':
         this.searchString = ''
-        this.$router.push(this.localePath('/detail/block/' + result.cid))
+        this.$router.push(this.localePath('/block/' + result.cid))
         break
       case 'message':
         this.searchString = ''
-        this.$router.push(this.localePath('/detail/message/' + result.cid))
+        this.$router.push(this.localePath('/message/' + result.cid))
         break
       case 'address':
         this.searchString = ''
-        this.$router.push(this.localePath('/detail/address/' + result.address))
+        this.$router.push(this.localePath('/address/' + result.address))
         break
       case 'peer':
         this.searchString = ''
-        this.$router.push(this.localePath('/detail/peer/' + result.id))
+        this.$router.push(this.localePath('/peer/' + result.id))
         break
       default:
         this.$message.error(this.$t('shared.noSearchResult'));

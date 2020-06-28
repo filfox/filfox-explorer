@@ -25,8 +25,6 @@ const Link = {
       class: ['filecoin-link']
     }
     let linkSlots
-    // force to add detail path
-    let detailRoute = 'detail-' + props.route
     if (props.plain || !props.id) {
       tag = 'span'
       node.class.push('plain')
@@ -34,7 +32,7 @@ const Link = {
       tag = 'nuxt-link'
       node.class.push(props.colorClass)
       node.props = {
-        to: parent.localePath({name: detailRoute, params: {id}, query: props.routeQuery})
+        to: parent.localePath({name: props.route, params: {id}, query: props.routeQuery})
       }
     }
     if (props.format == null) {
