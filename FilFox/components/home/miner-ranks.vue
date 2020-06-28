@@ -48,7 +48,7 @@
             </td>
             <td>
               <div class="flex flex-row items-center">
-                <el-progress :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 mx-2"></el-progress>
+                <el-progress :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 ml-1 mr-3"></el-progress>
                 <div class="flex">
                  {{ miner.qualityAdjPower | size_metric(2) }}
                 </div>
@@ -70,7 +70,14 @@
             <td>
               {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
             </td>
-            <td>{{ miner.blocksMined }}</td>
+            <td>
+                <div class="flex flex-row items-center">
+                  <el-progress :percentage="miner.blocksMined/topMinersByBlocks.miners[0].blocksMined * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
+                  <div class="flex">
+                  {{ miner.blocksMined }}
+                  </div>
+                </div>
+            </td>
             <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}</td>
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.luckyValue.toFixed(2) }}</td>
@@ -87,7 +94,14 @@
             <td>
               {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
             </td>
-            <td>{{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} </td>
+            <td>
+              <div class="flex flex-row items-center">
+                  <el-progress :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
+                  <div class="flex">
+                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} 
+                  </div>
+              </div>
+            </td>
             <td> {{ miner.equivalentMiners.toFixed(2) }} </td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td>{{ miner.qualityAdjPower | size_metric(2)}}</td>
