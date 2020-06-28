@@ -112,11 +112,12 @@ export default {
         recentTipsets: {
             title: '最新区块',
             tableHeaders: {
-                height:'高度',
-                blockId:'区块ID',
-                miner:'矿工',
-                message:'消息',
-                award:'奖励'
+                height: '高度',
+                blockId: '区块ID',
+                miner: '矿工',
+                tag: '标签',
+                message: '消息',
+                award: '奖励'
             },
         },
         richManRanks: {
@@ -124,6 +125,7 @@ export default {
             tableHeaders: {
                 order:'排名',
                 address:'地址',
+                tag: '标签',
                 balance:'余额'
             },
         }
