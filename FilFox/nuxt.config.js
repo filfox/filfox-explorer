@@ -53,7 +53,8 @@ export default {
   */
   buildModules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/components'
+    '@nuxt/components',
+    ['@nuxtjs/google-analytics', {id: process.env.GOOGLE_ANALYTICS}]
   ],
   /*
   ** Nuxt.js modules
