@@ -34,7 +34,7 @@ export default {
           if (diff % 60) {
             display += diff % 60 + this.$t('shared.time.sec')
           }
-          display += ' ' + this.$t('shared.time.ago')
+          display += this.$t('shared.time.ago')
         }
       }
       return createElement(this.tag, display)

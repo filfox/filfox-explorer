@@ -60,7 +60,7 @@ export default {
                 averageGasPrice:'平均gas费率',
                 burntSupply:'FIL销毁量',
                 totalMarketBalance: '订单锁定量',
-                totalSupply:'FIL总供给量',
+                totalMaxSupply:'FIL总供给量',
                 circulatingSupplyRate: 'FIL流通率'
             }
         },
