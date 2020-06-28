@@ -97,7 +97,7 @@
               class="h-12 border-b border-background"
             >
               <td>
-                <MessageLink :id="message.cid" :format="8" />
+                <MessageLink :id="message.cid" :format="8" :route-query="{block:block.cid}" />
               </td>
               <td>
                 <AddressLink :id="message.from" :format="8" />
