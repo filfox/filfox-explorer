@@ -82,9 +82,9 @@
             </thead>
             <tbody class="text-center">
                <template v-for="(tipset, tipsetIndex) in recentTipsets">
-                   <tr v-for="(block, blockIndex) in tipset.blocks" :key="block.hash"
+                <tr v-for="(block, blockIndex) in tipset.blocks" :key="block.hash"
                     :class="{'bg-gray-200': tipsetIndex % 2, 'smb:hidden': tipsetIndex >= 5}">
-                   <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
+                  <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
                       <div class="flex flex-col">
                         <TipsetLink :id="tipset.height" class="text-main text-base" />
                         <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-sm"/>
@@ -102,7 +102,7 @@
                   </td>
                   <td class="smb:hidden text-sm">{{ block.messageCount }}</td>
                   <td class="text-sm"> {{ block.reward | filecoin(2) }} </td>
-                  </tr>
+                </tr>
                 </template>
             </tbody>
           </table>
