@@ -47,17 +47,21 @@ export default {
                 activeMiners:'活跃矿工数',
                 price:'最新价格',
                 blockReward:'每区块奖励',
+                averageRewardPerByte: '平均挖矿收益',
+                output24h: '近24h产出量',
+                circulatingSupply:'FIL流通量',
+                totalPledgeCollateral:'FIL质押量',
+
                 accounts:'总账户数',
                 averageTipsetInterval:'平均区块间隔',
                 averageBlockSize: '平均区块大小',
                 averageTipsetBlocks:'平均每高度区块数量',
                 rawBytePower:'全网原值算力',
                 averageGasPrice:'平均gas费率',
-                circulatingSupply:'FIL流通量',
-                totalPledgeCollateral:'FIL质押量',
                 burntSupply:'FIL销毁量',
+                totalMarketBalance: '订单锁定量',
                 totalSupply:'FIL总供给量',
-                totalMarketBalance: '订单锁定量'
+                circulatingSupplyRate: 'FIL流通率'
             }
         },
         powerDistribution: {
