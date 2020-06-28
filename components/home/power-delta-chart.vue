@@ -26,8 +26,8 @@ export default {
       },
       tooltip: {
         trigger: "axis",
-        formatter: function(params) {
-          var relVal = params[0].name;
+        formatter: (params) => {
+          var relVal = this.getDateTime(this.rawData[params[0].dataIndex].timestamp);
           for (var i = 0, l = params.length; i < l; i++) {
             relVal +=
               "<br/>" +
@@ -48,7 +48,8 @@ export default {
       },
       maxCount: 5,
       loading: false,
-      dataEmpty: false
+      dataEmpty: false,
+      rawData: []
     };
   },
   mounted() {
@@ -62,6 +63,7 @@ export default {
           params: { count: this.maxCount, duration: "24h" }
         })
         .then(res => {
+          this.rawData = res.data
           this.convertData(res.data);
         });
     },
@@ -100,8 +102,8 @@ export default {
     getTime(time) {
       return moment(time * 1000).format("HH:mm");
     },
-    getDateTimer(time) {
-      return moment(time * 1000).format("HH:mm");
+    getDateTime(time) {
+      return moment(time * 1000).format("YYYY-MM-DD HH:mm");
     },
     getPower(number) {
       var res = number;
