@@ -123,6 +123,7 @@
                 <th> {{$t('home.richManRanks.tableHeaders.address')}} </th>
                 <th> {{$t('home.richManRanks.tableHeaders.tag')}} </th>
                 <th> {{$t('home.richManRanks.tableHeaders.balance')}} </th>
+                <th> {{$t('home.richManRanks.tableHeaders.balanceRate')}} </th>
               </tr>
             </thead>
             <tbody class="text-center text-sm">
@@ -137,6 +138,7 @@
                     {{ rich.tag ? rich.tag[$i18n.locale] : '--' }}
                   </td>
                   <td> {{rich.balance | filecoin(0)}} </td>
+                  <td> {{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}% </td>
               </tr>
             </tbody>
         </table>
