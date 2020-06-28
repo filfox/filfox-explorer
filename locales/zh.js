@@ -91,7 +91,7 @@ export default {
                 miner:'矿工',
                 tag: '标签',
                 blockNums:'出块数',
-                blockRate:'出块数率',
+                blockRate:'出块率',
                 totalRewards:'出块奖励',
                 luckyValue:'幸运值',
             },
