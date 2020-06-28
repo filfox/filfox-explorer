@@ -75,6 +75,7 @@
                    <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.height')}} </th>
                    <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.blockId')}} </th>
                    <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.miner')}} </th>
+                   <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.tag')}} </th>
                    <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.message')}} </th>
                    <th class="sticky top-0 bg-white z-10"> {{$t('home.recentTipsets.tableHeaders.award')}} </th>
                </tr>
@@ -91,10 +92,13 @@
                   </td>
                   <td>
                       <BlockLink :id="block.cid" :format="5" class="md:hidden text-sm"/>
-                      <BlockLink :id="block.cid" :format="8" class="mdb:hidden text-sm" />
+                      <BlockLink :id="block.cid" :format="4" class="mdb:hidden text-sm" />
                   </td>
                   <td>
                     <AddressLink :id="block.miner" class="text-sm"/>
+                  </td>
+                  <td class="text-sm">
+                    {{ block.minerTag ? block.minerTag[$i18n.locale] : '--' }}
                   </td>
                   <td class="smb:hidden text-sm">{{ block.messageCount }}</td>
                   <td class="text-sm"> {{ block.reward | filecoin(2) }} </td>
@@ -117,6 +121,7 @@
               <tr>
                 <th> {{$t('home.richManRanks.tableHeaders.order')}} </th>
                 <th> {{$t('home.richManRanks.tableHeaders.address')}} </th>
+                <th> {{$t('home.richManRanks.tableHeaders.tag')}} </th>
                 <th> {{$t('home.richManRanks.tableHeaders.balance')}} </th>
               </tr>
             </thead>
@@ -127,6 +132,9 @@
                   </td>
                   <td>
                     <AddressLink :id="rich.address" :format="10"/>
+                  </td>
+                  <td>
+                    {{ rich.tag ? rich.tag[$i18n.locale] : '--' }}
                   </td>
                   <td> {{rich.balance | filecoin(0)}} </td>
               </tr>
