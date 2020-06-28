@@ -96,9 +96,6 @@
               <td>
                 {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
-              <td>
-                <rankLocation />
-              </td>
               <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
               <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}</td>
               <td>{{ miner.blocksMined }}</td>
@@ -120,9 +117,6 @@
               <td>
                 {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
-              <td>
-                <rankLocation />
-              </td>
               <td>{{ miner.blocksMined }}</td>
               <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}</td>
               <td>{{ miner.totalRewards | filecoin(2) }}</td>
@@ -143,9 +137,6 @@
               </td>
               <td>
                {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
-              </td>
-              <td>
-                <rankLocation />
               </td>
               <td>{{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }}</td>
               <td>N/A</td>
