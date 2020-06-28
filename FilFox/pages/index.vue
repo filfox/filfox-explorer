@@ -34,7 +34,7 @@
               <OverviewCell :name="$t('home.overview.titles.burntSupply')" :value="overview.burntSupply.toString() | filecoin(4)">  </OverviewCell>
               <OverviewCell :name="$t('home.overview.titles.totalMaxSupply')" :value="overview.totalMaxSupply.toString() | filecoin(0)">  </OverviewCell>  
               <OverviewCell :name="$t('home.overview.titles.totalMarketBalance')" :value="overview.totalMarketBalance.toString() | filecoin(0)">  </OverviewCell> 
-              <OverviewCell :name="$t('home.overview.titles.circulatingSupplyRate')" :value="(overview.circulatingSupply/overview.totalSupply * 100).toFixed(2) + '%'">  </OverviewCell>  
+              <OverviewCell :name="$t('home.overview.titles.circulatingSupplyRate')" :value="(overview.circulatingSupply/overview.totalMaxSupply * 100).toFixed(2) + '%'">  </OverviewCell>  
             </template>
         </div>
       </div>
