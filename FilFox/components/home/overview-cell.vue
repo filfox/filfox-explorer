@@ -18,7 +18,6 @@ export default {
       }
     },
     value: {
-      type: String,
       default() {
         return "0";
       }

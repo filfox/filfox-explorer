@@ -10,6 +10,7 @@ import 'v-charts/lib/style.css'
 export default {
   data() {
     this.chartSettings = {
+      legendName: {}
     }
     this.chartExtend = {
       tooltip: {
@@ -50,7 +51,15 @@ export default {
         let others = this.getPower(data.otherQualityAdjPower)
         for (let miner of data.miners) {
             var row = {}
-            row['miner'] = miner.address
+            let tag = miner.tag
+            if (tag == null) {
+              row['miner'] = miner.address
+              this.chartSettings.legendName[miner.address] = miner.address
+            }
+            else {
+              row['miner'] = miner.address + '(' + miner.tag[this.$i18n.locale] +')'
+              this.chartSettings.legendName[row['miner']] = miner.address
+            }
             row['power'] = this.getPower(miner.qualityAdjPower)
             rows.push(row)
         }
