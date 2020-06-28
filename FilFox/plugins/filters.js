@@ -41,6 +41,19 @@ Vue.filter('filecoin', (value, precision = null) => {
   }
 })
 
+Vue.filter('filecoinOnAvg', (value, precision = null) => {
+  if (value == null) {
+    return 'N/A'
+  }
+  if (value === '0') {
+    return '0 FIL/TiB'
+  } else if (value.length <= 9) {
+    return `${Number(value).toLocaleString()} AttoFIL/TiB`
+  } else {
+    return `${Vue.filter('coin')(value, precision)} FIL/TiB`
+  }
+})
+
 Vue.filter('timestamp', (time, type = 'datetime') => {
   if (time == null) {
     return '-'
