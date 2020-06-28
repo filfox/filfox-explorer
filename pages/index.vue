@@ -14,20 +14,20 @@
       <div class="bg-white p-4 rounded-b-md">
         <div class="grid grid-flow-row grid-cols-5 gap-4 text-center">
             <OverviewCell :name="$t('home.overview.titles.height')" :value="overview.height.toString()">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.timestamp')" :value="overview.timestamp.toString()" type="FromNow">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.timestamp')" :value="overview.timestamp" type="FromNow">  </OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.qualityAdjPower')" :value="overview.qualityAdjPower.toString() | size_metric(2)">  </OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.activeMiners')" :value="overview.activeMiners.toString()">  </OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.price')" :value="'$ ' + overview.price.toFixed(2).toString()">  </OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.blockReward')" :value="overview.blockReward.toString() | filecoin(4)">  </OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.averageRewardPerByte')" :value="overview.averageRewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2)">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.output24h')" :value="overview.dailyCoinsMined | filecoin(2)">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.output24h')" :value="overview.dailyCoinsMined | filecoin(0)">  </OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.circulatingSupply')" :value="overview.circulatingSupply.toString() | filecoin(0)"></OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.totalPledgeCollateral')" :value="overview.totalPledgeCollateral.toString() | filecoin(0)">  </OverviewCell>  
             
             <template v-if="overviewExpanded">
               <OverviewCell :name="$t('home.overview.titles.accounts')" :value="overview.accounts.toString()">  </OverviewCell>
               <OverviewCell :name="$t('home.overview.titles.averageTipsetInterval')" :value="overview.averageTipsetInterval.toFixed(2).toString() + ' ' + $t('shared.time.sec')">  </OverviewCell>
-              <OverviewCell :name="$t('home.overview.titles.averageBlockSize')" :value="overview.averageBlockSize.toFixed(2).toString()">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.dailyMessages')" :value="overview.dailyMessages">  </OverviewCell>
               <OverviewCell :name="$t('home.overview.titles.averageTipsetBlocks')" :value="overview.averageTipsetBlocks.toFixed(2).toString()">  </OverviewCell> 
               <OverviewCell :name="$t('home.overview.titles.rawBytePower')" :value="overview.rawBytePower.toString() | size_metric(2)">  </OverviewCell>
               <OverviewCell :name="$t('home.overview.titles.averageGasPrice')" :value="overview.averageGasPrice.toFixed(2).toString() + ' AttoFIL'">  </OverviewCell>

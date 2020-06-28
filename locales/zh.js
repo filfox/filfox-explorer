@@ -51,10 +51,10 @@ export default {
                 output24h: '近24h产出量',
                 circulatingSupply:'FIL流通量',
                 totalPledgeCollateral:'FIL质押量',
-
+                // default hide items
                 accounts:'总账户数',
                 averageTipsetInterval:'平均区块间隔',
-                averageBlockSize: '平均区块大小',
+                dailyMessages: '24h消息数',
                 averageTipsetBlocks:'平均每高度区块数量',
                 rawBytePower:'全网原值算力',
                 averageGasPrice:'平均gas费率',
@@ -68,7 +68,7 @@ export default {
             title: '有效算力分布'
         },
         powerDelta: {
-            title: '算力增量（Top5）'
+            title: '24h算力增量（Top5）'
         },
         minerRanks: {
             title: '挖矿排行榜',
