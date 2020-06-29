@@ -334,7 +334,7 @@ export default {
                 qualityAdjPowerPie: '矿工有效算力分布',
                 qualityAdjPowerLine: '矿工有效算力走势',
                 qualityAdjPowerDeltaLine: '矿工算力增量走势',
-                rewardLine: '挖矿收益变化(FIL/T)'
+                rewardLine: '挖矿收益变化'
             }
         },
         fil: {
