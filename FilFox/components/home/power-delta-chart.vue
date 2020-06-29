@@ -13,6 +13,12 @@ import moment from "moment";
 import "v-charts/lib/style.css";
 
 export default {
+  props: {
+    maxCount: {
+      type: Number,
+      default: 5
+    }
+  },
   data() {
     this.chartSettings = {
       legendName:{}
@@ -46,7 +52,6 @@ export default {
         columns: [],
         rows: []
       },
-      maxCount: 5,
       loading: false,
       dataEmpty: false,
       rawData: []
