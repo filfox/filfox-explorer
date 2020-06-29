@@ -11,6 +11,7 @@
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.size')}}</th>
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.hash')}}</th>
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.miner')}}</th>
+            <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.tag')}}</th>
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.message')}}</th>
             <th class="sticky top-0 bg-white z-10">{{$t('blockchain.block.tableHeaders.award')}}</th>
           </tr>
@@ -45,6 +46,10 @@
 
               <td>
                 <AddressLink :id="block.miner" class="text-sm" />
+              </td>
+
+              <td class="text-sm">
+                {{ block.minerTag ? block.minerTag[$i18n.locale] : '--' }}
               </td>
 
               <td class="smb:hidden text-sm">{{ block.messageCount }}</td>

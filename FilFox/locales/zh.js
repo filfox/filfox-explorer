@@ -137,6 +137,7 @@ export default {
                 size: '区块大小',
                 hash:'哈希',
                 miner:'矿工',
+                tag: '标签',
                 message:'消息',
                 award:'奖励'
             }
@@ -171,6 +172,8 @@ export default {
                 order:'排名',
                 address:'账户名',
                 balance:'余额',
+                balanceRate: '余额占比',
+                tag: '标签',
                 type: '类型',
                 createTime: '创建时间',
                 lastSeenTime: '最新交易'
@@ -215,6 +218,7 @@ export default {
                 totalMsgCount:'累计消息数（去重）',
                 id: '区块ID',
                 miner: '矿工',
+                tag: '标签',
                 bonus: '奖励',
                 messageCount: '消息数'
             }

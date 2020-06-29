@@ -12,12 +12,14 @@
         <table class="w-full table-fixed mt-2" v-if="!loading">
             <thead class="text-gray-600 text-sm">
               <tr class="h-8">
-                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.order')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.address')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.balance')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.type')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.createTime')}} </th>
-                <th class="sticky top-0 bg-white z-30"> {{$t('blockchain.richList.tableHeaders.lastSeenTime')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/12"> {{$t('blockchain.richList.tableHeaders.order')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/6"> {{$t('blockchain.richList.tableHeaders.address')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/12"> {{$t('blockchain.richList.tableHeaders.tag')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/6"> {{$t('blockchain.richList.tableHeaders.balance')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/12"> {{$t('blockchain.richList.tableHeaders.balanceRate')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/12"> {{$t('blockchain.richList.tableHeaders.type')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/6"> {{$t('blockchain.richList.tableHeaders.createTime')}} </th>
+                <th class="sticky top-0 bg-white z-30 w-1/6"> {{$t('blockchain.richList.tableHeaders.lastSeenTime')}} </th>
               </tr>
             </thead>
             <tbody class="text-center text-sm">
@@ -26,9 +28,11 @@
                     <RankIndex :index="index+1 + page * pageSize"/>  
                   </td>
                   <td>
-                    <AddressLink :id="rich.address" :format="10"/>
+                    <AddressLink :id="rich.address" :format="8"/>
                   </td>
+                  <td class="text-sm"> {{ rich.tag ? rich.tag[$i18n.locale] : '--' }} </td>
                   <td> {{rich.balance | filecoin(4)}} </td>
+                  <td> {{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}% </td>
                   <td> {{ $t('actor.' + rich.actor) }} </td>
                   <td> {{ rich.createTimestamp | timestamp('datetime') }} </td>
                   <td> {{ rich.lastSeenTimestamp | timestamp('datetime') }} </td>
