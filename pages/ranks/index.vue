@@ -57,27 +57,30 @@
       </div>
 
       <div class="flex mt-3">
-        <table class="w-full table-auto" v-loading="loading">
+        <table class="w-full" v-loading="loading" :class="{'table-fixed':page == 0, 'table-auto ml-4':page > 0}">
           <thead class="text-gray-600 text-sm">
             <tr v-if="type === 0">
               <th
-                v-for="(title, index) in rankTableHeadersByPowers"
-                :key="index"
+                v-for="(title, key, index) in rankTableHeadersByPowers"
+                :key="key"
                 class="sticky top-0 bg-white z-30 h-8"
+                :class="{'w-1/8':(index != 3 && page == 0), 'w-1/4': (index == 3 && page == 0)}"
               >{{title}}</th>
             </tr>
             <tr v-if="type === 1">
               <th
-                v-for="(title, index) in rankTableHeadersByBlocks"
-                :key="index"
+                v-for="(title, key, index) in rankTableHeadersByBlocks"
+                :key="key"
                 class="sticky top-0 bg-white z-30 h-8"
+                :class="{'w-1/8':(index != 3 && page == 0), 'w-1/4': (index == 3 && page == 0)}"
               >{{title}}</th>
             </tr>
             <tr v-if="type === 2">
               <th
-                v-for="(title, index) in rankTableHeadersByPowerDelta"
-                :key="index"
+                v-for="(title, key, index) in rankTableHeadersByPowerDelta"
+                :key="key"
                 class="sticky top-0 bg-white z-30 h-8"
+                :class="{'w-1/8':(index != 3 && page == 0), 'w-1/4': (index == 3 && page == 0)}"
               >{{title}}</th>
             </tr>
           </thead>
@@ -96,7 +99,14 @@
               <td>
                 {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
-              <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
+              <td>
+                <div class="flex flex-row items-center">
+                  <el-progress :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" v-if="page === 0"></el-progress>
+                  <div class="flex" :class="{'mx-auto': page > 0}">
+                    {{ miner.qualityAdjPower | size_metric(2) }}
+                  </div>
+                </div>
+              </td>
               <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}</td>
               <td>{{ miner.blocksMined }}</td>
               <td>{{ miner.qualityAdjPowerDelta | size_metric(2)}}</td>
@@ -117,7 +127,14 @@
               <td>
                 {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
-              <td>{{ miner.blocksMined }}</td>
+              <td>
+                <div class="flex flex-row items-center">
+                  <el-progress :percentage="miner.blocksMined/topMinersByBlocks.miners[0].blocksMined * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" v-if="page === 0"></el-progress>
+                  <div class="flex" :class="{'mx-auto': page > 0}">
+                    {{ miner.blocksMined }}
+                  </div>
+                </div>
+              </td>
               <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}</td>
               <td>{{ miner.totalRewards | filecoin(2) }}</td>
               <td>{{ miner.luckyValue.toFixed(2) }}</td>
@@ -138,7 +155,14 @@
               <td>
                {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
               </td>
-              <td>{{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }}</td>
+              <td>
+                <div class="flex flex-row items-center">
+                  <el-progress :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" v-if="page === 0"></el-progress>
+                  <div class="flex" :class="{'mx-auto': page > 0}">
+                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }}
+                  </div>
+                </div>
+              </td>
               <td>N/A</td>
               <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
               <td>{{ miner.qualityAdjPower | size_metric(2)}}</td>
