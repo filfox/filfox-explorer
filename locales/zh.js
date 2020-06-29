@@ -327,6 +327,20 @@ export default {
         'fil/1/system': '系统',
         'fil/1/verifiedregistry': '注册确认'
     },
+    chart: {
+        miner: {
+            title: '挖矿图表',
+            headers: {
+                qualityAdjPowerPie: '矿工有效算力分布',
+                qualityAdjPowerLine: '矿工有效算力走势',
+                qualityAdjPowerDeltaLine: '矿工算力增量走势',
+                rewardLine: '挖矿收益变化(FIL/T)'
+            }
+        },
+        fil: {
+            title: 'FIL图表',
+        }
+    },
     footer: {
         contact: '联系方式: contact@6block.com',
         intro: 'Filfox.io是Filecoin区块链浏览器，提供相关数据查询服务，由6block提供技术支持',
