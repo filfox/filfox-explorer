@@ -78,15 +78,18 @@ export default {
         this.$router.push(this.localePath('/charts/miner'))
       }
       else if (index == 1) {
-        this.$router.push(this.localePath('/charts/fil'))
+        this.$message('功能暂未开放，敬请期待')
+        //this.$router.push(this.localePath('/charts/fil'))
       }
     },
     handleResourcesCommand(index) {
       if (index == 0) {
-        this.$router.push(this.localePath('/resources/tools'))
+        this.$message('功能暂未开放，敬请期待')
+        //this.$router.push(this.localePath('/resources/tools'))
       }
       else if (index == 1) {
-        this.$router.push(this.localePath('/resources/wiki'))
+        this.$message('功能暂未开放，敬请期待')
+        //this.$router.push(this.localePath('/resources/wiki'))
       }
     },
     async search() {
