@@ -11,7 +11,7 @@
     <div class="flex flex-col rounded-md my-4 bg-white">
         <div class="border-b border-background h-12 flex items-center pl-6"> {{ $t('chart.miner.headers.qualityAdjPowerDeltaLine') }} </div>
         <client-only>
-            <PowerDeltaChart class="mx-4 mt-12"/>
+            <PowerDeltaChart :maxCount="10" class="mx-4 mt-12"/>
         </client-only>
     </div>
 
