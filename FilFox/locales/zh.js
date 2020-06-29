@@ -133,7 +133,7 @@ export default {
             title: '区块列表',
             tableHeaders: {
                 height:'高度',
-                time: '时间/块龄',
+                time: '时间',
                 size: '区块大小',
                 hash:'哈希',
                 miner:'矿工',
@@ -151,7 +151,7 @@ export default {
             tableHeaders: {
                 id: '消息ID',
                 height: '区块高度',
-                time: '时间/块龄',
+                time: '时间',
                 from: '发送方',
                 to: '接收方',
                 method: '方法',

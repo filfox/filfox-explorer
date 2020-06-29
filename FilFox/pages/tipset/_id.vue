@@ -28,8 +28,9 @@
         </dl>
          <dl class="flex flex-row my-1 items-center">
            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.miner') }} </dt>
-           <dd class="flex mr-4 text-main">  
-             <AddressLink :id="block.miner" />
+           <dd class="flex mr-4">  
+             <AddressLink :id="block.miner" class="text-main" />
+             <div v-if="block.minerTag" class="flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center"> {{ block.minerTag[$i18n.locale] }} </div>
            </dd>
         </dl>
         <dl class="flex flex-row my-1 items-center">
