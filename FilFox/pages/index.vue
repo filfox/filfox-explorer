@@ -3,28 +3,33 @@
 
     <HomeOverview :overview="overview" />
 
-    <div class="grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
-      <div class="flex flex-col bg-white rounded-md mr-2">
-        <HomeTitle type="powerDistribution" class="border-b border-background h-12 mr-4" />
+    <div class="flex flex-col lg:grid lg:grid-flow-col lg:grid-rows-1 lg:grid-cols-2 mb-2 lg:mb-4">
+      <div class="flex flex-col bg-white lg:rounded-md lg:mr-2 mb-2 lg:mb-0">
+        <HomeTitle type="powerDistribution" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
         <client-only>
-            <PowerDistributionChart class="mx-4 mt-12"/>
+            <PowerDistributionChart class="mt-2 mx-1 lg:mx-4 lg:mt-12"/>
         </client-only>
       </div>
       
-      <div class="flex flex-col bg-white ml-2 rounded-md">
-        <HomeTitle type="powerDelta" class="border-b border-background h-12 mr-4" />
+      <div class="flex flex-col bg-white lg:ml-2 lg:rounded-md">
+        <HomeTitle type="powerDelta" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
         <client-only>
-            <PowerDeltaChart class="mx-4 mt-12"/>
+            <PowerDeltaChart class="mt-2 mx-1 lg:mx-4 lg:mt-12"/>
         </client-only>
       </div>
     </div>
 
-    <HomeMinerRanks/>
+    <HomeMinerRanksMobile class="lg:hidden"/>
+    <HomeMinerRanks class="hidden lg:flex"/>
 
-    <div class="flex flex-row mb-4">
+    <div class="mb-4 hidden lg:flex lg:flex-row">
       <HomeRecentTipsets :recentTipsets="recentTipsets" :recentTipsetsLoading="recentTipsetsLoading" />
       <HomeRichList :richList="richList" :richListLoading="richListLoading" />
     </div>
+
+    <HomeRecentTipsetsMobile :recentTipsets="recentTipsets" :recentTipsetsLoading="recentTipsetsLoading" class="flex flex-grow lg:hidden"/>
+    <HomeRichListMobile :richList="richList" :richListLoading="richListLoading" class="flex flex-grow lg:hidden"/>
+
   </div>
 </template>
 

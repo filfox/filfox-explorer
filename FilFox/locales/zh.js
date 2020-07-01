@@ -72,6 +72,7 @@ export default {
         },
         minerRanks: {
             title: '挖矿排行榜',
+            rate: '占比',
             filters: {
                 qualityAdjPower: '有效算力',
                 blocks: '出块数',

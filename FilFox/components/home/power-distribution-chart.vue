@@ -1,5 +1,8 @@
 <template>
-  <ve-pie :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend"></ve-pie>
+  <div>
+   <ve-pie :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="hidden lg:block"></ve-pie>
+   <ve-pie :data="chartData" :settings="mobileSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="lg:hidden" width="100%" height="380px"></ve-pie>
+  </div>
 </template>
 
 <script>
@@ -11,7 +14,12 @@ export default {
   data() {
     this.chartSettings = {
       legendName: {}
-    }
+    },
+    this.mobileSettings = {
+      legendName: {},
+      offsetY: window.innerWidth <= 640 ? 225 : 210,
+      radius: window.innerWidth <= 640 ? 80 : 100,
+    },
     this.chartExtend = {
       tooltip: {
         trigger: 'item',
@@ -55,10 +63,12 @@ export default {
             if (tag == null) {
               row['miner'] = miner.address
               this.chartSettings.legendName[miner.address] = miner.address
+              this.mobileSettings.legendName[miner.address] = miner.address
             }
             else {
               row['miner'] = miner.address + '(' + miner.tag[this.$i18n.locale] +')'
               this.chartSettings.legendName[row['miner']] = miner.address
+              this.mobileSettings.legendName[row['miner']] = miner.address
             }
             row['power'] = this.getPower(miner.qualityAdjPower)
             rows.push(row)
