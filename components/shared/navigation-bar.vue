@@ -1,5 +1,5 @@
 <template>
- <div class="container mx-auto h-12 flex flex-row items-center">
+ <div class="container px-4 h-12 hidden lg:flex flex-row items-center mx-auto xl:px-0">
    <div class="ml-2 mr-5 text-background text-sm cursor-pointer" @click="handleHomeSelect">
      {{$t('nav.home.title')}}
    </div>

@@ -1,13 +1,9 @@
 <template>
-  <ve-line
-    :data="chartData"
-    :settings="chartSettings"
-    :loading="loading"
-    :dataEmpty="dataEmpty"
-    :extend="chartExtend"
-  ></ve-line>
+  <div>
+    <ve-line :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="hidden lg:block"></ve-line>
+    <ve-line :data="chartData" :settings="mobileChartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" :grid="{top:75,bottom:20}" class="lg:hidden" width="100%" height="380px"></ve-line>
+  </div>
 </template>
-
 <script>
 import moment from "moment";
 import "v-charts/lib/style.css";
@@ -21,6 +17,10 @@ export default {
   },
   data() {
     this.chartSettings = {
+      legendName:{}
+    };
+    this.mobileChartSettings = {
+      offsetY: 0,
       legendName:{}
     };
     this.chartExtend = {
@@ -89,9 +89,11 @@ export default {
           let tag = miner.tag;
           if (tag == null) {
             this.chartSettings.legendName[res] = res
+            this.mobileChartSettings.legendName[res] = res
           } else {
             res = miner.address + "(" + miner.tag[this.$i18n.locale] + ")"
             this.chartSettings.legendName[res] = miner.address
+            this.mobileChartSettings.legendName[res] = miner.address
           }
           if (columns.length <= this.maxCount && columns.length <= data.length) {
             columns.push(res)
