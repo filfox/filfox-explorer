@@ -1,9 +1,8 @@
 <template>
   <div class="container mx-auto">
-    <!-- 全网概览 -->
+
     <HomeOverview :overview="overview" />
 
-    <!-- 图表 -->
     <div class="grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
       <div class="flex flex-col bg-white rounded-md mr-2">
         <HomeTitle type="powerDistribution" class="border-b border-background h-12 mr-4" />
@@ -20,15 +19,10 @@
       </div>
     </div>
 
-    <!-- 挖矿排行榜 -->
     <HomeMinerRanks/>
 
-    <!-- 最新区块 富豪榜  -->
     <div class="flex flex-row mb-4">
-      <!-- 最新区块 -->
       <HomeRecentTipsets :recentTipsets="recentTipsets" :recentTipsetsLoading="recentTipsetsLoading" />
-
-      <!-- 富豪榜 -->
       <HomeRichList :richList="richList" :richListLoading="richListLoading" />
     </div>
   </div>
