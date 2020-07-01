@@ -107,7 +107,7 @@
   }
   .el-tabs__item {
       padding: 0 10px;
-      font-size: 7px;
+      font-size: 12px;
   }
 </style>
 
