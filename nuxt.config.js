@@ -17,7 +17,7 @@ export default {
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       { name: 'apple-mobile-web-app-title', content: 'filfox.io' },
       { name: 'mobile-web-app-capable', content: 'yes' },
-      { name: 'theme-color', content: '#5dcfd4' },
+      { name: 'theme-color', content: '#1a4fc9' },
       { name: 'application-name', content: 'filfox.io' }
     ],
   },
