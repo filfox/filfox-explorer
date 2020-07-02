@@ -1,7 +1,7 @@
 <template>
   <div>
    <ve-pie :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="hidden lg:block"></ve-pie>
-   <ve-pie :data="chartData" :settings="mobileSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="lg:hidden" width="100%" height="380px"></ve-pie>
+   <ve-pie :data="chartData" :settings="mobileSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="mobileChartExtend" class="lg:hidden" width="100%" height="380px"></ve-pie>
   </div>
 </template>
 
@@ -14,12 +14,12 @@ export default {
   data() {
     this.chartSettings = {
       legendName: {}
-    },
+    };
     this.mobileSettings = {
       legendName: {},
       offsetY: window.innerWidth <= 640 ? 225 : 210,
       radius: window.innerWidth <= 640 ? 80 : 100,
-    },
+    };
     this.chartExtend = {
       tooltip: {
         trigger: 'item',
@@ -28,7 +28,17 @@ export default {
           return params.marker + params.name + ": " + params.value.toFixed(2) + "TiB" + " (" + params.percent + "%)"
         }
       }
-    }
+    };
+    this.mobileChartExtend = {
+      tooltip: {
+        trigger: 'item',
+        formatter: function(params)
+        {
+          return params.marker + params.name + ": " + params.value.toFixed(2) + "TiB" + " (" + params.percent + "%)"
+        },
+        position: ['15%','50%']
+      }
+    };
     return {
       chartData: {
         columns:[],

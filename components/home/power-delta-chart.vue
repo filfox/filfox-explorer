@@ -1,7 +1,7 @@
 <template>
   <div>
     <ve-line :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="hidden lg:block"></ve-line>
-    <ve-line :data="chartData" :settings="mobileChartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" :grid="{top:75,bottom:20}" class="lg:hidden" width="100%" height="380px"></ve-line>
+    <ve-line :data="chartData" :settings="mobileChartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="mobileChartExtend" :grid="{top:75,bottom:20}" class="lg:hidden" width="100%" height="380px"></ve-line>
   </div>
 </template>
 <script>
@@ -44,7 +44,32 @@ export default {
               " TiB";
           }
           return relVal;
+        },
+      }
+    };
+    this.mobileChartExtend = {
+      yAxis: {
+        type: "value",
+        axisLabel: {
+          formatter: "{value} TiB"
         }
+      },
+      tooltip: {
+        trigger: "axis",
+        formatter: (params) => {
+          var relVal = this.getDateTime(this.rawData[params[0].dataIndex].timestamp);
+          for (var i = 0, l = params.length; i < l; i++) {
+            relVal +=
+              "<br/>" +
+              params[i].marker +
+              params[i].seriesName +
+              ": " +
+              params[i].value[1] +
+              " TiB";
+          }
+          return relVal;
+        },
+        position: ['20%','50%']
       }
     };
     return {
@@ -98,7 +123,7 @@ export default {
           if (columns.length <= this.maxCount && columns.length <= data.length) {
             columns.push(res)
           }
-          row[res] = this.getPower(miner.powerDelta);
+          row[res] = this.getPower(miner.powerDelta).toFixed(2);
         }
         rows.push(row);
       }
