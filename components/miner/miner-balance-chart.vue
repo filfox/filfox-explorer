@@ -1,15 +1,11 @@
 <template>
-  <client-only>
-    <ve-ring
-      :data="chartData"
-      :settings="chartSettings"
-      :dataEmpty="dataEmpty"
-      :extend="chartExtend"
-      :legend-visible="false"
-      height="200px"
-      width="100%"
-    ></ve-ring>
-  </client-only>
+  <div class="flex flex-grow">
+    <client-only>
+      <ve-ring :data="chartData" :settings="chartSettings" :dataEmpty="dataEmpty" :extend="chartExtend" :legend-visible="false" height="200px" width="100%" class="hidden lg:block"></ve-ring>
+       <ve-ring :data="chartData" :settings="chartSettings" :dataEmpty="dataEmpty" :extend="mobileChartExtend" :legend-visible="false" height="200px" width="100%" class="lg:hidden"></ve-ring>
+    </client-only>
+  </div>
+
 </template>
 
 <script>
@@ -24,7 +20,8 @@ export default {
   },
   data() {
     this.chartSettings = {
-      offsetY: 100,
+      offsetX: '50%',
+      offsetY: '50%',
       radius: [25, 50],
       label: {
         show: false
@@ -37,6 +34,16 @@ export default {
           {
             return params.marker + params.name + ": " + params.value + " FIL" + " (" + params.percent + "%)"
           }
+        }
+    };
+    this.mobileChartExtend = {
+        tooltip: {
+          trigger: 'item',
+          formatter: function(params)
+          {
+            return params.marker + params.name + ": " + params.value + " FIL" + " (" + params.percent + "%)"
+          },
+          position: ['20%','40%'],
         }
     };
     return {

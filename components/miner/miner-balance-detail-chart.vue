@@ -1,7 +1,10 @@
 <template>
-    <client-only>
-        <ve-line :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend"></ve-line>
-    </client-only>
+    <div>
+      <client-only>
+          <ve-line :data="chartData" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="hidden lg:block"></ve-line>
+          <ve-line :data="chartData" :loading="loading" :dataEmpty="dataEmpty" :extend="mobileChartExtend" class="lg:hidden" width="100%" height="280px"></ve-line>
+      </client-only>
+    </div>
 </template>
 
 <script>
@@ -17,8 +20,6 @@ export default {
     }
   },
   data() {
-    this.chartSettings = {
-    }
     this.chartExtend = {
       yAxis: {
         type: 'value',
@@ -38,6 +39,29 @@ export default {
         }
       }
     }
+    this.mobileChartExtend = {
+      grid: {
+        bottom:25
+      },
+      yAxis: {
+        type: 'value',
+        axisLabel: {
+          formatter:'{value} FIL'
+        }
+      },
+      tooltip: {
+        trigger: 'axis',
+        formatter: function(params)
+        {
+          var relVal = params[0].name
+          for (var i = 0, l = params.length; i < l; i++) {
+              relVal += '<br/>' + params[i].marker + params[i].seriesName + ': ' + params[i].value[1] + ' FIL'
+          }
+          return relVal
+        },
+        position: ['20%','40%'],
+      }
+    };
     return {
       chartData: {
         columns:['time',this.$t('detail.address.miner.accountChange.charts.balance'),this.$t('detail.address.miner.accountChange.charts.availableBalance'),this.$t('detail.address.miner.accountChange.charts.pledgeBalance')],

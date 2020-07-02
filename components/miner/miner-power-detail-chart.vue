@@ -1,7 +1,10 @@
 <template>
-    <client-only>
-        <ve-histogram :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend"></ve-histogram>
-    </client-only>
+  <div>
+      <client-only>
+          <ve-histogram :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="hidden lg:block"></ve-histogram>
+          <ve-histogram :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="mobileChartExtend" class="lg:hidden" width="100%" height="250px"></ve-histogram>
+      </client-only>
+  </div>
 </template>
 
 <script>
@@ -19,7 +22,7 @@ export default {
   data() {
     this.chartSettings = {
         showLine: [this.$t('detail.address.miner.powerChange.charts.qualityAdjPower')]
-    }
+    };
     this.chartExtend = {
       yAxis: {
         type: 'value',
@@ -37,6 +40,29 @@ export default {
           }
           return relVal
         }
+      }
+    };
+    this.mobileChartExtend = {
+      grid: {
+        bottom:25
+      },
+      yAxis: {
+        type: 'value',
+        axisLabel: {
+          formatter:'{value} TiB'
+        }
+      },
+      tooltip: {
+        trigger: 'axis',
+        formatter: function(params)
+        {
+          var relVal = params[0].name
+          for (var i = 0, l = params.length; i < l; i++) {
+              relVal += '<br/>' + params[i].marker + params[i].seriesName + ': ' + params[i].value.toFixed(4) + ' TiB'
+          }
+          return relVal
+        },
+        position: ['20%','40%'],
       }
     }
     return {
