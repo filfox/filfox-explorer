@@ -132,7 +132,7 @@
                 <p class="text-xs text-gray-800"> {{$t('blockchain.message.tableHeaders.value')}}: </p>
                 <p class="text-xs text-gray-800"> {{ message.value | filecoin(4) }} </p>
             </div>
-            <div class="flex flex-row items-center justify-between mx-3 mt-1">
+            <div class="flex flex-row items-center justify-between mx-3 mt-1 mb-3">
                 <p class="text-xs text-gray-800"> {{$t('blockchain.message.tableHeaders.exitCode')}}: </p>
                 <p class="text-xs text-gray-800" v-if="message.receipt"> {{ message.receipt.exitCode | exit-code }} </p>
                 <p class="text-xs text-gray-800" v-else> N/A </p>
