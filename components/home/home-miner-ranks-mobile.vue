@@ -24,75 +24,87 @@
       </div>
     </div>
 
-    <div class="flex mt-3">
-      <table class="w-full table-auto mx-4" v-loading="loading">
-        <thead class="text-gray-600 text-xs m-2">
-          <tr v-if="type == 0">
-            <th> {{ $t('home.minerRanks.tableHeadersByPower.rank') }} </th>
-            <th> {{ $t('home.minerRanks.tableHeadersByPower.miner') }} </th>
-            <th> {{ $t('home.minerRanks.tableHeadersByPower.tag') }} </th>
-            <th> {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} /  {{ $t('home.minerRanks.rate') }}</th>
-          </tr>
-          <tr v-if="type == 1">
-            <th> {{ $t('home.minerRanks.tableHeadersByBlock.rank') }} </th>
-            <th> {{ $t('home.minerRanks.tableHeadersByBlock.miner') }} </th>
-            <th> {{ $t('home.minerRanks.tableHeadersByBlock.tag') }} </th>
-            <th> {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }} /  {{ $t('home.minerRanks.tableHeadersByBlock.blockRate') }}</th>
-          </tr>
-          <tr v-if="type == 2">
-             <th> {{ $t('home.minerRanks.tableHeadersByPower.rank') }} </th>
-             <th> {{ $t('home.minerRanks.tableHeadersByPower.miner') }} </th>
-             <th> {{ $t('home.minerRanks.tableHeadersByPower.tag') }} </th>
-             <th> {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}</th>
-          </tr>
-        </thead>
-        <tbody class="text-xs text-center" v-if="type=='0'">
-          <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10">
-            <td>
-              <RankIndex :index="index+1"/>
-            </td>
-            <td>
-              <AddressLink :id="miner.address" :format="4"/>
-            </td>
-            <td>
-              {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
-            </td>
-            <td>
-              {{ miner.qualityAdjPower | size_metric(2) }} / {{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}
-            </td>
-          </tr>
-        </tbody>
-        <tbody class="text-xs text-center" v-if="type=='1'">
-          <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10">
-            <td>
-              <RankIndex :index="index+1"/>
-            </td>
-            <td>
-              <AddressLink :id="miner.address" :format="10"/>
-            </td>
-            <td>
-              {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
-            </td>
-            <td> {{ miner.blocksMined }} / {{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}</td>
-          </tr>
-        </tbody>
-        <tbody class="text-xs text-center" v-if="type=='2'">
-          <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10">
-            <td>
-              <RankIndex :index="index+1"/>
-            </td>
-            <td>
-              <AddressLink :id="miner.address" :format="10"/>
-            </td>
-            <td>
-              {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
-            </td>
-            <td>
-              {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="flex flex-col" v-loading="loading">
+      <div class="flex flex-grow flex-row bg-mobileHeader text-xs px-4" v-if="type == 0"> 
+        <div class="w-1/6">
+          {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
+        </div>
+        <div class="w-1/2">
+          {{ $t('home.minerRanks.tableHeadersByPower.miner') }} 
+        </div>
+        <div class="w-1/3 flex flex-row-reverse">
+          {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} /  {{ $t('home.minerRanks.rate') }}
+        </div>
+      </div>
+
+      <div class="flex flex-grow flex-row bg-mobileHeader text-xs px-4" v-if="type == 1"> 
+        <div class="w-1/6">
+          {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
+        </div>
+        <div class="w-1/2">
+          {{ $t('home.minerRanks.tableHeadersByPower.miner') }} 
+        </div>
+        <div class="w-1/3 flex flex-row-reverse">
+          {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }} /  {{ $t('home.minerRanks.tableHeadersByBlock.blockRate') }}
+        </div>
+      </div>
+
+      <div class="flex flex-grow flex-row bg-mobileHeader text-xs px-4" v-if="type == 2"> 
+        <div class="w-1/6">
+          {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
+        </div>
+        <div class="w-1/2">
+          {{ $t('home.minerRanks.tableHeadersByPower.miner') }} 
+        </div>
+        <div class="w-1/3 flex flex-row-reverse">
+          {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
+        </div>
+      </div>
+      
+      <template v-if="type == 0">
+        <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex flex-row flex-grow text-xs px-4 border-b">
+            <div class="w-1/6 items-center flex">  
+                <RankIndex :index="index+1"/>
+            </div>
+            <div class="w-1/2 flex flex-row items-center py-2">  
+                <AddressLink :id="miner.address" :format="4"/>
+                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+            </div>
+            <div class="w-1/3 flex flex-row-reverse items-center">  
+                {{ miner.qualityAdjPower | size_metric(2) }} / {{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}
+            </div>
+        </div>
+      </template>
+
+       <template v-if="type == 1">
+        <div v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="flex flex-row flex-grow text-xs px-4 border-b">
+            <div class="w-1/6 items-center flex">  
+                <RankIndex :index="index+1"/>
+            </div>
+            <div class="w-1/2 flex flex-row items-center py-2">  
+                <AddressLink :id="miner.address" :format="4"/>
+                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+            </div>
+            <div class="w-1/3 flex flex-row-reverse items-center">  
+                {{ miner.blocksMined }} / {{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}
+            </div>
+        </div>
+      </template>
+
+       <template v-if="type == 2">
+        <div v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="flex flex-row flex-grow text-xs px-4 border-b">
+            <div class="w-1/6 items-center flex">  
+                <RankIndex :index="index+1"/>
+            </div>
+            <div class="w-1/2 flex flex-row items-center py-2">  
+                <AddressLink :id="miner.address" :format="4"/>
+                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+            </div>
+            <div class="w-1/3 flex flex-row-reverse items-center">  
+                {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} 
+            </div>
+        </div>
+      </template>
     </div>
     <div class="flex flex-grow items-center text-center h-12">
         <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 

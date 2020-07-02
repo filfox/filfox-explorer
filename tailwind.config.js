@@ -16,7 +16,8 @@ module.exports = {
         main: '#1a4fc9',
         footer: '#141825',
         footerText: '#f0f2f6',
-        background: '#f0f6fb'
+        background: '#f0f6fb',
+        mobileHeader: '#f8f8f8',
       }
     },
     minWidth: {
