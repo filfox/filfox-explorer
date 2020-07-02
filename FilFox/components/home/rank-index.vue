@@ -1,9 +1,9 @@
 <template>
-    <div class="flex m-auto"> 
-        <img v-if="index === 1" src="~/assets/img/home/first.png" alt="1" class="m-auto w-6">
-        <img v-if="index === 2" src="~/assets/img/home/second.png" alt="1" class="m-auto w-6">
-        <img v-if="index === 3" src="~/assets/img/home/third.png" alt="1" class="m-auto w-6">
-        <p v-if="index > 3" class="flex text-center m-auto"> {{ index }} </p>
+    <div class="flex lg:m-auto"> 
+        <img v-if="index === 1" src="~/assets/img/home/first.png" alt="1" class="w-4 ml-1 lg:m-auto lg:w-6">
+        <img v-if="index === 2" src="~/assets/img/home/second.png" alt="1" class="w-4 ml-1 lg:m-auto lg:w-6">
+        <img v-if="index === 3" src="~/assets/img/home/third.png" alt="1" class="w-4 ml-1 lg:m-auto lg:w-6">
+        <p v-if="index > 3" class="flex ml-2 lg:text-center lg:m-auto"> {{ index }} </p>
     </div>
 </template>
 
