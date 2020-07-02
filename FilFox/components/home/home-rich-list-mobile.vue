@@ -32,10 +32,19 @@
     </div>
 
     <div class="flex flex-grow items-center text-center h-12">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didRichManListMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" type="text" v-on:click="didRichManListMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
     </div>
   </div>
 </template>
+
+<style>
+  .el-button--text {
+      color: #606266
+    }
+  .el-button--text:focus, .el-button--text:hover {
+    color: #606266;
+  }
+</style>
 
 <script>
 export default {

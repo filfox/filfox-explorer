@@ -107,7 +107,7 @@
       </template>
     </div>
     <div class="flex flex-grow items-center text-center h-12">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" type="text" v-on:click="didMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
     </div>
 
   </div>
@@ -120,6 +120,9 @@
   .el-tabs__item {
       padding: 0 10px;
       font-size: 12px;
+  }
+  .el-button--text {
+    color: #606266
   }
 </style>
 
