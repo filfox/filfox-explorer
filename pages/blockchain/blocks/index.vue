@@ -1,6 +1,46 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex flex-col rounded-md my-4 bg-white">
+
+    <div class="flex flex-col flex-grow lg:hidden bg-white mb-2">
+        <HomeTitle type="recentTipsets" class="flex flex-grow border-b border-background"/>
+        <div v-if="loading" v-loading="loading" class="h-16"></div>
+        <div v-if="!loading">
+          <div v-for="(tipset, tipsetIndex) in tipsetsList.tipsets" :key="tipsetIndex" class="rounded-sm mx-3 mt-2 shadow bg-white p-3">
+              <div class="flex flex-row border-b border-background py-1">  
+                    <div class="flex w-1/6 text-xs"> {{$t('home.recentTipsets.tableHeaders.height')}} </div>
+                    <div class="flex w-1/2"> <TipsetLink :id="tipset.height" class="text-main text-xs" /> </div>
+                    <div class="flex flex-row-reverse w-1/3"> <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-xs"/> </div>
+                </div>
+                <div class="flex flex-row">  
+                    <div class="flex w-1/6 text-xs items-center pt-3"> {{$t('home.recentTipsets.tableHeaders.miner')}} </div>
+                    <div class="flex w-1/2 flex-col">
+                      <div v-for="(block, blockIndex) in tipset.blocks" :key="blockIndex" class="flex items-center pt-3">
+                          <AddressLink :id="block.miner" class="text-xs"/>
+                          <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="block.minerTag"> {{ block.minerTag ? block.minerTag[$i18n.locale] : '--' }} </div>
+                      </div>
+                    </div>
+                    <div class="flex w-1/3 flex-col">
+                      <div v-for="(block, blockIndex) in tipset.blocks" :key="blockIndex" class="flex flex-row-reverse items-center pt-3">
+                          <div class="text-xs"> {{$t('home.recentTipsets.tableHeaders.award')}} : {{ block.reward | filecoin(2) }}</div>
+                      </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+
+        <div class="flex flex-grow items-center text-center h-16">
+          <el-pagination
+            layout="prev, pager, next"
+            :page-count="totalPageCount"
+            @current-change="didCurrentPageChanged"
+            :current-page="page+1"
+            class="mx-auto"
+          ></el-pagination>
+      </div>
+
+    </div>
+
+    <div class="flex-col rounded-md my-4 bg-white hidden lg:flex">
       <div class="flex h-12 pl-4 items-center border-b border-background"> {{ $t('blockchain.block.title') }} </div>
       <div>
        <table class="w-full table-auto" v-if="!loading">
