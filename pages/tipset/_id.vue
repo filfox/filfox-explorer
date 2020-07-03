@@ -1,5 +1,50 @@
 <template>
-  <div>
+  <div class="flex">
+    <div class="flex flex-col bg-background flex-grow lg:hidden">
+      <div class="pl-4 border-b border-background bg-white">
+        <div class="text-sm font-medium mt-2"> {{ $t('detail.tipset.title') }} </div>
+        <div class="text-xs my-1"> #{{ height }} </div>
+      </div>
+      <div class="px-4 bg-white flex flex-row justify-between pt-2">
+        <p class="text-gray-600 text-xs"> {{ $t('detail.tipset.headers.time') }} </p>
+        <p class="text-xs"> {{ tipset.timestamp | timestamp }} </p>
+      </div>
+      <div class="px-4 bg-white flex flex-row justify-between pt-1">
+        <p class="text-gray-600 text-xs"> {{ $t('detail.tipset.headers.totalMsgCount') }} </p>
+        <p class="text-xs"> {{ tipset.messageCount }} </p>
+      </div>
+      <div class="px-4 bg-white flex flex-row justify-between pt-1 pb-2">
+        <p class="text-gray-600 text-xs"> {{ $t('detail.tipset.headers.size') }} </p>
+        <p class="text-xs"> {{ tipset.blockSize }} bytes </p>
+      </div>
+
+      <div class="mt-2 bg-white flex flex-grow flex-col">
+        <p class="pl-4 text-sm font-medium py-2 border-b border-background mb-2"> {{$t('detail.tipset.all')}} </p>
+        <div v-for="(block, index) in tipset.blocks" :key="index" class="rounded-sm mx-2 mb-2 shadow bg-white">
+          <div class="flex flex-row justify-between mt-2 mx-2 pt-2">
+            <p class="text-xs w-1/3"> {{ $t('detail.tipset.headers.id') }} </p>
+            <BlockLink :id="block.cid" class="text-xs text-right" />
+          </div>
+          <div class="flex flex-row justify-between mt-2 mx-2">
+            <p class="text-xs w-1/3"> {{ $t('detail.tipset.headers.miner') }} </p>
+            <div class="flex flex-row-reverse items-center">
+              <div v-if="block.minerTag" class="flex ml-1 text-xs rounded-full px-2 border text-gray-500 bg-background"> {{ block.minerTag[$i18n.locale] }} </div>
+              <AddressLink :id="block.miner" class="text-xs text-main" />
+            </div>
+          </div>
+          <div class="flex flex-row justify-between mt-2 mx-2">
+            <p class="text-xs w-1/3"> {{ $t('detail.tipset.headers.bonus') }} </p>
+            <p class="text-xs"> {{ block.reward | filecoin }} </p>
+          </div>
+          <div class="flex flex-row justify-between mt-2 mx-2 pb-2">
+            <p class="text-xs w-1/3"> {{ $t('detail.tipset.headers.messageCount') }} </p>
+            <p class="text-xs"> {{ block.messageCount }} </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
     <div class="hidden container mx-auto lg:flex flex-col">
       <div class="flex flex-grow-0 mt-6 font-medium"> {{ $t('detail.tipset.title') }} #{{ height }} </div>
       <div class="flex flex-col flex-grow rounded-md my-4 bg-white">
