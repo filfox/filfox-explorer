@@ -100,10 +100,10 @@ export default {
                 rank:'排名',
                 miner:'矿工',
                 tag: '标签',
-                validPower:'算力增速',
+                powerIncreaseSpeed:'算力增速',
                 equivalentMiners:'矿机当量',
-                blockNums:'算力增量',
-                powerIncreaseSpeed:'有效算力'
+                powerDelta:'算力增量',
+                validPower:'有效算力'
             },
             moreBtn: '查看更多'
         },
