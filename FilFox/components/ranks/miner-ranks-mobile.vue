@@ -259,13 +259,13 @@ export default {
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1;
       switch (this.type) {
-        case 0:
+        case '0':
           this.getTopMinersByPowers();
           break;
-        case 1:
+        case '1':
           this.getTopMinersByBlocks();
           break;
-        case 2:
+        case '2':
           this.getTopMinersByPowerDelta();
           break;
         default:
