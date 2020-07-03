@@ -208,7 +208,7 @@ export default {
                 return: '返回值',
                 error: '错误'
             },
-            null: '（无）'
+            null: '(无)'
         },
         tipset: {
             title: '区块高度',
