@@ -142,6 +142,7 @@
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
+          :pager-count="5"
           @current-change="didCurrentPageChanged"
           :current-page="page+1"
           class="mx-auto"
