@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-grow flex-col bg-white">
+  <div class="flex flex-grow flex-col bg-white pb-2">
 
       <div class="flex flex-grow-0 font-medium text-sm pl-4 py-3 border-b border-background"> {{ $t('detail.message.title') }} </div>
       
@@ -68,34 +68,32 @@
       </div>
 
       <template v-if="message.receipt">
+          <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2">
+            <p class="flex w-1/4"> {{ $t('detail.message.headers.gasUsed') }} </p>
+            <p class="flex w-3/4"> {{ message.receipt.gasUsed | locale  }} </p>
+          </div>
 
-        <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2">
-          <p class="flex w-1/4"> {{ $t('detail.message.headers.gasUsed') }} </p>
-          <p class="flex w-3/4"> {{ message.receipt.gasUsed | locale  }} </p>
-      </div>
+          <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2">
+              <p class="flex w-1/4">{{ $t('detail.message.headers.exitCode') }}</p>
+              <p class="flex w-3/4"> {{ message.receipt.exitCode | exit-code  }} </p>
+          </div>
 
-        <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2">
-            <p class="flex w-1/4">{{ $t('detail.message.headers.exitCode') }}</p>
-            <p class="flex w-3/4"> {{ message.receipt.exitCode | exit-code  }} </p>
-        </div>
+          <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2" v-if="message.receipt.exitCode === 0">
+              <p class="flex w-1/4">{{ $t('detail.message.headers.return') }}</p>
+              <p class="flex w-3/4"> {{ message.receipt.return ? message.receipt.return : $t('detail.message.null')  }} </p>
+          </div>
 
-        <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2" v-if="message.receipt.exitCode === 0">
-            <p class="flex w-1/4">{{ $t('detail.message.headers.return') }}</p>
-            <p class="flex w-3/4"> {{ message.receipt.return ? message.receipt.return : $t('detail.message.null')  }} </p>
-        </div>
+          <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2" v-else>
+              <p class="flex w-1/4">{{ $t('detail.message.headers.error') }}</p>
+              <p class="flex w-3/4"> {{ message.error }} </p>
+          </div>
 
-        <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2" v-else>
-            <p class="flex w-1/4">{{ $t('detail.message.headers.error') }}</p>
-            <p class="flex w-3/4"> {{ message.error }} </p>
-        </div>
-
-        <div class="flex flex-row justify-between items-start text-xs mx-4 pt-2">
-            <p class="flex w-1/4">{{ $t('detail.message.headers.params') }}</p>
-            <p class="flex break-all w-3/4"> {{ message.params ? message.params : $t('detail.message.null') }} </p>
-        </div>
+          <div class="flex flex-row justify-between items-start text-xs mx-4 pt-2">
+              <p class="flex w-1/4">{{ $t('detail.message.headers.params') }}</p>
+              <p class="flex break-all w-3/4"> {{ message.params ? message.params : $t('detail.message.null') }} </p>
+          </div>
       </template>
       
-      </div>
   </div>
 </template>
 
