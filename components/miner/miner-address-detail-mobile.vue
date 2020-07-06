@@ -101,8 +101,17 @@
         </div>
     </div>
 
-    <div class="flex flex-col flex-grow mt-2" v-loading="loading">
+    <div class="flex flex-col flex-grow mt-2 bg-white" v-loading="loading">
         <p class="pl-3 flex py-2 text-sm font-medium"> {{ $t('blockchain.message.title') }} </p>
+
+        <div class="flex flex-row items-center justify-between pb-1 mb-2">
+              <p class="flex ml-3 h-8 items-center text-xs"> {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages')}} </p>
+              <el-select v-model="method" placeholder="" size="mini" class="mr-3" @change="didSelectChanged"> 
+              <el-option v-for="item in methodOptions" :key="item" :label="item == 'All' ? $t('blockchain.message.methods.all') : item" :value="item">
+              </el-option>
+              </el-select>
+        </div>
+
         <div v-for="(message, index) in messagesList.messages" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white">
             <div class="flex flex-row items-center justify-between mx-3 mt-3">
                 <p class="text-xs text-gray-800"> {{$t('blockchain.message.tableHeaders.id')}}: </p>
