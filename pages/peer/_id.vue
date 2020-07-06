@@ -18,9 +18,9 @@
 
        <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
           <p class="flex w-1/4">{{ $t('detail.peer.headers.IP') }}</p>
-          <template v-if="peer.addresses.length">
-                <p v-for="address in peer.addresses" :key="address" class="flex w-3/4">{{ address | ip }}</p>
-              </template>
+          <div v-if="peer.addresses.length" class="flex w-3/4 flex-col">
+                <p v-for="address in peer.addresses" :key="address" class="flex pb-1">{{ address | ip }}</p>
+          </div>
           <p v-else class="flex w-3/4">{{ $t('shared.empty') }}</p>
        </div>
         
