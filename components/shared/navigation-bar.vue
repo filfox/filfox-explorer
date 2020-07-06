@@ -1,5 +1,5 @@
 <template>
- <div class="container px-4 h-12 hidden lg:flex flex-row items-center mx-auto lg:px-0">
+ <div class="container px-4 h-12 flex-row items-center mx-auto lg:px-0">
    <div class="ml-2 mr-5 text-background text-sm cursor-pointer" @click="handleHomeSelect">
      {{$t('nav.home.title')}}
    </div>
@@ -46,7 +46,6 @@ export default {
   name: 'navBar',
   data() {
     return {
-      activeIndex:'0',
       blocksSubMenus: this.$t('nav.blocks.subMenus'),
       chartsSubMenus: this.$t('nav.charts.subMenus'),
       resourcesSubMenus: this.$t('nav.resources.subMenus'),
