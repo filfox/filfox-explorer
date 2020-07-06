@@ -1,10 +1,10 @@
 <template>
     <div class="bg-white flex flex-col overflow-hidden pb-1">
         <div class="w-full flex">
-            <el-input size="mini" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="mx-3 mt-3" @keyup.enter.native="search"></el-input>
+            <el-input size="mini" suffix-icon="el-icon-search" :clearable="true" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="mx-3 mt-3" @keyup.enter.native="search"></el-input>
         </div>
 
-        <div class="flex ml-4 mr-1 flex-col">
+        <div class="flex ml-4 mr-1 flex-col mt-1">
             <el-collapse class="w-full">
                 <el-collapse-item :title="blockchainTitle">
                     <div class="text-xs text-gray-500 mb-1" @click="handleBlocksCommand(0)"> {{ $t('nav.blocks.subMenus.0') }} </div>
@@ -13,7 +13,7 @@
                 </el-collapse-item>
             </el-collapse>
 
-            <div class="ranks text-sm py-1 cursor-pointer" @click="handleRanksSelect"> {{ $t('nav.ranks.title') }} </div>
+            <div class="ranks text-sm py-2 cursor-pointer" @click="handleRanksSelect"> {{ $t('nav.ranks.title') }} </div>
 
             <el-collapse class="w-full">
                 <el-collapse-item :title="chartTitle">
@@ -29,7 +29,7 @@
                 </el-collapse-item>
             </el-collapse>
         </div>    
-        
+        <div class="flex flex-grow" v-loading.fullscreen.lock="loading"></div>
     </div>
 </template>
 
@@ -77,6 +77,7 @@ export default {
     methods: {
         handleRanksSelect() {
             this.$router.push(this.localePath('/ranks'))
+            this.hideIfNeeded()
         },
         handleBlocksCommand(index) {
             if (index == 0) {
@@ -88,6 +89,7 @@ export default {
             else {
                 this.$router.push(this.localePath('/blockchain/rich'))
             }
+            this.hideIfNeeded()
         },
         handleChartsCommand(index) {
             if (index == 0) {
@@ -97,6 +99,7 @@ export default {
                 this.$message('功能暂未开放，敬请期待')
                 //this.$router.push(this.localePath('/charts/fil'))
             }
+            this.hideIfNeeded()
         },
         handleResourcesCommand(index) {
             if (index == 0) {
@@ -107,6 +110,10 @@ export default {
                 this.$message('功能暂未开放，敬请期待')
                 //this.$router.push(this.localePath('/resources/wiki'))
             }
+            this.hideIfNeeded()
+        },
+        hideIfNeeded() {
+            this.$emit('hideIfNeeded')
         },
         async search() {
             const id = this.searchText.trim()
@@ -140,6 +147,7 @@ export default {
                 this.$message.error(this.$t('shared.noSearchResult'));
             }
             this.loading = false
+            this.hideIfNeeded()
          }   
     }
 }

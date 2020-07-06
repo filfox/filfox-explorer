@@ -9,7 +9,7 @@
            </button>
        </div>
        <navigationBar class="hidden lg:flex"/>
-       <NavigationBarMobile class="lg:hidden" :class="{'hidden':mobileNavHidden}"/>
+       <NavigationBarMobile class="lg:hidden" :class="{'hidden':mobileNavHidden}" v-on:hideIfNeeded="hideIfNeeded" />
     </nav>
 </template>
 
@@ -28,6 +28,9 @@ export default {
     methods: {
         didMobileMenuClicked() {
             this.mobileNavHidden = !this.mobileNavHidden
+        },
+        hideIfNeeded() {
+            this.mobileNavHidden = true
         }
     }
 }
