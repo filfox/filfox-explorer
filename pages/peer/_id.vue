@@ -1,35 +1,64 @@
 <template>
-  <div class="container mx-auto flex flex-col">
-    <div class="flex flex-grow-0 mt-6 font-medium">{{ $t('detail.peer.title') }} </div>
-    <div class="flex flex-col rounded-md my-4 bg-white py-4">
-        <dl class="flex flex-row my-2 items-center">
-          <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.id') }}</dt>
-          <dd class="flex mr-4">
-            <PeerLink :id="id" plain />
-          </dd>
-        </dl>
+  <div class="flex">
+    <div class="flex flex-grow flex-col bg-white lg:hidden">
+      <div class="flex flex-grow-0 font-medium text-sm pl-4 py-3 border-b border-background"> {{ $t('detail.peer.title') }} </div>
+       
+       <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+          <p class="flex w-1/4">{{ $t('detail.peer.headers.id') }}</p>
+          <PeerLink :id="id" plain  class="flex w-3/4"/>
+       </div>
 
-        <dl class="flex flex-row my-2 items-center">
-          <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.miners') }}</dt>
-          <dd class="flex mr-4">
-            <p v-if="peer.miners.length" class="flex flex-wrap">
-              <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
-            </p>
-            <template v-else>Empty</template>
-          </dd>
-        </dl>
+       <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+          <p class="flex w-1/4">{{ $t('detail.peer.headers.miners') }}</p>
+          <p v-if="peer.miners.length" class="flex flex-wrap w-3/4">
+                <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
+          </p>
+          <p v-else class="flex w-3/4">Empty</p>
+       </div>
 
-        <dl class="flex flex-row my-2 items-center">
-          <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.IP') }}</dt>
-          <dd class="flex mr-4">
-            <template v-if="peer.addresses.length">
-              <p v-for="address in peer.addresses" :key="address">{{ address | ip }}</p>
-            </template>
-            <template v-else>Empty</template>
-          </dd>
-        </dl>
+       <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+          <p class="flex w-1/4">{{ $t('detail.peer.headers.IP') }}</p>
+          <template v-if="peer.addresses.length">
+                <p v-for="address in peer.addresses" :key="address" class="flex w-3/4">{{ address | ip }}</p>
+              </template>
+          <p v-else class="flex w-3/4">{{ $t('shared.empty') }}</p>
+       </div>
+        
+    </div>
+
+    <div class="container mx-auto hidden lg:flex flex-col">
+      <div class="flex flex-grow-0 mt-6 font-medium">{{ $t('detail.peer.title') }} </div>
+      <div class="flex flex-col rounded-md my-4 bg-white py-4">
+          <dl class="flex flex-row my-2 items-center">
+            <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.id') }}</dt>
+            <dd class="flex mr-4">
+              <PeerLink :id="id" plain />
+            </dd>
+          </dl>
+
+          <dl class="flex flex-row my-2 items-center">
+            <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.miners') }}</dt>
+            <dd class="flex mr-4">
+              <p v-if="peer.miners.length" class="flex flex-wrap">
+                <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
+              </p>
+              <template v-else>Empty</template>
+            </dd>
+          </dl>
+
+          <dl class="flex flex-row my-2 items-center">
+            <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.IP') }}</dt>
+            <dd class="flex mr-4">
+              <template v-if="peer.addresses.length">
+                <p v-for="address in peer.addresses" :key="address">{{ address | ip }}</p>
+              </template>
+              <template v-else>{{ $t('shared.empty') }}</template>
+            </dd>
+          </dl>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
