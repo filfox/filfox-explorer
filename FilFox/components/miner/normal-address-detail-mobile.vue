@@ -33,18 +33,22 @@
           <p class="flex w-3/4"> {{ addressData.lastSeenTimestamp | timestamp('datetime') }} </p>
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2" v-if="addressData.ownedMiners.length > 0">
+    <div class="flex flex-row justify-between text-xs mx-4 mt-2" v-if="addressData.ownedMiners.length > 0">
           <p class="flex w-1/4">{{ $t('detail.address.normal.headers.ownedMiners') }}</p>
-          <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="w-3/4 flex text-main">
-            <AddressLink :id="ownedMiner" />
-          </p>
+          <div class="flex w-3/4 flex-col">
+            <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="flex text-main pb-1">
+              <AddressLink :id="ownedMiner" />
+             </p>
+          </div>
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2" v-if="addressData.workerMiners.length > 0">
+    <div class="flex flex-row justify-between text-xs mx-4 mt-2" v-if="addressData.workerMiners.length > 0">
           <p class="flex w-1/4">{{ $t('detail.address.normal.headers.workers') }}</p>
-          <p v-for="worker in addressData.workerMiners" :key="worker" class="w-3/4 flex text-main">
-            <AddressLink :id="worker" />
-          </p>
+          <div class="flex w-3/4 flex-col">
+            <p v-for="worker in addressData.workerMiners" :key="worker" class="pb-1 flex text-main">
+              <AddressLink :id="worker" />
+            </p>
+          </div>
     </div>
 
     <div class="flex flex-col flex-grow mt-4" v-loading="loading">
