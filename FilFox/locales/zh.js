@@ -12,7 +12,8 @@ export default {
         },
         more: '更多',
         unknown: '未知',
-        noSearchResult: '无法搜寻到此内容'
+        noSearchResult: '无法搜寻到此内容',
+        empty: '无'
     },
     nav: {
         home: {
