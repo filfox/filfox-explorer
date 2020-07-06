@@ -21,7 +21,7 @@
       <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
           <p class="flex w-1/4">{{ $t('detail.message.headers.inBlocks') }}</p>
           <div class="flex flex-col w-3/4">
-            <p v-for="block in message.blocks" :key="block" class="items-center flex text-main">
+            <p v-for="block in message.blocks" :key="block" class="items-center flex text-main mt-2">
                 <BlockLink :id="block" />
             </p>
           </div>
