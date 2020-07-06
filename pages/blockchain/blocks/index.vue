@@ -76,7 +76,7 @@
 
               <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
                 <div class="flex flex-col">
-                    {{ tipset.blockSize  }}
+                    {{ tipset.blockSize  }} Bytes
                 </div>
               </td>
 
