@@ -5,7 +5,8 @@
           <MinerAddressDetailMobile :addressData="addressData" class="flex lg:hidden"/>
       </template>
       <template v-else>
-          <NormalAddressDetail :addressData="addressData" />
+          <NormalAddressDetail :addressData="addressData" class="hidden lg:flex"/>
+          <NormalAddressDetailMobile :addressData="addressData" class="flex lg:hidden"/>
       </template>
   </div>
 </template>
