@@ -4,7 +4,7 @@
            <nuxt-link :to="localePath('/')">
                <img src="~/assets/img/home/logo.svg" alt="filFox.io" class="cursor-pointer h-6 lg:h-8 ml-4 sm:ml-0">
            </nuxt-link>
-           <button class="flex lg:hidden outline-none focus:outline-none mr-4 sm:mr-0" @click="didMobileMenuClicked">
+           <button class="flex lg:hidden outline-none focus:outline-none mr-4 sm:mr-0 items-center h-10" @click="didMobileMenuClicked">
                <img src="~/assets/img/home/menu.svg" alt="menu" class="cursor-pointer h-3">
            </button>
        </div>
