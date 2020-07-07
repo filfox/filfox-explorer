@@ -5,7 +5,7 @@
       <div class="flex flex-col mt-2" v-if="!loading">
           <p class="pl-4 flex pt-2 text-sm font-medium"> {{ $t('blockchain.message.title') }} </p>
 
-          <div class="flex flex-row items-center justify-between pb-1 mb-2 border-b border-background">
+          <div class="flex flex-row items-center justify-between pb-1 mb-2 border-b border-background mt-1">
             <p class="flex ml-4 h-8 items-center text-xs"> {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages')}} </p>
             <el-select v-model="method" placeholder="" size="mini" class="mr-3" @change="didSelectChanged"> 
               <el-option v-for="item in methodOptions" :key="item" :label="item == 'All' ? $t('blockchain.message.methods.all') : item" :value="item">

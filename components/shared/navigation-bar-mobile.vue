@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white flex flex-col overflow-hidden pb-1">
+    <div class="bg-white flex flex-col overflow-hidden pb-1 border-b border-background">
         <div class="w-full flex">
             <el-input size="mini" suffix-icon="el-icon-search" :clearable="true" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="mx-3 mt-3" @keyup.enter.native="search"></el-input>
         </div>
