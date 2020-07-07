@@ -44,12 +44,18 @@ export default {
         hideIfNeeded() {
             this.mobileNavHidden = true
         },
-        didLanguageSwitched() {
-            if (this.$i18n.locale === 'zh') {
-                this.$i18n.locale = 'en'
+        didLanguageSwitched(command) {
+            if (command == 0) {
+                if (this.$i18n.locale == 'zh') {
+                    return
+                }
+                this.$i18n.locale = 'zh'
             }
             else {
-                this.$i18n.locale = 'zh'
+                if (this.$i18n.locale == 'en') {
+                    return
+                }
+                this.$i18n.locale = 'en'
             }
             this.selectedLanguage = this.$i18n.locale === 'zh' ? '中文' : 'English'
             if (this.$route.path.length == 3) {
