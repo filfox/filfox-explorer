@@ -12,7 +12,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { name: 'keywords', content:"区块链, Blockchain, Filecoin, FIL, IPFS, Filfox, 区块链浏览器, Filecoin Explorer, Filecoin 浏览器, 6Block, 石榴矿池" },
+      { name: 'description', content: "Filfox是石榴矿池开发的Filecoin区块链浏览器，为用户稳定地提供Filecoin相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"},
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       { name: 'apple-mobile-web-app-title', content: 'filfox.io' },
