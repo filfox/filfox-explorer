@@ -52,7 +52,7 @@ export default {
                 this.$i18n.locale = 'zh'
             }
             this.selectedLanguage = this.$i18n.locale === 'zh' ? '中文' : 'English'
-            if (this.localePath() == null) {
+            if (this.$route.path.length == 3) {
                 this.$router.push(this.localePath('/'))
             }
             else {
