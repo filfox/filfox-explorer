@@ -15,7 +15,7 @@ export default {
       noSearchResult: "No Result",
       empty: "Empty",
       notAvailable: 'Coming Soon',
-      oldVersion: 'Old version entry'
+      oldVersion: 'Mini version'
     },
     nav: {
       home: {
