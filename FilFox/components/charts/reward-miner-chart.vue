@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col rounded-md bg-white mx-auto w-full">
+  <div class="flex flex-col lg:rounded-md bg-white mx-auto w-full">
     
     <div class="flex flex-row justify-between items-center border-b border-background">
       <div class=" h-12 flex items-center pl-4 lg:pl-6 text-xs lg:text-base"> {{ $t('chart.miner.headers.rewardLine') }} (FIL/T) </div>
@@ -13,7 +13,8 @@
       </div>
     </div>
     <client-only>
-      <ve-line :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" :legendVisible="false" class="mx-4"></ve-line>
+      <ve-line :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" :legendVisible="false" class="hidden lg:block mx-4"></ve-line>
+      <ve-line :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" :legendVisible="false" :grid="{top:20,bottom:20}" height="280px" class="lg:hidden mx-4"></ve-line>
     </client-only>
   </div>
 </template>
