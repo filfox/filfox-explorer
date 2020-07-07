@@ -1,10 +1,10 @@
 <template>
  <div class="container px-4 h-12 flex-row items-center mx-auto lg:px-0">
-   <div class="ml-2 mr-5 text-background text-sm cursor-pointer" @click="handleHomeSelect">
+   <div class="ml-2 mr-5 text-background text-sm cursor-pointer outline-none focus:outline-none" @click="handleHomeSelect">
      {{$t('nav.home.title')}}
    </div>
    
-   <el-dropdown class="m-5" @command="handleBlocksCommand">
+   <el-dropdown class="m-5 outline-none focus:outline-none" @command="handleBlocksCommand">
       <span class="el-dropdown-link text-background text-sm">
            {{$t('nav.blocks.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
@@ -13,11 +13,11 @@
       </el-dropdown-menu>
    </el-dropdown>
 
-   <div class="m-5 text-background text-sm cursor-pointer" @click="handleRanksSelect">
+   <div class="m-5 text-background text-sm cursor-pointer outline-none focus:outline-none" @click="handleRanksSelect">
      {{$t('nav.ranks.title')}}
    </div>
 
-   <el-dropdown class="m-5" @command="handleChartsCommand">
+   <el-dropdown class="m-5 outline-none focus:outline-none" @command="handleChartsCommand">
       <span class="el-dropdown-link text-background text-sm">
            {{$t('nav.charts.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
@@ -26,7 +26,7 @@
       </el-dropdown-menu>
    </el-dropdown>
 
-   <el-dropdown class="m-5" @command="handleResourcesCommand">
+   <el-dropdown class="m-5 outline-none focus:outline-none" @command="handleResourcesCommand">
       <span class="el-dropdown-link text-background text-sm">
            {{$t('nav.resources.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
