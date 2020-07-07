@@ -18,15 +18,15 @@
       </div>
     </div>
 
-    <div v-for="(rich, index) in richList.list" :key="index" class="flex flex-row flex-grow text-xs px-4 border-b">
-        <div class="w-2/12 items-center flex">  
+    <div v-for="(rich, index) in richList.list" :key="index" class="flex flex-row flex-grow text-xs px-3 border-b">
+        <div class="w-1/12 items-center flex">  
             <RankIndex :index="index+1"/>
         </div>
-        <div class="w-5/12 flex flex-row items-center py-2">  
+        <div class="w-5/12 flex flex-row items-center py-2 pl-1">  
             <AddressLink :id="rich.address" :format="3" />
             <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="rich.tag"> {{ rich.tag ? rich.tag[$i18n.locale] : '--' }} </div>
         </div>
-        <div class="w-5/12 flex flex-row-reverse items-center">  
+        <div class="w-6/12 flex flex-row-reverse items-center">  
             {{rich.balance | filecoin(0)}} / {{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}%
         </div>
     </div>

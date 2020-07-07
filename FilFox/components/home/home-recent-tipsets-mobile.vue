@@ -11,14 +11,13 @@
                   <div class="flex flex-row-reverse w-1/3"> <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-xs"/> </div>
               </div>
               <div class="flex flex-row">  
-                  <div class="flex w-1/6 text-xs items-center"> {{$t('home.recentTipsets.tableHeaders.miner')}} </div>
                   <div class="flex w-1/2 flex-col">
                     <div v-for="(block, blockIndex) in tipset.blocks" :key="blockIndex" class="flex items-center py-1">
                         <AddressLink :id="block.miner" class="text-xs"/>
                         <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="block.minerTag"> {{ block.minerTag ? block.minerTag[$i18n.locale] : '--' }} </div>
                     </div>
                   </div>
-                  <div class="flex w-1/3 flex-col">
+                  <div class="flex w-1/2 flex-col">
                     <div v-for="(block, blockIndex) in tipset.blocks" :key="blockIndex" class="flex flex-row-reverse items-center py-1">
                         <div class="text-xs"> {{$t('home.recentTipsets.tableHeaders.award')}} : {{ block.reward | filecoin(2) }}</div>
                     </div>
