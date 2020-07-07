@@ -21,6 +21,9 @@ export default {
       { name: 'theme-color', content: '#1a4fc9' },
       { name: 'application-name', content: 'filfox.io' }
     ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ]
   },
   /*
   ** Customize the progress-bar color
