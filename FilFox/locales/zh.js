@@ -15,6 +15,7 @@ export default {
         noSearchResult: '无法搜寻到此内容',
         empty: '无',
         notAvailable: '功能暂未开放，敬请期待',
+        oldVersion: '旧版入口'
     },
     nav: {
         home: {

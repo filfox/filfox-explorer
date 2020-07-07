@@ -14,7 +14,8 @@ export default {
       unknown: "Unknown",
       noSearchResult: "No result",
       empty: "Empty",
-      notAvailable: 'Coming Soon'
+      notAvailable: 'Coming Soon',
+      oldVersion: 'Old version entry'
     },
     nav: {
       home: {
