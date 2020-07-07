@@ -29,10 +29,10 @@
         <div class="w-1/6">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
         </div>
-        <div class="w-1/2">
+        <div class="w-1/3">
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }} 
         </div>
-        <div class="w-1/3 flex flex-row-reverse">
+        <div class="w-1/2 flex flex-row-reverse">
           {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} /  {{ $t('home.minerRanks.rate') }}
         </div>
       </div>
@@ -41,10 +41,10 @@
         <div class="w-1/6">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
         </div>
-        <div class="w-1/2">
+        <div class="w-1/3">
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }} 
         </div>
-        <div class="w-1/3 flex flex-row-reverse">
+        <div class="w-1/2 flex flex-row-reverse">
           {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }} /  {{ $t('home.minerRanks.tableHeadersByBlock.blockRate') }}
         </div>
       </div>
@@ -53,10 +53,10 @@
         <div class="w-1/6">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
         </div>
-        <div class="w-1/2">
+        <div class="w-1/3">
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }} 
         </div>
-        <div class="w-1/3 flex flex-row-reverse">
+        <div class="w-1/2 flex flex-row-reverse">
           {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
         </div>
       </div>
