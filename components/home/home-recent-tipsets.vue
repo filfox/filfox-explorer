@@ -1,7 +1,7 @@
 <template>
     <div class="bg-white mr-2 rounded-md w-1/2 flex flex-col overflow-hidden">
         <div class="flex flex-row items-center justify-between border-b border-background">
-          <HomeTitle type="recentTipsets" class="ml-4 flex flex-grow"/>
+          <HomeTitle type="recentTipsets" class="flex flex-grow"/>
           <el-button round size="mini" class="mr-4 focus:outline-none outline-none" v-on:click="didRecentTipsetsMoreBtnClicked"> {{ $t('shared.more') }} </el-button>
         </div>
         <div class="mt-2 overflow-y-scroll flex-grow relative">
