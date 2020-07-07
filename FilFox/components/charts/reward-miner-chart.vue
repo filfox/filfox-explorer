@@ -3,7 +3,7 @@
     
     <div class="flex flex-row justify-between items-center border-b border-background">
       <div class=" h-12 flex items-center pl-4 lg:pl-6 text-xs lg:text-base"> {{ $t('chart.miner.headers.rewardLine') }} (FIL/T) </div>
-      <div class="flex h-12 items-center mt-1 mr-4">
+      <div class="h-12 items-center mt-1 mr-4 hidden lg:flex">
           <el-radio-group v-model="duration" size="mini" @change="didDurationSwitched" fill="#1a4fc9">
             <el-radio-button class="focus:outline-none outline-none" label="24h">{{ '24' + $t('shared.time.hour') }}</el-radio-button>
             <el-radio-button class="focus:outline-none outline-none" label="7d">{{'7' + $t('shared.time.day')}}</el-radio-button>

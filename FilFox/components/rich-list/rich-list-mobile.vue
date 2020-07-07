@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-grow flex-col bg-white">
+    <div class="flex flex-grow flex-col bg-white overflow-hidden">
         <div class="flex flex-col border-b border-background pb-2 mt-1">
             <HomeTitle type="richManRanks" />
             <div class="flex flex-row justify-between items-center">
@@ -62,6 +62,7 @@
             <el-pagination
             layout="prev, pager, next"
             :page-count="totalPageCount"
+            :pager-count="5"
             @current-change="didCurrentPageChanged"
             :current-page="page+1"
             class="mx-auto"
