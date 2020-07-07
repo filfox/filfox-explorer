@@ -13,7 +13,8 @@ export default {
         more: '更多',
         unknown: '未知',
         noSearchResult: '无法搜寻到此内容',
-        empty: '无'
+        empty: '无',
+        notAvailable: '功能暂未开放，敬请期待'
     },
     nav: {
         home: {

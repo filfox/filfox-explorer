@@ -77,17 +77,17 @@ export default {
         this.$router.push(this.localePath('/charts/miner'))
       }
       else if (index == 1) {
-        this.$message('功能暂未开放，敬请期待')
+        this.$message(this.$t('shared.notAvailable'))
         //this.$router.push(this.localePath('/charts/fil'))
       }
     },
     handleResourcesCommand(index) {
       if (index == 0) {
-        this.$message('功能暂未开放，敬请期待')
+        this.$message(this.$t('shared.notAvailable'))
         //this.$router.push(this.localePath('/resources/tools'))
       }
       else if (index == 1) {
-        this.$message('功能暂未开放，敬请期待')
+        this.$message(this.$t('shared.notAvailable'))
         //this.$router.push(this.localePath('/resources/wiki'))
       }
     },
