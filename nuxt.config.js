@@ -104,6 +104,7 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
+    extractCSS: true,
     babel: {
       plugins: [
         '@babel/plugin-proposal-nullish-coalescing-operator',
