@@ -113,7 +113,6 @@ export default {
           "tag": "Tag",
           "validPower": "Daily Power Growth",
           "equivalentMiners": "Miner Equivalent",
-          "blockNums": "Blocks mined",
           powerDelta:'Power growth',
           "powerIncreaseSpeed": "Adj. Power"
         },
