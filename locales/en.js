@@ -13,7 +13,8 @@ export default {
       "more": "More",
       "unknown": "Unknown",
       "noSearchResult": "No Result",
-      "empty": "Empty"
+      "empty": "Empty",
+      notAvailable: 'Coming Soon'
     },
     "nav": {
       "home": {
@@ -84,16 +85,16 @@ export default {
         "title": "Top Miners",
         rate: 'Rate',
         "filters": {
-          "qualityAdjPower": "Adj. Storage Power",
+          "qualityAdjPower": "Adj. Power",
           "blocks": "Blocks Mined",
-          "powerDelta": "Storage Power Growth"
+          "powerDelta": "Growth"
         },
         "tableHeadersByPower": {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
-          "validPower": "Valid Power",
-          "validPowerRate": "Valid Power Ratio",
+          "validPower": "Adj. Power",
+          "validPowerRate": "Adj. Power Ratio",
           "blockNums": "24h Mined Blocks",
           "powerIncrease": "24h Power Growth"
         },
@@ -101,10 +102,10 @@ export default {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
-          "blockNums": "Block Produced",
-          "blockRate": "Block Produce Ratio",
-          "totalRewards": "Block Rewards",
-          "luckyValue": "Lucky Index"
+          "blockNums": "Blocks Mined",
+          "blockRate": "Ratio",
+          "totalRewards": "Rewards",
+          "luckyValue": "Lucky value"
         },
         "tableHeadersByPowerDelta": {
           "rank": "Rank",
@@ -112,8 +113,9 @@ export default {
           "tag": "Tag",
           "validPower": "Daily Power Growth",
           "equivalentMiners": "Miner Equivalent",
-          "blockNums": "Power Growth",
-          "powerIncreaseSpeed": "Valid Power"
+          "blockNums": "Blocks mined",
+          powerDelta:'Power growth',
+          "powerIncreaseSpeed": "Adj. Power"
         },
         "moreBtn": "More"
       },
