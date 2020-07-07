@@ -2,7 +2,7 @@ export default {
     "shared": {
       tableEmptyText: "N/A",
       time: {
-        justNow: "Just now",
+        justNow: "Just Now",
         hour: " hour ",
         min: " min ",
         sec: " sec",
@@ -12,7 +12,7 @@ export default {
       },
       more: "More",
       unknown: "Unknown",
-      noSearchResult: "No result",
+      noSearchResult: "No Result",
       empty: "Empty",
       notAvailable: 'Coming Soon',
       oldVersion: 'Old version entry'
@@ -26,17 +26,17 @@ export default {
         subMenus: [
           "Block",
           "Message",
-          "Rich list"
+          "Rich List"
         ]
       },
       ranks: {
-        title: "Top miners"
+        title: "Top Miners"
       },
       charts: {
         title: "Charts",
         subMenus: [
-          "Mining charts",
-          "FIL charts"
+          "Mining Charts",
+          "FIL Charts"
         ]
       },
       resources: {
@@ -50,60 +50,60 @@ export default {
     },
     "home": {
       "overview": {
-        "title": "Network overview",
+        "title": "Network Overview",
         "unfoldBtn": "Unfold",
         "foldBtn": "Fold",
         "titles": {
-          "height": "Block height",
-          "timestamp": "Latest block",
-          "qualityAdjPower": "Network storage power",
-          "activeMiners": "Active miners",
-          "price": "Latest price",
-          "blockReward": "Block reward",
-          "averageRewardPerByte": "24h average mining reward",
-          "output24h": "24h FIL production",
+          "height": "Block Height",
+          "timestamp": "Latest Block",
+          "qualityAdjPower": "Network Storage Power",
+          "activeMiners": "Active Miners",
+          "price": "Latest Price",
+          "blockReward": "Block Reward",
+          "averageRewardPerByte": "24h Average Mining Reward",
+          "output24h": "24h FIL Production",
           "circulatingSupply": "Circulating FIL",
           "totalPledgeCollateral": "Pledged FIL",
-          "accounts": "Total accounts",
-          "averageTipsetInterval": "Average block interval",
-          "dailyMessages": "24h messages",
-          "averageTipsetBlocks": "Average blocks per tipset",
-          "rawBytePower": "Network raw byte power",
-          "averageGasPrice": "Average gas price",
+          "accounts": "Total Accounts",
+          "averageTipsetInterval": "Average Block Interval",
+          "dailyMessages": "24h Messages",
+          "averageTipsetBlocks": "Average Blocks per Tipset",
+          "rawBytePower": "Network Raw Byte Power",
+          "averageGasPrice": "Average Gas Price",
           "burntSupply": "Burnt FIL",
-          "totalMarketBalance": "FIL market balance",
-          "totalMaxSupply": "FIL max supply",
-          "circulatingSupplyRate": "FIL circulating rate"
+          "totalMarketBalance": "FIL Market Balance",
+          "totalMaxSupply": "FIL Max Supply",
+          "circulatingSupplyRate": "FIL Circulating Rate"
         }
       },
       "powerDistribution": {
-        "title": "Storage power distribution"
+        "title": "Storage Power Distribution"
       },
       "powerDelta": {
-        "title": "24h storage power growth (Top5)"
+        "title": "24h Storage Power Growth (Top5)"
       },
       "minerRanks": {
-        "title": "Top miners",
+        "title": "Top Miners",
         rate: 'Rate',
         "filters": {
-          "qualityAdjPower": "Adj. power",
-          "blocks": "Blocks mined",
+          "qualityAdjPower": "Adj. Power",
+          "blocks": "Blocks Mined",
           "powerDelta": "Growth"
         },
         "tableHeadersByPower": {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
-          "validPower": "Adj. power",
-          "validPowerRate": "Adj. power ratio",
-          "blockNums": "24h mined blocks",
-          "powerIncrease": "24h Power growth"
+          "validPower": "Adj. Power",
+          "validPowerRate": "Adj. Power Ratio",
+          "blockNums": "24h Mined Blocks",
+          "powerIncrease": "24h Power Growth"
         },
         "tableHeadersByBlock": {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
-          "blockNums": "Blocks mined",
+          "blockNums": "Blocks Mined",
           "blockRate": "Ratio",
           "totalRewards": "Rewards",
           "luckyValue": "Lucky value"
@@ -112,15 +112,15 @@ export default {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
-          "validPower": "Daily power growth",
-          "equivalentMiners": "Miner equivalent",
+          "validPower": "Daily Power Growth",
+          "equivalentMiners": "Miner Equivalent",
           powerDelta:'Power growth',
           "powerIncreaseSpeed": "Adj. Power"
         },
         "moreBtn": "More"
       },
       "recentTipsets": {
-        "title": "Latest tipsets",
+        "title": "Latest Tipsets",
         "tableHeaders": {
           "height": "Height",
           "blockId": "Block ID",
@@ -137,7 +137,7 @@ export default {
           "address": "Address",
           "tag": "Tag",
           "balance": "Balance",
-          "balanceRate": "Balance ratio"
+          "balanceRate": "Balance Ratio"
         }
       }
     },
@@ -156,7 +156,7 @@ export default {
         }
       },
       "message": {
-        "title": "Message list",
+        "title": "Message List",
         "info": {
           "total": "Total",
           "messages": "Messages"
@@ -169,7 +169,7 @@ export default {
           "to": "To",
           "method": "Method",
           "value": "Value",
-          "exitCode": "Exit code"
+          "exitCode": "Exit Code"
         },
         "methods": {
           "all": "All"
@@ -185,11 +185,11 @@ export default {
           "order": "Rank",
           "address": "Address",
           "balance": "Balance",
-          "balanceRate": "Balance ratio",
+          "balanceRate": "Balance Ratio",
           "tag": "Tag",
           "type": "Type",
-          "createTime": "Create time",
-          "lastSeenTime": "Last seen time"
+          "createTime": "Create Time",
+          "lastSeenTime": "Last Seen Time"
         },
         "type": {
           "all": "All",
@@ -200,7 +200,7 @@ export default {
     },
     "detail": {
       "message": {
-        "title": "Message detail",
+        "title": "Message Detail",
         "headers": {
           "cid": "Message ID",
           "height": "Height",
@@ -213,9 +213,9 @@ export default {
           "method": "Method",
           "params": "Parameters",
           "value": "Value",
-          "gasPrice": "Gas price",
-          "gasLimit": "Gas limit",
-          "gasUsed": "Gas used",
+          "gasPrice": "Gas Price",
+          "gasLimit": "Gas Limit",
+          "gasUsed": "Gas Used",
           "exitCode": "Status",
           "return": "Return",
           "error": "Error"
@@ -223,12 +223,12 @@ export default {
         "null": "Null"
       },
       "tipset": {
-        "title": "Tipset height",
+        "title": "Tipset Height",
         "all": "All",
         "headers": {
           "time": "Time",
           "size": "Size",
-          "totalMsgCount": "Total messages",
+          "totalMsgCount": "Total Messages",
           "id": "Block ID",
           "miner": "Miner",
           "tag": "Tag",
@@ -237,8 +237,8 @@ export default {
         }
       },
       "block": {
-        "title": "Block detail",
-        "overview": "Block overview",
+        "title": "Block Detail",
+        "overview": "Block Overview",
         "headers": {
           "cid": "Block ID",
           "height": "Height",
@@ -247,8 +247,8 @@ export default {
           "messages": "Messages",
           "reward": "Reward",
           "miner": "Miner",
-          "parents": "Parent block",
-          "parentWeight": "Parent weight",
+          "parents": "Parent Block",
+          "parentWeight": "Parent Block Weight",
           "penalty": "Penalty"
         }
       },
@@ -256,53 +256,53 @@ export default {
         "normal": {
           "title": "Address",
           "headers": {
-            "overview": "Address overview",
+            "overview": "Address Overview",
             "address": "Address",
             "actor": "Actor",
             "balance": "Balance",
             "messages": "Messages",
-            "createTime": "Create time",
-            "lastSeenTime": "Latest seen time",
+            "createTime": "Create Time",
+            "lastSeenTime": "Latest Transaction",
             "ownedMiners": "Owned Miner",
-            "workers": "Active miner"
+            "workers": "Active Miner"
           }
         },
         "miner": {
           "minerOverview": {
-            "title": "Miner overview",
+            "title": "Miner Overview",
             "headers": {
-              "balance": "Address balance",
-              "availableBalance": "Available balance",
-              "pledgeBalance": "Pledged balance",
+              "balance": "Address Balance",
+              "availableBalance": "Available Balance",
+              "pledgeBalance": "Pledged Balance",
               "miningPenalty": "Penalty",
-              "qualityAdjPower": "Adjusted power",
-              "rawBytePower": "Raw byte power",
+              "qualityAdjPower": "Adjusted Power",
+              "rawBytePower": "Raw Byte Power",
               "rate": "Rate",
               "rank": "Rank",
-              "sectorSize": "Sector size",
-              "blockNums": "Blocks mined",
-              "blocksReward": "Total reward",
-              "qualityAdjPowerDelta24h": "24h Adj. power growth",
-              "qualityAdjPowerDeltaSpeed24h": "24h Adj. power growth rate"
+              "sectorSize": "Sector Size",
+              "blockNums": "Blocks Mined",
+              "blocksReward": "Total Reward",
+              "qualityAdjPowerDelta24h": "24h Adj. Power Growth",
+              "qualityAdjPowerDeltaSpeed24h": "24h Adj. Power Growth Rate"
             }
           },
           "accountChange": {
             "title": "Account Change",
             "charts": {
-              "balance": "Total balance",
-              "availableBalance": "Available balance",
-              "pledgeBalance": "Pledged balance"
+              "balance": "Total Balance",
+              "availableBalance": "Available Balance",
+              "pledgeBalance": "Pledged Balance"
             }
           },
           "powerChange": {
-            "title": "Power change",
+            "title": "Power Change",
             "charts": {
-              "qualityAdjPower": "Adj. storage power",
-              "qualityAdjPowerDelta": "Adj. storage power growth"
+              "qualityAdjPower": "Adj. Storage Power",
+              "qualityAdjPowerDelta": "Adj. Storage Power Growth"
             }
           },
           "accountOverview": {
-            "title": "Account overview",
+            "title": "Account Overview",
             "headers": {
               "address": "Address",
               "actor": "Actor",
@@ -311,45 +311,45 @@ export default {
               "worker": "Worker",
               "peerID": "Peer ID",
               "sectors": "Sector",
-              "createTime": "Create time"
+              "createTime": "Create Time"
             }
           }
         }
       },
       "peer": {
-        "title": "Peer detail",
+        "title": "Peer Detail",
         "headers": {
           "id": "ID",
           "miners": "Miner",
-          "IP": "IP list"
+          "IP": "IP List"
         }
       }
     },
     "actor": {
-      "fil/1/account": "Normal account",
-      "fil/1/cron": "Execute scheduled task",
+      "fil/1/account": "Normal Account",
+      "fil/1/cron": "Execute Scheduled Task",
       "fil/1/init": "Initiation",
       "fil/1/multisig": "Multi-Sig",
-      "fil/1/paymentchannel": "Payment channel",
+      "fil/1/paymentchannel": "Payment Channel",
       "fil/1/reward": "Reward",
-      "fil/1/storagemarket": "Storage market",
-      "fil/1/storageminer": "Miner account",
-      "fil/1/storagepower": "Storage power",
+      "fil/1/storagemarket": "Storage Market",
+      "fil/1/storageminer": "Miner Account",
+      "fil/1/storagepower": "Storage Power",
       "fil/1/system": "System",
-      "fil/1/verifiedregistry": "Registry verified"
+      "fil/1/verifiedregistry": "Registry Verified"
     },
     "chart": {
       "miner": {
         "title": "Mining Charts",
         "headers": {
-          "qualityAdjPowerPie": "Adj. Power distribution",
-          "qualityAdjPowerLine": "Adj. Power veriation",
-          "qualityAdjPowerDeltaLine": "Power growth veriation",
-          "rewardLine": "Reward veriation"
+          "qualityAdjPowerPie": "Adj. Power Distribution",
+          "qualityAdjPowerLine": "Adj. Power Veriation",
+          "qualityAdjPowerDeltaLine": "Power Growth Veriation",
+          "rewardLine": "Reward Veriation"
         }
       },
       "fil": {
-        "title": "FIL charts"
+        "title": "FIL Charts"
       }
     },
     "footer": {

@@ -46,11 +46,19 @@ export default {
   name: 'navBar',
   data() {
     return {
-      blocksSubMenus: this.$t('nav.blocks.subMenus'),
-      chartsSubMenus: this.$t('nav.charts.subMenus'),
-      resourcesSubMenus: this.$t('nav.resources.subMenus'),
       searchText:'',
       loading: false
+    }
+  },
+  computed: {
+    blocksSubMenus() {
+      return this.$t('nav.blocks.subMenus')
+    },
+    chartsSubMenus() {
+      return this.$t('nav.charts.subMenus')
+    },
+    resourcesSubMenus() {
+      return this.$t('nav.resources.subMenus')
     }
   },
   created() {},

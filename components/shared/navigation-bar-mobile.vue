@@ -67,11 +67,19 @@ export default {
     },
     data() {
         return {
-            blockchainTitle: this.$t('nav.blocks.title'),
-            chartTitle: this.$t('nav.charts.title'),
-            resourcesTitle: this.$t('nav.resources.title'),
             searchText:'',
             loading: false
+        }
+    },
+    computed: {
+        blockchainTitle() {
+            return this.$t('nav.blocks.title')
+        },
+        chartTitle() {
+            return this.$t('nav.charts.title')
+        },
+        resourcesTitle() {
+            return this.$t('nav.resources.title')
         }
     },
     methods: {
