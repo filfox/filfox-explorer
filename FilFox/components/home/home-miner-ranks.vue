@@ -22,17 +22,17 @@
       <div class="flex h-2"></div>
     </div>
 
-    <div class="flex mt-3">
-      <table class="w-full table-auto mx-4" v-loading="loading">
+    <div class="flex mt-3 w-full">
+      <table class="table-fixed mx-4 flex-grow" v-loading="loading">
         <thead class="text-gray-600 text-sm m-2">
           <tr v-if="type === 0">
-            <th v-for="(title, index) in rankTableHeadersByPowers" :key="index">{{title}}</th>
+            <th v-for="(title, key, index) in rankTableHeadersByPowers" :key="index" :class="{'w-1/4':index==3, 'w-1/8':index!=3}">{{title}}</th>
           </tr>
           <tr v-if="type === 1">
-            <th v-for="(title, index) in rankTableHeadersByBlocks" :key="index">{{title}}</th>
+            <th v-for="(title, key, index) in rankTableHeadersByBlocks" :key="index" :class="{'w-1/4':index==3, 'w-1/8':index!=3}">{{title}}</th>
           </tr>
           <tr v-if="type === 2">
-            <th v-for="(title, index) in rankTableHeadersByPowerDelta" :key="index">{{title}}</th>
+            <th v-for="(title, key ,index) in rankTableHeadersByPowerDelta" :key="index" :class="{'w-1/4':index==3, 'w-1/8':index!=3}">{{title}}</th>
           </tr>
         </thead>
         <tbody class="text-sm text-center" v-if="type===0">
@@ -47,9 +47,9 @@
               {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
             </td>
             <td>
-              <div class="flex flex-row items-center">
-                <el-progress :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 ml-1 mr-3"></el-progress>
-                <div class="flex">
+              <div class="flex flex-row items-center justify-end">
+                <el-progress :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 mr-3"></el-progress>
+                <div class="flex w-1/3">
                  {{ miner.qualityAdjPower | size_metric(2) }}
                 </div>
               </div>
@@ -71,9 +71,9 @@
               {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
             </td>
             <td>
-                <div class="flex flex-row items-center">
+                <div class="flex flex-row items-center justify-end">
                   <el-progress :percentage="miner.blocksMined/topMinersByBlocks.miners[0].blocksMined * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
-                  <div class="flex">
+                  <div class="flex w-1/3">
                   {{ miner.blocksMined }}
                   </div>
                 </div>
@@ -95,9 +95,9 @@
               {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
             </td>
             <td>
-              <div class="flex flex-row items-center">
+              <div class="flex flex-row items-center justify-end">
                   <el-progress :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
-                  <div class="flex">
+                  <div class="flex w-1/3">
                     {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} 
                   </div>
               </div>
