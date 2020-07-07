@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-1/2 bg-white ml-2 rounded-md">
     <div class="flex flex-row items-center justify-between border-b border-background">
-      <HomeTitle type="richManRanks" class="ml-4 flex flex-grow" />
+      <HomeTitle type="richManRanks" class="flex flex-grow" />
       <el-button
         round
         size="mini"
