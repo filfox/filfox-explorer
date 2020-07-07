@@ -9,7 +9,7 @@
         <div class="container flex flex-col pb-4 lg:flex-row mx-auto justify-between">
             <div class="text-xs text-footerText"> {{ $t('footer.intro') }} </div>
             <div class="text-xs text-footerText mt-4 lg:mt-0 flex flex-col text-left lg:text-right "> 
-              <a href="http://mini.filfox.io"> {{ $t('shared.oldVersion') }} </a>
+              <a href="https://mini.filfox.io"> {{ $t('shared.oldVersion') }} </a>
               <p>{{ $t('footer.contact')}} </p>
             </div>
         </div>
