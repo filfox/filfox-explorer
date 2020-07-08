@@ -65,6 +65,22 @@ export default {
                 totalMarketBalance: '订单锁定量',
                 totalMaxSupply:'FIL总供给量',
                 circulatingSupplyRate: 'FIL流通率'
+            },
+            tips: {
+                qualityAdjPower:'当前全网有效算力（有效存储空间）的总和',
+                activeMiners: '当前有效算力值大于0的矿工数',
+                price:'FIL[IOU]最新价格，数据来源Coingecko',
+                blockReward: '当前高度下的区块奖励，每个高度有多个区块，每个区块均可获得该奖励',
+                averageRewardPerByte: '近24h每个高度出块奖励与有效算力比值的均值',
+                output24h: '近24h累计挖矿产出的FIL数量',
+                circulatingSupply: '当前自由流通的FIL总和',
+                totalPledgeCollateral: '当前矿工进行挖矿所质押的FIL总和',
+                averageTipsetInterval: '近24h出块的平均时间间隔',
+                averageTipsetBlocks: '近24h相同高度下的平均区块数量',
+                rawBytePower: '当前全网算力（存储空间）的总和',
+                averageGasPrice: '近24h网络消耗gas的平均费率',
+                totalMarketBalance: '在储存市场内发起订单时被锁定的FIL数量',
+                circulatingSupplyRate: '流通率=流通量/总供给量',
             }
         },
         powerDistribution: {
