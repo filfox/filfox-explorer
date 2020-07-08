@@ -26,13 +26,68 @@
       <table class="table-fixed mx-4 flex-grow" v-loading="loading">
         <thead class="text-gray-600 text-sm m-2">
           <tr v-if="type === 0">
-            <th v-for="(title, key, index) in rankTableHeadersByPowers" :key="index" :class="{'w-1/4':index==3, 'w-1/8':index!=3}">{{title}}</th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByPower.rank') }} </th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByPower.miner') }} </th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByPower.tag') }} </th>
+            <th class="w-1/5"> {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} </th>
+            <th class="w-1/8"> {{ $t('home.minerRanks.tableHeadersByPower.validPowerRate') }} </th>
+            <th class="w-1/8"> {{ $t('home.minerRanks.tableHeadersByPower.reward') }}  </th>
+            <th class="w-1/8"> 
+              <div class="flex flex-row justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.miningEfficiency')"/>
+              </div>
+            </th>
+            <th class="w-1/8"> 
+              <div class="flex flex-row justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease') }} 
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')"/>
+              </div>
+            </th>
           </tr>
           <tr v-if="type === 1">
-            <th v-for="(title, key, index) in rankTableHeadersByBlocks" :key="index" :class="{'w-1/4':index==3, 'w-1/8':index!=3}">{{title}}</th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByBlock.rank') }} </th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByBlock.miner') }} </th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByBlock.tag') }} </th>
+            <th class="w-7/25"> {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }} </th>
+            <th class="w-7/50"> 
+              <div class="flex flex-row justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')"/>
+              </div>
+            </th>
+            <th class="w-7/50"> {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }} </th>
+            <th class="w-7/50"> 
+              <div class="flex flex-row justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByBlock.rewardsRatio') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')"/>
+              </div>
+            </th>
+
           </tr>
           <tr v-if="type === 2">
-            <th v-for="(title, key ,index) in rankTableHeadersByPowerDelta" :key="index" :class="{'w-1/4':index==3, 'w-1/8':index!=3}">{{title}}</th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByPowerDelta.rank') }} </th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByPowerDelta.miner') }} </th>
+            <th class="w-1/10"> {{ $t('home.minerRanks.tableHeadersByPowerDelta.tag') }} </th>
+            <th class="w-7/25"> 
+              <div class="flex flex-row justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerIncreaseSpeed')"/>
+              </div>
+            </th>
+            <th class="w-7/50"> 
+              <div class="flex flex-row justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')"/>
+              </div>
+            </th>
+            <th class="w-7/50"> 
+              <div class="flex flex-row justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerDelta')"/>
+              </div>
+            </th>
+            <th class="w-7/50"> {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }} </th>
           </tr>
         </thead>
         <tbody class="text-sm text-center" v-if="type===0">
@@ -55,7 +110,8 @@
               </div>
             </td>
             <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}</td>
-            <td>{{ miner.blocksMined }}</td>
+            <td>{{ miner.totalRewards | filecoin(2) }}</td>
+            <td> {{ miner.rewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2)}} </td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2)}}</td>
           </tr>
         </tbody>
@@ -73,14 +129,15 @@
             <td>
                 <div class="flex flex-row items-center justify-end">
                   <el-progress :percentage="miner.blocksMined/topMinersByBlocks.miners[0].blocksMined * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
-                  <div class="flex w-1/3">
+                  <div class="flex w-1/4">
                   {{ miner.blocksMined }}
                   </div>
                 </div>
             </td>
-            <td>{{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}</td>
-            <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.luckyValue.toFixed(2) }}</td>
+            <td>{{ miner.totalRewards | filecoin(2) }}</td>
+            <td>{{ (miner.totalRewards/topMinersByBlocks.totalRewards * 100) .toFixed(2) }}%</td>
+            
           </tr>
         </tbody>
         <tbody class="text-sm text-center" v-if="type===2">

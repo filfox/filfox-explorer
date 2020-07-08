@@ -112,26 +112,40 @@ export default {
           "tag": "Tag",
           "validPower": "Adj. Power",
           "validPowerRate": "Adj. Power Ratio",
-          "blockNums": "24h Mined Blocks",
-          "powerIncrease": "24h Power Growth"
+          reward: "24h Reward",
+          miningEfficiency: 'Mining Efficiency',
+          "powerIncrease": "Power Growth"
+        },
+        tipsByPower: {
+            miningEfficiency: 'Average FILs minted by 1 TiB storage power in the last 24h.',
+            powerIncrease: 'Valid storage power growth in the last 24h.'
         },
         "tableHeadersByBlock": {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
           "blockNums": "Blocks Mined",
-          "blockRate": "Ratio",
+          "luckyValue": "Lucky Value",
           "totalRewards": "Rewards",
-          "luckyValue": "Lucky value"
+          rewardsRatio: "Rewards Ratio",
+        },
+        tipsByBlock: {
+            luckyValue: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.',
+            rewardsRatio: 'Ratio of actual blocks produced and theoretical value. '
         },
         "tableHeadersByPowerDelta": {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
-          "validPower": "Daily Power Growth",
+          "powerIncreaseSpeed": "Daily Power Growth",
           "equivalentMiners": "Miner Equivalent",
-          powerDelta:'Power growth',
-          "powerIncreaseSpeed": "Adj. Power"
+          powerDelta:'Power Growth',
+          vaildPower: "Adj. Power"
+        },
+        tipsByPowerDelta: {
+            equivalentMiners: "Take the official benchmark environment as the baseline (AMD Ryzen Threadripper 3970X, NVidia GTX 2080Ti, 128GB 2133mhz), we estamate the miner's machine amount by calculate the ratio of its storage power growth and the baseline.",
+            powerIncreaseSpeed: "Daily valid storage power growth of a miner.",
+            powerDelta: "Miner's valid storage power increment in the selected period.",
         },
         "moreBtn": "More"
       },
@@ -370,6 +384,6 @@ export default {
     },
     "footer": {
       "contact": "Contact: contact@6block.com",
-      "intro": "Filfox.io is a Filecoin blockchain explorer powered by 6Block.com."
+      "intro": "Filfox is a Filecoin blockchain explorer and data service platform, powered by 6Block.com."
     }
   }

@@ -103,17 +103,26 @@ export default {
                 tag: '标签',
                 validPower:'有效算力',
                 validPowerRate:'有效算力占比',
-                blockNums:'24h出块数量',
+                reward: '24h出块奖励',
+                miningEfficiency: '24h挖矿效率',
                 powerIncrease:'24h算力增量'
+            },
+            tipsByPower: {
+                miningEfficiency: '近24h矿工平均每T算力所挖出的FIL数量',
+                powerIncrease: '近24h矿工有效算力的增量'
             },
             tableHeadersByBlock: {
                 rank:'排名',
                 miner:'矿工',
                 tag: '标签',
                 blockNums:'出块数',
-                blockRate:'出块率',
-                totalRewards:'出块奖励',
                 luckyValue:'幸运值',
+                totalRewards:'出块奖励',
+                rewardsRatio:'出块奖励占比',
+            },
+            tipsByBlock: {
+                luckyValue: '实际爆块数量和理论爆块数量的比值，计算方式为出块率与有效算力占比的比值，并做归一化处理。',
+                rewardsRatio: '在选定周期内，矿工获得出块奖励与累计产出区块奖励的比值'
             },
             tableHeadersByPowerDelta: {
                 rank:'排名',
@@ -123,6 +132,11 @@ export default {
                 equivalentMiners:'矿机当量',
                 powerDelta:'算力增量',
                 validPower:'有效算力'
+            },
+            tipsByPowerDelta: {
+                equivalentMiners: '以官方Benchmark推荐配置（AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）视为1台基准矿机。矿工的算力增速与该基准矿机增速的比值则等于矿机数量',
+                powerIncreaseSpeed: '选定周期内，平均每天矿工的有效算力增量',
+                powerDelta: '在选定周期内，矿工的有效算力增量',
             },
             moreBtn: '查看更多'
         },
@@ -363,7 +377,7 @@ export default {
     },
     footer: {
         contact: '联系方式: contact@6block.com',
-        intro: 'Filfox.io是Filecoin区块链浏览器，提供相关数据查询服务，由6block提供技术支持',
+        intro: 'Filfox是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。',
     }
 
 }
