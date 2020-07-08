@@ -10,6 +10,12 @@
   </el-popover>
 </template>
 
+<style>
+.el-popover--plain {
+    word-wrap: break-word;
+}
+</style>
+
 <script>
 export default {
     props: {
