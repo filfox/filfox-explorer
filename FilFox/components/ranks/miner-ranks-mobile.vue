@@ -57,7 +57,7 @@
                 <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
-                <p> {{ $t('home.minerRanks.tableHeadersByBlock.blockNums')}}: {{ miner.blocksMined }} </p>
+                <p> {{ $t('home.minerRanks.tableHeadersByBlock.blockNums')}}: {{ miner.weightedBlocksMined }} </p>
                 <p> {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue')}}: {{ miner.luckyValue.toFixed(2) }} </p>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
