@@ -36,7 +36,7 @@ export default {
             title: '资源',
             subMenus: ['常用工具','知识库']
         },
-        searchPlaceHolder:'搜索地址/区块ID/token...'
+        searchPlaceHolder:'搜索区块/账户/地址/消息...'
     },
     home: {
         overview: {
