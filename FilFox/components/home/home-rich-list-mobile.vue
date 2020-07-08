@@ -9,10 +9,10 @@
         <div class="w-1/6">
           {{$t('home.richManRanks.tableHeaders.order')}}
         </div>
-        <div class="w-1/2">
+        <div class="w-1/3">
           {{$t('home.richManRanks.tableHeaders.address')}}
         </div>
-        <div class="w-1/3 flex flex-row-reverse">
+        <div class="w-1/2 flex flex-row-reverse">
           {{$t('home.richManRanks.tableHeaders.balance')}} /  {{ $t('home.minerRanks.rate') }}
         </div>
       </div>
