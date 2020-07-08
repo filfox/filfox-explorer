@@ -6,9 +6,8 @@
         <div class="flex flex-col">
           <div v-for="(tipset, tipsetIndex) in recentTipsets.slice(0,4)" :key="tipsetIndex" class="mt-2 mx-2 px-2 shadow rounded-sm">
               <div class="flex flex-row border-b border-background py-1">  
-                  <div class="flex w-1/6 text-xs"> {{$t('home.recentTipsets.tableHeaders.height')}} </div>
-                  <div class="flex w-1/2"> <TipsetLink :id="tipset.height" class="text-main text-xs" /> </div>
-                  <div class="flex flex-row-reverse w-1/3"> <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-xs"/> </div>
+                  <div class="flex w-1/2 text-xs flex-row items-center"> {{$t('home.recentTipsets.tableHeaders.height')}} <TipsetLink :id="tipset.height" class="text-main text-xs ml-2" /></div>
+                  <div class="flex flex-row-reverse w-1/2"> <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-xs"/> </div>
               </div>
               <div class="flex flex-row">  
                   <div class="flex w-1/2 flex-col">
