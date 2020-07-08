@@ -45,7 +45,7 @@
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }} 
         </div>
         <div class="w-1/2 flex flex-row-reverse">
-          {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }} /  {{ $t('home.minerRanks.tableHeadersByBlock.blockRate') }}
+          {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }} /  {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
         </div>
       </div>
 
@@ -86,7 +86,7 @@
                 <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
             </div>
             <div class="w-1/3 flex flex-row-reverse items-center">  
-                {{ miner.blocksMined }} / {{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}}
+                {{ miner.blocksMined }} / {{ miner.luckyValue.toFixed(2) }}
             </div>
         </div>
       </template>
