@@ -13,26 +13,26 @@
         <div class="grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-4">
             <OverviewCell :name="$t('home.overview.titles.height')" :value="overview.height.toString()">  </OverviewCell>
             <OverviewCell :name="$t('home.overview.titles.timestamp')" :value="overview.timestamp" type="FromNow">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.qualityAdjPower')" :value="overview.qualityAdjPower.toString() | size_metric(2)">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.activeMiners')" :value="overview.activeMiners.toString()">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.price')" :value="'$ ' + overview.price.toFixed(2).toString()">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.blockReward')" :value="overview.blockReward.toString() | filecoin(4)">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.averageRewardPerByte')" :value="overview.averageRewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2)">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.output24h')" :value="overview.dailyCoinsMined | filecoin(0)">  </OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.circulatingSupply')" :value="overview.circulatingSupply.toString() | filecoin(0)"></OverviewCell>
-            <OverviewCell :name="$t('home.overview.titles.totalPledgeCollateral')" :value="overview.totalPledgeCollateral.toString() | filecoin(0)">  </OverviewCell>  
+            <OverviewCell :name="$t('home.overview.titles.qualityAdjPower')" :value="overview.qualityAdjPower.toString() | size_metric(2)" :tipContent="$t('home.overview.tips.qualityAdjPower')" :hasTip="true">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.activeMiners')" :value="overview.activeMiners.toString()" :tipContent="$t('home.overview.tips.activeMiners')" :hasTip="true">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.price')" :value="'$ ' + overview.price.toFixed(2).toString()" :tipContent="$t('home.overview.tips.price')" :hasTip="true">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.blockReward')" :value="overview.blockReward.toString() | filecoin(4)" :tipContent="$t('home.overview.tips.blockReward')" :hasTip="true">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.averageRewardPerByte')" :value="overview.averageRewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2)" :tipContent="$t('home.overview.tips.averageRewardPerByte')" :hasTip="true">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.output24h')" :value="overview.dailyCoinsMined | filecoin(0)" :tipContent="$t('home.overview.tips.output24h')" :hasTip="true">  </OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.circulatingSupply')" :value="overview.circulatingSupply.toString() | filecoin(0)" :tipContent="$t('home.overview.tips.circulatingSupply')" :hasTip="true"></OverviewCell>
+            <OverviewCell :name="$t('home.overview.titles.totalPledgeCollateral')" :value="overview.totalPledgeCollateral.toString() | filecoin(0)" :tipContent="$t('home.overview.tips.totalPledgeCollateral')" :hasTip="true">  </OverviewCell>  
             
             <template v-if="overviewExpanded">
               <OverviewCell :name="$t('home.overview.titles.accounts')" :value="overview.accounts.toString()">  </OverviewCell>
-              <OverviewCell :name="$t('home.overview.titles.averageTipsetInterval')" :value="overview.averageTipsetInterval.toFixed(2).toString() + ' ' + $t('shared.time.sec')">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.averageTipsetInterval')" :value="overview.averageTipsetInterval.toFixed(2).toString() + ' ' + $t('shared.time.sec')" :tipContent="$t('home.overview.tips.averageTipsetInterval')" :hasTip="true">  </OverviewCell>
               <OverviewCell :name="$t('home.overview.titles.dailyMessages')" :value="overview.dailyMessages">  </OverviewCell>
-              <OverviewCell :name="$t('home.overview.titles.averageTipsetBlocks')" :value="overview.averageTipsetBlocks.toFixed(2).toString()">  </OverviewCell> 
-              <OverviewCell :name="$t('home.overview.titles.rawBytePower')" :value="overview.rawBytePower.toString() | size_metric(2)">  </OverviewCell>
-              <OverviewCell :name="$t('home.overview.titles.averageGasPrice')" :value="overview.averageGasPrice.toFixed(2).toString() + ' AttoFIL'">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.averageTipsetBlocks')" :value="overview.averageTipsetBlocks.toFixed(2).toString()" :tipContent="$t('home.overview.tips.averageTipsetBlocks')" :hasTip="true">  </OverviewCell> 
+              <OverviewCell :name="$t('home.overview.titles.rawBytePower')" :value="overview.rawBytePower.toString() | size_metric(2)" :tipContent="$t('home.overview.tips.rawBytePower')" :hasTip="true">  </OverviewCell>
+              <OverviewCell :name="$t('home.overview.titles.averageGasPrice')" :value="overview.averageGasPrice.toFixed(2).toString() + ' AttoFIL'" :tipContent="$t('home.overview.tips.averageGasPrice')" :hasTip="true">  </OverviewCell>
               <OverviewCell :name="$t('home.overview.titles.burntSupply')" :value="overview.burntSupply.toString() | filecoin(4)">  </OverviewCell>
               <OverviewCell :name="$t('home.overview.titles.totalMaxSupply')" :value="overview.totalMaxSupply.toString() | filecoin(0)">  </OverviewCell>  
-              <OverviewCell :name="$t('home.overview.titles.totalMarketBalance')" :value="overview.totalMarketBalance.toString() | filecoin(0)">  </OverviewCell> 
-              <OverviewCell :name="$t('home.overview.titles.circulatingSupplyRate')" :value="(overview.circulatingSupply/overview.totalMaxSupply * 100).toFixed(2) + '%'">  </OverviewCell>  
+              <OverviewCell :name="$t('home.overview.titles.totalMarketBalance')" :value="overview.totalMarketBalance.toString() | filecoin(0)" :tipContent="$t('home.overview.tips.totalMarketBalance')" :hasTip="true">  </OverviewCell> 
+              <OverviewCell :name="$t('home.overview.titles.circulatingSupplyRate')" :value="(overview.circulatingSupply/overview.totalMaxSupply * 100).toFixed(2) + '%'" :tipContent="$t('home.overview.tips.circulatingSupplyRate')" :hasTip="true">  </OverviewCell>  
             </template>
         </div>
         <div class="flex mx-auto h-10 items-center lg:hidden"> 

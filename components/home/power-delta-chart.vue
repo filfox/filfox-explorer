@@ -90,7 +90,7 @@ export default {
       this.loading = true;
       this.$axios
         .get("/stats/miner/power-delta", {
-          params: { count: this.maxCount, duration: "24h" }
+          params: { count: this.maxCount, duration: "7d",samples:'7' }
         })
         .then(res => {
           this.rawData = res.data
@@ -132,7 +132,7 @@ export default {
       this.loading = false;
     },
     getTime(time) {
-      return moment(time * 1000).format("HH:mm");
+      return moment(time * 1000).format("MM-DD");
     },
     getDateTime(time) {
       return moment(time * 1000).format("YYYY-MM-DD HH:mm");

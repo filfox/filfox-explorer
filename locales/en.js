@@ -74,6 +74,22 @@ export default {
           "totalMarketBalance": "FIL Market Balance",
           "totalMaxSupply": "FIL Max Supply",
           "circulatingSupplyRate": "FIL Circulating Rate"
+        },
+        tips: {
+            qualityAdjPower:'Total vaild storage power (storage space) of the network.',
+            activeMiners: 'Amount of miners that has a positive storage power.',
+            price:'Latest price of FIL[IOU]. Data source: coingecko.com',
+            blockReward: 'Block reward of current tipset height. Every tipset could have multiple blocks, and every block receives the same reward.',
+            averageRewardPerByte: 'Average value in the last 24h of the ratio of total block rewards at every tipset and corresponding valid storage power.',
+            output24h: 'New FILs minted in the last 24h.',
+            circulatingSupply: 'Circulating supply of FIL.',
+            totalPledgeCollateral: 'FILs pledged by miners.',
+            averageTipsetInterval: 'Average block interval in the last 24h.',
+            averageTipsetBlocks: 'Average blocks produced per tipset in the last 24h.',
+            rawBytePower: 'Total storage power (storage space) of the network.',
+            averageGasPrice: 'Average gas fee for the last 24h.',
+            totalMarketBalance: 'FILs locked in storage market by placing order.',
+            circulatingSupplyRate: 'Circulating ratio = circulating supply / max supply',
         }
       },
       "powerDistribution": {
