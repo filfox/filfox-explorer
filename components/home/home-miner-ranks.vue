@@ -128,9 +128,9 @@
             </td>
             <td>
                 <div class="flex flex-row items-center justify-end">
-                  <el-progress :percentage="miner.blocksMined/topMinersByBlocks.miners[0].blocksMined * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
+                  <el-progress :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
                   <div class="flex w-1/4">
-                  {{ miner.blocksMined }}
+                  {{ miner.weightedBlocksMined }}
                   </div>
                 </div>
             </td>

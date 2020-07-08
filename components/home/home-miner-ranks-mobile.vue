@@ -86,7 +86,7 @@
                 <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
             </div>
             <div class="w-1/3 flex flex-row-reverse items-center">  
-                {{ miner.blocksMined }} / {{ miner.luckyValue.toFixed(2) }}
+                {{ miner.weightedBlocksMined }} / {{ miner.luckyValue.toFixed(2) }}
             </div>
         </div>
       </template>
