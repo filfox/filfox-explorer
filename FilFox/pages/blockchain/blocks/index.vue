@@ -7,9 +7,8 @@
         <div v-if="!loading">
           <div v-for="(tipset, tipsetIndex) in tipsetsList.tipsets" :key="tipsetIndex" class="rounded-sm mx-3 mt-2 shadow bg-white p-3">
               <div class="flex flex-row border-b border-background py-1">  
-                    <div class="flex w-1/6 text-xs"> {{$t('home.recentTipsets.tableHeaders.height')}} </div>
-                    <div class="flex w-1/2"> <TipsetLink :id="tipset.height" class="text-main text-xs" /> </div>
-                    <div class="flex flex-row-reverse w-1/3"> <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-xs"/> </div>
+                    <div class="flex w-1/2 text-xs"> {{$t('home.recentTipsets.tableHeaders.height')}} <TipsetLink :id="tipset.height" class="text-main text-xs ml-2" /></div>
+                    <div class="flex flex-row-reverse w-1/2"> <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-xs"/> </div>
                 </div>
                 <div class="flex flex-row">  
                     <div class="flex w-1/2 flex-col">

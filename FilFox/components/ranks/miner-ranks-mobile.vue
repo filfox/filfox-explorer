@@ -40,8 +40,11 @@
                 <p> {{ $t('home.minerRanks.tableHeadersByPower.validPowerRate')}}: {{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }} </p>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
-                <p> {{ $t('home.minerRanks.tableHeadersByPower.blockNums')}}: {{ miner.blocksMined }} </p>
+                <p> {{ $t('home.minerRanks.tableHeadersByPower.reward')}}: {{ miner.totalRewards | filecoin(2) }} </p>
                 <p> {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease')}}: {{ miner.qualityAdjPowerDelta | size_metric(2)}} </p>
+            </div>
+            <div class="flex flex-row justify-between my-1 mx-2 text-xs">
+                <p> {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency')}}: {{ miner.rewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2)}} </p>
             </div>
         </div>
     </template>
@@ -55,11 +58,11 @@
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
                 <p> {{ $t('home.minerRanks.tableHeadersByBlock.blockNums')}}: {{ miner.blocksMined }} </p>
-                <p> {{ $t('home.minerRanks.tableHeadersByBlock.blockRate')}}: {{ (miner.blocksMined/topMinersByBlocks.tipsetCount * 100).toFixed(2) + '%'}} </p>
+                <p> {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue')}}: {{ miner.luckyValue.toFixed(2) }} </p>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
                 <p> {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards')}}: {{ miner.totalRewards | filecoin(2) }} </p>
-                <p> {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue')}}: {{ miner.luckyValue.toFixed(2) }} </p>
+                <p> {{ $t('home.minerRanks.tableHeadersByBlock.rewardsRatio')}}: {{ (miner.totalRewards/topMinersByBlocks.totalRewards * 100) .toFixed(2) }}% </p>
             </div>
         </div>
     </template>

@@ -68,7 +68,7 @@
         <p class="pl-3 flex py-2 text-sm border-b border-background font-medium"> {{ $t('detail.address.miner.accountOverview.title') }} </p>
         <div class="flex flex-row items-center justify-between mx-3 mt-3">
             <p class="text-xs text-gray-800"> {{ $t('detail.address.miner.accountOverview.headers.address')}}: </p>
-            <p class="text-xs text-gray-800"> {{ addressData.alias }} </p>
+            <p class="text-xs text-gray-800 text-right"> {{ addressData.alias }} </p>
         </div>
         <div class="flex flex-row items-center justify-between mx-3 mt-1">
             <p class="text-xs text-gray-800"> {{ $t('detail.address.miner.accountOverview.headers.messageCount')}}: </p>
@@ -80,7 +80,7 @@
         </div>
         <div class="flex flex-row items-center justify-between mx-3 mt-1 pb-1 border-b border-dashed border-background">
             <p class="text-xs text-gray-800"> {{ $t('detail.address.miner.accountOverview.headers.createTime')}}: </p>
-            <p class="text-xs text-gray-800"> {{ addressData.createTimestamp | timestamp('datetime') }} </p>
+            <p class="text-xs text-gray-800 text-right"> {{ addressData.createTimestamp | timestamp('datetime') }} </p>
         </div>
 
         <div class="flex flex-row items-center justify-between mx-3 mt-1">
@@ -89,7 +89,7 @@
         </div>
         <div class="flex flex-row items-center justify-between mx-3 mt-1">
             <p class="text-xs text-gray-800"> {{ $t('detail.address.miner.accountOverview.headers.sectors')}}: </p>
-            <p class="text-xs text-gray-800"> {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.provingSectors | locale }} proving, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries </p>
+            <p class="text-xs text-gray-800 text-right"> {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.provingSectors | locale }} proving, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries </p>
         </div>
         <div class="flex flex-row items-center justify-between mx-3 mt-1">
             <p class="text-xs text-gray-800"> {{ $t('detail.address.miner.accountOverview.headers.owner')}}: </p>

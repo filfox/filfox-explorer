@@ -46,7 +46,7 @@ export default {
           "Wiki"
         ]
       },
-      searchPlaceHolder: "Search for Address/Block ID/Token..."
+      searchPlaceHolder: "Search for Block/Account/Address/Message..."
     },
     "home": {
       "overview": {
