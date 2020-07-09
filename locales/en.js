@@ -58,12 +58,12 @@ export default {
           "timestamp": "Latest Block",
           "qualityAdjPower": "Network Storage Power",
           "activeMiners": "Active Miners",
-          "price": "Latest Price",
+          "price": "Current Price",
           "blockReward": "Block Reward",
           "averageRewardPerByte": "24h Average Mining Reward",
           "output24h": "24h FIL Production",
-          "circulatingSupply": "Circulating FIL",
-          "totalPledgeCollateral": "Pledged FIL",
+          "circulatingSupply": "Circulating Supply",
+          "totalPledgeCollateral": "Total Pledge Collateral",
           "accounts": "Total Accounts",
           "averageTipsetInterval": "Average Block Interval",
           "dailyMessages": "24h Messages",
@@ -71,32 +71,32 @@ export default {
           "rawBytePower": "Network Raw Byte Power",
           "averageGasPrice": "Average Gas Price",
           "burntSupply": "Burnt FIL",
-          "totalMarketBalance": "FIL Market Balance",
-          "totalMaxSupply": "FIL Max Supply",
-          "circulatingSupplyRate": "FIL Circulating Rate"
+          "totalMarketBalance": "Total Market Balance",
+          "totalMaxSupply": "Total Max Supply",
+          "circulatingSupplyRate": "Circulating Rate"
         },
         tips: {
-            qualityAdjPower:'Total vaild storage power (storage space) of the network.',
+            qualityAdjPower:'Total adjusted storage power (storage space) of the network.',
             activeMiners: 'Amount of miners that has a positive storage power.',
-            price:'Latest price of FIL[IOU]. Data source: coingecko.com',
+            price:'Current price of FIL[IOU]. Data source: coingecko.com',
             blockReward: 'Block reward of current tipset height. Every tipset could have multiple blocks, and every block receives the same reward.',
-            averageRewardPerByte: 'Average value in the last 24h of the ratio of total block rewards at every tipset and corresponding valid storage power.',
-            output24h: 'New FILs minted in the last 24h.',
+            averageRewardPerByte: 'Average value in last 24h of the ratio of total block rewards at every tipset and corresponding adjusted storage power.',
+            output24h: 'New FILs minted in last 24h.',
             circulatingSupply: 'Circulating supply of FIL.',
             totalPledgeCollateral: 'FILs pledged by miners.',
-            averageTipsetInterval: 'Average block interval in the last 24h.',
-            averageTipsetBlocks: 'Average blocks produced per tipset in the last 24h.',
+            averageTipsetInterval: 'Average block interval in last 24h.',
+            averageTipsetBlocks: 'Average blocks produced per tipset in last 24h.',
             rawBytePower: 'Total storage power (storage space) of the network.',
             averageGasPrice: 'Average gas fee for the last 24h.',
             totalMarketBalance: 'FILs locked in storage market by placing order.',
-            circulatingSupplyRate: 'Circulating ratio = circulating supply / max supply',
+            circulatingSupplyRate: 'Circulating rate = circulating supply / max supply',
         }
       },
       "powerDistribution": {
         "title": "Storage Power Distribution"
       },
       "powerDelta": {
-        "title": "24h Storage Power Growth (Top5)"
+        "title": "24h Storage Power Growth (Top 5)"
       },
       "minerRanks": {
         "title": "Top Miners",
@@ -117,8 +117,8 @@ export default {
           "powerIncrease": "Power Growth"
         },
         tipsByPower: {
-            miningEfficiency: 'Average FILs minted by 1 TiB storage power in the last 24h.',
-            powerIncrease: 'Valid storage power growth in the last 24h.'
+            miningEfficiency: 'Average FILs minted by 1 TiB storage power in last 24h.',
+            powerIncrease: 'Adjusted storage power growth in last 24h.'
         },
         "tableHeadersByBlock": {
           "rank": "Rank",
@@ -144,8 +144,8 @@ export default {
         },
         tipsByPowerDelta: {
             equivalentMiners: "Take the official benchmark environment as the baseline (AMD Ryzen Threadripper 3970X, NVidia GTX 2080Ti, 128GB 2133mhz), we estamate the miner's machine amount by calculate the ratio of its storage power growth and the baseline.",
-            powerIncreaseSpeed: "Daily valid storage power growth of a miner.",
-            powerDelta: "Miner's valid storage power increment in the selected period.",
+            powerIncreaseSpeed: "Daily adjusted storage power growth of a miner.",
+            powerDelta: "Miner's adjusted storage power increment in the selected period.",
         },
         "moreBtn": "More"
       },
@@ -199,7 +199,7 @@ export default {
           "to": "To",
           "method": "Method",
           "value": "Value",
-          "exitCode": "Exit Code"
+          "exitCode": "Status"
         },
         "methods": {
           "all": "All"
@@ -230,7 +230,7 @@ export default {
     },
     "detail": {
       "message": {
-        "title": "Message Detail",
+        "title": "Message Details",
         "headers": {
           "cid": "Message ID",
           "height": "Height",
@@ -248,9 +248,9 @@ export default {
           "gasUsed": "Gas Used",
           "exitCode": "Status",
           "return": "Return",
-          "error": "Error"
+          "error": "Error Message"
         },
-        "null": "Null"
+        "null": "(Null)"
       },
       "tipset": {
         "title": "Tipset Height",
@@ -267,7 +267,7 @@ export default {
         }
       },
       "block": {
-        "title": "Block Detail",
+        "title": "Block Details",
         "overview": "Block Overview",
         "headers": {
           "cid": "Block ID",
@@ -347,7 +347,7 @@ export default {
         }
       },
       "peer": {
-        "title": "Peer Detail",
+        "title": "Peer Details",
         "headers": {
           "id": "ID",
           "miners": "Miner",
@@ -356,26 +356,26 @@ export default {
       }
     },
     "actor": {
-      "fil/1/account": "Normal Account",
-      "fil/1/cron": "Execute Scheduled Task",
-      "fil/1/init": "Initiation",
-      "fil/1/multisig": "Multi-Sig",
+      "fil/1/account": "Account",
+      "fil/1/cron": "Cron",
+      "fil/1/init": "Init",
+      "fil/1/multisig": "Multisig",
       "fil/1/paymentchannel": "Payment Channel",
       "fil/1/reward": "Reward",
       "fil/1/storagemarket": "Storage Market",
-      "fil/1/storageminer": "Miner Account",
+      "fil/1/storageminer": "Storage Miner",
       "fil/1/storagepower": "Storage Power",
       "fil/1/system": "System",
-      "fil/1/verifiedregistry": "Registry Verified"
+      "fil/1/verifiedregistry": "Verified Registry"
     },
     "chart": {
       "miner": {
         "title": "Mining Charts",
         "headers": {
           "qualityAdjPowerPie": "Adj. Power Distribution",
-          "qualityAdjPowerLine": "Adj. Power Veriation",
-          "qualityAdjPowerDeltaLine": "Power Growth Veriation",
-          "rewardLine": "Reward Veriation"
+          "qualityAdjPowerLine": "Adj. Power Variations",
+          "qualityAdjPowerDeltaLine": "Power Growth Variations",
+          "rewardLine": "Reward Variations"
         }
       },
       "fil": {

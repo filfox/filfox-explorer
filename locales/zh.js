@@ -239,7 +239,7 @@ export default {
                 gasUsed: 'Gas使用量',
                 exitCode: '状态',
                 return: '返回值',
-                error: '错误'
+                error: '错误信息'
             },
             null: '(无)'
         },
@@ -353,7 +353,7 @@ export default {
         'fil/1/cron': '执行定时任务',
         'fil/1/init': '初始化',
         'fil/1/multisig': '多重签名',
-        'fil/1/paymentchannel': '付款通道',
+        'fil/1/paymentchannel': '支付通道',
         'fil/1/reward': '奖励',
         'fil/1/storagemarket': '存储市场',
         'fil/1/storageminer': '矿工账户',
