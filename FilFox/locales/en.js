@@ -133,14 +133,14 @@ export default {
             luckyValue: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.',
             rewardsRatio: 'Ratio of actual blocks produced and theoretical value. '
         },
-        "tableHeadersByPowerDelta": {
+        tableHeadersByPowerDelta: {
           "rank": "Rank",
           "miner": "Miner",
           "tag": "Tag",
           "powerIncreaseSpeed": "Daily Power Growth",
           "equivalentMiners": "Miner Equivalent",
           powerDelta:'Power Growth',
-          vaildPower: "Adj. Power"
+          validPower: "Adj. Power"
         },
         tipsByPowerDelta: {
             equivalentMiners: "Take the official benchmark environment as the baseline (AMD Ryzen Threadripper 3970X, NVidia GTX 2080Ti, 128GB 2133mhz), we estamate the miner's machine amount by calculate the ratio of its storage power growth and the baseline.",
