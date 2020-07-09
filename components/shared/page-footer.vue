@@ -7,7 +7,9 @@
             </nuxt-link>
         </div>
         <div class="container flex flex-col pb-4 lg:flex-row mx-auto justify-between">
-            <div class="text-xs text-footerText" v-html="$t('footer.intro')"> {{ $t('footer.intro') }} </div>
+            <client-only>
+              <div class="text-xs text-footerText" v-html="$t('footer.intro')"> {{ $t('footer.intro') }} </div>
+            </client-only>
             <div class="text-xs text-footerText mt-4 lg:mt-0 flex flex-col text-left lg:text-right "> 
               <a href="https://mini.filfox.io"> {{ $t('shared.oldVersion') }} </a>
               <p >{{ $t('footer.contact')}} </p>
