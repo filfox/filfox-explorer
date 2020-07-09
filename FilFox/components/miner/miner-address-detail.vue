@@ -138,7 +138,7 @@
           </tbody>
         </table>
       </div>
-      <div class="flex mx-8 mt-2" v-else>
+      <div class="flex mx-8 mt-2 border-t border-background" v-else>
         <table class="w-full table-auto" v-if="!loading">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
