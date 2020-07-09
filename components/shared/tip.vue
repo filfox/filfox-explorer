@@ -11,8 +11,9 @@
 </template>
 
 <style>
-.el-popover--plain {
-    word-wrap: break-word;
+.el-popover {
+    word-break:normal;
+    text-align: left;
 }
 </style>
 
