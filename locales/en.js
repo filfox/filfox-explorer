@@ -347,6 +347,7 @@ export default {
           blockList: {
             height: 'Height',
             hash: 'Block Hash',
+            reward: 'Reward',
             time: 'Time',
             messages: 'Messages Count',
             blockSize: 'Block Size'

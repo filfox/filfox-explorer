@@ -339,6 +339,7 @@ export default {
                 blockList: {
                     height: '区块高度',
                     hash: '区块哈希',
+                    reward: '奖励',
                     time: '时间',
                     messages: '消息数',
                     blockSize: '区块大小'
