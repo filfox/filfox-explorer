@@ -343,7 +343,14 @@ export default {
               "sectors": "Sector",
               "createTime": "Create Time"
             }
-          }
+          },
+          blockList: {
+            height: 'Height',
+            hash: 'Block Hash',
+            time: 'Time',
+            messages: 'Messages Count',
+            blockSize: 'Block Size'
+        }
         }
       },
       "peer": {

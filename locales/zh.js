@@ -335,8 +335,14 @@ export default {
                         sectors: '扇区',
                         createTime: '创建时间'
                     }
+                },
+                blockList: {
+                    height: '区块高度',
+                    hash: '区块哈希',
+                    time: '时间',
+                    messages: '消息数',
+                    blockSize: '区块大小'
                 }
-
             }
         },
         peer: {
