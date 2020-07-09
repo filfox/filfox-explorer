@@ -144,6 +144,7 @@
             <tr class="h-8">
               <th class="sticky top-0 bg-white z-10"> {{ $t('detail.address.miner.blockList.height') }} </th>
               <th class="sticky top-0 bg-white z-10"> {{ $t('detail.address.miner.blockList.hash') }} </th>
+              <th class="sticky top-0 bg-white z-10">{{ $t('detail.address.miner.blockList.reward') }}</th>
               <th class="sticky top-0 bg-white z-10">{{ $t('detail.address.miner.blockList.time') }}</th>
               <th class="sticky top-0 bg-white z-10">{{ $t('detail.address.miner.blockList.messages') }}</th>
               <th class="sticky top-0 bg-white z-10">{{ $t('detail.address.miner.blockList.blockSize') }}</th>
@@ -161,6 +162,10 @@
               <td>
                 <BlockLink :id="block.cid" />
               </td>
+              <td v-if="block.reward">
+                {{ block.reward | filecoin(2) }}
+              </td>
+              <td v-else> N/A </td>
               <td>
                 {{ block.timestamp | timestamp('datetime') }}
               </td>
@@ -168,7 +173,7 @@
                 {{ block.messageCount }}
               </td>
               <td>
-                {{ block.size }}
+                {{ block.size }} Bytes
               </td>
             </tr>
           </tbody>
