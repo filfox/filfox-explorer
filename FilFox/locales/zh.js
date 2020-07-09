@@ -134,7 +134,7 @@ export default {
                 validPower:'有效算力'
             },
             tipsByPowerDelta: {
-                equivalentMiners: '以官方Benchmark推荐配置（AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）视为1台基准矿机。矿工的算力增速与该基准矿机增速的比值则等于矿机数量',
+                equivalentMiners: "以官方Benchmark推荐配置（AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）视为1台基准矿机，矿机当量为该矿工换算成标准矿机的数量（矿工的算力增速与该基准矿机增速的比值）",
                 powerIncreaseSpeed: '选定周期内，平均每天矿工的有效算力增量',
                 powerDelta: '在选定周期内，矿工的有效算力增量',
             },
