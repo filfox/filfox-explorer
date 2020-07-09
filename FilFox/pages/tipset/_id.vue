@@ -50,41 +50,41 @@
       <div class="flex flex-col flex-grow rounded-md my-4 bg-white">
         <div class="flex flex-col border-b border-background mt-2 pb-2">
             <dl class="flex flex-row my-2 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.time') }} </dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.time') }} </dt>
             <dd class="flex mr-4">  {{ tipset.timestamp | timestamp }} </dd>
             </dl>
 
             <dl class="flex flex-row my-2 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.totalMsgCount') }} </dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.totalMsgCount') }} </dt>
             <dd class="flex mr-4">  {{ tipset.messageCount }} </dd>
             </dl>
 
             <dl class="flex flex-row my-2 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.size') }} </dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.size') }} </dt>
             <dd class="flex mr-4">  {{ tipset.blockSize }} bytes </dd>
             </dl>
         </div>
         <p class="text-base my-4 ml-8"> {{$t('detail.tipset.all')}} </p>
         <div class="bg-background mx-8 mb-4 rounded-md flex flex-col py-2" v-for="(block, index) in tipset.blocks" :key="index">
           <dl class="flex flex-row my-1 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.id') }} </dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.id') }} </dt>
             <dd class="flex mr-4 text-main"> 
               <BlockLink :id="block.cid" />
             </dd>
           </dl>
           <dl class="flex flex-row my-1 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.miner') }} </dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.miner') }} </dt>
             <dd class="flex mr-4">  
               <AddressLink :id="block.miner" class="text-main" />
               <div v-if="block.minerTag" class="flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center"> {{ block.minerTag[$i18n.locale] }} </div>
             </dd>
           </dl>
           <dl class="flex flex-row my-1 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.bonus') }} </dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.bonus') }} </dt>
             <dd class="flex mr-4">  {{ block.reward | filecoin }} </dd>
           </dl>
           <dl class="flex flex-row my-1 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.messageCount') }} </dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.messageCount') }} </dt>
             <dd class="flex mr-4">  {{ block.messageCount }} </dd>
           </dl>    
         </div>

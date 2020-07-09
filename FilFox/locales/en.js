@@ -384,6 +384,6 @@ export default {
     },
     "footer": {
       "contact": "Contact: contact@6block.com",
-      "intro": "Filfox is a Filecoin blockchain explorer and data service platform, powered by 6Block.com."
+      "intro": 'Filfox is a Filecoin blockchain explorer and data service platform, powered by <a href="https://6block.com">6Block.com<a/>.'
     }
   }

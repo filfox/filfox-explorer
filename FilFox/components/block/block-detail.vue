@@ -4,42 +4,42 @@
     <div class="flex flex-col rounded-md my-4 bg-white pb-2">
       <div class="flex pl-8 py-4 font-medium border-b border-background">{{ $t('detail.block.overview') }}</div>
       <dl class="flex flex-row my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.cid') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.cid') }}</dt>
         <dd class="flex mr-4">
           <BlockLink :id="block.cid" plain />
         </dd>
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.height') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.height') }}</dt>
         <dd class="flex mr-4 text-main">
           <TipsetLink :id="block.height" />
         </dd>
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.time') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.time') }}</dt>
         <dd class="flex mr-4">{{ block.timestamp | timestamp }}</dd>
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.size') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.size') }}</dt>
         <dd class="flex mr-4">{{ block.size }} Bytes</dd>
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.messages') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.messages') }}</dt>
         <dd class="flex mr-4">{{ block.messageCount | locale }}</dd>
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.reward') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.reward') }}</dt>
         <dd class="flex mr-4">{{ block.reward | filecoin }}</dd>
       </dl>
 
       <dl class="flex flex-row items-center my-2">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2 items-center"
+          class="w-1/8 pl-8 text-gray-600 px-2 items-center"
         >{{ $t('detail.block.headers.parents') }}</dt>
         <dd class="flex flex-col mr-4">
           <p v-for="parent in block.parents" :key="parent" class="items-center flex text-main">
@@ -49,12 +49,12 @@
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.parentWeight') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.parentWeight') }}</dt>
         <dd class="flex mr-4">{{ block.parentWeight | locale }}</dd>
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center" v-if="block.penalty">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.penalty') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.penalty') }}</dt>
         <dd class="flex mr-4">{{ block.penalty | filecoin }}</dd>
       </dl>
     </div>
