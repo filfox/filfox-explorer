@@ -30,14 +30,14 @@
       <div class="flex flex-grow-0 mt-6 font-medium">{{ $t('detail.peer.title') }} </div>
       <div class="flex flex-col rounded-md my-4 bg-white py-4">
           <dl class="flex flex-row my-2 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.id') }}</dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.id') }}</dt>
             <dd class="flex mr-4">
               <PeerLink :id="id" plain />
             </dd>
           </dl>
 
           <dl class="flex flex-row my-2 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.miners') }}</dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.miners') }}</dt>
             <dd class="flex mr-4">
               <p v-if="peer.miners.length" class="flex flex-wrap">
                 <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
@@ -47,7 +47,7 @@
           </dl>
 
           <dl class="flex flex-row my-2 items-center">
-            <dt class="min-w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.IP') }}</dt>
+            <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.peer.headers.IP') }}</dt>
             <dd class="flex mr-4">
               <template v-if="peer.addresses.length">
                 <p v-for="address in peer.addresses" :key="address">{{ address | ip }}</p>

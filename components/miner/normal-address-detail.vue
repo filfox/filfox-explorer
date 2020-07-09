@@ -9,7 +9,7 @@
       >{{ $t('detail.address.normal.headers.overview') }}</div>
       <dl class="flex flex-row my-2 items-center">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2"
+          class="w-1/8 pl-8 text-gray-600 px-2"
         >{{ $t('detail.address.normal.headers.address') }}</dt>
         <dd class="flex mr-4">
           <AddressLink :id="addressData.address" />
@@ -18,7 +18,7 @@
 
       <dl class="flex flex-row my-2 items-center">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2"
+          class="w-1/8 pl-8 text-gray-600 px-2"
         >{{ $t('detail.address.normal.headers.actor') }}</dt>
         <dd
           class="flex mr-4"
@@ -27,34 +27,34 @@
 
       <dl class="flex flex-row my-2 items-center">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2"
+          class="w-1/8 pl-8 text-gray-600 px-2"
         >{{ $t('detail.address.normal.headers.balance') }}</dt>
         <dd class="flex mr-4">{{ addressData.balance | filecoin }}</dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2"
+          class="w-1/8 pl-8 text-gray-600 px-2"
         >{{ $t('detail.address.normal.headers.messages') }}</dt>
         <dd class="flex mr-4">{{ addressData.messageCount }}</dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2"
+          class="w-1/8 pl-8 text-gray-600 px-2"
         >{{ $t('detail.address.normal.headers.createTime') }}</dt>
         <dd class="flex mr-4">{{ addressData.createTimestamp | timestamp('datetime') }}</dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">
         <dt
-          class="min-w-1/8 pl-8 text-gray-600 px-2"
+          class="w-1/8 pl-8 text-gray-600 px-2"
         >{{ $t('detail.address.normal.headers.lastSeenTime') }}</dt>
         <dd class="flex mr-4">{{ addressData.lastSeenTimestamp | timestamp('datetime') }}</dd>
       </dl>
 
       <dl class="flex flex-row items-center my-2" v-if="addressData.ownedMiners.length > 0">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.ownedMiners') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.ownedMiners') }}</dt>
         <dd class="flex flex-col mr-4">
           <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="items-center flex text-main">
             <AddressLink :id="ownedMiner" />
@@ -63,7 +63,7 @@
       </dl>
 
       <dl class="flex flex-row items-center my-2" v-if="addressData.workerMiners.length > 0">
-        <dt class="min-w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.workers') }}</dt>
+        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.workers') }}</dt>
         <dd class="flex flex-col mr-4">
           <p v-for="worker in addressData.workerMiners" :key="worker" class="items-center flex text-main">
             <AddressLink :id="worker" />

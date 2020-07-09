@@ -377,7 +377,7 @@ export default {
     },
     footer: {
         contact: '联系方式: contact@6block.com',
-        intro: 'Filfox是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。',
+        intro: 'Filfox是Filecoin区块链浏览器及数据服务平台，由石榴矿池（<a href="https://6block.com">6Block.com<a/>）提供技术支持。',
     }
 
 }

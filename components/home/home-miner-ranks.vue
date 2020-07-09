@@ -279,4 +279,4 @@ export default {
     }
   }
 };
-</script>>
+</script>
