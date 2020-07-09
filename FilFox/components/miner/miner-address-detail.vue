@@ -160,7 +160,7 @@
                 <TipsetLink :id="block.height" class="text-main" />
               </td>
               <td>
-                <BlockLink :id="block.cid" />
+                <BlockLink :id="block.cid" :format="12"/>
               </td>
               <td v-if="block.reward">
                 {{ block.reward | filecoin(2) }}
