@@ -72,8 +72,13 @@
 
 
     <div class="flex flex-col rounded-md my-4 bg-white">
-      <div class="flex ml-8 mt-4 font-medium">{{ $t('blockchain.message.title') }}</div>
-      <div class="flex flex-row items-center justify-between border-b border-background">
+      <div class="flex h-12 items-center mt-4 ml-8" v-if="type != 0">
+          <el-radio-group v-model="listType" size="mini" @change="didListTypeChanged" fill="#1a4fc9">
+            <el-radio-button class="focus:outline-none outline-none" :label="0">{{ $t('blockchain.message.title') }}</el-radio-button>
+            <el-radio-button class="focus:outline-none outline-none" :label="1">{{ $t('blockchain.block.title') }}</el-radio-button>
+          </el-radio-group>
+      </div>
+      <div class="flex flex-row items-center justify-between border-b border-background" v-if="listType == 0">
         <p
           class="flex ml-8 h-12 items-center text-sm"
         >{{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages')}}</p>
@@ -86,7 +91,7 @@
           ></el-option>
         </el-select>
       </div>
-      <div class="flex mx-4 mt-2">
+      <div class="flex mx-4 mt-2" v-if="listType == 0">
         <table class="w-full table-auto" v-if="!loading">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
@@ -133,6 +138,42 @@
           </tbody>
         </table>
       </div>
+      <div class="flex mx-8 mt-2" v-else>
+        <table class="w-full table-auto" v-if="!loading">
+          <thead class="text-gray-600 text-sm m-2">
+            <tr class="h-8">
+              <th class="sticky top-0 bg-white z-10"> {{ $t('detail.address.miner.blockList.height') }} </th>
+              <th class="sticky top-0 bg-white z-10"> {{ $t('detail.address.miner.blockList.hash') }} </th>
+              <th class="sticky top-0 bg-white z-10">{{ $t('detail.address.miner.blockList.time') }}</th>
+              <th class="sticky top-0 bg-white z-10">{{ $t('detail.address.miner.blockList.messages') }}</th>
+              <th class="sticky top-0 bg-white z-10">{{ $t('detail.address.miner.blockList.blockSize') }}</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr
+              v-for="(block, index) in blockList.blocks"
+              :key="index"
+              class="h-12 border-b border-background"
+            >
+              <td>
+                <TipsetLink :id="block.height" class="text-main" />
+              </td>
+              <td>
+                <BlockLink :id="block.cid" />
+              </td>
+              <td>
+                {{ block.timestamp | timestamp('datetime') }}
+              </td>
+              <td>
+                {{ block.messageCount }}
+              </td>
+              <td>
+                {{ block.size }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="flex h-24" v-if="loading" v-loading="loading"></div>
       <div class="flex flex-grow items-center text-center h-16">
         <el-pagination
@@ -158,6 +199,8 @@ export default {
   data() {
     return {
       messagesList: {},
+      blockList: {},
+      listType: 0,
       methodOptions: ["All"],
       page: 0,
       pageSize: 20,
@@ -190,12 +233,31 @@ export default {
           this.getTotalPageCount();
         });
     },
+    getBlockList() {
+      this.loading = true;
+      var params = { pageSize: this.pageSize, page: this.page };
+      this.$axios
+        .get(`/address/${this.addressData.address}/blocks`, {
+          params: params
+        })
+        .then(res => {
+          this.blockList = res.data;
+          this.loading = false;
+          this.total = this.blockList.totalCount;
+          this.getTotalPageCount();
+        });
+    },
     getTotalPageCount() {
       this.totalPageCount = Math.ceil(this.total / this.pageSize);
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1;
-      this.getMessagesList();
+      if (this.listType == 0) {
+        this.getMessagesList();
+      }
+      else {
+        this.getBlockList();
+      }
     },
     didSelectChanged(selectedMethod) {
       this.method = selectedMethod;
@@ -203,6 +265,17 @@ export default {
       this.totalPageCount = 1;
       this.total = 0;
       this.getMessagesList();
+    },
+    didListTypeChanged() {
+      this.page = 0;
+      this.totalPageCount = 1;
+      this.total = 0;
+      if (this.listType == 0) {
+        this.getMessagesList()
+      }
+      else {
+        this.getBlockList()
+      }
     }
   }
 };
