@@ -96,7 +96,7 @@ export default {
         "title": "Storage Power Distribution"
       },
       "powerDelta": {
-        "title": "24h Storage Power Growth (Top 5)"
+        "title": "Daily Storage Power Growth (Top 5)"
       },
       "minerRanks": {
         "title": "Top Miners",

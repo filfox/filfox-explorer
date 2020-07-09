@@ -87,7 +87,7 @@ export default {
             title: '有效算力分布'
         },
         powerDelta: {
-            title: '24h算力增量（Top5）'
+            title: '每日算力增量（Top5）'
         },
         minerRanks: {
             title: '挖矿排行榜',
