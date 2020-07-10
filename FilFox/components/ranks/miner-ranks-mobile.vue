@@ -58,7 +58,7 @@
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
                 <p> {{ $t('home.minerRanks.tableHeadersByBlock.blockNums')}}: {{ miner.weightedBlocksMined }} </p>
-                <p> {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue')}}: {{ miner.luckyValue.toFixed(2) }} </p>
+                <p> {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue')}}: {{ (miner.luckyValue * 100).toFixed(2) }}% </p>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
                 <p> {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards')}}: {{ miner.totalRewards | filecoin(2) }} </p>

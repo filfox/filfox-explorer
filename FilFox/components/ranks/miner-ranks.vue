@@ -175,7 +175,7 @@
                   </div>
                 </div>
               </td>
-              <td>{{ miner.luckyValue.toFixed(2) }}</td>
+              <td>{{ (miner.luckyValue * 100).toFixed(2) }}%</td>
               <td>{{ miner.totalRewards | filecoin(2) }}</td>
               <td>{{ (miner.totalRewards/topMinersByBlocks.totalRewards * 100) .toFixed(2) }}%</td>
             </tr>
