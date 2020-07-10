@@ -50,17 +50,17 @@
       <div class="flex flex-col flex-grow rounded-md my-4 bg-white">
         <div class="flex flex-col border-b border-background mt-2 pb-2">
             <dl class="flex flex-row my-2 items-center">
-            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.time') }} </dt>
+            <dt class="w-9/50 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.time') }} </dt>
             <dd class="flex mr-4">  {{ tipset.timestamp | timestamp }} </dd>
             </dl>
 
             <dl class="flex flex-row my-2 items-center">
-            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.totalMsgCount') }} </dt>
+            <dt class="w-9/50 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.totalMsgCount') }} </dt>
             <dd class="flex mr-4">  {{ tipset.messageCount }} </dd>
             </dl>
 
             <dl class="flex flex-row my-2 items-center">
-            <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.size') }} </dt>
+            <dt class="w-9/50 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.size') }} </dt>
             <dd class="flex mr-4">  {{ tipset.blockSize }} bytes </dd>
             </dl>
         </div>
