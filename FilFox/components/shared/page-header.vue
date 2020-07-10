@@ -23,6 +23,15 @@
     </nav>
 </template>
 
+<style>
+.el-dropdown-link {
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
+</style>
+
 <script>
 import navigationBar from "~/components/shared/navigation-bar";
 
