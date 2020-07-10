@@ -130,8 +130,8 @@ export default {
           rewardsRatio: "Rewards Ratio",
         },
         tipsByBlock: {
-            luckyValue: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.',
-            rewardsRatio: 'Ratio of actual blocks produced and theoretical value. '
+            luckyValue: 'Ratio of actual blocks produced and theoretical value.',
+            rewardsRatio: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.'
         },
         tableHeadersByPowerDelta: {
           "rank": "Rank",
