@@ -121,7 +121,7 @@ export default {
                 rewardsRatio:'出块奖励占比',
             },
             tipsByBlock: {
-                luckyValue: '实际爆块数量和理论爆块数量的比值，计算方式为出块率与有效算力占比的比值，并做归一化处理。',
+                luckyValue: '实际爆块数量和理论爆块数量的比值',
                 rewardsRatio: '在选定周期内，矿工获得出块奖励与累计产出区块奖励的比值'
             },
             tableHeadersByPowerDelta: {
