@@ -19,7 +19,7 @@
             <tbody class="text-center">
                <template v-for="(tipset, tipsetIndex) in recentTipsets">
                 <tr v-for="(block, blockIndex) in tipset.blocks" :key="block.hash"
-                    :class="{'bg-gray-200': tipsetIndex % 2, 'smb:hidden': tipsetIndex >= 5}">
+                     class="border-b border-background">
                   <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length">
                       <div class="flex flex-col">
                         <TipsetLink :id="tipset.height" class="text-main text-base" />
