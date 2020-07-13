@@ -5,6 +5,7 @@
                <img src="~/assets/img/home/logo.svg" alt="filFox.io" class="cursor-pointer h-6 lg:h-8 ml-4 sm:ml-0">
            </nuxt-link>
            <div class="flex flex-row items-center">
+               <img src="~/assets/img/home/language.svg" alt="china" class="mr-2">
                 <el-dropdown @command="didLanguageSwitched" class="mr-3 lg:mr-0 flex items-center outline-none focus:outline-none" trigger="click" :hide-on-click="true">
                         <span class="el-dropdown-link text-background text-sm">
                             {{selectedLanguage}} <i class="el-icon-arrow-down el-icon--right"></i>
