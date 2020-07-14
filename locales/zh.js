@@ -15,7 +15,9 @@ export default {
         noSearchResult: '无法搜寻到此内容',
         empty: '无',
         notAvailable: '功能暂未开放，敬请期待',
-        oldVersion: '旧版入口'
+        oldVersion: '旧版入口',
+        copySuccess: '复制成功',
+        submit: '确定并提交'
     },
     nav: {
         home: {
@@ -385,6 +387,25 @@ export default {
     footer: {
         contact: '联系方式: contact@6block.com',
         intro: 'Filfox是Filecoin区块链浏览器及数据服务平台，由石榴矿池（<a href="https://6block.com">6Block.com<a/>）提供技术支持。',
+    },
+    tag: {
+        apply: '申领账户',
+        sign: '签名验证',
+        description: '目前仅对 有效算力 > 1TiB 的矿工开放自主认证',
+        owner: 'Owner地址',
+        en_sname: '账户英文简称',
+        zh_sname: '账户中文简称',
+        en_name: '账户英文全称',
+        zh_name: '账户中文全称',
+        contact: '联系方式',
+        message: '信息',
+        signature: '签名',
+        snamePlaceholder: '不超过16个字符',
+        namePlaceholder: '选填',
+        contactPlaceHolder: '邮箱/手机号',
+        signaturePlaceHolder: '请复制上面的信息，在filecoin钱包中进行签名，将签名内容粘贴到此处',
+        errorInput: '请填写',
+        success: '验签成功，请刷新页面后查看您的认证'
     }
 
 }

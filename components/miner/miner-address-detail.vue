@@ -3,7 +3,15 @@
     <div class="flex flex-row items-center mt-6">
       <div class="flex flex-grow-0 font-medium">{{ $t('detail.address.normal.title') + ' ' + addressData.address }} </div>
       <div v-if="addressData.tag" class="flex ml-2 text-xs rounded-full px-2 border border-gray-400"> {{ addressData.tag[$i18n.locale] }} </div>
+      <div v-else class="text-main text-xs ml-2 mt-1 cursor-pointer" @click="showDialog"> {{ $t('tag.apply') }}> </div>
+      <div v-if="addressData.tag && !addressData.tag.signed" class="text-main text-xs ml-2 cursor-pointer" @click="showDialog"> {{ $t('tag.sign') }}> </div>
+      <div v-if="addressData.tag && addressData.tag.signed">  
+        <img src="~/assets/img/shared/signed.svg" alt="menu" class="cursor-pointer h-3 ml-2">
+      </div>
     </div>
+
+    <MinerVerifyApply :addressInfo="addressData.address" :tag="addressData.tag ? addressData.tag : {}" ref="verifyApplication"/>
+
     <div class="flex flex-col rounded-md mt-4 bg-white pb-2">
         <p class="mx-8 flex flex-grow mt-4"> {{ $t('detail.address.miner.minerOverview.title') }} </p>
         <div class="grid grid-rows-1 grid-cols-2 gap-4 my-4 mx-8">
@@ -72,7 +80,7 @@
 
 
     <div class="flex flex-col rounded-md my-4 bg-white">
-      <div class="flex h-12 items-center mt-4 ml-8" v-if="type != 0">
+      <div class="flex h-12 items-center mt-4 ml-8" >
           <el-radio-group v-model="listType" size="mini" @change="didListTypeChanged" fill="#1a4fc9">
             <el-radio-button class="focus:outline-none outline-none" :label="0">{{ $t('blockchain.message.title') }}</el-radio-button>
             <el-radio-button class="focus:outline-none outline-none" :label="1">{{ $t('blockchain.block.title') }}</el-radio-button>
@@ -212,7 +220,7 @@ export default {
       totalPageCount: 0,
       loading: false,
       total: 0,
-      method: "All"
+      method: "All",
     };
   },
   mounted() {
@@ -281,6 +289,9 @@ export default {
       else {
         this.getBlockList()
       }
+    },
+    showDialog() {
+      this.$refs.verifyApplication.showDialog()
     }
   }
 };
