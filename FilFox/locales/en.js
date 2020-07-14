@@ -15,7 +15,9 @@ export default {
       noSearchResult: "No Result",
       empty: "Empty",
       notAvailable: 'Coming Soon',
-      oldVersion: 'Mini version'
+      oldVersion: 'Mini version',
+      copySuccess: 'Copied',
+      submit: 'Submit'
     },
     nav: {
       home: {
@@ -393,5 +395,24 @@ export default {
     "footer": {
       "contact": "Contact: contact@6block.com",
       "intro": 'Filfox is a Filecoin blockchain explorer and data service platform, powered by <a href="https://6block.com">6Block.com<a/>.'
-    }
+    },
+    tag: {
+      apply: 'Claim account',
+      sign: 'Signature verification',
+      description: 'Only open claim for accounts with storage power > 1 TiB',
+      owner: 'Owner address',
+      en_sname: 'Account abbreviation(En)',
+      zh_sname: 'Account abbreviation(Zh)',
+      en_name: 'Account name(En)',
+      zh_name: 'Account name(Zh)',
+      contact: 'Contact',
+      message: 'Message',
+      signature: 'Signature',
+      snamePlaceholder: 'Cannot over 16 characters',
+      namePlaceholder: 'Optional',
+      contactPlaceHolder: 'Email, Cell phone...',
+      signaturePlaceHolder: 'Please copy the above message, sign it with Filecoin wallet, and enter the signature',
+      errorInput: 'Please input',
+      success: 'Successfully signed! Please reload this page to see.'
+  }
   }

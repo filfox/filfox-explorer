@@ -33,6 +33,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/css/common.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -43,7 +44,8 @@ export default {
     '@/plugins/filters',
     '@/plugins/websocket.client',
     '@/plugins/components',
-    '@/plugins/chart.client'
+    '@/plugins/chart.client',
+    '@/plugins/highlight'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '~/plugins/i18n.js')
