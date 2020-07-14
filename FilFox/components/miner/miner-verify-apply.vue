@@ -94,7 +94,6 @@ export default {
             dialogVisible: false,
             loading: false,
             message: '',
-            address: '',
             en:'',
             zh:'',
             en_full: '',
@@ -149,7 +148,7 @@ export default {
         },
         submitSignature() {
             this.submitLoading = true
-            var params = { address:this.address, zh:this.zh, en:this.en, contact:this.contact, signature:this.signature};
+            var params = { address:this.addressInfo, zh:this.zh, en:this.en, contact:this.contact, signature:this.signature};
             if (this.zh_full.length > 0) {
                 params['zh_full'] = this.zh_full
             }
@@ -168,7 +167,7 @@ export default {
                         }
                     }
                     else {
-                        this.showDialog = false
+                        this.dialogVisible = false
                         this.$message.success(this.$t('tag.success'))
                     }
             });

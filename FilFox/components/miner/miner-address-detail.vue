@@ -29,7 +29,7 @@
         <p class="px-8 flex py-4 border-b border-background"> {{ $t('detail.address.miner.accountChange.title') }} </p>
         <MinerBalanceDetailChart :addressData="addressData" class="mt-4 mx-4"/>
       </div>
-      <div class="rounded-md bg-white  flex-col flex ml-2 w-1/2">
+      <div class="rounded-md bg-white flex-col flex ml-2 w-1/2">
         <p class="px-8 flex py-4 border-b border-background"> {{ $t('detail.address.miner.powerChange.title') }} </p>
         <MinerPowerDetailChart :addressData="addressData" class="mt-4 mx-4"/>
       </div>
