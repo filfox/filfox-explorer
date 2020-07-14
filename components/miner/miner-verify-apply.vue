@@ -2,7 +2,7 @@
     <el-dialog :title="$t('tag.sign')" :visible.sync="dialogVisible" width="50%" center >
         <div v-loading="loading" v-if="loading" class="h-20"> </div>
         <div class="flex flex-col" v-if="!loading" v-loading="submitLoading">
-            <div> {{ $t('tag.description') }} </div>
+            <div> {{ $t('tag.description',{power: message.data ? getAdjPower(message.data.minPower,2) : '0 B' }) }} </div>
 
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6  flex"> {{ $t('tag.owner')}} <p class="ml-1 text-red-600"> * </p>  
@@ -185,6 +185,25 @@ export default {
                document.body.removeChild(textarea)
             }
             this.$message.success(this.$t('shared.copySuccess'));
+        },
+        getAdjPower(number, precision = null) {
+            const metrics = 'kMGTPEZY'
+            let metricIndex = -1
+            number = Number(number)
+            var flag = false
+            if (number < 0) {
+                number = -number
+                flag = true
+            }
+            while (number >= 2 ** 10) {
+                ++metricIndex
+                number /= 2 ** 10
+            }
+            if (precision == null) {
+                return flag? `-${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
+            } else {
+                return flag? `-${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
+            }
         }
     }
 }
