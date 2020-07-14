@@ -115,6 +115,7 @@ export default {
                     let status = res.data.status
                     if (status > 0) {
                         if(res.data.error[this.$i18n.locale] != null) {
+                            this.dialogVisible = false
                             this.$message.error(res.data.error[this.$i18n.locale]);
                         }
                     }
