@@ -99,7 +99,10 @@
               <AddressLink :id="miner.address" :format="10"/>
             </td>
             <td>
-              {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
+              <div class="flex flex-row items-center justify-center">
+                <p> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}  </p>
+                <Signed :content="$t('tag.signed')" v-if="miner.tag && miner.tag.signed"/>
+              </div>
             </td>
             <td>
               <div class="flex flex-row items-center justify-end">
@@ -124,7 +127,10 @@
               <AddressLink :id="miner.address" :format="10"/>
             </td>
             <td>
-              {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
+              <div class="flex flex-row items-center justify-center">
+                <p> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}  </p>
+                <Signed :content="$t('tag.signed')" v-if="miner.tag && miner.tag.signed"/>
+              </div>
             </td>
             <td>
                 <div class="flex flex-row items-center justify-end">
@@ -149,7 +155,10 @@
               <AddressLink :id="miner.address" :format="10"/>
             </td>
             <td>
-              {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}
+              <div class="flex flex-row items-center justify-center">
+                <p> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}}  </p>
+                <Signed :content="$t('tag.signed')" v-if="miner.tag && miner.tag.signed"/>
+              </div>
             </td>
             <td>
               <div class="flex flex-row items-center justify-end">

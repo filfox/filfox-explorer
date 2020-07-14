@@ -413,6 +413,7 @@ export default {
       contactPlaceHolder: 'Email, Cell phone...',
       signaturePlaceHolder: 'Please copy the above message, sign it with Filecoin wallet, and enter the signature',
       errorInput: 'Please input',
-      success: 'Successfully signed! Please reload this page to see.'
+      success: 'Successfully signed! Please reload this page to see.',
+      signed: 'V icon indicates that the account has completed the signature verification of the owner.'
     }
   }

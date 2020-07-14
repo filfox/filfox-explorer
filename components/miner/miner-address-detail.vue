@@ -6,7 +6,7 @@
       <div v-else class="text-main text-xs ml-2 mt-1 cursor-pointer" @click="showDialog"> {{ $t('tag.apply') }}> </div>
       <div v-if="addressData.tag && !addressData.tag.signed" class="text-main text-xs ml-2 cursor-pointer" @click="showDialog"> {{ $t('tag.sign') }}> </div>
       <div v-if="addressData.tag && addressData.tag.signed">  
-        <img src="~/assets/img/shared/signed.svg" alt="menu" class="cursor-pointer h-3 ml-2">
+        <Signed :content="$t('tag.signed')"/>
       </div>
     </div>
 

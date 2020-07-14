@@ -405,7 +405,8 @@ export default {
         contactPlaceHolder: '邮箱/手机号',
         signaturePlaceHolder: '请复制上面的信息，在filecoin钱包中进行签名，将签名内容粘贴到此处',
         errorInput: '请填写',
-        success: '验签成功，请刷新页面后查看您的认证'
+        success: '验签成功，请刷新页面后查看您的认证',
+        signed: '加V表示账户已完成所有者的签名验证'
     }
 
 }
