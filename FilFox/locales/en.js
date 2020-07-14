@@ -399,7 +399,7 @@ export default {
     tag: {
       apply: 'Claim account',
       sign: 'Signature verification',
-      description: 'Only open claim for accounts with storage power > 1 TiB',
+      description: 'Only open claim for accounts with storage power ≥ {power}',
       owner: 'Owner address',
       en_sname: 'Account abbreviation(En)',
       zh_sname: 'Account abbreviation(Zh)',
