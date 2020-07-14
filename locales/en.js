@@ -414,5 +414,5 @@ export default {
       signaturePlaceHolder: 'Please copy the above message, sign it with Filecoin wallet, and enter the signature',
       errorInput: 'Please input',
       success: 'Successfully signed! Please reload this page to see.'
-  }
+    }
   }

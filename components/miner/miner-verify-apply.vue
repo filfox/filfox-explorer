@@ -2,7 +2,7 @@
     <el-dialog :title="$t('tag.sign')" :visible.sync="dialogVisible" width="50%" center >
         <div v-loading="loading" v-if="loading" class="h-20"> </div>
         <div class="flex flex-col" v-if="!loading" v-loading="submitLoading">
-            <div> {{ $t('tag.description',{power: message.data ? getAdjPower(message.data.minPower,2) : '0 B' }) }} </div>
+            <div class=" font-medium"> {{ $t('tag.description',{power: message.data ? getAdjPower(message.data.minPower,2) : '0 B' }) }} </div>
 
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6  flex"> {{ $t('tag.owner')}} <p class="ml-1 text-red-600"> * </p>  
