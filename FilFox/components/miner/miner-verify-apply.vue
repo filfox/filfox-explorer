@@ -7,48 +7,48 @@
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6  flex"> {{ $t('tag.owner')}} <p class="ml-1 text-red-600"> * </p>  
                 </div>
-                <p class="flex w-5/6" v-if="message.data"> {{ message.data.addressToSign ?  message.data.addressToSign : ""}} </p>
+                <p class="flex w-5/6 pl-2" v-if="message.data"> {{ message.data.addressToSign ?  message.data.addressToSign : ""}} </p>
             </div>
 
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6 flex"> {{ $t('tag.zh_sname') }} <p class="ml-1 text-red-600"> * </p>  
                 </div>
-                <el-input size="small" :placeholder="$t('tag.snamePlaceholder')" v-model="zh" class="flex w-5/6">
+                <el-input size="small" :placeholder="$t('tag.snamePlaceholder')" v-model="zh" class="flex w-5/6 pl-2">
                 </el-input>
             </div>
 
             <div class="flex flex-row items-center mt-4">
-                <div class="w-1/6  flex"> {{ $t('tag.en_sname') }} <p class="ml-1 text-red-600"> * </p>  
+                <div class="w-1/6 flex"> {{ $t('tag.en_sname') }} <p class="ml-1 text-red-600"> * </p>  
                 </div>
-                <el-input size="small" :placeholder="$t('tag.snamePlaceholder')" v-model="en" class="flex w-5/6">
+                <el-input size="small" :placeholder="$t('tag.snamePlaceholder')" v-model="en" class="flex w-5/6 pl-2">
                 </el-input>
             </div>
 
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6 flex"> {{ $t('tag.zh_name') }}
                 </div>
-                <el-input size="small" :placeholder="$t('tag.namePlaceholder')" v-model="zh_full" class="flex w-5/6">
+                <el-input size="small" :placeholder="$t('tag.namePlaceholder')" v-model="zh_full" class="flex w-5/6 pl-2">
                 </el-input>
             </div>
 
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6 flex"> {{ $t('tag.en_name') }} 
                 </div>
-                <el-input size="small" :placeholder="$t('tag.namePlaceholder')" v-model="en_full" class="flex w-5/6">
+                <el-input size="small" :placeholder="$t('tag.namePlaceholder')" v-model="en_full" class="flex w-5/6 pl-2">
                 </el-input>
             </div>
 
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6  flex"> {{ $t('tag.contact') }}  <p class="ml-1 text-red-600"> * </p>
                 </div>
-                <el-input size="small" :placeholder="$t('tag.contactPlaceHolder')" v-model="contact" class="flex w-5/6">
+                <el-input size="small" :placeholder="$t('tag.contactPlaceHolder')" v-model="contact" class="flex w-5/6 pl-2">
                 </el-input>
             </div>
 
             <div class="flex flex-row items-center mt-4">
                 <div class="w-1/6 flex"> {{ $t('tag.message') }} 
                 </div>
-                <div class="w-5/6 flex items-center justify-between">
+                <div class="w-5/6 flex items-center justify-between pl-2">
                     <highlight class="flex overflow-hidden mr-3">
                         <template v-slot v-if="message.data"> {{ message.data.command.lotus }} </template>
                     </highlight>
@@ -57,10 +57,10 @@
                 </div>
             </div>
 
-            <div class="flex flex-row items-center mt-4">
+            <div class="flex flex-row items-center mt-4 ">
                 <div class="w-1/6  flex"> {{ $t('tag.signature') }} <p class="ml-1 text-red-600"> * </p>
                 </div>
-                <el-input size="small" :placeholder="$t('tag.signaturePlaceHolder')" class="flex w-5/6" v-model="signature">
+                <el-input size="small" :placeholder="$t('tag.signaturePlaceHolder')" class="flex w-5/6 pl-2" v-model="signature">
                 </el-input>
             </div>
 
