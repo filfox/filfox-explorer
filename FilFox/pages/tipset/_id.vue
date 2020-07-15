@@ -127,7 +127,7 @@ export default {
   },
   head() {
     return {
-      title: `Tipset ${this.height}`
+      title: `${this.$t('meta.titles.tipset')} ${this.height}`
     }
   }
 }

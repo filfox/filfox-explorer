@@ -132,6 +132,11 @@ export default {
     onUpdateRecentTipsets(tipsets) {
       this.recentTipsets = tipsets
     },
+  },
+  head() {
+    return {
+      title: `${this.$t('meta.titles.filfox')}`
+    }
   }
 
 };

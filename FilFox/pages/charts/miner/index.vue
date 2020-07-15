@@ -21,4 +21,13 @@
 </template>
 
 <script>
+
+export default {
+  head() {
+      return {
+        title: `${this.$t('meta.titles.minerCharts')}`
+      }
+  }
+}
+
 </script>

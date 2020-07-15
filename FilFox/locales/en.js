@@ -415,5 +415,20 @@ export default {
       errorInput: 'Please input',
       success: 'Successfully signed! Please reload this page to see.',
       signed: 'V icon indicates that the account has completed the signature verification of the owner.'
-    }
+    },
+    meta: {
+      titles: {
+          filfox: 'Filfox',
+          address: 'Address',
+          peer: 'Peer',
+          tipset: 'Tipset',
+          message: 'Message',
+          block: 'Block',
+          recentTipsets: 'Recent Tipsets',
+          rich: 'Rich List',
+          messages: 'Message List',
+          ranks: 'Top Miners',
+          minerCharts: 'Miner Charts'
+      }
+  }
   }

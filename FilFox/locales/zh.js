@@ -407,6 +407,21 @@ export default {
         errorInput: '请填写',
         success: '验签成功，请刷新页面后查看您的认证',
         signed: '加V表示账户已完成所有者的签名验证'
+    },
+    meta: {
+        titles: {
+            filfox: 'Filfox 飞狐区块浏览器',
+            address: '地址',
+            peer: '节点',
+            tipset: '区块高度',
+            message: '消息',
+            block: '区块',
+            recentTipsets: '最新区块列表',
+            rich: '富豪榜',
+            messages: '消息列表',
+            ranks: '挖矿排行榜',
+            minerCharts: '挖矿图表'
+        }
     }
 
 }

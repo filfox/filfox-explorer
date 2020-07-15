@@ -152,6 +152,11 @@ export default {
       this.page = currentPage - 1;
       this.getTipsetsList()
     }
+  },
+  head() {
+    return {
+      title: `${this.$t('meta.titles.recentTipsets')}`
+    }
   }
 }
 </script>>

@@ -101,7 +101,7 @@ export default {
   },
   head() {
     return {
-      title: `Peer ${this.id}`
+      title: `${this.$t('meta.titles.peer')} ${this.id}`
     };
   }
 };
