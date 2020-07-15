@@ -89,13 +89,13 @@ export default {
         },
         handleBlocksCommand(index) {
             if (index == 0) {
-                this.$router.push(this.localePath('/blockchain/blocks'))
+                this.$router.push(this.localePath('/recent-tipsets'))
             }
             else if (index == 1) {
-                this.$router.push(this.localePath('/blockchain/messages'))
+                this.$router.push(this.localePath('/messages'))
             }
             else {
-                this.$router.push(this.localePath('/blockchain/rich'))
+                this.$router.push(this.localePath('/rich'))
             }
             this.hideIfNeeded()
         },

@@ -135,7 +135,8 @@ export default {
   },
   head() {
     return {
-      title: `${this.$t('meta.titles.filfox')}`
+      title: `${this.$t('meta.titles.indexTitle')}`,
+      titleTemplate: null
     }
   }
 

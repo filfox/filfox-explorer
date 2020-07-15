@@ -7,23 +7,26 @@ export default {
   /*
   ** Headers of the page
   */
-  head: {
-    title: process.env.npm_package_name || '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { name: 'keywords', content:"区块链, Blockchain, Filecoin, FIL, IPFS, Filfox, 区块链浏览器, Filecoin Explorer, Filecoin 浏览器, 6Block, 石榴矿池, 飞狐浏览器, 飞狐区块浏览器" },
-      { name: 'description', content: "飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。为用户稳定地提供Filecoin相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"},
-      { name: 'apple-mobile-web-app-capable', content: 'yes' },
-      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-      { name: 'apple-mobile-web-app-title', content: 'filfox.io' },
-      { name: 'mobile-web-app-capable', content: 'yes' },
-      { name: 'theme-color', content: '#1a4fc9' },
-      { name: 'application-name', content: 'filfox.io' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+  head() {
+    return {
+      title: process.env.npm_package_name || '',
+      titleTemplate: '%s - ' + this.$t('meta.titles.filfox'),
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
+        { name: 'keywords', content:"区块链, Blockchain, Filecoin, FIL, IPFS, Filfox, 区块链浏览器, Filecoin Explorer, Filecoin 浏览器, 6Block, 石榴矿池, 飞狐浏览器, 飞狐区块浏览器" },
+        { name: 'description', content: "飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。为用户稳定地提供Filecoin相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"},
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'apple-mobile-web-app-title', content: 'filfox.io' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'theme-color', content: '#1a4fc9' },
+        { name: 'application-name', content: 'filfox.io' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    }
   },
   /*
   ** Customize the progress-bar color

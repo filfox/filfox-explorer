@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         didRecentTipsetsMoreBtnClicked() {
-            this.$router.push(this.localePath('/blockchain/blocks'))
+            this.$router.push(this.localePath('/recent-tipsets'))
         },
     }
 }
