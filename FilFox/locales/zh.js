@@ -169,6 +169,7 @@ export default {
             title: '区块列表',
             tableHeaders: {
                 height:'高度',
+                miner: '矿工',
                 time: '时间',
                 size: '区块大小',
                 hash:'哈希',

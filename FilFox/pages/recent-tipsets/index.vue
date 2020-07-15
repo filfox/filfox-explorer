@@ -88,7 +88,7 @@
               </td>
 
               <td class="text-sm" :class="{'pt-2':blockIndex == 0,'pb-2': blockIndex == tipset.blocks.length - 1}">
-                {{ block.minerTag ? block.minerTag[$i18n.locale] : '--' }}
+                <MinerTag :tag="block.minerTag" />
               </td>
 
               <td class="smb:hidden text-sm" :class="{'pt-2':blockIndex == 0,'pb-2': blockIndex == tipset.blocks.length - 1}">{{ block.messageCount }}</td>
