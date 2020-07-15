@@ -13,7 +13,7 @@
                   <div class="flex w-1/2 flex-col">
                     <div v-for="(block, blockIndex) in tipset.blocks" :key="blockIndex" class="flex items-center py-1">
                         <AddressLink :id="block.miner" class="text-xs"/>
-                        <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="block.minerTag"> {{ block.minerTag ? block.minerTag[$i18n.locale] : '--' }} </div>
+                        <MinerTag :tag="block.minerTag" :type="2" v-if="block.minerTag"/>
                     </div>
                   </div>
                   <div class="flex w-1/2 flex-col">

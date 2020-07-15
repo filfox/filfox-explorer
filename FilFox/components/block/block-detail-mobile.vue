@@ -13,6 +13,14 @@
         </div>
 
         <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+          <p class="flex w-1/4">{{ $t('detail.block.headers.miner') }}</p>
+          <div class="flex w-3/4 items-center">
+             <AddressLink :id="block.miner" class="flex text-main" />
+             <MinerTag :tag="block.minerTag" :type="2" v-if="block.minerTag"/>
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
           <p class="flex w-1/4">{{ $t('detail.block.headers.time') }}</p>
           <p class="flex w-3/4"> {{ block.timestamp | timestamp }} </p>
         </div>

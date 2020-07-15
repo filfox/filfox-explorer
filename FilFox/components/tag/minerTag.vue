@@ -5,7 +5,10 @@
             {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} 
             <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 1"/>
         </div>
-        <div class="flex lg:hidden" v-if="type == 2"> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} </div>
+        <div class="lg:hidden text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1 items-center" v-if="type == 2"> 
+            {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} 
+            <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 2"/>
+        </div>
         <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 0"/>
     </div>
 </template>

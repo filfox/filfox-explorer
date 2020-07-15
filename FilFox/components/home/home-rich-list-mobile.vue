@@ -24,7 +24,7 @@
         </div>
         <div class="w-5/12 flex flex-row items-center py-2 pl-1">  
             <AddressLink :id="rich.address" :format="3" />
-            <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="rich.tag"> {{ rich.tag ? rich.tag[$i18n.locale] : '--' }} </div>
+            <MinerTag :tag="rich.tag" :type="2" v-if="rich.tag"/>
         </div>
         <div class="w-6/12 flex flex-row-reverse items-center">  
             {{rich.balance | filecoin(0)}} / {{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}%
