@@ -35,7 +35,7 @@
           <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.message.headers.from') }} </dt>
           <dd class="flex mr-4"> 
             <AddressLink :id="message.from" class="text-main"/> 
-            <div v-if="message.fromTag" class="flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center"> {{ message.fromTag[$i18n.locale] }} </div>
+            <MinerTag :tag="message.fromTag" :type="1" v-if="message.fromTag"/>
           </dd>
         </dl>
 
@@ -43,7 +43,7 @@
           <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.message.headers.to') }} </dt>
           <dd class="flex mr-4">  
             <AddressLink :id="message.to" class="text-main"/> 
-            <div v-if="message.toTag" class="flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center"> {{ message.toTag[$i18n.locale] }} </div>
+            <MinerTag :tag="message.toTag" :type="1" v-if="message.toTag"/>
           </dd>
         </dl>
 

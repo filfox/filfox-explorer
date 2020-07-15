@@ -31,7 +31,9 @@
           <td>
             <AddressLink :id="rich.address" :format="5" />
           </td>
-          <td>{{ rich.tag ? rich.tag[$i18n.locale] : '--' }}</td>
+          <td>
+            <MinerTag :tag="rich.tag" />
+          </td>
           <td>{{rich.balance | filecoin(0)}}</td>
           <td>{{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}%</td>
         </tr>

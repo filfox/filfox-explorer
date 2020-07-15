@@ -76,7 +76,7 @@
             <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.tipset.headers.miner') }} </dt>
             <dd class="flex mr-4">  
               <AddressLink :id="block.miner" class="text-main" />
-              <div v-if="block.minerTag" class="flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center"> {{ block.minerTag[$i18n.locale] }} </div>
+              <MinerTag :tag="block.minerTag" :type="1" v-if="block.minerTag"/>
             </dd>
           </dl>
           <dl class="flex flex-row my-1 items-center">

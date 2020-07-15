@@ -18,6 +18,14 @@
       </dl>
 
       <dl class="flex flex-row mt-4 my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.miner') }}</dt>
+        <dd class="flex mr-4">
+          <AddressLink :id="block.miner" class="text-main"/>
+          <MinerTag :tag="block.minerTag" :type="1"/>
+        </dd>
+      </dl>
+
+      <dl class="flex flex-row mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.time') }}</dt>
         <dd class="flex mr-4">{{ block.timestamp | timestamp }}</dd>
       </dl>

@@ -178,6 +178,7 @@ export default {
         "title": "Block List",
         "tableHeaders": {
           "height": "Height",
+          miner: 'Miner',
           "time": "Time",
           "size": "Size",
           "hash": "Hash",
