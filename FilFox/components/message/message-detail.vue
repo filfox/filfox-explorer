@@ -95,7 +95,7 @@
 
           <dl class="flex flex-row items-start my-2">
             <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.message.headers.params') }} </dt>
-            <dd class="flex break-all mr-4">  {{ message.params ? message.params : $t('detail.message.null') }} </dd>
+            <dd class="break-all pr-8 w-7/8">  {{ message.params ? message.params : $t('detail.message.null') }} </dd>
           </dl>
         </template>
       
