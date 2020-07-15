@@ -28,7 +28,7 @@
           <div class="flex flex-row justify-between mt-2 mx-2">
             <p class="text-xs w-1/3"> {{ $t('detail.tipset.headers.miner') }} </p>
             <div class="flex flex-row-reverse items-center">
-              <div v-if="block.minerTag" class="flex ml-1 text-xs rounded-full px-2 border text-gray-500 bg-background"> {{ block.minerTag[$i18n.locale] }} </div>
+              <MinerTag :tag="block.minerTag" :type="2" v-if="block.minerTag"/>
               <AddressLink :id="block.miner" class="text-xs text-main" />
             </div>
           </div>

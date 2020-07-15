@@ -16,7 +16,7 @@
                 <div class="flex flex-row pt-2">
                     <RankIndex :index="index+1 + page * pageSize"/> 
                      <AddressLink :id="rich.address" :format="4" class="mx-2"/>
-                    <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex" v-if="rich.tag"> {{ rich.tag ? rich.tag[$i18n.locale] : '--' }} </div>
+                     <MinerTag :tag="rich.tag" :type="2" v-if="rich.tag"/>
                 </div>
 
                 <div class="flex flex-row justify-between pt-2 mx-1">

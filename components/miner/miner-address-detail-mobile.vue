@@ -4,7 +4,7 @@
         <p class="flex flex-grow mt-4 text-sm ml-3 font-medium"> {{ $t('detail.address.miner.minerOverview.title') }} </p>  
         <div class="flex flex-row items-center py-2 border-b border-background">
             <div class="flex flex-grow-0 text-xs ml-3">{{ $t('detail.address.normal.title') + ' ' + addressData.address }} </div>
-            <div v-if="addressData.tag" class="flex ml-2 text-xs rounded-full px-2 border text-gray-500 bg-background"> {{ addressData.tag[$i18n.locale] }} </div>
+            <MinerTag :tag="addressData.tag" :type="2" v-if="addressData.tag"/>
         </div>
 
         <div class="rounded-sm m-3 mb-0 shadow flex flex-row justify-between">

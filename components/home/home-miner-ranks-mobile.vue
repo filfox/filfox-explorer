@@ -68,7 +68,7 @@
             </div>
             <div class="w-1/2 flex flex-row items-center py-2">  
                 <AddressLink :id="miner.address" :format="4"/>
-                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+                <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="w-1/3 flex flex-row-reverse items-center">  
                 {{ miner.qualityAdjPower | size_metric(2) }} / {{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}
@@ -83,7 +83,7 @@
             </div>
             <div class="w-1/2 flex flex-row items-center py-2">  
                 <AddressLink :id="miner.address" :format="4"/>
-                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+                <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="w-1/3 flex flex-row-reverse items-center">  
                 {{ miner.weightedBlocksMined }} / {{ (miner.luckyValue * 100).toFixed(2) }}%
@@ -98,7 +98,7 @@
             </div>
             <div class="w-1/2 flex flex-row items-center py-2">  
                 <AddressLink :id="miner.address" :format="4"/>
-                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+                <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="w-1/3 flex flex-row-reverse items-center">  
                 {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} 

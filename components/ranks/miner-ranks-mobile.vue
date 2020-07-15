@@ -33,7 +33,7 @@
             <div class="flex flex-row items-center text-xs my-2 ml-1">
                 <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}"/>
                 <AddressLink :id="miner.address" :format="4" class="ml-3"/>
-                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+                <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
                 <p> {{ $t('home.minerRanks.tableHeadersByPower.validPower')}}: {{ miner.qualityAdjPower | size_metric(2) }} </p>
@@ -54,7 +54,7 @@
             <div class="flex flex-row items-center text-xs my-2 ml-1">
                 <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}"/>
                 <AddressLink :id="miner.address" :format="4" class="ml-3"/>
-                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+                <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
                 <p> {{ $t('home.minerRanks.tableHeadersByBlock.blockNums')}}: {{ miner.weightedBlocksMined }} </p>
@@ -72,7 +72,7 @@
             <div class="flex flex-row items-center text-xs my-2 ml-1">
                 <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}"/>
                 <AddressLink :id="miner.address" :format="4" class="ml-3"/>
-                <div class="text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1" v-if="miner.tag"> {{ miner.tag ? miner.tag[$i18n.locale] : '--'}} </div>
+                <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
                 <p> {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed')}}: {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} </p>
