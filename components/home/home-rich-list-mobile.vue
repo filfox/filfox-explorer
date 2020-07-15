@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         didRichManListMoreBtnClicked() {
-         this.$router.push(this.localePath('/blockchain/rich'))
+         this.$router.push(this.localePath('/rich'))
         }
     }
 }

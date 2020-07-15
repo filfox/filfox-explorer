@@ -410,7 +410,8 @@ export default {
     },
     meta: {
         titles: {
-            filfox: 'Filfox 飞狐区块浏览器',
+            filfox: '飞狐区块浏览器',
+            indexTitle: '飞狐浏览器 - Filecoin区块链浏览器',
             address: '地址',
             peer: '节点',
             tipset: '区块高度',
@@ -421,6 +422,9 @@ export default {
             messages: '消息列表',
             ranks: '挖矿排行榜',
             minerCharts: '挖矿图表'
+        },
+        description: {
+            default: "飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。为用户稳定地提供Filecoin相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"
         }
     }
 

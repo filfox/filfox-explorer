@@ -419,6 +419,7 @@ export default {
     meta: {
       titles: {
           filfox: 'Filfox',
+          indexTitle: 'Filfox - Filecoin browser',
           address: 'Address',
           peer: 'Peer',
           tipset: 'Tipset',
@@ -429,6 +430,9 @@ export default {
           messages: 'Message List',
           ranks: 'Top Miners',
           minerCharts: 'Miner Charts'
+      },
+      description: {
+        default: "Filfox is a Filecoin browser and data platform，supported by 6block.com."
       }
   }
   }
