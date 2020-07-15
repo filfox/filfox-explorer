@@ -37,6 +37,16 @@ export default {
     return {
       addressData: {}
     }
+  },
+  computed: {
+    id() {
+      return this.$route.params.id
+    }
+  },
+  head() {
+    return {
+      title: `${this.$t('meta.titles.address')} ${this.id}`
+    };
   }
 }
 </script>

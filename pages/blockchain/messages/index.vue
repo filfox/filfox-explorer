@@ -187,6 +187,11 @@ export default {
       this.total = 0
       this.getMessagesList()
     }
+  },
+  head() {
+    return {
+      title: `${this.$t('meta.titles.messages')}`
+    }
   }
 }
 </script>

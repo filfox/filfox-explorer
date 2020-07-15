@@ -32,5 +32,15 @@ export default {
       block: {},
     };
   },
+  computed: {
+    id() {
+      return this.$route.params.id;
+    }
+  },
+  head() {
+    return {
+      title: `${this.$t('meta.titles.block')} ${this.id}`
+    }
+  }
 };
 </script>

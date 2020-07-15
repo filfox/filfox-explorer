@@ -36,7 +36,7 @@ export default {
   },
   head() {
     return {
-      title: `Message ${this.id}`
+      title: `${this.$t('meta.titles.message')} ${this.id}`
     }
   }
 }
