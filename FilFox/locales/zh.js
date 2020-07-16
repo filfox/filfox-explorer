@@ -17,7 +17,8 @@ export default {
         notAvailable: '功能暂未开放，敬请期待',
         oldVersion: '旧版入口',
         copySuccess: '复制成功',
-        submit: '确定并提交'
+        submit: '确定并提交',
+        backToHome: '回到首页'
     },
     nav: {
         home: {
