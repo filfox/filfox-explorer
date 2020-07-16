@@ -199,7 +199,7 @@
                 <div class="flex flex-row items-center">
                   <el-progress :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" v-if="page === 0"></el-progress>
                   <div class="flex" :class="{'mx-auto': page > 0}">
-                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }}
+                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay() / topMinersByPowerDelta.durationPercentage) | size_metric(2)}} / {{ $t('shared.time.day') }}
                   </div>
                 </div>
               </td>

@@ -75,7 +75,7 @@
                 <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
-                <p> {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed')}}: {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} </p>
+                <p> {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed')}}: {{ (miner.qualityAdjPowerDelta / convertedDurationByDay() / topMinersByPowerDelta.durationPercentage) | size_metric(2)}} / {{ $t('shared.time.day') }} </p>
                 <p> {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners')}}: {{ miner.equivalentMiners.toFixed(2) }} </p>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
