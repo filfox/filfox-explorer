@@ -1,21 +1,33 @@
 <template>
  <div class="container px-4 h-12 flex-row items-center mx-auto lg:px-0">
-   <div class="ml-2 mr-5 text-background text-sm cursor-pointer outline-none focus:outline-none" @click="handleHomeSelect">
-     {{$t('nav.home.title')}}
-   </div>
+   <nuxt-link :to="localePath('/')">
+      <div class="ml-2 mr-5 text-background text-sm cursor-pointer outline-none focus:outline-none">
+        {{$t('nav.home.title')}}
+      </div>
+   </nuxt-link>
    
-   <el-dropdown class="m-5 outline-none focus:outline-none" @command="handleBlocksCommand">
+   <el-dropdown class="m-5 outline-none focus:outline-none">
       <span class="el-dropdown-link text-background text-sm">
            {{$t('nav.blocks.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-         <el-dropdown-item v-for="(title,i) in blocksSubMenus" :key="i" :command="i"> {{ title }} </el-dropdown-item>
+        <nuxt-link :to="localePath('/recent-tipsets')">
+           <el-dropdown-item > {{ $t('nav.blocks.subMenus.0') }} </el-dropdown-item>
+        </nuxt-link>
+        <nuxt-link :to="localePath('/messages')">
+          <el-dropdown-item > {{ $t('nav.blocks.subMenus.1') }} </el-dropdown-item>
+        </nuxt-link>
+        <nuxt-link :to="localePath('/rich')">
+          <el-dropdown-item > {{ $t('nav.blocks.subMenus.2') }} </el-dropdown-item>
+        </nuxt-link>
       </el-dropdown-menu>
    </el-dropdown>
 
-   <div class="m-5 text-background text-sm cursor-pointer outline-none focus:outline-none" @click="handleRanksSelect">
-     {{$t('nav.ranks.title')}}
-   </div>
+   <nuxt-link :to="localePath('/ranks')">
+      <div class="m-5 text-background text-sm cursor-pointer outline-none focus:outline-none">
+        {{$t('nav.ranks.title')}}
+      </div>
+   </nuxt-link>
 
    <el-dropdown class="m-5 outline-none focus:outline-none" @command="handleChartsCommand">
       <span class="el-dropdown-link text-background text-sm">
@@ -51,9 +63,6 @@ export default {
     }
   },
   computed: {
-    blocksSubMenus() {
-      return this.$t('nav.blocks.subMenus')
-    },
     chartsSubMenus() {
       return this.$t('nav.charts.subMenus')
     },
@@ -63,23 +72,6 @@ export default {
   },
   created() {},
   methods: {
-    handleHomeSelect() {
-      this.$router.push(this.localePath('/'))
-    },
-    handleRanksSelect() {
-      this.$router.push(this.localePath('/ranks'))
-    },
-    handleBlocksCommand(index) {
-      if (index == 0) {
-        this.$router.push(this.localePath('/recent-tipsets'))
-      }
-      else if (index == 1) {
-        this.$router.push(this.localePath('/messages'))
-      }
-      else {
-        this.$router.push(this.localePath('/rich'))
-      }
-    },
     handleChartsCommand(index) {
       if (index == 0) {
         this.$router.push(this.localePath('/charts/miner'))
