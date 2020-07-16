@@ -18,6 +18,7 @@ module.exports = {
         footerText: '#f0f2f6',
         background: '#f0f6fb',
         mobileHeader: '#f8f8f8',
+        button: '#409eff'
       },
       width: {
         '1/8': '12.5%',

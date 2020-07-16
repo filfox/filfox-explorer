@@ -17,7 +17,8 @@ export default {
       notAvailable: 'Coming Soon',
       oldVersion: 'Mini version',
       copySuccess: 'Copied',
-      submit: 'Submit'
+      submit: 'Submit',
+      backToHome: 'Back to home page'
     },
     nav: {
       home: {
