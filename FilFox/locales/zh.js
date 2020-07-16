@@ -428,6 +428,29 @@ export default {
         description: {
             default: "飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。为用户稳定地提供Filecoin相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"
         }
+    },
+    merchant: {
+        website: '进入官网',
+        powerOverview: '算力概览',
+        miner: {
+            miners: '名下矿工',
+            qualityAdjPower: '有效算力',
+            powerDelta: '30天算力增速',
+            blockReward: '累计出块奖励',
+            blocksMined: '累计出块数',
+            minerEquivalent: '矿机当量',
+        },
+        sales: {
+            title: '矿机销售信息',
+            description: '根据公开信息整理，请以官方公布为准',
+            issue: '问题提交',
+            price: '售价',
+            transparent: '透明指数',
+            detail: '了解详情',
+            services: '配置服务',
+            hardware: '硬件参数',
+        },
+        unknown: '未公开'
     }
 
 }

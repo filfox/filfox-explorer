@@ -436,5 +436,9 @@ export default {
       description: {
         default: "Filfox is a Filecoin browser and data platform，supported by 6block.com."
       }
-  }
+    },
+    merchant: {
+      website: 'Official website',
+      powerOverview: '算力概览',
+    }
   }
