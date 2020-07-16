@@ -101,7 +101,7 @@
                 <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="w-1/3 flex flex-row-reverse items-center">  
-                {{ (miner.qualityAdjPowerDelta / convertedDurationByDay()) | size_metric(2)}} / {{ $t('shared.time.day') }} 
+                {{ (miner.qualityAdjPowerDelta / convertedDurationByDay() / topMinersByPowerDelta.durationPercentage) | size_metric(2)}} / {{ $t('shared.time.day') }} 
             </div>
         </div>
       </template>
