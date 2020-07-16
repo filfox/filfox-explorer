@@ -170,7 +170,7 @@
               <td>
                 <div class="flex flex-row items-center justify-end">
                   <el-progress :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" v-if="page === 0"></el-progress>
-                  <div class="flex w-1/4" :class="{'mx-auto': page > 0}">
+                  <div class="flex" :class="{'mx-auto': page > 0, 'w-1/4': page == 0}">
                     {{ miner.weightedBlocksMined }}
                   </div>
                 </div>
