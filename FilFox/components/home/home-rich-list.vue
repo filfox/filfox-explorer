@@ -2,12 +2,13 @@
   <div class="flex flex-col w-1/2 bg-white ml-2 rounded-md">
     <div class="flex flex-row items-center justify-between border-b border-background">
       <HomeTitle type="richManRanks" class="flex flex-grow" />
-      <el-button
-        round
-        size="mini"
-        class="mr-4 focus:outline-none outline-none"
-        v-on:click="didRichManListMoreBtnClicked"
-      >{{ $t('shared.more') }}</el-button>
+      <nuxt-link :to="localePath('/rich')" class="mr-4">
+        <el-button
+          round
+          size="mini"
+          class="focus:outline-none outline-none"
+        >{{ $t('shared.more') }}</el-button>
+      </nuxt-link>
     </div>
     <table class="w-full table-fixed mt-2" v-if="!richListLoading">
       <thead class="text-gray-600 text-sm">
@@ -56,9 +57,6 @@ export default {
         }
     },
     methods: {
-        didRichManListMoreBtnClicked() {
-         this.$router.push(this.localePath('/rich'))
-        }
     }
 }
 </script>>
