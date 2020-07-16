@@ -2,7 +2,9 @@
     <div class="bg-white mr-2 rounded-md w-1/2 flex flex-col overflow-hidden">
         <div class="flex flex-row items-center justify-between border-b border-background">
           <HomeTitle type="recentTipsets" class="flex flex-grow"/>
-          <el-button round size="mini" class="mr-4 focus:outline-none outline-none" v-on:click="didRecentTipsetsMoreBtnClicked"> {{ $t('shared.more') }} </el-button>
+          <nuxt-link :to="localePath('/recent-tipsets')" class="mr-4">
+          <el-button round size="mini" class="focus:outline-none outline-none"> {{ $t('shared.more') }} </el-button>
+          </nuxt-link>
         </div>
         <div class="mt-2 overflow-y-scroll flex-grow relative">
           <table class="w-full table-auto absolute" v-if="!recentTipsetsLoading">
@@ -60,9 +62,6 @@ export default {
         }
     },
     methods: {
-        didRecentTipsetsMoreBtnClicked() {
-            this.$router.push(this.localePath('/recent-tipsets'))
-        },
     }
 }
 </script>

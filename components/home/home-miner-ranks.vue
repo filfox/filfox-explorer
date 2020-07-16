@@ -173,7 +173,9 @@
       </table>
     </div>
     <div class="flex flex-grow items-center text-center h-16">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round v-on:click="didMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+        <nuxt-link :to="localePath('/ranks')" class="mx-auto">
+          <el-button class="flex m-auto focus:outline-none outline-none" size="mini" round > {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+        </nuxt-link>
     </div>
 
   </div>
@@ -265,9 +267,6 @@ export default {
         else if (this.type === 2) {
             this.getTopMinersByPowerDelta()
         }
-    },
-    didMoreBtnClicked() {
-       this.$router.push(this.localePath('/ranks'))
     },
     convertedDurationByDay() {
       if (this.duration === '24h') {
