@@ -395,7 +395,7 @@ export default {
     },
     "footer": {
       "contact": "연락처: contact@6block.com",
-      "intro": "Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 <a href=\"https://6block.com\">6Block<a/> 이  운영 및 기술 지원을 담당하고 있습니다."
+      "intro": "Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 <a href=\"https://6block.com\">(6Block.com)</a> 이  운영 및 기술 지원을 담당하고 있습니다."
     },
     "tag": {
       "apply": "계정 신청",
