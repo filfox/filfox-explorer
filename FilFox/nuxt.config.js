@@ -15,7 +15,7 @@ export default {
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
         { name: 'keywords', content:"飞狐浏览器, Filfox, 飞狐区块浏览器, Filecoin, Filecoin Explorer, Filecoin 浏览器, FIL, IPFS, 6Block, 石榴矿池" },
-        { name: 'description', content: "飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。为用户稳定地提供Filecoin相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"},
+        { name: 'description', content: this.$t('meta.description.default')},
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         { name: 'apple-mobile-web-app-title', content: this.$t('meta.titles.filfox') },
