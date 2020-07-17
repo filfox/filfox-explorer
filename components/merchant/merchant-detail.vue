@@ -3,7 +3,7 @@
         <div class="flex flex-row justify-between items-center">
             <div class="flex flex-col w-3/4">
                 <div class="flex flex-row items-center">
-                 <img :src="merchant.icon" class="h-5 mr-2" v-if="merchant.icon"/>
+                 <img :src="merchant.icon" class="h-8 mr-2" v-if="merchant.icon"/>
                  <p class="text-base"> {{ merchant.name }} </p>
                 </div>
                 <p class="text-xs text-gray-500 mt-2"> {{ merchant.description }} </p>
