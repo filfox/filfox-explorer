@@ -58,8 +58,6 @@ export default ({ route, isHMR, req, res, redirect }) => {
     return res.end()
   }
 
-  moment.locale('zh')
-
   // redirect for not matching cookie
   if (routeLocale !== null && routeLocale !== cookieLocale) {
     if (req && req.headers) {

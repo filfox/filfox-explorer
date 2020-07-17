@@ -44,7 +44,16 @@ export default {
         return {
             mobileNavHidden: true,
             languages: ['中文','English','한국어'],
-            selectedLanguage: this.$i18n.locale === 'zh' ? '中文' : 'English'
+            localeMap: {
+                zh : '中文',
+                en: 'English',
+                ko: '한국어'
+            }
+        }
+    },
+    computed: {
+        selectedLanguage() {
+            return this.localeMap[this.$i18n.locale]
         }
     },
     methods: {
@@ -61,13 +70,18 @@ export default {
                 }
                 this.$i18n.locale = 'zh'
             }
-            else {
+            else if(command == 1){
                 if (this.$i18n.locale == 'en') {
                     return
                 }
                 this.$i18n.locale = 'en'
             }
-            this.selectedLanguage = this.$i18n.locale === 'zh' ? '中文' : 'English'
+            else {
+                if (this.$i18n.locale == 'ko') {
+                    return
+                }
+                this.$i18n.locale = 'ko'
+            }
             if (this.$route.path.length == 3) {
                 this.$router.push(this.localePath('/'))
             }

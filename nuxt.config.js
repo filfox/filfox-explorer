@@ -95,6 +95,11 @@ export default {
         iso: 'zh-CN',
         name: '中文',
       },
+      {
+        code: 'ko',
+        iso: 'ko_KR',
+        name: '한국어',
+      }
     ],
     defaultLocale: 'zh',
     strategy: 'prefix',
