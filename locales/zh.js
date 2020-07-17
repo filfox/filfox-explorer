@@ -431,7 +431,16 @@ export default {
     },
     merchant: {
         website: '进入官网',
-        powerOverview: '算力概览',
+        overview: {
+            title: '算力概览',
+            qualityAdjPower: '有效算力',
+            rank: '排名',
+            powerDelta: '30天算力增速',
+            blockReward: '累计出块奖励',
+            blocksMined: '累计出块数',
+            minerEquivalent: '矿机当量',
+            rate: '占比'
+        },
         miner: {
             miners: '名下矿工',
             qualityAdjPower: '有效算力',
@@ -446,11 +455,13 @@ export default {
             issue: '问题提交',
             price: '售价',
             transparent: '透明指数',
+            transparentDesp: '根据销售方案中公开参数的数量计算得出，透明指数=公开指标数量/指标总数量 * 5 ，满分为5分',
             detail: '了解详情',
-            services: '配置服务',
+            services: '配套服务',
             hardware: '硬件参数',
         },
-        unknown: '未公开'
+        unknown: '未公开',
+        contact: '请填写内容并发送邮件到contact@6block.com，我们会有专员和您联系'
     }
 
 }

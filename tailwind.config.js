@@ -18,7 +18,10 @@ module.exports = {
         footerText: '#f0f2f6',
         background: '#f0f6fb',
         mobileHeader: '#f8f8f8',
-        button: '#409eff'
+        button: '#409eff',
+        merchantBg: '#f8f9fe',
+        merchantTextColor: '#9b9b9b',
+        tableHeaderColor: '#000000b3'
       },
       width: {
         '1/8': '12.5%',
