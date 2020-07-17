@@ -388,7 +388,7 @@ export default {
     },
     footer: {
         contact: '联系方式: contact@6block.com',
-        intro: '飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（<a href="https://6block.com">6Block.com<a/>）提供技术支持。',
+        intro: '飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（<a href="https://6block.com" target="blank">6Block.com</a>）提供技术支持。',
     },
     tag: {
         apply: '申领账户',
@@ -455,7 +455,7 @@ export default {
             issue: '问题提交',
             price: '售价',
             transparent: '透明指数',
-            transparentDesp: '根据销售方案中公开参数的数量计算得出，透明指数=公开指标数量/指标总数量 * 5 ，满分为5分',
+            transparentDesp: '根据矿机厂商官网销售方案中公开指标的数量占比计算得出，透明指数=公开指标数量/指标总数量 * 5 ，满分为5分',
             detail: '了解详情',
             services: '配套服务',
             hardware: '硬件参数',

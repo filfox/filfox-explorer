@@ -43,7 +43,7 @@ export default {
     data() {
         return {
             mobileNavHidden: true,
-            languages: ['中文','English'],
+            languages: ['中文','English','한국어'],
             selectedLanguage: this.$i18n.locale === 'zh' ? '中文' : 'English'
         }
     },
