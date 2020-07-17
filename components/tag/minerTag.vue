@@ -35,9 +35,7 @@ export default {
     },
     methods: {
         didTagClicked() {
-            console.log('1212')
             if (this.tag.merchant != null) {
-                console.log('333')
                 this.$router.push(this.localePath(`/merchant/${this.tag.merchant}`))
             }
         },
