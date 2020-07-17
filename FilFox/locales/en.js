@@ -439,6 +439,36 @@ export default {
     },
     merchant: {
       website: 'Official website',
-      powerOverview: '算力概览',
+      overview: {
+          title: 'Power Overview',
+          qualityAdjPower: 'Adj. Storage Power',
+          rank: 'Rank',
+          powerDelta: '30 Days Power Growth',
+          blockReward: 'Total Block Reward',
+          blocksMined: 'Total Block Mined',
+          minerEquivalent: 'Miner Equivalent',
+          rate: 'Rate'
+      },
+      miner: {
+          miners: 'Miners',
+          qualityAdjPower: 'Adj. Storage Power',
+          powerDelta: '30 Days Power Growth',
+          blockReward: 'Block Reward',
+          blocksMined: 'Block Mined',
+          minerEquivalent: 'Miner Equivalent',
+      },
+      sales: {
+          title: 'Sales information',
+          description: 'According to the public information, please refer to the official announcement',
+          issue: 'Submit issue',
+          price: 'Price',
+          transparent: 'Transparency Rating',
+          transparentDesp: 'According to the number of public parameters in the sales plan, Transparency Rate = the number of public parameters / the total number of parameters * 5, the full score is 5 points',
+          detail: 'Details',
+          services: 'Services',
+          hardware: 'Hardware info',
+      },
+      unknown: 'Unknown',
+      contact: 'Please send email to contact@6block.com'
     }
   }

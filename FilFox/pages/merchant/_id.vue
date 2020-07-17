@@ -1,6 +1,6 @@
 <template>
     <div class="flex container mx-auto">
-        <MerchantDetail :merchant="merchantInfo"/>
+        <MerchantDetail :merchant="merchantInfo" :name="id"/>
     </div>
 
 </template>
@@ -30,6 +30,11 @@ export default {
   data() {
     return {
       merchantInfo: {}
+    }
+  },
+  computed: {
+    id() {
+      return this.$route.params.id
     }
   },
   head() {

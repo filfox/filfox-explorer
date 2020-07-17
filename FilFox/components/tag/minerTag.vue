@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row items-center justify-center">
-        <div class="hidden lg:flex" v-if="type == 0"> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} </div>
-        <div class="hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center" v-if="type == 1"> 
+        <div class="hidden lg:flex" :class="{'cursor-pointer text-main': canClick}" v-if="type == 0" @click="didTagClicked" @mouseover="mouseOver()" @mouseleave="mouseLeave()"> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} </div>
+        <div class="hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center" :class="{'cursor-pointer text-main border-main': canClick}" v-if="type == 1" @mouseover="mouseOver()" @mouseleave="mouseLeave()" @click="didTagClicked"> 
             {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} 
             <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 1"/>
         </div>
@@ -26,6 +26,31 @@ export default {
         type: {
             type: Number,
             default:0
+        }
+    },
+    data() {
+        return {
+            canClick: false
+        }
+    },
+    methods: {
+        didTagClicked() {
+            console.log('1212')
+            if (this.tag.merchant != null) {
+                console.log('333')
+                this.$router.push(this.localePath(`/merchant/${this.tag.merchant}`))
+            }
+        },
+        mouseOver() {
+            if (this.tag.merchant != null) {
+                this.canClick = true
+            }
+            else {
+                this.canClick = false
+            }
+        },
+        mouseLeave(obj) {
+            this.canClick = false
         }
     }
 }
