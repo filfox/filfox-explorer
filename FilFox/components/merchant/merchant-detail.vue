@@ -134,16 +134,16 @@
                 <div class="flex flex-col px-4 bg-merchantBg rounded-md py-2">
                     <p class="text-sm"> {{ $t('merchant.sales.services') }}: </p>
                     <div class="flex flex-row justify-between mt-1 text-sm text-gray-500" v-for="index of 3" :key="index" >
-                        <p> {{ info.supportingServices[index].key + ': ' + info.supportingServices[index].value }} </p>
-                        <p> {{ info.supportingServices[index+1].key + ': ' + info.supportingServices[index+1].value }} </p>
+                        <p> {{ info.supportingServices[(index - 1) * 2].key + ': ' + info.supportingServices[(index - 1) * 2].value }} </p>
+                        <p> {{ info.supportingServices[(index - 1) * 2 + 1].key + ': ' + info.supportingServices[(index - 1) * 2 + 1].value }} </p>
                     </div>
                 </div>
 
                 <div class="flex flex-col px-4 bg-merchantBg rounded-md py-2 mt-2 mb-4">
                     <p class="text-sm"> {{ $t('merchant.sales.hardware') }}: </p>
                     <div class="flex flex-row justify-between mt-1 text-sm text-gray-500" v-for="index of 3" :key="index" >
-                        <p> {{ info.hardwareParameters[index].key + ': ' + info.hardwareParameters[index].value }} </p>
-                        <p> {{ info.hardwareParameters[index+1].key + ': ' + info.hardwareParameters[index+1].value }} </p>
+                        <p> {{ info.hardwareParameters[(index - 1) * 2].key + ': ' + info.hardwareParameters[(index - 1) * 2].value }} </p>
+                        <p> {{ info.hardwareParameters[(index - 1) * 2 + 1].key + ': ' + info.hardwareParameters[(index - 1) * 2 + 1].value }} </p>
                     </div>
                 </div>
 
