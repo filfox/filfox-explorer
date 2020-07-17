@@ -1,9 +1,9 @@
 import zh from './zh'
 import en from './en'
-import kr from './kr'
+import ko from './ko'
 
 export default {
   zh,
   en,
-  kr
+  ko
 }
