@@ -1,15 +1,18 @@
 <template>
     <div class="flex flex-row items-center justify-center">
-        <div class="hidden lg:flex" :class="{'cursor-pointer text-main': canClick}" v-if="type == 0" @click="didTagClicked" @mouseover="mouseOver()" @mouseleave="mouseLeave()"> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} </div>
-        <div class="hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center" :class="{'cursor-pointer text-main border-main': canClick}" v-if="type == 1" @mouseover="mouseOver()" @mouseleave="mouseLeave()" @click="didTagClicked"> 
-            {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} 
-            <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 1"/>
-        </div>
+        <template v-if="type == 0" class="hidden lg:flex">
+            <nuxt-link :to="localePath(`/merchant/${tag.merchant}`)" v-if="canClick" class=" hover:text-main"> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} </nuxt-link>
+            <div v-else> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} </div>
+        </template>
+        <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 0"/>
+        <template v-if="type == 1">
+            <nuxt-link :to="localePath(`/merchant/${tag.merchant}`)" v-if="canClick" class="hover:text-main hover:border-main hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center"> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}}<Signed :content="$t('tag.signed')" v-if="tag.signed && type== 1"/> </nuxt-link>
+            <div v-else class="hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center"> {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}}<Signed :content="$t('tag.signed')" v-if="tag.signed && type== 1"/> </div>
+        </template>
         <div class="lg:hidden text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1 items-center" v-if="type == 2"> 
             {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--'}} 
             <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 2"/>
         </div>
-        <Signed :content="$t('tag.signed')" v-if="tag.signed && type== 0"/>
     </div>
 </template>
 
@@ -28,27 +31,9 @@ export default {
             default:0
         }
     },
-    data() {
-        return {
-            canClick: false
-        }
-    },
-    methods: {
-        didTagClicked() {
-            if (this.tag.merchant != null) {
-                this.$router.push(this.localePath(`/merchant/${this.tag.merchant}`))
-            }
-        },
-        mouseOver() {
-            if (this.tag.merchant != null) {
-                this.canClick = true
-            }
-            else {
-                this.canClick = false
-            }
-        },
-        mouseLeave(obj) {
-            this.canClick = false
+    computed: {
+        canClick() {
+            return this.tag.merchant != null ? true: false
         }
     }
 }

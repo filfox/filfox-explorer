@@ -396,7 +396,7 @@ export default {
     },
     "footer": {
       "contact": "Contact: contact@6block.com",
-      "intro": 'Filfox is a Filecoin blockchain explorer and data service platform, powered by <a href="https://6block.com">6Block.com<a/>.'
+      "intro": 'Filfox is a Filecoin blockchain explorer and data service platform, powered by <a href="https://6block.com" target="blank">6Block.com</a>.'
     },
     tag: {
       apply: 'Claim account',
@@ -463,7 +463,7 @@ export default {
           issue: 'Submit issue',
           price: 'Price',
           transparent: 'Transparency Rating',
-          transparentDesp: 'According to the number of public parameters in the sales plan, Transparency Rate = the number of public parameters / the total number of parameters * 5, the full score is 5 points',
+          transparentDesp: 'According to the number of public parameters in the official website,  Transparency Rating = the number of public parameters / the total number of parameters * 5, the full score is 5 points',
           detail: 'Details',
           services: 'Services',
           hardware: 'Hardware info',

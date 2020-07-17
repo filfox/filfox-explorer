@@ -8,7 +8,7 @@
                 </div>
                 <p class="text-xs text-gray-500 mt-2"> {{ merchant.description }} </p>
             </div>
-            <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-4 text-xs py-1" :href="merchant.website ? merchant.website :''" v-if="merchant.website">  
+            <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-4 text-xs py-1" :href="merchant.website ? merchant.website :''" v-if="merchant.website" target="blank">  
                 {{ $t('merchant.website') }}
             </a>
         </div>
@@ -126,7 +126,7 @@
                         <p class="text-xs ml-1"> : </p>
                         <el-rate :value="info.transparencyRating" :disabled="true" :max="5" show-score text-color="#ff9900" class="ml-2 flex items-center mb-1"></el-rate>
                     </div>
-                    <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-3 text-xs py-1" :href="info.link ? info.link :''" v-if="info.link">  
+                    <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-3 text-xs py-1" :href="info.link ? info.link :''" v-if="info.link" target="blank">  
                         {{ $t('merchant.sales.detail') }}
                     </a>
                 </div>
