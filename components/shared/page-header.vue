@@ -4,19 +4,38 @@
            <nuxt-link :to="localePath('/')">
                <img src="~/assets/img/home/logo.svg" alt="filFox.io" class="cursor-pointer h-6 lg:h-8 ml-4 sm:ml-0">
            </nuxt-link>
-           <div class="flex flex-row items-center">
-               <img src="~/assets/img/home/language.svg" alt="china" class="mr-2">
-                <el-dropdown @command="didLanguageSwitched" class="mr-3 lg:mr-0 flex items-center outline-none focus:outline-none" trigger="click" :hide-on-click="true">
-                        <span class="el-dropdown-link text-background text-sm">
-                            {{selectedLanguage}} <i class="el-icon-arrow-down el-icon--right"></i>
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item v-for="(title,i) in languages" :key="i" :command="i"> {{ title }} </el-dropdown-item>
-                        </el-dropdown-menu>
-                </el-dropdown>
-                <button class="flex lg:hidden outline-none focus:outline-none mr-4 sm:mr-0 items-center h-10" @click="didMobileMenuClicked">
-                    <img src="~/assets/img/home/menu.svg" alt="menu" class="cursor-pointer h-3">
-                </button>
+
+           <div class="flex flex-row">
+                <div class="hidden lg:flex flex-row items-center mr-6" v-if="network.multipleNetworks">
+                    <img src="~/assets/img/home/switchNet.svg" alt="net" class="mr-2 w-5 flex">
+                    <p class="text-white text-sm"> {{ $t('shared.currentNetwork') }} </p>
+                    <el-dropdown class="mr-3 lg:mr-0 flex items-center outline-none focus:outline-none" trigger="click" :hide-on-click="true">
+                            <span class="el-dropdown-link text-background text-sm">
+                                {{ network.networks[network.currentNetwork].name }} <i class="el-icon-arrow-down el-icon--right"></i>
+                            </span>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item v-for="(dic,i) in network.networks" :key="i" :command="i">
+                                    <a :href="dic.url" target="blank" v-if="network.currentNetwork != i"> {{ dic.name }} </a> 
+                                    <template v-else> {{ dic.name }} </template>
+                                </el-dropdown-item>
+                            </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
+
+                <div class="flex flex-row items-center">
+                    <img src="~/assets/img/home/language.svg" alt="china" class="mr-2">
+                        <el-dropdown @command="didLanguageSwitched" class="mr-3 lg:mr-0 flex items-center outline-none focus:outline-none" trigger="click" :hide-on-click="true">
+                                <span class="el-dropdown-link text-background text-sm">
+                                    {{selectedLanguage}} <i class="el-icon-arrow-down el-icon--right"></i>
+                                </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item v-for="(title,i) in languages" :key="i" :command="i"> {{ title }} </el-dropdown-item>
+                                </el-dropdown-menu>
+                        </el-dropdown>
+                        <button class="flex lg:hidden outline-none focus:outline-none mr-4 sm:mr-0 items-center h-10" @click="didMobileMenuClicked">
+                            <img src="~/assets/img/home/menu.svg" alt="menu" class="cursor-pointer h-3">
+                        </button>
+                </div>
            </div>
        </div>
        <navigationBar class="hidden lg:flex"/>
@@ -35,6 +54,7 @@
 
 <script>
 import navigationBar from "~/components/shared/navigation-bar";
+import nconfig from "~/filecoin/filecoin.network"
 
 export default {
     components: {
@@ -48,7 +68,8 @@ export default {
                 zh : '中文',
                 en: 'English',
                 ko: '한국어'
-            }
+            },
+            network: nconfig.network
         }
     },
     computed: {
