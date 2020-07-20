@@ -14,8 +14,9 @@
   "16": "ErrIllegalArgument",
   "17": "ErrNotFound",
 	"18": "ErrForbidden",
-	"19": "ErrInsufficientFunds",
-	"20": "ErrIllegalState",
-	"21": "ErrSerialization",
-	"1000": "ErrPlaceholder"
+  "19": "ErrInsufficientFunds",
+  "20": "ErrIllegalState",
+  "21": "ErrSerialization",
+  "32": "ErrTooManyProveCommits",
+  "1000": "ErrPlaceholder"
 }

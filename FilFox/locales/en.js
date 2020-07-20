@@ -18,7 +18,8 @@ export default {
       oldVersion: 'Mini version',
       copySuccess: 'Copied',
       submit: 'Submit',
-      backToHome: 'Back to home page'
+      backToHome: 'Back to home page',
+      currentNetwork: 'Current network:'
     },
     nav: {
       home: {
