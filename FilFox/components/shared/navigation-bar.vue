@@ -48,7 +48,7 @@
    </el-dropdown>
 
   <div class="flex flex-grow" v-loading.fullscreen.lock="loading"></div>
-  <el-input size="small" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2" @keyup.enter.native="search"></el-input>
+  <el-input size="small" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2" @keyup.enter.native="search" clearable></el-input>
  </div>
 </template>
 
