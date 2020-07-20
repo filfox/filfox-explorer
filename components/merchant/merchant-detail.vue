@@ -115,7 +115,7 @@
                     <p class="text-2xl font-semibold"> {{ info.name }} </p>
                     <div class="flex flex-row items-center">
                         <p class="text-xs"> {{ $t('merchant.sales.price') }}: </p>
-                        <p class="text-2xl font-semibold"> ￥{{ info.price ? info.price : $t('merchant.unknown') }} </p>
+                        <p class="text-2xl font-semibold"> {{ info.price ? info.price : $t('merchant.unknown') }} </p>
                     </div>
                 </div>
 
