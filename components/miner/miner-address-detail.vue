@@ -60,7 +60,7 @@
               </div>
               <div class="flex flex-row justify-between">
                 <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.sectors')}}: </p>
-                <p class="text-sm mt-2"> {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.provingSectors | locale }} proving, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries</p>
+                <p class="text-sm mt-2"> {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.activeSectors | locale }} active, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries</p>
               </div>
               <div class="flex flex-row justify-between">
                 <p class="text-sm mt-2"> {{ $t('detail.address.miner.accountOverview.headers.owner')}}: </p>

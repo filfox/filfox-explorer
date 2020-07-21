@@ -89,7 +89,7 @@
         </div>
         <div class="flex flex-row items-center justify-between mx-3 mt-1">
             <p class="text-xs text-gray-800"> {{ $t('detail.address.miner.accountOverview.headers.sectors')}}: </p>
-            <p class="text-xs text-gray-800 text-right"> {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.provingSectors | locale }} proving, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries </p>
+            <p class="text-xs text-gray-800 text-right"> {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.activeSectors | locale }} active, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries </p>
         </div>
         <div class="flex flex-row items-center justify-between mx-3 mt-1">
             <p class="text-xs text-gray-800"> {{ $t('detail.address.miner.accountOverview.headers.owner')}}: </p>
