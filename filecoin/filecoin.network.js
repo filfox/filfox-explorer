@@ -5,7 +5,7 @@ export default {
         currentNetwork: 0,
         networks: [
           {
-              name:'Test Net',
+              name:'Testnet',
               url: 'https://filfox.io'
           },
           {
