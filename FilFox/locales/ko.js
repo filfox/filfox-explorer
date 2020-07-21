@@ -19,7 +19,7 @@ export default {
       "copySuccess": "복사 되었습니다",
       "submit": "제출",
       backToHome: '홈페이지로 돌아 가기',
-      currentNetwork: '현재 네트워크:'
+      currentNetwork: '현재 네트워크: '
     },
     "nav": {
       "home": {
