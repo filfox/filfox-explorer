@@ -19,7 +19,7 @@ export default {
       copySuccess: 'Copied',
       submit: 'Submit',
       backToHome: 'Back to home page',
-      currentNetwork: 'Current network:'
+      currentNetwork: 'Current network: '
     },
     nav: {
       home: {
