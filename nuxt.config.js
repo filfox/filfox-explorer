@@ -79,7 +79,7 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'https://filfox.io/',
+      target: 'https://calibration.filfox.io/',
       changeOrigin: true
     }
   },
