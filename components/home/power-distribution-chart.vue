@@ -13,7 +13,8 @@ import 'v-charts/lib/style.css'
 export default {
   data() {
     this.chartSettings = {
-      legendName: {}
+      legendName: {},
+      offsetY: 240
     };
     this.mobileSettings = {
       legendName: {},

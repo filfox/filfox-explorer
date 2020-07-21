@@ -349,6 +349,8 @@ export default {
             }
           },
           "blockList": {
+            total: '총',
+            tipsets: '블록',
             "height": "블록 높이",
             "hash": "블록 해시",
             "reward": "보상",

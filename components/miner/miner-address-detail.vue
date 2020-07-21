@@ -84,9 +84,9 @@
           </el-radio-group>
       </div>
       <div class="flex flex-row items-center justify-between border-b border-background" v-if="listType == 0">
-        <p
-          class="flex ml-8 h-12 items-center text-sm"
-        >{{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages')}}</p>
+        <p class="flex ml-8 h-12 items-center text-sm">
+          {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages')}}
+        </p>
         <el-select v-model="method" placeholder size="mini" class="mr-4" @change="didSelectChanged">
           <el-option
             v-for="item in methodOptions"
@@ -143,7 +143,10 @@
           </tbody>
         </table>
       </div>
-      <div class="flex mx-8 mt-2 border-t border-background" v-else>
+      <div class="flex mx-8 flex-col" v-else>
+        <p class="flex h-12 items-center text-sm border-b border-background mb-4">
+          {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('detail.address.miner.blockList.tipsets')}}
+        </p>
         <table class="w-full table-auto" v-if="!loading">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">

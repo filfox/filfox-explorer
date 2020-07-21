@@ -28,8 +28,8 @@ export default {
       blocks: {
         title: "Blockchain",
         subMenus: [
-          "Block",
-          "Message",
+          "Tipsets",
+          "Messages",
           "Rich List"
         ]
       },
@@ -177,7 +177,7 @@ export default {
     },
     "blockchain": {
       "block": {
-        "title": "Block List",
+        "title": "Tipsets List",
         "tableHeaders": {
           "height": "Height",
           miner: 'Miner',
@@ -350,6 +350,8 @@ export default {
             }
           },
           blockList: {
+            total: 'Total',
+            tipsets: 'Tipsets',
             height: 'Height',
             hash: 'Block Hash',
             reward: 'Reward',

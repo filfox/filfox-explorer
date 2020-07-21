@@ -342,6 +342,8 @@ export default {
                     }
                 },
                 blockList: {
+                    total: '共',
+                    tipsets: '个区块',
                     height: '区块高度',
                     hash: '区块哈希',
                     reward: '奖励',
