@@ -8,16 +8,22 @@
            <div class="flex flex-row">
                 <div class="hidden lg:flex flex-row items-center mr-6" v-if="network.multipleNetworks">
                     <img src="~/assets/img/home/switchNet.svg" alt="net" class="mr-2 w-5 flex">
-                    <p class="text-white text-sm"> {{ $t('shared.currentNetwork') }} </p>
+                    <p class="text-white text-sm mr-1"> {{ $t('shared.currentNetwork') }} </p>
                     <el-dropdown class="mr-3 lg:mr-0 flex items-center outline-none focus:outline-none" trigger="click" :hide-on-click="true">
                             <span class="el-dropdown-link text-background text-sm">
                                 {{ network.networks[network.currentNetwork].name }} <i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item v-for="(dic,i) in network.networks" :key="i" :command="i">
-                                    <a :href="dic.url" target="blank" v-if="network.currentNetwork != i"> {{ dic.name }} </a> 
-                                    <template v-else> {{ dic.name }} </template>
-                                </el-dropdown-item>
+                                <template v-for="(dic,i) in network.networks" > 
+                                    <a :href="dic.url" target="blank" v-if="network.currentNetwork != i" :key="i">
+                                        <el-dropdown-item :key="i" :command="i">
+                                            {{ dic.name }} 
+                                        </el-dropdown-item>
+                                    </a> 
+                                    <el-dropdown-item :key="i" :command="i" v-else>
+                                        {{ dic.name }} 
+                                    </el-dropdown-item>
+                                </template>
                             </el-dropdown-menu>
                     </el-dropdown>
                 </div>
