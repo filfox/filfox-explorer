@@ -435,7 +435,7 @@ export default {
           minerCharts: 'Miner Charts'
       },
       description: {
-        default: "Filfox is a Filecoin browser and data platform，supported by 6block.com."
+        default: "Filfox is a Filecoin browser and data platform, supported by 6block.com."
       }
     },
     merchant: {
