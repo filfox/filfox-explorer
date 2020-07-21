@@ -24,7 +24,7 @@
             <div class="flex flex-row flex-grow items-center justify-between mx-3 pb-1 border-b border-dashed border-background">
                 <p class=" font-medium text-xl"> {{ addressData.miner.qualityAdjPower | size_metric(2) }}</p>
                 <p class="text-xs pt-1 text-gray-800"> {{$t('detail.address.miner.minerOverview.headers.rate')}}: {{ (addressData.miner.qualityAdjPower/addressData.miner.totalQualityAdjPower * 100).toFixed(2) }}% </p>
-                <p class="text-xs pt-1 text-gray-800"> {{$t('detail.address.miner.minerOverview.headers.rank')}}: {{ addressData.miner.qualityAdjPowerRank }} </p>
+                <p class="text-xs pt-1 text-gray-800"> {{$t('detail.address.miner.minerOverview.headers.rank')}}: {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : N/A }} </p>
             </div>
 
             <div class="flex flex-row items-center justify-between mx-3 mt-1">
