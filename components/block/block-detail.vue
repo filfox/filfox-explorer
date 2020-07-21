@@ -21,7 +21,7 @@
         <dt class="w-1/8 pl-8 text-gray-600 px-2">{{ $t('detail.block.headers.miner') }}</dt>
         <dd class="flex mr-4">
           <AddressLink :id="block.miner" class="text-main"/>
-          <MinerTag :tag="block.minerTag" :type="1"/>
+          <MinerTag :tag="block.minerTag" :type="1" v-if="block.minerTag"/>
         </dd>
       </dl>
 
