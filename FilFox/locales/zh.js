@@ -19,7 +19,7 @@ export default {
         copySuccess: '复制成功',
         submit: '确定并提交',
         backToHome: '回到首页',
-        currentNetwork: '当前网络：'
+        currentNetwork: '当前网络:'
     },
     nav: {
         home: {
