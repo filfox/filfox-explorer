@@ -98,7 +98,7 @@ export default {
         });
     },
     convertData(data) {
-      if (data == null) {
+      if (!data) {
         this.dataEmpty = true;
         this.loading = false;
         return;
