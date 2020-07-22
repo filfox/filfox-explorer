@@ -59,7 +59,7 @@
 
         <dl class="flex flex-row my-2 items-center">
           <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.message.headers.value') }} </dt>
-          <dd class="flex mr-4">  {{ message.value | filecoin() }} </dd>
+          <dd class="flex mr-4">  {{ message.value | filecoin(4) }} </dd>
         </dl>
 
         <dl class="flex flex-row my-2 items-center">

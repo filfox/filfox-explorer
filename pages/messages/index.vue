@@ -106,7 +106,7 @@
                   {{ message.method }}
                 </td>
                 <td>
-                  {{ message.value | filecoin() }}
+                  {{ message.value | filecoin(4) }}
                 </td>
                 <td v-if="message.receipt">
                   {{ message.receipt.exitCode | exit-code }}

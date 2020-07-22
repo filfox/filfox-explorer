@@ -54,7 +54,7 @@
 
       <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2">
           <p class="flex w-1/4">{{ $t('detail.message.headers.value') }}</p>
-          <p class="flex w-3/4"> {{ message.value | filecoin() }} </p>
+          <p class="flex w-3/4"> {{ message.value | filecoin(4) }} </p>
       </div>
 
       <div class="flex flex-row justify-between items-center text-xs mx-4 pt-2">
