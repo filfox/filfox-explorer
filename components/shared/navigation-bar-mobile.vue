@@ -111,12 +111,10 @@ export default {
         },
         handleResourcesCommand(index) {
             if (index == 0) {
-                this.$message(this.$t('shared.notAvailable'))
-                //this.$router.push(this.localePath('/resources/tools'))
+                this.$router.push(this.localePath('/tools'))
             }
             else if (index == 1) {
-                this.$message(this.$t('shared.notAvailable'))
-                //this.$router.push(this.localePath('/resources/wiki'))
+                this.$router.push(this.localePath('/wiki'))
             }
             this.hideIfNeeded()
         },
