@@ -434,7 +434,9 @@ export default {
           rich: 'Rich List',
           messages: 'Message List',
           ranks: 'Top Miners',
-          minerCharts: 'Miner Charts'
+          minerCharts: 'Miner Charts',
+          tools: 'Tools',
+          wiki: 'Wiki',
       },
       description: {
         default: "Filfox is a Filecoin browser and data platform, supported by 6block.com."

@@ -38,12 +38,17 @@
       </el-dropdown-menu>
    </el-dropdown>
 
-   <el-dropdown class="m-5 outline-none focus:outline-none" @command="handleResourcesCommand">
+   <el-dropdown class="m-5 outline-none focus:outline-none">
       <span class="el-dropdown-link text-background text-sm">
            {{$t('nav.resources.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-         <el-dropdown-item v-for="(title,i) in resourcesSubMenus" :key="i" :command='i'> {{ title }} </el-dropdown-item>
+        <nuxt-link :to="localePath('/tools')">
+          <el-dropdown-item > {{ $t('nav.resources.subMenus.0') }} </el-dropdown-item>
+        </nuxt-link>
+        <nuxt-link :to="localePath('/wiki')">
+          <el-dropdown-item > {{ $t('nav.resources.subMenus.1') }} </el-dropdown-item>
+        </nuxt-link>
       </el-dropdown-menu>
    </el-dropdown>
 
@@ -79,16 +84,6 @@ export default {
       else if (index == 1) {
         this.$message(this.$t('shared.notAvailable'))
         //this.$router.push(this.localePath('/charts/fil'))
-      }
-    },
-    handleResourcesCommand(index) {
-      if (index == 0) {
-        this.$message(this.$t('shared.notAvailable'))
-        //this.$router.push(this.localePath('/resources/tools'))
-      }
-      else if (index == 1) {
-        this.$message(this.$t('shared.notAvailable'))
-        //this.$router.push(this.localePath('/resources/wiki'))
       }
     },
     async search() {

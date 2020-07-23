@@ -433,7 +433,9 @@ export default {
         "rich": "자산 순위",
         "messages": "메시지 리스트",
         "ranks": "채굴 순위",
-        "minerCharts": "채굴 도표"
+        "minerCharts": "채굴 도표",
+        tools: '도구',
+        wiki: '위키',
       },
       "description": {
         "default": "Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 6Block 이  운영 및 기술 지원을 담당하고 있습니다. 해당 플랫폼은 사용자들에게 파일코인과 관련된 다양한 정보와 도표를 제공하고 채굴자, 사용자, 블록내역, 메시지 내역과 여러 도구들도 제공합니다."
