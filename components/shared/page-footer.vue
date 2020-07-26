@@ -20,4 +20,4 @@
     <footer class="text-xs text-gray-300 text-opacity-25 container mx-auto border-t border-gray-300 border-opacity-25 py-3 px-6 text-center">© 2020 FilFox Project. All Rights Reserved.</footer>
     <div class="w-full h-2"></div>
   </div>
-</template>>
+</template>
