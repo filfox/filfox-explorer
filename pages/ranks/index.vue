@@ -39,6 +39,9 @@ export default {
       pageSize: 20,
     }
   },
+  mounted() {
+    this.getTopMinersByPower(this.pageSize, 0)
+  },
   methods: {
     async getTopMinersByPower(pageSize, page) {
       this.loading = true

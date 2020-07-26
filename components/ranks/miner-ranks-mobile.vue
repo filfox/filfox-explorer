@@ -166,9 +166,6 @@ export default {
       }
     }
   },
-  mounted() {
-    this.$emit('updateTopMinersByPower', this.pageSize, this.page)
-  },
   methods: {
     didRankTypeSwitched() {
       this.page = 0;

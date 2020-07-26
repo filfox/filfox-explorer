@@ -277,9 +277,6 @@ export default {
       }
     }
   },
-  mounted() {
-    this.$emit('updateTopMinersByPower', this.pageSize, this.page)
-  },
   methods: {
     didRankTypeSwitched(e, type) {
       this.type = type;
