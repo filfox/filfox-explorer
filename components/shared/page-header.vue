@@ -15,7 +15,7 @@
                             </span>
                             <el-dropdown-menu slot="dropdown">
                                 <template v-for="(dic,i) in network.networks" > 
-                                    <a :href="dic.url" target="blank" v-if="network.currentNetwork != i" :key="i">
+                                    <a :href="dic.url" target="_blank" v-if="network.currentNetwork != i" :key="i">
                                         <el-dropdown-item :key="i" :command="i">
                                             {{ dic.name }} 
                                         </el-dropdown-item>

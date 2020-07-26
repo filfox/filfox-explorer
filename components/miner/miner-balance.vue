@@ -16,10 +16,7 @@
 
 export default {
   props: {
-    addressData: {
-      type: Object,
-      default: {}
-    }
-  },
+    addressData: {type: Object, required: true}
+  }
 };
 </script>

@@ -54,10 +54,7 @@
 <script>
 export default {
     props: {
-        overview: {
-            type: Object,
-            default: {}
-        }
+        overview: {type: Object, required: true}
     },
     data() {
         return {

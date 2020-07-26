@@ -205,10 +205,7 @@
 <script>
 export default {
   props: {
-    addressData: {
-      type: Object,
-      default: {}
-    }
+    addressData: {type: Object, required: true}
   },
   data() {
     return {

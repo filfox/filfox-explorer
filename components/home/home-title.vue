@@ -13,10 +13,7 @@
 <script>
 export default {
     props: {
-        type: {
-            type: String,
-            default: 'overview'
-        }
+        type: {type: String, required: true}
     }
 }
 </script>

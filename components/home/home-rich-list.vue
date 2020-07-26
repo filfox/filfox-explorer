@@ -47,16 +47,8 @@
 <script>
 export default {
     props: {
-        richList: {
-            type: Object,
-            default: {}
-        },
-        richListLoading: {
-            type: Boolean,
-            default: false
-        }
-    },
-    methods: {
+        richList: {type: Object, required: true},
+        richListLoading: {type: Boolean, default: false}
     }
 }
 </script>

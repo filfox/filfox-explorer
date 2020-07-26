@@ -137,13 +137,10 @@
 
 <script>
 export default {
-    props: {
-        block: {
-            type: Object,
-            default: {}
-        }
-    },
-    data() {
+  props: {
+    block: {type: Object, required: true}
+  },
+  data() {
     return {
       messagesList:{},
       methodOptions: ["All"],

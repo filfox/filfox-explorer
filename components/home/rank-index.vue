@@ -10,10 +10,7 @@
 <script>
 export default {
     props: {
-        index: {
-            type: Number,
-            default: 1
-        }
+        index: {type: Number, required: true}
     }
 }
 </script>

@@ -14,10 +14,7 @@ import 'v-charts/lib/style.css'
 
 export default {
   props: {
-    merchant: {
-      type: String,
-      default: ''
-    }
+    merchant: {type: String, required: true}
   },
   data() {
     this.chartSettings = {

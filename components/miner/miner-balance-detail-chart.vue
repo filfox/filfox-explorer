@@ -14,10 +14,7 @@ import 'v-charts/lib/style.css'
 
 export default {
   props: {
-    addressData: {
-      type: Object,
-      default: {}
-    }
+    addressData: {type: Object, required: true}
   },
   data() {
     this.chartExtend = {

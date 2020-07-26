@@ -8,7 +8,7 @@ const Link = {
   props: {
     id: {type: null, required: true},
     route: {type: String, required: true},
-    routeQuery: {type: Object, default: () => {}},
+    routeQuery: {type: Object, default: () => ({})},
     plain: {type: Boolean, default: false},
     format: {
       validator(value) {
@@ -22,7 +22,8 @@ const Link = {
     const id = props.id == null ? '' : String(props.id)
     let tag
     const node = {
-      class: ['filecoin-link']
+      class: ['filecoin-link'],
+      attrs: {}
     }
     let linkSlots
     if (props.plain || !props.id) {
@@ -46,7 +47,7 @@ const Link = {
         [head, tail] = props.format
       }
       if (!data?.attrs?.title) {
-        node.data = {attrs: {title: id}}
+        node.attrs.title = id
       }
       if (head + tail + 1 >= id.length) {
         linkSlots = [id]

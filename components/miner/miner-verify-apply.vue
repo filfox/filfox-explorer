@@ -88,14 +88,8 @@
 <script>
 export default {
     props: {
-        addressInfo: {
-            type: String,
-            default: ''
-        },
-        tag: {
-            type: Object,
-            default:{}
-        }
+        addressInfo: {type: String, required: true},
+        tag: {type: Object, default: () => ({})}
     },
     data() {
         return {

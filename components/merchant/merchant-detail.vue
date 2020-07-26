@@ -8,7 +8,7 @@
                 </div>
                 <p class="text-xs text-gray-500 mt-2"> {{ merchant.description }} </p>
             </div>
-            <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-4 text-xs py-1" :href="merchant.website ? merchant.website :''" v-if="merchant.website" target="blank">  
+            <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-4 text-xs py-1" :href="merchant.website ? merchant.website :''" v-if="merchant.website" target="_blank">  
                 {{ $t('merchant.website') }}
             </a>
         </div>
@@ -126,7 +126,7 @@
                         <p class="text-xs ml-1"> : </p>
                         <el-rate :value="info.transparencyRating" :disabled="true" :max="5" show-score text-color="#ff9900" class="ml-2 flex items-center mb-1"></el-rate>
                     </div>
-                    <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-3 text-xs py-1" :href="info.link ? info.link :''" v-if="info.link" target="blank">  
+                    <a class="border border-button text-button hover:text-main hover:border-main rounded-full px-3 text-xs py-1" :href="info.link ? info.link :''" v-if="info.link" target="_blank">  
                         {{ $t('merchant.sales.detail') }}
                     </a>
                 </div>
@@ -170,21 +170,8 @@
 <script>
 export default {
     props: {
-        merchant: {
-            type: Object,
-            default() {
-                return {}
-            }
-        },
-        name: {
-            type: String,
-            default: ""
-        }
-    },
-    data() {
-        return {
-
-        }
+        merchant: {type: Object, required: true},
+        name: {type: String, default: ''}
     },
     methods: {
         didQuestionBtnClicked() {

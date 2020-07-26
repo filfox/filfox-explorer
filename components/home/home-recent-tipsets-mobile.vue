@@ -45,14 +45,8 @@
 <script>
 export default {
     props: {
-        recentTipsets: {
-            type: Array,
-            default: []
-        },
-        recentTipsetsLoading: {
-            type: Boolean,
-            default: false
-        }
+        recentTipsets: {type: Array, required: true},
+        recentTipsetsLoading: {type: Boolean, default: false}
     }
 }
 </script>
