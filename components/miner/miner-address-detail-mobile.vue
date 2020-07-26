@@ -24,7 +24,7 @@
             <div class="flex flex-row flex-grow items-center justify-between mx-3 pb-1 border-b border-dashed border-background">
                 <p class=" font-medium text-xl"> {{ addressData.miner.qualityAdjPower | size_metric(2) }}</p>
                 <p class="text-xs pt-1 text-gray-800"> {{$t('detail.address.miner.minerOverview.headers.rate')}}: {{ (addressData.miner.qualityAdjPower/addressData.miner.totalQualityAdjPower * 100).toFixed(2) }}% </p>
-                <p class="text-xs pt-1 text-gray-800"> {{$t('detail.address.miner.minerOverview.headers.rank')}}: {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : N/A }} </p>
+                <p class="text-xs pt-1 text-gray-800"> {{$t('detail.address.miner.minerOverview.headers.rank')}}: {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : 'N/A' }} </p>
             </div>
 
             <div class="flex flex-row items-center justify-between mx-3 mt-1">
@@ -120,7 +120,7 @@
             <div v-for="(message, index) in messagesList.messages" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white">
                 <div class="flex flex-row items-center justify-between mx-3 mt-3">
                     <p class="text-xs text-gray-800"> {{$t('blockchain.message.tableHeaders.id')}}: </p>
-                    <MessageLink :id="message.cid" :format="10" class="text-gray-800 text-xs" />
+                    <MessageLink :id="message.cid" :route-query="{height: message.height}" :format="10" class="text-gray-800 text-xs" />
                 </div>
                 <div class="flex flex-row items-center justify-between mx-3 mt-1">
                     <p class="text-xs text-gray-800"> {{$t('blockchain.message.tableHeaders.height')}}: </p>

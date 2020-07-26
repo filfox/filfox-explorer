@@ -4,17 +4,21 @@
       <div class="flex flex-col flex-grow rounded-md my-4 bg-white">
         <dl class="flex flex-row mt-4 my-2 items-center">
           <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.message.headers.cid') }} </dt>
-          <dd class="flex mr-4">  <BlockLink :id="id" plain /> </dd>
+          <dd class="flex mr-4">
+            <MessageLink :id="message.cid" plain />
+          </dd>
         </dl>
 
         <dl class="flex flex-row my-2 items-center">
           <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.message.headers.height') }} </dt>
-          <dd class="flex mr-4">  <TipsetLink :id="message.height" class=" text-main" /> </dd>
+          <dd class="flex mr-4">
+            <TipsetLink :id="message.height" class="text-main" />
+          </dd>
         </dl>
 
         <dl class="flex flex-row my-2 items-center">
           <dt class="w-1/8 pl-8 text-gray-600 px-2"> {{ $t('detail.message.headers.time') }} </dt>
-          <dd class="flex mr-4">  {{ message.timestamp | timestamp }} </dd>
+          <dd class="flex mr-4">{{ message.timestamp | timestamp }}</dd>
         </dl>
 
         <dl class="flex flex-row items-center my-2">
@@ -106,14 +110,7 @@
 <script>
 export default {
     props: {
-        message: {
-            type: Object,
-            default: {}
-        },
-        id: {
-            type: String,
-            default: ''
-        }
+        message: {type: Object, required: true}
     }
 }
 </script>

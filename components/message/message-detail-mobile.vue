@@ -5,7 +5,7 @@
       
       <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
           <p class="flex w-1/4">{{ $t('detail.message.headers.cid') }}</p>
-          <BlockLink :id="id" class="flex w-3/4" />
+          <MessageLink :id="message.cid" class="flex w-3/4" />
       </div>
 
       <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
@@ -100,14 +100,7 @@
 <script>
 export default {
     props: {
-        message: {
-            type: Object,
-            default: {}
-        },
-        id: {
-            type: String,
-            default: ''
-        }
+        message: {type: Object, required: true}
     }
 }
 </script>

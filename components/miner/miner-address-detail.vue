@@ -123,7 +123,7 @@
               class="h-12 border-b border-background"
             >
               <td>
-                <MessageLink :id="message.cid" :format="8" />
+                <MessageLink :id="message.cid" :route-query="{height: message.height}" :format="8" />
               </td>
               <td>
                 <TipsetLink :id="message.height" class="text-main" />
@@ -173,7 +173,7 @@
               <td v-if="block.reward">
                 {{ block.reward | filecoin(2) }}
               </td>
-              <td v-else> N/A </td>
+              <td v-else>N/A</td>
               <td>
                 {{ block.timestamp | timestamp('datetime') }}
               </td>

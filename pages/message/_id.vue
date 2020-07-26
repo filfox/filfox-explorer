@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
-    <MessageDetail :message="message" :id="id" class="hidden lg:flex"/>
-    <MessageDetailMobile :message="message" :id="id" class="lg:hidden"/>
+    <MessageDetail :message="message" class="hidden lg:flex"/>
+    <MessageDetailMobile :message="message" class="lg:hidden"/>
   </div>
 </template>
 

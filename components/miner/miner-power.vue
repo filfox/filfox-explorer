@@ -4,7 +4,7 @@
         <div class="flex flex-row items-center justify-between w-full">
             <p class=" font-medium text-2xl"> {{ addressData.miner.qualityAdjPower | size_metric(2) }}</p>
             <p class="text-sm"> {{$t('detail.address.miner.minerOverview.headers.rate')}}: {{ (addressData.miner.qualityAdjPower/addressData.miner.totalQualityAdjPower * 100).toFixed(2) }}% </p>
-            <p class="text-sm"> {{$t('detail.address.miner.minerOverview.headers.rank')}}: {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : N/A }} </p>
+            <p class="text-sm"> {{$t('detail.address.miner.minerOverview.headers.rank')}}: {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : 'N/A' }} </p>
         </div>
         <div class="flex flex-row items-center justify-between w-full mt-4">
             <p class="text-sm"> {{ $t('detail.address.miner.minerOverview.headers.rawBytePower')}}: {{ addressData.miner.rawBytePower | size_metric(2) }}</p>
