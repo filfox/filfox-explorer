@@ -75,7 +75,7 @@
                 <MinerTag :tag="miner.tag" :type="2" v-if="miner.tag"/>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
-                <p> {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed')}}: {{ (miner.qualityAdjPowerDelta / convertedDurationByDay() / topMinersByPowerDelta.durationPercentage) | size_metric(2)}} / {{ $t('shared.time.day') }} </p>
+                <p> {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed')}}: {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2)}} / {{ $t('shared.time.day') }} </p>
                 <p> {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners')}}: {{ miner.equivalentMiners.toFixed(2) }} </p>
             </div>
             <div class="flex flex-row justify-between my-1 mx-2 text-xs">
@@ -111,6 +111,12 @@ import rankIndex from "~/components/home/rank-index";
 import rankLocation from "~/components/home/rank-location";
 
 export default {
+  props: {
+    topMinersByPower: {type: Object, required: true},
+    topMinersByBlocks: {type: Object, required: true},
+    topMinersByPowerDelta: {type: Object, required: true},
+    loading: {type: Boolean, default: false}
+  },
   components: {
     homeTitle,
     rankIndex,
@@ -118,115 +124,35 @@ export default {
   },
   data() {
     return {
-      topMinersByPower: {},
-      topMinersByBlocks: {},
-      topMinersByPowerDelta: {},
-      duration: "24h",
-      durationName: '24' + this.$t('shared.time.hour'),
       type: '0',
-      rankTableHeadersByPowers: this.$t("home.minerRanks.tableHeadersByPower"),
-      rankTableHeadersByBlocks: this.$t("home.minerRanks.tableHeadersByBlock"),
-      rankTableHeadersByPowerDelta: this.$t(
-        "home.minerRanks.tableHeadersByPowerDelta"
-      ),
-      totalPageCount: 0,
+      duration: "24h",
       pageSize: 10,
-      page: 0,
-      loading: false
+      page: 0
     };
   },
-  mounted() {
-    this.getTopMinersByPowers();
-  },
-  methods: {
-    getTopMinersByPowers() {
-      this.loading = true;
-      this.$axios
-        .get("/miner/list/power", {
-          params: { pageSize: this.pageSize, page: this.page }
-        })
-        .then(res => {
-          this.topMinersByPower = res.data;
-          this.getTotalPageCount();
-          this.loading = false;
-        });
-    },
-    getTopMinersByBlocks() {
-      this.loading = true;
-      this.$axios
-        .get("/miner/list/blocks", {
-          params: {
-            pageSize: this.pageSize,
-            page: this.page,
-            duration: this.duration
-          }
-        })
-        .then(res => {
-          this.topMinersByBlocks = res.data;
-          this.getTotalPageCount();
-          this.loading = false;
-        });
-    },
-    getTopMinersByPowerDelta() {
-      this.loading = true;
-      this.$axios
-        .get("/miner/list/power-delta", {
-          params: {
-            pageSize: this.pageSize,
-            page: this.page,
-            duration: this.duration
-          }
-        })
-        .then(res => {
-          this.topMinersByPowerDelta = res.data;
-          this.getTotalPageCount();
-          this.loading = false;
-        });
-    },
-    didRankTypeSwitched() {
-      this.page = 0;
-      this.totalPageCount = 1;
-      switch (this.type) {
-        case '0':
-          this.getTopMinersByPowers();
-          break;
-        case '1':
-          this.getTopMinersByBlocks();
-          break;
-        case '2':
-          this.getTopMinersByPowerDelta();
-          break;
-        default:
-          break;
+  computed: {
+    totalPageCount() {
+      if (this.type === '0') {
+        return this.topMinersByPower == null
+          ? 0
+          : Math.ceil(this.topMinersByPower.totalCount / this.pageSize);
+      } else if (this.type == '1') {
+        return this.topMinersByBlocks.miners == null
+          ? 0
+          : Math.ceil(this.topMinersByBlocks.totalCount / this.pageSize);
+      } else {
+        return this.topMinersByPowerDelta.miners == null
+          ? 0
+          : Math.ceil(this.topMinersByPowerDelta.totalCount / this.pageSize);
       }
-      this.getTotalPageCount();
     },
-    didDurationSwitched(command) {
-        this.duration = command
-        switch(command) {
-            case '24h':
-            this.durationName =  '24' + this.$t('shared.time.hour')
-            break;
-            case '7d':
-            this.durationName =  '7' + this.$t('shared.time.day')   
-            break;
-            case '30d':
-            this.durationName =  '30' + this.$t('shared.time.day')
-            break;
-            case '1y':
-            this.durationName =  '1' + this.$t('shared.time.year')
-            break;
-            default:
-            break;
-        }
-        this.page = 0;
-        this.totalPageCount = 1;
-        if (this.type === '1') {
-            this.getTopMinersByBlocks()
-        }
-        else if (this.type === '2') {
-            this.getTopMinersByPowerDelta()
-        }
+    durationName() {
+      return {
+        '24h': '24' + this.$t('shared.time.hour'),
+        '7d': '7' + this.$t('shared.time.day'),
+        '30d': '30' + this.$t('shared.time.day'),
+        '1y': '1' + this.$t('shared.time.year')
+      }[this.duration]
     },
     convertedDurationByDay() {
       if (this.duration === "24h") {
@@ -238,36 +164,49 @@ export default {
       } else {
         return 365;
       }
-    },
-    getTotalPageCount() {
-      if (this.type === '0') {
-        this.totalPageCount =
-          this.topMinersByPower == null
-            ? 0
-            : Math.ceil(this.topMinersByPower.totalCount / this.pageSize);
-      } else if (this.type == '1') {
-        this.totalPageCount =
-          this.topMinersByBlocks.miners == null
-            ? 0
-            : Math.ceil(this.topMinersByBlocks.totalCount / this.pageSize);
-      } else {
-        this.totalPageCount =
-          this.topMinersByPowerDelta.miners == null
-            ? 0
-            : Math.ceil(this.topMinersByPowerDelta.totalCount / this.pageSize);
+    }
+  },
+  mounted() {
+    this.$emit('updateTopMinersByPower', this.pageSize, this.page)
+  },
+  methods: {
+    didRankTypeSwitched() {
+      this.page = 0;
+      switch (this.type) {
+        case '0':
+          this.$emit('updateTopMinersByPower', this.pageSize, this.page);
+          break;
+        case '1':
+          this.$emit('updateTopMinersByBlocks', this.pageSize, this.page, this.duration);
+          break;
+        case '2':
+          this.$emit('updateTopMinersByPowerDelta', this.pageSize, this.page, this.duration);
+          break;
+        default:
+          break;
       }
+    },
+    didDurationSwitched(command) {
+        this.duration = command
+        this.page = 0;
+        if (this.type === '1') {
+            this.$emit('updateTopMinersByBlocks', this.pageSize, this.page, this.duration)
+        }
+        else if (this.type === '2') {
+            this.$emit('updateTopMinersByPowerDelta', this.pageSize, this.page, this.duration)
+        }
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1;
       switch (this.type) {
         case '0':
-          this.getTopMinersByPowers();
+          this.$emit('updateTopMinersByPower', this.pageSize, this.page);
           break;
         case '1':
-          this.getTopMinersByBlocks();
+          this.$emit('updateTopMinersByBlocks', this.pageSize, this.page, this.duration);
           break;
         case '2':
-          this.getTopMinersByPowerDelta();
+          this.$emit('updateTopMinersByPowerDelta', this.pageSize, this.page, this.duration);
           break;
         default:
           break;

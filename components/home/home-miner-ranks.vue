@@ -163,7 +163,7 @@
               <div class="flex flex-row items-center justify-end">
                   <el-progress :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100" :show-text="false" class="flex w-1/2 mx-1 mr-3"></el-progress>
                   <div class="flex w-1/3">
-                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay() / topMinersByPowerDelta.durationPercentage) | size_metric(2)}} / {{ $t('shared.time.day') }} 
+                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2)}} / {{ $t('shared.time.day') }} 
                   </div>
               </div>
             </td>
@@ -195,6 +195,12 @@ import rankIndex from "~/components/home/rank-index"
 import rankLocation from "~/components/home/rank-location"
 
 export default {
+  props: {
+    topMinersByPower: {type: Object, required: true},
+    topMinersByBlocks: {type: Object, required: true},
+    topMinersByPowerDelta: {type: Object, required: true},
+    loading: {type: Boolean, default: false}
+  },
   components: {
     homeTitle,
     rankIndex,
@@ -202,83 +208,14 @@ export default {
   },
   data() {
     return {
-      topMinersByPower: {},
-      topMinersByBlocks: {},
-      topMinersByPowerDelta: {},
-      duration: "24h",
       type: 0,
+      duration: '24h',
       rankTableHeadersByPowers: this.$t("home.minerRanks.tableHeadersByPower"),
       rankTableHeadersByBlocks: this.$t("home.minerRanks.tableHeadersByBlock"),
-      rankTableHeadersByPowerDelta: this.$t(
-        "home.minerRanks.tableHeadersByPowerDelta"
-      ),
-      loading: false
+      rankTableHeadersByPowerDelta: this.$t("home.minerRanks.tableHeadersByPowerDelta")
     };
   },
-  mounted() {
-    this.getTopMinersByPowers();
-  },
-  methods: {
-    getTopMinersByPowers() {
-        this.loading = true
-        this.$axios
-        .get("/miner/top-miners/power", { params: { count: 10 } })
-        .then(res => {
-          this.topMinersByPower = res.data;
-          this.loading = false
-        });
-    },
-    getTopMinersByBlocks() {
-        this.loading = true
-        this.$axios
-        .get("/miner/top-miners/blocks", { params: { count: 10, duration:this.duration } })
-        .then(res => {
-          this.topMinersByBlocks = res.data;
-          this.loading = false
-        });
-    },
-    getTopMinersByPowerDelta() {
-        this.loading = true
-        this.$axios
-        .get("/miner/top-miners/power-delta", { params: { count: 10, duration:this.duration } })
-        .then(res => {
-          this.topMinersByPowerDelta = res.data;
-          this.loading = false
-        });
-    },
-    didRankTypeSwitched(e, type) {
-        this.type = type
-        switch(type) {
-            case 0:
-            this.getTopMinersByPowers()
-            break;
-            case 1:
-            this.getTopMinersByBlocks()
-            break;
-            case 2:
-            this.getTopMinersByPowerDelta()
-            break;
-            default:
-            break;
-        }
-        let node = e.target
-        while (true) {
-          if (node?.tagName?.toLowerCase() === 'button') {
-            node.blur()
-            break
-          } else {
-            node = node.parentElement
-          }
-        }
-    },
-    didDurationSwitched() {
-        if (this.type === 1) {
-            this.getTopMinersByBlocks()
-        }
-        else if (this.type === 2) {
-            this.getTopMinersByPowerDelta()
-        }
-    },
+  computed: {
     convertedDurationByDay() {
       if (this.duration === '24h') {
         return 1
@@ -292,6 +229,41 @@ export default {
       else {
         return 365
       }
+    }
+  },
+  methods: {
+    didRankTypeSwitched(e, type) {
+      this.type = type
+      switch (type) {
+        case 0:
+          this.$emit('updateTopMinersByPower')
+          break;
+        case 1:
+          this.$emit('updateTopMinersByBlocks', this.duration)
+          break;
+        case 2:
+          this.$emit('updateTopMinersByPowerDelta', this.duration)
+          break;
+        default:
+          break;
+      }
+      let node = e.target
+      while (true) {
+        if (node?.tagName?.toLowerCase() === 'button') {
+          node.blur()
+          break
+        } else {
+          node = node.parentElement
+        }
+      }
+    },
+    didDurationSwitched() {
+        if (this.type === 1) {
+            this.$emit('updateTopMinersByBlocks', this.duration)
+        }
+        else if (this.type === 2) {
+            this.$emit('updateTopMinersByPowerDelta', this.duration)
+        }
     }
   }
 };

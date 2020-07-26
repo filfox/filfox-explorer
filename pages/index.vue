@@ -19,8 +19,24 @@
       </div>
     </div>
 
-    <HomeMinerRanksMobile class="lg:hidden"/>
-    <HomeMinerRanks class="hidden lg:flex"/>
+    <HomeMinerRanksMobile class="lg:hidden"
+      :topMinersByPower="topMinersByPower"
+      :topMinersByBlocks="topMinersByBlocks"
+      :topMinersByPowerDelta="topMinersByPowerDelta"
+      :loading="topMinersLoading"
+      @updateTopMinersByPower="getTopMinersByPower"
+      @updateTopMinersByBlocks="getTopMinersByBlocks"
+      @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
+    />
+    <HomeMinerRanks class="hidden lg:flex"
+      :topMinersByPower="topMinersByPower"
+      :topMinersByBlocks="topMinersByBlocks"
+      :topMinersByPowerDelta="topMinersByPowerDelta"
+      :loading="topMinersLoading"
+      @updateTopMinersByPower="getTopMinersByPower"
+      @updateTopMinersByBlocks="getTopMinersByBlocks"
+      @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
+    />
 
     <div class="mb-4 hidden lg:flex lg:flex-row">
       <HomeRecentTipsets :recentTipsets="recentTipsets" :recentTipsetsLoading="recentTipsetsLoading" />
@@ -61,14 +77,8 @@ import FromNow from '@/components/shared/from-now'
 export default {
   async asyncData({$axios, error}) {
     try {
-      const [
-        overview,
-      ] = await Promise.all([
-        $axios.$get('/overview'),
-      ])
-      return {
-        overview,
-      }
+      const overview = await $axios.$get('/overview')
+      return {overview}
     } catch (err) {
       if (err?.response) {
         error({code: err.response.status, message: err.response.statusText})
@@ -83,6 +93,10 @@ export default {
   data() {
     return {
       overview: {},
+      topMinersByPower: {},
+      topMinersByBlocks: {},
+      topMinersByPowerDelta: {},
+      topMinersLoading: false,
       recentTipsets:[],
       recentTipsetsLoading: false,
       richList: {},
@@ -90,14 +104,15 @@ export default {
     };
   },
   mounted() {
-      this.getRecentTipsets()
-      this.getRichList()
-      this.$onUpdateOverview = this.onUpdateOverview.bind(this)
-      this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
-      this.$onUpdateRichList = this.onUpdateRichList.bind(this)
-      this.$subscribe('account', 'account/rich-list', this.$onUpdateRichList)
-      this.$onUpdateRecentTipsets = this.onUpdateRecentTipsets.bind(this)
-      this.$subscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
+    this.getTopMinersByPower()
+    this.getRecentTipsets()
+    this.getRichList()
+    this.$onUpdateOverview = this.onUpdateOverview.bind(this)
+    this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
+    this.$onUpdateRichList = this.onUpdateRichList.bind(this)
+    this.$subscribe('account', 'account/rich-list', this.$onUpdateRichList)
+    this.$onUpdateRecentTipsets = this.onUpdateRecentTipsets.bind(this)
+    this.$subscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
   },
   beforeDestroy() {
     this.$unsubscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
@@ -105,26 +120,33 @@ export default {
     this.$unsubscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
   },
   methods: {
-    getRecentTipsets() {
-        this.recentTipsetsLoading = true
-        this.$axios
-        .get("/tipset/recent", { params: { count: 10 } })
-        .then(res => {
-          this.recentTipsets = res.data;
-          this.recentTipsetsLoading = false
-        });
+    async getTopMinersByPower() {
+      this.topMinersLoading = true
+      this.topMinersByPower = await this.$axios.$get("/miner/top-miners/power", { params: { count: 10 } })
+      this.topMinersLoading = false
     },
-    getRichList() {
-        this.richListLoading = true
-        this.$axios
-        .get("/rich-list", { params: {pageSize: 10,page: 0} })
-        .then(res => {
-          this.richList = res.data;
-          this.richListLoading = false
-        });
+    async getTopMinersByBlocks(duration) {
+      this.topMinersLoading = true
+      this.topMinersByBlocks = await this.$axios.$get("/miner/top-miners/blocks", { params: { count: 10, duration } })
+      this.topMinersLoading = false
+    },
+    async getTopMinersByPowerDelta(duration) {
+      this.topMinersLoading = true
+      this.topMinersByPowerDelta = await this.$axios.$get("/miner/top-miners/power-delta", { params: { count: 10, duration } })
+      this.topMinersLoading = false
+    },
+    async getRecentTipsets() {
+      this.recentTipsetsLoading = true
+      this.recentTipsets = await this.$axios.$get("/tipset/recent", { params: { count: 10 } })
+      this.recentTipsetsLoading = false
+    },
+    async getRichList() {
+      this.richListLoading = true
+      this.richList = await this.$axios.$get("/rich-list", { params: {pageSize: 10,page: 0} })
+      this.richListLoading = false
     },
     onUpdateOverview(overview) {
-        this.overview = overview
+      this.overview = overview
     },
     onUpdateRichList(richList) {
       this.richList = richList

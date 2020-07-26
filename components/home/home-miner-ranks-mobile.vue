@@ -5,21 +5,21 @@
       <div class="justify-between flex flex-row">
         <div class="flex flex-grow h-10 ml-4 items-center relative">
           <el-tabs v-model="type" @tab-click="didRankTypeSwitched" class="w-full mr-4">
-             <el-tab-pane :label="$t('home.minerRanks.filters.qualityAdjPower')" name="0" class="text-sm"> </el-tab-pane>
-             <el-tab-pane :label="$t('home.minerRanks.filters.blocks')" name="1"></el-tab-pane>
-             <el-tab-pane :label="$t('home.minerRanks.filters.powerDelta')" name="2"></el-tab-pane>
-         </el-tabs>
-         <el-dropdown @command="didDurationSwitched" trigger="click" :hide-on-click="true" class="border border-background px-2 rounded-sm mr-4 absolute right-0 bottom-0 mb-4" v-if="type != '0'">
+            <el-tab-pane :label="$t('home.minerRanks.filters.qualityAdjPower')" name="0" class="text-sm"> </el-tab-pane>
+            <el-tab-pane :label="$t('home.minerRanks.filters.blocks')" name="1"></el-tab-pane>
+            <el-tab-pane :label="$t('home.minerRanks.filters.powerDelta')" name="2"></el-tab-pane>
+          </el-tabs>
+          <el-dropdown @command="didDurationSwitched" trigger="click" :hide-on-click="true" class="border border-background px-2 rounded-sm mr-4 absolute right-0 bottom-0 mb-4" v-if="type != '0'">
             <span class="el-dropdown-link text-sm">
-                {{ durationName }} <i class="el-icon-arrow-down el-icon--right"></i>
+              {{ durationName }} <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="24h"> {{ '24' + $t('shared.time.hour') }} </el-dropdown-item>
-                <el-dropdown-item command="7d"> {{'7' + $t('shared.time.day')}} </el-dropdown-item>
-                <el-dropdown-item command="30d"> {{'30' + $t('shared.time.day')}} </el-dropdown-item>
-                <el-dropdown-item command="1y"> {{'1' + $t('shared.time.year')}} </el-dropdown-item>
+              <el-dropdown-item command="24h"> {{ '24' + $t('shared.time.hour') }} </el-dropdown-item>
+              <el-dropdown-item command="7d"> {{'7' + $t('shared.time.day')}} </el-dropdown-item>
+              <el-dropdown-item command="30d"> {{'30' + $t('shared.time.day')}} </el-dropdown-item>
+              <el-dropdown-item command="1y"> {{'1' + $t('shared.time.year')}} </el-dropdown-item>
             </el-dropdown-menu>
-         </el-dropdown>
+          </el-dropdown>
         </div>
       </div>
     </div>
@@ -131,93 +131,31 @@
 <script>
 
 export default {
+  props: {
+    topMinersByPower: {type: Object, required: true},
+    topMinersByBlocks: {type: Object, required: true},
+    topMinersByPowerDelta: {type: Object, required: true},
+    loading: {type: Boolean, default: false}
+  },
   data() {
     return {
-      topMinersByPower: {},
-      topMinersByBlocks: {},
-      topMinersByPowerDelta: {},
-      duration: "24h",
-      durationName: '24' + this.$t('shared.time.hour'),
       type: '0',
+      duration: '24h',
       rankTableHeadersByPowers: this.$t("home.minerRanks.tableHeadersByPower"),
       rankTableHeadersByBlocks: this.$t("home.minerRanks.tableHeadersByBlock"),
       rankTableHeadersByPowerDelta: this.$t(
         "home.minerRanks.tableHeadersByPowerDelta"
-      ),
-      loading: false
+      )
     };
   },
-  mounted() {
-    this.getTopMinersByPowers();
-  },
-  methods: {
-    getTopMinersByPowers() {
-        this.loading = true
-        this.$axios
-        .get("/miner/top-miners/power", { params: { count: 10 } })
-        .then(res => {
-          this.topMinersByPower = res.data;
-          this.loading = false
-        });
-    },
-    getTopMinersByBlocks() {
-        this.loading = true
-        this.$axios
-        .get("/miner/top-miners/blocks", { params: { count: 10, duration:this.duration } })
-        .then(res => {
-          this.topMinersByBlocks = res.data;
-          this.loading = false
-        });
-    },
-    getTopMinersByPowerDelta() {
-        this.loading = true
-        this.$axios
-        .get("/miner/top-miners/power-delta", { params: { count: 10, duration:this.duration } })
-        .then(res => {
-          this.topMinersByPowerDelta = res.data;
-          this.loading = false
-        });
-    },
-    didRankTypeSwitched() {
-        switch(this.type) {
-            case '0':
-            this.getTopMinersByPowers()
-            break;
-            case '1':
-            this.getTopMinersByBlocks()
-            break;
-            case '2':
-            this.getTopMinersByPowerDelta()
-            break;
-            default:
-            break;
-        }
-    },
-    didDurationSwitched(command) {
-        this.duration = command
-        switch(command) {
-            case '24h':
-            this.durationName =  '24' + this.$t('shared.time.hour')
-            break;
-            case '7d':
-            this.durationName =  '7' + this.$t('shared.time.day')   
-            break;
-            case '30d':
-            this.durationName =  '30' + this.$t('shared.time.day')
-            break;
-            case '1y':
-            this.durationName =  '1' + this.$t('shared.time.year')
-            break;
-            default:
-            break;
-        }
-
-        if (this.type === '1') {
-            this.getTopMinersByBlocks()
-        }
-        else if (this.type === '2') {
-            this.getTopMinersByPowerDelta()
-        }
+  computed: {
+    durationName() {
+      return {
+        '24h': '24' + this.$t('shared.time.hour'),
+        '7d': '7' + this.$t('shared.time.day'),
+        '30d': '30' + this.$t('shared.time.day'),
+        '1y': '1' + this.$t('shared.time.year')
+      }[this.duration]
     },
     convertedDurationByDay() {
       if (this.duration === '24h') {
@@ -232,6 +170,32 @@ export default {
       else {
         return 365
       }
+    }
+  },
+  methods: {
+    didRankTypeSwitched() {
+      switch (type) {
+        case 0:
+          this.$emit('updateTopMinersByPower')
+          break;
+        case 1:
+          this.$emit('updateTopMinersByBlocks', this.duration)
+          break;
+        case 2:
+          this.$emit('updateTopMinersByPowerDelta', this.duration)
+          break;
+        default:
+          break;
+      }
+    },
+    didDurationSwitched(command) {
+        this.duration = command
+        if (this.type === '1') {
+            this.getTopMinersByBlocks()
+        }
+        else if (this.type === '2') {
+            this.getTopMinersByPowerDelta()
+        }
     }
   }
 };
