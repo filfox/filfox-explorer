@@ -32,7 +32,9 @@
     </div>
 
     <div class="flex flex-grow items-center text-center h-12">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" type="text" v-on:click="didRichManListMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+      <nuxt-link :to="localePath('/rich')" class="flex m-auto">
+        <el-button class="focus:outline-none outline-none" size="mini" type="text"> {{ $t('home.minerRanks.moreBtn') }} </el-button>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -56,11 +58,6 @@ export default {
         richListLoading: {
             type: Boolean,
             default: false
-        }
-    },
-    methods: {
-        didRichManListMoreBtnClicked() {
-         this.$router.push(this.localePath('/rich'))
         }
     }
 }

@@ -338,9 +338,6 @@ export default {
         this.getTopMinersByPowerDelta();
       }
     },
-    didMoreBtnClicked() {
-      this.$router.push(this.localePath("/ranks"));
-    },
     convertedDurationByDay() {
       if (this.duration === "24h") {
         return 1;
