@@ -4,6 +4,7 @@
       :topMinersByPower="topMinersByPower"
       :topMinersByBlocks="topMinersByBlocks"
       :topMinersByPowerDelta="topMinersByPowerDelta"
+      :pageSize="pageSize"
       :loading="loading"
       @updateTopMinersByPower="getTopMinersByPower"
       @updateTopMinersByBlocks="getTopMinersByBlocks"
@@ -13,6 +14,7 @@
       :topMinersByPower="topMinersByPower"
       :topMinersByBlocks="topMinersByBlocks"
       :topMinersByPowerDelta="topMinersByPowerDelta"
+      :pageSize="pageSize"
       :loading="loading"
       @updateTopMinersByPower="getTopMinersByPower"
       @updateTopMinersByBlocks="getTopMinersByBlocks"
@@ -33,7 +35,8 @@ export default {
       topMinersByPower: {},
       topMinersByBlocks: {},
       topMinersByPowerDelta: {},
-      loading: false
+      loading: false,
+      pageSize: 20,
     }
   },
   methods: {

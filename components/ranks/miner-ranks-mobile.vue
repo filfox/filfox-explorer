@@ -115,6 +115,7 @@ export default {
     topMinersByPower: {type: Object, required: true},
     topMinersByBlocks: {type: Object, required: true},
     topMinersByPowerDelta: {type: Object, required: true},
+    pageSize: {type: Number, required: true},
     loading: {type: Boolean, default: false}
   },
   components: {
@@ -126,7 +127,6 @@ export default {
     return {
       type: '0',
       duration: "24h",
-      pageSize: 10,
       page: 0
     };
   },
