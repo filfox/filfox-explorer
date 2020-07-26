@@ -2,7 +2,7 @@
     <div class="bg-white mr-2 rounded-md w-1/2 flex flex-col overflow-hidden">
         <div class="flex flex-row items-center justify-between border-b border-background">
           <HomeTitle type="recentTipsets" class="flex flex-grow"/>
-          <nuxt-link :to="localePath('/recent-tipsets')" class="mr-4">
+          <nuxt-link :to="localePath('/tipset')" class="mr-4">
           <el-button round size="mini" class="focus:outline-none outline-none"> {{ $t('shared.more') }} </el-button>
           </nuxt-link>
         </div>

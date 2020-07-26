@@ -26,7 +26,9 @@
           <div class="flex h-24" v-if="recentTipsetsLoading" v-loading="recentTipsetsLoading"></div>
         </div>
         <div class="flex flex-grow items-center text-center h-12">
-        <el-button class="flex m-auto focus:outline-none outline-none" size="mini" type="text" v-on:click="didRecentTipsetsMoreBtnClicked"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+            <nuxt-link :to="localePath('/tipset')" class="flex m-auto">
+                <el-button class="focus:outline-none outline-none" size="mini" type="text"> {{ $t('home.minerRanks.moreBtn') }} </el-button> 
+            </nuxt-link>
         </div>
     </div>
 </template>
@@ -51,11 +53,6 @@ export default {
             type: Boolean,
             default: false
         }
-    },
-    methods: {
-        didRecentTipsetsMoreBtnClicked() {
-            this.$router.push(this.localePath('/recent-tipsets'))
-        },
     }
 }
 </script>

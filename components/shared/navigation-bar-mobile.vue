@@ -6,26 +6,40 @@
 
         <div class="flex ml-4 mr-1 flex-col mt-1">
             <el-collapse class="w-full">
-                <el-collapse-item :title="blockchainTitle">
-                    <div class="text-xs text-gray-500 mb-1" @click="handleBlocksCommand(0)"> {{ $t('nav.blocks.subMenus.0') }} </div>
-                    <div class="text-xs text-gray-500 mb-1" @click="handleBlocksCommand(1)"> {{ $t('nav.blocks.subMenus.1') }} </div>
-                    <div class="text-xs text-gray-500 mb-1" @click="handleBlocksCommand(2)"> {{ $t('nav.blocks.subMenus.2') }} </div>
+                <el-collapse-item :title="$t('nav.blocks.title')">
+                    <nuxt-link :to="localePath('/tipset')" class="link" @click.native="hideIfNeeded">
+                        {{ $t('nav.blocks.subMenus.0') }}
+                    </nuxt-link>
+                    <nuxt-link :to="localePath('/message')" class="link" @click.native="hideIfNeeded">
+                        {{ $t('nav.blocks.subMenus.1') }}
+                    </nuxt-link>
+                    <nuxt-link :to="localePath('/rich')" class="link" @click.native="hideIfNeeded">
+                        {{ $t('nav.blocks.subMenus.2') }}
+                    </nuxt-link>
                 </el-collapse-item>
             </el-collapse>
 
-            <div class="ranks text-sm py-2 cursor-pointer" @click="handleRanksSelect"> {{ $t('nav.ranks.title') }} </div>
+            <nuxt-link :to="localePath('/ranks')" class="block ranks text-sm py-2 cursor-pointer" @click.native="hideIfNeeded">
+                {{ $t('nav.ranks.title') }}
+            </nuxt-link>
 
             <el-collapse class="w-full">
-                <el-collapse-item :title="chartTitle">
-                    <div class="text-xs text-gray-500 mb-1" @click="handleChartsCommand(0)"> {{ $t('nav.charts.subMenus.0') }} </div>
-                    <div class="text-xs text-gray-500 mb-1" @click="handleChartsCommand(1)"> {{ $t('nav.charts.subMenus.1') }} </div>
+                <el-collapse-item :title="$t('nav.charts.title')">
+                    <nuxt-link :to="localePath('/charts/miner')" class="link" @click.native="hideIfNeeded">
+                        {{ $t('nav.charts.subMenus.0') }}
+                    </nuxt-link>
+                    <div class="link" @click="pageNotAvailable">{{ $t('nav.charts.subMenus.1') }}</div>
                 </el-collapse-item>
             </el-collapse>
 
             <el-collapse class="w-full">
-                <el-collapse-item :title="resourcesTitle">
-                    <div class="text-xs text-gray-500 mb-1" @click="handleResourcesCommand(0)"> {{ $t('nav.resources.subMenus.0') }} </div>
-                    <div class="text-xs text-gray-500 mb-1" @click="handleResourcesCommand(1)"> {{ $t('nav.resources.subMenus.1') }} </div>
+                <el-collapse-item :title="$t('nav.resources.title')">
+                    <nuxt-link :to="localePath('/tools')" class="link" @click.native="hideIfNeeded">
+                        {{ $t('nav.resources.subMenus.0') }}
+                    </nuxt-link>
+                    <nuxt-link :to="localePath('/wiki')" class="link" @click.native="hideIfNeeded">
+                        {{ $t('nav.resources.subMenus.1') }}
+                    </nuxt-link>
                 </el-collapse-item>
             </el-collapse>
         </div>    
@@ -33,11 +47,14 @@
     </div>
 </template>
 
-<style>
+<style lang="postcss">
 .ranks {
     font-size: 13px;
     color: #303133;
     font-weight: 500;
+}
+.link {
+    @apply block text-xs text-gray-500 mb-1;
 }
 .el-collapse {
     border: none;
@@ -71,52 +88,9 @@ export default {
             loading: false
         }
     },
-    computed: {
-        blockchainTitle() {
-            return this.$t('nav.blocks.title')
-        },
-        chartTitle() {
-            return this.$t('nav.charts.title')
-        },
-        resourcesTitle() {
-            return this.$t('nav.resources.title')
-        }
-    },
     methods: {
-        handleRanksSelect() {
-            this.$router.push(this.localePath('/ranks'))
-            this.hideIfNeeded()
-        },
-        handleBlocksCommand(index) {
-            if (index == 0) {
-                this.$router.push(this.localePath('/recent-tipsets'))
-            }
-            else if (index == 1) {
-                this.$router.push(this.localePath('/messages'))
-            }
-            else {
-                this.$router.push(this.localePath('/rich'))
-            }
-            this.hideIfNeeded()
-        },
-        handleChartsCommand(index) {
-            if (index == 0) {
-                this.$router.push(this.localePath('/charts/miner'))
-            }
-            else if (index == 1) {
-                this.$message(this.$t('shared.notAvailable'))
-                //this.$router.push(this.localePath('/charts/fil'))
-            }
-            this.hideIfNeeded()
-        },
-        handleResourcesCommand(index) {
-            if (index == 0) {
-                this.$router.push(this.localePath('/tools'))
-            }
-            else if (index == 1) {
-                this.$router.push(this.localePath('/wiki'))
-            }
-            this.hideIfNeeded()
+        pageNotAvailable() {
+            this.$message(this.$t('shared.notAvailable'))
         },
         hideIfNeeded() {
             this.$emit('hideIfNeeded')

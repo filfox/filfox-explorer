@@ -1,59 +1,62 @@
 <template>
- <div class="container px-4 h-12 flex-row items-center mx-auto lg:px-0">
-   <nuxt-link :to="localePath('/')">
+  <div class="container px-4 h-12 flex-row items-center mx-auto lg:px-0">
+    <nuxt-link :to="localePath('/')">
       <div class="ml-2 mr-5 text-background text-sm cursor-pointer outline-none focus:outline-none">
         {{$t('nav.home.title')}}
       </div>
-   </nuxt-link>
+    </nuxt-link>
    
-   <el-dropdown class="m-5 outline-none focus:outline-none">
+    <el-dropdown class="m-5 outline-none focus:outline-none">
       <span class="el-dropdown-link text-background text-sm">
-           {{$t('nav.blocks.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
+        {{$t('nav.blocks.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <nuxt-link :to="localePath('/recent-tipsets')">
-           <el-dropdown-item > {{ $t('nav.blocks.subMenus.0') }} </el-dropdown-item>
+        <nuxt-link :to="localePath('/tipset')">
+          <el-dropdown-item>{{ $t('nav.blocks.subMenus.0') }}</el-dropdown-item>
         </nuxt-link>
-        <nuxt-link :to="localePath('/messages')">
-          <el-dropdown-item > {{ $t('nav.blocks.subMenus.1') }} </el-dropdown-item>
+        <nuxt-link :to="localePath('/message')">
+          <el-dropdown-item>{{ $t('nav.blocks.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
         <nuxt-link :to="localePath('/rich')">
-          <el-dropdown-item > {{ $t('nav.blocks.subMenus.2') }} </el-dropdown-item>
+          <el-dropdown-item>{{ $t('nav.blocks.subMenus.2') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
-   </el-dropdown>
+    </el-dropdown>
 
-   <nuxt-link :to="localePath('/ranks')">
+    <nuxt-link :to="localePath('/ranks')">
       <div class="m-5 text-background text-sm cursor-pointer outline-none focus:outline-none">
         {{$t('nav.ranks.title')}}
       </div>
-   </nuxt-link>
+    </nuxt-link>
 
-   <el-dropdown class="m-5 outline-none focus:outline-none" @command="handleChartsCommand">
+    <el-dropdown class="m-5 outline-none focus:outline-none">
       <span class="el-dropdown-link text-background text-sm">
-           {{$t('nav.charts.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
+        {{$t('nav.charts.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-         <el-dropdown-item v-for="(title,i) in chartsSubMenus" :key="i" :command="i"> {{ title }} </el-dropdown-item>
+        <nuxt-link :to="localePath('/charts/miner')">
+          <el-dropdown-item>{{ $t('nav.charts.subMenus.0') }}</el-dropdown-item>
+        </nuxt-link>
+        <el-dropdown-item @click.native="pageNotAvailable">{{ $t('nav.charts.subMenus.1') }}</el-dropdown-item>
       </el-dropdown-menu>
-   </el-dropdown>
+    </el-dropdown>
 
-   <el-dropdown class="m-5 outline-none focus:outline-none">
+    <el-dropdown class="m-5 outline-none focus:outline-none">
       <span class="el-dropdown-link text-background text-sm">
-           {{$t('nav.resources.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
+        {{$t('nav.resources.title')}} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
         <nuxt-link :to="localePath('/tools')">
-          <el-dropdown-item > {{ $t('nav.resources.subMenus.0') }} </el-dropdown-item>
+          <el-dropdown-item>{{ $t('nav.resources.subMenus.0') }}</el-dropdown-item>
         </nuxt-link>
         <nuxt-link :to="localePath('/wiki')">
-          <el-dropdown-item > {{ $t('nav.resources.subMenus.1') }} </el-dropdown-item>
+          <el-dropdown-item>{{ $t('nav.resources.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
-   </el-dropdown>
+    </el-dropdown>
 
-  <div class="flex flex-grow" v-loading.fullscreen.lock="loading"></div>
-  <el-input size="small" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2" @keyup.enter.native="search" clearable></el-input>
+    <div class="flex flex-grow" v-loading.fullscreen.lock="loading"></div>
+    <el-input size="small" suffix-icon="el-icon-search" :placeholder="$t('nav.searchPlaceHolder')" v-model="searchText" class="flex w-1/2" @keyup.enter.native="search" clearable></el-input>
  </div>
 </template>
 
@@ -67,24 +70,9 @@ export default {
       loading: false
     }
   },
-  computed: {
-    chartsSubMenus() {
-      return this.$t('nav.charts.subMenus')
-    },
-    resourcesSubMenus() {
-      return this.$t('nav.resources.subMenus')
-    }
-  },
-  created() {},
   methods: {
-    handleChartsCommand(index) {
-      if (index == 0) {
-        this.$router.push(this.localePath('/charts/miner'))
-      }
-      else if (index == 1) {
-        this.$message(this.$t('shared.notAvailable'))
-        //this.$router.push(this.localePath('/charts/fil'))
-      }
+    pageNotAvailable() {
+      this.$message(this.$t('shared.notAvailable'))
     },
     async search() {
       const id = this.searchText.trim()
