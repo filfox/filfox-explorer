@@ -4,7 +4,7 @@ import { createLocaleFromRouteGetter } from '~/.nuxt/nuxt-i18n/utils-common'
 import moment from 'moment'
 
 const getLocaleFromRoute = createLocaleFromRouteGetter(localeCodes, { routesNameSeparator, defaultLocaleRouteNameSuffix })
-moment.defineLocale('zh', {
+moment.updateLocale('zh', {
   parentLocale: 'zh-cn'
 })
 
