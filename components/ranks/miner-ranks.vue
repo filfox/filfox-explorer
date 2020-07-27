@@ -6,20 +6,21 @@
         <div class="justify-between flex flex-row">
           <div class="flex h-12 ml-4 items-center">
             <el-row>
-              <AttributeInjector size="mini" round class="focus:outline-none outline-none">
-                <el-button
-                  v-bind="type === 0 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
-                  @click="e => didRankTypeSwitched(e, 0)"
-                >{{ $t('home.minerRanks.filters.qualityAdjPower') }}</el-button>
-                <el-button
-                  v-bind="type === 1 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
-                  @click="e => didRankTypeSwitched(e, 1)"
-                >{{ $t('home.minerRanks.filters.blocks') }}</el-button>
-                <el-button
-                  v-bind="type === 2 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
-                  @click="e => didRankTypeSwitched(e, 2)"
-                >{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
-              </AttributeInjector>
+              <el-button
+                size="mini" round class="focus:outline-none outline-none"
+                v-bind="type === 0 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
+                @click="e => didRankTypeSwitched(e, 0)"
+              >{{ $t('home.minerRanks.filters.qualityAdjPower') }}</el-button>
+              <el-button
+                size="mini" round class="focus:outline-none outline-none"
+                v-bind="type === 1 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
+                @click="e => didRankTypeSwitched(e, 1)"
+              >{{ $t('home.minerRanks.filters.blocks') }}</el-button>
+              <el-button
+                size="mini" round class="focus:outline-none outline-none"
+                v-bind="type === 2 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
+                @click="e => didRankTypeSwitched(e, 2)"
+              >{{ $t('home.minerRanks.filters.powerDelta') }}</el-button>
             </el-row>
           </div>
           <div class="flex h-12 items-center mr-4" v-if="type != 0">
