@@ -14,4 +14,7 @@ export default {
           }
         ],
     },
+    wiki: {
+        url: 'http://localhost:3000/wiki'
+    }
 }

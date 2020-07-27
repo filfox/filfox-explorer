@@ -60,7 +60,7 @@
 
 <script>
 import navigationBar from "~/components/shared/navigation-bar";
-import nconfig from "~/filecoin/filecoin.network"
+import nconfig from "~/filecoin/filecoin.config"
 
 export default {
     components: {
