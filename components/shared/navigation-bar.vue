@@ -49,7 +49,7 @@
         <nuxt-link :to="localePath('/tools')">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.0') }}</el-dropdown-item>
         </nuxt-link>
-        <nuxt-link :to="localePath('/wiki')">
+        <nuxt-link :to="localePath('/wiki/0')">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>

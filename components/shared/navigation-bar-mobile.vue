@@ -37,7 +37,7 @@
                     <nuxt-link :to="localePath('/tools')" class="link" @click.native="hideIfNeeded">
                         {{ $t('nav.resources.subMenus.0') }}
                     </nuxt-link>
-                    <nuxt-link :to="localePath('/wiki')" class="link" @click.native="hideIfNeeded">
+                    <nuxt-link :to="localePath('/wiki/0')" class="link" @click.native="hideIfNeeded">
                         {{ $t('nav.resources.subMenus.1') }}
                     </nuxt-link>
                 </el-collapse-item>
