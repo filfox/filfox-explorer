@@ -390,8 +390,8 @@ export default {
         }
     },
     footer: {
-        contact: '联系方式: contact@6block.com',
-        intro: '飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（{poweredBy}）提供技术支持。',
+        contact: '联系方式: contact@filfox.info',
+        intro: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，提供基于 Filecoin 的各类挖矿排行、区块链数据查询、可视化图表等一站式数据服务。',
     },
     tag: {
         apply: '申领账户',
@@ -431,7 +431,7 @@ export default {
             wiki: '知识库',
         },
         description: {
-            default: "飞狐浏览器（Filfox）是Filecoin区块链浏览器及数据服务平台，由石榴矿池（6Block.com）提供技术支持。为用户稳定地提供Filecoin相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"
+            default: "飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，为用户稳定地提供 Filecoin 相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。"
         }
     },
     merchant: {
@@ -466,7 +466,7 @@ export default {
             hardware: '硬件参数',
         },
         unknown: '未公开',
-        contact: '请填写内容并发送邮件到contact@6block.com，我们会有专员和您联系'
+        contact: '请填写内容并发送邮件到contact@filfox.info，我们会有专员和您联系'
     }
 
 }

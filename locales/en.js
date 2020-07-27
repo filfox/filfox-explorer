@@ -398,8 +398,8 @@ export default {
       }
     },
     "footer": {
-      "contact": "Contact: contact@6block.com",
-      "intro": 'Filfox is a Filecoin blockchain explorer and data service platform, powered by {poweredBy}.'
+      "contact": "Contact: contact@filfox.info",
+      "intro": 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'
     },
     tag: {
       apply: 'Claim account',
@@ -439,7 +439,7 @@ export default {
           wiki: 'Wiki',
       },
       description: {
-        default: "Filfox is a Filecoin browser and data platform, supported by 6block.com."
+        default: "Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts."
       }
     },
     merchant: {
@@ -474,6 +474,6 @@ export default {
           hardware: 'Hardware info',
       },
       unknown: 'Unknown',
-      contact: 'Please send email to contact@6block.com'
+      contact: 'Please send email to contact@filfox.info'
     }
   }

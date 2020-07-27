@@ -7,11 +7,7 @@
             </nuxt-link>
         </div>
         <div class="container flex flex-col pb-4 lg:flex-row mx-auto justify-between">
-            <i18n path="footer.intro" tag="div" class="text-xs text-footerText">
-              <template #poweredBy>
-                <a href="https://6block.com" target="_blank">6Block.com</a>
-              </template>
-            </i18n>
+            <div class="text-xs text-footerText">{{ $t('footer.intro') }}</div>
             <div class="text-xs text-footerText mt-4 lg:mt-0 flex flex-col text-left lg:text-right "> 
               <p >{{ $t('footer.contact')}} </p>
             </div>
