@@ -1,5 +1,5 @@
 <template>
-    <vue-simple-markdown class="md-body p-4" :source="detail" > </vue-simple-markdown>
+    <vue-simple-markdown class="md-body p-4" :source="detail" :table="true"> </vue-simple-markdown>
 </template>
 
 <script>
