@@ -129,6 +129,12 @@ export default {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      config.module.rules.push({
+        enforce: 'pre',
+        test: /\.md$/,
+        loader: 'raw-loader',
+        exclude: /node_modules/
+      })
       config.plugins.push(new webpack.DefinePlugin({
         'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL),
       }))

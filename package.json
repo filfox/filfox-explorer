@@ -30,5 +30,7 @@
     "vue-simple-markdown": "^1.1.4",
     "vue-syntax-highlight": "^0.1.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "raw-loader": "^4.0.1"
+  }
 }
