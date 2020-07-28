@@ -13,7 +13,7 @@
             {{ messageList.totalCount }}
             {{ $t('blockchain.message.info.messages') }}
           </p>
-          <el-select v-model="method" placeholder="" size="mini" class="mr-3">
+          <el-select v-model="method" size="mini" class="mr-3">
             <el-option
               v-for="item in methodOptions"
               :key="item"

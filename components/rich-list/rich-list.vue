@@ -8,7 +8,7 @@
         <p class="flex ml-4 h-12 items-center text-sm">
           {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts') }}
         </p>
-        <el-select v-model="type" placeholder="" size="mini" class="mr-4" @change="didSelectChanged">
+        <el-select v-model="type" size="mini" class="mr-4" @change="didSelectChanged">
           <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type" />
         </el-select>
       </div>
@@ -73,12 +73,6 @@
     </div>
   </div>
 </template>
-
-<style>
- svg {
-   display: inline-block
- }
-</style>
 
 <script>
 export default {

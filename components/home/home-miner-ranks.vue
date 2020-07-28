@@ -1,7 +1,7 @@
 <template>
   <div class="mb-4 bg-white rounded-md">
     <div class="border-b border-background">
-      <homeTitle type="minerRanks" />
+      <HomeTitle type="minerRanks" />
       <div class="flex justify-between mb-2">
         <div class="flex h-12 ml-4 items-center">
           <el-row>
@@ -149,7 +149,7 @@
       <tbody v-if="type === 0" class="text-sm text-center">
         <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10">
           <td>
-            <rankIndex :index="index + 1" />
+            <RankIndex :index="index + 1" />
           </td>
           <td>
             <AddressLink :id="miner.address" :format="10" />
@@ -178,7 +178,7 @@
       <tbody v-else-if="type === 1" class="text-sm text-center">
         <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10">
           <td>
-            <rankIndex :index="index + 1" />
+            <RankIndex :index="index + 1" />
           </td>
           <td>
             <AddressLink :id="miner.address" :format="10" />
@@ -206,7 +206,7 @@
       <tbody v-else-if="type === 2" class="text-sm text-center">
         <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10">
           <td>
-            <rankIndex :index="index+1" />
+            <RankIndex :index="index+1" />
           </td>
           <td>
             <AddressLink :id="miner.address" :format="10" />
@@ -244,21 +244,8 @@
   </div>
 </template>
 
-<style>
-  svg {
-    display: inline-block
-  }
-</style>
-
 <script>
-import homeTitle from '~/components/home/home-title'
-import rankIndex from '~/components/home/rank-index'
-
 export default {
-  components: {
-    homeTitle,
-    rankIndex
-  },
   props: {
     topMinersByPower: { type: Object, required: true },
     topMinersByBlocks: { type: Object, required: true },

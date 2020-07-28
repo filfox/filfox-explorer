@@ -132,12 +132,6 @@
   </div>
 </template>
 
-<style>
- svg {
-   display: inline-block
- }
-</style>
-
 <script>
 export default {
   data() {

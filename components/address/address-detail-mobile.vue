@@ -96,7 +96,7 @@
         <p class="flex ml-4 h-8 items-center text-xs">
           {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages') }}
         </p>
-        <el-select v-model="method" placeholder="" size="mini" class="mr-3" @change="didSelectChanged">
+        <el-select v-model="method" size="mini" class="mr-3" @change="didSelectChanged">
           <el-option
             v-for="item in methodOptions"
             :key="item"

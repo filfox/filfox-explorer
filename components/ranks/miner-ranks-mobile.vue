@@ -145,21 +145,8 @@
   </div>
 </template>
 
-<style>
-svg {
-  display: inline-block;
-}
-</style>
-
 <script>
-import homeTitle from '~/components/home/home-title'
-import rankIndex from '~/components/home/rank-index'
-
 export default {
-  components: {
-    homeTitle,
-    rankIndex
-  },
   props: {
     topMinersByPower: { type: Object, required: true },
     topMinersByBlocks: { type: Object, required: true },

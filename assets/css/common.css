@@ -28,3 +28,6 @@ button:focus {
 .el-dropdown-link:focus {
     outline: none;
 }
+.el-loading-spinner svg {
+    display: inline-block;
+}

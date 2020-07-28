@@ -264,14 +264,7 @@
   </div>
 </template>
 
-<style>
-svg {
-  display: inline-block;
-}
-</style>
-
 <script>
-
 export default {
   props: {
     topMinersByPower: { type: Object, required: true },

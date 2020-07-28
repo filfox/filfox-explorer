@@ -135,9 +135,6 @@
 </template>
 
 <style>
-  svg {
-    display: inline-block
-  }
   .el-tabs__item {
       padding: 0 10px;
       font-size: 12px;
@@ -148,7 +145,6 @@
 </style>
 
 <script>
-
 export default {
   props: {
     topMinersByPower: { type: Object, required: true },
