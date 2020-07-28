@@ -117,7 +117,6 @@
       </div>
     </div>
 
-
     <div class="rounded-md my-4 bg-white pt-4">
       <div class="flex h-12 items-center ml-8">
         <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
@@ -129,88 +128,7 @@
           </el-radio-button>
         </el-radio-group>
       </div>
-      <div v-if="listType == 0" class="flex items-center justify-between border-b border-background">
-        <p class="flex ml-8 h-12 items-center text-sm">
-          {{ $t('blockchain.message.info.total') }}
-          {{ total }}
-          {{ $t('blockchain.message.info.messages') }}
-        </p>
-        <el-select v-model="method" size="mini" class="mr-4" @change="didSelectChanged">
-          <el-option
-            v-for="item in methodOptions"
-            :key="item"
-            :label="item == 'All' ? $t('blockchain.message.methods.all') : item"
-            :value="item"
-          />
-        </el-select>
-      </div>
-      <div v-if="listType == 0" class="flex mx-4 mt-2">
-        <table v-if="!loading" class="w-full table-auto">
-          <thead class="text-gray-600 text-sm m-2">
-            <tr class="h-8">
-              <th class="sticky top-0 bg-white z-10">
-                {{ $t('blockchain.message.tableHeaders.id') }}
-              </th>
-              <th
-                class="sticky top-0 bg-white z-10"
-              >
-                {{ $t('blockchain.message.tableHeaders.height') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10">
-                {{ $t('blockchain.message.tableHeaders.time') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10">
-                {{ $t('blockchain.message.tableHeaders.from') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10">
-                {{ $t('blockchain.message.tableHeaders.to') }}
-              </th>
-              <th
-                class="sticky top-0 bg-white z-10"
-              >
-                {{ $t('blockchain.message.tableHeaders.method') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10">
-                {{ $t('blockchain.message.tableHeaders.value') }}
-              </th>
-              <th
-                class="sticky top-0 bg-white z-10"
-              >
-                {{ $t('blockchain.message.tableHeaders.exitCode') }}
-              </th>
-            </tr>
-          </thead>
-          <tbody class="text-center">
-            <tr
-              v-for="(message, index) in messagesList.messages"
-              :key="index"
-              class="h-12 border-b border-background"
-            >
-              <td>
-                <MessageLink :id="message.cid" :route-query="{height: message.height}" :format="8" />
-              </td>
-              <td>
-                <TipsetLink :id="message.height" class="text-main" />
-              </td>
-              <td>{{ message.timestamp | timestamp('datetime') }}</td>
-              <td>
-                <AddressLink :id="message.from" :format="8" />
-              </td>
-              <td>
-                <AddressLink :id="message.to" :format="8" />
-              </td>
-              <td>{{ message.method }}</td>
-              <td>{{ message.value | filecoin(4) }}</td>
-              <td v-if="message.receipt">
-                {{ message.receipt.exitCode | exit-code }}
-              </td>
-              <td v-else>
-                N/A
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <AddressMessageList v-if="listType === 0" :address="addressData.address" />
       <div v-else class="mx-8">
         <p class="flex h-12 items-center text-sm border-b border-background mb-4">
           {{ $t('blockchain.message.info.total') }}
@@ -292,10 +210,8 @@ export default {
   },
   data() {
     return {
-      messagesList: {},
       blockList: {},
       listType: 0,
-      methodOptions: ['All'],
       page: 0,
       pageSize: 20,
       totalPageCount: 0,
@@ -304,68 +220,29 @@ export default {
       method: 'All'
     }
   },
-  mounted() {
-    this.getMessagesList()
-  },
   methods: {
-    getMessagesList() {
+    async getBlockList() {
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page }
-      if (this.method !== 'All') {
-        params.method = this.method
-      }
-      this.$axios
-        .get(`/address/${this.addressData.address}/messages`, {
-          params
-        })
-        .then(res => {
-          this.messagesList = res.data
-          this.methodOptions = ['All']
-          this.methodOptions = this.methodOptions.concat(res.data.methods)
-          this.loading = false
-          this.total = this.messagesList.totalCount
-          this.getTotalPageCount()
-        })
-    },
-    getBlockList() {
-      this.loading = true
-      const params = { pageSize: this.pageSize, page: this.page }
-      this.$axios
-        .get(`/address/${this.addressData.address}/blocks`, {
-          params
-        })
-        .then(res => {
-          this.blockList = res.data
-          this.loading = false
-          this.total = this.blockList.totalCount
-          this.getTotalPageCount()
-        })
+      this.blockList = await this.$axios.$get(`/address/${this.addressData.address}/blocks`, { params })
+      this.loading = false
+      this.total = this.blockList.totalCount
+      this.getTotalPageCount()
     },
     getTotalPageCount() {
       this.totalPageCount = Math.ceil(this.total / this.pageSize)
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
-      if (this.listType === 0) {
-        this.getMessagesList()
-      } else {
+      if (this.listType === 1) {
         this.getBlockList()
       }
-    },
-    didSelectChanged(selectedMethod) {
-      this.method = selectedMethod
-      this.page = 0
-      this.totalPageCount = 1
-      this.total = 0
-      this.getMessagesList()
     },
     didListTypeChanged() {
       this.page = 0
       this.totalPageCount = 1
       this.total = 0
-      if (this.listType === 0) {
-        this.getMessagesList()
-      } else {
+      if (this.listType === 1) {
         this.getBlockList()
       }
     },

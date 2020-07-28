@@ -1,7 +1,7 @@
 <template>
   <nav class="mx-auto bg-main h-28 w-full">
     <div class="flex h-16 container mx-auto lg:items-center lg:pt-2 justify-between">
-      <nuxt-link :to="localePath('/')" class="flex items-center -ml-4 px-4" @click.native="hideIfNeeded">
+      <nuxt-link :to="localePath('/')" class="flex items-center lg:-ml-4 px-4" @click.native="hideIfNeeded">
         <img src="~/assets/img/home/logo.svg" alt="filfox" class="h-6 lg:h-8">
       </nuxt-link>
 

@@ -13,14 +13,12 @@
             {{ messageList.totalCount }}
             {{ $t('blockchain.message.info.messages') }}
           </p>
-          <el-select v-model="method" size="mini" class="mr-3">
-            <el-option
-              v-for="item in methodOptions"
-              :key="item"
-              :label="item == 'All' ? $t('blockchain.message.methods.all') : item"
-              :value="item"
-            />
-          </el-select>
+          <MessageMethodSelect
+            v-model="method"
+            :methods="messageList.methods"
+            :el-select-options="{size: 'mini'}"
+            class="mr-3"
+          />
         </div>
 
         <div v-for="(message, index) in messageList.messages" :key="index" class="rounded-sm mx-3 mb-3 py-2 shadow bg-white text-xs text-gray-800">
@@ -233,6 +231,7 @@ export default {
   watch: {
     method() {
       this.page = 0
+      this.getMessageList()
     }
   },
   methods: {
