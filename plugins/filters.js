@@ -70,19 +70,19 @@ Vue.filter('size_metric', (number, precision = null) => {
   const metrics = 'kMGTPEZY'
   let metricIndex = -1
   number = Number(number)
-  var flag = false
+  let flag = false
   if (number < 0) {
-      number = -number
-      flag = true
+    number = -number
+    flag = true
   }
   while (number >= 2 ** 10) {
     ++metricIndex
     number /= 2 ** 10
   }
   if (precision == null) {
-    return flag? `-${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
+    return flag ? `-${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
   } else {
-    return flag? `-${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
+    return flag ? `-${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B` : `${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
   }
 })
 

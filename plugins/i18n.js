@@ -1,7 +1,7 @@
 import Cookie from 'cookie'
+import moment from 'moment'
 import { detectBrowserLanguage, localeCodes, vueI18n, routesNameSeparator, defaultLocaleRouteNameSuffix } from '~/.nuxt/nuxt-i18n/options'
 import { createLocaleFromRouteGetter } from '~/.nuxt/nuxt-i18n/utils-common'
-import moment from 'moment'
 
 const getLocaleFromRoute = createLocaleFromRouteGetter(localeCodes, { routesNameSeparator, defaultLocaleRouteNameSuffix })
 moment.updateLocale('zh', {
@@ -12,12 +12,16 @@ export default ({ route, isHMR, req, res, redirect }) => {
   if (isHMR) {
     return
   }
+
+  const routeLocale = getLocaleFromRoute(route)
+  const { cookieKey } = detectBrowserLanguage
+
   const setLocaleCookie = locale => {
     const date = new Date()
     const cookieOptions = {
       expires: new Date(date.setDate(date.getDate() + 365)),
       path: '/',
-      sameSite: 'lax',
+      sameSite: 'lax'
     }
     if (res) {
       let headers = res.getHeader('Set-Cookie') || []
@@ -30,8 +34,6 @@ export default ({ route, isHMR, req, res, redirect }) => {
     }
   }
 
-  const routeLocale = getLocaleFromRoute(route)
-  const { cookieKey } = detectBrowserLanguage
   let cookieLocale
   if (req && typeof req.headers.cookie !== 'undefined') {
     const cookies = req.headers && req.headers.cookie ? Cookie.parse(req.headers.cookie) : {}

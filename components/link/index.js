@@ -1,24 +1,23 @@
 import mergeProps from '@/utils/merge-props'
 import './style.pcss'
-import Vue from 'vue'
 
 const Link = {
   name: 'Link',
   functional: true,
   props: {
-    id: {type: null, required: true},
-    route: {type: String, required: true},
-    routeQuery: {type: Object, default: () => ({})},
-    plain: {type: Boolean, default: false},
+    id: { type: null, required: true },
+    route: { type: String, required: true },
+    routeQuery: { type: Object, default: () => ({}) },
+    plain: { type: Boolean, default: false },
     format: {
       validator(value) {
         return value == null || Number.isInteger(value)
-          || Array.isArray(value) && value.length === 2 && value.every(Number.isInteger)
+          || (Array.isArray(value) && value.length === 2 && value.every(Number.isInteger))
       }
     },
-    colorClass: {type: String, default: 'text-filecoin'}
+    colorClass: { type: String, default: 'text-filecoin' }
   },
-  render(createElement, {data, props, slots, parent}) {
+  render(createElement, { data, props, slots, parent }) {
     const id = props.id == null ? '' : String(props.id)
     let tag
     const node = {
@@ -33,7 +32,7 @@ const Link = {
       tag = 'nuxt-link'
       node.class.push(props.colorClass)
       node.props = {
-        to: parent.localePath({name: props.route, params: {id}, query: props.routeQuery})
+        to: parent.localePath({ name: props.route, params: { id }, query: props.routeQuery })
       }
     }
     if (props.format == null) {
@@ -54,7 +53,7 @@ const Link = {
       } else {
         linkSlots = [
           id.slice(0, head),
-          createElement('span', {class: 'ellipsis'}, id.slice(head, -tail)),
+          createElement('span', { class: 'ellipsis' }, id.slice(head, -tail)),
           id.slice(-tail)
         ]
       }
@@ -65,12 +64,12 @@ const Link = {
 
 export default Link
 
-export function createLink(category, {name = `${category}-link`, route = `${category}-id`} = {}) {
+export function createLink(category, { name = `${category}-link`, route = `${category}-id` } = {}) {
   return {
     name,
     functional: true,
-    render(createElement, {data, props, children}) {
-      Object.assign(data.attrs, props, {route})
+    render(createElement, { data, props, children }) {
+      Object.assign(data.attrs, props, { route })
       return createElement(Link, data, children)
     }
   }

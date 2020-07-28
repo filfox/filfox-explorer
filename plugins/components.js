@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Link, {createLink} from '@/components/link'
+import Link, { createLink } from '@/components/link'
 
 Vue.component('Link', Link)
 Vue.component('AddressLink', createLink('address'))

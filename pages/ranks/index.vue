@@ -1,20 +1,22 @@
 <template>
   <div>
-    <MinerRanks class="hidden lg:flex"
-      :topMinersByPower="topMinersByPower"
-      :topMinersByBlocks="topMinersByBlocks"
-      :topMinersByPowerDelta="topMinersByPowerDelta"
-      :pageSize="pageSize"
+    <MinerRanks
+      class="hidden lg:block"
+      :top-miners-by-power="topMinersByPower"
+      :top-miners-by-blocks="topMinersByBlocks"
+      :top-miners-by-power-delta="topMinersByPowerDelta"
+      :page-size="pageSize"
       :loading="loading"
       @updateTopMinersByPower="getTopMinersByPower"
       @updateTopMinersByBlocks="getTopMinersByBlocks"
       @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
     />
-    <MinerRanksMobile class="lg:hidden"
-      :topMinersByPower="topMinersByPower"
-      :topMinersByBlocks="topMinersByBlocks"
-      :topMinersByPowerDelta="topMinersByPowerDelta"
-      :pageSize="pageSize"
+    <MinerRanksMobile
+      class="lg:hidden"
+      :top-miners-by-power="topMinersByPower"
+      :top-miners-by-blocks="topMinersByBlocks"
+      :top-miners-by-power-delta="topMinersByPowerDelta"
+      :page-size="pageSize"
       :loading="loading"
       @updateTopMinersByPower="getTopMinersByPower"
       @updateTopMinersByBlocks="getTopMinersByBlocks"
@@ -25,18 +27,13 @@
 
 <script>
 export default {
-  head() {
-    return {
-      title: `${this.$t('meta.titles.ranks')}`
-    }
-  },
   data() {
     return {
       topMinersByPower: {},
       topMinersByBlocks: {},
       topMinersByPowerDelta: {},
       loading: false,
-      pageSize: 20,
+      pageSize: 20
     }
   },
   mounted() {
@@ -46,20 +43,25 @@ export default {
     async getTopMinersByPower(pageSize, page) {
       this.loading = true
       this.topMinersByPower = {}
-      this.topMinersByPower = await this.$axios.$get("/miner/list/power", {params: {pageSize, page}})
+      this.topMinersByPower = await this.$axios.$get('/miner/list/power', { params: { pageSize, page } })
       this.loading = false
     },
     async getTopMinersByBlocks(pageSize, page, duration) {
       this.loading = true
       this.topMinersByBlocks = {}
-      this.topMinersByBlocks = await this.$axios.$get("/miner/list/blocks", {params: {pageSize, page, duration}})
+      this.topMinersByBlocks = await this.$axios.$get('/miner/list/blocks', { params: { pageSize, page, duration } })
       this.loading = false
     },
     async getTopMinersByPowerDelta(pageSize, page, duration) {
       this.loading = true
       this.topMinersByPowerDelta = {}
-      this.topMinersByPowerDelta = await this.$axios.$get("/miner/list/power-delta", {params: {pageSize, page, duration}})
+      this.topMinersByPowerDelta = await this.$axios.$get('/miner/list/power-delta', { params: { pageSize, page, duration } })
       this.loading = false
+    }
+  },
+  head() {
+    return {
+      title: `${this.$t('meta.titles.ranks')}`
     }
   }
 }

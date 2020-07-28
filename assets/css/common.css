@@ -1,7 +1,24 @@
-
 button {
     outline: none;
 }
 button:focus {
+    outline: none;
+}
+.el-button {
+    outline: none;
+}
+.el-button:focus {
+    outline: none;
+}
+.el-radio-button {
+    outline: none;
+}
+.el-radio-button:focus {
+    outline: none;
+}
+.el-dropdown {
+    outline: none;
+}
+.el-dropdown:focus {
     outline: none;
 }

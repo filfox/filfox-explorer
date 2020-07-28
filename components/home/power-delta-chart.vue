@@ -1,12 +1,29 @@
 <template>
   <div>
-    <ve-line :data="chartData" :settings="chartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="chartExtend" class="hidden lg:block"></ve-line>
-    <ve-line :data="chartData" :settings="mobileChartSettings" :loading="loading" :dataEmpty="dataEmpty" :extend="mobileChartExtend" :grid="{top:75,bottom:20}" class="lg:hidden" width="100%" height="380px"></ve-line>
+    <ve-line
+      :data="chartData"
+      :settings="chartSettings"
+      :loading="loading"
+      :data-empty="dataEmpty"
+      :extend="chartExtend"
+      class="hidden lg:block"
+    />
+    <ve-line
+      :data="chartData"
+      :settings="mobileChartSettings"
+      :loading="loading"
+      :data-empty="dataEmpty"
+      :extend="mobileChartExtend"
+      :grid="{top: 75, bottom: 20}"
+      class="lg:hidden"
+      width="100%"
+      height="380px"
+    />
   </div>
 </template>
 <script>
-import moment from "moment";
-import "v-charts/lib/style.css";
+import moment from 'moment'
+import 'v-charts/lib/style.css'
 
 export default {
   props: {
@@ -17,61 +34,43 @@ export default {
   },
   data() {
     this.chartSettings = {
-      legendName:{}
-    };
+      legendName: {}
+    }
     this.mobileChartSettings = {
       offsetY: 0,
-      legendName:{}
-    };
+      legendName: {}
+    }
     this.chartExtend = {
       yAxis: {
-        type: "value",
+        type: 'value',
         axisLabel: {
-          formatter: "{value} TiB"
+          formatter: '{value} TiB'
         }
       },
       tooltip: {
-        trigger: "axis",
-        formatter: (params) => {
-          var relVal = this.getDateTime(this.rawData[params[0].dataIndex].timestamp);
-          for (var i = 0, l = params.length; i < l; i++) {
-            relVal +=
-              "<br/>" +
-              params[i].marker +
-              params[i].seriesName +
-              ": " +
-              params[i].value[1] +
-              " TiB";
-          }
-          return relVal;
-        },
+        trigger: 'axis',
+        formatter: params => [
+          this.getDateTime(this.rawData[params[0].dataIndex].timestamp),
+          ...params.map(param => `${param.marker}${param.seriesName}: ${param.value[1]} TiB`)
+        ].join('<br>')
       }
-    };
+    }
     this.mobileChartExtend = {
       yAxis: {
-        type: "value",
+        type: 'value',
         axisLabel: {
-          formatter: "{value} TiB"
+          formatter: '{value} TiB'
         }
       },
       tooltip: {
-        trigger: "axis",
-        formatter: (params) => {
-          var relVal = this.getDateTime(this.rawData[params[0].dataIndex].timestamp);
-          for (var i = 0, l = params.length; i < l; i++) {
-            relVal +=
-              "<br/>" +
-              params[i].marker +
-              params[i].seriesName +
-              ": " +
-              params[i].value[1] +
-              " TiB";
-          }
-          return relVal;
-        },
-        position: ['20%','50%']
+        trigger: 'axis',
+        formatter: params => [
+          this.getDateTime(this.rawData[params[0].dataIndex].timestamp),
+          ...params.map(param => `${param.marker}${param.seriesName}: ${param.value[1]} TiB`)
+        ].join('<br>'),
+        position: ['20%', '50%']
       }
-    };
+    }
     return {
       chartData: {
         columns: [],
@@ -80,70 +79,56 @@ export default {
       loading: false,
       dataEmpty: false,
       rawData: []
-    };
+    }
   },
   mounted() {
-    this.getlineChartData();
+    this.getlineChartData()
   },
   methods: {
-    getlineChartData() {
-      this.loading = true;
-      this.$axios
-        .get("/stats/miner/power-delta", {
-          params: { count: this.maxCount, duration: "7d",samples:'7' }
-        })
-        .then(res => {
-          this.rawData = res.data
-          this.convertData(res.data);
-        });
-    },
-    convertData(data) {
-      if (!data) {
-        this.dataEmpty = true;
-        this.loading = false;
-        return;
+    async getlineChartData() {
+      this.loading = true
+      this.rawData = await this.$axios.$get('/stats/miner/power-delta', {
+        params: { count: this.maxCount, duration: '7d', samples: '7' }
+      })
+      if (!this.rawData) {
+        this.dataEmpty = true
+        this.loading = false
+        return
       }
-      var columns = [];
-      var rows = [];
-      columns.push("time");
-      for (let info of data) {
-        var row = { time: this.getTime(info.timestamp) };
-        for (let miner of info.miners) {
+      const columns = []
+      const rows = []
+      columns.push('time')
+      for (const info of this.rawData) {
+        const row = { time: this.getTime(info.timestamp) }
+        for (const miner of info.miners) {
           // max is 5
-          var res = miner.address
-          let tag = miner.tag;
+          let res = miner.address
+          const tag = miner.tag
           if (tag == null) {
             this.chartSettings.legendName[res] = res
             this.mobileChartSettings.legendName[res] = res
           } else {
-            res = miner.address + "(" + miner.tag[this.$i18n.locale] + ")"
+            res = `${miner.address}(${miner.tag[this.$i18n.locale]})`
             this.chartSettings.legendName[res] = miner.address
             this.mobileChartSettings.legendName[res] = miner.address
           }
-          if (columns.length <= this.maxCount && columns.length <= data.length) {
+          if (columns.length <= this.maxCount && columns.length <= this.rawData.length) {
             columns.push(res)
           }
-          row[res] = this.getPower(miner.powerDelta).toFixed(2);
+          row[res] = (miner.powerDelta / 2 ** 40).toFixed(2)
         }
-        rows.push(row);
+        rows.push(row)
       }
-      this.chartData.columns = columns;
-      this.chartData.rows = rows;
-      this.loading = false;
+      this.chartData.columns = columns
+      this.chartData.rows = rows
+      this.loading = false
     },
     getTime(time) {
-      return moment(time * 1000).format("MM-DD");
+      return moment(time * 1000).format('MM-DD')
     },
     getDateTime(time) {
-      return moment(time * 1000).format("YYYY-MM-DD HH:mm");
-    },
-    getPower(number) {
-      var res = number;
-      for (var i = 0; i < 4; i++) {
-        res /= 2 ** 10;
-      }
-      return res;
+      return moment(time * 1000).format('YYYY-MM-DD HH:mm')
     }
   }
-};
+}
 </script>

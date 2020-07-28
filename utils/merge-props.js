@@ -14,10 +14,10 @@ export default (...objects) => objects.reduce((a, b = {}) => {
     if (aa && nestRE.test(key)) {
       if (key === 'class') {
         if (typeof aa === 'string') {
-          a[key] = aa = {[aa]: true}
+          a[key] = aa = { [aa]: true }
         }
         if (typeof bb === 'string') {
-          b[key] = bb = {[bb]: true}
+          b[key] = bb = { [bb]: true }
         }
       }
       if (['on', 'nativeOn', 'hook'].includes(key)) {

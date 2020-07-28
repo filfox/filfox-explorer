@@ -1,14 +1,15 @@
 {
-  "name": "FilFox",
+  "name": "filfox",
   "version": "1.0.0",
   "description": "File coin browser",
   "author": "6block team",
   "private": true,
   "scripts": {
-    "dev": "WEBSOCKET_URL=wss://calibration.filfox.io/ nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.1",
@@ -31,6 +32,11 @@
     "vue-syntax-highlight": "^0.1.8"
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.5.0",
+    "eslint-plugin-nuxt": "^1.0.0",
     "raw-loader": "^4.0.1"
   }
 }

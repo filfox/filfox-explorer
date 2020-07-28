@@ -1,51 +1,57 @@
 <template>
   <div class="container mx-auto flex flex-row">
-      <div class="flex flex-col flex-grow bg-white my-4 mr-2 w-1/4 lg:w-1/8 rounded">
-        <p class="mx-4 py-2 font-medium border-b border-background"> 文章列表 </p>
-        <div class="flex flex-col pl-4 mt-2">
-          <nuxt-link v-for="(title,index) in mds" :key="index" class="hover:text-main mb-2 text-sm cursor-pointer" :to="localePath(`/wiki/${index}`)"> {{ mds[index].name }} </nuxt-link>
-        </div>
+    <div class="bg-white my-4 mr-2 w-1/4 lg:w-1/8 rounded">
+      <p class="mx-4 py-2 font-medium border-b border-background">
+        文章列表
+      </p>
+      <div class="pl-4 mt-2">
+        <p v-for="(title,index) in mds" :key="index">
+          <nuxt-link class="hover:text-main mb-2 text-sm cursor-pointer" :to="localePath(`/wiki/${index}`)">
+            {{ mds[index].name }}
+          </nuxt-link>
+        </p>
       </div>
-      <div class="flex flex-col overflow-scroll bg-white my-4 w-3/4 lg:w-7/8 rounded">
-          <Markdown :detail="detail" class="p-4" style="">  </Markdown>
-      </div>
+    </div>
+    <div class="overflow-scroll bg-white my-4 w-3/4 lg:w-7/8 rounded">
+      <Markdown :detail="detail" class="p-4" />
+    </div>
   </div>
 </template>
 
 <script>
-import nconfig from "~/filecoin/filecoin.config"
+import config from '~/filecoin/filecoin.config'
 
 export default {
-  async asyncData({ $axios, app, params, error }) {
-    const id = params.id;
-    const filesMD = require.context('~/static/wiki', true, /\.md$/);
-    const filesMDNames = filesMD.keys();
-    const mds = [];
-    filesMDNames.map((item) => {
-        const listObj = {};
-        const listItemS = item.split('/');
-        if (listItemS.length > 0) {
-            listObj.name = listItemS[1].replace('.md', '');
-            listObj.path = item;
+  asyncData({ params, error }) {
+    const id = params.id
+    const filesMD = require.context('~/static/wiki', true, /\.md$/)
+    const filesMDNames = filesMD.keys()
+    const mds = filesMDNames.map(item => {
+      const listItemS = item.split('/')
+      if (listItemS.length > 0) {
+        return {
+          name: listItemS[1].replace('.md', ''),
+          path: item
         }
-        return mds.push(listObj);
-    });
-    if(id && id < mds.length) {
-      return  { mds }
-    }
-    else {
-      error({ code: 404, message: `Wiki ${id} not found` });
+      } else {
+        return {}
+      }
+    })
+    if (id && id < mds.length) {
+      return { mds }
+    } else {
+      error({ code: 404, message: `Wiki ${id} not found` })
     }
   },
   data() {
     return {
       mds: [],
-      detail: ""
+      detail: ''
     }
   },
   computed: {
     id() {
-      return this.$route.params.id;
+      return this.$route.params.id
     }
   },
   mounted() {
@@ -53,12 +59,12 @@ export default {
   },
   methods: {
     getArticleDetail() {
-      var url = this.mds[this.id].path;
+      let url = this.mds[this.id].path
       url = url.substr(1)
-      url = nconfig.wiki.url + url
-  　　this.$axios.get(url).then((response) => {
-    　　this.detail = response.data
-  　　});
+      url = config.wiki.url + url
+      this.$axios.get(url).then(response => {
+        this.detail = response.data
+      })
     }
   },
   head() {
@@ -67,5 +73,4 @@ export default {
     }
   }
 }
-
 </script>

@@ -10,8 +10,8 @@ export default {
         return timestamp == null || Number.isInteger(timestamp)
       }
     },
-    tag: {type: String, default: 'span'},
-    format: {type: String, default: 'moment'}
+    tag: { type: String, default: 'span' },
+    format: { type: String, default: 'moment' }
   },
   render(createElement) {
     if (this.timestamp == null) {

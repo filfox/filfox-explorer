@@ -2,7 +2,7 @@ import Vue from 'vue'
 import io from 'socket.io-client'
 
 export default function() {
-  const ws = io(process.env.WEBSOCKET_URL, {transports: ['websocket']})
+  const ws = io(process.env.WEBSOCKET_URL ?? 'wss://calibration.filfox.io', { transports: ['websocket'] })
 
   const subscriptions = {}
   const listeners = {}
@@ -19,7 +19,7 @@ export default function() {
             eventMapping[event] = new Map([[callback, 1]])
           }
         } else {
-          subscriptions[room] = {[event]: new Map([[callback, 1]])}
+          subscriptions[room] = { [event]: new Map([[callback, 1]]) }
           ws.emit('subscribe', room)
         }
       }

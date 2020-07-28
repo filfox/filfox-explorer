@@ -1,7 +1,7 @@
 <template>
-  <div class="flex">
-    <RichList class="hidden lg:flex"/>
-    <RichListMobile class="lg:hidden"/>
+  <div>
+    <RichList class="hidden lg:block" />
+    <RichListMobile class="lg:hidden" />
   </div>
 </template>
 

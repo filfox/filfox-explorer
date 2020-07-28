@@ -1,94 +1,91 @@
 <template>
   <div class="container mx-auto">
-
     <HomeOverview :overview="overview" />
 
-    <div class="hidden flex-col lg:grid lg:grid-flow-col lg:grid-rows-1 lg:grid-cols-2 mb-2 lg:mb-4">
-      <div class="flex flex-col bg-white lg:rounded-md lg:mr-2 mb-2 lg:mb-0">
+    <div class="hidden lg:grid lg:grid-flow-col lg:grid-rows-1 lg:grid-cols-2 mb-2 lg:mb-4">
+      <div class="bg-white lg:rounded-md lg:mr-2 mb-2 lg:mb-0">
         <HomeTitle type="powerDistribution" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
         <client-only>
-            <PowerDistributionChart class="mt-2 mx-1 lg:mx-4 lg:mt-12"/>
+          <PowerDistributionChart class="mt-2 mx-1 lg:mx-4 lg:mt-12" />
         </client-only>
       </div>
-      
-      <div class="flex flex-col bg-white lg:ml-2 lg:rounded-md">
+
+      <div class="bg-white lg:ml-2 lg:rounded-md">
         <HomeTitle type="powerDelta" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
         <client-only>
-            <PowerDeltaChart class="mt-2 mx-1 lg:mx-4 lg:mt-12"/>
+          <PowerDeltaChart class="mt-2 mx-1 lg:mx-4 lg:mt-12" />
         </client-only>
       </div>
     </div>
 
-    <HomeMinerRanksMobile class="lg:hidden"
-      :topMinersByPower="topMinersByPower"
-      :topMinersByBlocks="topMinersByBlocks"
-      :topMinersByPowerDelta="topMinersByPowerDelta"
+    <HomeMinerRanksMobile
+      class="lg:hidden"
+      :top-miners-by-power="topMinersByPower"
+      :top-miners-by-blocks="topMinersByBlocks"
+      :top-miners-by-power-delta="topMinersByPowerDelta"
       :loading="topMinersLoading"
       @updateTopMinersByPower="getTopMinersByPower"
       @updateTopMinersByBlocks="getTopMinersByBlocks"
       @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
     />
-    <HomeMinerRanks class="hidden lg:flex"
-      :topMinersByPower="topMinersByPower"
-      :topMinersByBlocks="topMinersByBlocks"
-      :topMinersByPowerDelta="topMinersByPowerDelta"
+    <HomeMinerRanks
+      class="hidden lg:block"
+      :top-miners-by-power="topMinersByPower"
+      :top-miners-by-blocks="topMinersByBlocks"
+      :top-miners-by-power-delta="topMinersByPowerDelta"
       :loading="topMinersLoading"
       @updateTopMinersByPower="getTopMinersByPower"
       @updateTopMinersByBlocks="getTopMinersByBlocks"
       @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
     />
 
-    <div class="mb-4 hidden lg:flex lg:flex-row">
-      <HomeRecentTipsets :recentTipsets="recentTipsets" :recentTipsetsLoading="recentTipsetsLoading" />
-      <HomeRichList :richList="richList" :richListLoading="richListLoading" />
+    <div class="mb-4 hidden lg:flex">
+      <HomeRecentTipsets :recent-tipsets="recentTipsets" :recent-tipsets-loading="recentTipsetsLoading" class="w-1/2" />
+      <HomeRichList :rich-list="richList" :rich-list-loading="richListLoading" class="w-1/2" />
     </div>
 
-    <HomeRecentTipsetsMobile :recentTipsets="recentTipsets" :recentTipsetsLoading="recentTipsetsLoading" class="flex flex-grow lg:hidden"/>
-    <HomeRichListMobile :richList="richList" :richListLoading="richListLoading" class="flex flex-grow lg:hidden"/>
+    <HomeRecentTipsetsMobile
+      class="lg:hidden"
+      :recent-tipsets="recentTipsets"
+      :recent-tipsets-loading="recentTipsetsLoading"
+    />
+    <HomeRichListMobile
+      class="lg:hidden"
+      :rich-list="richList"
+      :rich-list-loading="richListLoading"
+    />
 
-    <div class="flex flex-col lg:hidden lg:grid-flow-col lg:grid-rows-1 lg:grid-cols-2 mb-2 lg:mb-4">
-      <div class="flex flex-col bg-white lg:rounded-md lg:mr-2 mb-2 lg:mb-0">
-        <HomeTitle type="powerDistribution" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
+    <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
+      <div class="bg-white rounded-md mr-2 mb-2">
+        <HomeTitle type="powerDistribution" class="border-b border-background h-10 pr-4" />
         <client-only>
-            <PowerDistributionChart class="mt-2 mx-1 lg:mx-4 lg:mt-12"/>
+          <PowerDistributionChart class="mt-2 mx-1" />
         </client-only>
       </div>
-      
-      <div class="flex flex-col bg-white lg:ml-2 lg:rounded-md">
-        <HomeTitle type="powerDelta" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
+
+      <div class="bg-white ml-2 rounded-md">
+        <HomeTitle type="powerDelta" class="border-b border-background h-10 pr-4" />
         <client-only>
-            <PowerDeltaChart class="mt-2 mx-1 lg:mx-4 lg:mt-12"/>
+          <PowerDeltaChart class="mt-2 mx-1" />
         </client-only>
       </div>
     </div>
-
   </div>
 </template>
 
-<style>
- svg {
-   display: inline-block
- }
-</style>
-
 <script>
-import FromNow from '@/components/shared/from-now'
-
 export default {
-  async asyncData({$axios, error}) {
+  async asyncData({ $axios, error }) {
     try {
       const overview = await $axios.$get('/overview')
-      return {overview}
+      return { overview }
     } catch (err) {
       if (err?.response) {
-        error({code: err.response.status, message: err.response.statusText})
+        error({ code: err.response.status, message: err.response.statusText })
       } else {
-        error({code: 500, message: err.toString()})
+        error({ code: 500, message: err.toString() })
       }
     }
-  },
-  components: {
-    FromNow,
   },
   data() {
     return {
@@ -97,11 +94,11 @@ export default {
       topMinersByBlocks: {},
       topMinersByPowerDelta: {},
       topMinersLoading: false,
-      recentTipsets:[],
+      recentTipsets: [],
       recentTipsetsLoading: false,
-      richList: {},
-      richListLoading: false,
-    };
+      richList: { totalCount: 0, list: [], totalSupply: '0' },
+      richListLoading: false
+    }
   },
   mounted() {
     this.getTopMinersByPower()
@@ -122,27 +119,27 @@ export default {
   methods: {
     async getTopMinersByPower() {
       this.topMinersLoading = true
-      this.topMinersByPower = await this.$axios.$get("/miner/top-miners/power", { params: { count: 10 } })
+      this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: { count: 10 } })
       this.topMinersLoading = false
     },
     async getTopMinersByBlocks(duration) {
       this.topMinersLoading = true
-      this.topMinersByBlocks = await this.$axios.$get("/miner/top-miners/blocks", { params: { count: 10, duration } })
+      this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: { count: 10, duration } })
       this.topMinersLoading = false
     },
     async getTopMinersByPowerDelta(duration) {
       this.topMinersLoading = true
-      this.topMinersByPowerDelta = await this.$axios.$get("/miner/top-miners/power-delta", { params: { count: 10, duration } })
+      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-delta', { params: { count: 10, duration } })
       this.topMinersLoading = false
     },
     async getRecentTipsets() {
       this.recentTipsetsLoading = true
-      this.recentTipsets = await this.$axios.$get("/tipset/recent", { params: { count: 10 } })
+      this.recentTipsets = await this.$axios.$get('/tipset/recent', { params: { count: 10 } })
       this.recentTipsetsLoading = false
     },
     async getRichList() {
       this.richListLoading = true
-      this.richList = await this.$axios.$get("/rich-list", { params: {pageSize: 10,page: 0} })
+      this.richList = await this.$axios.$get('/rich-list', { params: { pageSize: 10, page: 0 } })
       this.richListLoading = false
     },
     onUpdateOverview(overview) {
@@ -153,7 +150,7 @@ export default {
     },
     onUpdateRecentTipsets(tipsets) {
       this.recentTipsets = tipsets
-    },
+    }
   },
   head() {
     return {
@@ -162,5 +159,5 @@ export default {
     }
   }
 
-};
+}
 </script>

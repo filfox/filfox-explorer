@@ -5,7 +5,7 @@ module.exports = {
       'pages/**/*.vue',
       'components/**/*.vue',
       'layouts/**/*.vue',
-      'plugins/**/*.vue',
+      'plugins/**/*.vue'
     ]
   },
   corePlugins: {
@@ -36,16 +36,16 @@ module.exports = {
       }
     },
     minWidth: {
-      '0': '0',
+      0: '0',
       '1/5': '20%',
       '1/8': '12.5%',
       '1/4': '25%',
       '1/2': '50%',
       '3/4': '75%',
-      'full': '100%'
+      full: '100%'
     }
   },
   variants: {
   },
-  plugins: [],
+  plugins: []
 }

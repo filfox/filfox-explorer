@@ -1,5 +1,5 @@
-import messages from './locales'
 import webpack from 'webpack'
+import messages from './locales'
 
 export default {
   mode: 'universal',
@@ -10,12 +10,12 @@ export default {
   head() {
     return {
       title: process.env.npm_package_name || '',
-      titleTemplate: '%s - ' + this.$t('meta.titles.filfox'),
+      titleTemplate: `%s - ${this.$t('meta.titles.filfox')}`,
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-        { name: 'keywords', content:"飞狐浏览器, Filfox, 飞狐区块浏览器, Filecoin, Filecoin Explorer, Filecoin 浏览器, FIL, IPFS, 6Block, 石榴矿池" },
-        { name: 'description', content: this.$t('meta.description.default')},
+        { name: 'keywords', content: '飞狐浏览器, Filfox, 飞狐区块浏览器, Filecoin, Filecoin Explorer, Filecoin 浏览器, FIL, IPFS, 6Block, 石榴矿池' },
+        { name: 'description', content: this.$t('meta.description.default') },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         { name: 'apple-mobile-web-app-title', content: this.$t('meta.titles.filfox') },
@@ -63,7 +63,8 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/components',
-    ['@nuxtjs/google-analytics', {id: process.env.GOOGLE_ANALYTICS}]
+    '@nuxtjs/eslint-module',
+    ['@nuxtjs/google-analytics', { id: process.env.GOOGLE_ANALYTICS }]
   ],
   /*
   ** Nuxt.js modules
@@ -74,44 +75,37 @@ export default {
     'nuxt-i18n'
   ],
   axios: {
-    proxy: true,
-    prefix: '/api/v0',
-  },
-  proxy: {
-    '/api': {
-      target: 'https://calibration.filfox.io/',
-      changeOrigin: true
-    }
+    baseURL: 'https://calibration.filfox.io/api/v0'
   },
   i18n: {
     locales: [
       {
         code: 'en',
         iso: 'en-US',
-        name: 'English',
+        name: 'English'
       },
       {
         code: 'zh',
         iso: 'zh-CN',
-        name: '中文',
+        name: '中文'
       },
       {
         code: 'ko',
         iso: 'ko_KR',
-        name: '한국어',
+        name: '한국어'
       }
     ],
     defaultLocale: 'zh',
     strategy: 'prefix',
     vueI18n: {
       fallbackLocale: 'zh',
-      messages,
+      messages
     },
     detectBrowserLanguage: {
-      useCookie: true,
+      useCookie: true
       // alwaysRedirect: true,
     },
-    seo: true,
+    seo: true
   },
   /*
   ** Build configuration
@@ -128,7 +122,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend(config) {
       config.module.rules.push({
         enforce: 'pre',
         test: /\.md$/,
@@ -136,7 +130,7 @@ export default {
         exclude: /node_modules/
       })
       config.plugins.push(new webpack.DefinePlugin({
-        'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL),
+        'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL)
       }))
     }
   }

@@ -1,16 +1,20 @@
 <template>
-  <div class="flex flex-col">
-    <div
-      class="flex flex-grow-0 mt-6 font-medium"
-    >{{ $t('detail.address.normal.title') + ' ' + addressData.address }}</div>
-    <div class="flex flex-col rounded-md my-4 bg-white pb-2">
+  <div class="pt-6">
+    <div class="font-medium">
+      {{ $t('detail.address.normal.title') + ' ' + addressData.address }}
+    </div>
+    <div class="rounded-md my-4 bg-white pb-2">
       <div
         class="flex pl-8 py-4 font-medium border-b border-background"
-      >{{ $t('detail.address.normal.headers.overview') }}</div>
+      >
+        {{ $t('detail.address.normal.headers.overview') }}
+      </div>
       <dl class="flex flex-row my-2 items-center">
         <dt
           class="w-1/8 pl-8 text-gray-600 px-2"
-        >{{ $t('detail.address.normal.headers.address') }}</dt>
+        >
+          {{ $t('detail.address.normal.headers.address') }}
+        </dt>
         <dd class="flex mr-4">
           <AddressLink :id="addressData.address" />
         </dd>
@@ -19,93 +23,136 @@
       <dl class="flex flex-row my-2 items-center">
         <dt
           class="w-1/8 pl-8 text-gray-600 px-2"
-        >{{ $t('detail.address.normal.headers.actor') }}</dt>
+        >
+          {{ $t('detail.address.normal.headers.actor') }}
+        </dt>
         <dd
           class="flex mr-4"
-        >{{ $t('actor.' + addressData.actor) }}</dd>
+        >
+          {{ $t('actor.' + addressData.actor) }}
+        </dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">
         <dt
           class="w-1/8 pl-8 text-gray-600 px-2"
-        >{{ $t('detail.address.normal.headers.balance') }}</dt>
-        <dd class="flex mr-4">{{ addressData.balance | filecoin }}</dd>
+        >
+          {{ $t('detail.address.normal.headers.balance') }}
+        </dt>
+        <dd class="flex mr-4">
+          {{ addressData.balance | filecoin }}
+        </dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">
         <dt
           class="w-1/8 pl-8 text-gray-600 px-2"
-        >{{ $t('detail.address.normal.headers.messages') }}</dt>
-        <dd class="flex mr-4">{{ addressData.messageCount }}</dd>
+        >
+          {{ $t('detail.address.normal.headers.messages') }}
+        </dt>
+        <dd class="flex mr-4">
+          {{ addressData.messageCount }}
+        </dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">
         <dt
           class="w-1/8 pl-8 text-gray-600 px-2"
-        >{{ $t('detail.address.normal.headers.createTime') }}</dt>
-        <dd class="flex mr-4">{{ addressData.createTimestamp | timestamp('datetime') }}</dd>
+        >
+          {{ $t('detail.address.normal.headers.createTime') }}
+        </dt>
+        <dd class="flex mr-4">
+          {{ addressData.createTimestamp | timestamp('datetime') }}
+        </dd>
       </dl>
 
       <dl class="flex flex-row my-2 items-center">
         <dt
           class="w-1/8 pl-8 text-gray-600 px-2"
-        >{{ $t('detail.address.normal.headers.lastSeenTime') }}</dt>
-        <dd class="flex mr-4">{{ addressData.lastSeenTimestamp | timestamp('datetime') }}</dd>
+        >
+          {{ $t('detail.address.normal.headers.lastSeenTime') }}
+        </dt>
+        <dd class="flex mr-4">
+          {{ addressData.lastSeenTimestamp | timestamp('datetime') }}
+        </dd>
       </dl>
 
-      <dl class="flex flex-row items-center my-2" v-if="addressData.ownedMiners.length > 0">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.ownedMiners') }}</dt>
-        <dd class="flex flex-col mr-4">
+      <dl v-if="addressData.ownedMiners.length > 0" class="flex flex-row items-center my-2">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
+          {{ $t('detail.address.normal.headers.ownedMiners') }}
+        </dt>
+        <dd class="mr-4">
           <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="items-center flex text-main">
             <AddressLink :id="ownedMiner" />
           </p>
         </dd>
       </dl>
 
-      <dl class="flex flex-row items-center my-2" v-if="addressData.workerMiners.length > 0">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">{{ $t('detail.address.normal.headers.workers') }}</dt>
-        <dd class="flex flex-col mr-4">
+      <dl v-if="addressData.workerMiners.length > 0" class="flex flex-row items-center my-2">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
+          {{ $t('detail.address.normal.headers.workers') }}
+        </dt>
+        <dd class="mr-4">
           <p v-for="worker in addressData.workerMiners" :key="worker" class="items-center flex text-main">
             <AddressLink :id="worker" />
           </p>
         </dd>
       </dl>
-
     </div>
 
-    <div class="flex flex-col rounded-md my-4 bg-white">
-      <div class="flex ml-8 mt-4 font-medium">{{ $t('blockchain.message.title') }}</div>
+    <div class="rounded-md my-4 pt-4 bg-white">
+      <div class="flex ml-8 font-medium">
+        {{ $t('blockchain.message.title') }}
+      </div>
       <div class="flex flex-row items-center justify-between border-b border-background">
         <p
           class="flex ml-8 h-12 items-center text-sm"
-        >{{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages')}}</p>
+        >
+          {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages') }}
+        </p>
         <el-select v-model="method" placeholder size="mini" class="mr-4" @change="didSelectChanged">
           <el-option
             v-for="item in methodOptions"
             :key="item"
             :label="item == 'All' ? $t('blockchain.message.methods.all') : item"
             :value="item"
-          ></el-option>
+          />
         </el-select>
       </div>
       <div class="flex mx-4 mt-2">
-        <table class="w-full table-auto" v-if="!loading">
+        <table v-if="!loading" class="w-full table-auto">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
-              <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.id')}}</th>
+              <th class="sticky top-0 bg-white z-10">
+                {{ $t('blockchain.message.tableHeaders.id') }}
+              </th>
               <th
                 class="sticky top-0 bg-white z-10"
-              >{{$t('blockchain.message.tableHeaders.height')}}</th>
-              <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.time')}}</th>
-              <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.from')}}</th>
-              <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.to')}}</th>
+              >
+                {{ $t('blockchain.message.tableHeaders.height') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10">
+                {{ $t('blockchain.message.tableHeaders.time') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10">
+                {{ $t('blockchain.message.tableHeaders.from') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10">
+                {{ $t('blockchain.message.tableHeaders.to') }}
+              </th>
               <th
                 class="sticky top-0 bg-white z-10"
-              >{{$t('blockchain.message.tableHeaders.method')}}</th>
-              <th class="sticky top-0 bg-white z-10">{{$t('blockchain.message.tableHeaders.value')}}</th>
+              >
+                {{ $t('blockchain.message.tableHeaders.method') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10">
+                {{ $t('blockchain.message.tableHeaders.value') }}
+              </th>
               <th
                 class="sticky top-0 bg-white z-10"
-              >{{$t('blockchain.message.tableHeaders.exitCode')}}</th>
+              >
+                {{ $t('blockchain.message.tableHeaders.exitCode') }}
+              </th>
             </tr>
           </thead>
           <tbody class="text-center">
@@ -129,21 +176,25 @@
               </td>
               <td>{{ message.method }}</td>
               <td>{{ message.value | filecoin(4) }}</td>
-              <td v-if="message.receipt">{{ message.receipt.exitCode | exit-code }}</td>
-              <td v-else>N/A</td>
+              <td v-if="message.receipt">
+                {{ message.receipt.exitCode | exit-code }}
+              </td>
+              <td v-else>
+                N/A
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="flex h-24" v-if="loading" v-loading="loading"></div>
+      <div v-if="loading" v-loading="loading" class="flex h-24"></div>
       <div class="flex flex-grow items-center text-center h-16">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
-          @current-change="didCurrentPageChanged"
           :current-page="page+1"
           class="mx-auto"
-        ></el-pagination>
+          @current-change="didCurrentPageChanged"
+        />
       </div>
     </div>
   </div>
@@ -152,57 +203,57 @@
 <script>
 export default {
   props: {
-    addressData: {type: Object, required: true}
+    addressData: { type: Object, required: true }
   },
   data() {
     return {
       messagesList: {},
-      methodOptions: ["All"],
+      methodOptions: ['All'],
       page: 0,
       pageSize: 20,
       totalPageCount: 0,
       loading: false,
       total: 0,
-      method: "All"
-    };
+      method: 'All'
+    }
   },
   mounted() {
-    this.getMessagesList();
+    this.getMessagesList()
   },
   methods: {
     getMessagesList() {
-      this.loading = true;
-      var params = { pageSize: this.pageSize, page: this.page };
-      if (this.method != "All") {
-        params["method"] = this.method;
+      this.loading = true
+      const params = { pageSize: this.pageSize, page: this.page }
+      if (this.method !== 'All') {
+        params.method = this.method
       }
       this.$axios
         .get(`/address/${this.addressData.address}/messages`, {
-          params: params
+          params
         })
         .then(res => {
-          this.messagesList = res.data;
-          this.methodOptions = ["All"];
-          this.methodOptions = this.methodOptions.concat(res.data.methods);
-          this.loading = false;
-          this.total = this.messagesList.totalCount;
-          this.getTotalPageCount();
-        });
+          this.messagesList = res.data
+          this.methodOptions = ['All']
+          this.methodOptions = this.methodOptions.concat(res.data.methods)
+          this.loading = false
+          this.total = this.messagesList.totalCount
+          this.getTotalPageCount()
+        })
     },
     getTotalPageCount() {
-      this.totalPageCount = Math.ceil(this.total / this.pageSize);
+      this.totalPageCount = Math.ceil(this.total / this.pageSize)
     },
     didCurrentPageChanged(currentPage) {
-      this.page = currentPage - 1;
-      this.getMessagesList();
+      this.page = currentPage - 1
+      this.getMessagesList()
     },
     didSelectChanged(selectedMethod) {
-      this.method = selectedMethod;
-      this.page = 0;
-      this.totalPageCount = 1;
-      this.total = 0;
-      this.getMessagesList();
+      this.method = selectedMethod
+      this.page = 0
+      this.totalPageCount = 1
+      this.total = 0
+      this.getMessagesList()
     }
   }
-};
+}
 </script>
