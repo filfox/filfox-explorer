@@ -68,7 +68,8 @@ export default {
                 burntSupply:'FIL销毁量',
                 totalMarketBalance: '订单锁定量',
                 totalMaxSupply:'FIL总供给量',
-                circulatingSupplyRate: 'FIL流通率'
+                circulatingSupplyRate: 'FIL流通率',
+                sectorInitialPledge: '当前扇区质押量'
             },
             tips: {
                 qualityAdjPower:'当前全网有效算力（有效存储空间）的总和',
@@ -84,7 +85,7 @@ export default {
                 rawBytePower: '当前全网算力（存储空间）的总和',
                 averageGasPrice: '近24h网络消耗gas的平均费率',
                 totalMarketBalance: '在储存市场内发起订单时被锁定的FIL数量',
-                circulatingSupplyRate: '流通率=流通量/总供给量',
+                circulatingSupplyRate: '流通率=流通量/总供给量'
             }
         },
         powerDistribution: {

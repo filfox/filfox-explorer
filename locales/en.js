@@ -77,7 +77,8 @@ export default {
           "burntSupply": "Burnt FIL",
           "totalMarketBalance": "Total Market Balance",
           "totalMaxSupply": "Total Max Supply",
-          "circulatingSupplyRate": "Circulating Rate"
+          "circulatingSupplyRate": "Circulating Rate",
+          "sectorInitialPledge": "Current Sector Initial Pledge"
         },
         tips: {
             qualityAdjPower:'Total adjusted storage power (storage space) of the network.',
