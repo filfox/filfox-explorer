@@ -1,15 +1,14 @@
 <template>
   <div class="container mx-auto">
-    <div class="flex flex-grow flex-col my-4 bg-white rounded-md">
-      <div class="flex flex-col border-b border-background">
-        <homeTitle type="minerRanks" />
-        <div class="justify-between flex flex-row">
+    <div class="my-4 bg-white rounded-md">
+      <div class="border-b border-background">
+        <HomeTitle type="minerRanks" />
+        <div class="flex justify-between">
           <div class="flex h-12 ml-4 items-center">
             <el-row>
               <el-button
                 size="mini"
                 round
-                class="focus:outline-none outline-none"
                 v-bind="type === 0 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
                 @click="e => didRankTypeSwitched(e, 0)"
               >
@@ -18,7 +17,6 @@
               <el-button
                 size="mini"
                 round
-                class="focus:outline-none outline-none"
                 v-bind="type === 1 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
                 @click="e => didRankTypeSwitched(e, 1)"
               >
@@ -27,7 +25,6 @@
               <el-button
                 size="mini"
                 round
-                class="focus:outline-none outline-none"
                 v-bind="type === 2 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
                 @click="e => didRankTypeSwitched(e, 2)"
               >
@@ -42,28 +39,16 @@
               fill="#1a4fc9"
               @change="didDurationSwitched"
             >
-              <el-radio-button
-                class="focus:outline-none outline-none"
-                label="24h"
-              >
+              <el-radio-button label="24h">
                 {{ '24' + $t('shared.time.hour') }}
               </el-radio-button>
-              <el-radio-button
-                class="focus:outline-none outline-none"
-                label="7d"
-              >
+              <el-radio-button label="7d">
                 {{ '7' + $t('shared.time.day') }}
               </el-radio-button>
-              <el-radio-button
-                class="focus:outline-none outline-none"
-                label="30d"
-              >
+              <el-radio-button label="30d">
                 {{ '30' + $t('shared.time.day') }}
               </el-radio-button>
-              <el-radio-button
-                class="focus:outline-none outline-none"
-                label="1y"
-              >
+              <el-radio-button label="1y">
                 {{ '1' + $t('shared.time.year') }}
               </el-radio-button>
             </el-radio-group>
@@ -73,7 +58,7 @@
       </div>
 
       <div class="flex mt-3">
-        <table v-loading="loading" class="w-full" :class="{'table-fixed':page == 0, 'table-auto ml-4':page > 0}">
+        <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
           <thead class="text-gray-600 text-sm">
             <tr v-if="type === 0">
               <th class="w-1/10">
@@ -95,13 +80,13 @@
                 {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
               </th>
               <th class="w-1/8">
-                <div class="flex flex-row justify-center items-center">
+                <div class="flex justify-center items-center">
                   {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}
                   <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.miningEfficiency')" />
                 </div>
               </th>
               <th class="w-1/8">
-                <div class="flex flex-row justify-center items-center">
+                <div class="flex justify-center items-center">
                   {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease') }}
                   <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
                 </div>
@@ -121,7 +106,7 @@
                 {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
               </th>
               <th class="w-7/50">
-                <div class="flex flex-row justify-center items-center">
+                <div class="flex justify-center items-center">
                   {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
                   <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
                 </div>
@@ -130,7 +115,7 @@
                 {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }}
               </th>
               <th class="w-7/50">
-                <div class="flex flex-row justify-center items-center">
+                <div class="flex justify-center items-center">
                   {{ $t('home.minerRanks.tableHeadersByBlock.rewardsRatio') }}
                   <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
                 </div>
@@ -147,19 +132,19 @@
                 {{ $t('home.minerRanks.tableHeadersByPowerDelta.tag') }}
               </th>
               <th class="w-7/25">
-                <div class="flex flex-row justify-center items-center">
+                <div class="flex justify-center items-center">
                   {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
                   <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerIncreaseSpeed')" />
                 </div>
               </th>
               <th class="w-7/50">
-                <div class="flex flex-row justify-center items-center">
+                <div class="flex justify-center items-center">
                   {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}
                   <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
                 </div>
               </th>
               <th class="w-7/50">
-                <div class="flex flex-row justify-center items-center">
+                <div class="flex justify-center items-center">
                   {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
                   <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerDelta')" />
                 </div>
@@ -176,7 +161,7 @@
               class="border-b border-background h-10"
             >
               <td>
-                <rankIndex :index="page * pageSize + index+1" />
+                <RankIndex :index="page * pageSize + index + 1" />
               </td>
               <td>
                 <AddressLink :id="miner.address" :format="10" />
@@ -185,7 +170,7 @@
                 <MinerTag :tag="miner.tag" />
               </td>
               <td>
-                <div class="flex flex-row items-center">
+                <div class="flex items-center">
                   <el-progress v-if="page === 0" :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" />
                   <div class="flex" :class="{'mx-auto': page > 0}">
                     {{ miner.qualityAdjPower | size_metric(2) }}
@@ -194,7 +179,7 @@
               </td>
               <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}</td>
               <td>{{ miner.totalRewards | filecoin(2) }}</td>
-              <td> {{ miner.rewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2) }} </td>
+              <td>{{ miner.rewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2) }}</td>
               <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             </tr>
           </tbody>
@@ -214,8 +199,13 @@
                 <MinerTag :tag="miner.tag" />
               </td>
               <td>
-                <div class="flex flex-row items-center justify-end">
-                  <el-progress v-if="page === 0" :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" />
+                <div class="flex items-center justify-end">
+                  <el-progress
+                    v-if="page === 0"
+                    :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100"
+                    :show-text="false"
+                    class="flex w-1/2 ml-8 mr-3"
+                  />
                   <div class="flex" :class="{'mx-auto': page > 0, 'w-1/4': page == 0}">
                     {{ miner.weightedBlocksMined }}
                   </div>
@@ -242,8 +232,13 @@
                 <MinerTag :tag="miner.tag" />
               </td>
               <td>
-                <div class="flex flex-row items-center">
-                  <el-progress v-if="page === 0" :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" />
+                <div class="flex items-center">
+                  <el-progress
+                    v-if="page === 0"
+                    :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100"
+                    :show-text="false"
+                    class="flex w-1/2 ml-8 mr-3"
+                  />
                   <div class="flex" :class="{'mx-auto': page > 0}">
                     {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }} / {{ $t('shared.time.day') }}
                   </div>
@@ -256,7 +251,7 @@
           </tbody>
         </table>
       </div>
-      <div class="flex flex-grow items-center text-center h-16">
+      <div class="flex items-center text-center h-16">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
@@ -276,14 +271,8 @@ svg {
 </style>
 
 <script>
-import homeTitle from '~/components/home/home-title'
-import rankIndex from '~/components/home/rank-index'
 
 export default {
-  components: {
-    homeTitle,
-    rankIndex
-  },
   props: {
     topMinersByPower: { type: Object, required: true },
     topMinersByBlocks: { type: Object, required: true },

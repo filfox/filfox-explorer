@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white pb-2">
+  <div class="bg-white pb-4">
     <div class="font-medium text-sm pl-4 py-3 border-b border-background">
       {{ $t('detail.message.title') }}
     </div>
@@ -31,7 +31,7 @@
       <p class="flex w-1/4">
         {{ $t('detail.message.headers.inBlocks') }}
       </p>
-      <div class="flex flex-col w-3/4">
+      <div class="w-3/4">
         <p v-for="block in message.blocks" :key="block" class="items-center flex text-main mt-2">
           <BlockLink :id="block" />
         </p>
@@ -133,7 +133,6 @@
           {{ message.receipt.return ? message.receipt.return : $t('detail.message.null') }}
         </p>
       </div>
-
       <div v-else class="flex justify-between items-center text-xs mx-4 pt-2">
         <p class="flex w-1/4">
           {{ $t('detail.message.headers.error') }}

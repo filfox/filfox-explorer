@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-row">
-    <div class="flex w-1/3 h-full">
+  <div class="flex">
+    <div class="w-1/3 h-full">
       <MinerBalanceChart :address-data="addressData" />
     </div>
     <div class="py-4">

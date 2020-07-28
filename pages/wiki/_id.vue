@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto flex flex-row">
+  <div class="container mx-auto flex">
     <div class="bg-white my-4 mr-2 w-1/4 lg:w-1/8 rounded">
       <p class="mx-4 py-2 font-medium border-b border-background">
         文章列表

@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-row items-center justify-center">
-    <template v-if="type == 0" class="hidden lg:flex">
+  <div class="flex items-center justify-center">
+    <template v-if="type === 0" class="hidden lg:flex">
       <nuxt-link v-if="canClick" :to="localePath(`/merchant/${tag.merchant}`)" class="hover:text-main">
         {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--' }}
       </nuxt-link>
@@ -8,8 +8,8 @@
         {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--' }}
       </div>
     </template>
-    <Signed v-if="tag.signed && type== 0" :content="$t('tag.signed')" />
-    <template v-if="type == 1">
+    <Signed v-if="tag.signed && type === 0" :content="$t('tag.signed')" />
+    <template v-if="type === 1">
       <nuxt-link
         v-if="canClick"
         :to="localePath(`/merchant/${tag.merchant}`)"

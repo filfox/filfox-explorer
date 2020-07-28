@@ -9,7 +9,7 @@
           #{{ height }}
         </div>
       </div>
-      <div class="px-4 bg-white flex flex-row justify-between pt-2">
+      <div class="px-4 bg-white flex justify-between pt-2">
         <p class="text-gray-600 text-xs">
           {{ $t('detail.tipset.headers.time') }}
         </p>
@@ -17,7 +17,7 @@
           {{ tipset.timestamp | timestamp }}
         </p>
       </div>
-      <div class="px-4 bg-white flex flex-row justify-between pt-1">
+      <div class="px-4 bg-white flex justify-between pt-1">
         <p class="text-gray-600 text-xs">
           {{ $t('detail.tipset.headers.totalMsgCount') }}
         </p>
@@ -25,7 +25,7 @@
           {{ tipset.messageCount }}
         </p>
       </div>
-      <div class="px-4 bg-white flex flex-row justify-between pt-1 pb-2">
+      <div class="px-4 bg-white flex justify-between pt-1 pb-2">
         <p class="text-gray-600 text-xs">
           {{ $t('detail.tipset.headers.size') }}
         </p>
@@ -39,22 +39,22 @@
           {{ $t('detail.tipset.all') }}
         </p>
         <div v-for="(block, index) in tipset.blocks" :key="index" class="rounded-sm mx-2 mb-2 shadow bg-white">
-          <div class="flex flex-row justify-between mt-2 mx-2 pt-2">
+          <div class="flex justify-between mt-2 mx-2 pt-2">
             <p class="text-xs w-1/3">
               {{ $t('detail.tipset.headers.id') }}
             </p>
             <BlockLink :id="block.cid" class="text-xs text-right" />
           </div>
-          <div class="flex flex-row justify-between mt-2 mx-2">
+          <div class="flex justify-between mt-2 mx-2">
             <p class="text-xs w-1/3">
               {{ $t('detail.tipset.headers.miner') }}
             </p>
-            <div class="flex flex-row-reverse items-center">
+            <div class="flex-reverse items-center">
               <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="2" />
               <AddressLink :id="block.miner" class="text-xs text-main" />
             </div>
           </div>
-          <div class="flex flex-row justify-between mt-2 mx-2">
+          <div class="flex justify-between mt-2 mx-2">
             <p class="text-xs w-1/3">
               {{ $t('detail.tipset.headers.bonus') }}
             </p>
@@ -62,7 +62,7 @@
               {{ block.reward | filecoin }}
             </p>
           </div>
-          <div class="flex flex-row justify-between mt-2 mx-2 pb-2">
+          <div class="flex justify-between mt-2 mx-2 pb-2">
             <p class="text-xs w-1/3">
               {{ $t('detail.tipset.headers.messageCount') }}
             </p>
@@ -75,12 +75,12 @@
     </div>
 
     <div class="hidden container mx-auto lg:block">
-      <div class="flex flex-grow-0 mt-6 font-medium">
+      <div class="mt-6 font-medium">
         {{ $t('detail.tipset.title') }} #{{ height }}
       </div>
       <div class="rounded-md my-4 bg-white">
         <div class="border-b border-background mt-2 pb-2">
-          <dl class="flex flex-row my-2 items-center">
+          <dl class="flex my-2 items-center">
             <dt class="w-9/50 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.time') }}
             </dt>
@@ -89,7 +89,7 @@
             </dd>
           </dl>
 
-          <dl class="flex flex-row my-2 items-center">
+          <dl class="flex my-2 items-center">
             <dt class="w-9/50 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.totalMsgCount') }}
             </dt>
@@ -98,7 +98,7 @@
             </dd>
           </dl>
 
-          <dl class="flex flex-row my-2 items-center">
+          <dl class="flex my-2 items-center">
             <dt class="w-9/50 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.size') }}
             </dt>
@@ -110,8 +110,8 @@
         <p class="text-base my-4 ml-8">
           {{ $t('detail.tipset.all') }}
         </p>
-        <div v-for="(block, index) in tipset.blocks" :key="index" class="bg-background mx-8 mb-4 rounded-md flex flex-col py-2">
-          <dl class="flex flex-row my-1 items-center">
+        <div v-for="(block, index) in tipset.blocks" :key="index" class="bg-background mx-8 mb-4 rounded-md py-2">
+          <dl class="flex my-1 items-center">
             <dt class="w-1/8 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.id') }}
             </dt>
@@ -119,7 +119,7 @@
               <BlockLink :id="block.cid" />
             </dd>
           </dl>
-          <dl class="flex flex-row my-1 items-center">
+          <dl class="flex my-1 items-center">
             <dt class="w-1/8 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.miner') }}
             </dt>
@@ -128,7 +128,7 @@
               <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="1" />
             </dd>
           </dl>
-          <dl class="flex flex-row my-1 items-center">
+          <dl class="flex my-1 items-center">
             <dt class="w-1/8 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.bonus') }}
             </dt>
@@ -136,7 +136,7 @@
               {{ block.reward | filecoin }}
             </dd>
           </dl>
-          <dl class="flex flex-row my-1 items-center">
+          <dl class="flex my-1 items-center">
             <dt class="w-1/8 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.messageCount') }}
             </dt>

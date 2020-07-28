@@ -20,9 +20,6 @@ export default {
   props: {
     error: { type: Object, required: true }
   },
-  mounted() {
-    console.log(this.$route)
-  },
   head() {
     return {
       title: 'Error'

@@ -2,13 +2,12 @@
   <div class="mb-4 bg-white rounded-md">
     <div class="border-b border-background">
       <homeTitle type="minerRanks" />
-      <div class="flex justify-between">
+      <div class="flex justify-between mb-2">
         <div class="flex h-12 ml-4 items-center">
           <el-row>
             <el-button
               size="mini"
               round
-              class="focus:outline-none outline-none"
               v-bind="type === 0 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
               @click="e => didRankTypeSwitched(e, 0)"
             >
@@ -17,7 +16,6 @@
             <el-button
               size="mini"
               round
-              class="focus:outline-none outline-none"
               v-bind="type === 1 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
               @click="e => didRankTypeSwitched(e, 1)"
             >
@@ -26,7 +24,6 @@
             <el-button
               size="mini"
               round
-              class="focus:outline-none outline-none"
               v-bind="type === 2 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
               @click="e => didRankTypeSwitched(e, 2)"
             >
@@ -36,25 +33,24 @@
         </div>
         <div v-if="type != 0" class="flex h-12 items-center mr-4">
           <el-radio-group v-model="duration" size="mini" fill="#1a4fc9">
-            <el-radio-button class="focus:outline-none outline-none" label="24h">
+            <el-radio-button label="24h">
               {{ '24' + $t('shared.time.hour') }}
             </el-radio-button>
-            <el-radio-button class="focus:outline-none outline-none" label="7d">
+            <el-radio-button label="7d">
               {{ '7' + $t('shared.time.day') }}
             </el-radio-button>
-            <el-radio-button class="focus:outline-none outline-none" label="30d">
+            <el-radio-button label="30d">
               {{ '30' + $t('shared.time.day') }}
             </el-radio-button>
-            <el-radio-button class="focus:outline-none outline-none" label="1y">
+            <el-radio-button label="1y">
               {{ '1' + $t('shared.time.year') }}
             </el-radio-button>
           </el-radio-group>
         </div>
       </div>
-      <div class="flex h-2"></div>
     </div>
 
-    <table v-loading="loading" class="table-fixed w-full mx-4 mt-3 mb-5">
+    <table v-loading="loading" class="table-fixed w-full px-4 mt-3 mb-5">
       <thead class="text-gray-600 text-sm m-2">
         <tr v-if="type === 0">
           <th class="w-1/10">
@@ -76,13 +72,13 @@
             {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
           </th>
           <th class="w-1/8">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.miningEfficiency')" />
             </div>
           </th>
           <th class="w-1/8">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
             </div>
@@ -102,7 +98,7 @@
             {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
           </th>
           <th class="w-7/50">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
             </div>
@@ -111,7 +107,7 @@
             {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }}
           </th>
           <th class="w-7/50">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByBlock.rewardsRatio') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
             </div>
@@ -128,19 +124,19 @@
             {{ $t('home.minerRanks.tableHeadersByPowerDelta.tag') }}
           </th>
           <th class="w-7/25">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerIncreaseSpeed')" />
             </div>
           </th>
           <th class="w-7/50">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
             </div>
           </th>
           <th class="w-7/50">
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerDelta')" />
             </div>
@@ -162,7 +158,7 @@
             <MinerTag :tag="miner.tag" />
           </td>
           <td>
-            <div class="flex flex-row items-center justify-end">
+            <div class="flex items-center justify-end">
               <el-progress
                 :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100"
                 :show-text="false"
@@ -191,7 +187,7 @@
             <MinerTag :tag="miner.tag" />
           </td>
           <td>
-            <div class="flex flex-row items-center justify-end">
+            <div class="flex items-center justify-end">
               <el-progress
                 :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100"
                 :show-text="false"
@@ -219,7 +215,7 @@
             <MinerTag :tag="miner.tag" />
           </td>
           <td>
-            <div class="flex flex-row items-center justify-end">
+            <div class="flex items-center justify-end">
               <el-progress
                 :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100"
                 :show-text="false"
@@ -240,7 +236,7 @@
     </table>
     <div class="m-auto text-center h-16">
       <nuxt-link :to="localePath('/ranks')" class="mx-auto">
-        <el-button class="focus:outline-none outline-none" size="mini" round>
+        <el-button size="mini" round>
           {{ $t('home.minerRanks.moreBtn') }}
         </el-button>
       </nuxt-link>

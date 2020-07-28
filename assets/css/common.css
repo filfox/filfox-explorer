@@ -22,3 +22,9 @@ button:focus {
 .el-dropdown:focus {
     outline: none;
 }
+.el-dropdown-link {
+    outline: none;
+}
+.el-dropdown-link:focus {
+    outline: none;
+}

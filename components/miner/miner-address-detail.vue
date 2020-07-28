@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="flex flex-row items-center mt-6">
+    <div class="flex items-center mt-6">
       <div class="font-medium">
-        {{ $t('detail.address.normal.title') + ' ' + addressData.address }}
+        {{ $t('detail.address.normal.title') }} {{ addressData.address }}
       </div>
       <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="1" />
       <div v-else class="text-main text-xs ml-2 mt-1 cursor-pointer" @click="showDialog">
@@ -13,10 +13,10 @@
       </div>
     </div>
 
-    <MinerVerifyApply ref="verifyApplication" :address-info="addressData.address" :tag="addressData.tag ? addressData.tag : {}" />
+    <MinerVerifyApply ref="verifyApplication" :address-info="addressData.address" :tag="addressData.tag" />
 
     <div class="rounded-md mt-4 bg-white pt-4 pb-2">
-      <p class="mx-8 flex flex-grow">
+      <p class="mx-8 flex">
         {{ $t('detail.address.miner.minerOverview.title') }}
       </p>
       <div class="grid grid-rows-1 grid-cols-2 gap-4 my-4 mx-8">
@@ -29,8 +29,8 @@
       </div>
     </div>
 
-    <div class="flex flex-row mt-4 justify-between">
-      <div class="rounded-md bg-white flex-grow mr-2 w-1/2">
+    <div class="flex mt-4 justify-between">
+      <div class="rounded-md bg-white mr-2 w-1/2">
         <p class="px-8 flex py-4 border-b border-background">
           {{ $t('detail.address.miner.accountChange.title') }}
         </p>
@@ -45,12 +45,12 @@
     </div>
 
     <div class="rounded-md mt-4 bg-white pt-4 pb-2">
-      <p class="px-8 flex flex-grow border-b border-background pb-4">
+      <p class="px-8 flex border-b border-background pb-4">
         {{ $t('detail.address.miner.accountOverview.title') }}
       </p>
       <div class="grid grid-rows-1 grid-cols-2 gap-4 mx-8 my-4">
         <div class="mr-2">
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.address') }}:
             </p>
@@ -58,7 +58,7 @@
               {{ addressData.alias }}
             </p>
           </div>
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.messageCount') }}:
             </p>
@@ -66,15 +66,15 @@
               {{ addressData.messageCount }}
             </p>
           </div>
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.actor') }}:
             </p>
             <p class="text-sm mt-2">
-              {{ $t('actor.' + addressData.actor) }}
+              {{ $t(`actor.${addressData.actor}`) }}
             </p>
           </div>
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.createTime') }}:
             </p>
@@ -84,27 +84,30 @@
           </div>
         </div>
         <div class="ml-2">
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.peerID') }}:
             </p>
             <PeerLink :id="addressData.miner.peerId" class="text-sm mt-2" />
           </div>
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.sectors') }}:
             </p>
             <p class="text-sm mt-2">
-              {{ addressData.miner.sectors | locale }} total, {{ addressData.miner.activeSectors | locale }} active, {{ addressData.miner.faults | locale }} faults, {{ addressData.miner.recoveries | locale }} recoveries
+              {{ addressData.miner.sectors | locale }} total,
+              {{ addressData.miner.activeSectors | locale }} active,
+              {{ addressData.miner.faults | locale }} faults,
+              {{ addressData.miner.recoveries | locale }} recoveries
             </p>
           </div>
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.owner') }}:
             </p>
             <AddressLink :id="addressData.miner.owner" class="text-sm mt-2 text-main" />
           </div>
-          <div class="flex flex-row justify-between">
+          <div class="flex justify-between">
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.worker') }}:
             </p>
@@ -118,17 +121,19 @@
     <div class="rounded-md my-4 bg-white pt-4">
       <div class="flex h-12 items-center ml-8">
         <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
-          <el-radio-button class="focus:outline-none outline-none" :label="0">
+          <el-radio-button :label="0">
             {{ $t('blockchain.message.title') }}
           </el-radio-button>
-          <el-radio-button class="focus:outline-none outline-none" :label="1">
+          <el-radio-button :label="1">
             {{ $t('blockchain.block.title') }}
           </el-radio-button>
         </el-radio-group>
       </div>
-      <div v-if="listType == 0" class="flex flex-row items-center justify-between border-b border-background">
+      <div v-if="listType == 0" class="flex items-center justify-between border-b border-background">
         <p class="flex ml-8 h-12 items-center text-sm">
-          {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages') }}
+          {{ $t('blockchain.message.info.total') }}
+          {{ total }}
+          {{ $t('blockchain.message.info.messages') }}
         </p>
         <el-select v-model="method" placeholder size="mini" class="mr-4" @change="didSelectChanged">
           <el-option
@@ -206,9 +211,11 @@
           </tbody>
         </table>
       </div>
-      <div v-else class="flex mx-8 flex-col">
+      <div v-else class="mx-8">
         <p class="flex h-12 items-center text-sm border-b border-background mb-4">
-          {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('detail.address.miner.blockList.tipsets') }}
+          {{ $t('blockchain.message.info.total') }}
+          {{ total }}
+          {{ $t('detail.address.miner.blockList.tipsets') }}
         </p>
         <table v-if="!loading" class="w-full table-auto">
           <thead class="text-gray-600 text-sm m-2">
@@ -265,11 +272,11 @@
         </table>
       </div>
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div class="flex flex-grow items-center text-center h-16">
+      <div class="flex items-center text-center h-16">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
-          :current-page="page+1"
+          :current-page="page + 1"
           class="mx-auto"
           @current-change="didCurrentPageChanged"
         />

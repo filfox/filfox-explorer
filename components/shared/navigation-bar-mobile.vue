@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white flex flex-col overflow-hidden pb-1 border-b border-background">
-    <div class="w-full flex">
+  <div class="bg-white overflow-hidden pb-1 border-b border-background">
+    <div class="w-full">
       <el-input
         v-model="searchText"
         size="mini"
@@ -12,7 +12,7 @@
       />
     </div>
 
-    <div class="flex ml-4 mr-1 flex-col mt-1">
+    <div class="ml-4 mr-1 mt-1">
       <el-collapse class="w-full">
         <el-collapse-item :title="$t('nav.blocks.title')">
           <nuxt-link :to="localePath('/tipset')" class="link" @click.native="hideIfNeeded">
@@ -53,7 +53,7 @@
         </el-collapse-item>
       </el-collapse>
     </div>
-    <div v-loading.fullscreen.lock="loading" class="flex flex-grow"></div>
+    <div v-loading.fullscreen.lock="loading"></div>
   </div>
 </template>
 

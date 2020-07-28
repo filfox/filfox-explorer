@@ -1,13 +1,9 @@
 <template>
   <div class="bg-white ml-2 rounded-md">
-    <div class="flex flex-row items-center justify-between border-b border-background">
-      <HomeTitle type="richManRanks" class="flex flex-grow" />
+    <div class="flex items-center justify-between border-b border-background">
+      <HomeTitle type="richManRanks" />
       <nuxt-link :to="localePath('/rich')" class="mr-4">
-        <el-button
-          round
-          size="mini"
-          class="focus:outline-none outline-none"
-        >
+        <el-button round size="mini">
           {{ $t('shared.more') }}
         </el-button>
       </nuxt-link>

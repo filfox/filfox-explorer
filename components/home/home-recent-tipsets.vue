@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col bg-white mr-2 rounded-md overflow-hidden">
-    <div class="flex flex-row items-center justify-between border-b border-background">
-      <HomeTitle type="recentTipsets" class="flex flex-grow" />
+    <div class="flex items-center justify-between border-b border-background">
+      <HomeTitle type="recentTipsets" />
       <nuxt-link :to="localePath('/tipset')" class="mr-4">
-        <el-button round size="mini" class="focus:outline-none outline-none">
+        <el-button round size="mini">
           {{ $t('shared.more') }}
         </el-button>
       </nuxt-link>
@@ -12,22 +12,22 @@
       <table v-if="!recentTipsetsLoading" class="w-full table-auto absolute">
         <thead class="text-gray-600 text-sm m-2">
           <tr>
-            <th class="sticky top-0 bg-white z-10">
+            <th class="table-header">
               {{ $t('home.recentTipsets.tableHeaders.height') }}
             </th>
-            <th class="sticky top-0 bg-white z-10">
+            <th class="table-header">
               {{ $t('home.recentTipsets.tableHeaders.blockId') }}
             </th>
-            <th class="sticky top-0 bg-white z-10">
+            <th class="table-header">
               {{ $t('home.recentTipsets.tableHeaders.miner') }}
             </th>
-            <th class="sticky top-0 bg-white z-10">
+            <th class="table-header">
               {{ $t('home.recentTipsets.tableHeaders.tag') }}
             </th>
-            <th class="sticky top-0 bg-white z-10">
+            <th class="table-header">
               {{ $t('home.recentTipsets.tableHeaders.message') }}
             </th>
-            <th class="sticky top-0 bg-white z-10">
+            <th class="table-header">
               {{ $t('home.recentTipsets.tableHeaders.award') }}
             </th>
           </tr>
@@ -40,9 +40,9 @@
               :class="{'border-b border-background': blockIndex == tipset.blocks.length - 1}"
             >
               <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
-                <div class="flex flex-col">
-                  <TipsetLink :id="tipset.height" class="text-main text-base" />
-                  <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-sm" />
+                <div>
+                  <TipsetLink :id="tipset.height" class="block text-main text-base" />
+                  <FromNow :timestamp="tipset.timestamp" format="seconds" class="block text-sm" />
                 </div>
               </td>
               <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
@@ -78,3 +78,9 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss" scoped>
+  .table-header {
+    @apply sticky top-0 bg-white z-10;
+  }
+</style>

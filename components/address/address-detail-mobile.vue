@@ -1,26 +1,35 @@
 <template>
   <div class="bg-white">
-    <div class="flex flex-grow-0 font-medium text-sm pl-4 py-3 border-b border-background">
+    <div class="flex font-medium text-sm pl-4 py-3 border-b border-background">
       {{ $t('detail.address.normal.headers.overview') }}
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.address') }}
       </p>
       <AddressLink :id="addressData.address" class="flex w-3/4" />
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+      <p class="flex w-1/4">
+        ID
+      </p>
+      <p class="flex w-3/4">
+        {{ addressData.alias }}
+      </p>
+    </div>
+
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.actor') }}
       </p>
       <p class="flex w-3/4">
-        {{ $t('actor.' + addressData.actor) }}
+        {{ $t(`actor.${addressData.actor}`) }}
       </p>
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.balance') }}
       </p>
@@ -29,7 +38,7 @@
       </p>
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.messages') }}
       </p>
@@ -38,7 +47,7 @@
       </p>
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.createTime') }}
       </p>
@@ -47,7 +56,7 @@
       </p>
     </div>
 
-    <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.lastSeenTime') }}
       </p>
@@ -56,7 +65,7 @@
       </p>
     </div>
 
-    <div v-if="addressData.ownedMiners.length > 0" class="flex flex-row justify-between text-xs mx-4 mt-2">
+    <div v-if="addressData.ownedMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
       <p class="w-1/4">
         {{ $t('detail.address.normal.headers.ownedMiners') }}
       </p>
@@ -67,7 +76,7 @@
       </div>
     </div>
 
-    <div v-if="addressData.workerMiners.length > 0" class="flex flex-row justify-between text-xs mx-4 mt-2">
+    <div v-if="addressData.workerMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
       <p class="w-1/4">
         {{ $t('detail.address.normal.headers.workers') }}
       </p>
@@ -83,29 +92,34 @@
         {{ $t('blockchain.message.title') }}
       </p>
 
-      <div class="flex flex-row items-center justify-between pb-1 mb-2">
+      <div class="flex items-center justify-between pb-1 mb-2">
         <p class="flex ml-4 h-8 items-center text-xs">
           {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages') }}
         </p>
         <el-select v-model="method" placeholder="" size="mini" class="mr-3" @change="didSelectChanged">
-          <el-option v-for="item in methodOptions" :key="item" :label="item == 'All' ? $t('blockchain.message.methods.all') : item" :value="item" />
+          <el-option
+            v-for="item in methodOptions"
+            :key="item"
+            :label="item == 'All' ? $t('blockchain.message.methods.all') : item"
+            :value="item"
+          />
         </el-select>
       </div>
 
       <div v-for="(message, index) in messagesList.messages" :key="index" class="rounded-sm mx-3 mb-3 pt-2 pb-px shadow bg-white">
-        <div class="flex flex-row items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.id') }}:
           </p>
           <MessageLink :id="message.cid" :format="10" class="text-gray-800 text-xs" />
         </div>
-        <div class="flex flex-row items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.height') }}:
           </p>
           <TipsetLink :id="message.height" class="text-main text-xs" />
         </div>
-        <div class="flex flex-row items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.time') }}:
           </p>
@@ -113,19 +127,19 @@
             {{ message.timestamp | timestamp('datetime') }}
           </p>
         </div>
-        <div class="flex flex-row items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.from') }}:
           </p>
           <AddressLink :id="message.from" :format="12" class="text-main text-xs" />
         </div>
-        <div class="flex flex-row items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.to') }}:
           </p>
           <AddressLink :id="message.to" :format="12" class="text-main text-xs" />
         </div>
-        <div class="flex flex-row items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.method') }}:
           </p>
@@ -133,7 +147,7 @@
             {{ message.method }}
           </p>
         </div>
-        <div class="flex flex-row items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.value') }}:
           </p>
@@ -141,7 +155,7 @@
             {{ message.value | filecoin(4) }}
           </p>
         </div>
-        <div class="flex flex-row items-center justify-between mx-3 mt-1 mb-3">
+        <div class="flex items-center justify-between mx-3 mt-1 mb-3">
           <p class="text-xs text-gray-800">
             {{ $t('blockchain.message.tableHeaders.exitCode') }}:
           </p>
@@ -153,7 +167,7 @@
           </p>
         </div>
       </div>
-      <div class="flex flex-grow items-center text-center h-16 bg-white">
+      <div class="flex items-center text-center h-16 bg-white">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"

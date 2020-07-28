@@ -5,14 +5,14 @@
         {{ $t('detail.peer.title') }}
       </div>
 
-      <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+      <div class="flex justify-between items-center text-xs mx-4 mt-2">
         <p class="flex w-1/4">
           {{ $t('detail.peer.headers.id') }}
         </p>
         <PeerLink :id="id" plain class="flex w-3/4" />
       </div>
 
-      <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+      <div class="flex justify-between items-center text-xs mx-4 mt-2">
         <p class="flex w-1/4">
           {{ $t('detail.peer.headers.miners') }}
         </p>
@@ -24,11 +24,11 @@
         </p>
       </div>
 
-      <div class="flex flex-row justify-between items-center text-xs mx-4 mt-2">
+      <div class="flex justify-between items-center text-xs mx-4 mt-2">
         <p class="flex w-1/4">
           {{ $t('detail.peer.headers.IP') }}
         </p>
-        <div v-if="peer.addresses.length" class="flex w-3/4 flex-col">
+        <div v-if="peer.addresses.length" class="w-3/4">
           <p v-for="address in peer.addresses" :key="address" class="flex pb-1">
             {{ address | ip }}
           </p>
@@ -44,7 +44,7 @@
         {{ $t('detail.peer.title') }}
       </div>
       <div class="rounded-md my-4 bg-white py-4">
-        <dl class="flex flex-row my-2 items-center">
+        <dl class="flex my-2 items-center">
           <dt class="w-1/8 pl-8 text-gray-600 px-2">
             {{ $t('detail.peer.headers.id') }}
           </dt>
@@ -53,7 +53,7 @@
           </dd>
         </dl>
 
-        <dl class="flex flex-row my-2 items-center">
+        <dl class="flex my-2 items-center">
           <dt class="w-1/8 pl-8 text-gray-600 px-2">
             {{ $t('detail.peer.headers.miners') }}
           </dt>
@@ -67,7 +67,7 @@
           </dd>
         </dl>
 
-        <dl class="flex flex-row my-2 items-center">
+        <dl class="flex my-2 items-center">
           <dt class="w-1/8 pl-8 text-gray-600 px-2">
             {{ $t('detail.peer.headers.IP') }}
           </dt>

@@ -4,96 +4,90 @@
       {{ $t('detail.address.normal.title') + ' ' + addressData.address }}
     </div>
     <div class="rounded-md my-4 bg-white pb-2">
-      <div
-        class="flex pl-8 py-4 font-medium border-b border-background"
-      >
+      <div class="flex pl-8 py-4 font-medium border-b border-background">
         {{ $t('detail.address.normal.headers.overview') }}
       </div>
-      <dl class="flex flex-row my-2 items-center">
-        <dt
-          class="w-1/8 pl-8 text-gray-600 px-2"
-        >
+
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.address') }}
         </dt>
-        <dd class="flex mr-4">
+        <dd class="mr-4">
           <AddressLink :id="addressData.address" />
         </dd>
       </dl>
 
-      <dl class="flex flex-row my-2 items-center">
-        <dt
-          class="w-1/8 pl-8 text-gray-600 px-2"
-        >
-          {{ $t('detail.address.normal.headers.actor') }}
+      <dl v-if="addressData.address[1] !== '0'" class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
+          ID
         </dt>
-        <dd
-          class="flex mr-4"
-        >
-          {{ $t('actor.' + addressData.actor) }}
+        <dd class="mr-4">
+          <AddressLink :id="addressData.alias" />
         </dd>
       </dl>
 
-      <dl class="flex flex-row my-2 items-center">
-        <dt
-          class="w-1/8 pl-8 text-gray-600 px-2"
-        >
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
+          {{ $t('detail.address.normal.headers.actor') }}
+        </dt>
+        <dd class="mr-4">
+          {{ $t(`actor.${addressData.actor}`) }}
+        </dd>
+      </dl>
+
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.balance') }}
         </dt>
-        <dd class="flex mr-4">
+        <dd class="mr-4">
           {{ addressData.balance | filecoin }}
         </dd>
       </dl>
 
-      <dl class="flex flex-row my-2 items-center">
-        <dt
-          class="w-1/8 pl-8 text-gray-600 px-2"
-        >
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.messages') }}
         </dt>
-        <dd class="flex mr-4">
+        <dd class="mr-4">
           {{ addressData.messageCount }}
         </dd>
       </dl>
 
-      <dl class="flex flex-row my-2 items-center">
-        <dt
-          class="w-1/8 pl-8 text-gray-600 px-2"
-        >
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.createTime') }}
         </dt>
-        <dd class="flex mr-4">
+        <dd class="mr-4">
           {{ addressData.createTimestamp | timestamp('datetime') }}
         </dd>
       </dl>
 
-      <dl class="flex flex-row my-2 items-center">
-        <dt
-          class="w-1/8 pl-8 text-gray-600 px-2"
-        >
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.lastSeenTime') }}
         </dt>
-        <dd class="flex mr-4">
+        <dd class="mr-4">
           {{ addressData.lastSeenTimestamp | timestamp('datetime') }}
         </dd>
       </dl>
 
-      <dl v-if="addressData.ownedMiners.length > 0" class="flex flex-row items-center my-2">
+      <dl v-if="addressData.ownedMiners.length > 0" class="flex items-center my-2">
         <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
           {{ $t('detail.address.normal.headers.ownedMiners') }}
         </dt>
-        <dd class="mr-4">
-          <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="items-center flex text-main">
+        <dd class="flex flex-wrap flex-1 text-main">
+          <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="mr-4">
             <AddressLink :id="ownedMiner" />
           </p>
         </dd>
       </dl>
 
-      <dl v-if="addressData.workerMiners.length > 0" class="flex flex-row items-center my-2">
+      <dl v-if="addressData.workerMiners.length > 0" class="flex items-center my-2">
         <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
           {{ $t('detail.address.normal.headers.workers') }}
         </dt>
-        <dd class="mr-4">
-          <p v-for="worker in addressData.workerMiners" :key="worker" class="items-center flex text-main">
+        <dd class="flex flex-wrap flex-1 text-main">
+          <p v-for="worker in addressData.workerMiners" :key="worker" class="mr-4">
             <AddressLink :id="worker" />
           </p>
         </dd>
@@ -104,7 +98,7 @@
       <div class="flex ml-8 font-medium">
         {{ $t('blockchain.message.title') }}
       </div>
-      <div class="flex flex-row items-center justify-between border-b border-background">
+      <div class="flex items-center justify-between border-b border-background">
         <p
           class="flex ml-8 h-12 items-center text-sm"
         >
@@ -187,7 +181,7 @@
         </table>
       </div>
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div class="flex flex-grow items-center text-center h-16">
+      <div class="flex items-center text-center h-16">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"

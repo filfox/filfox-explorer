@@ -3,11 +3,11 @@
     <div class="mt-6 font-medium">
       {{ $t('detail.block.title') }}
     </div>
-    <div class="flex flex-col rounded-md my-4 bg-white pb-2">
+    <div class="rounded-md my-4 bg-white pb-2">
       <div class="flex pl-8 py-4 font-medium border-b border-background">
         {{ $t('detail.block.overview') }}
       </div>
-      <dl class="flex flex-row my-2 items-center">
+      <dl class="flex my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.cid') }}
         </dt>
@@ -16,7 +16,7 @@
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
+      <dl class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.height') }}
         </dt>
@@ -25,7 +25,7 @@
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
+      <dl class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.miner') }}
         </dt>
@@ -35,7 +35,7 @@
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
+      <dl class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.time') }}
         </dt>
@@ -44,7 +44,7 @@
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
+      <dl class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.size') }}
         </dt>
@@ -53,7 +53,7 @@
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
+      <dl class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.messages') }}
         </dt>
@@ -62,7 +62,7 @@
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
+      <dl class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.reward') }}
         </dt>
@@ -71,20 +71,18 @@
         </dd>
       </dl>
 
-      <dl class="flex flex-row items-center my-2">
-        <dt
-          class="w-1/8 pl-8 text-gray-600 px-2 items-center"
-        >
+      <dl class="flex items-center my-2">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
           {{ $t('detail.block.headers.parents') }}
         </dt>
-        <dd class="flex flex-col mr-4">
+        <dd class="mr-4">
           <p v-for="parent in block.parents" :key="parent" class="items-center flex text-main">
             <BlockLink :id="parent" />
           </p>
         </dd>
       </dl>
 
-      <dl class="flex flex-row mt-4 my-2 items-center">
+      <dl class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.parentWeight') }}
         </dt>
@@ -93,7 +91,7 @@
         </dd>
       </dl>
 
-      <dl v-if="block.penalty" class="flex flex-row mt-4 my-2 items-center">
+      <dl v-if="block.penalty" class="flex mt-4 my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.block.headers.penalty') }}
         </dt>
@@ -103,14 +101,12 @@
       </dl>
     </div>
 
-    <div class="flex flex-col rounded-md my-4 bg-white">
+    <div class="rounded-md my-4 bg-white">
       <div class="flex ml-8 mt-4 font-medium">
         {{ $t('blockchain.message.title') }}
       </div>
-      <div class="flex flex-row items-center justify-between border-b border-background">
-        <p
-          class="flex ml-8 h-12 items-center text-sm"
-        >
+      <div class="flex items-center justify-between border-b border-background">
+        <p class="flex ml-8 h-12 items-center text-sm">
           {{ $t('blockchain.message.info.total') }} {{ messageList.totalCount }} {{ $t('blockchain.message.info.messages') }}
         </p>
         <el-select v-model="method" size="mini" class="mr-4">
@@ -178,7 +174,7 @@
         </table>
       </div>
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div class="flex flex-grow items-center text-center h-16">
+      <div class="flex items-center text-center h-16">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"

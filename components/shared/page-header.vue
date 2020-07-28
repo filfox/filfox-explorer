@@ -1,12 +1,12 @@
 <template>
   <nav class="mx-auto bg-main h-28 w-full">
-    <div class="flex h-16 container mx-auto items-center pt-2 flex-row justify-between">
-      <nuxt-link :to="localePath('/')">
-        <img src="~/assets/img/home/logo.svg" alt="filFox.io" class="cursor-pointer h-6 lg:h-8 ml-4 sm:ml-0">
+    <div class="flex h-16 container mx-auto lg:items-center lg:pt-2 justify-between">
+      <nuxt-link :to="localePath('/')" class="flex items-center -ml-4 px-4" @click.native="hideIfNeeded">
+        <img src="~/assets/img/home/logo.svg" alt="filfox" class="h-6 lg:h-8">
       </nuxt-link>
 
-      <div class="flex flex-row">
-        <div v-if="network.multipleNetworks" class="hidden lg:flex flex-row items-center mr-6">
+      <div class="flex">
+        <div v-if="network.multipleNetworks" class="hidden lg:flex items-center mr-6">
           <img src="~/assets/img/home/switchNet.svg" alt="net" class="mr-2 w-5 flex">
           <p class="text-white text-sm mr-1">
             {{ $t('shared.currentNetwork') }}
@@ -16,7 +16,7 @@
               {{ network.networks[network.currentNetwork].name }} <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <template v-for="(dic,i) in network.networks">
+              <template v-for="(dic, i) in network.networks">
                 <a v-if="network.currentNetwork != i" :key="i" :href="dic.url" target="_blank">
                   <el-dropdown-item :key="i" :command="i">
                     {{ dic.name }}
@@ -30,7 +30,7 @@
           </el-dropdown>
         </div>
 
-        <div class="flex flex-row items-center">
+        <div class="flex items-center">
           <img src="~/assets/img/home/language.svg" alt="china" class="mr-2">
           <el-dropdown class="mr-3 lg:mr-0 flex items-center" trigger="click" hide-on-click @command="didLanguageSwitched">
             <span class="el-dropdown-link text-background text-sm">
@@ -42,14 +42,14 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <button class="flex lg:hidden outline-none focus:outline-none mr-4 sm:mr-0 items-center h-10" @click="didMobileMenuClicked">
+          <button class="flex lg:hidden mr-4 sm:mr-0 items-center h-10" @click="didMobileMenuClicked">
             <img src="~/assets/img/home/menu.svg" alt="menu" class="cursor-pointer h-3">
           </button>
         </div>
       </div>
     </div>
-    <navigationBar class="hidden lg:flex" />
-    <NavigationBarMobile class="lg:hidden" :class="{'hidden':mobileNavHidden}" @hideIfNeeded="hideIfNeeded" />
+    <NavigationBar class="hidden lg:flex" />
+    <NavigationBarMobile class="lg:hidden" :class="{'hidden': mobileNavHidden}" @hideIfNeeded="hideIfNeeded" />
   </nav>
 </template>
 

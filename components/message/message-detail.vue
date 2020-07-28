@@ -3,7 +3,7 @@
     <div class="mt-6 font-medium">
       {{ $t('detail.message.title') }}
     </div>
-    <div class="rounded-md my-4 pt-4 bg-white">
+    <div class="rounded-md my-4 py-4 bg-white">
       <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.cid') }}
@@ -35,7 +35,7 @@
         <dt class="message-key items-center">
           {{ $t('detail.message.headers.inBlocks') }}
         </dt>
-        <dd class="flex flex-col mr-4">
+        <dd class="mr-4">
           <p v-for="block in message.blocks" :key="block" class="items-center flex text-main">
             <BlockLink :id="block" />
           </p>
@@ -152,7 +152,7 @@
           </dd>
         </dl>
 
-        <dl class="flex items-start my-2">
+        <dl class="flex items-start">
           <dt class="message-key">
             {{ $t('detail.message.headers.params') }}
           </dt>

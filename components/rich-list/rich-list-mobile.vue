@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-grow flex-col bg-white overflow-hidden">
-    <div class="flex flex-col border-b border-background pb-2 mt-1">
+  <div class="bg-white overflow-hidden">
+    <div class="border-b border-background pb-2 mt-1">
       <HomeTitle type="richManRanks" />
-      <div class="flex flex-row justify-between items-center">
-        <p class="flex ml-4 text-xs">
+      <div class="flex justify-between items-center">
+        <p class="ml-4 text-xs">
           {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts') }}
         </p>
         <el-select v-model="type" placeholder="" size="mini" class="mr-4" @change="didSelectChanged">
@@ -12,52 +12,52 @@
       </div>
     </div>
 
-    <div v-if="!loading" class="flex flex-col mt-2 text-xs">
+    <div v-if="!loading" class="mt-2 text-xs">
       <div v-for="(rich, index) in richList.list" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white px-1">
-        <div class="flex flex-row pt-2">
+        <div class="flex pt-2">
           <RankIndex :index="index+1 + page * pageSize" />
           <AddressLink :id="rich.address" :format="4" class="mx-2" />
           <MinerTag v-if="rich.tag" :tag="rich.tag" :type="2" />
         </div>
 
-        <div class="flex flex-row justify-between pt-2 mx-1">
-          <p class="flex  text-gray-500">
+        <div class="flex justify-between pt-2 mx-1">
+          <p class="text-gray-500">
             {{ $t('home.richManRanks.tableHeaders.balance') }} /  {{ $t('home.minerRanks.rate') }}
           </p>
-          <p class="flex ">
+          <p>
             {{ rich.balance | filecoin(0) }} / {{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}%
           </p>
         </div>
 
-        <div class="flex flex-row justify-between pt-2 mx-1">
-          <p class="flex  text-gray-500">
+        <div class="flex justify-between pt-2 mx-1">
+          <p class="text-gray-500">
             {{ $t('blockchain.richList.tableHeaders.type') }}
           </p>
-          <p class="flex ">
+          <p>
             {{ $t('actor.' + rich.actor) }}
           </p>
         </div>
 
-        <div class="flex flex-row justify-between pt-2 mx-1">
-          <p class="flex  text-gray-500">
+        <div class="flex justify-between pt-2 mx-1">
+          <p class="text-gray-500">
             {{ $t('blockchain.richList.tableHeaders.createTime') }}
           </p>
-          <p class="flex ">
+          <p>
             {{ rich.createTimestamp | timestamp('datetime') }}
           </p>
         </div>
 
-        <div class="flex flex-row justify-between pt-2 pb-2 mx-1">
-          <p class="flex  text-gray-500">
+        <div class="flex justify-between pt-2 pb-2 mx-1">
+          <p class="text-gray-500">
             {{ $t('blockchain.richList.tableHeaders.lastSeenTime') }}
           </p>
-          <p class="flex ">
+          <p>
             {{ rich.lastSeenTimestamp | timestamp('datetime') }}
           </p>
         </div>
       </div>
     </div>
-    <div v-if="loading" v-loading="loading" class="flex flex-grow "></div>
+    <div v-if="loading" v-loading="loading"></div>
 
     <div class="flex items-center text-center h-16">
       <el-pagination

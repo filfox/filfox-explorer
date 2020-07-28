@@ -3,7 +3,7 @@
     <div class="mt-4 lg:mt-6 font-medium text-xs lg:text-base ml-4 lg:ml-0">
       {{ $t('chart.miner.title') }}
     </div>
-    <div class="flex flex-col lg:rounded-md mt-2 lg:mt-4 bg-white">
+    <div class="lg:rounded-md mt-2 lg:mt-4 bg-white">
       <div class="border-b border-background h-10 lg:h-12 flex items-center pl-4 lg:pl-6 text-xs lg:text-base">
         {{ $t('chart.miner.headers.qualityAdjPowerPie') }}
       </div>
@@ -12,7 +12,7 @@
       </client-only>
     </div>
 
-    <div class="flex flex-col lg:rounded-md mt-2 lg:mt-4 bg-white">
+    <div class="lg:rounded-md mt-2 lg:mt-4 bg-white">
       <div class="border-b border-background h-10 lg:h-12 flex items-center pl-4 lg:pl-6 text-xs lg:text-base">
         {{ $t('chart.miner.headers.qualityAdjPowerDeltaLine') }}
       </div>

@@ -112,7 +112,7 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
-    extractCSS: true,
+    ...process.env.NODE_ENV === 'production' ? { extractCSS: true } : {},
     babel: {
       plugins: [
         '@babel/plugin-proposal-nullish-coalescing-operator',

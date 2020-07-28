@@ -1,12 +1,12 @@
 <template>
   <el-dialog :title="$t('tag.sign')" :visible.sync="dialogVisible" width="50%" center>
     <div v-if="loading" v-loading="loading" class="h-20"></div>
-    <div v-else v-loading="submitLoading" class="flex flex-col">
+    <div v-else v-loading="submitLoading">
       <div class="font-medium">
         {{ $t('tag.description', {power: message.data ? getAdjPower(message.data.minPower, 2) : '0 B' }) }}
       </div>
 
-      <div class="flex flex-row items-center mt-4">
+      <div class="flex items-center mt-4">
         <div class="form-label">
           {{ $t('tag.owner') }}
           <p class="ml-1 text-red-600">
@@ -18,7 +18,7 @@
         </p>
       </div>
 
-      <div class="flex flex-row items-center mt-4">
+      <div class="flex items-center mt-4">
         <div class="form-label">
           {{ $t('tag.en_sname') }}
           <p class="ml-1 text-red-600">
@@ -28,28 +28,28 @@
         <el-input v-model="en" size="small" :placeholder="$t('tag.snamePlaceholder')" class="form-input" />
       </div>
 
-      <div class="flex flex-row items-center mt-4">
+      <div class="flex items-center mt-4">
         <div class="form-label">
           {{ $t('tag.en_name') }}
         </div>
         <el-input v-model="enFull" size="small" :placeholder="$t('tag.namePlaceholder')" class="form-input" />
       </div>
 
-      <div class="flex flex-row items-center mt-4">
+      <div class="flex items-center mt-4">
         <div class="form-label">
           {{ $t('tag.zh_sname') }}
         </div>
         <el-input v-model="zh" size="small" :placeholder="$t('tag.snamePlaceholder')" class="form-input" />
       </div>
 
-      <div class="flex flex-row items-center mt-4">
+      <div class="flex items-center mt-4">
         <div class="form-label">
           {{ $t('tag.zh_name') }}
         </div>
         <el-input v-model="zhFull" size="small" :placeholder="$t('tag.namePlaceholder')" class="form-input" />
       </div>
 
-      <div class="flex flex-row items-center mt-4">
+      <div class="flex items-center mt-4">
         <div class="form-label">
           {{ $t('tag.contact') }}
           <p class="ml-1 text-red-600">
@@ -60,14 +60,14 @@
       </div>
 
       <template v-if="message.data">
-        <div class="flex flex-row items-center mt-4">
+        <div class="flex items-center mt-4">
           <div class="form-label"></div>
           <div class="w-5/6 flex items-center justify-between pl-2">
             <!-- eslint-disable-next-line -->
             <highlight class="flex overflow-hidden">{{ message.data.message }}</highlight>
           </div>
         </div>
-        <div class="flex flex-row items-center mt-4">
+        <div class="flex items-center mt-4">
           <div class="form-label">
             {{ $t('tag.message') }}
           </div>
@@ -79,7 +79,7 @@
         </div>
       </template>
 
-      <div class="flex flex-row items-center mt-4">
+      <div class="flex items-center mt-4">
         <div class="form-label">
           {{ $t('tag.signature') }}
           <p class="ml-1 text-red-600">

@@ -1,17 +1,10 @@
 <template>
   <div class="my-2 lg:my-4">
-    <div class="bg-white flex justify-between h-10 lg:h-12 border-b border-background lg:rounded-t-md ">
+    <div class="bg-white flex justify-between items-center h-10 lg:h-12 border-b border-background lg:rounded-t-md">
       <HomeTitle type="overview" />
-      <div class="flex items-center mr-4">
-        <el-button
-          class="focus:outline-none outline-none hidden lg:flex"
-          round
-          size="mini"
-          @click="overviewExpanded = !overviewExpanded"
-        >
-          {{ overviewExpanded ? $t('home.overview.foldBtn'): $t('home.overview.unfoldBtn') }}
-        </el-button>
-      </div>
+      <el-button class="hidden lg:block mr-4" round size="mini" @click="overviewExpanded = !overviewExpanded">
+        {{ overviewExpanded ? $t('home.overview.foldBtn'): $t('home.overview.unfoldBtn') }}
+      </el-button>
     </div>
     <div class="bg-white px-4 pt-4 lg:p-4 lg:rounded-b-md">
       <div class="grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-4">
@@ -119,7 +112,7 @@
         </template>
       </div>
       <div class="flex mx-auto h-10 items-center lg:hidden">
-        <el-button type="text" class="mx-auto outline-none focus:outline-none" size="small" @click="overviewExpanded = !overviewExpanded">
+        <el-button type="text" class="mx-auto" size="small" @click="overviewExpanded = !overviewExpanded">
           {{ overviewExpanded ? $t('home.overview.foldBtn'): $t('home.overview.unfoldBtn') }}
         </el-button>
       </div>

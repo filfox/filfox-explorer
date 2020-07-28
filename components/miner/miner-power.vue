@@ -3,7 +3,7 @@
     <p class="text-sm">
       {{ $t('detail.address.miner.minerOverview.headers.qualityAdjPower') }}
     </p>
-    <div class="flex flex-row items-center justify-between w-full">
+    <div class="flex items-center justify-between w-full">
       <p class="font-medium text-2xl">
         {{ addressData.miner.qualityAdjPower | size_metric(2) }}
       </p>
@@ -16,7 +16,7 @@
         {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : 'N/A' }}
       </p>
     </div>
-    <div class="flex flex-row items-center justify-between w-full mt-4">
+    <div class="flex items-center justify-between w-full mt-4">
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.rawBytePower') }}:
         {{ addressData.miner.rawBytePower | size_metric(2) }}
@@ -26,7 +26,7 @@
         {{ addressData.miner.sectorSize | size_metric(2) }}
       </p>
     </div>
-    <div class="flex flex-row items-center justify-between w-full mt-1">
+    <div class="flex items-center justify-between w-full mt-1">
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
         {{ addressData.miner.blocksMined }}
@@ -36,7 +36,7 @@
         {{ addressData.miner.qualityAdjPowerDelta24h | size_metric(2) }}
       </p>
     </div>
-    <div class="flex flex-row items-center justify-between w-full mt-1">
+    <div class="flex items-center justify-between w-full mt-1">
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.blocksReward') }}:
         {{ addressData.miner.miningRewards | filecoin(2) }}

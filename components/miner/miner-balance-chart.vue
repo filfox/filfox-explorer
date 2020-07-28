@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div>
     <client-only>
       <ve-ring
         :data="chartData"

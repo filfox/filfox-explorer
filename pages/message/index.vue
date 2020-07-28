@@ -1,83 +1,90 @@
 <template>
   <div>
     <div class="bg-white lg:hidden">
-      <div v-if="loading" v-loading="loading"></div>
-      <div v-if="!loading" class="mt-2">
+      <div v-if="loading" v-loading="loading" class="mt-16"></div>
+      <div v-else class="mt-2">
         <p class="pl-4 flex pt-2 text-sm font-medium">
           {{ $t('blockchain.message.title') }}
         </p>
 
-        <div class="flex flex-row items-center justify-between pb-1 mb-2 border-b border-background mt-1">
+        <div class="flex items-center justify-between pb-1 mb-2 border-b border-background mt-1">
           <p class="flex ml-4 h-8 items-center text-xs">
-            {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages') }}
+            {{ $t('blockchain.message.info.total') }}
+            {{ messageList.totalCount }}
+            {{ $t('blockchain.message.info.messages') }}
           </p>
-          <el-select v-model="method" placeholder="" size="mini" class="mr-3" @change="didSelectChanged">
-            <el-option v-for="item in methodOptions" :key="item" :label="item == 'All' ? $t('blockchain.message.methods.all') : item" :value="item" />
+          <el-select v-model="method" placeholder="" size="mini" class="mr-3">
+            <el-option
+              v-for="item in methodOptions"
+              :key="item"
+              :label="item == 'All' ? $t('blockchain.message.methods.all') : item"
+              :value="item"
+            />
           </el-select>
         </div>
 
-        <div v-for="(message, index) in messagesList.messages" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white">
-          <div class="flex flex-row items-center justify-between mx-3 mt-3">
-            <p class="text-xs text-gray-800">
+        <div v-for="(message, index) in messageList.messages" :key="index" class="rounded-sm mx-3 mb-3 py-2 shadow bg-white text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.id') }}:
             </p>
-            <MessageLink :id="message.cid" :format="10" class="text-gray-800 text-xs" />
+            <MessageLink :id="message.cid" :format="10" />
           </div>
-          <div class="flex flex-row items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.height') }}:
             </p>
-            <TipsetLink :id="message.height" class="text-main text-xs" />
+            <TipsetLink :id="message.height" class="text-main" />
           </div>
-          <div class="flex flex-row items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.time') }}:
             </p>
-            <p class="text-xs text-gray-800">
+            <p>
               {{ message.timestamp | timestamp('datetime') }}
             </p>
           </div>
-          <div class="flex flex-row items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.from') }}:
             </p>
-            <AddressLink :id="message.from" :format="12" class="text-main text-xs" />
+            <AddressLink :id="message.from" :format="12" class="text-main" />
           </div>
-          <div class="flex flex-row items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.to') }}:
             </p>
-            <AddressLink :id="message.to" :format="12" class="text-main text-xs" />
+            <AddressLink :id="message.to" :format="12" class="text-main" />
           </div>
-          <div class="flex flex-row items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.method') }}:
             </p>
-            <p class="text-xs text-gray-800">
+            <p>
               {{ message.method }}
             </p>
           </div>
-          <div class="flex flex-row items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.value') }}:
             </p>
-            <p class="text-xs text-gray-800">
+            <p>
               {{ message.value | filecoin(4) }}
             </p>
           </div>
-          <div class="flex flex-row items-center justify-between mx-3 mt-1 mb-3">
-            <p class="text-xs text-gray-800">
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.exitCode') }}:
             </p>
-            <p v-if="message.receipt" class="text-xs text-gray-800">
+            <p v-if="message.receipt">
               {{ message.receipt.exitCode | exit-code }}
             </p>
-            <p v-else class="text-xs text-gray-800">
+            <p v-else>
               N/A
             </p>
           </div>
         </div>
-        <div class="flex flex-grow items-center text-center h-16 bg-white">
+        <div class="flex items-center text-center h-16 bg-white">
           <el-pagination
             layout="prev, pager, next"
             :page-count="totalPageCount"
@@ -95,46 +102,53 @@
         {{ $t('blockchain.message.title') }}
       </div>
       <div class="rounded-md my-4 bg-white">
-        <div class="flex flex-row items-center justify-between border-b border-background">
+        <div class="flex items-center justify-between border-b border-background">
           <p class="flex ml-4 h-12 items-center text-sm">
-            {{ $t('blockchain.message.info.total') + ' ' + total + ' ' + $t('blockchain.message.info.messages') }}
+            {{ $t('blockchain.message.info.total') }}
+            {{ messageList.totalCount }}
+            {{ $t('blockchain.message.info.messages') }}
           </p>
-          <el-select v-model="method" size="mini" class="mr-4" @change="didSelectChanged">
-            <el-option v-for="item in methodOptions" :key="item" :label="item == 'All' ? $t('blockchain.message.methods.all') : item" :value="item" />
+          <el-select v-model="method" size="mini" class="mr-4">
+            <el-option
+              v-for="item in methodOptions"
+              :key="item"
+              :label="item == 'All' ? $t('blockchain.message.methods.all') : item"
+              :value="item"
+            />
           </el-select>
         </div>
         <div class="flex mx-4">
           <table v-if="!loading" class="w-full table-auto">
             <thead class="text-gray-600 text-sm m-2">
               <tr class="h-8">
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.id') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.height') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.time') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.from') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.to') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.method') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.value') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.exitCode') }}
                 </th>
               </tr>
             </thead>
             <tbody class="text-center">
-              <tr v-for="(message, index) in messagesList.messages" :key="index" class="h-12 border-b border-background">
+              <tr v-for="(message, index) in messageList.messages" :key="index" class="h-12 border-b border-background">
                 <td>
                   <MessageLink :id="message.cid" :format="8" />
                 </td>
@@ -166,8 +180,8 @@
             </tbody>
           </table>
         </div>
-        <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-        <div class="flex flex-grow items-center text-center h-16">
+        <div v-if="loading" v-loading="loading" class="h-24"></div>
+        <div class="flex items-center text-center h-16">
           <el-pagination
             layout="prev, pager, next"
             :page-count="totalPageCount"
@@ -181,60 +195,59 @@
   </div>
 </template>
 
-<style>
- svg {
-   display: inline-block
- }
-</style>
-
 <script>
 export default {
-  data() {
-    return {
-      messagesList: {},
-      methodOptions: ['All'],
-      page: 0,
-      pageSize: 20,
-      totalPageCount: 0,
-      loading: false,
-      total: 0,
-      method: 'All'
+  async asyncData({ $axios, error }) {
+    try {
+      const messageList = await $axios.$get('/message/list', { params: { pageSize: 20, page: 0 } })
+      return { messageList }
+    } catch (err) {
+      if (err?.response) {
+        error({ code: err.response.status, message: err.response.statusText })
+      } else {
+        error({ code: 500, message: err.toString() })
+      }
     }
   },
-  mounted() {
-    this.getMessagesList()
+  data() {
+    return {
+      messageList: {
+        totalCount: 0,
+        messages: [],
+        methods: []
+      },
+      page: 0,
+      pageSize: 20,
+      method: 'All',
+      loading: false
+    }
+  },
+  computed: {
+    methodOptions() {
+      return ['All', ...this.messageList.methods]
+    },
+    totalPageCount() {
+      return Math.ceil(this.messageList.totalCount / this.pageSize)
+    }
+  },
+  watch: {
+    method() {
+      this.page = 0
+    }
   },
   methods: {
-    getMessagesList() {
+    async getMessageList() {
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page }
       if (this.method !== 'All') {
         params.method = this.method
       }
-      this.$axios
-        .get('/message/list', { params })
-        .then(res => {
-          this.messagesList = res.data
-          this.methodOptions = ['All']
-          this.methodOptions = this.methodOptions.concat(res.data.methods)
-          this.loading = false
-          this.total = this.messagesList.totalCount
-          this.getTotalPageCount()
-        })
-    },
-    getTotalPageCount() {
-      this.totalPageCount = Math.ceil(this.total / this.pageSize)
+      this.messageList = await this.$axios.$get('/message/list', { params })
+      this.loading = false
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
-      this.getMessagesList()
-    },
-    didSelectChanged(selectedMethod) {
-      this.method = selectedMethod
-      this.page = 0
-      this.totalPageCount = 1
-      this.total = 0
-      this.getMessagesList()
+      this.getMessageList()
     }
   },
   head() {
@@ -244,3 +257,12 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss" scoped>
+  .message-item {
+    @apply flex items-center justify-between mx-3 mt-1;
+  }
+  .table-header {
+    @apply sticky top-0 bg-white z-10;
+  }
+</style>

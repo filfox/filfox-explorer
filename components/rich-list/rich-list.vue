@@ -1,10 +1,10 @@
 <template>
-  <div class="container mx-auto flex flex-col">
-    <div class="flex flex-grow-0 mt-6 font-medium">
+  <div class="container mx-auto">
+    <div class="mt-6 font-medium">
       {{ $t('blockchain.richList.title') }}
     </div>
-    <div class="flex flex-col w-full bg-white rounded-md mt-4 mb-4">
-      <div class="flex flex-row items-center justify-between border-b border-background">
+    <div class="w-full bg-white rounded-md mt-4 mb-4">
+      <div class="flex items-center justify-between border-b border-background">
         <p class="flex ml-4 h-12 items-center text-sm">
           {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts') }}
         </p>
@@ -15,28 +15,28 @@
       <table v-if="!loading" class="w-full table-fixed mt-2">
         <thead class="text-gray-600 text-sm">
           <tr class="h-8">
-            <th class="sticky top-0 bg-white z-30 w-1/12">
+            <th class="table-header w-1/12">
               {{ $t('blockchain.richList.tableHeaders.order') }}
             </th>
-            <th class="sticky top-0 bg-white z-30 w-1/6">
+            <th class="table-header w-1/6">
               {{ $t('blockchain.richList.tableHeaders.address') }}
             </th>
-            <th class="sticky top-0 bg-white z-30 w-1/12">
+            <th class="table-header w-1/12">
               {{ $t('blockchain.richList.tableHeaders.tag') }}
             </th>
-            <th class="sticky top-0 bg-white z-30 w-1/6">
+            <th class="table-header w-1/6">
               {{ $t('blockchain.richList.tableHeaders.balance') }}
             </th>
-            <th class="sticky top-0 bg-white z-30 w-1/12">
+            <th class="table-header w-1/12">
               {{ $t('blockchain.richList.tableHeaders.balanceRate') }}
             </th>
-            <th class="sticky top-0 bg-white z-30 w-1/12">
+            <th class="table-header w-1/12">
               {{ $t('blockchain.richList.tableHeaders.type') }}
             </th>
-            <th class="sticky top-0 bg-white z-30 w-1/6">
+            <th class="table-header w-1/6">
               {{ $t('blockchain.richList.tableHeaders.createTime') }}
             </th>
-            <th class="sticky top-0 bg-white z-30 w-1/6">
+            <th class="table-header w-1/6">
               {{ $t('blockchain.richList.tableHeaders.lastSeenTime') }}
             </th>
           </tr>
@@ -53,15 +53,15 @@
               <MinerTag :tag="rich.tag" />
             </td>
             <td> {{ rich.balance | filecoin(4) }} </td>
-            <td> {{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}% </td>
-            <td> {{ $t('actor.' + rich.actor) }} </td>
+            <td> {{ rich.balance / richList.totalSupply | percentage }} </td>
+            <td> {{ $t(`actor.${rich.actor}`) }} </td>
             <td> {{ rich.createTimestamp | timestamp('datetime') }} </td>
             <td> {{ rich.lastSeenTimestamp | timestamp('datetime') }} </td>
           </tr>
         </tbody>
       </table>
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div class="flex flex-grow items-center text-center h-16">
+      <div class="flex items-center text-center h-16">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
@@ -183,3 +183,9 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss" scoped>
+  .table-header {
+    @apply sticky top-0 bg-white z-30;
+  }
+</style>
