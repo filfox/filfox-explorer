@@ -22,6 +22,8 @@
     </div>
 
     <RewardMinerChart :max-count="10" class="my-4" />
+
+    <SectorInitialPledgeChart :max-count="10" class="my-4" />
   </div>
 </template>
 

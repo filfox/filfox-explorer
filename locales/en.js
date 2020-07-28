@@ -390,7 +390,8 @@ export default {
         qualityAdjPowerPie: 'Adj. Power Distribution',
         qualityAdjPowerLine: 'Adj. Power Variations',
         qualityAdjPowerDeltaLine: 'Power Growth Variations',
-        rewardLine: 'Reward Variations'
+        rewardLine: 'Reward Variations',
+        sectorInitialPledgeVariations: 'Sector Initial Pledge Variations'
       }
     },
     fil: {

@@ -310,7 +310,6 @@ export default {
             blocksReward: '累计出块奖励',
             qualityAdjPowerDelta24h: '近24h有效算力增量',
             qualityAdjPowerDeltaSpeed24h: '近24h有效算力增速'
-
           }
         },
         accountChange: {
@@ -382,7 +381,8 @@ export default {
         qualityAdjPowerPie: '矿工有效算力分布',
         qualityAdjPowerLine: '矿工有效算力走势',
         qualityAdjPowerDeltaLine: '矿工算力增量走势',
-        rewardLine: '挖矿收益变化'
+        rewardLine: '挖矿收益变化',
+        sectorInitialPledgeVariations: '扇区质押量变化'
       }
     },
     fil: {
