@@ -2,7 +2,7 @@
   <div>
     <div class="bg-background lg:hidden">
       <div class="pl-4 border-b border-background bg-white">
-        <div class="text-sm font-medium mt-2">
+        <div class="text-sm font-medium pt-2">
           {{ $t('detail.tipset.title') }}
         </div>
         <div class="text-xs my-1">
@@ -34,7 +34,7 @@
         </p>
       </div>
 
-      <div class="mt-2 bg-white">
+      <div class="my-2 bg-white pb-2">
         <p class="pl-4 text-sm font-medium py-2 border-b border-background mb-2">
           {{ $t('detail.tipset.all') }}
         </p>
