@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="pt-4 bg-white">
+    <div class="pt-4 pb-1 bg-white">
       <p class="text-sm ml-3 font-medium">
         {{ $t('detail.address.miner.minerOverview.title') }}
       </p>
@@ -51,7 +51,7 @@
           </p>
         </div>
 
-        <div class="flex items-center justify-between mx-3 mt-1">
+        <div class="flex items-center justify-between mx-3 mt-2">
           <p class="text-xs text-gray-800">
             {{ $t('detail.address.miner.minerOverview.headers.rawBytePower') }}:
           </p>
@@ -91,7 +91,7 @@
             {{ addressData.miner.miningRewards | filecoin(2) }}
           </p>
         </div>
-        <div class="flex items-center justify-between mx-3 mt-1 mb-3">
+        <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('detail.address.miner.minerOverview.headers.qualityAdjPowerDeltaSpeed24h') }}:
           </p>
@@ -253,7 +253,7 @@
           </div>
         </div>
       </div>
-      <div class="flex items-center text-center h-16 bg-white">
+      <div v-if="listType != 0" class="flex items-center text-center h-16 bg-white">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
