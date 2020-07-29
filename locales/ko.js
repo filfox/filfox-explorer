@@ -77,7 +77,8 @@ export default {
         burntSupply: 'FIL 소각량',
         totalMarketBalance: '주문으로 잠긴 수량',
         totalMaxSupply: 'FIL 총 공급량',
-        circulatingSupplyRate: 'FIL 유통비율'
+        circulatingSupplyRate: 'FIL 유통비율',
+        sectorInitialPledge: '현재 부문 서약 금액'
       },
       tips: {
         qualityAdjPower: '현재 유효한 채굴파워의 총합',
