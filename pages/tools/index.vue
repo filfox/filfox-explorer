@@ -5,7 +5,7 @@
       :key="index"
       class="bg-white lg:rounded-md mt-2 lg:mt-4"
     >
-      <p class="text-sm px-4 border-b py-2 border-background font-medium">
+      <p class="text-xs lg:text-sm px-4 border-b py-2 border-background font-medium">
         {{ info.category[$i18n.locale] }}
       </p>
 
@@ -13,7 +13,7 @@
         <a
           v-for="(link,indexLink) in info.links"
           :key="indexLink"
-          class="text-center text-sm py-2 hover:text-main my-auto"
+          class="text-center text-xs lg:text-sm py-2 hover:text-main my-auto"
           :href="link.url"
           target="_blank"
         >
