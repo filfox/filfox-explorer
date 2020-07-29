@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto flex">
-    <div class="bg-white my-4 mr-2 w-1/4 lg:w-1/8 rounded">
+    <div class="hidden lg:inline-block bg-white my-4 lg:mr-2 w-1/4 lg:w-1/8 lg:rounded">
       <p class="mx-4 py-2 font-medium border-b border-background">
         文章列表
       </p>
@@ -12,7 +12,7 @@
         </p>
       </div>
     </div>
-    <div class="overflow-scroll bg-white my-4 w-3/4 lg:w-7/8 rounded">
+    <div class="overflow-scroll bg-white my-2 lg:my-4 w-full lg:w-7/8 lg:rounded">
       <Markdown :detail="detail" class="p-4" />
     </div>
   </div>
