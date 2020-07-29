@@ -4,7 +4,7 @@
       <HomeTitle type="richManRanks" />
     </div>
 
-    <div v-loading="richListLoading">
+    <div v-if="!richListLoading">
       <div class="flex bg-mobileHeader text-xs px-4">
         <div class="w-1/6">
           {{ $t('home.richManRanks.tableHeaders.order') }}
@@ -16,6 +16,8 @@
           {{ $t('home.richManRanks.tableHeaders.balance') }} / {{ $t('home.minerRanks.rate') }}
         </div>
       </div>
+    </div>
+    <div v-else v-loading="richListLoading">
     </div>
 
     <div v-for="(rich, index) in richList.list" :key="index" class="flex items-center text-xs px-3 border-b">

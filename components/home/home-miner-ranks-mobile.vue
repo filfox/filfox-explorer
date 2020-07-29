@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div v-loading="loading">
+    <div v-if="!loading">
       <div v-if="type == 0" class="flex bg-mobileHeader text-xs px-4">
         <div class="w-1/6">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
@@ -123,6 +123,8 @@
           </div>
         </div>
       </template>
+    </div>
+    <div v-else v-loading="loading" class="h-16">
     </div>
     <div class="flex items-center h-12">
       <nuxt-link :to="localePath('/ranks')" class="m-auto">

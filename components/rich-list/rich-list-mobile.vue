@@ -57,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div v-if="loading" v-loading="loading"></div>
+    <div v-if="loading" v-loading="loading" class="h-16" ></div>
 
     <div class="flex items-center text-center h-16">
       <el-pagination
