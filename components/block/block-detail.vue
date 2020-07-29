@@ -101,8 +101,8 @@
       </dl>
     </div>
 
-    <div class="rounded-md my-4 bg-white">
-      <div class="flex ml-8 mt-4 font-medium">
+    <div class="rounded-md my-4 bg-white flex flex-col">
+      <div class="ml-8 mt-4 font-medium ">
         {{ $t('blockchain.message.title') }}
       </div>
       <div class="flex items-center justify-between border-b border-background">
