@@ -91,7 +91,7 @@
         <el-input v-model="signature" size="small" :placeholder="$t('tag.signaturePlaceHolder')" class="form-input" />
       </div>
 
-      <div class="mt-4 text-red-600">
+      <div class="mt-4 text-red-600 font-medium">
         {{ $t('tag.specialNotes') }}
       </div>
     </div>
