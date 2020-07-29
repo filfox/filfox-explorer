@@ -181,6 +181,6 @@ export default {
     @apply w-1/8 pl-8 pr-2 text-gray-600;
   }
   .message-value {
-    @apply mr-8;
+    @apply mr-8 flex flex-row items-center;
   }
 </style>
