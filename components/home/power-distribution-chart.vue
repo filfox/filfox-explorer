@@ -28,7 +28,7 @@ export default {
   data() {
     this.chartSettings = {
       legendName: {},
-      offsetY: 240
+      offsetY: 220
     }
     this.mobileSettings = {
       legendName: {},
