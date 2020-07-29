@@ -162,7 +162,7 @@
             <tr
               v-for="(block, index) in blockList.blocks"
               :key="index"
-              class="h-12 border-b border-background"
+              class="h-12 border-b border-background text-sm"
             >
               <td>
                 <TipsetLink :id="block.height" class="text-main" />

@@ -146,7 +146,7 @@
               </tr>
             </thead>
             <tbody class="text-center">
-              <tr v-for="(message, index) in messageList.messages" :key="index" class="h-12 border-b border-background">
+              <tr v-for="(message, index) in messageList.messages" :key="index" class="h-12 border-b border-background text-sm">
                 <td>
                   <MessageLink :id="message.cid" :format="8" />
                 </td>
