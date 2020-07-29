@@ -1,9 +1,10 @@
 <template>
   <div class="pt-6">
-    <div class="font-medium">
-      {{ $t('detail.address.normal.title') }} {{ addressData.address }}
+    <div class="text-sm">
+      <span class="font-medium">{{ $t('detail.address.normal.title') }}</span>
+      <span>{{ addressData.address }}</span>
     </div>
-    <div class="rounded-md my-4 bg-white pb-2">
+    <div class="rounded-md my-4 bg-white pb-2 text-sm">
       <div class="flex pl-8 py-4 font-medium border-b border-background">
         {{ $t('detail.address.normal.headers.overview') }}
       </div>

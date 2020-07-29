@@ -3,7 +3,7 @@
     <div class="mt-6 font-medium">
       {{ $t('detail.block.title') }}
     </div>
-    <div class="rounded-md my-4 bg-white pb-2">
+    <div class="rounded-md my-4 bg-white pb-2 text-sm">
       <div class="flex pl-8 py-4 font-medium border-b border-background">
         {{ $t('detail.block.overview') }}
       </div>
@@ -119,7 +119,7 @@
         </el-select>
       </div>
       <div class="flex mx-4 mt-2">
-        <table v-if="!loading" class="w-full table-auto">
+        <table v-if="!loading" class="w-full table-auto text-sm">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
               <th class="sticky top-0 bg-white z-10">
