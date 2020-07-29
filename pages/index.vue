@@ -56,14 +56,14 @@
     />
 
     <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
-      <div class="bg-white rounded-md mr-2 mb-2">
+      <div class="bg-white  mb-2">
         <HomeTitle type="powerDistribution" class="border-b border-background h-10 pr-4" />
         <client-only>
           <PowerDistributionChart class="mt-2 mx-1" />
         </client-only>
       </div>
 
-      <div class="bg-white ml-2 rounded-md">
+      <div class="bg-white lg:hidden">
         <HomeTitle type="powerDelta" class="border-b border-background h-10 pr-4" />
         <client-only>
           <PowerDeltaChart class="mt-2 mx-1" />
