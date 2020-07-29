@@ -78,8 +78,8 @@
       <div class="mt-6 font-medium">
         {{ $t('detail.tipset.title') }} #{{ height }}
       </div>
-      <div class="rounded-md my-4 bg-white">
-        <div class="border-b border-background mt-2 pb-2">
+      <div class="rounded-md my-4 bg-white pb-2">
+        <div class="border-b border-background pt-2 pb-2">
           <dl class="flex my-2 items-center">
             <dt class="w-9/50 pl-8 text-gray-600 px-2">
               {{ $t('detail.tipset.headers.time') }}
