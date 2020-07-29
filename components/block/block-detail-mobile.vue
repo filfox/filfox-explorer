@@ -168,6 +168,7 @@
           :pager-count="5"
           :current-page="page + 1"
           class="mx-auto"
+          @current-change="didCurrentPageChanged"
         />
       </div>
     </div>
@@ -200,11 +201,9 @@ export default {
     }
   },
   watch: {
-    page() {
-      this.getMessageList()
-    },
     method() {
       this.page = 0
+      this.getMessagesList()
     }
   },
   mounted() {
@@ -219,6 +218,10 @@ export default {
       }
       this.messageList = await this.$axios.$get(`/block/${this.block.cid}/messages`, { params })
       this.loading = false
+    },
+    didCurrentPageChanged(currentPage) {
+      this.page = currentPage - 1
+      this.getMessagesList()
     }
   }
 }

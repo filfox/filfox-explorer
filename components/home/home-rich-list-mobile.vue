@@ -19,7 +19,7 @@
     </div>
 
     <div v-for="(rich, index) in richList.list" :key="index" class="flex items-center text-xs px-3 border-b">
-      <div class="w-1/6 pl-1">
+      <div class="w-1/6 pl-2">
         <RankIndex :index="index + 1" />
       </div>
       <div class="w-1/3 flex items-center py-2 pl-1">

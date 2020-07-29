@@ -14,9 +14,9 @@
 
     <div v-if="!loading" class="mt-2 text-xs">
       <div v-for="(rich, index) in richList.list" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white px-1">
-        <div class="flex pt-2">
-          <RankIndex :index="index+1 + page * pageSize" />
-          <AddressLink :id="rich.address" :format="4" class="mx-2" />
+        <div class="flex pt-2 items-center">
+          <RankIndex :index="index+1 + page * pageSize" class="ml-1" />
+          <AddressLink :id="rich.address" :format="4" class="ml-2 mr-1" />
           <MinerTag v-if="rich.tag" :tag="rich.tag" :type="2" />
         </div>
 

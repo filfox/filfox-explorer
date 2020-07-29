@@ -41,8 +41,8 @@
     <template v-if="type == '0' && !loading">
       <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="rounded-sm mx-3 mb-3 py-px shadow bg-white">
         <div class="flex items-center text-xs my-2 ml-1">
-          <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}" />
-          <AddressLink :id="miner.address" :format="4" class="ml-3" />
+          <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}" class="ml-1" />
+          <AddressLink :id="miner.address" :format="4" class="ml-2" />
           <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
         </div>
         <div class="flex justify-between my-1 mx-2 text-xs">
@@ -77,8 +77,8 @@
     <template v-if="type == '1' && !loading">
       <div v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="rounded-sm mx-3 mb-3 py-px shadow bg-white">
         <div class="flex items-center text-xs my-2 ml-1">
-          <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}" />
-          <AddressLink :id="miner.address" :format="4" class="ml-3" />
+          <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}" class="ml-1" />
+          <AddressLink :id="miner.address" :format="4" class="ml-2" />
           <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
         </div>
         <div class="flex justify-between my-1 mx-2 text-xs">
@@ -107,8 +107,8 @@
     <template v-if="type == '2' && !loading">
       <div v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="rounded-sm mx-3 mb-3 py-px shadow bg-white">
         <div class="flex items-center text-xs my-2 ml-1">
-          <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}" />
-          <AddressLink :id="miner.address" :format="4" class="ml-3" />
+          <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}" class="ml-1" />
+          <AddressLink :id="miner.address" :format="4" class="ml-2" />
           <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
         </div>
         <div class="flex justify-between my-1 mx-2 text-xs">

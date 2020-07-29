@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white overflow-hidden pb-1 border-b border-background">
-    <div class="w-full">
+  <div class="flex flex-col bg-white overflow-hidden pb-1 border-b border-background">
+    <div class="w-full flex">
       <el-input
         v-model="searchText"
         size="mini"
@@ -53,7 +53,7 @@
         </el-collapse-item>
       </el-collapse>
     </div>
-    <div v-loading.fullscreen.lock="loading"></div>
+    <div v-loading.fullscreen.lock="loading" class="flex flex-grow"></div>
   </div>
 </template>
 

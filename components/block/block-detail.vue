@@ -180,6 +180,7 @@
           :page-count="totalPageCount"
           :current-page="page + 1"
           class="mx-auto"
+          @current-change="didCurrentPageChanged"
         />
       </div>
     </div>
@@ -212,10 +213,8 @@ export default {
     }
   },
   watch: {
-    page() {
-      this.getMessageList()
-    },
     method() {
+      this.getMessagesList()
       this.page = 0
     }
   },
@@ -231,6 +230,10 @@ export default {
       }
       this.messageList = await this.$axios.$get(`/block/${this.block.cid}/messages`, { params })
       this.loading = false
+    },
+    didCurrentPageChanged(currentPage) {
+      this.page = currentPage - 1
+      this.getMessagesList()
     }
   }
 }
