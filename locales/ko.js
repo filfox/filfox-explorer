@@ -411,11 +411,13 @@ export default {
     zh_name: '계정 풀네임 (중국어)',
     contact: '연락처',
     message: '메시지',
+    command: '암호',
     signature: '서명',
     snamePlaceholder: '16자를 넘기지 마세요',
     namePlaceholder: '옵션',
     contactPlaceHolder: '이메일 / 전화번호',
     signaturePlaceHolder: '해당 내용을 복사하여 파일코인 (filecoin) 지갑에서 서명을 하고 얻은 값을 여기에 입력하세요.',
+    specialNotes: '주의 사항 : 계정 이름에는 민감한 단어, 금지 단어, 유명인 이름 등이 허용되지 않으며 위반이있을 경우 서명이 삭제되고 금지됩니다. 협조 해 주셔서 감사합니다.',
     errorInput: '입력하세요',
     success: '서명 검증 성공. 새로고침을 통해 인증 내용을 확인하세요.',
     signed: 'V자는 계정 인증이 완료되었다는 의미입니다.'

@@ -61,7 +61,9 @@
 
       <template v-if="message.data">
         <div class="flex items-center mt-4">
-          <div class="form-label"></div>
+          <div class="form-label">
+            {{ $t('tag.message') }}
+          </div>
           <div class="w-5/6 flex items-center justify-between pl-2">
             <!-- eslint-disable-next-line -->
             <highlight class="flex overflow-hidden">{{ message.data.message }}</highlight>
@@ -69,12 +71,12 @@
         </div>
         <div class="flex items-center mt-4">
           <div class="form-label">
-            {{ $t('tag.message') }}
+            {{ $t('tag.command') }}
           </div>
           <div class="w-5/6 flex items-center justify-between pl-2">
             <!-- eslint-disable-next-line -->
             <highlight class="flex overflow-hidden">{{ message.data.command.lotus }}</highlight>
-            <el-button icon="el-icon-document-copy" size="small" @click="didCopyClicked" />
+            <el-button icon="el-icon-document-copy" size="small" class="ml-2" @click="didCopyClicked" />
           </div>
         </div>
       </template>
@@ -89,7 +91,7 @@
         <el-input v-model="signature" size="small" :placeholder="$t('tag.signaturePlaceHolder')" class="form-input" />
       </div>
 
-      <div class="mt-4">
+      <div class="mt-4 text-red-600">
         {{ $t('tag.specialNotes') }}
       </div>
     </div>
