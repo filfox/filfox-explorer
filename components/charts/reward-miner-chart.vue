@@ -1,7 +1,7 @@
 <template>
   <div class="lg:rounded-md bg-white">
     <div class="flex justify-between items-center border-b border-background">
-      <div class="h-12 items-center pl-4 lg:pl-6 text-xs lg:text-base">
+      <div class="h-12 items-center pl-4 lg:pl-6 text-xs lg:text-base pt-4">
         {{ $t('chart.miner.headers.rewardLine') }} (FIL/T)
       </div>
       <div class="h-12 items-center mt-1 mr-4 hidden lg:flex">
