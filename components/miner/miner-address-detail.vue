@@ -190,7 +190,7 @@
         </table>
       </div>
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div class="flex items-center text-center h-16">
+      <div v-if="listType === 1" class="flex items-center text-center h-16">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
