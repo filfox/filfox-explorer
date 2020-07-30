@@ -234,6 +234,28 @@ export default {
     }
   },
   detail: {
+    transfer: {
+      title: 'Transaction List',
+      tableHeaders: {
+        time: 'Time',
+        message: 'Message ID',
+        from: 'From',
+        to: 'To',
+        income: 'Net Income',
+        type: 'Type'
+      },
+      types: {
+        genesis: 'genesis',
+        fee: 'fee',
+        burn: 'burn',
+        reward: 'reward',
+        send: 'send',
+        receive: 'receive',
+        transfer: 'transfer'
+      },
+      total: 'Total',
+      transaction: 'transactions'
+    },
     message: {
       title: 'Message Details',
       headers: {

@@ -225,6 +225,28 @@ export default {
     }
   },
   detail: {
+    transfer: {
+      title: '转账列表',
+      tableHeaders: {
+        time: '时间',
+        message: '消息ID',
+        from: '发送方',
+        to: '接收方',
+        income: '净收入',
+        type: '类型'
+      },
+      types: {
+        genesis: '创世块生成',
+        fee: '手续费',
+        burn: '销毁',
+        reward: '区块奖励',
+        send: '发出',
+        receive: '接收',
+        transfer: '转账'
+      },
+      total: '共',
+      transaction: '条转账'
+    },
     message: {
       title: '消息详情',
       headers: {
