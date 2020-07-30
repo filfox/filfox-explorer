@@ -6,10 +6,10 @@
 
     <div v-if="!richListLoading">
       <div class="flex bg-mobileHeader text-xs px-4">
-        <div class="w-1/6">
+        <div class="w-1/12">
           {{ $t('home.richManRanks.tableHeaders.order') }}
         </div>
-        <div class="w-1/3">
+        <div class="w-5/12 pl-2">
           {{ $t('home.richManRanks.tableHeaders.address') }}
         </div>
         <div class="w-1/2 text-right">
@@ -21,10 +21,10 @@
     </div>
 
     <div v-for="(rich, index) in richList.list" :key="index" class="flex items-center text-xs px-3 border-b">
-      <div class="w-1/6 pl-2">
+      <div class="w-1/12 pl-2">
         <RankIndex :index="index + 1" />
       </div>
-      <div class="w-1/3 flex items-center py-2 pl-1">
+      <div class="w-5/12 flex items-center py-2 pl-2">
         <AddressLink :id="rich.address" :format="3" />
         <MinerTag v-if="rich.tag" :tag="rich.tag" :type="2" />
       </div>
