@@ -19,7 +19,7 @@
         />
         <OverviewCell
           :name="$t('home.overview.titles.qualityAdjPower')"
-          :value="overview.qualityAdjPower | size_metric(2)"
+          :value="overview.totalQualityAdjPower | size_metric(2)"
           :tip-content="$t('home.overview.tips.qualityAdjPower')"
         />
         <OverviewCell
@@ -83,7 +83,7 @@
           />
           <OverviewCell
             :name="$t('home.overview.titles.rawBytePower')"
-            :value="overview.rawBytePower | size_metric(2)"
+            :value="overview.totalRawBytePower | size_metric(2)"
             :tip-content="$t('home.overview.tips.rawBytePower')"
           />
           <OverviewCell
