@@ -193,10 +193,13 @@
           <el-radio-button :label="1">
             {{ $t('blockchain.block.title') }}
           </el-radio-button>
+          <el-radio-button :label="2">
+            {{ $t('detail.transfer.title') }}
+          </el-radio-button>
         </el-radio-group>
       </div>
       <AddressMessageListMobile v-if="listType === 0" :address="addressData.address" />
-      <div v-else>
+      <div v-if="listType === 1">
         <div class="flex items-center justify-between pb-1 mb-2">
           <p class="flex ml-3 h-8 items-center text-xs">
             {{ $t('detail.address.miner.blockList.total') + ' ' + total + ' ' + $t('detail.address.miner.blockList.tipsets') }}
@@ -253,6 +256,65 @@
           </div>
         </div>
       </div>
+      <div v-if="listType === 2">
+        <div class="flex items-center justify-between pb-1 mb-2">
+          <p class="flex ml-3 h-8 items-center text-xs">
+            {{ $t('detail.address.miner.blockList.total') + ' ' + total + ' ' + $t('detail.transfer.transaction') }}
+          </p>
+        </div>
+
+        <div v-for="(transfer, index) in transferList.transfers" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white py-2">
+          <div class="flex items-center justify-between mx-3">
+            <p class="text-xs text-gray-800">
+              {{ $t('detail.transfer.tableHeaders.time') }}:
+            </p>
+            <p class="text-xs text-gray-800">
+              {{ transfer.timestamp | timestamp('datetime') }}
+            </p>
+          </div>
+          <div class="flex items-center justify-between mx-3 mt-1">
+            <p class="text-xs text-gray-800">
+              {{ $t('detail.transfer.tableHeaders.message') }} :
+            </p>
+            <MessageLink v-if="transfer.message" :id="transfer.message" :format="8" class="text-xs" />
+            <span v-else class="text-xs text-gray-800"> N/A </span>
+          </div>
+          <div class="flex items-center justify-between mx-3 mt-1">
+            <p class="text-xs text-gray-800">
+              {{ $t('detail.transfer.tableHeaders.from') }}:
+            </p>
+            <div class="flex items-center flex-row justify-end">
+              <AddressLink :id="transfer.from" :format="4" class="text-xs text-main" />
+              <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="2" />
+            </div>
+          </div>
+          <div class="flex items-center justify-between mx-3 mt-1">
+            <p class="text-xs text-gray-800">
+              {{ $t('detail.transfer.tableHeaders.to') }}:
+            </p>
+            <div class="flex items-center flex-row justify-end">
+              <AddressLink :id="transfer.to" :format="4" class="text-xs text-main" />
+              <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="2" />
+            </div>
+          </div>
+          <div class="flex items-center justify-between mx-3 mt-1">
+            <p class="text-xs text-gray-800">
+              {{ $t('detail.transfer.tableHeaders.income') }}:
+            </p>
+            <p class="text-xs text-gray-800">
+              {{ transfer.value | filecoin(2) }}
+            </p>
+          </div>
+          <div class="flex items-center justify-between mx-3 mt-1">
+            <p class="text-xs text-gray-800">
+              {{ $t('detail.transfer.tableHeaders.type') }}:
+            </p>
+            <p class="text-xs text-gray-800">
+              {{ $t('detail.transfer.types.' + transfer.type ) }}
+            </p>
+          </div>
+        </div>
+      </div>
       <div v-if="listType != 0" class="flex items-center text-center h-16 bg-white">
         <el-pagination
           layout="prev, pager, next"
@@ -276,6 +338,7 @@ export default {
     return {
       listType: 0,
       blockList: {},
+      transferList: {},
       page: 0,
       pageSize: 3,
       totalPageCount: 0,
@@ -293,6 +356,14 @@ export default {
       this.total = this.blockList.totalCount
       this.getTotalPageCount()
     },
+    async getTransferList() {
+      this.loading = true
+      const params = { pageSize: this.pageSize, page: this.page }
+      this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
+      this.loading = false
+      this.total = this.transferList.totalCount
+      this.getTotalPageCount()
+    },
     getTotalPageCount() {
       this.totalPageCount = Math.ceil(this.total / this.pageSize)
     },
@@ -300,6 +371,8 @@ export default {
       this.page = currentPage - 1
       if (this.listType === 1) {
         this.getBlockList()
+      } else if (this.listType === 2) {
+        this.getTransferList()
       }
     },
     didListTypeChanged() {
@@ -308,6 +381,8 @@ export default {
       this.total = 0
       if (this.listType === 1) {
         this.getBlockList()
+      } else if (this.listType === 2) {
+        this.getTransferList()
       }
     }
   }
