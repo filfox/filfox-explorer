@@ -65,8 +65,7 @@
             {{ $t('tag.message') }}
           </div>
           <div class="w-5/6 flex items-center justify-between pl-2">
-            <!-- eslint-disable-next-line -->
-            <highlight class="flex overflow-hidden">{{ message.data.message }}</highlight>
+            <code class="code">{{ message.data.message }}</code>
           </div>
         </div>
         <div class="flex items-center mt-4">
@@ -74,8 +73,7 @@
             {{ $t('tag.command') }}
           </div>
           <div class="w-5/6 flex items-center justify-between pl-2">
-            <!-- eslint-disable-next-line -->
-            <highlight class="flex overflow-hidden">{{ message.data.command.lotus }}</highlight>
+            <code class="code">{{ message.data.command.lotus }}</code>
             <el-button icon="el-icon-document-copy" size="small" class="ml-2" @click="didCopyClicked" />
           </div>
         </div>
@@ -229,17 +227,14 @@ export default {
 }
 </script>
 
-<style>
-  .hljs {
-    border-radius: 0.375rem;
-  }
-</style>
-
 <style lang="postcss" scoped>
   .form-label {
     @apply flex w-1/6;
   }
   .form-input {
     @apply flex w-5/6 pl-2;
+  }
+  .code {
+    @apply block rounded-md p-2 whitespace-pre overflow-x-auto text-gray-800 bg-gray-100;
   }
 </style>

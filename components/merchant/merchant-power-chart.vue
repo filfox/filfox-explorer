@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 pt-4 w-full">
     <client-only>
-      <ve-histogram
+      <VeHistogram
         :data="chartData"
         :settings="chartSettings"
         :data-empty="dataEmpty"
@@ -11,7 +11,7 @@
         height="320px"
         :grid="{top: 50, bottom: 20}"
       />
-      <ve-histogram
+      <VeHistogram
         :data="chartData"
         :settings="chartSettings"
         :loading="loading"
@@ -26,11 +26,15 @@
 </template>
 
 <script>
-
 import moment from 'moment'
-import 'v-charts/lib/style.css'
 
 export default {
+  components: {
+    VeHistogram: () => Promise.all([
+      import('v-charts/lib/histogram.common'),
+      import('echarts/lib/chart/line')
+    ]).then(([x]) => x.default)
+  },
   props: {
     merchant: { type: String, required: true }
   },
@@ -97,7 +101,7 @@ export default {
   methods: {
     async getlineChartData() {
       this.loading = true
-      const data = await this.$axios.get(`/merchant/${this.merchant}/power-stats`, { params: { duration: '30d' } })
+      const data = await this.$axios.$get(`/merchant/${this.merchant}/power-stats`, { params: { duration: '30d' } })
       if (data == null) {
         this.dataEmpty = true
         this.loading = false

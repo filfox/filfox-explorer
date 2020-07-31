@@ -22,7 +22,7 @@
       </div>
     </div>
     <client-only>
-      <ve-line
+      <VeLine
         :data="chartData"
         :settings="chartSettings"
         :loading="loading"
@@ -31,7 +31,7 @@
         :legend-visible="false"
         class="hidden lg:block mx-4"
       />
-      <ve-line
+      <VeLine
         :data="chartData"
         :settings="chartSettings"
         :loading="loading"
@@ -48,9 +48,11 @@
 
 <script>
 import moment from 'moment'
-import 'v-charts/lib/style.css'
 
 export default {
+  components: {
+    VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
+  },
   data() {
     this.chartSettings = {
       offsetY: 0,

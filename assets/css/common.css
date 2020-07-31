@@ -1,3 +1,5 @@
+@import 'v-charts/lib/style.css';
+
 button {
     outline: none;
 }

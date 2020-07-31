@@ -36,22 +36,20 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/css/common.css'
+    '@/assets/css/common.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     '@/plugins/element-ui',
-    '~/plugins/i18n.js',
+    '@/plugins/i18n.js',
     '@/plugins/filters',
     '@/plugins/websocket.client',
-    '@/plugins/components',
-    '@/plugins/chart.client',
-    '@/plugins/highlight'
+    '@/plugins/components'
   ],
   extendPlugins(plugins) {
-    const pluginIndex = plugins.findIndex(src => src === '~/plugins/i18n.js')
+    const pluginIndex = plugins.findIndex(src => src === '@/plugins/i18n.js')
     const shouldBeFirstPlugin = plugins[pluginIndex]
     plugins.splice(pluginIndex, 1)
     plugins.unshift(shouldBeFirstPlugin)

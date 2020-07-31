@@ -1,7 +1,7 @@
 <template>
   <div>
     <client-only>
-      <ve-histogram
+      <VeHistogram
         :data="chartData"
         :settings="chartSettings"
         :loading="loading"
@@ -9,7 +9,7 @@
         :extend="chartExtend"
         class="hidden lg:block"
       />
-      <ve-histogram
+      <VeHistogram
         :data="chartData"
         :settings="chartSettings"
         :loading="loading"
@@ -24,11 +24,12 @@
 </template>
 
 <script>
-
 import moment from 'moment'
-import 'v-charts/lib/style.css'
 
 export default {
+  components: {
+    VeHistogram: () => import('v-charts/lib/histogram.common').then(x => x.default)
+  },
   props: {
     addressData: { type: Object, required: true }
   },

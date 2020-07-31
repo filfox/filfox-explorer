@@ -1,8 +1,14 @@
 <template>
   <div>
     <client-only>
-      <ve-line :data="chartData" :loading="loading" :data-empty="dataEmpty" :extend="chartExtend" class="hidden lg:block" />
-      <ve-line
+      <VeLine
+        :data="chartData"
+        :loading="loading"
+        :data-empty="dataEmpty"
+        :extend="chartExtend"
+        class="hidden lg:block"
+      />
+      <VeLine
         :data="chartData"
         :loading="loading"
         :data-empty="dataEmpty"
@@ -16,11 +22,12 @@
 </template>
 
 <script>
-
 import moment from 'moment'
-import 'v-charts/lib/style.css'
 
 export default {
+  components: {
+    VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
+  },
   props: {
     addressData: { type: Object, required: true }
   },

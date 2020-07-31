@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ve-pie
+    <VePie
       :data="chartData"
       :settings="chartSettings"
       :loading="loading"
@@ -8,7 +8,7 @@
       :extend="chartExtend"
       class="hidden lg:block"
     />
-    <ve-pie
+    <VePie
       :data="chartData"
       :settings="mobileSettings"
       :loading="loading"
@@ -22,9 +22,10 @@
 </template>
 
 <script>
-import 'v-charts/lib/style.css'
-
 export default {
+  components: {
+    VePie: () => import('v-charts/lib/pie.common').then(x => x.default)
+  },
   data() {
     this.chartSettings = {
       legendName: {},

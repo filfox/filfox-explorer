@@ -1,7 +1,7 @@
 <template>
   <div>
     <client-only>
-      <ve-ring
+      <VeRing
         :data="chartData"
         :settings="chartSettings"
         :data-empty="dataEmpty"
@@ -11,7 +11,7 @@
         width="100%"
         class="hidden lg:block"
       />
-      <ve-ring
+      <VeRing
         :data="chartData"
         :settings="chartSettings"
         :data-empty="dataEmpty"
@@ -26,9 +26,10 @@
 </template>
 
 <script>
-import 'v-charts/lib/style.css'
-
 export default {
+  components: {
+    VeRing: () => import('v-charts/lib/ring.common').then(x => x.default)
+  },
   props: {
     addressData: { type: Object, required: true }
   },
