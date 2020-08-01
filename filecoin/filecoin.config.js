@@ -18,4 +18,4 @@ export const wiki = {
   url: 'http://localhost:3000/wiki'
 }
 
-export const epochsInDay = 3456
+export const epochsInDay = 2880
