@@ -39,7 +39,7 @@
         />
         <OverviewCell
           :name="$t('home.overview.titles.averageRewardPerByte')"
-          :value="overview.averageRewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2)"
+          :value="overview.averageRewardPerByte * 2 ** 40 * epochsInDay | filecoinOnAvg(2)"
           :tip-content="$t('home.overview.tips.averageRewardPerByte')"
         />
         <OverviewCell
@@ -130,13 +130,16 @@
 </style>
 
 <script>
+import { epochsInDay } from '@/filecoin/filecoin.config'
+
 export default {
   props: {
     overview: { type: Object, required: true }
   },
   data() {
     return {
-      overviewExpanded: false
+      overviewExpanded: false,
+      epochsInDay
     }
   }
 }

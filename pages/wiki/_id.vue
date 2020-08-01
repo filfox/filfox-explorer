@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import config from '~/filecoin/filecoin.config'
+import { wiki } from '~/filecoin/filecoin.config'
 
 export default {
   asyncData({ params, error }) {
@@ -58,13 +58,11 @@ export default {
     this.getArticleDetail()
   },
   methods: {
-    getArticleDetail() {
+    async getArticleDetail() {
       let url = this.mds[this.id].path
       url = url.substr(1)
-      url = config.wiki.url + url
-      this.$axios.get(url).then(response => {
-        this.detail = response.data
-      })
+      url = wiki.url + url
+      this.detail = await this.$axios.$get(url)
     }
   },
   head() {

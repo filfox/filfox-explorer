@@ -4,7 +4,9 @@
       <HomeTitle type="richManRanks" />
       <div class="flex justify-between items-center">
         <p class="ml-4 text-xs">
-          {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts') }}
+          {{ $t('blockchain.richList.info.total') }}
+          {{ total }}
+          {{ $t('blockchain.richList.info.accounts') }}
         </p>
         <el-select v-model="type" placeholder="" size="mini" class="mr-4" @change="didSelectChanged">
           <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type" />
@@ -25,7 +27,7 @@
             {{ $t('home.richManRanks.tableHeaders.balance') }} /  {{ $t('home.minerRanks.rate') }}
           </p>
           <p>
-            {{ rich.balance | filecoin(0) }} / {{ (rich.balance/richList.totalSupply * 100).toFixed(2) }}%
+            {{ rich.balance | filecoin(0) }} / {{ rich.balance / richList.totalSupply | percentage }}
           </p>
         </div>
 

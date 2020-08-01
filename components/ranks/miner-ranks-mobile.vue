@@ -68,7 +68,7 @@
         <div class="flex justify-between my-1 mx-2 text-xs">
           <p>
             {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}:
-            {{ miner.rewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2) }}
+            {{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoinOnAvg(2) }}
           </p>
         </div>
       </div>
@@ -98,7 +98,7 @@
           </p>
           <p>
             {{ $t('home.minerRanks.tableHeadersByBlock.rewardsRatio') }}:
-            {{ (miner.totalRewards/topMinersByBlocks.totalRewards * 100) .toFixed(2) }}%
+            {{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }}
           </p>
         </div>
       </div>
@@ -114,7 +114,9 @@
         <div class="flex justify-between my-1 mx-2 text-xs">
           <p>
             {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}:
-            {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }} / {{ $t('shared.time.day') }}
+            {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
+            /
+            {{ $t('shared.time.day') }}
           </p>
           <p>
             {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}:
@@ -146,6 +148,8 @@
 </template>
 
 <script>
+import { epochsInDay } from '@/filecoin/filecoin.config'
+
 export default {
   props: {
     topMinersByPower: { type: Object, required: true },
@@ -158,7 +162,8 @@ export default {
     return {
       type: '0',
       duration: '24h',
-      page: 0
+      page: 0,
+      epochsInDay
     }
   },
   computed: {

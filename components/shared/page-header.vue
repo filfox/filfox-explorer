@@ -55,7 +55,7 @@
 
 <script>
 import navigationBar from '~/components/shared/navigation-bar'
-import nconfig from '~/filecoin/filecoin.config'
+import { network } from '~/filecoin/filecoin.config'
 
 export default {
   components: {
@@ -70,7 +70,7 @@ export default {
         en: 'English',
         ko: '한국어'
       },
-      network: nconfig.network
+      network
     }
   },
   computed: {

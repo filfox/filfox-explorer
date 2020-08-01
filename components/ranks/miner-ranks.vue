@@ -171,15 +171,20 @@
               </td>
               <td>
                 <div class="flex items-center">
-                  <el-progress v-if="page === 0" :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100" :show-text="false" class="flex w-1/2 ml-8 mr-3" />
+                  <el-progress
+                    v-if="page === 0"
+                    :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100"
+                    :show-text="false"
+                    class="flex w-1/2 ml-8 mr-3"
+                  />
                   <div class="flex" :class="{'mx-auto': page > 0}">
                     {{ miner.qualityAdjPower | size_metric(2) }}
                   </div>
                 </div>
               </td>
-              <td>{{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}</td>
+              <td>{{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}</td>
               <td>{{ miner.totalRewards | filecoin(2) }}</td>
-              <td>{{ miner.rewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2) }}</td>
+              <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoinOnAvg(2) }}</td>
               <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             </tr>
           </tbody>
@@ -202,7 +207,7 @@
                 <div class="flex items-center justify-end">
                   <el-progress
                     v-if="page === 0"
-                    :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100"
+                    :percentage="miner.weightedBlocksMined / topMinersByBlocks.miners[0].weightedBlocksMined * 100"
                     :show-text="false"
                     class="flex w-1/2 ml-8 mr-3"
                   />
@@ -211,9 +216,9 @@
                   </div>
                 </div>
               </td>
-              <td>{{ (miner.luckyValue * 100).toFixed(2) }}%</td>
+              <td>{{ miner.luckyValue | percentage }}</td>
               <td>{{ miner.totalRewards | filecoin(2) }}</td>
-              <td>{{ (miner.totalRewards/topMinersByBlocks.totalRewards * 100) .toFixed(2) }}%</td>
+              <td>{{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }}</td>
             </tr>
           </tbody>
           <tbody v-if="type===2" class="text-sm text-center">
@@ -235,12 +240,14 @@
                 <div class="flex items-center">
                   <el-progress
                     v-if="page === 0"
-                    :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100"
+                    :percentage="miner.qualityAdjPowerDelta / topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100"
                     :show-text="false"
                     class="flex w-1/2 ml-8 mr-3"
                   />
                   <div class="flex" :class="{'mx-auto': page > 0}">
-                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }} / {{ $t('shared.time.day') }}
+                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
+                    /
+                    {{ $t('shared.time.day') }}
                   </div>
                 </div>
               </td>
@@ -265,6 +272,8 @@
 </template>
 
 <script>
+import { epochsInDay } from '@/filecoin/filecoin.config'
+
 export default {
   props: {
     topMinersByPower: { type: Object, required: true },
@@ -277,7 +286,8 @@ export default {
     return {
       type: 0,
       duration: '24h',
-      page: 0
+      page: 0,
+      epochsInDay
     }
   },
   computed: {

@@ -160,7 +160,7 @@
           <td>
             <div class="flex items-center justify-end">
               <el-progress
-                :percentage="miner.qualityAdjPower/topMinersByPower.miners[0].qualityAdjPower * 100"
+                :percentage="miner.qualityAdjPower / topMinersByPower.miners[0].qualityAdjPower * 100"
                 :show-text="false"
                 class="flex w-1/2 mr-3"
               />
@@ -171,7 +171,7 @@
           </td>
           <td>{{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}</td>
           <td>{{ miner.totalRewards | filecoin(2) }}</td>
-          <td> {{ miner.rewardPerByte * 2 ** 40 * 3456 | filecoinOnAvg(2) }} </td>
+          <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoinOnAvg(2) }}</td>
           <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
         </tr>
       </tbody>
@@ -245,6 +245,8 @@
 </template>
 
 <script>
+import { epochsInDay } from '@/filecoin/filecoin.config'
+
 export default {
   props: {
     topMinersByPower: { type: Object, required: true },
@@ -258,7 +260,8 @@ export default {
       duration: '24h',
       rankTableHeadersByPowers: this.$t('home.minerRanks.tableHeadersByPower'),
       rankTableHeadersByBlocks: this.$t('home.minerRanks.tableHeadersByBlock'),
-      rankTableHeadersByPowerDelta: this.$t('home.minerRanks.tableHeadersByPowerDelta')
+      rankTableHeadersByPowerDelta: this.$t('home.minerRanks.tableHeadersByPowerDelta'),
+      epochsInDay
     }
   },
   computed: {

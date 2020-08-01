@@ -102,7 +102,7 @@
             <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
           </div>
           <div class="w-1/3 text-right">
-            {{ miner.weightedBlocksMined }} / {{ (miner.luckyValue * 100).toFixed(2) }}%
+            {{ miner.weightedBlocksMined }} / {{ miner.luckyValue | percentage }}
           </div>
         </div>
       </template>

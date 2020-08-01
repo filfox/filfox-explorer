@@ -48,6 +48,7 @@
 
 <script>
 import moment from 'moment'
+import { epochsInDay } from '@/filecoin/filecoin.config'
 
 export default {
   components: {
@@ -106,7 +107,7 @@ export default {
       }
       this.chartData.rows = this.rawData.map(info => ({
         time: this.getTime(info.timestamp),
-        fil: this.getFilecoin(info.rewardPerByte * 2 ** 40 * 3456, 4)
+        fil: this.getFilecoin(info.rewardPerByte * 2 ** 40 * epochsInDay, 4)
       }))
       this.loading = false
     },
