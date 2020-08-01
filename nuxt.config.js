@@ -110,7 +110,10 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
-    ...process.env.NODE_ENV === 'production' ? { extractCSS: true } : {},
+    ...process.env.NODE_ENV === 'production' ? {
+      publicPath: '/dist/',
+      extractCSS: true
+    } : {},
     babel: {
       plugins: [
         '@babel/plugin-proposal-nullish-coalescing-operator',
@@ -120,7 +123,8 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend(config) {
+    extend(config, { loaders: { vue } }) {
+      vue.compilerOptions = { whitespace: 'condense' }
       config.module.rules.push({
         enforce: 'pre',
         test: /\.md$/,
