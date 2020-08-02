@@ -27,8 +27,7 @@
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.6.0",
     "v-charts": "^1.19.0",
-    "vue-simple-markdown": "^1.1.4",
-    "vue-syntax-highlight": "^0.1.8"
+    "vue-simple-markdown": "^1.1.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
