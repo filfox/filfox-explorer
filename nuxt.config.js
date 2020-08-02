@@ -1,4 +1,5 @@
 import webpack from 'webpack'
+import MomentLocalePlugin from 'moment-locales-webpack-plugin'
 import messages from './locales'
 
 export default {
@@ -60,7 +61,6 @@ export default {
   */
   buildModules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/components',
     '@nuxtjs/eslint-module',
     ['@nuxtjs/google-analytics', { id: process.env.GOOGLE_ANALYTICS }]
   ],
@@ -131,9 +131,14 @@ export default {
         loader: 'raw-loader',
         exclude: /node_modules/
       })
-      config.plugins.push(new webpack.DefinePlugin({
-        'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL)
-      }))
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'process.env.WEBSOCKET_URL': JSON.stringify(process.env.WEBSOCKET_URL)
+        }),
+        new MomentLocalePlugin({
+          localesToKeep: ['zh-cn', 'ko']
+        })
+      )
     }
   }
 }
