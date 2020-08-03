@@ -50,7 +50,7 @@
           {{ $t('blockchain.message.tableHeaders.method') }}:
         </p>
         <p class="text-xs text-gray-800">
-          {{ message.method }}
+          {{ message.method || 'N/A' }}
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-1">

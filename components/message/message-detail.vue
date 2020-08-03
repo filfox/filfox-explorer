@@ -85,7 +85,7 @@
           {{ $t('detail.message.headers.method') }}
         </dt>
         <dd class="message-value">
-          {{ message.method }}
+          {{ message.method || 'N/A' }}
         </dd>
       </dl>
 

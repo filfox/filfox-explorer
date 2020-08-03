@@ -60,7 +60,7 @@
             <td>
               <AddressLink :id="message.to" :format="8" />
             </td>
-            <td>{{ message.method }}</td>
+            <td>{{ message.method || 'N/A' }}</td>
             <td>{{ message.value | filecoin(4) }}</td>
             <td v-if="message.receipt">
               {{ message.receipt.exitCode | exit-code }}

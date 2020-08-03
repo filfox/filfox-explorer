@@ -138,7 +138,7 @@
             {{ $t('blockchain.message.tableHeaders.method') }}:
           </p>
           <p class="text-xs text-gray-800">
-            {{ message.method }}
+            {{ message.method || 'N/A' }}
           </p>
         </div>
         <div class="message-item">

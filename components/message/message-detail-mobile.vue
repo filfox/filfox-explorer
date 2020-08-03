@@ -75,7 +75,7 @@
         {{ $t('detail.message.headers.method') }}
       </p>
       <p class="flex w-3/4">
-        {{ message.method }}
+        {{ message.method || 'N/A' }}
       </p>
     </div>
 
