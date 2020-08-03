@@ -421,7 +421,7 @@ export default {
     }
   },
   footer: {
-    contact: 'Contact: contact@filfox.info',
+    contact: 'Contact: contact@filfox.io',
     intro: 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'
   },
   tag: {
@@ -499,6 +499,6 @@ export default {
       hardware: 'Hardware info'
     },
     unknown: 'Unknown',
-    contact: 'Please send email to contact@filfox.info'
+    contact: 'Please send email to contact@filfox.io'
   }
 }

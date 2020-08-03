@@ -420,7 +420,7 @@ export default {
     }
   },
   footer: {
-    contact: '연락처: contact@filfox.info',
+    contact: '연락처: contact@filfox.io',
     intro: 'Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 파일코인과 관련된 채굴 랭킹, 블록 데이터 조회, 차트 등을 제공합니다.'
   },
   tag: {
@@ -498,6 +498,6 @@ export default {
       hardware: '하드웨어'
     },
     unknown: '미공개',
-    contact: '내용을 contact@filfox.info 주소로 보내주시면 담당자가 연락을 드릴 예정입니다. '
+    contact: '내용을 contact@filfox.io 주소로 보내주시면 담당자가 연락을 드릴 예정입니다. '
   }
 }
