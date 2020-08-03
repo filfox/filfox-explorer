@@ -284,7 +284,8 @@
               {{ $t('detail.transfer.tableHeaders.from') }}:
             </p>
             <div class="flex items-center flex-row justify-end">
-              <AddressLink :id="transfer.from" :format="4" class="text-xs text-main" />
+              <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-xs text-main" />
+              <span v-else class="text-xs text-gray-800"> N/A </span>
               <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="2" />
             </div>
           </div>
@@ -293,7 +294,8 @@
               {{ $t('detail.transfer.tableHeaders.to') }}:
             </p>
             <div class="flex items-center flex-row justify-end">
-              <AddressLink :id="transfer.to" :format="4" class="text-xs text-main" />
+              <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-xs text-main" />
+              <span v-else class="text-xs text-gray-800"> N/A </span>
               <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="2" />
             </div>
           </div>

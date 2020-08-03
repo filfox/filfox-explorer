@@ -95,11 +95,101 @@
       </dl>
     </div>
 
-    <div class="rounded-md pt-4 my-4 bg-white">
-      <div class="flex ml-8 font-medium">
-        {{ $t('blockchain.message.title') }}
+    <div class="rounded-md my-4 bg-white pt-4">
+      <div class="flex h-12 items-center ml-8">
+        <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
+          <el-radio-button :label="0">
+            {{ $t('blockchain.message.title') }}
+          </el-radio-button>
+          <el-radio-button :label="1">
+            {{ $t('detail.transfer.title') }}
+          </el-radio-button>
+        </el-radio-group>
       </div>
-      <AddressMessageList :address="addressData.address" />
+      <AddressMessageList v-if="listType === 0" :address="addressData.address" />
+      <div v-if="listType === 1" class="mx-8">
+        <p class="flex h-12 items-center text-sm border-b border-background mb-4">
+          {{ $t('detail.transfer.total') }}
+          {{ total }}
+          {{ $t('detail.transfer.transaction') }}
+        </p>
+        <table v-if="!loading" class="w-full table-fixed">
+          <thead class="text-gray-600 text-sm m-2">
+            <tr class="h-8">
+              <th class="sticky top-0 bg-white z-10 w-1/8">
+                {{ $t('detail.transfer.tableHeaders.time') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10 w-1/4">
+                {{ $t('detail.transfer.tableHeaders.message') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10 w-5/32">
+                {{ $t('detail.transfer.tableHeaders.from') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10 w-1/16">
+              </th>
+              <th class="sticky top-0 bg-white z-10 w-5/32">
+                {{ $t('detail.transfer.tableHeaders.to') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10 w-1/8">
+                {{ $t('detail.transfer.tableHeaders.income') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10 w-1/8">
+                {{ $t('detail.transfer.tableHeaders.type') }}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr
+              v-for="(transfer, index) in transferList.transfers"
+              :key="index"
+              class="h-12 border-b border-background text-sm"
+            >
+              <td>
+                {{ transfer.timestamp | timestamp('datetime') }}
+              </td>
+              <td>
+                <MessageLink v-if="transfer.message" :id="transfer.message" :format="12" />
+                <span v-else> N/A </span>
+              </td>
+              <td>
+                <div class="flex items-center flex-row justify-center">
+                  <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
+                  <span v-else> N/A </span>
+                  <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="1" />
+                </div>
+              </td>
+              <td>
+                <div class="flex justify-center">
+                  <img src="~/assets/img/shared/to.svg" alt="3" class="w-4">
+                </div>
+              </td>
+              <td>
+                <div class="flex items-center flex-row justify-center">
+                  <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" />
+                  <span v-else> N/A </span>
+                  <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="1" />
+                </div>
+              </td>
+              <td>
+                {{ transfer.value | filecoin(2) }}
+              </td>
+              <td>
+                {{ $t('detail.transfer.types.' + transfer.type ) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div v-if="loading" v-loading="loading" class="flex h-24"></div>
+      <div v-if="listType != 0" class="flex items-center text-center h-16">
+        <el-pagination
+          layout="prev, pager, next"
+          :page-count="totalPageCount"
+          :current-page="page + 1"
+          class="mx-auto"
+          @current-change="didCurrentPageChanged"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -108,6 +198,44 @@
 export default {
   props: {
     addressData: { type: Object, required: true }
+  },
+  data() {
+    return {
+      transferList: {},
+      listType: 0,
+      page: 0,
+      pageSize: 20,
+      totalPageCount: 0,
+      loading: false,
+      total: 0
+    }
+  },
+  methods: {
+    async getTransferList() {
+      this.loading = true
+      const params = { pageSize: this.pageSize, page: this.page }
+      this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
+      this.loading = false
+      this.total = this.transferList.totalCount
+      this.getTotalPageCount()
+    },
+    getTotalPageCount() {
+      this.totalPageCount = Math.ceil(this.total / this.pageSize)
+    },
+    didCurrentPageChanged(currentPage) {
+      this.page = currentPage - 1
+      if (this.listType === 1) {
+        this.getTransferList()
+      }
+    },
+    didListTypeChanged() {
+      this.page = 0
+      this.totalPageCount = 1
+      this.total = 0
+      if (this.listType === 1) {
+        this.getTransferList()
+      }
+    }
   }
 }
 </script>
