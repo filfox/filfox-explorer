@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto text-sm">
     <div class="mt-6 font-medium">
       {{ $t('detail.message.title') }}
     </div>
