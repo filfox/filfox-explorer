@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <div class="hidden container mx-auto lg:block">
+    <div class="hidden container mx-auto lg:block text-sm">
       <div class="mt-6 font-medium">
         {{ $t('detail.tipset.title') }} #{{ height }}
       </div>
