@@ -72,7 +72,7 @@ export default {
     'nuxt-i18n'
   ],
   axios: {
-    baseURL: 'https://calibration.filfox.io/api/v0'
+    baseURL: 'https://calibration.filfox.info/api/v0'
   },
   i18n: {
     locales: [

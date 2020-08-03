@@ -3,7 +3,7 @@
     <div class="container mx-auto">
       <div class="mt-6 my-2">
         <nuxt-link :to="localePath('/')">
-          <img src="@/assets/img/home/logo.svg" alt="filFox.io">
+          <img src="@/assets/img/home/logo.svg" alt="filFox.info">
         </nuxt-link>
       </div>
       <div class="lg:flex lg:justify-between py-4">

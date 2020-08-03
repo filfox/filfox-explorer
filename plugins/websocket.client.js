@@ -2,7 +2,7 @@ import Vue from 'vue'
 import io from 'socket.io-client'
 
 export default function() {
-  const ws = io(process.env.WEBSOCKET_URL ?? 'wss://calibration.filfox.io', { transports: ['websocket'] })
+  const ws = io(process.env.WEBSOCKET_URL ?? 'wss://calibration.filfox.info', { transports: ['websocket'] })
 
   const subscriptions = {}
   const listeners = {}

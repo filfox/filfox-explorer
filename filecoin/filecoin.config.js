@@ -5,11 +5,11 @@ export const network = {
   networks: [
     {
       name: 'Testnet',
-      url: 'https://filfox.io'
+      url: 'https://filfox.info'
     },
     {
       name: 'Calibration',
-      url: 'https://calibration.filfox.io'
+      url: 'https://calibration.filfox.info'
     }
   ]
 }
