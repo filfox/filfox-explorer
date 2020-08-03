@@ -24,7 +24,7 @@
         {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--' }}<Signed v-if="tag.signed && type === 1" :content="$t('tag.signed')" />
       </div>
     </template>
-    <div v-if="type == 2" class="lg:hidden text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1 items-center">
+    <div v-if="type == 2" class="lg:hidden text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1 items-center break-all">
       {{ tag[$i18n.locale] ? tag[$i18n.locale] : '--' }}
       <Signed v-if="tag.signed && type== 2" :content="$t('tag.signed')" />
     </div>
