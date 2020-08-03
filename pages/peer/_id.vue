@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="container mx-auto hidden lg:block">
+    <div class="container mx-auto hidden lg:block text-sm">
       <div class="mt-6 font-medium">
         {{ $t('detail.peer.title') }}
       </div>
