@@ -94,7 +94,7 @@
           {{ $t('detail.message.headers.value') }}
         </dt>
         <dd class="message-value">
-          {{ message.value | filecoin(4) }}
+          {{ message.value | filecoin }}
         </dd>
       </dl>
 
