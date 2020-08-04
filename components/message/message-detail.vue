@@ -103,7 +103,7 @@
           {{ $t('detail.message.headers.gasPrice') }}
         </dt>
         <dd class="message-value">
-          {{ message.gasPrice | filecoin() }}
+          {{ message.gasPrice | filecoin }}
         </dd>
       </dl>
 

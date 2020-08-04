@@ -7,7 +7,7 @@
       </el-button>
     </div>
     <div class="bg-white px-4 pt-4 lg:p-4 lg:rounded-b-md">
-      <div class="grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-4">
+      <div class="grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-4 overview-list" :class="{'overview-expanded': overviewExpanded}">
         <OverviewCell
           :name="$t('home.overview.titles.height')"
           :value="overview.height"
@@ -56,60 +56,57 @@
           :value="overview.totalPledgeCollateral | filecoin(0)"
           :tip-content="$t('home.overview.tips.totalPledgeCollateral')"
         />
-
-        <template v-if="overviewExpanded">
-          <OverviewCell
-            :name="$t('home.overview.titles.circulatingSupply')"
-            :value="overview.circulatingSupply | filecoin(0)"
-            :tip-content="$t('home.overview.tips.circulatingSupply')"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.accounts')"
-            :value="overview.accounts"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.averageTipsetInterval')"
-            :value="overview.averageTipsetInterval.toFixed(2) + ' ' + $t('shared.time.sec')"
-            :tip-content="$t('home.overview.tips.averageTipsetInterval')"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.dailyMessages')"
-            :value="overview.dailyMessages"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.averageTipsetBlocks')"
-            :value="overview.averageTipsetBlocks.toFixed(2)"
-            :tip-content="$t('home.overview.tips.averageTipsetBlocks')"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.rawBytePower')"
-            :value="overview.totalRawBytePower | size_metric(2)"
-            :tip-content="$t('home.overview.tips.rawBytePower')"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.averageGasPrice')"
-            :value="overview.averageGasPrice | filecoin(2)"
-            :tip-content="$t('home.overview.tips.averageGasPrice')"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.burntSupply')"
-            :value="overview.burntSupply | filecoin(0)"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.totalMaxSupply')"
-            :value="overview.totalMaxSupply | filecoin(0)"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.totalMarketBalance')"
-            :value="overview.totalMarketBalance | filecoin(0)"
-            :tip-content="$t('home.overview.tips.totalMarketBalance')"
-          />
-          <OverviewCell
-            :name="$t('home.overview.titles.circulatingSupplyRate')"
-            :value="overview.circulatingSupply / overview.totalMaxSupply | percentage"
-            :tip-content="$t('home.overview.tips.circulatingSupplyRate')"
-          />
-        </template>
+        <OverviewCell
+          :name="$t('home.overview.titles.circulatingSupply')"
+          :value="overview.circulatingSupply | filecoin(0)"
+          :tip-content="$t('home.overview.tips.circulatingSupply')"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.accounts')"
+          :value="overview.accounts"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.averageTipsetInterval')"
+          :value="overview.averageTipsetInterval.toFixed(2) + ' ' + $t('shared.time.sec')"
+          :tip-content="$t('home.overview.tips.averageTipsetInterval')"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.dailyMessages')"
+          :value="overview.dailyMessages"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.averageTipsetBlocks')"
+          :value="overview.averageTipsetBlocks.toFixed(2)"
+          :tip-content="$t('home.overview.tips.averageTipsetBlocks')"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.rawBytePower')"
+          :value="overview.totalRawBytePower | size_metric(2)"
+          :tip-content="$t('home.overview.tips.rawBytePower')"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.averageGasPrice')"
+          :value="overview.averageGasPrice | filecoin(2)"
+          :tip-content="$t('home.overview.tips.averageGasPrice')"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.burntSupply')"
+          :value="overview.burntSupply | filecoin(0)"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.totalMaxSupply')"
+          :value="overview.totalMaxSupply | filecoin(0)"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.totalMarketBalance')"
+          :value="overview.totalMarketBalance | filecoin(0)"
+          :tip-content="$t('home.overview.tips.totalMarketBalance')"
+        />
+        <OverviewCell
+          :name="$t('home.overview.titles.circulatingSupplyRate')"
+          :value="overview.circulatingSupply / overview.totalMaxSupply | percentage"
+          :tip-content="$t('home.overview.tips.circulatingSupplyRate')"
+        />
       </div>
       <div class="flex mx-auto h-10 items-center lg:hidden">
         <el-button type="text" class="mx-auto" size="small" @click="overviewExpanded = !overviewExpanded">
@@ -119,15 +116,6 @@
     </div>
   </div>
 </template>
-
-<style>
-.el-button--text {
-    color: #606266
-  }
-.el-button--text:focus, .el-button--text:hover {
-  color: #606266;
-}
-</style>
 
 <script>
 import { epochsInDay } from '@/filecoin/filecoin.config'
@@ -144,3 +132,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .overview-list:not(.overview-expanded) > :nth-child(n + 11) {
+    display: none;
+  }
+</style>

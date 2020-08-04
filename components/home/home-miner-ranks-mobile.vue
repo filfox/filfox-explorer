@@ -141,9 +141,6 @@
       padding: 0 10px;
       font-size: 12px;
   }
-  .el-button--text {
-    color: #606266
-  }
 </style>
 
 <script>

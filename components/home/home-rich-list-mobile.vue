@@ -43,15 +43,6 @@
   </div>
 </template>
 
-<style>
-  .el-button--text {
-    color: #606266
-  }
-  .el-button--text:focus, .el-button--text:hover {
-    color: #606266;
-  }
-</style>
-
 <script>
 export default {
   props: {

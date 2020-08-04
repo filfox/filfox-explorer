@@ -33,3 +33,9 @@ button:focus {
 .el-loading-spinner svg {
     display: inline-block;
 }
+.el-button--text {
+    color: #606266
+}
+.el-button--text:focus, .el-button--text:hover {
+    color: #606266;
+}

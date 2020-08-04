@@ -84,7 +84,7 @@
         {{ $t('detail.message.headers.value') }}
       </p>
       <p class="flex w-3/4">
-        {{ message.value | filecoin(4) }}
+        {{ message.value | filecoin }}
       </p>
     </div>
 
@@ -93,7 +93,7 @@
         {{ $t('detail.message.headers.gasPrice') }}
       </p>
       <p class="flex w-3/4">
-        {{ message.gasPrice | filecoin() }}
+        {{ message.gasPrice | filecoin }}
       </p>
     </div>
 
