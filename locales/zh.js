@@ -242,6 +242,25 @@ export default {
     }
   },
   detail: {
+    deal: {
+      title: '订单详情',
+      overview: '订单概览',
+      storageDetail: '托管详情',
+      headers: {
+        id: '订单ID',
+        createTime: '创建时间',
+        block: '所属区块',
+        message: '所属消息',
+        cid: '文件Cid',
+        verified: '已验证',
+        status: '状态',
+        client: '客户',
+        provider: '托管矿工',
+        collateral: '质押金额',
+        fee: '托管费用',
+        to: '至'
+      }
+    },
     transfer: {
       title: '转账列表',
       tableHeaders: {
@@ -465,7 +484,8 @@ export default {
       block: '区块',
       recentTipsets: '最新区块列表',
       rich: '富豪榜',
-      deal: '订单列表',
+      dealList: '订单列表',
+      deal: '订单详情',
       messages: '消息列表',
       ranks: '挖矿排行榜',
       minerCharts: '挖矿图表',

@@ -252,6 +252,25 @@ export default {
     }
   },
   detail: {
+    deal: {
+      title: '주문 내역',
+      overview: '주면 개요',
+      storageDetail: '스토리지 내역',
+      headers: {
+        id: '주문 아이디',
+        createTime: '시간 생성',
+        block: '블록',
+        message: '메시지',
+        cid: '문서 Cid',
+        verified: '검증된 주문',
+        status: '상태',
+        client: '클라이언트',
+        provider: '스토리지 채굴자',
+        collateral: '담보 금액',
+        fee: '스토리지 비용',
+        to: '에'
+      }
+    },
     transfer: {
       title: 'Transaction List',
       tableHeaders: {
@@ -474,7 +493,8 @@ export default {
       block: '블록',
       recentTipsets: '최신 블록 리스트',
       rich: '자산 순위',
-      deal: '주문 리스트',
+      dealList: '주문 리스트',
+      deal: '주문 내역',
       messages: '메시지 리스트',
       ranks: '채굴 순위',
       minerCharts: '채굴 도표',

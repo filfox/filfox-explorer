@@ -9,7 +9,7 @@
 export default {
   head() {
     return {
-      title: `${this.$t('meta.titles.deal')}`
+      title: `${this.$t('meta.titles.dealList')}`
     }
   }
 }

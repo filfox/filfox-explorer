@@ -252,6 +252,25 @@ export default {
     }
   },
   detail: {
+    deal: {
+      title: 'Deal Detail',
+      overview: 'Deal Overview',
+      storageDetail: 'Storage Detail',
+      headers: {
+        id: 'Deal ID',
+        createTime: 'Create Time',
+        block: 'Block',
+        message: 'Message',
+        cid: 'Piece Cid',
+        verified: 'Verified Deal',
+        status: 'Status',
+        client: 'Client',
+        provider: 'Provider',
+        collateral: 'Collateral',
+        fee: 'Storage Fee',
+        to: 'to'
+      }
+    },
     transfer: {
       title: 'Transaction List',
       tableHeaders: {
@@ -475,7 +494,8 @@ export default {
       block: 'Block',
       recentTipsets: 'Recent Tipsets',
       rich: 'Rich List',
-      deal: 'Deal List',
+      dealList: 'Deal List',
+      deal: 'Deal Detail',
       messages: 'Message List',
       ranks: 'Top Miners',
       minerCharts: 'Miner Charts',

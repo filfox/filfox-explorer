@@ -21,7 +21,8 @@ module.exports = {
         button: '#409eff',
         merchantBg: '#f8f9fe',
         merchantTextColor: '#9b9b9b',
-        tableHeaderColor: '#000000b3'
+        tableHeaderColor: '#000000b3',
+        dealTimeText: '#88898d'
       },
       width: {
         '1/8': '12.5%',
