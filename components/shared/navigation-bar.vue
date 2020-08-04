@@ -17,7 +17,7 @@
         <nuxt-link :to="localePath('/message')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
-        <nuxt-link :to="localePath('/rich')">
+        <nuxt-link :to="localePath('/rich-list')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.2') }}</el-dropdown-item>
         </nuxt-link>
         <nuxt-link :to="localePath('/deal')">

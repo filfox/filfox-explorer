@@ -34,7 +34,7 @@
     </div>
 
     <div class="flex items-center text-center h-12">
-      <nuxt-link :to="localePath('/rich')" class="flex m-auto">
+      <nuxt-link :to="localePath('/rich-list')" class="flex m-auto">
         <el-button size="mini" type="text">
           {{ $t('home.minerRanks.moreBtn') }}
         </el-button>

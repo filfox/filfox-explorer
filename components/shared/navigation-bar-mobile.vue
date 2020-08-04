@@ -21,7 +21,7 @@
           <nuxt-link :to="localePath('/message')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.1') }}
           </nuxt-link>
-          <nuxt-link :to="localePath('/rich')" class="link" @click.native="hideIfNeeded">
+          <nuxt-link :to="localePath('/rich-list')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.2') }}
           </nuxt-link>
           <nuxt-link :to="localePath('/deal')" class="link" @click.native="hideIfNeeded">
