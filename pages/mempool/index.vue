@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="bg-white lg:hidden">
-      <div v-if="loading" v-loading="loading" class="mt-16"></div>
-      <div v-else class="mt-2">
+      <div class="mt-2">
         <p class="pl-4 flex pt-2 text-sm font-medium">
           {{ $t('blockchain.message.title') }}
         </p>
@@ -21,27 +20,11 @@
           />
         </div>
 
-        <div v-for="(message, index) in messageList.messages" :key="index" class="rounded-sm mx-3 mb-3 py-2 shadow bg-white text-xs text-gray-800">
-          <div class="message-item">
-            <p>
-              {{ $t('blockchain.message.tableHeaders.id') }}:
-            </p>
-            <MessageLink :id="message.cid" :format="10" />
-          </div>
-          <div class="message-item">
-            <p>
-              {{ $t('blockchain.message.tableHeaders.height') }}:
-            </p>
-            <TipsetLink :id="message.height" class="text-main" />
-          </div>
-          <div class="message-item">
-            <p>
-              {{ $t('blockchain.message.tableHeaders.time') }}:
-            </p>
-            <p>
-              {{ message.timestamp | timestamp('datetime') }}
-            </p>
-          </div>
+        <div
+          v-for="(message, index) in messageList.messages"
+          :key="index"
+          class="rounded-sm mx-3 mb-3 py-2 shadow bg-white text-xs text-gray-800"
+        >
           <div class="message-item">
             <p>
               {{ $t('blockchain.message.tableHeaders.from') }}:
@@ -72,13 +55,18 @@
           </div>
           <div class="message-item">
             <p>
-              {{ $t('blockchain.message.tableHeaders.exitCode') }}:
+              {{ $t('blockchain.message.tableHeaders.gasPrice') }}:
             </p>
-            <p v-if="message.receipt">
-              {{ message.receipt.exitCode | exit-code }}
+            <p>
+              {{ message.gasPrice | filecoin }}
             </p>
-            <p v-else>
-              N/A
+          </div>
+          <div class="message-item">
+            <p>
+              {{ $t('blockchain.message.tableHeaders.gasLimit') }}:
+            </p>
+            <p>
+              {{ message.gasLimit | locale }}
             </p>
           </div>
         </div>
@@ -87,7 +75,7 @@
             layout="prev, pager, next"
             :page-count="totalPageCount"
             :pager-count="5"
-            :current-page="page+1"
+            :current-page="page + 1"
             class="mx-auto"
             @current-change="didCurrentPageChanged"
           />
@@ -116,18 +104,9 @@
           </el-select>
         </div>
         <div class="flex mx-4">
-          <table v-if="!loading" class="w-full table-auto">
+          <table class="w-full table-auto">
             <thead class="text-gray-600 text-sm m-2">
               <tr class="h-8">
-                <th class="table-header">
-                  {{ $t('blockchain.message.tableHeaders.id') }}
-                </th>
-                <th class="table-header">
-                  {{ $t('blockchain.message.tableHeaders.height') }}
-                </th>
-                <th class="table-header">
-                  {{ $t('blockchain.message.tableHeaders.time') }}
-                </th>
                 <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.from') }}
                 </th>
@@ -141,21 +120,19 @@
                   {{ $t('blockchain.message.tableHeaders.value') }}
                 </th>
                 <th class="table-header">
-                  {{ $t('blockchain.message.tableHeaders.exitCode') }}
+                  {{ $t('blockchain.message.tableHeaders.gasPrice') }}
+                </th>
+                <th class="table-header">
+                  {{ $t('blockchain.message.tableHeaders.gasLimit') }}
                 </th>
               </tr>
             </thead>
             <tbody class="text-center">
-              <tr v-for="(message, index) in messageList.messages" :key="index" class="h-12 border-b border-background text-sm">
-                <td>
-                  <MessageLink :id="message.cid" :format="8" />
-                </td>
-                <td>
-                  <TipsetLink :id="message.height" class="text-main" />
-                </td>
-                <td>
-                  {{ message.timestamp | timestamp('datetime') }}
-                </td>
+              <tr
+                v-for="(message, index) in messageList.messages"
+                :key="index"
+                class="h-12 border-b border-background text-sm"
+              >
                 <td>
                   <AddressLink :id="message.from" :format="8" />
                 </td>
@@ -168,22 +145,21 @@
                 <td>
                   {{ message.value | filecoin(4) }}
                 </td>
-                <td v-if="message.receipt">
-                  {{ message.receipt.exitCode | exit-code }}
+                <td>
+                  {{ message.gasPrice | filecoin }}
                 </td>
-                <td v-else>
-                  N/A
+                <td>
+                  {{ message.gasLimit | locale }}
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div v-if="loading" v-loading="loading" class="h-24"></div>
         <div class="flex items-center text-center h-16">
           <el-pagination
             layout="prev, pager, next"
             :page-count="totalPageCount"
-            :current-page="page+1"
+            :current-page="page + 1"
             class="mx-auto"
             @current-change="didCurrentPageChanged"
           />
@@ -197,7 +173,7 @@
 export default {
   async asyncData({ $axios, error }) {
     try {
-      const messageList = await $axios.$get('/message/list', { params: { pageSize: 20, page: 0 } })
+      const messageList = await $axios.$get('/mempool/list', { params: { pageSize: 20, page: 0 } })
       return { messageList }
     } catch (err) {
       if (err?.response) {
@@ -241,7 +217,7 @@ export default {
       if (this.method !== 'All') {
         params.method = this.method
       }
-      this.messageList = await this.$axios.$get('/message/list', { params })
+      this.messageList = await this.$axios.$get('/mempool/list', { params })
       this.loading = false
     },
     didCurrentPageChanged(currentPage) {
@@ -251,7 +227,7 @@ export default {
   },
   head() {
     return {
-      title: this.$t('meta.titles.messages')
+      title: this.$t('meta.titles.mempool')
     }
   }
 }

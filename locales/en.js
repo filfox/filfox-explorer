@@ -31,7 +31,8 @@ export default {
         'Tipsets',
         'Messages',
         'Rich List',
-        'Deal List'
+        'Deal List',
+        'Mempool'
       ]
     },
     ranks: {
@@ -185,7 +186,7 @@ export default {
         miner: 'Miner',
         time: 'Time',
         size: 'Size',
-        hash: 'Hash',
+        hash: 'ID',
         tag: 'Tag',
         message: 'Messages',
         award: 'Reward'
@@ -205,6 +206,8 @@ export default {
         to: 'To',
         method: 'Method',
         value: 'Value',
+        gasPrice: 'Gas Price',
+        gasLimit: 'Gas Limit',
         exitCode: 'Status'
       },
       methods: {
@@ -412,7 +415,7 @@ export default {
           total: 'Total',
           tipsets: 'Tipsets',
           height: 'Height',
-          hash: 'Block Hash',
+          hash: 'Block ID',
           reward: 'Reward',
           time: 'Time',
           messages: 'Messages Count',
@@ -491,6 +494,7 @@ export default {
       peer: 'Peer',
       tipset: 'Tipset',
       message: 'Message',
+      mempool: 'Mempool',
       block: 'Block',
       recentTipsets: 'Recent Tipsets',
       rich: 'Rich List',

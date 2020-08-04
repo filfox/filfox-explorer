@@ -39,7 +39,7 @@
         />
         <OverviewCell
           :name="$t('home.overview.titles.averageRewardPerByte')"
-          :value="overview.averageRewardPerByte * 2 ** 40 * epochsInDay | filecoinOnAvg(2)"
+          :value="overview.averageRewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB')"
           :tip-content="$t('home.overview.tips.averageRewardPerByte')"
         />
         <OverviewCell
@@ -49,7 +49,7 @@
         />
         <OverviewCell
           :name="$t('home.overview.titles.sectorInitialPledge')"
-          :value="(overview.estimatedInitialPledgeCollateral * 32 * 2 ** 30 / 1e18).toFixed(2) + ' FIL/32GiB'"
+          :value="overview.estimatedInitialPledgeCollateral * 32 * 2 ** 30 | filecoin(2, '/32GiB')"
         />
         <OverviewCell
           :name="$t('home.overview.titles.totalPledgeCollateral')"
@@ -88,7 +88,7 @@
           />
           <OverviewCell
             :name="$t('home.overview.titles.averageGasPrice')"
-            :value="overview.averageGasPrice.toFixed(2) + ' AttoFIL'"
+            :value="overview.averageGasPrice | filecoin(2)"
             :tip-content="$t('home.overview.tips.averageGasPrice')"
           />
           <OverviewCell

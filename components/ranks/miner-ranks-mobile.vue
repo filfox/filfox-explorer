@@ -52,7 +52,7 @@
           </p>
           <p>
             {{ $t('home.minerRanks.tableHeadersByPower.validPowerRate') }}:
-            {{ (miner.qualityAdjPower/topMinersByPower.totalQualityAdjPower * 100).toFixed(2) + '%' }}
+            {{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}
           </p>
         </div>
         <div class="flex justify-between my-1 mx-2 text-xs">
@@ -68,7 +68,7 @@
         <div class="flex justify-between my-1 mx-2 text-xs">
           <p>
             {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}:
-            {{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoinOnAvg(2) }}
+            {{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB') }}
           </p>
         </div>
       </div>

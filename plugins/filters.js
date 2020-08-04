@@ -19,38 +19,29 @@ function addAmountDelimiters(string) {
   )
 }
 
-Vue.filter('coin', (value, precision = null) => {
+Vue.filter('coin', (value, decimals, precision = null) => {
   if (precision == null) {
-    const s = value.toString().padStart(19, '0')
-    return addAmountDelimiters(`${s.slice(0, -18)}.${s.slice(-18)}`.replace(/\.?0*$/g, ''))
+    const s = value.toString().padStart(decimals + 1, '0')
+    return addAmountDelimiters(`${s.slice(0, -decimals)}.${s.slice(-decimals)}`.replace(/\.?0*$/g, ''))
   } else {
-    return addAmountDelimiters((value / 1e18).toFixed(precision))
+    return addAmountDelimiters((value / 10 ** decimals).toFixed(precision))
   }
 })
 
-Vue.filter('filecoin', (value, precision = null) => {
+Vue.filter('filecoin', (value, precision = null, suffix = '') => {
   if (value == null) {
     return 'N/A'
   }
+  value = String(value)
+  const digits = value.includes('.') ? value.indexOf('.') : value.length
   if (value === '0') {
-    return '0 FIL'
-  } else if (value.length <= 9) {
-    return `${Number(value).toLocaleString()} AttoFIL`
+    return `0 FIL${suffix}`
+  } else if (digits <= 7) {
+    return `${Number(value).toLocaleString()} attoFIL${suffix}`
+  } else if (digits <= 13) {
+    return `${Vue.filter('coin')(value, 9, precision)} nanoFIL${suffix}`
   } else {
-    return `${Vue.filter('coin')(value, precision)} FIL`
-  }
-})
-
-Vue.filter('filecoinOnAvg', (value, precision = null) => {
-  if (value == null) {
-    return 'N/A'
-  }
-  if (value === '0') {
-    return '0 FIL/TiB'
-  } else if (value.length <= 9) {
-    return `${Number(value).toLocaleString()} AttoFIL/TiB`
-  } else {
-    return `${Vue.filter('coin')(value, precision)} FIL/TiB`
+    return `${Vue.filter('coin')(value, 18, precision)} FIL${suffix}`
   }
 })
 

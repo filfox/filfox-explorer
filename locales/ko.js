@@ -185,7 +185,7 @@ export default {
         miner: '채굴자',
         time: '시간',
         size: '블록 크기',
-        hash: '해시',
+        hash: 'ID',
         tag: '서명',
         message: '메시지',
         award: '블록 보상'
@@ -412,7 +412,7 @@ export default {
           total: '총',
           tipsets: '블록',
           height: '블록 높이',
-          hash: '블록 해시',
+          hash: '블록 ID',
           reward: '보상',
           time: '시간',
           messages: '메시지 개수',

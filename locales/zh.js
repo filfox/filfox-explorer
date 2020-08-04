@@ -27,7 +27,7 @@ export default {
     },
     blocks: {
       title: '区块链',
-      subMenus: ['区块', '消息', '富豪榜', '订单']
+      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池']
     },
     ranks: {
       title: '排行榜'
@@ -175,7 +175,7 @@ export default {
         miner: '矿工',
         time: '时间',
         size: '区块大小',
-        hash: '哈希',
+        hash: 'ID',
         tag: '标签',
         message: '消息',
         award: '奖励'
@@ -195,6 +195,8 @@ export default {
         to: '接收方',
         method: '方法',
         value: '金额',
+        gasPrice: 'Gas价格',
+        gasLimit: 'Gas限额',
         exitCode: '状态'
       },
       methods: {
@@ -402,7 +404,7 @@ export default {
           total: '共',
           tipsets: '个区块',
           height: '区块高度',
-          hash: '区块哈希',
+          hash: '区块ID',
           reward: '奖励',
           time: '时间',
           messages: '消息数',
@@ -481,6 +483,7 @@ export default {
       peer: '节点',
       tipset: '区块高度',
       message: '消息',
+      mempool: '内存池',
       block: '区块',
       recentTipsets: '最新区块列表',
       rich: '富豪榜',
