@@ -44,7 +44,7 @@
         <tbody class="text-center text-sm">
           <tr v-for="(deal, index) in dealList.deals" :key="index" class="border-b border-background h-10">
             <td>
-              {{ deal.id }}
+              <DealLink :id="deal.id" class="text-sm" />
             </td>
             <td>
               {{ deal.timestamp | timestamp('datetime') }}
@@ -64,7 +64,7 @@
             <td> {{ deal.pieceSize | size_metric(2) }} </td>
             <td> {{ deal.verifiedDeal }} </td>
             <td> {{ deal.storagePrice | filecoin(8) }} </td>
-            <td> N/A </td>
+            <td> {{ deal.status ? deal.status : 'N/A' }} </td>
           </tr>
         </tbody>
       </table>

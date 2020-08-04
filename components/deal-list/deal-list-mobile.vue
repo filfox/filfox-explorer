@@ -1,60 +1,89 @@
 <template>
   <div class="bg-white overflow-hidden">
     <div class="border-b border-background pb-2 mt-1">
-      <HomeTitle type="richManRanks" />
+      <p class="text-sm ml-4 font-medium mt-4 mb-2">
+        {{ $t('blockchain.dealList.title') }}
+      </p>
       <div class="flex justify-between items-center">
         <p class="ml-4 text-xs">
-          {{ $t('blockchain.richList.info.total') }}
+          {{ $t('blockchain.dealList.info.total') }}
           {{ total }}
-          {{ $t('blockchain.richList.info.accounts') }}
+          {{ $t('blockchain.dealList.info.deals') }}
         </p>
-        <el-select v-model="type" placeholder="" size="mini" class="mr-4" @change="didSelectChanged">
-          <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type" />
-        </el-select>
       </div>
     </div>
 
     <div v-if="!loading" class="mt-2 text-xs">
-      <div v-for="(rich, index) in richList.list" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white px-1">
-        <div class="flex pt-2 items-center">
-          <RankIndex :index="index+1 + page * pageSize" class="ml-1" />
-          <AddressLink :id="rich.address" :format="4" class="ml-2 mr-1" />
-          <MinerTag v-if="rich.tag" :tag="rich.tag" :type="2" />
+      <div v-for="(deal, index) in dealList.deals" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white px-1">
+        <div class="flex justify-between pt-2 mx-1 items-center">
+          <p class="text-gray-500">
+            {{ $t('blockchain.dealList.tableHeaders.id') }}
+          </p>
+          <DealLink :id="deal.id" class="text-main" />
         </div>
 
-        <div class="flex justify-between pt-2 mx-1">
+        <div class="flex justify-between pt-2 mx-1 items-center">
           <p class="text-gray-500">
-            {{ $t('home.richManRanks.tableHeaders.balance') }} /  {{ $t('home.minerRanks.rate') }}
+            {{ $t('blockchain.dealList.tableHeaders.createdTime') }}
           </p>
           <p>
-            {{ rich.balance | filecoin(0) }} / {{ rich.balance / richList.totalSupply | percentage }}
-          </p>
-        </div>
-
-        <div class="flex justify-between pt-2 mx-1">
-          <p class="text-gray-500">
-            {{ $t('blockchain.richList.tableHeaders.type') }}
-          </p>
-          <p>
-            {{ $t('actor.' + rich.actor) }}
+            {{ deal.timestamp | timestamp('datetime') }}
           </p>
         </div>
 
-        <div class="flex justify-between pt-2 mx-1">
+        <div class="flex flex-row justify-between pt-2 mx-1 items-center">
           <p class="text-gray-500">
-            {{ $t('blockchain.richList.tableHeaders.createTime') }}
+            {{ $t('blockchain.dealList.tableHeaders.client') }}
+          </p>
+          <div class="flex items-center">
+            <AddressLink :id="deal.client" :format="4" class="text-main" />
+            <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="2" class="ml-1" />
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-2 mx-1 items-center">
+          <p class="text-gray-500">
+            {{ $t('blockchain.dealList.tableHeaders.provider') }}
+          </p>
+          <div class="flex items-center">
+            <AddressLink :id="deal.provider" :format="4" class="text-main" />
+            <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="2" class="ml-1" />
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-2 mx-1 items-center">
+          <p class="text-gray-500">
+            {{ $t('blockchain.dealList.tableHeaders.size') }}
           </p>
           <p>
-            {{ rich.createTimestamp | timestamp('datetime') }}
+            {{ deal.pieceSize | size_metric(2) }}
           </p>
         </div>
 
-        <div class="flex justify-between pt-2 pb-2 mx-1">
+        <div class="flex justify-between pt-2 mx-1 items-center">
           <p class="text-gray-500">
-            {{ $t('blockchain.richList.tableHeaders.lastSeenTime') }}
+            {{ $t('blockchain.dealList.tableHeaders.verifiedDeal') }}
           </p>
           <p>
-            {{ rich.lastSeenTimestamp | timestamp('datetime') }}
+            {{ deal.verifiedDeal }}
+          </p>
+        </div>
+
+        <div class="flex justify-between pt-2 mx-1 items-center">
+          <p class="text-gray-500">
+            {{ $t('blockchain.dealList.tableHeaders.storagePrice') }}
+          </p>
+          <p>
+            {{ deal.storagePrice | filecoin(8) }}
+          </p>
+        </div>
+
+        <div class="flex justify-between pt-2 pb-2 mx-1 items-center">
+          <p class="text-gray-500">
+            {{ $t('blockchain.dealList.tableHeaders.status') }}
+          </p>
+          <p>
+            {{ deal.status ? deal.status : 'N/A' }}
           </p>
         </div>
       </div>
@@ -79,59 +108,24 @@ export default {
   data() {
     return {
       page: 0,
-      pageSize: 10,
+      pageSize: 5,
       totalPageCount: 0,
       loading: false,
-      richList: {},
-      total: 0,
-      type: 0,
-      options: [{
-        type: 0,
-        label: this.$t('blockchain.richList.type.all')
-      },
-      {
-        type: 1,
-        label: this.$t('blockchain.richList.type.miner')
-      },
-      {
-        type: 2,
-        label: this.$t('blockchain.richList.type.normal')
-      }]
+      dealList: {},
+      total: 0
     }
   },
   mounted() {
-    this.getRichList()
+    this.getDealList()
   },
   methods: {
-    getRichList() {
+    getDealList() {
       this.loading = true
       this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page } })
+        .get('/deal/list', { params: { pageSize: this.pageSize, page: this.page } })
         .then(res => {
-          this.richList = res.data
-          this.total = this.richList.totalCount
-          this.loading = false
-          this.getTotalPageCount()
-        })
-    },
-    getMinersRichList() {
-      this.loading = true
-      this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'fil/1/storageminer' } })
-        .then(res => {
-          this.richList = res.data
-          this.total = this.richList.totalCount
-          this.loading = false
-          this.getTotalPageCount()
-        })
-    },
-    getNormalAccountsRichList() {
-      this.loading = true
-      this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'fil/1/account' } })
-        .then(res => {
-          this.richList = res.data
-          this.total = this.richList.totalCount
+          this.dealList = res.data
+          this.total = this.dealList.totalCount
           this.loading = false
           this.getTotalPageCount()
         })
@@ -141,38 +135,7 @@ export default {
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
-      switch (this.type) {
-        case 0:
-          this.getRichList()
-          break
-        case 1:
-          this.getMinersRichList()
-          break
-        case 2:
-          this.getNormalAccountsRichList()
-          break
-        default:
-          break
-      }
-    },
-    didSelectChanged(currentType) {
-      this.type = currentType
-      this.page = 0
-      this.totalPageCount = 1
-      this.total = 0
-      switch (this.type) {
-        case 0:
-          this.getRichList()
-          break
-        case 1:
-          this.getMinersRichList()
-          break
-        case 2:
-          this.getNormalAccountsRichList()
-          break
-        default:
-          break
-      }
+      this.getDealList()
     }
   }
 }
