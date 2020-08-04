@@ -20,6 +20,9 @@
         <nuxt-link :to="localePath('/rich')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.2') }}</el-dropdown-item>
         </nuxt-link>
+        <nuxt-link :to="localePath('/deal')">
+          <el-dropdown-item>{{ $t('nav.blocks.subMenus.3') }}</el-dropdown-item>
+        </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>
 

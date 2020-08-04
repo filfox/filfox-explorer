@@ -30,7 +30,8 @@ export default {
       subMenus: [
         '블록',
         '메시지',
-        '자산 순위'
+        '자산 순위',
+        '주문'
       ]
     },
     ranks: {
@@ -230,6 +231,23 @@ export default {
         all: '모든 유형',
         normal: '일반 계정',
         miner: '채굴자 계정'
+      }
+    },
+    dealList: {
+      title: '주문 리스트',
+      info: {
+        total: '총',
+        deals: '주문'
+      },
+      tableHeaders: {
+        id: '주문 아이디 ',
+        createdTime: '시간 생성',
+        client: '클라이언트',
+        provider: '스토리지 사용자',
+        verifiedDeal: '검증된 주문',
+        size: '문서 크기',
+        storagePrice: '스토리지 수수료',
+        status: '상태'
       }
     }
   },
@@ -456,6 +474,7 @@ export default {
       block: '블록',
       recentTipsets: '최신 블록 리스트',
       rich: '자산 순위',
+      deal: '주문 리스트',
       messages: '메시지 리스트',
       ranks: '채굴 순위',
       minerCharts: '채굴 도표',

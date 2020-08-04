@@ -30,7 +30,8 @@ export default {
       subMenus: [
         'Tipsets',
         'Messages',
-        'Rich List'
+        'Rich List',
+        'Deal List'
       ]
     },
     ranks: {
@@ -230,6 +231,23 @@ export default {
         all: 'All',
         normal: 'Normal Acccount',
         miner: 'Miner Account'
+      }
+    },
+    dealList: {
+      title: 'Deal List',
+      info: {
+        total: 'Total',
+        deals: 'Deals'
+      },
+      tableHeaders: {
+        id: 'Deal ID',
+        createdTime: 'Create Time',
+        client: 'Client',
+        provider: 'Provider',
+        verifiedDeal: 'Verified Deal',
+        size: 'Piece Size',
+        storagePrice: 'Storage Fee',
+        status: 'Status'
       }
     }
   },
@@ -457,6 +475,7 @@ export default {
       block: 'Block',
       recentTipsets: 'Recent Tipsets',
       rich: 'Rich List',
+      deal: 'Deal List',
       messages: 'Message List',
       ranks: 'Top Miners',
       minerCharts: 'Miner Charts',

@@ -27,7 +27,7 @@ export default {
     },
     blocks: {
       title: '区块链',
-      subMenus: ['区块', '消息', '富豪榜']
+      subMenus: ['区块', '消息', '富豪榜', '订单']
     },
     ranks: {
       title: '排行榜'
@@ -221,6 +221,23 @@ export default {
         all: '全部类型',
         normal: '普通账户',
         miner: '矿工账户'
+      }
+    },
+    dealList: {
+      title: '订单列表',
+      info: {
+        total: '共',
+        deals: '个订单'
+      },
+      tableHeaders: {
+        id: '订单ID',
+        createdTime: '创建时间',
+        client: '客户',
+        provider: '托管者',
+        verifiedDeal: '已验证',
+        size: '文件大小',
+        storagePrice: '存储费用',
+        status: '状态'
       }
     }
   },
@@ -448,6 +465,7 @@ export default {
       block: '区块',
       recentTipsets: '最新区块列表',
       rich: '富豪榜',
+      deal: '订单列表',
       messages: '消息列表',
       ranks: '挖矿排行榜',
       minerCharts: '挖矿图表',

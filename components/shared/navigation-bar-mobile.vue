@@ -24,6 +24,9 @@
           <nuxt-link :to="localePath('/rich')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.2') }}
           </nuxt-link>
+          <nuxt-link :to="localePath('/deal')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.blocks.subMenus.3') }}
+          </nuxt-link>
         </el-collapse-item>
       </el-collapse>
 
