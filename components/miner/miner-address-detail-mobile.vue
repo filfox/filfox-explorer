@@ -81,103 +81,7 @@
       </div>
     </div>
 
-    <div class="bg-white w-full mt-2 pb-3">
-      <div class="flex justify-between flex-row border-b border-background">
-        <p class="pl-3 flex py-2 text-sm font-medium">
-          {{ $t('detail.address.miner.miningOverview.title') }}
-        </p>
-        <el-dropdown
-          trigger="click"
-          :hide-on-click="true"
-          class="border border-background px-2 rounded-sm my-2 mr-3"
-          @command="didDurationSwitched"
-        >
-          <span class="el-dropdown-link text-sm">
-            {{ durationName }} <i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="24h">
-              {{ '24' + $t('shared.time.hour') }}
-            </el-dropdown-item>
-            <el-dropdown-item command="7d">
-              {{ '7' + $t('shared.time.day') }}
-            </el-dropdown-item>
-            <el-dropdown-item command="30d">
-              {{ '30' + $t('shared.time.day') }}
-            </el-dropdown-item>
-            <el-dropdown-item command="1y">
-              {{ '1' + $t('shared.time.year') }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
-      <div class="pt-2 pb-2 rounded-sm mx-3 mt-3 shadow justify-between">
-        <div class="flex items-center justify-between mx-3">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDelta') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ addressData.miner.miningStats.qualityAdjPowerDelta | size_metric(2) }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-2">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDeltaSpeed') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ miningStats.qualityAdjPowerDelta / durationDay / miningStats.durationPercentage | size_metric(2) }} / {{ $t('shared.time.day') }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-2">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.minerEquivalent') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ miningStats.equivalentMiners.toFixed(2) }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-2">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.blockNums') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ miningStats.blocksMined }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-2">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.blocksReward') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ miningStats.totalRewards | filecoin(4) }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-2">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.blocksRewardRate') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ (miningStats.totalRewards/ miningStats.networkTotalRewards) | percentage }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-2">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.miningEfficiency') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB') }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-2">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ miningStats.luckyValue | percentage }}
-          </p>
-        </div>
-      </div>
-    </div>
+    <MinerMiningOverview :address-data="addressData" portable class="mt-2" />
 
     <div class="bg-white w-full mt-2">
       <p class="pl-3 flex py-2 text-sm border-b border-background font-medium">
@@ -432,37 +336,7 @@ export default {
       epochsInDay
     }
   },
-  computed: {
-    durationName() {
-      return {
-        '24h': `24${this.$t('shared.time.hour')}`,
-        '7d': `7${this.$t('shared.time.day')}`,
-        '30d': `30${this.$t('shared.time.day')}`,
-        '1y': `1${this.$t('shared.time.year')}`
-      }[this.duration]
-    },
-    durationDay() {
-      if (this.duration === '24h') {
-        return 1
-      } else if (this.duration === '7d') {
-        return 7
-      } else if (this.duration === '30d') {
-        return 30
-      } else {
-        return 365
-      }
-    }
-  },
-  watch: {
-    duration() {
-      this.getMinigStats()
-    }
-  },
   methods: {
-    didDurationSwitched(command) {
-      this.duration = command
-      this.getMinigStats()
-    },
     async getMinigStats() {
       this.loading = true
       const params = { duration: this.duration }

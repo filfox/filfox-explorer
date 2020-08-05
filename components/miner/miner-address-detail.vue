@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <MinerMiningOverview :address-data="addressData" />
+    <MinerMiningOverview :address-data="addressData" class="my-4" />
 
     <div class="flex mt-4 justify-between">
       <div class="rounded-md bg-white mr-2 w-1/2">
