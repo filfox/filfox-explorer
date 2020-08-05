@@ -98,11 +98,6 @@
           :value="overview.totalMaxSupply | filecoin(0)"
         />
         <OverviewCell
-          :name="$t('home.overview.titles.totalMarketBalance')"
-          :value="overview.totalMarketBalance | filecoin(0)"
-          :tip-content="$t('home.overview.tips.totalMarketBalance')"
-        />
-        <OverviewCell
           :name="$t('home.overview.titles.circulatingSupplyRate')"
           :value="overview.circulatingSupply / overview.totalMaxSupply | percentage"
           :tip-content="$t('home.overview.tips.circulatingSupplyRate')"
