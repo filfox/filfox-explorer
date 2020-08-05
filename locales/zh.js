@@ -366,10 +366,20 @@ export default {
             rate: '占比',
             rank: '排名',
             sectorSize: '扇区大小',
-            blockNums: '累计出块数量',
-            blocksReward: '累计出块奖励',
-            qualityAdjPowerDelta24h: '近24h有效算力增量',
-            qualityAdjPowerDeltaSpeed24h: '近24h有效算力增速'
+            sectors: '扇区状态'
+          }
+        },
+        miningOverview: {
+          title: '挖矿统计',
+          headers: {
+            qualityAdjPowerDelta: '算力增量',
+            qualityAdjPowerDeltaSpeed: '算力增速',
+            minerEquivalent: '矿机当量',
+            blockNums: '出块数量',
+            blocksReward: '出块奖励',
+            blocksRewardRate: '出块奖励占比',
+            miningEfficiency: '挖矿效率',
+            luckyValue: '幸运值'
           }
         },
         accountChange: {
@@ -396,8 +406,8 @@ export default {
             owner: 'Owner',
             worker: 'Worker',
             peerID: '节点ID',
-            sectors: '扇区',
-            createTime: '创建时间'
+            createTime: '创建时间',
+            ip: '地区（公开IP）'
           }
         },
         blockList: {

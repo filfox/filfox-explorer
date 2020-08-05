@@ -377,10 +377,20 @@ export default {
             rate: 'Rate',
             rank: 'Rank',
             sectorSize: 'Sector Size',
+            sectors: 'Sector Status'
+          }
+        },
+        miningOverview: {
+          title: 'Mining Data',
+          headers: {
+            qualityAdjPowerDelta: 'Power Growth',
+            qualityAdjPowerDeltaSpeed: 'Daily Power Growth',
+            minerEquivalent: 'Miner Equivalent',
             blockNums: 'Blocks Mined',
-            blocksReward: 'Total Reward',
-            qualityAdjPowerDelta24h: '24h Adj. Power Growth',
-            qualityAdjPowerDeltaSpeed24h: '24h Adj. Power Growth Rate'
+            blocksReward: 'Rewards',
+            blocksRewardRate: 'Rewards Ratio',
+            miningEfficiency: 'Mining Efficiency',
+            luckyValue: 'Lucky Value'
           }
         },
         accountChange: {
@@ -407,8 +417,8 @@ export default {
             owner: 'Owner',
             worker: 'Worker',
             peerID: 'Peer ID',
-            sectors: 'Sector',
-            createTime: 'Create Time'
+            createTime: 'Create Time',
+            ip: 'Region(Public IP)'
           }
         },
         blockList: {

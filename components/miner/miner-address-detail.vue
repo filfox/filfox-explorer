@@ -24,10 +24,12 @@
           <MinerBalance :address-data="addressData" />
         </div>
         <div class="border border-background rounded-sm">
-          <MinerPower :address-data="addressData" />
+          <MinerOverviewRight :address-data="addressData" />
         </div>
       </div>
     </div>
+
+    <MinerMiningOverview :address-data="addressData" />
 
     <div class="flex mt-4 justify-between">
       <div class="rounded-md bg-white mr-2 w-1/2">
@@ -92,17 +94,6 @@
           </div>
           <div class="flex justify-between">
             <p class="text-sm mt-2">
-              {{ $t('detail.address.miner.accountOverview.headers.sectors') }}:
-            </p>
-            <p class="text-sm mt-2">
-              {{ addressData.miner.sectors | locale }} total,
-              {{ addressData.miner.activeSectors | locale }} active,
-              {{ addressData.miner.faults | locale }} faults,
-              {{ addressData.miner.recoveries | locale }} recoveries
-            </p>
-          </div>
-          <div class="flex justify-between">
-            <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.owner') }}:
             </p>
             <AddressLink :id="addressData.miner.owner" class="text-sm mt-2 text-main" />
@@ -112,6 +103,19 @@
               {{ $t('detail.address.miner.accountOverview.headers.worker') }}:
             </p>
             <AddressLink :id="addressData.miner.worker" class="text-sm mt-2 text-main" />
+          </div>
+          <div class="flex justify-between">
+            <p class="text-sm mt-2">
+              {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
+            </p>
+            <p v-if="addressData.miner.location" class="text-sm mt-2">
+              {{ addressData.miner.location.flagEmoji }}
+              {{ addressData.miner.location[`${$i18n.locale}ContinentName`] }}-{{ addressData.miner.location[`${$i18n.locale}CountryName`] }}-{{ addressData.miner.location[`${$i18n.locale}RegionName`] }}-{{ addressData.miner.location[`${$i18n.locale}City`] }}
+              ({{ addressData.miner.location.ip }})
+            </p>
+            <p class="text-sm mt-2">
+              {{ $t('shared.unknown') }}
+            </p>
           </div>
         </div>
       </div>

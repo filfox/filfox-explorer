@@ -374,10 +374,20 @@ export default {
             rate: '비율',
             rank: '순위',
             sectorSize: '섹터 크기',
-            blockNums: '누적된 채굴 개수',
-            blocksReward: '누적된 채굴 보상',
-            qualityAdjPowerDelta24h: '최근 24시간 유효 채굴파워 증가량',
-            qualityAdjPowerDeltaSpeed24h: '최근 24시간 유효 채굴파워 증가 속도'
+            sectors: '섹터 현황'
+          }
+        },
+        miningOverview: {
+          title: '채굴 데이터',
+          headers: {
+            qualityAdjPowerDelta: '채굴파워 증가량',
+            qualityAdjPowerDeltaSpeed: '채굴파워 증가 속도',
+            minerEquivalent: '채굴기 개수',
+            blockNums: '블록 채굴 개수',
+            blocksReward: '블록 리워드',
+            blocksRewardRate: '블록 리워드 비율',
+            miningEfficiency: '채굴 효율',
+            luckyValue: '럭키 벨류'
           }
         },
         accountChange: {
@@ -404,8 +414,8 @@ export default {
             owner: 'Owner',
             worker: 'Worker',
             peerID: '노드 ID',
-            sectors: '섹터',
-            createTime: '생성 시간'
+            createTime: '생성 시간',
+            ip: '지역 (공개 IP)'
           }
         },
         blockList: {
