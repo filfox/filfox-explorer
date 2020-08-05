@@ -1,7 +1,7 @@
 <template>
   <div class="pt-6">
     <div class="text-sm">
-      <span class="font-medium">{{ $t('detail.address.normal.title') }}</span>
+      <span class="font-medium mr-2">{{ $t('detail.address.normal.title') }}</span>
       <span>{{ addressData.address }}</span>
     </div>
     <div class="rounded-md my-4 bg-white pb-2 text-sm">
