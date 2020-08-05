@@ -111,7 +111,7 @@
             <p v-if="addressData.miner.location" class="text-sm mt-2">
               {{ addressData.miner.location.flagEmoji }}
               {{ addressData.miner.location[`${$i18n.locale}ContinentName`] }}-{{ addressData.miner.location[`${$i18n.locale}CountryName`] }}-{{ addressData.miner.location[`${$i18n.locale}RegionName`] }}-{{ addressData.miner.location[`${$i18n.locale}City`] }}
-              ({{ addressData.miner.location.ip }})
+              ({{ splitedIP(addressData.miner.location.ip) }})
             </p>
             <p v-else class="text-sm mt-2">
               {{ $t('shared.unknown') }}
@@ -341,6 +341,14 @@ export default {
     },
     showDialog() {
       this.$refs.verifyApplication.showDialog()
+    },
+    splitedIP(ip) {
+      const ips = ip.split('.')
+      if (ips.length === 4) {
+        return `${ips[0]}. ** . ** .${ips[3]}`
+      } else {
+        return ip
+      }
     }
   }
 }
