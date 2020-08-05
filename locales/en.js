@@ -365,6 +365,12 @@ export default {
         }
       },
       miner: {
+        sectors: {
+          total: 'total',
+          active: 'active',
+          faults: 'faults',
+          recoveries: 'recoveries'
+        },
         minerOverview: {
           title: 'Miner Overview',
           headers: {

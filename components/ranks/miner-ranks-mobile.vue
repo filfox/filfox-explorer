@@ -12,7 +12,7 @@
           v-if="type !== '0'"
           trigger="click"
           :hide-on-click="true"
-          class="border border-background px-2 rounded-sm absolute right-0 bottom-0 mb-4"
+          class="border border-background px-2 rounded-sm absolute right-0 bottom-0 mb-4 mr-4"
           @command="didDurationSwitched"
         >
           <span class="el-dropdown-link text-sm">

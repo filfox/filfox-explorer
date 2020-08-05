@@ -362,6 +362,12 @@ export default {
         }
       },
       miner: {
+        sectors: {
+          total: 'total',
+          active: 'active',
+          faults: 'faults',
+          recoveries: 'recoveries'
+        },
         minerOverview: {
           title: '채굴자 개요',
           headers: {

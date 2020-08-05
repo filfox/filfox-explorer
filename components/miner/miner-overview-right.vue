@@ -26,10 +26,10 @@
     </p>
     <p class="text-sm mt-2">
       {{ $t('detail.address.miner.minerOverview.headers.sectors') }}:
-      {{ addressData.miner.sectors | locale }} total,
-      {{ addressData.miner.activeSectors | locale }} active,
-      {{ addressData.miner.faults | locale }} faults,
-      {{ addressData.miner.recoveries | locale }} recoveries
+      {{ addressData.miner.sectors | locale }} {{ $t('detail.address.miner.sectors.total') }},
+      {{ addressData.miner.activeSectors | locale }} {{ $t('detail.address.miner.sectors.active') }},
+      {{ addressData.miner.faults | locale }} {{ $t('detail.address.miner.sectors.faults') }},
+      {{ addressData.miner.recoveries | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
     </p>
   </div>
 </template>

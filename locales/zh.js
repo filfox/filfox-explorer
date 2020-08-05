@@ -354,6 +354,12 @@ export default {
         }
       },
       miner: {
+        sectors: {
+          total: '全部',
+          active: '有效',
+          faults: '错误',
+          recoveries: '恢复中'
+        },
         minerOverview: {
           title: '矿工概览',
           headers: {
