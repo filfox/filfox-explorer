@@ -47,7 +47,7 @@
         </p>
         <p class="text-sm w-1/6 text-right">
           {{ $t('detail.address.miner.miningOverview.headers.blocksRewardRate') }}:
-          {{ (miningStats.totalRewards/ miningStats.networkTotalRewards * 100).toFixed(2) }}%
+          {{ (miningStats.totalRewards/ miningStats.networkTotalRewards) | percentage }}
         </p>
       </div>
       <div class="flex items-center w-full">

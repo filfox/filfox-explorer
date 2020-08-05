@@ -88,7 +88,7 @@
           </p>
           <p>
             {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}:
-            {{ (miner.luckyValue * 100).toFixed(2) }}%
+            {{ miner.luckyValue | percentage }}
           </p>
         </div>
         <div class="flex justify-between my-1 mx-2 text-xs">

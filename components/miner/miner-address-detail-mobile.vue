@@ -157,7 +157,7 @@
             {{ $t('detail.address.miner.miningOverview.headers.blocksRewardRate') }}:
           </p>
           <p class="text-xs text-gray-800">
-            {{ (miningStats.totalRewards/ miningStats.networkTotalRewards).toFixed(2) * 100 }}%
+            {{ (miningStats.totalRewards/ miningStats.networkTotalRewards) | percentage }}
           </p>
         </div>
         <div class="flex items-center justify-between mx-3 mt-2">
@@ -173,7 +173,7 @@
             {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}:
           </p>
           <p class="text-xs text-gray-800">
-            {{ (miningStats.luckyValue * 100).toFixed(2) }}%
+            {{ miningStats.luckyValue | percentage }}
           </p>
         </div>
       </div>
