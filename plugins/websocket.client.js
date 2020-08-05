@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import io from 'socket.io-client'
 
-export default function() {
+export default function({ app }) {
   const ws = io(process.env.WEBSOCKET_URL ?? 'wss://calibration.filfox.info', { transports: ['websocket'] })
+
+  ws.on('tipset', tipset => app.store.commit('blockchain/height', tipset.height))
 
   const subscriptions = {}
   const listeners = {}

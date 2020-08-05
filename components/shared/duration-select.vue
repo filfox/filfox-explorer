@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { epochsInDay } from '@/filecoin/filecoin.config'
+
 export default {
   props: {
     value: { type: String, required: true },
@@ -32,18 +34,28 @@ export default {
   },
   data() {
     return {
-      duration: this.value,
-      durations: [
-        { value: '24h', display: `24${this.$t('shared.time.hour')}` },
-        { value: '7d', display: `7${this.$t('shared.time.day')}` },
-        { value: '30d', display: `30${this.$t('shared.time.day')}` },
-        { value: '1y', display: `1${this.$t('shared.time.year')}` }
-      ]
+      duration: this.value
     }
   },
   computed: {
     durationName() {
       return this.durations.find(x => x.value === this.duration).display
+    },
+    blockchain() {
+      return this.$store.state.blockchain
+    },
+    durations() {
+      const list = [{ value: '24h', display: `24${this.$t('shared.time.hour')}` }]
+      if (this.blockchain.height > epochsInDay) {
+        list.push({ value: '7d', display: `7${this.$t('shared.time.day')}` })
+      }
+      if (this.blockchain.height > 7 * epochsInDay) {
+        list.push({ value: '30d', display: `30${this.$t('shared.time.day')}` })
+      }
+      if (this.blockchain.height > 30 * epochsInDay) {
+        list.push({ value: '1y', display: `1${this.$t('shared.time.year')}` })
+      }
+      return list
     }
   },
   watch: {
