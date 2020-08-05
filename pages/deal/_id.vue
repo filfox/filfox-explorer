@@ -28,14 +28,14 @@
           {{ $t('detail.deal.headers.block') }}
         </p>
         <p class="text-xs">
-          <TipsetLink :id="deal.height" class="text-xs" />
+          <TipsetLink :id="deal.height" class="text-xs text-main" />
         </p>
       </div>
       <div class="px-4 bg-white flex justify-between pt-1 text-xs">
         <p class="text-gray-600">
           {{ $t('detail.deal.headers.message') }}
         </p>
-        <MessageLink v-if="deal.message" :id="deal.message" />
+        <MessageLink v-if="deal.message" :id="deal.message" class="text-xs text-main break-all text-right w-2/3" />
         <p v-else>
           N/A
         </p>
@@ -81,7 +81,7 @@
         </div>
         <div class="flex justify-center items-center my-4">
           <div class="bg-background rounded-md w-full py-4 mx-8">
-            <div class="flex justify-center">
+            <div class="flex justify-center items-center">
               <img src="~/assets/img/deal/file.svg" alt="client" class="w-5 mr-2">
               <p>{{ deal.pieceSize | size_metric(2) }}</p>
             </div>
@@ -203,7 +203,7 @@
           </div>
           <div class="w-1/2 flex justify-center items-center">
             <div class="bg-background rounded-md w-full py-4">
-              <div class="flex justify-center">
+              <div class="flex justify-center items-center">
                 <img src="~/assets/img/deal/file.svg" alt="client" class="w-5 mr-2">
                 <p>{{ deal.pieceSize | size_metric(2) }}</p>
               </div>
