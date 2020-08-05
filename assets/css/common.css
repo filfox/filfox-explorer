@@ -39,3 +39,11 @@ button:focus {
 .el-button--text:focus, .el-button--text:hover {
     color: #606266;
 }
+.el-tabs__item {
+    padding: 0 10px;
+    font-size: 12px;
+}
+.el-popover {
+    word-break: normal;
+    text-align: left;
+}

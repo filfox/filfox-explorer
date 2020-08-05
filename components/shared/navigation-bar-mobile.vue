@@ -63,33 +63,6 @@
   </div>
 </template>
 
-<style lang="postcss">
-.ranks {
-    font-size: 13px;
-    color: #303133;
-    font-weight: 500;
-}
-.link {
-    @apply block text-xs text-gray-500 mb-1;
-}
-.el-collapse {
-    border: none;
-}
-.el-collapse-item__content {
-    padding-bottom: 0px;
-}
-
-.el-collapse-item__header {
-    height: 40px;
-    line-height: 40px;
-    border: none;
-}
-
-.el-collapse-item__wrap {
-    border: none;
-}
-</style>
-
 <script>
 export default {
   props: {
@@ -148,3 +121,28 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss">
+  .ranks {
+    font-size: 13px;
+    color: #303133;
+    font-weight: 500;
+  }
+  .link {
+    @apply block text-xs text-gray-500 mb-1;
+  }
+  ::v-deep .el-collapse {
+    border: none;
+  }
+  ::v-deep .el-collapse-item__content {
+    padding-bottom: 0px;
+  }
+  ::v-deep .el-collapse-item__header {
+    height: 40px;
+    line-height: 40px;
+    border: none;
+  }
+  ::v-deep .el-collapse-item__wrap {
+    border: none;
+  }
+</style>

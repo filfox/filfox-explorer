@@ -240,19 +240,6 @@
   </div>
 </template>
 
-<style>
-
-.el-rate__icon {
-    margin-right: 0;
-}
-
-.el-rate__text {
-    font-size: 13px;
-    margin-left: 4px;
-}
-
-</style>
-
 <script>
 export default {
   props: {
@@ -266,3 +253,14 @@ export default {
   }
 }
 </script>
+
+
+<style scoped>
+  ::v-deep .el-rate__icon {
+    margin-right: 0;
+  }
+  ::v-deep .el-rate__text {
+    font-size: 13px;
+    margin-left: 4px;
+  }
+</style>

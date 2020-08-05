@@ -112,13 +112,6 @@
   </div>
 </template>
 
-<style>
-  .el-tabs__item {
-      padding: 0 10px;
-      font-size: 12px;
-  }
-</style>
-
 <script>
 export default {
   props: {

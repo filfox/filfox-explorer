@@ -11,13 +11,6 @@
   </el-popover>
 </template>
 
-<style>
-.el-popover {
-    word-break:normal;
-    text-align: left;
-}
-</style>
-
 <script>
 export default {
   props: {
