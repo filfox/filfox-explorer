@@ -4,22 +4,8 @@
       <div class="h-12 items-center pl-4 lg:pl-6 text-xs lg:text-base pt-4">
         {{ $t('chart.miner.headers.sectorInitialPledgeVariations') }} (FIL/32GiB)
       </div>
-      <div class="h-12 items-center mt-1 mr-4 hidden lg:flex">
-        <el-radio-group v-model="duration" size="mini" fill="#1a4fc9">
-          <el-radio-button label="24h">
-            {{ '24' + $t('shared.time.hour') }}
-          </el-radio-button>
-          <el-radio-button label="7d">
-            {{ '7' + $t('shared.time.day') }}
-          </el-radio-button>
-          <el-radio-button label="30d">
-            {{ '30' + $t('shared.time.day') }}
-          </el-radio-button>
-          <el-radio-button label="1y">
-            {{ '1' + $t('shared.time.year') }}
-          </el-radio-button>
-        </el-radio-group>
-      </div>
+      <DurationSelect v-model="duration" class="h-12 items-center mt-1 mr-4 hidden lg:flex" />
+      <DurationSelect v-model="duration" portable class="lg:hidden mr-4" />
     </div>
     <client-only>
       <VeLine

@@ -3,7 +3,7 @@
     <div class="my-4 bg-white rounded-md">
       <div class="border-b border-background">
         <HomeTitle type="minerRanks" />
-        <div class="flex justify-between">
+        <div class="flex justify-between mb-2">
           <div class="flex h-12 ml-4 items-center">
             <el-row>
               <el-button
@@ -32,29 +32,8 @@
               </el-button>
             </el-row>
           </div>
-          <div v-if="type != 0" class="flex h-12 items-center mr-4">
-            <el-radio-group
-              v-model="duration"
-              size="mini"
-              fill="#1a4fc9"
-              @change="didDurationSwitched"
-            >
-              <el-radio-button label="24h">
-                {{ '24' + $t('shared.time.hour') }}
-              </el-radio-button>
-              <el-radio-button label="7d">
-                {{ '7' + $t('shared.time.day') }}
-              </el-radio-button>
-              <el-radio-button label="30d">
-                {{ '30' + $t('shared.time.day') }}
-              </el-radio-button>
-              <el-radio-button label="1y">
-                {{ '1' + $t('shared.time.year') }}
-              </el-radio-button>
-            </el-radio-group>
-          </div>
+          <DurationSelect v-if="type !== 0" v-model="duration" class="flex items-center mr-4" />
         </div>
-        <div class="flex h-2"></div>
       </div>
 
       <div class="flex mt-3">
@@ -245,7 +224,7 @@
                     class="flex w-1/2 ml-8 mr-3"
                   />
                   <div class="flex" :class="{'mx-auto': page > 0}">
-                    {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
+                    {{ (miner.qualityAdjPowerDelta / durationDays / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
                     /
                     {{ $t('shared.time.day') }}
                   </div>
@@ -306,7 +285,7 @@ export default {
           : Math.ceil(this.topMinersByPowerDelta.totalCount / this.pageSize)
       }
     },
-    convertedDurationByDay() {
+    durationDays() {
       if (this.duration === '24h') {
         return 1
       } else if (this.duration === '7d') {
@@ -315,6 +294,16 @@ export default {
         return 30
       } else {
         return 365
+      }
+    }
+  },
+  watch: {
+    duration() {
+      this.page = 0
+      if (this.type === 1) {
+        this.$emit('updateTopMinersByBlocks', this.pageSize, this.page, this.duration)
+      } else if (this.type === 2) {
+        this.$emit('updateTopMinersByPowerDelta', this.pageSize, this.page, this.duration)
       }
     }
   },
@@ -343,14 +332,6 @@ export default {
         } else {
           node = node.parentElement
         }
-      }
-    },
-    didDurationSwitched() {
-      this.page = 0
-      if (this.type === 1) {
-        this.$emit('updateTopMinersByBlocks', this.pageSize, this.page, this.duration)
-      } else if (this.type === 2) {
-        this.$emit('updateTopMinersByPowerDelta', this.pageSize, this.page, this.duration)
       }
     },
     didCurrentPageChanged(currentPage) {

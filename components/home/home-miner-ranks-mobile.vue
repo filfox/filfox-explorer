@@ -9,31 +9,7 @@
             <el-tab-pane :label="$t('home.minerRanks.filters.blocks')" name="1" />
             <el-tab-pane :label="$t('home.minerRanks.filters.powerDelta')" name="2" />
           </el-tabs>
-          <el-dropdown
-            v-if="type != '0'"
-            trigger="click"
-            hide-on-click
-            class="border border-background px-2 rounded-sm absolute right-0 bottom-0 mb-4 mr-4"
-            @command="didDurationSwitched"
-          >
-            <span class="el-dropdown-link text-sm">
-              {{ durationName }} <i class="el-icon-arrow-down el-icon--right"></i>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="24h">
-                {{ '24' + $t('shared.time.hour') }}
-              </el-dropdown-item>
-              <el-dropdown-item command="7d">
-                {{ '7' + $t('shared.time.day') }}
-              </el-dropdown-item>
-              <el-dropdown-item command="30d">
-                {{ '30' + $t('shared.time.day') }}
-              </el-dropdown-item>
-              <el-dropdown-item command="1y">
-                {{ '1' + $t('shared.time.year') }}
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <DurationSelect v-if="type !== '0'" v-model="duration" portable class="absolute bottom-0 right-0 mb-4 mr-4" />
         </div>
       </div>
     </div>
@@ -161,14 +137,6 @@ export default {
     }
   },
   computed: {
-    durationName() {
-      return {
-        '24h': `24${this.$t('shared.time.hour')}`,
-        '7d': `7${this.$t('shared.time.day')}`,
-        '30d': `30${this.$t('shared.time.day')}`,
-        '1y': `1${this.$t('shared.time.year')}`
-      }[this.duration]
-    },
     durationDay() {
       if (this.duration === '24h') {
         return 1
@@ -195,16 +163,6 @@ export default {
           break
         default:
           break
-      }
-    }
-  },
-  methods: {
-    didDurationSwitched(command) {
-      this.duration = command
-      if (this.type === '1') {
-        this.getTopMinersByBlocks()
-      } else if (this.type === '2') {
-        this.getTopMinersByPowerDelta()
       }
     }
   }

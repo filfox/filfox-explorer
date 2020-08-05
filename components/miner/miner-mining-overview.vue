@@ -1,35 +1,12 @@
 <template>
-  <div v-if="portable" v-loading="loading" class="bg-white pb-3">
+  <div v-if="portable" class="bg-white pb-3">
     <div class="flex justify-between flex-row border-b border-background">
       <p class="pl-3 flex py-2 text-sm font-medium">
         {{ $t('detail.address.miner.miningOverview.title') }}
       </p>
-      <el-dropdown
-        trigger="click"
-        :hide-on-click="true"
-        class="border border-background px-2 rounded-sm my-2 mr-3"
-        @command="command => duration = command"
-      >
-        <span class="el-dropdown-link text-sm">
-          {{ durationName }} <i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="24h">
-            {{ '24' + $t('shared.time.hour') }}
-          </el-dropdown-item>
-          <el-dropdown-item command="7d">
-            {{ '7' + $t('shared.time.day') }}
-          </el-dropdown-item>
-          <el-dropdown-item command="30d">
-            {{ '30' + $t('shared.time.day') }}
-          </el-dropdown-item>
-          <el-dropdown-item command="1y">
-            {{ '1' + $t('shared.time.year') }}
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      <DurationSelect v-model="duration" portable class="my-2 mr-3" />
     </div>
-    <div class="pt-2 pb-2 rounded-sm mx-3 mt-3 shadow justify-between">
+    <div v-loading="loading" class="pt-2 pb-2 rounded-sm mx-3 mt-3 shadow justify-between">
       <div class="flex items-center justify-between mx-3">
         <p class="text-xs text-gray-800">
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDelta') }}:
@@ -43,7 +20,7 @@
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDeltaSpeed') }}:
         </p>
         <p class="text-xs text-gray-800">
-          {{ miningStats.qualityAdjPowerDelta / durationDay / miningStats.durationPercentage | size_metric(2) }}
+          {{ miningStats.qualityAdjPowerDelta / durationDays / miningStats.durationPercentage | size_metric(2) }}
           /
           {{ $t('shared.time.day') }}
         </p>
@@ -99,29 +76,14 @@
     </div>
   </div>
 
-  <div v-else v-loading="loading" class="bg-white rounded-md">
+  <div v-else class="bg-white rounded-md">
     <div class="flex flex-row justify-between">
       <p class="ml-8 flex py-4">
         {{ $t('detail.address.miner.miningOverview.title') }}
       </p>
-      <div class="flex items-center mr-8">
-        <el-radio-group v-model="duration" size="mini" fill="#1a4fc9">
-          <el-radio-button label="24h">
-            {{ '24' + $t('shared.time.hour') }}
-          </el-radio-button>
-          <el-radio-button label="7d">
-            {{ '7' + $t('shared.time.day') }}
-          </el-radio-button>
-          <el-radio-button label="30d">
-            {{ '30' + $t('shared.time.day') }}
-          </el-radio-button>
-          <el-radio-button label="1y">
-            {{ '1' + $t('shared.time.year') }}
-          </el-radio-button>
-        </el-radio-group>
-      </div>
+      <DurationSelect v-model="duration" class="flex items-center mr-8" />
     </div>
-    <div class="mx-8 py-10 border border-background rounded-sm p-4">
+    <div v-loading="loading" class="mx-8 py-10 border border-background rounded-sm p-4">
       <div class="flex items-center w-full mb-2">
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDelta') }}:
@@ -129,7 +91,7 @@
         </p>
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDeltaSpeed') }}:
-          {{ miningStats.qualityAdjPowerDelta / durationDay / miningStats.durationPercentage | size_metric(2) }}
+          {{ miningStats.qualityAdjPowerDelta / durationDays / miningStats.durationPercentage | size_metric(2) }}
           /
           {{ $t('shared.time.day') }}
         </p>
@@ -183,15 +145,7 @@ export default {
     }
   },
   computed: {
-    durationName() {
-      return {
-        '24h': `24${this.$t('shared.time.hour')}`,
-        '7d': `7${this.$t('shared.time.day')}`,
-        '30d': `30${this.$t('shared.time.day')}`,
-        '1y': `1${this.$t('shared.time.year')}`
-      }[this.duration]
-    },
-    durationDay() {
+    durationDays() {
       if (this.duration === '24h') {
         return 1
       } else if (this.duration === '7d') {

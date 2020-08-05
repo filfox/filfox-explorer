@@ -31,22 +31,7 @@
             </el-button>
           </el-row>
         </div>
-        <div v-if="type != 0" class="flex h-12 items-center mr-4">
-          <el-radio-group v-model="duration" size="mini" fill="#1a4fc9">
-            <el-radio-button label="24h">
-              {{ '24' + $t('shared.time.hour') }}
-            </el-radio-button>
-            <el-radio-button label="7d">
-              {{ '7' + $t('shared.time.day') }}
-            </el-radio-button>
-            <el-radio-button label="30d">
-              {{ '30' + $t('shared.time.day') }}
-            </el-radio-button>
-            <el-radio-button label="1y">
-              {{ '1' + $t('shared.time.year') }}
-            </el-radio-button>
-          </el-radio-group>
-        </div>
+        <DurationSelect v-if="type !== 0" v-model="duration" class="flex items-center mr-4" />
       </div>
     </div>
 

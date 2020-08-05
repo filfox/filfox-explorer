@@ -8,31 +8,7 @@
           <el-tab-pane :label="$t('home.minerRanks.filters.blocks')" name="1" />
           <el-tab-pane :label="$t('home.minerRanks.filters.powerDelta')" name="2" />
         </el-tabs>
-        <el-dropdown
-          v-if="type !== '0'"
-          trigger="click"
-          :hide-on-click="true"
-          class="border border-background px-2 rounded-sm absolute right-0 bottom-0 mb-4 mr-4"
-          @command="didDurationSwitched"
-        >
-          <span class="el-dropdown-link text-sm">
-            {{ durationName }} <i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="24h">
-              {{ '24' + $t('shared.time.hour') }}
-            </el-dropdown-item>
-            <el-dropdown-item command="7d">
-              {{ '7' + $t('shared.time.day') }}
-            </el-dropdown-item>
-            <el-dropdown-item command="30d">
-              {{ '30' + $t('shared.time.day') }}
-            </el-dropdown-item>
-            <el-dropdown-item command="1y">
-              {{ '1' + $t('shared.time.year') }}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+        <DurationSelect v-if="type !== '0'" v-model="duration" portable class="absolute right-0 bottom-0 mb-4 mr-4" />
       </div>
     </div>
 
@@ -114,7 +90,7 @@
         <div class="flex justify-between my-1 mx-2 text-xs">
           <p>
             {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}:
-            {{ (miner.qualityAdjPowerDelta / convertedDurationByDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
+            {{ (miner.qualityAdjPowerDelta / durationDays / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
             /
             {{ $t('shared.time.day') }}
           </p>
@@ -182,15 +158,7 @@ export default {
           : Math.ceil(this.topMinersByPowerDelta.totalCount / this.pageSize)
       }
     },
-    durationName() {
-      return {
-        '24h': `24${this.$t('shared.time.hour')}`,
-        '7d': `7${this.$t('shared.time.day')}`,
-        '30d': `30${this.$t('shared.time.day')}`,
-        '1y': `1${this.$t('shared.time.year')}`
-      }[this.duration]
-    },
-    convertedDurationByDay() {
+    durationDays() {
       if (this.duration === '24h') {
         return 1
       } else if (this.duration === '7d') {
@@ -199,6 +167,16 @@ export default {
         return 30
       } else {
         return 365
+      }
+    }
+  },
+  watch: {
+    duration() {
+      this.page = 0
+      if (this.type === '1') {
+        this.$emit('updateTopMinersByBlocks', this.pageSize, this.page, this.duration)
+      } else if (this.type === '2') {
+        this.$emit('updateTopMinersByPowerDelta', this.pageSize, this.page, this.duration)
       }
     }
   },
@@ -217,15 +195,6 @@ export default {
           break
         default:
           break
-      }
-    },
-    didDurationSwitched(command) {
-      this.duration = command
-      this.page = 0
-      if (this.type === '1') {
-        this.$emit('updateTopMinersByBlocks', this.pageSize, this.page, this.duration)
-      } else if (this.type === '2') {
-        this.$emit('updateTopMinersByPowerDelta', this.pageSize, this.page, this.duration)
       }
     },
     didCurrentPageChanged(currentPage) {
