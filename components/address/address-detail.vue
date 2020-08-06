@@ -1,6 +1,6 @@
 <template>
   <div class="pt-6">
-    <div class="text-sm items-center flex">
+    <div class="text-base items-center flex">
       <span class="font-medium mr-2">{{ $t('detail.address.normal.title') }}</span>
       <span>{{ addressData.address }}</span>
       <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="1" />

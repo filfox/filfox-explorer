@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto text-sm">
-    <div class="mt-6 font-medium">
+    <div class="mt-6 font-medium text-base">
       {{ $t('detail.message.title') }}
     </div>
     <div class="rounded-md my-4 py-4 bg-white">

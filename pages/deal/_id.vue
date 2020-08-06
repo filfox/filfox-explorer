@@ -2,7 +2,7 @@
   <div>
     <div class="bg-background lg:hidden">
       <div class="pl-4 border-b border-background bg-white">
-        <div class="text-sm font-medium pt-2">
+        <div class="font-medium pt-2">
           {{ $t('detail.deal.title') }}
         </div>
         <div class="text-xs my-1">
@@ -113,7 +113,7 @@
     </div>
 
     <div class="hidden container mx-auto lg:block text-sm">
-      <div class="mt-6 font-medium">
+      <div class="mt-6 font-medium text-base">
         {{ $t('detail.deal.title') }} #{{ id }}
       </div>
       <div class="rounded-md my-4 bg-white pb-2">

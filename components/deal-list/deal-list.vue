@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="mt-6 font-medium">
+    <div class="mt-6 font-medium text-base">
       {{ $t('blockchain.dealList.title') }}
     </div>
     <div class="w-full bg-white rounded-md mt-4 mb-4">
