@@ -122,7 +122,7 @@ export default {
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   .ranks {
     font-size: 13px;
     color: #303133;
