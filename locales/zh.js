@@ -287,6 +287,11 @@ export default {
     },
     message: {
       title: '消息详情',
+      modules: {
+        overview: '消息概览',
+        transfer: '转账信息',
+        others: '其他信息'
+      },
       headers: {
         cid: '消息ID',
         height: '高度',
@@ -304,7 +309,14 @@ export default {
         gasUsed: 'Gas使用量',
         exitCode: '状态',
         return: '返回值',
-        error: '错误信息'
+        error: '错误信息',
+        api: 'Api'
+      },
+      transfer: {
+        from: '发送方',
+        to: '接收方',
+        value: '金额',
+        type: '类型'
       },
       null: '(无)'
     },

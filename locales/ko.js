@@ -295,6 +295,11 @@ export default {
     },
     message: {
       title: '메시지 내역',
+      modules: {
+        overview: '개요',
+        transfer: '거래내역',
+        others: '기타'
+      },
       headers: {
         cid: '메시지 ID',
         height: '높이',
@@ -312,7 +317,14 @@ export default {
         gasUsed: '가스 사용량',
         exitCode: '상태',
         return: '리턴값',
-        error: '오류'
+        error: '오류',
+        api: '소스 코드'
+      },
+      transfer: {
+        from: '보내는 이',
+        to: '받는 이',
+        value: '금액',
+        type: '유형'
       },
       null: '없음'
     },

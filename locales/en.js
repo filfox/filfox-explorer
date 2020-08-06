@@ -298,6 +298,11 @@ export default {
     },
     message: {
       title: 'Message Details',
+      modules: {
+        overview: 'Overview',
+        transfer: 'Transactions',
+        others: 'Others'
+      },
       headers: {
         cid: 'Message ID',
         height: 'Height',
@@ -315,7 +320,14 @@ export default {
         gasUsed: 'Gas Used',
         exitCode: 'Status',
         return: 'Return',
-        error: 'Error Message'
+        error: 'Error Message',
+        api: 'Api'
+      },
+      transfer: {
+        from: 'From',
+        to: 'To',
+        value: 'Value',
+        type: 'Type'
       },
       null: '(Null)'
     },
