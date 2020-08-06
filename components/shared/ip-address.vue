@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center" :class="{'justify-center': type === 1}">
     <img v-if="location" :src="location.flag" class="border border-background rounded-sm w-5 mr-1">
     <template v-if="location">
       <p v-if="type === 0" class="text-sm">
