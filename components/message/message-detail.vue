@@ -132,12 +132,12 @@
               <th class="sticky top-0 bg-white z-10 w-1/4">
                 {{ $t('detail.message.transfer.from') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/4">
+              <th class="sticky top-0 bg-white z-10 w-1/8">
               </th>
               <th class="sticky top-0 bg-white z-10 w-1/4">
                 {{ $t('detail.message.transfer.to') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/8">
+              <th class="sticky top-0 bg-white z-10 w-1/4">
                 {{ $t('detail.message.transfer.value') }}
               </th>
               <th class="sticky top-0 bg-white z-10 w-1/8">
@@ -171,7 +171,7 @@
                 </div>
               </td>
               <td>
-                {{ transfer.value | filecoin(2) }}
+                {{ transfer.value | filecoin }}
               </td>
               <td>
                 {{ $t('detail.transfer.types.' + transfer.type ) }}
