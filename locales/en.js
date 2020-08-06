@@ -252,6 +252,9 @@ export default {
         storagePrice: 'Storage Fee',
         status: 'Status'
       }
+    },
+    mempool: {
+      title: 'Mempool Message List'
     }
   },
   detail: {

@@ -249,6 +249,9 @@ export default {
         storagePrice: '스토리지 수수료',
         status: '상태'
       }
+    },
+    mempool: {
+      title: 'Mempool 메시지 리스트'
     }
   },
   detail: {

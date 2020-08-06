@@ -241,6 +241,9 @@ export default {
         storagePrice: '存储费用',
         status: '状态'
       }
+    },
+    mempool: {
+      title: '内存池消息列表'
     }
   },
   detail: {

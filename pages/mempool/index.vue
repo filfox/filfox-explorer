@@ -3,7 +3,7 @@
     <div class="bg-white lg:hidden">
       <div class="mt-2">
         <p class="pl-4 flex pt-2 text-sm font-medium">
-          {{ $t('blockchain.message.title') }}
+          {{ $t('blockchain.mempool.title') }}
         </p>
 
         <div class="flex items-center justify-between pb-1 mb-2 border-b border-background mt-1">
@@ -85,7 +85,7 @@
 
     <div class="hidden container mx-auto lg:block">
       <div class="mt-6 font-medium">
-        {{ $t('blockchain.message.title') }}
+        {{ $t('blockchain.mempool.title') }}
       </div>
       <div class="rounded-md my-4 bg-white">
         <div class="flex items-center justify-between border-b border-background">
