@@ -16,7 +16,7 @@
         <p class="flex w-1/4">
           {{ $t('detail.peer.headers.miners') }}
         </p>
-        <p v-if="peer.miners.length" class="flex flex-wrap w-3/4">
+        <p v-if="peer.miners && peer.miners.length > 0" class="flex flex-wrap w-3/4">
           <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
         </p>
         <p v-else class="flex w-3/4">
@@ -28,7 +28,7 @@
         <p class="flex w-1/4">
           {{ $t('detail.peer.headers.IP') }}
         </p>
-        <div v-if="peer.addresses.length" class="w-3/4">
+        <div v-if="peer.addresses && peer.addresses.length > 0" class="w-3/4">
           <p v-for="address in peer.addresses" :key="address" class="flex pb-1">
             {{ address | ip }}
           </p>
@@ -58,7 +58,7 @@
             {{ $t('detail.peer.headers.miners') }}
           </dt>
           <dd class="flex mr-4">
-            <p v-if="peer.miners.length" class="flex flex-wrap">
+            <p v-if="peer.miners && peer.miners.length > 0" class="flex flex-wrap">
               <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
             </p>
             <template v-else>
@@ -72,7 +72,7 @@
             {{ $t('detail.peer.headers.IP') }}
           </dt>
           <dd class="flex mr-4">
-            <template v-if="peer.addresses.length">
+            <template v-if="peer.addresses && peer.addresses.length > 0">
               <p v-for="address in peer.addresses" :key="address">
                 {{ address | ip }}
               </p>
