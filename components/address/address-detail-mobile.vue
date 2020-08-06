@@ -17,6 +17,7 @@
       </p>
       <p class="flex w-3/4">
         {{ addressData.alias }}
+        <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="2" />
       </p>
     </div>
 

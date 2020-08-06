@@ -1,8 +1,9 @@
 <template>
   <div class="pt-6">
-    <div class="text-sm">
+    <div class="text-sm items-center flex">
       <span class="font-medium mr-2">{{ $t('detail.address.normal.title') }}</span>
       <span>{{ addressData.address }}</span>
+      <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="1" />
     </div>
     <div class="rounded-md my-4 bg-white pb-2 text-sm">
       <div class="flex pl-8 py-4 font-medium border-b border-background">
