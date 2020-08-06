@@ -28,7 +28,7 @@
 <script>
 export default {
   props: {
-    location: { type: Object, required: true },
+    location: { type: null, required: true },
     type: { type: Number, default: 0 }
   },
   methods: {
