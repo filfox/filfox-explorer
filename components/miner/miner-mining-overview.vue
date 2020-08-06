@@ -76,14 +76,14 @@
     </div>
   </div>
 
-  <div v-else class="bg-white rounded-md">
+  <div v-else class="bg-white rounded-md pb-6">
     <div class="flex flex-row justify-between">
       <p class="ml-8 flex py-4">
         {{ $t('detail.address.miner.miningOverview.title') }}
       </p>
       <DurationSelect v-model="duration" class="flex items-center mr-8" />
     </div>
-    <div v-loading="loading" class="mx-8 py-10 border border-background rounded-sm p-4">
+    <div v-loading="loading" class="mx-8 border border-background rounded-sm p-4">
       <div class="flex items-center w-full mb-2">
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDelta') }}:
