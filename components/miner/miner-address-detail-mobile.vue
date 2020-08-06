@@ -172,14 +172,7 @@
         <p class="text-xs text-gray-800">
           {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
         </p>
-        <p v-if="addressData.miner.location" class="text-xs text-gray-800 text-right">
-          {{ addressData.miner.location.flagEmoji }}
-          {{ addressData.miner.location[`${$i18n.locale}ContinentName`] }}-{{ addressData.miner.location[`${$i18n.locale}CountryName`] }}-{{ addressData.miner.location[`${$i18n.locale}RegionName`] }}-{{ addressData.miner.location[`${$i18n.locale}City`] }}
-          ({{ splitedIP(addressData.miner.location.ip) }})
-        </p>
-        <p v-else class="text-xs text-gray-800 text-right">
-          {{ $t('shared.unknown') }}
-        </p>
+        <IpAddress :location="addressData.miner.location" :type="2" />
       </div>
     </div>
 
@@ -394,14 +387,6 @@ export default {
         this.getBlockList()
       } else if (this.listType === 2) {
         this.getTransferList()
-      }
-    },
-    splitedIP(ip) {
-      const ips = ip.split('.')
-      if (ips.length === 4) {
-        return `${ips[0]}. ** . ** .${ips[3]}`
-      } else {
-        return ip
       }
     }
   }

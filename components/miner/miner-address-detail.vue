@@ -108,16 +108,7 @@
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
             </p>
-            <div class="flex items-center mt-2">
-              <img v-if="addressData.miner.location" :src="addressData.miner.location.flag" class="border border-background rounded-sm w-5 mr-1">
-              <p v-if="addressData.miner.location" class="text-sm">
-                {{ addressData.miner.location[`${$i18n.locale}ContinentName`] }}-{{ addressData.miner.location[`${$i18n.locale}CountryName`] }}-{{ addressData.miner.location[`${$i18n.locale}RegionName`] }}-{{ addressData.miner.location[`${$i18n.locale}City`] }}
-                ({{ splitedIP(addressData.miner.location.ip) }})
-              </p>
-              <p v-else class="text-sm">
-                {{ $t('shared.unknown') }}
-              </p>
-            </div>
+            <IpAddress :location="addressData.miner.location" class="mt-2" />
           </div>
         </div>
       </div>
@@ -343,14 +334,6 @@ export default {
     },
     showDialog() {
       this.$refs.verifyApplication.showDialog()
-    },
-    splitedIP(ip) {
-      const ips = ip.split('.')
-      if (ips.length === 4) {
-        return `${ips[0]}. ** . ** .${ips[3]}`
-      } else {
-        return ip
-      }
     }
   }
 }
