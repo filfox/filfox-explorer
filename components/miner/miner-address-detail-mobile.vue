@@ -61,6 +61,22 @@
         </div>
         <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
+            {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            {{ addressData.miner.blocksMined }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('detail.address.miner.minerOverview.headers.blocksReward') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            {{ addressData.miner.totalRewards | filecoin(2) }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
             {{ $t('detail.address.miner.minerOverview.headers.sectorSize') }}:
           </p>
           <p class="text-xs text-gray-800">
@@ -106,7 +122,7 @@
           {{ $t('detail.address.miner.accountOverview.headers.address') }}:
         </p>
         <p class="text-xs text-gray-800 text-right w-3/4 break-all">
-          {{ addressData.alias }}
+          {{ addressData.alias ? addressData.alias : 'N/A' }}
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-1">

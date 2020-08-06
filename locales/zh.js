@@ -372,7 +372,9 @@ export default {
             rate: '占比',
             rank: '排名',
             sectorSize: '扇区大小',
-            sectors: '扇区状态'
+            sectors: '扇区状态',
+            blockNums: '累计出块数量',
+            blocksReward: '累计出块奖励'
           }
         },
         miningOverview: {

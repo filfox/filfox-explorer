@@ -380,7 +380,9 @@ export default {
             rate: '비율',
             rank: '순위',
             sectorSize: '섹터 크기',
-            sectors: '섹터 현황'
+            sectors: '섹터 현황',
+            blockNums: '누적된 채굴 개수',
+            blocksReward: '누적된 채굴 보상'
           }
         },
         miningOverview: {

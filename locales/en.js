@@ -383,7 +383,9 @@ export default {
             rate: 'Rate',
             rank: 'Rank',
             sectorSize: 'Sector Size',
-            sectors: 'Sector Status'
+            sectors: 'Sector Status',
+            blockNums: 'Blocks Mined',
+            blocksReward: 'Total Reward'
           }
         },
         miningOverview: {

@@ -16,14 +16,26 @@
         {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : 'N/A' }}
       </p>
     </div>
-    <p class="text-sm mt-4">
-      {{ $t('detail.address.miner.minerOverview.headers.rawBytePower') }}:
-      {{ addressData.miner.rawBytePower | size_metric(2) }}
-    </p>
-    <p class="text-sm mt-2">
-      {{ $t('detail.address.miner.minerOverview.headers.sectorSize') }}:
-      {{ addressData.miner.sectorSize | size_metric(2) }}
-    </p>
+    <div class="flex items-center justify-between w-full mt-4">
+      <p class="text-sm">
+        {{ $t('detail.address.miner.minerOverview.headers.rawBytePower') }}:
+        {{ addressData.miner.rawBytePower | size_metric(2) }}
+      </p>
+      <p class="text-sm">
+        {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
+        {{ addressData.miner.blocksMined }}
+      </p>
+    </div>
+    <div class="flex items-center justify-between w-full mt-2">
+      <p class="text-sm">
+        {{ $t('detail.address.miner.minerOverview.headers.blocksReward') }}:
+        {{ addressData.miner.totalRewards | filecoin(2) }}
+      </p>
+      <p class="text-sm">
+        {{ $t('detail.address.miner.minerOverview.headers.sectorSize') }}:
+        {{ addressData.miner.sectorSize | size_metric(2) }}
+      </p>
+    </div>
     <p class="text-sm mt-2">
       {{ $t('detail.address.miner.minerOverview.headers.sectors') }}:
       {{ addressData.miner.sectors | locale }} {{ $t('detail.address.miner.sectors.total') }},
