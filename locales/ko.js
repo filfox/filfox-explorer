@@ -38,10 +38,10 @@ export default {
       title: '채굴 순위'
     },
     charts: {
-      title: '도표',
+      title: '통계량',
       subMenus: [
         '채굴',
-        'FIL'
+        '가스 데이터'
       ]
     },
     resources: {
@@ -485,8 +485,17 @@ export default {
         rewardLine: '채굴 보상 변화'
       }
     },
-    fil: {
-      title: 'FIL 도표'
+    gas: {
+      title: '24시간 가스 데이터',
+      all: '모두 보기',
+      headers: {
+        method: '메시지 유형',
+        gasPrice: '평균 가스 비용',
+        gasLimit: '평균 가스 리밋',
+        gasUsed: '평균 가스 사용량',
+        fee: '수수료 합계 / 백분율',
+        count: '메시지 합계 / 백분율'
+      }
     }
   },
   footer: {

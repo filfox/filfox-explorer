@@ -33,8 +33,8 @@ export default {
       title: '排行榜'
     },
     charts: {
-      title: '图表',
-      subMenus: ['挖矿图表', 'FIL图表']
+      title: '统计',
+      subMenus: ['挖矿图表', 'Gas统计']
     },
     resources: {
       title: '资源',
@@ -478,8 +478,17 @@ export default {
         sectorInitialPledgeVariations: '扇区质押量变化'
       }
     },
-    fil: {
-      title: 'FIL图表'
+    gas: {
+      title: '24h Gas数据',
+      all: '全部',
+      headers: {
+        method: '消息类型',
+        gasPrice: '平均Gas费率',
+        gasLimit: '平均Gas限额',
+        gasUsed: '平均Gas消耗',
+        fee: '手续费合计/占比',
+        count: '消息数合计/占比'
+      }
     }
   },
   footer: {

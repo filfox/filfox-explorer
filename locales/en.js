@@ -39,10 +39,10 @@ export default {
       title: 'Top Miners'
     },
     charts: {
-      title: 'Charts',
+      title: 'Stats',
       subMenus: [
         'Mining Charts',
-        'FIL Charts'
+        'Gas Stats'
       ]
     },
     resources: {
@@ -489,8 +489,17 @@ export default {
         sectorInitialPledgeVariations: 'Sector Initial Pledge Variations'
       }
     },
-    fil: {
-      title: 'FIL Charts'
+    gas: {
+      title: '24h Gas Data',
+      all: 'All',
+      headers: {
+        method: 'Message Type',
+        gasPrice: 'Avg. Gas Price',
+        gasLimit: 'Avg. Gas Limit',
+        gasUsed: 'Avg. Gas Used',
+        fee: 'Total Fees/Pencentage',
+        count: 'Total Messages/Pencentage'
+      }
     }
   },
   footer: {

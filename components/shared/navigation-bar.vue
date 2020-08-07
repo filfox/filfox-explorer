@@ -40,12 +40,12 @@
         {{ $t('nav.charts.title') }} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <nuxt-link :to="localePath('/charts/miner')">
+        <nuxt-link :to="localePath('/stats/miner')">
           <el-dropdown-item>{{ $t('nav.charts.subMenus.0') }}</el-dropdown-item>
         </nuxt-link>
-        <el-dropdown-item @click.native="pageNotAvailable">
-          {{ $t('nav.charts.subMenus.1') }}
-        </el-dropdown-item>
+        <nuxt-link :to="localePath('/stats/gas')">
+          <el-dropdown-item>{{ $t('nav.charts.subMenus.1') }}</el-dropdown-item>
+        </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>
 
