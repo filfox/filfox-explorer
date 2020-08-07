@@ -358,6 +358,7 @@ export default {
         size: 'Size',
         messages: 'Messages',
         reward: 'Reward',
+        winCount: 'Win Count',
         miner: 'Miner',
         parents: 'Parent Block',
         parentWeight: 'Parent Block Weight',

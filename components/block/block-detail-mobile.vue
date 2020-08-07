@@ -65,12 +65,20 @@
         {{ block.reward | filecoin }}
       </p>
     </div>
+    <div class="block-item">
+      <p class="w-1/4">
+        {{ $t('detail.block.headers.winCount') }}
+      </p>
+      <p class="w-3/4">
+        {{ block.winCount }}
+      </p>
+    </div>
 
     <div class="block-item">
       <p class="w-1/4">
         {{ $t('detail.block.headers.parents') }}
       </p>
-      <div class="w-3/4">
+      <div class="w-3/4 mb-1">
         <p v-for="parent in block.parents" :key="parent" class="text-main mt-1">
           <BlockLink :id="parent" />
         </p>

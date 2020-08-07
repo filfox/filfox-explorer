@@ -71,7 +71,16 @@
         </dd>
       </dl>
 
-      <dl class="flex items-center my-2">
+      <dl class="flex mt-4 my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
+          {{ $t('detail.block.headers.winCount') }}
+        </dt>
+        <dd class="flex mr-4">
+          {{ block.winCount }}
+        </dd>
+      </dl>
+
+      <dl class="flex items-center my-2 mt-4">
         <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
           {{ $t('detail.block.headers.parents') }}
         </dt>

@@ -355,6 +355,7 @@ export default {
         size: '크기',
         messages: '메시지',
         reward: '블록 보상',
+        winCount: '승리 횟수',
         miner: '채굴자',
         parents: '페런트 블록',
         parentWeight: '페런트 블록 무게',

@@ -347,6 +347,7 @@ export default {
         size: '大小',
         messages: '消息',
         reward: '奖励',
+        winCount: '奖励份数',
         miner: '矿工',
         parents: '父区块',
         parentWeight: '父区块权重',
