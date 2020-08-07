@@ -39,12 +39,12 @@
 
       <el-collapse class="w-full">
         <el-collapse-item :title="$t('nav.charts.title')">
-          <nuxt-link :to="localePath('/charts/miner')" class="link" @click.native="hideIfNeeded">
+          <nuxt-link :to="localePath('/stats/miner')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.charts.subMenus.0') }}
           </nuxt-link>
-          <div class="link" @click="pageNotAvailable">
+          <nuxt-link :to="localePath('/stats/gas')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.charts.subMenus.1') }}
-          </div>
+          </nuxt-link>
         </el-collapse-item>
       </el-collapse>
 
