@@ -72,7 +72,7 @@
         />
         <OverviewCell
           :name="$t('home.overview.titles.dailyMessages')"
-          :value="overview.dailyMessages"
+          :value="overview.dailyMessages | locale"
         />
         <OverviewCell
           :name="$t('home.overview.titles.averageTipsetBlocks')"
@@ -85,9 +85,8 @@
           :tip-content="$t('home.overview.tips.rawBytePower')"
         />
         <OverviewCell
-          :name="$t('home.overview.titles.averageGasPrice')"
-          :value="overview.averageGasPrice | filecoin(2)"
-          :tip-content="$t('home.overview.tips.averageGasPrice')"
+          name="Current Base Fee"
+          :value="overview.baseFee | filecoin(2)"
         />
         <OverviewCell
           :name="$t('home.overview.titles.burntSupply')"
