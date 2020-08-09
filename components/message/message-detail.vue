@@ -15,7 +15,6 @@
           <MessageLink :id="message.cid" plain />
         </dd>
       </dl>
-
       <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.height') }}
@@ -24,7 +23,6 @@
           <TipsetLink :id="message.height" class="text-main" />
         </dd>
       </dl>
-
       <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.time') }}
@@ -33,7 +31,6 @@
           {{ message.timestamp | timestamp }}
         </dd>
       </dl>
-
       <dl class="message-item">
         <dt class="message-key items-center">
           {{ $t('detail.message.headers.inBlocks') }}
@@ -44,7 +41,6 @@
           </p>
         </dd>
       </dl>
-
       <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.from') }}
@@ -54,7 +50,6 @@
           <MinerTag v-if="message.fromTag" :tag="message.fromTag" :type="1" />
         </dd>
       </dl>
-
       <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.to') }}
@@ -64,7 +59,6 @@
           <MinerTag v-if="message.toTag" :tag="message.toTag" :type="1" />
         </dd>
       </dl>
-
       <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.method') }}
@@ -73,7 +67,6 @@
           {{ message.method || 'N/A' }}
         </dd>
       </dl>
-
       <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.value') }}
@@ -82,44 +75,14 @@
           {{ message.value | filecoin }}
         </dd>
       </dl>
-
-      <dl class="message-item">
+      <dl v-if="message.receipt" class="message-item">
         <dt class="message-key">
-          {{ $t('detail.message.headers.gasPrice') }}
+          {{ $t('detail.message.headers.exitCode') }}
         </dt>
         <dd class="message-value">
-          {{ message.gasPrice | filecoin }}
+          {{ message.receipt.exitCode | exit-code }}
         </dd>
       </dl>
-
-      <dl class="message-item">
-        <dt class="message-key">
-          {{ $t('detail.message.headers.gasLimit') }}
-        </dt>
-        <dd class="message-value">
-          {{ message.gasLimit | locale }}
-        </dd>
-      </dl>
-
-      <template v-if="message.receipt">
-        <dl class="message-item">
-          <dt class="message-key">
-            {{ $t('detail.message.headers.gasUsed') }}
-          </dt>
-          <dd class="message-value">
-            {{ message.receipt.gasUsed | locale }}
-          </dd>
-        </dl>
-
-        <dl v-if="message.receipt" class="message-item">
-          <dt class="message-key">
-            {{ $t('detail.message.headers.exitCode') }}
-          </dt>
-          <dd class="message-value">
-            {{ message.receipt.exitCode | exit-code }}
-          </dd>
-        </dl>
-      </template>
     </div>
     <div v-if="message.transfers && message.transfers.length > 0" class="rounded-md my-4 py-4 bg-white mt-4">
       <p class="pl-8 pb-3 border-b border-background">
@@ -154,7 +117,7 @@
               <td>
                 <div class="flex items-center flex-row justify-center">
                   <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
-                  <span v-else> N/A </span>
+                  <span v-else>N/A</span>
                   <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="1" />
                 </div>
               </td>
@@ -166,7 +129,7 @@
               <td>
                 <div class="flex items-center flex-row justify-center">
                   <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" />
-                  <span v-else> N/A </span>
+                  <span v-else>N/A</span>
                   <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="1" />
                 </div>
               </td>
@@ -181,9 +144,16 @@
         </table>
       </div>
     </div>
-    <div class="rounded-md my-4 py-4 bg-white mt-4">
-      <p class="pl-8 pb-3 border-b border-background">
+    <div class="rounded-md my-4 pb-4 bg-white">
+      <p class="pl-8 py-3 border-b border-background">
         {{ $t('detail.message.modules.others') }}
+        <a
+          :href="`${network.networks[network.currentNetwork].url}/api/v0/message/${message.cid}`"
+          target="_blank"
+          class="ml-4 text-main"
+        >
+          API
+        </a>
       </p>
       <dl class="message-item">
         <dt class="message-key pt-2">
@@ -201,12 +171,68 @@
           {{ message.nonce }}
         </dd>
       </dl>
+      <dl class="message-item">
+        <dt class="message-key">
+          Gas Fee Cap
+        </dt>
+        <dd class="message-value">
+          {{ message.gasFeeCap | filecoin }}
+        </dd>
+      </dl>
+      <dl class="message-item">
+        <dt class="message-key">
+          Gas Premium
+        </dt>
+        <dd class="message-value">
+          {{ message.gasPremium | filecoin }}
+        </dd>
+      </dl>
+      <dl class="message-item">
+        <dt class="message-key">
+          {{ $t('detail.message.headers.gasLimit') }}
+        </dt>
+        <dd class="message-value">
+          {{ message.gasLimit | locale }}
+        </dd>
+      </dl>
+      <dl v-if="message.receipt" class="message-item">
+        <dt class="message-key">
+          {{ $t('detail.message.headers.gasUsed') }}
+        </dt>
+        <dd class="message-value">
+          {{ message.receipt.gasUsed | locale }}
+        </dd>
+      </dl>
+      <dl v-if="message.baseFeeBurn" class="message-item">
+        <dt class="message-key">
+          Base Fee Burn
+        </dt>
+        <dd class="message-value">
+          {{ message.baseFeeBurn | filecoin }}
+        </dd>
+      </dl>
+      <dl v-if="message.overEstimationBurn" class="message-item">
+        <dt class="message-key">
+          Over Estimation Burn
+        </dt>
+        <dd class="message-value">
+          {{ message.overEstimationBurn | filecoin }}
+        </dd>
+      </dl>
+      <dl v-if="message.minerTip" class="message-item">
+        <dt class="message-key">
+          Miner Tip
+        </dt>
+        <dd class="message-value">
+          {{ message.minerTip | filecoin }}
+        </dd>
+      </dl>
       <dl v-if="message.receipt && message.receipt.exitCode === 0" class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.return') }}
         </dt>
         <dd class="message-value">
-          {{ message.receipt.return ? message.receipt.return : $t('detail.message.null') }}
+          {{ message.receipt.return || $t('detail.message.null') }}
         </dd>
       </dl>
       <dl v-if="message.error" class="message-item">
@@ -217,22 +243,12 @@
           {{ message.error }}
         </dd>
       </dl>
-      <dl class="message-item">
-        <dt class="message-key">
-          {{ $t('detail.message.headers.api') }}
-        </dt>
-        <dd class="message-value flex-1 break-all">
-          <a :href="`${network.networks[network.currentNetwork].url}/api/v0/message/${message.cid}`" class="text-main">
-            {{ `${network.networks[network.currentNetwork].url}/api/v0/message/${message.cid}` }}
-          </a>
-        </dd>
-      </dl>
       <dl class="flex items-start">
         <dt class="message-key">
           {{ $t('detail.message.headers.params') }}
         </dt>
         <dd class="message-value flex-1 break-all">
-          {{ message.params ? message.params : $t('detail.message.null') }}
+          {{ message.params || $t('detail.message.null') }}
         </dd>
       </dl>
     </div>
@@ -258,7 +274,7 @@ export default {
     @apply flex items-center my-2;
   }
   .message-key {
-    @apply w-1/8 pl-8 pr-2 text-gray-600;
+    @apply w-48 pl-8 pr-2 text-gray-600;
   }
   .message-value {
     @apply mr-8 flex flex-row items-center;

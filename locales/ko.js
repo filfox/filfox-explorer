@@ -320,8 +320,7 @@ export default {
         gasUsed: '가스 사용량',
         exitCode: '상태',
         return: '리턴값',
-        error: '오류',
-        api: '소스 코드'
+        error: '오류'
       },
       transfer: {
         from: '보내는 이',

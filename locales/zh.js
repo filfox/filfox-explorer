@@ -34,7 +34,7 @@ export default {
     },
     charts: {
       title: '统计',
-      subMenus: ['挖矿图表', 'Gas统计']
+      subMenus: ['挖矿图表', 'Gas 统计']
     },
     resources: {
       title: '资源',
@@ -195,8 +195,8 @@ export default {
         to: '接收方',
         method: '方法',
         value: '金额',
-        gasPrice: 'Gas价格',
-        gasLimit: 'Gas限额',
+        gasPrice: 'Gas 价格',
+        gasLimit: 'Gas 限额',
         exitCode: '状态'
       },
       methods: {
@@ -307,13 +307,12 @@ export default {
         method: '方法',
         params: '参数',
         value: '金额',
-        gasPrice: 'Gas价格',
-        gasLimit: 'Gas限额',
-        gasUsed: 'Gas使用量',
+        gasPrice: 'Gas 价格',
+        gasLimit: 'Gas 限额',
+        gasUsed: 'Gas 使用量',
         exitCode: '状态',
         return: '返回值',
-        error: '错误信息',
-        api: 'Api'
+        error: '错误信息'
       },
       transfer: {
         from: '发送方',

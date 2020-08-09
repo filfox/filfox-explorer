@@ -323,8 +323,7 @@ export default {
         gasUsed: 'Gas Used',
         exitCode: 'Status',
         return: 'Return',
-        error: 'Error Message',
-        api: 'Api'
+        error: 'Error Message'
       },
       transfer: {
         from: 'From',
