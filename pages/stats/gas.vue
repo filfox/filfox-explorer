@@ -16,15 +16,15 @@
               {{ $t('chart.gas.headers.method') }}:
             </p>
             <p>
-              {{ gas.method ? gas.method : $t('chart.gas.all') }}
+              {{ gas.method || $t('chart.gas.all') }}
             </p>
           </div>
           <div class="message-item">
             <p>
-              {{ $t('chart.gas.headers.gasPrice') }}:
+              Gas Premium:
             </p>
             <p>
-              {{ gas.gasPrice | filecoin(2) }}
+              {{ gas.gasPremium | filecoin(2) }}
             </p>
           </div>
           <div class="message-item">
@@ -32,7 +32,7 @@
               {{ $t('chart.gas.headers.gasLimit') }}:
             </p>
             <p>
-              {{ gas.gasLimit | filecoin(2) }}
+              {{ Math.round(gas.gasLimit) | locale }}
             </p>
           </div>
           <div class="message-item">
@@ -40,7 +40,7 @@
               {{ $t('chart.gas.headers.gasUsed') }}:
             </p>
             <p>
-              {{ gas.gasUsed | filecoin(2) }}
+              {{ Math.round(gas.gasUsed) | locale }}
             </p>
           </div>
           <div class="message-item">
@@ -48,7 +48,9 @@
               {{ $t('chart.gas.headers.fee') }}:
             </p>
             <p>
-              {{ gas.fee | filecoin(2) }} / {{ gas.fee / gas.totalFee | percentage }}
+              {{ gas.totalFee | filecoin(0) }}
+              /
+              {{ gas.totalFee / gasList.find(item => !item.method).totalFee | percentage }}
             </p>
           </div>
           <div class="message-item">
@@ -76,7 +78,7 @@
                   {{ $t('chart.gas.headers.method') }}
                 </th>
                 <th class="table-header">
-                  {{ $t('chart.gas.headers.gasPrice') }}
+                  Gas Premium
                 </th>
                 <th class="table-header">
                   {{ $t('chart.gas.headers.gasLimit') }}
@@ -99,19 +101,21 @@
                 class="h-12 border-b border-background text-sm"
               >
                 <td>
-                  {{ gas.method ? gas.method : $t('chart.gas.all') }}
+                  {{ gas.method || $t('chart.gas.all') }}
                 </td>
                 <td>
-                  {{ gas.gasPrice | filecoin(2) }}
+                  {{ gas.gasPremium | filecoin(2) }}
                 </td>
                 <td>
-                  {{ gas.gasLimit | filecoin(2) }}
+                  {{ Math.round(gas.gasLimit) | locale }}
                 </td>
                 <td>
-                  {{ gas.gasUsed | filecoin(2) }}
+                  {{ Math.round(gas.gasUsed) | locale }}
                 </td>
                 <td>
-                  {{ gas.fee | filecoin(2) }} / {{ gas.fee / gas.totalFee | percentage }}
+                  {{ gas.totalFee | filecoin(0) }}
+                  /
+                  {{ gas.totalFee / gasList.find(item => !item.method).totalFee | percentage }}
                 </td>
                 <td>
                   {{ gas.count }} / {{ gas.count / gasList[0].count | percentage }}
