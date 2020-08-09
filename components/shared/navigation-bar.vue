@@ -23,7 +23,7 @@
         <nuxt-link :to="localePath('/deal')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.3') }}</el-dropdown-item>
         </nuxt-link>
-        <nuxt-link :to="localePath('/mempool')">
+        <nuxt-link v-if="false" :to="localePath('/mempool')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.4') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
