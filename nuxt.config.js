@@ -92,10 +92,10 @@ export default {
         name: '한국어'
       }
     ],
-    defaultLocale: 'zh',
+    defaultLocale: 'en',
     strategy: 'prefix',
     vueI18n: {
-      fallbackLocale: 'zh',
+      fallbackLocale: 'en',
       messages
     },
     detectBrowserLanguage: {
