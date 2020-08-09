@@ -1,8 +1,8 @@
 <template>
   <div class="lg:rounded-md bg-white">
     <div class="flex justify-between items-center h-12 border-b border-background">
-      <div class="pl-4 lg:pl-6 text-xs lg:text-base">
-        {{ $t('chart.miner.headers.rewardLine') }} (FIL/T)
+      <div class="items-center pl-4 lg:pl-6 text-xs lg:text-base">
+        Base Fee Variations
       </div>
       <DurationSelect v-model="duration" class="items-center mr-4 hidden lg:flex" />
       <DurationSelect v-model="duration" portable class="lg:hidden mr-4" />
@@ -34,7 +34,6 @@
 
 <script>
 import moment from 'moment'
-import { epochsInDay } from '@/filecoin/filecoin.config'
 
 export default {
   components: {
@@ -45,27 +44,27 @@ export default {
       offsetY: 0,
       legendName: {},
       labelMap: {
-        fil: this.$t('chart.miner.headers.rewardLine')
+        baseFee: 'Base Fee'
       }
     }
     this.chartExtend = {
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter: '{value} FIL/TiB'
+          formatter: '{value} nanoFIL'
         }
       },
       tooltip: {
         trigger: 'axis',
         formatter: params => [
           this.getDateTime(this.rawData[params[0].dataIndex].timestamp),
-          ...params.map(param => `${param.marker}${param.seriesName}: ${param.value[1]} FIL/TiB`)
+          ...params.map(param => `${param.marker}${param.seriesName}: ${param.value[1]} nanoFIL`)
         ].join('<br>')
       }
     }
     return {
       chartData: {
-        columns: ['time', 'fil'],
+        columns: ['time', 'baseFee'],
         rows: []
       },
       duration: '24h',
@@ -85,7 +84,7 @@ export default {
   methods: {
     async getLineChartData() {
       this.loading = true
-      this.rawData = await this.$axios.$get('stats/miner/reward-per-byte', { params: { duration: this.duration } })
+      this.rawData = await this.$axios.$get('stats/base-fee', { params: { duration: this.duration, samples: 50 } })
       if (this.rawData == null) {
         this.dataEmpty = true
         this.loading = false
@@ -93,7 +92,7 @@ export default {
       }
       this.chartData.rows = this.rawData.map(info => ({
         time: this.getTime(info.timestamp),
-        fil: this.getFilecoin(info.rewardPerByte * 2 ** 40 * epochsInDay, 4)
+        baseFee: info.baseFee / 1e9
       }))
       this.loading = false
     },
@@ -106,14 +105,6 @@ export default {
     },
     getDateTime(time) {
       return moment(time * 1000).format('YYYY-MM-DD HH:mm')
-    },
-    getFilecoin(value, precision) {
-      if (precision == null) {
-        const s = value.toString().padStart(19, '0')
-        return `${s.slice(0, -18)}.${s.slice(-18)}`.replace(/\.?0*$/g, '')
-      } else {
-        return (value / 1e18).toFixed(precision)
-      }
     }
   }
 }

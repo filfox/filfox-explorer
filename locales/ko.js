@@ -486,9 +486,12 @@ export default {
       }
     },
     gas: {
-      title: '24시간 가스 데이터',
-      all: '모두 보기',
+      title: '가스 데이터',
       headers: {
+        dailyStatistics: '24시간 가스 데이터'
+      },
+      all: '모두 보기',
+      tableHeaders: {
         method: '메시지 유형',
         gasPrice: '평균 가스 비용',
         gasLimit: '평균 가스 리밋',

@@ -490,9 +490,12 @@ export default {
       }
     },
     gas: {
-      title: '24h Gas Data',
-      all: 'All',
+      title: 'Gas Statistics',
       headers: {
+        dailyStatistics: '24h Gas Data'
+      },
+      all: 'All',
+      tableHeaders: {
         method: 'Message Type',
         gasPrice: 'Avg. Gas Price',
         gasLimit: 'Avg. Gas Limit',

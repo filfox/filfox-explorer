@@ -1,9 +1,17 @@
 <template>
-  <div>
+  <div class="container mx-auto">
+    <div class="mt-4 lg:mt-6 font-medium text-xs lg:text-base ml-4 lg:ml-0">
+      {{ $t('chart.gas.title') }}
+    </div>
+
+    <client-only>
+      <BaseFeeChart class="my-4" />
+    </client-only>
+
     <div class="bg-white lg:hidden pb-1">
       <div class="mt-2">
         <p class="pl-4 flex py-2 text-sm font-medium">
-          {{ $t('chart.gas.title') }}
+          {{ $t('chart.gas.headers.dailyStatistics') }}
         </p>
 
         <div
@@ -13,7 +21,7 @@
         >
           <div class="message-item">
             <p>
-              {{ $t('chart.gas.headers.method') }}:
+              {{ $t('chart.gas.tableHeaders.method') }}:
             </p>
             <p>
               {{ gas.method || $t('chart.gas.all') }}
@@ -29,7 +37,7 @@
           </div>
           <div class="message-item">
             <p>
-              {{ $t('chart.gas.headers.gasLimit') }}:
+              {{ $t('chart.gas.tableHeaders.gasLimit') }}:
             </p>
             <p>
               {{ Math.round(gas.gasLimit) | locale }}
@@ -37,7 +45,7 @@
           </div>
           <div class="message-item">
             <p>
-              {{ $t('chart.gas.headers.gasUsed') }}:
+              {{ $t('chart.gas.tableHeaders.gasUsed') }}:
             </p>
             <p>
               {{ Math.round(gas.gasUsed) | locale }}
@@ -45,7 +53,7 @@
           </div>
           <div class="message-item">
             <p>
-              {{ $t('chart.gas.headers.fee') }}:
+              {{ $t('chart.gas.tableHeaders.fee') }}:
             </p>
             <p>
               {{ gas.totalFee | filecoin(0) }}
@@ -55,7 +63,7 @@
           </div>
           <div class="message-item">
             <p>
-              {{ $t('chart.gas.headers.count') }}:
+              {{ $t('chart.gas.tableHeaders.count') }}:
             </p>
             <p>
               {{ gas.count }} / {{ gas.count / gasList[0].count | percentage }}
@@ -67,7 +75,7 @@
 
     <div class="hidden container mx-auto lg:block">
       <div class="mt-6 font-medium">
-        {{ $t('chart.gas.title') }}
+        {{ $t('chart.gas.headers.dailyStatistics') }}
       </div>
       <div class="rounded-md my-4 bg-white pt-2">
         <div class="flex mx-4">
@@ -75,22 +83,22 @@
             <thead class="text-gray-600 text-sm m-2">
               <tr class="h-8">
                 <th class="table-header">
-                  {{ $t('chart.gas.headers.method') }}
+                  {{ $t('chart.gas.tableHeaders.method') }}
                 </th>
                 <th class="table-header">
                   Gas Premium
                 </th>
                 <th class="table-header">
-                  {{ $t('chart.gas.headers.gasLimit') }}
+                  {{ $t('chart.gas.tableHeaders.gasLimit') }}
                 </th>
                 <th class="table-header">
-                  {{ $t('chart.gas.headers.gasUsed') }}
+                  {{ $t('chart.gas.tableHeaders.gasUsed') }}
                 </th>
                 <th class="table-header">
-                  {{ $t('chart.gas.headers.fee') }}
+                  {{ $t('chart.gas.tableHeaders.fee') }}
                 </th>
                 <th class="table-header">
-                  {{ $t('chart.gas.headers.count') }}
+                  {{ $t('chart.gas.tableHeaders.count') }}
                 </th>
               </tr>
             </thead>

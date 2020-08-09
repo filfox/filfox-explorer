@@ -479,9 +479,12 @@ export default {
       }
     },
     gas: {
-      title: '24h Gas数据',
-      all: '全部',
+      title: 'Gas 统计',
       headers: {
+        dailyStatistics: '24h Gas 数据'
+      },
+      all: '全部',
+      tableHeaders: {
         method: '消息类型',
         gasPrice: '平均Gas费率',
         gasLimit: '平均Gas限额',

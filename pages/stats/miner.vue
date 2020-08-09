@@ -21,9 +21,9 @@
       </client-only>
     </div>
 
-    <RewardMinerChart :max-count="10" class="my-4" />
+    <RewardMinerChart class="my-4" />
 
-    <SectorInitialPledgeChart :max-count="10" class="my-4" />
+    <SectorInitialPledgeChart class="my-4" />
   </div>
 </template>
 
