@@ -1,9 +1,9 @@
 <template>
   <div class="bg-footer px-4 xl:px-0 text-xs">
     <div class="container mx-auto">
-      <div class="mt-6 my-2">
+      <div class="mt-6">
         <nuxt-link :to="localePath('/')">
-          <img src="@/assets/img/home/logo.svg" alt="filFox.info">
+          <img src="@/assets/img/home/logo.svg" alt="filFox.info" class="h-6">
         </nuxt-link>
       </div>
       <div class="lg:flex lg:justify-between py-4">
