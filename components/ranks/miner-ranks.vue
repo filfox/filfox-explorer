@@ -201,7 +201,7 @@
               <td>{{ miner.luckyValue | percentage }}</td>
               <td>{{ miner.totalRewards | filecoin(2) }}</td>
               <td>{{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }}</td>
-              <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
+              <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
             </tr>
           </tbody>
           <tbody v-if="type===2" class="text-sm text-center">
