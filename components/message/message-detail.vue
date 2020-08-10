@@ -147,17 +147,17 @@
     <div class="rounded-md my-4 pb-4 bg-white">
       <p class="pl-8 py-3 border-b border-background">
         {{ $t('detail.message.modules.others') }}
-        <a
-          :href="`${network.networks[network.currentNetwork].url}/api/v0/message/${message.cid}`"
-          target="_blank"
-          class="ml-4 text-main"
-        >
-          API
-        </a>
       </p>
       <dl class="message-item">
         <dt class="message-key pt-2">
           {{ $t('detail.message.headers.version') }}
+          <a
+            :href="`${network.networks[network.currentNetwork].url}/api/v0/message/${message.cid}`"
+            target="_blank"
+            class="text-main"
+          >
+            (API)
+          </a>
         </dt>
         <dd class="message-value">
           {{ message.version }}
