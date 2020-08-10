@@ -68,6 +68,7 @@
       <div class="flex items-center justify-between mx-3 mt-2">
         <p class="text-xs text-gray-800">
           {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}:
+          <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
         </p>
         <p class="text-xs text-gray-800">
           {{ miningStats.luckyValue | percentage }}
@@ -95,10 +96,12 @@
           /
           {{ $t('shared.time.day') }}
         </p>
-        <p class="text-sm w-1/6 text-right">
-          {{ $t('detail.address.miner.miningOverview.headers.minerEquivalent') }}:
+        <div class="text-sm w-1/6 flex flex-row items-center justify-end">
+          {{ $t('detail.address.miner.miningOverview.headers.minerEquivalent') }}
+          <Tip class="mx-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
+          :
           {{ miningStats.equivalentMiners.toFixed(2) }}
-        </p>
+        </div>
       </div>
       <div class="flex items-center w-full mb-2">
         <p class="text-sm w-5/12 text-left">
@@ -119,10 +122,12 @@
           {{ $t('detail.address.miner.miningOverview.headers.miningEfficiency') }}:
           {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB') }}
         </p>
-        <p class="text-sm w-5/12 text-left">
-          {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}:
+        <div class="text-sm w-5/12 text-left flex flex-row items-center">
+          {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}
+          <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
+          :
           {{ (miningStats.luckyValue * 100).toFixed(2) }}%
-        </p>
+        </div>
       </div>
     </div>
   </div>
