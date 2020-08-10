@@ -134,7 +134,8 @@ export default {
         blockNums: 'Blocks Mined',
         luckyValue: 'Lucky Value',
         totalRewards: 'Rewards',
-        rewardsRatio: 'Rewards Ratio'
+        rewardsRatio: 'Rewards Ratio',
+        validPower: 'Adj. Power'
       },
       tipsByBlock: {
         luckyValue: 'Ratio of actual blocks produced and theoretical value.',

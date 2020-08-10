@@ -133,7 +133,8 @@ export default {
         blockNums: '블록 생성 개수',
         luckyValue: '행운값',
         totalRewards: '블록 보상',
-        rewardsRatio: '블록 보상 비율'
+        rewardsRatio: '블록 보상 비율',
+        validPower: '유효 채굴파워'
       },
       tipsByBlock: {
         luckyValue: '실제 채굴 개수에서 이론상 채굴 개수를 나눈 비율',

@@ -79,23 +79,26 @@
           <th class="w-1/10">
             {{ $t('home.minerRanks.tableHeadersByBlock.tag') }}
           </th>
-          <th class="w-7/25">
+          <th class="w-1/5">
             {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
           </th>
-          <th class="w-7/50">
+          <th class="w-1/8">
             <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
             </div>
           </th>
-          <th class="w-7/50">
+          <th class="w-1/8">
             {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }}
           </th>
-          <th class="w-7/50">
+          <th class="w-1/8">
             <div class="flex justify-center items-center">
               {{ $t('home.minerRanks.tableHeadersByBlock.rewardsRatio') }}
               <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
             </div>
+          </th>
+          <th class="w-1/8">
+            {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
           </th>
         </tr>
         <tr v-if="type === 2">
@@ -186,6 +189,7 @@
           <td>{{ miner.luckyValue | percentage }}</td>
           <td>{{ miner.totalRewards | filecoin(2) }}</td>
           <td>{{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }}</td>
+          <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
         </tr>
       </tbody>
       <tbody v-else-if="type === 2" class="text-sm text-center">
