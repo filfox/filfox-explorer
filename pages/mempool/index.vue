@@ -27,6 +27,12 @@
         >
           <div class="message-item">
             <p>
+              ID
+            </p>
+            <MessageLink :id="message.cid" :format="12" class="text-main" />
+          </div>
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.from') }}:
             </p>
             <AddressLink :id="message.from" :format="12" class="text-main" />
@@ -55,18 +61,18 @@
           </div>
           <div class="message-item">
             <p>
-              {{ $t('blockchain.message.tableHeaders.gasPrice') }}:
-            </p>
-            <p>
-              {{ message.gasPrice | filecoin }}
-            </p>
-          </div>
-          <div class="message-item">
-            <p>
               {{ $t('blockchain.message.tableHeaders.gasLimit') }}:
             </p>
             <p>
               {{ message.gasLimit | locale }}
+            </p>
+          </div>
+          <div class="message-item">
+            <p>
+              Gas Premium:
+            </p>
+            <p>
+              {{ message.gasPremium | filecoin }}
             </p>
           </div>
         </div>
@@ -108,6 +114,9 @@
             <thead class="text-gray-600 text-sm m-2">
               <tr class="h-8">
                 <th class="table-header">
+                  ID
+                </th>
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.from') }}
                 </th>
                 <th class="table-header">
@@ -120,10 +129,10 @@
                   {{ $t('blockchain.message.tableHeaders.value') }}
                 </th>
                 <th class="table-header">
-                  {{ $t('blockchain.message.tableHeaders.gasPrice') }}
+                  {{ $t('blockchain.message.tableHeaders.gasLimit') }}
                 </th>
                 <th class="table-header">
-                  {{ $t('blockchain.message.tableHeaders.gasLimit') }}
+                  Gas Premium
                 </th>
               </tr>
             </thead>
@@ -133,6 +142,9 @@
                 :key="index"
                 class="h-12 border-b border-background text-sm"
               >
+                <td>
+                  <MessageLink :id="message.cid" :format="8" />
+                </td>
                 <td>
                   <AddressLink :id="message.from" :format="8" />
                 </td>
@@ -146,10 +158,10 @@
                   {{ message.value | filecoin(4) }}
                 </td>
                 <td>
-                  {{ message.gasPrice | filecoin }}
+                  {{ message.gasLimit | locale }}
                 </td>
                 <td>
-                  {{ message.gasLimit | locale }}
+                  {{ message.gasPremium | filecoin }}
                 </td>
               </tr>
             </tbody>

@@ -27,7 +27,7 @@
           <nuxt-link :to="localePath('/deal')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.3') }}
           </nuxt-link>
-          <nuxt-link v-if="false" :to="localePath('/mempool')" class="link" @click.native="hideIfNeeded">
+          <nuxt-link :to="localePath('/mempool')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.4') }}
           </nuxt-link>
         </el-collapse-item>
