@@ -72,7 +72,7 @@
           </p>
           <img src="~/assets/img/deal/client.svg" alt="client" class="w-10 mt-1">
           <div class="flex items-center mt-1">
-            <AddressLink :id="deal.client" :format="4" class="text-main" />
+            <AddressLink :id="deal.client" :format="6" class="text-main" />
             <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="2" class="ml-1" />
           </div>
           <p class="text-xs mt-1">
@@ -102,7 +102,7 @@
           </p>
           <img src="~/assets/img/deal/provider.svg" alt="provider" class="w-10 mt-1">
           <div class="flex items-center mt-1">
-            <AddressLink :id="deal.provider" :format="4" class="text-main" />
+            <AddressLink :id="deal.provider" class="text-main" />
             <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="2" class="ml-1" />
           </div>
           <p class="text-xs mt-1">
@@ -194,7 +194,7 @@
             </p>
             <img src="~/assets/img/deal/client.svg" alt="client" class="w-10 mt-1">
             <div class="flex items-center mt-1">
-              <AddressLink :id="deal.client" :format="4" class="text-main" />
+              <AddressLink :id="deal.client" :format="6" class="text-main" />
               <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="1" />
             </div>
             <p class="text-xs mt-1">
@@ -224,7 +224,7 @@
             </p>
             <img src="~/assets/img/deal/provider.svg" alt="provider" class="w-10 mt-1">
             <div class="flex items-center mt-1">
-              <AddressLink :id="deal.provider" :format="4" class="text-main" />
+              <AddressLink :id="deal.provider" class="text-main" />
               <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="1" />
             </div>
             <p class="text-xs mt-1">

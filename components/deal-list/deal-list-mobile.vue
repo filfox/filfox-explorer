@@ -36,7 +36,7 @@
             {{ $t('blockchain.dealList.tableHeaders.client') }}
           </p>
           <div class="flex items-center">
-            <AddressLink :id="deal.client" :format="4" class="text-main" />
+            <AddressLink :id="deal.client" :format="6" class="text-main" />
             <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="2" class="ml-1" />
           </div>
         </div>
@@ -46,7 +46,7 @@
             {{ $t('blockchain.dealList.tableHeaders.provider') }}
           </p>
           <div class="flex items-center">
-            <AddressLink :id="deal.provider" :format="4" class="text-main" />
+            <AddressLink :id="deal.provider" class="text-main" />
             <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="2" class="ml-1" />
           </div>
         </div>
