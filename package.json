@@ -1,7 +1,7 @@
 {
   "name": "filfox",
   "version": "1.0.0",
-  "description": "Filecoin explorer",
+  "description": "Filecoin browser",
   "author": "6block team",
   "private": true,
   "scripts": {

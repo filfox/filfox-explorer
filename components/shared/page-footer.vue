@@ -7,10 +7,10 @@
         </nuxt-link>
       </div>
       <div class="lg:flex lg:justify-between py-4">
-        <p class="text-footerText lg:flex-grow">
+        <p class="text-footerText lg:flex-grow lg:w-4/5">
           {{ $t('footer.intro') }}
         </p>
-        <p class="text-footerText lg:flex-grow-0 lg:flex-shrink-0 lg:ml-20">
+        <p class="text-footerText mt-4 lg:mt-0 lg:flex-grow-0 lg:flex-shrink-0 lg:ml-20 lg:w-1/5 lg:text-right">
           {{ $t('footer.contact') }}
         </p>
       </div>
