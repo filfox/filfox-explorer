@@ -33,6 +33,12 @@
           </div>
           <div class="message-item">
             <p>
+              Time
+            </p>
+            <FromNow :timestamp="message.createTime" />
+          </div>
+          <div class="message-item">
+            <p>
               {{ $t('blockchain.message.tableHeaders.from') }}:
             </p>
             <AddressLink :id="message.from" :format="12" class="text-main" />
@@ -117,6 +123,9 @@
                   ID
                 </th>
                 <th class="table-header">
+                  Time
+                </th>
+                <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.from') }}
                 </th>
                 <th class="table-header">
@@ -144,6 +153,9 @@
               >
                 <td>
                   <MessageLink :id="message.cid" :format="8" />
+                </td>
+                <td>
+                  <FromNow :timestamp="message.createTimestamp" />
                 </td>
                 <td>
                   <AddressLink :id="message.from" :format="8" />
