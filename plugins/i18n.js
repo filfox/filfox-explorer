@@ -4,9 +4,9 @@ import { detectBrowserLanguage, localeCodes, vueI18n, routesNameSeparator, defau
 import { createLocaleFromRouteGetter } from '~/.nuxt/nuxt-i18n/utils-common'
 
 const getLocaleFromRoute = createLocaleFromRouteGetter(localeCodes, { routesNameSeparator, defaultLocaleRouteNameSuffix })
-moment.updateLocale('zh', {
-  parentLocale: 'zh-cn'
-})
+const localeMapping = {
+  zh: 'zh-cn'
+}
 
 export default ({ route, isHMR, req, res, redirect }) => {
   if (isHMR) {
@@ -54,7 +54,6 @@ export default ({ route, isHMR, req, res, redirect }) => {
     if (req && req.headers) {
       req.headers.cookie += `;${cookieKey}=${routeLocale}`
     }
-    moment.locale(redirectLocale)
     setLocaleCookie(redirectLocale)
     redirect(`/${redirectLocale}${route.path}`.replace(/^(.+)?\/+$/, '$1'), route.query)
     return res.end()
@@ -71,4 +70,5 @@ export default ({ route, isHMR, req, res, redirect }) => {
     }
     setLocaleCookie(routeLocale)
   }
+  moment.locale(localeMapping[routeLocale] ?? routeLocale)
 }
