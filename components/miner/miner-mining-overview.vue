@@ -26,9 +26,11 @@
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-2">
-        <p class="text-xs text-gray-800">
+        <div class="text-xs text-gray-800 flex items-center">
           {{ $t('detail.address.miner.miningOverview.headers.minerEquivalent') }}:
-        </p>
+          <Tip class="mx-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
+          :
+        </div>
         <p class="text-xs text-gray-800">
           {{ miningStats.equivalentMiners.toFixed(2) }}
         </p>
@@ -66,10 +68,11 @@
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-2">
-        <p class="text-xs text-gray-800">
-          {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}:
-          <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
-        </p>
+        <div class="text-xs text-gray-800 items-center flex">
+          {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}
+          <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
+          :
+        </div>
         <p class="text-xs text-gray-800">
           {{ miningStats.luckyValue | percentage }}
         </p>
