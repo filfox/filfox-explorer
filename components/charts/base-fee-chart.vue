@@ -2,7 +2,7 @@
   <div class="lg:rounded-md bg-white">
     <div class="flex justify-between items-center h-12 border-b border-background">
       <div class="items-center pl-4 lg:pl-6 text-xs lg:text-base">
-        Base Fee Variations
+        {{ $t('chart.gas.baseFeeChart.title') }}
       </div>
       <DurationSelect v-model="duration" class="items-center mr-4 hidden lg:flex" />
       <DurationSelect v-model="duration" portable class="lg:hidden mr-4" />

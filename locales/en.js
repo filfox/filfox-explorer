@@ -499,6 +499,9 @@ export default {
     },
     gas: {
       title: 'Gas Statistics',
+      baseFeeChart: {
+        title: 'Base Fee Variations'
+      },
       headers: {
         dailyStatistics: '24h Gas Data'
       },

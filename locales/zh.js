@@ -488,6 +488,9 @@ export default {
     },
     gas: {
       title: 'Gas 统计',
+      baseFeeChart: {
+        title: '基础费率走势'
+      },
       headers: {
         dailyStatistics: '24h Gas 数据'
       },

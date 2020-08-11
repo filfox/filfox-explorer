@@ -3,7 +3,7 @@
     <img v-if="type == 'overview'" src="~/assets/img/home/overview.svg" alt="icon" class="image">
     <img v-else-if="type == 'powerDistribution'" src="~/assets/img/home/power-distribution.svg" alt="icon" class="image">
     <img v-else-if="type == 'powerDelta'" src="~/assets/img/home/power-delta.svg" alt="icon" class="image">
-    <img v-else-if="type == 'baseFee'" src="~/assets/img/home/power-delta.svg" alt="icon" class="image">
+    <img v-else-if="type == 'baseFee'" src="~/assets/img/home/line-chart.svg" alt="icon" class="image">
     <img v-else-if="type == 'minerRanks'" src="~/assets/img/home/miner-ranks.svg" alt="icon" class="image">
     <img v-else-if="type == 'recentTipsets'" src="~/assets/img/home/blocks.svg" alt="icon" class="image">
     <img v-else-if="type == 'richManRanks'" src="~/assets/img/home/rich.svg" alt="icon" class="image">

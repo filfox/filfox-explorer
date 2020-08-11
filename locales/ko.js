@@ -495,6 +495,9 @@ export default {
     },
     gas: {
       title: '가스 데이터',
+      baseFeeChart: {
+        title: 'Base Fee Variations'
+      },
       headers: {
         dailyStatistics: '24시간 가스 데이터'
       },
