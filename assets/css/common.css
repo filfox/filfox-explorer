@@ -1,5 +1,9 @@
 @import 'v-charts/lib/style.css';
 
+html {
+    font-family: "Helvetica Neue",Helvetica,"Microsoft Yahei",Arial,"Hiragino Sans GB","Heiti SC","WenQuanYiMicro Hei",sans-serif;
+}
+
 button {
     outline: none;
 }
