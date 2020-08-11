@@ -135,7 +135,7 @@ export default {
         luckyValue: 'Lucky Value',
         totalRewards: 'Rewards',
         rewardsRatio: 'Rewards Ratio',
-        validPower: 'Adj. Power'
+        validPower: 'Adj. Power Ratio'
       },
       tipsByBlock: {
         luckyValue: 'Ratio of actual blocks produced and theoretical value.',

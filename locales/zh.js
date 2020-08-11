@@ -124,7 +124,7 @@ export default {
         luckyValue: '幸运值',
         totalRewards: '出块奖励',
         rewardsRatio: '出块奖励占比',
-        validPower: '有效算力'
+        validPower: '有效算力占比'
       },
       tipsByBlock: {
         luckyValue: '实际爆块数量和理论爆块数量的比值',
