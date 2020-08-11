@@ -4,13 +4,19 @@
       {{ $t('blockchain.dealList.title') }}
     </div>
     <div class="w-full bg-white rounded-md mt-4 mb-4">
-      <div class="flex items-center justify-between border-b border-background">
+      <div class="flex flex-row items-center justify-between border-b border-background">
         <p class="flex ml-4 h-12 items-center text-sm">
           {{ $t('blockchain.dealList.info.total') + ' ' + total + ' ' + $t('blockchain.dealList.info.deals') }}
         </p>
-        <!-- <el-select v-model="type" size="mini" class="mr-4" @change="didSelectChanged">
-          <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type" />
-        </el-select> -->
+        <el-input
+          v-model="searchText"
+          size="mini"
+          suffix-icon="el-icon-search"
+          :clearable="true"
+          :placeholder="$t('blockchain.dealList.searchPlaceHolder')"
+          class="flex mr-4 w-1/3"
+          @keyup.enter.native="search"
+        />
       </div>
       <table v-if="!loading" class="w-full table-fixed mt-2">
         <thead class="text-gray-600 text-sm">
@@ -90,12 +96,24 @@ export default {
       pageSize: 20,
       loading: false,
       dealList: {},
-      total: 0
+      total: 0,
+      searchText: '',
+      searchedText: ''
     }
   },
   computed: {
     totalPageCount() {
       return Math.ceil(this.total / this.pageSize)
+    }
+  },
+  watch: {
+    // Just request when user press `enter`. Don't watch searchText then directly request.
+    searchText() {
+      if (!this.searchText) {
+        this.page = 0
+        this.searchedText = ''
+        this.getDealList()
+      }
     }
   },
   mounted() {
@@ -104,8 +122,12 @@ export default {
   methods: {
     getDealList() {
       this.loading = true
+      const params = { pageSize: this.pageSize, page: this.page }
+      if (this.searchedText) {
+        params.address = this.searchedText
+      }
       this.$axios
-        .get('/deal/list', { params: { pageSize: this.pageSize, page: this.page } })
+        .get('/deal/list', { params })
         .then(res => {
           this.dealList = res.data
           this.total = this.dealList.totalCount
@@ -115,6 +137,20 @@ export default {
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
       this.getDealList()
+    },
+    async search() {
+      const address = this.searchText.trim()
+      if (!address) {
+        return
+      }
+      this.page = 0
+      this.loading = true
+      const params = { address, pageSize: this.pageSize, page: this.page }
+      const result = await this.$axios.$get('/deal/list', { params })
+      this.dealList = result
+      this.total = this.dealList.totalCount
+      this.loading = false
+      this.searchedText = this.searchText
     }
   }
 }

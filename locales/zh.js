@@ -228,6 +228,7 @@ export default {
     },
     dealList: {
       title: '订单列表',
+      searchPlaceHolder: '搜索 客户/托管者',
       info: {
         total: '共',
         deals: '个订单'

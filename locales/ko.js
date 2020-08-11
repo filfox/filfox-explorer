@@ -236,6 +236,7 @@ export default {
     },
     dealList: {
       title: '주문 리스트',
+      searchPlaceHolder: '검색 클라이언트/스토리지 사용자',
       info: {
         total: '총',
         deals: '주문'

@@ -239,6 +239,7 @@ export default {
     },
     dealList: {
       title: 'Deal List',
+      searchPlaceHolder: 'Search Client/Provider',
       info: {
         total: 'Total',
         deals: 'Deals'
