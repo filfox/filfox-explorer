@@ -291,13 +291,15 @@ export default {
         type: 'Type'
       },
       types: {
-        genesis: 'genesis',
-        fee: 'fee',
-        burn: 'burn',
-        reward: 'reward',
-        send: 'send',
-        receive: 'receive',
-        transfer: 'transfer'
+        genesis: 'Genesis',
+        fee: 'Fee',
+        burn: 'Burn',
+        reward: 'Reward',
+        send: 'Send',
+        receive: 'Receive',
+        transfer: 'Transfer',
+        'miner-fee': 'Miner Fee',
+        'burn-fee': 'Burn Fee'
       },
       total: 'Total',
       transaction: 'transactions'

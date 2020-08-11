@@ -289,7 +289,9 @@ export default {
         reward: '区块奖励',
         send: '发出',
         receive: '接收',
-        transfer: '转账'
+        transfer: '转账',
+        'miner-fee': '矿工手续费',
+        'burn-fee': '销毁手续费'
       },
       total: '共',
       transaction: '条转账'
