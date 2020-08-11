@@ -104,6 +104,9 @@ export default {
     powerDelta: {
       title: '일별 채굴파워 증가량 ( Top5）'
     },
+    baseFee: {
+      title: '24h Base Fee Variations'
+    },
     minerRanks: {
       title: '채굴 순위표',
       rate: '점유률',

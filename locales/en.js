@@ -105,6 +105,9 @@ export default {
     powerDelta: {
       title: 'Daily Storage Power Growth (Top 5)'
     },
+    baseFee: {
+      title: '24h Base Fee Variations'
+    },
     minerRanks: {
       title: 'Top Miners',
       rate: 'Rate',

@@ -11,9 +11,9 @@
       </div>
 
       <div class="bg-white lg:ml-2 lg:rounded-md">
-        <HomeTitle type="powerDelta" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
+        <HomeTitle type="baseFee" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
         <client-only>
-          <PowerDeltaChart class="mt-2 mx-1 lg:mx-4 lg:mt-12" />
+          <BaseFeeChartHome class="mt-2 mx-1 lg:mx-0 lg:my-4" />
         </client-only>
       </div>
     </div>
@@ -64,9 +64,9 @@
       </div>
 
       <div class="bg-white lg:hidden">
-        <HomeTitle type="powerDelta" class="border-b border-background h-10 pr-4" />
+        <HomeTitle type="baseFee" class="border-b border-background h-10 pr-4" />
         <client-only>
-          <PowerDeltaChart class="mt-2 mx-1" />
+          <BaseFeeChartHome class="mt-2 lg:mx-0 lg:my-4" />
         </client-only>
       </div>
     </div>

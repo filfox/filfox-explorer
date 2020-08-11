@@ -94,6 +94,9 @@ export default {
     powerDelta: {
       title: '每日算力增量（Top5）'
     },
+    baseFee: {
+      title: '24h基础手续费率走势'
+    },
     minerRanks: {
       title: '挖矿排行榜',
       rate: '占比',
