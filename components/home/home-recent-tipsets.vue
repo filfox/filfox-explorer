@@ -40,7 +40,7 @@
               :class="{'border-b border-background': blockIndex == tipset.blocks.length - 1}"
             >
               <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
-                <div>
+                <div :class="{'py-2': tipset.blocks.length == 1}">
                   <TipsetLink :id="tipset.height" class="block text-main text-base" />
                   <FromNow :timestamp="tipset.timestamp" format="seconds" class="block text-sm" />
                 </div>
