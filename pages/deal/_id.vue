@@ -2,18 +2,18 @@
   <div>
     <div class="bg-background lg:hidden">
       <div class="pl-4 border-b border-background bg-white">
-        <div class="font-medium pt-2">
+        <div class="font-medium py-2 text-sm">
           {{ $t('detail.deal.title') }}
-        </div>
-        <div class="text-xs my-1">
-          #{{ id }}
         </div>
       </div>
       <div class="px-4 bg-white flex justify-between pt-2">
         <p class="text-gray-600 text-xs">
           {{ $t('detail.deal.headers.id') }}
         </p>
-        <DealLink :id="deal.id" class="text-xs" />
+        <div class="flex justify-end items-center">
+          <DealLink :id="deal.id" class="text-xs" />
+          <DealVerifiedIcon v-if="deal.verifiedDeal" :content="$t('blockchain.dealList.verifiedTips')" class="ml-1" />
+        </div>
       </div>
       <div class="px-4 bg-white flex justify-between pt-1">
         <p class="text-gray-600 text-xs">
@@ -113,8 +113,9 @@
     </div>
 
     <div class="hidden container mx-auto lg:block text-sm">
-      <div class="mt-6 font-medium text-base">
+      <div class="mt-6 font-medium text-base flex items-center">
         {{ $t('detail.deal.title') }} #{{ id }}
+        <DealVerifiedIcon v-if="deal.verifiedDeal" :content="$t('blockchain.dealList.verifiedTips')" class="ml-1" />
       </div>
       <div class="rounded-md my-4 bg-white pb-2">
         <div class="border-b border-background pt-2 pb-2">

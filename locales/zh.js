@@ -229,6 +229,7 @@ export default {
     dealList: {
       title: '订单列表',
       searchPlaceHolder: '搜索 客户/托管者',
+      verifiedTips: '表示官方认证客户发起的文件订单，该订单有效算力约等于十倍原算力',
       info: {
         total: '共',
         deals: '个订单'

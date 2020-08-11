@@ -240,6 +240,7 @@ export default {
     dealList: {
       title: 'Deal List',
       searchPlaceHolder: 'Search Client/Provider',
+      verifiedTips: 'This deal is initiated by the official certified client, the adjusted power is about ten times raw power',
       info: {
         total: 'Total',
         deals: 'Deals'

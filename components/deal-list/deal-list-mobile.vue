@@ -19,7 +19,10 @@
           <p class="text-gray-500">
             {{ $t('blockchain.dealList.tableHeaders.id') }}
           </p>
-          <DealLink :id="deal.id" class="text-main" />
+          <div class="flex justify-end items-center">
+            <DealLink :id="deal.id" class="text-main" />
+            <DealVerifiedIcon v-if="deal.verifiedDeal" :content="$t('blockchain.dealList.verifiedTips')" class="ml-1" />
+          </div>
         </div>
 
         <div class="flex justify-between pt-2 mx-1 items-center">

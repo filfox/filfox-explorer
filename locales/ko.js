@@ -237,6 +237,7 @@ export default {
     dealList: {
       title: '주문 리스트',
       searchPlaceHolder: '검색 클라이언트/스토리지 사용자',
+      verifiedTips: '공식 인증을 받은 클라이언트의 문서입니다. 해당 문서의 유효 채굴파워는 기본 채굴파워의 10배에 해당합니다.',
       info: {
         total: '총',
         deals: '주문'

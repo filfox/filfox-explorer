@@ -50,7 +50,10 @@
         <tbody class="text-center text-sm">
           <tr v-for="(deal, index) in dealList.deals" :key="index" class="border-b border-background h-10">
             <td>
-              <DealLink :id="deal.id" class="text-sm" />
+              <div class="flex items-center justify-center">
+                <DealLink :id="deal.id" class="text-sm" />
+                <DealVerifiedIcon v-if="deal.verifiedDeal" :content="$t('blockchain.dealList.verifiedTips')" class="ml-1" />
+              </div>
             </td>
             <td>
               {{ deal.timestamp | timestamp('datetime') }}
