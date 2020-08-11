@@ -84,7 +84,7 @@
                 :class="{'border-b border-background': blockIndex == tipset.blocks.length - 1}"
               >
                 <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" :class="{'h-10': tipset.blocks.length == 1}" class="border-b border-background">
-                  <TipsetLink :id="tipset.height" class="text-main text-base" />
+                  <TipsetLink :id="tipset.height" class="text-main text-sm" />
                 </td>
                 <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
                   <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-sm" />
