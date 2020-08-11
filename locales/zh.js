@@ -489,7 +489,8 @@ export default {
     gas: {
       title: 'Gas 统计',
       baseFeeChart: {
-        title: '基础费率走势'
+        title: '基础费率走势',
+        tips: '基础手续费率：由系统收取并销毁的手续费的实时费率'
       },
       headers: {
         dailyStatistics: '24h Gas 数据'

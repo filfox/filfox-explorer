@@ -11,7 +11,10 @@
       </div>
 
       <div class="bg-white lg:ml-2 lg:rounded-md">
-        <HomeTitle type="baseFee" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
+        <div class="flex items-center border-b border-background h-10 lg:h-12 lg:pr-4">
+          <HomeTitle type="baseFee" />
+          <Tip class="ml-1" :content="$t('chart.gas.baseFeeChart.tips')" />
+        </div>
         <client-only>
           <BaseFeeChartHome class="mt-2 mx-1 lg:mx-0 lg:my-4" />
         </client-only>

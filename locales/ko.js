@@ -496,7 +496,8 @@ export default {
     gas: {
       title: '가스 데이터',
       baseFeeChart: {
-        title: 'Base Fee Variations'
+        title: 'Base Fee Variations',
+        tips: 'Base Fee：The real-time rate of the fee charged and burned by Filecoin system.'
       },
       headers: {
         dailyStatistics: '24시간 가스 데이터'

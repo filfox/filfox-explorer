@@ -500,7 +500,8 @@ export default {
     gas: {
       title: 'Gas Statistics',
       baseFeeChart: {
-        title: 'Base Fee Variations'
+        title: 'Base Fee Variations',
+        tips: 'Base Fee：The real-time rate of the fee charged and burned by Filecoin system.'
       },
       headers: {
         dailyStatistics: '24h Gas Data'
