@@ -1,7 +1,7 @@
 @import 'v-charts/lib/style.css';
 
 html {
-    font-family: "PingFang SC","Helvetica Neue",Helvetica,"Microsoft Yahei",Arial,"Hiragino Sans GB","Heiti SC","WenQuanYiMicro Hei",sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue",Helvetica,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYiMicro Hei",sans-serif;
 }
 
 button {
