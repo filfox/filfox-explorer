@@ -139,9 +139,13 @@ export default {
       tipsetsList: {},
       page: 0,
       pageSize: 20,
-      totalPageCount: 0,
       loading: false,
       total: 0
+    }
+  },
+  computed: {
+    totalPageCount() {
+      return Math.ceil(this.total / this.pageSize)
     }
   },
   mounted() {
@@ -156,11 +160,7 @@ export default {
           this.tipsetsList = res.data
           this.loading = false
           this.total = this.tipsetsList.totalCount
-          this.getTotalPageCount()
         })
-    },
-    getTotalPageCount() {
-      this.totalPageCount = Math.ceil(this.total / this.pageSize)
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1

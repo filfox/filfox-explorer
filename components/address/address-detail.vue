@@ -206,9 +206,13 @@ export default {
       listType: 0,
       page: 0,
       pageSize: 20,
-      totalPageCount: 0,
       loading: false,
       total: 0
+    }
+  },
+  computed: {
+    totalPageCount() {
+      return Math.ceil(this.total / this.pageSize)
     }
   },
   methods: {
@@ -218,10 +222,6 @@ export default {
       this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
       this.loading = false
       this.total = this.transferList.totalCount
-      this.getTotalPageCount()
-    },
-    getTotalPageCount() {
-      this.totalPageCount = Math.ceil(this.total / this.pageSize)
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
@@ -231,7 +231,6 @@ export default {
     },
     didListTypeChanged() {
       this.page = 0
-      this.totalPageCount = 1
       this.total = 0
       if (this.listType === 1) {
         this.getTransferList()

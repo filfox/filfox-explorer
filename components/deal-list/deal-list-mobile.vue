@@ -109,10 +109,14 @@ export default {
     return {
       page: 0,
       pageSize: 5,
-      totalPageCount: 0,
       loading: false,
       dealList: {},
       total: 0
+    }
+  },
+  computed: {
+    totalPageCount() {
+      return Math.ceil(this.total / this.pageSize)
     }
   },
   mounted() {
@@ -127,11 +131,7 @@ export default {
           this.dealList = res.data
           this.total = this.dealList.totalCount
           this.loading = false
-          this.getTotalPageCount()
         })
-    },
-    getTotalPageCount() {
-      this.totalPageCount = Math.ceil(this.total / this.pageSize)
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1

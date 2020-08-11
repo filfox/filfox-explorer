@@ -80,7 +80,6 @@ export default {
     return {
       page: 0,
       pageSize: 20,
-      totalPageCount: 0,
       loading: false,
       richList: {},
       total: 0,
@@ -99,6 +98,11 @@ export default {
       }]
     }
   },
+  computed: {
+    totalPageCount() {
+      return Math.ceil(this.total / this.pageSize)
+    }
+  },
   mounted() {
     this.getRichList()
   },
@@ -111,7 +115,6 @@ export default {
           this.richList = res.data
           this.total = this.richList.totalCount
           this.loading = false
-          this.getTotalPageCount()
         })
     },
     getMinersRichList() {
@@ -122,7 +125,6 @@ export default {
           this.richList = res.data
           this.total = this.richList.totalCount
           this.loading = false
-          this.getTotalPageCount()
         })
     },
     getNormalAccountsRichList() {
@@ -133,11 +135,7 @@ export default {
           this.richList = res.data
           this.total = this.richList.totalCount
           this.loading = false
-          this.getTotalPageCount()
         })
-    },
-    getTotalPageCount() {
-      this.totalPageCount = Math.ceil(this.total / this.pageSize)
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
