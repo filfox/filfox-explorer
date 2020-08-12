@@ -318,6 +318,7 @@ export default {
         cid: 'Message ID',
         height: 'Height',
         time: 'Time',
+        createTime: 'Create Time',
         inBlocks: 'Block',
         version: 'Version',
         from: 'From',

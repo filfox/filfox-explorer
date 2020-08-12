@@ -20,10 +20,11 @@
           {{ $t('detail.message.headers.height') }}
         </dt>
         <dd class="message-value">
-          <TipsetLink :id="message.height" class="text-main" />
+          <TipsetLink v-if="message.height" :id="message.height" class="text-main" />
+          <p> N/A </p>
         </dd>
       </dl>
-      <dl class="message-item">
+      <dl v-if="message.timestamp" class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.time') }}
         </dt>
@@ -31,7 +32,15 @@
           {{ message.timestamp | timestamp }}
         </dd>
       </dl>
-      <dl class="message-item">
+      <dl v-if="message.createTimestamp" class="message-item">
+        <dt class="message-key">
+          {{ $t('detail.message.headers.createTime') }}
+        </dt>
+        <dd class="message-value">
+          {{ message.createTimestamp | timestamp }}
+        </dd>
+      </dl>
+      <dl v-if="message.blocks && message.blocks.length > 0" class="message-item">
         <dt class="message-key items-center">
           {{ $t('detail.message.headers.inBlocks') }}
         </dt>

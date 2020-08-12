@@ -315,6 +315,7 @@ export default {
         cid: '메시지 ID',
         height: '높이',
         time: '시간',
+        createTime: '생성 시간',
         inBlocks: '연결된 블록',
         version: '버전',
         from: '보낸 이',

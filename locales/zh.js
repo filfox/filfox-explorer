@@ -307,6 +307,7 @@ export default {
         cid: '消息ID',
         height: '高度',
         time: '时间',
+        createTime: '创建时间',
         inBlocks: '所属区块',
         version: '版本',
         from: '发送方',

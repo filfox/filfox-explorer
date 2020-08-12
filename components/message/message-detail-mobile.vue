@@ -14,9 +14,12 @@
         <p class="message-key">
           {{ $t('detail.message.headers.height') }}
         </p>
-        <TipsetLink :id="message.height" class="message-value text-main" />
+        <TipsetLink v-if="message.height" :id="message.height" class="message-value text-main" />
+        <p v-else class="message-value">
+          N/A
+        </p>
       </div>
-      <div class="message-item">
+      <div v-if="message.timestamp" class="message-item">
         <p class="message-key">
           {{ $t('detail.message.headers.time') }}
         </p>
@@ -24,7 +27,15 @@
           {{ message.timestamp | timestamp }}
         </p>
       </div>
-      <div class="message-item">
+      <div v-if="message.createTimestamp" class="message-item">
+        <p class="message-key">
+          {{ $t('detail.message.headers.createTime') }}
+        </p>
+        <p class="message-value">
+          {{ message.createTimestamp | timestamp }}
+        </p>
+      </div>
+      <div v-if="message.blocks && message.blocks.length > 0" class="message-item">
         <p class="message-key">
           {{ $t('detail.message.headers.inBlocks') }}
         </p>
