@@ -15,7 +15,7 @@
         </p>
 
         <div
-          v-for="(gas, index) in gasList"
+          v-for="(gas, index) in sortedGasList"
           :key="index"
           class="rounded-sm mx-3 mb-3 py-2 shadow bg-white text-xs text-gray-800"
         >
@@ -66,7 +66,7 @@
             <p>
               {{ gas.totalFee | filecoin(0) }}
               /
-              {{ gas.totalFee / gasList.find(item => !item.method).totalFee | percentage }}
+              {{ gas.totalFee / gasList[0].totalFee | percentage }}
             </p>
           </div>
           <div class="message-item">
@@ -115,7 +115,7 @@
             </thead>
             <tbody class="text-center">
               <tr
-                v-for="(gas, index) in gasList"
+                v-for="(gas, index) in sortedGasList"
                 :key="index"
                 class="h-12 border-b border-background text-sm"
               >
@@ -137,7 +137,7 @@
                 <td>
                   {{ gas.totalFee | filecoin(0) }}
                   /
-                  {{ gas.totalFee / gasList.find(item => !item.method).totalFee | percentage }}
+                  {{ gas.totalFee / gasList[0].totalFee | percentage }}
                 </td>
                 <td>
                   {{ gas.count }} / {{ gas.count / gasList[0].count | percentage }}
@@ -167,7 +167,12 @@ export default {
   },
   data() {
     return {
-      gasList: {}
+      gasList: []
+    }
+  },
+  computed: {
+    sortedGasList() {
+      return this.gasList.slice().sort((x, y) => y.totalFee - x.totalFee)
     }
   },
   head() {
