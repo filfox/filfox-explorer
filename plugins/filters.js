@@ -4,7 +4,7 @@ import exitCodes from '@/filecoin/exit-codes.json'
 
 Vue.filter('locale', value => {
   if (typeof value === 'number') {
-    return value.toLocaleString()
+    return value.toLocaleString('en')
   } else {
     return addAmountDelimiters(value)
   }
@@ -32,12 +32,12 @@ Vue.filter('filecoin', (value, precision = null, suffix = '') => {
   if (value == null) {
     return 'N/A'
   }
-  value = String(value)
+  value = typeof value === 'string' ? value : value.toLocaleString('en').replace(/,/g, '')
   const digits = value.includes('.') ? value.indexOf('.') : value.length
   if (value === '0') {
     return `0 FIL${suffix}`
   } else if (digits <= 7) {
-    return `${Number(value).toLocaleString()} attoFIL${suffix}`
+    return `${Number(value).toLocaleString('en')} attoFIL${suffix}`
   } else if (digits <= 13) {
     return `${Vue.filter('coin')(value, 9, precision)} nanoFIL${suffix}`
   } else {

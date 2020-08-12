@@ -32,7 +32,7 @@
               Gas Premium:
             </p>
             <p>
-              {{ gas.gasPremium | filecoin(2) }}
+              {{ Math.round(gas.gasPremium) | filecoin(2) }}
             </p>
           </div>
           <div class="message-item">
@@ -123,7 +123,7 @@
                   {{ gas.method || $t('chart.gas.all') }}
                 </td>
                 <td>
-                  {{ gas.gasPremium | filecoin(2) }}
+                  {{ Math.round(gas.gasPremium) | filecoin(2) }}
                 </td>
                 <td>
                   {{ Math.round(gas.gasLimit) | locale }}
