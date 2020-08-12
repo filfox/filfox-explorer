@@ -276,7 +276,7 @@ export default {
   computed: {
     totalPageCount() {
       if (this.type === 0) {
-        return this.topMinersByPower == null
+        return this.topMinersByPower.miners == null
           ? 0
           : Math.ceil(this.topMinersByPower.totalCount / this.pageSize)
       } else if (this.type === 1) {
