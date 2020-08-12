@@ -84,7 +84,7 @@ export default {
   methods: {
     async getLineChartData() {
       this.loading = true
-      this.rawData = await this.$axios.$get('stats/base-fee', { params: { duration: this.duration, samples: 50 } })
+      this.rawData = await this.$axios.$get('stats/base-fee', { params: { duration: this.duration, samples: 48 } })
       if (this.rawData == null) {
         this.dataEmpty = true
         this.loading = false
