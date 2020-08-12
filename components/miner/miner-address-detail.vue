@@ -204,18 +204,18 @@
               <th class="sticky top-0 bg-white z-10 w-1/4">
                 {{ $t('detail.transfer.tableHeaders.message') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32">
+              <th class="sticky top-0 bg-white z-10 w-5/32 xl:29/160">
                 {{ $t('detail.transfer.tableHeaders.from') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/16">
+              <th class="sticky top-0 bg-white z-10 w-1/16 ">
               </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32">
+              <th class="sticky top-0 bg-white z-10 w-5/32 xl:29/160">
                 {{ $t('detail.transfer.tableHeaders.to') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 lg:w-1/16 xl:w-1/8">
+              <th class="sticky top-0 bg-white z-10 lg:w-1/16 xl:w-1/10">
                 {{ $t('detail.transfer.tableHeaders.income') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 lg:w-1/16 xl:w-1/8">
+              <th class="sticky top-0 bg-white z-10 lg:w-1/16 xl:w-1/10">
                 {{ $t('detail.transfer.tableHeaders.type') }}
               </th>
             </tr>
