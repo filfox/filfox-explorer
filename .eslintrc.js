@@ -1,5 +1,3 @@
-const INLINE_ELEMENTS = require('eslint-plugin-vue/lib/utils/inline-non-void-elements.json')
-
 module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -143,7 +141,6 @@ module.exports = {
       },
       svg: 'always',
       math: 'always'
-    }],
-    'vue/multiline-html-element-content-newline': ['warn', { ignores: ['pre', 'textarea', 'highlight', ...INLINE_ELEMENTS] }]
+    }]
   }
 }

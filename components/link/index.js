@@ -69,6 +69,9 @@ export function createLink(category, { name = `${category}-link`, route = `${cat
     name,
     functional: true,
     render(createElement, { data, props, children }) {
+      if (data.attrs == null) {
+        data.attrs = {}
+      }
       Object.assign(data.attrs, props, { route })
       return createElement(Link, data, children)
     }

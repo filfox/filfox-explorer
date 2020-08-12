@@ -94,8 +94,16 @@
           {{ message.receipt.exitCode | exit-code }}
         </dd>
       </dl>
+      <dl v-if="message.details && message.details.length" class="message-item">
+        <dt class="message-key">
+          Details
+        </dt>
+        <dd class="message-value">
+          <MessageDescription :detail="message.details[0]" />
+        </dd>
+      </dl>
     </div>
-    <div v-if="message.transfers && message.transfers.length > 0" class="rounded-md my-4 py-4 bg-white mt-4">
+    <div v-if="message.transfers && message.transfers.length" class="rounded-md my-4 py-4 bg-white mt-4">
       <p class="pl-8 pb-3 border-b border-background">
         {{ $t('detail.message.modules.transfer') }}
       </p>
@@ -285,7 +293,7 @@ export default {
     @apply flex items-center my-2;
   }
   .message-key {
-    @apply w-48 pl-8 pr-2 text-gray-600;
+    @apply w-48 flex-shrink-0 pl-8 pr-2 text-gray-600;
   }
   .message-value {
     @apply mr-8 flex flex-row items-center;

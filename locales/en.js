@@ -340,6 +340,11 @@ export default {
         value: 'Value',
         type: 'Type'
       },
+      description: {
+        transfer: '{sender} sends {value} to {receiver}',
+        'create-account': '{createBy} creates {actor} {idAddress}',
+        'create-account:transfer': '{createBy} creates {actor} {idAddress} with initial balance {value}'
+      },
       null: '(Null)'
     },
     tipset: {

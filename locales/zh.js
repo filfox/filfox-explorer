@@ -329,6 +329,11 @@ export default {
         value: '金额',
         type: '类型'
       },
+      description: {
+        transfer: '{sender} 将 {value} 转入 {receiver}',
+        'create-account': '{createBy} 创建了{actor} {idAddress}',
+        'create-account:transfer': '{createBy} 创建了{actor} {idAddress} 并转入 {value}'
+      },
       null: '(无)'
     },
     tipset: {
@@ -465,7 +470,7 @@ export default {
   },
   actor: {
     'fil/1/account': '普通账户',
-    'fil/1/cron': '执行定时任务',
+    'fil/1/cron': '定时任务',
     'fil/1/init': '初始化',
     'fil/1/multisig': '多重签名',
     'fil/1/paymentchannel': '支付通道',

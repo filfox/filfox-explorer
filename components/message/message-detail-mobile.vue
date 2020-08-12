@@ -81,6 +81,14 @@
           {{ message.receipt.exitCode | exit-code }}
         </p>
       </div>
+      <div v-if="message.details && message.details.length" class="message-item">
+        <p class="message-key">
+          Details
+        </p>
+        <p class="message-value">
+          <MessageDescription :detail="message.details[0]" />
+        </p>
+      </div>
     </div>
 
     <div v-if="message.transfers && message.transfers.length > 0" class="mt-2 py-px bg-white text-xs">
