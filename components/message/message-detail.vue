@@ -21,7 +21,9 @@
         </dt>
         <dd class="message-value">
           <TipsetLink v-if="message.height" :id="message.height" class="text-main" />
-          <p> N/A </p>
+          <p v-else>
+            N/A
+          </p>
         </dd>
       </dl>
       <dl v-if="message.timestamp" class="message-item">
