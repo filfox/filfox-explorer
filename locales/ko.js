@@ -508,6 +508,7 @@ export default {
         gasPrice: '평균 가스 비용',
         gasLimit: '평균 가스 리밋',
         gasUsed: '평균 가스 사용량',
+        gasFee: '평균 가스 수수료',
         fee: '수수료 합계 / 백분율',
         count: '메시지 합계 / 백분율'
       }

@@ -500,6 +500,7 @@ export default {
         method: '消息类型',
         gasPrice: '平均Gas费率',
         gasLimit: '平均Gas限额',
+        gasFee: '平均手续费',
         gasUsed: '平均Gas消耗',
         fee: '手续费合计/占比',
         count: '消息数合计/占比'

@@ -511,6 +511,7 @@ export default {
         method: 'Message Type',
         gasPrice: 'Avg. Gas Price',
         gasLimit: 'Avg. Gas Limit',
+        gasFee: 'Avg. Gas Fee',
         gasUsed: 'Avg. Gas Used',
         fee: 'Total Fees/Pencentage',
         count: 'Total Messages/Pencentage'

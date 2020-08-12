@@ -53,6 +53,14 @@
           </div>
           <div class="message-item">
             <p>
+              {{ $t('chart.gas.tableHeaders.gasFee') }}:
+            </p>
+            <p>
+              {{ gas.fee | filecoin(4) }}
+            </p>
+          </div>
+          <div class="message-item">
+            <p>
               {{ $t('chart.gas.tableHeaders.fee') }}:
             </p>
             <p>
@@ -95,6 +103,9 @@
                   {{ $t('chart.gas.tableHeaders.gasUsed') }}
                 </th>
                 <th class="table-header">
+                  {{ $t('chart.gas.tableHeaders.gasFee') }}
+                </th>
+                <th class="table-header">
                   {{ $t('chart.gas.tableHeaders.fee') }}
                 </th>
                 <th class="table-header">
@@ -119,6 +130,9 @@
                 </td>
                 <td>
                   {{ Math.round(gas.gasUsed) | locale }}
+                </td>
+                <td>
+                  {{ gas.fee | filecoin(4) }}
                 </td>
                 <td>
                   {{ gas.totalFee | filecoin(0) }}
