@@ -42,19 +42,16 @@ export default {
   methods: {
     async getTopMinersByPower(pageSize, page) {
       this.loading = true
-      this.topMinersByPower = {}
       this.topMinersByPower = await this.$axios.$get('/miner/list/power', { params: { pageSize, page } })
       this.loading = false
     },
     async getTopMinersByBlocks(pageSize, page, duration) {
       this.loading = true
-      this.topMinersByBlocks = {}
       this.topMinersByBlocks = await this.$axios.$get('/miner/list/blocks', { params: { pageSize, page, duration } })
       this.loading = false
     },
     async getTopMinersByPowerDelta(pageSize, page, duration) {
       this.loading = true
-      this.topMinersByPowerDelta = {}
       this.topMinersByPowerDelta = await this.$axios.$get('/miner/list/power-delta', { params: { pageSize, page, duration } })
       this.loading = false
     }
