@@ -57,7 +57,7 @@
               {{ $t('detail.address.miner.accountOverview.headers.address') }}:
             </p>
             <p class="text-sm mt-2">
-              {{ addressData.alias ? addressData.alias : 'N/A' }}
+              {{ addressData.alias || 'N/A' }}
             </p>
           </div>
           <div class="flex justify-between">

@@ -61,7 +61,7 @@
           {{ $t('detail.deal.headers.status') }}
         </p>
         <p class="text-xs">
-          {{ deal.status ? deal.status : 'N/A' }}
+          {{ deal.status || 'N/A' }}
         </p>
       </div>
 
@@ -181,7 +181,7 @@
               {{ $t('detail.deal.headers.status') }}
             </dt>
             <dd class="flex mr-4">
-              {{ deal.status ? deal.status : 'N/A' }}
+              {{ deal.status || 'N/A' }}
             </dd>
           </dl>
         </div>

@@ -14,7 +14,7 @@
           </p>
         </div>
         <p v-if="message.data" class="form-input">
-          {{ message.data.addressToSign ? message.data.addressToSign : "" }}
+          {{ message.data.addressToSign || "" }}
         </p>
       </div>
 

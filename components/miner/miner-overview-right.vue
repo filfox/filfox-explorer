@@ -13,7 +13,7 @@
       </p>
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.rank') }}:
-        {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : 'N/A' }}
+        {{ addressData.miner.qualityAdjPowerRank || 'N/A' }}
       </p>
     </div>
     <div class="flex items-center justify-between w-full mt-4">

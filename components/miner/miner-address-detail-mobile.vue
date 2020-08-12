@@ -47,7 +47,7 @@
           </p>
           <p class="text-xs pt-1 text-gray-800">
             {{ $t('detail.address.miner.minerOverview.headers.rank') }}:
-            {{ addressData.miner.qualityAdjPowerRank ? addressData.miner.qualityAdjPowerRank : 'N/A' }}
+            {{ addressData.miner.qualityAdjPowerRank || 'N/A' }}
           </p>
         </div>
 
@@ -122,7 +122,7 @@
           {{ $t('detail.address.miner.accountOverview.headers.address') }}:
         </p>
         <p class="text-xs text-gray-800 text-right w-3/4 break-all">
-          {{ addressData.alias ? addressData.alias : 'N/A' }}
+          {{ addressData.alias || 'N/A' }}
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-1">

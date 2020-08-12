@@ -86,7 +86,7 @@
             {{ $t('blockchain.dealList.tableHeaders.status') }}
           </p>
           <p>
-            {{ deal.status ? deal.status : 'N/A' }}
+            {{ deal.status || 'N/A' }}
           </p>
         </div>
       </div>

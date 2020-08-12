@@ -171,7 +171,7 @@
               {{ $t('merchant.sales.price') }}:
             </p>
             <p class="text-2xl font-semibold">
-              {{ info.price ? info.price : $t('merchant.unknown') }}
+              {{ info.price || $t('merchant.unknown') }}
             </p>
           </div>
         </div>
