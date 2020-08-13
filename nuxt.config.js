@@ -12,6 +12,7 @@ export default {
     return {
       title: process.env.npm_package_name || '',
       titleTemplate: `%s - ${this.$t('meta.titles.filfox')}`,
+      htmlAttrs: { lang: this.$i18n.locale },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
@@ -108,11 +109,16 @@ export default {
     seo: true
   },
   pwa: {
-    meta: {
+    meta: false,
+    manifest: {
       name: 'Filfox Calibration',
       short_name: 'Filfox',
       description: 'Filfox is a Filecoin blockchain browser and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.',
       theme_color: '#1a4fc9'
+    },
+    workbox: {
+      assetsURLPattern: '/dist/',
+      publicPath: '/dist/'
     }
   },
   /*
