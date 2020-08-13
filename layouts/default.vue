@@ -6,10 +6,11 @@
     <el-button
       v-if="showShareIcon"
       type="primary"
+      plain
       circle
       icon="el-icon-share"
       class="fixed lg:fixed bottom-0 right-0 mb-12 mr-8 lg:mr-12"
-      @click.native="share"
+      @click="share"
     />
   </div>
 </template>
@@ -27,7 +28,7 @@ export default {
     }
   },
   methods: {
-    async share() {
+    async share(e) {
       try {
         await navigator.share({
           title: document.title,
@@ -38,3 +39,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  @media (display-mode: browser) {
+    .share-icon {
+      display: none;
+    }
+  }
+</style>
