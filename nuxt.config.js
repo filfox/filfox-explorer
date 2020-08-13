@@ -113,8 +113,7 @@ export default {
     manifest: {
       name: 'Filfox Calibration',
       short_name: 'Filfox',
-      theme_color: '#1a4fc9',
-      display: 'minimal-ui'
+      theme_color: '#1a4fc9'
     },
     workbox: {
       assetsURLPattern: '/dist/',

@@ -31,7 +31,6 @@ export default {
       try {
         await navigator.share({
           title: document.title,
-          text: document.title,
           url: location.href
         })
       } catch (err) {}
