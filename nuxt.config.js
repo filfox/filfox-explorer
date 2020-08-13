@@ -113,8 +113,8 @@ export default {
     manifest: {
       name: 'Filfox Calibration',
       short_name: 'Filfox',
-      description: 'Filfox is a Filecoin blockchain browser and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.',
-      theme_color: '#1a4fc9'
+      theme_color: '#1a4fc9',
+      display: 'minimal-ui'
     },
     workbox: {
       assetsURLPattern: '/dist/',
