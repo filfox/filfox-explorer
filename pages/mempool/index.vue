@@ -33,9 +33,9 @@
           </div>
           <div class="message-item">
             <p>
-              Time
+              {{ $t('detail.message.headers.createTime') }}:
             </p>
-            <FromNow :timestamp="message.createTime" />
+            <FromNow :timestamp="message.createTimestamp" />
           </div>
           <div class="message-item">
             <p>
@@ -123,7 +123,7 @@
                   ID
                 </th>
                 <th class="table-header">
-                  Time
+                  {{ $t('detail.message.headers.createTime') }}
                 </th>
                 <th class="table-header">
                   {{ $t('blockchain.message.tableHeaders.from') }}
