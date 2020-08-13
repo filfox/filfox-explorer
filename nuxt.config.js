@@ -62,7 +62,10 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/eslint-module',
-    ['@nuxtjs/google-analytics', { id: process.env.GOOGLE_ANALYTICS }]
+    ...process.env.NODE_ENV === 'production' ? [
+      ['@nuxtjs/google-analytics', { id: process.env.GOOGLE_ANALYTICS }],
+      '@nuxtjs/pwa'
+    ] : []
   ],
   /*
   ** Nuxt.js modules
@@ -103,6 +106,14 @@ export default {
       // alwaysRedirect: true,
     },
     seo: true
+  },
+  pwa: {
+    meta: {
+      name: 'Filfox Calibration',
+      short_name: 'Filfox',
+      description: 'Filfox is a Filecoin blockchain browser and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.',
+      theme_color: '#1a4fc9'
+    }
   },
   /*
   ** Build configuration
