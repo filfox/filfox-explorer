@@ -1,21 +1,30 @@
 <template>
-  <div>
+  <div class="lg:rounded-md bg-white">
+    <div class="flex justify-between items-center h-12 border-b border-background">
+      <div class="items-center pl-4 lg:pl-6 text-xs lg:text-base">
+        {{ $t('detail.address.miner.accountChange.title') }}
+      </div>
+      <DurationSelect v-model="duration" class="items-center mr-4 hidden lg:flex" />
+      <DurationSelect v-model="duration" portable class="lg:hidden mr-4" />
+    </div>
     <client-only>
       <VeLine
         :data="chartData"
         :loading="loading"
         :data-empty="dataEmpty"
         :extend="chartExtend"
-        class="hidden lg:block"
+        :legend-visible="false"
+        class="hidden lg:block mx-4"
       />
       <VeLine
         :data="chartData"
         :loading="loading"
         :data-empty="dataEmpty"
-        :extend="mobileChartExtend"
-        class="lg:hidden"
-        width="100%"
+        :extend="chartExtend"
+        :legend-visible="false"
+        :grid="{top: 20, bottom: 20}"
         height="280px"
+        class="lg:hidden mx-4"
       />
     </client-only>
   </div>
@@ -72,14 +81,10 @@ export default {
     }
     return {
       chartData: {
-        columns: [
-          'time',
-          this.$t('detail.address.miner.accountChange.charts.balance'),
-          this.$t('detail.address.miner.accountChange.charts.availableBalance'),
-          this.$t('detail.address.miner.accountChange.charts.pledgeBalance')
-        ],
+        columns: ['time', this.$t('detail.address.miner.accountChange.charts.balance')],
         rows: []
       },
+      duration: '24h',
       loading: false,
       dataEmpty: false
     }
@@ -91,12 +96,21 @@ export default {
       },
       deep: true,
       immediate: true
+    },
+    duration() {
+      this.getLineChartData()
     }
+  },
+  mounted() {
+    this.getLineChartData()
   },
   methods: {
     async getLineChartData() {
       this.loading = true
-      const data = await this.$axios.$get(`/address/${this.addressData.address}/balance-stats`)
+      const data = await this.$axios.$get(
+        `/address/${this.addressData.address}/balance-stats`,
+        { params: { duration: this.duration, samples: 48 } }
+      )
       if (data == null) {
         this.dataEmpty = true
         this.loading = false
@@ -104,9 +118,7 @@ export default {
       }
       this.chartData.rows = data.map(info => ({
         time: this.getTime(info.timestamp),
-        [this.$t('detail.address.miner.accountChange.charts.balance')]: this.getFilecoin(info.balance, 2),
-        [this.$t('detail.address.miner.accountChange.charts.availableBalance')]: this.getFilecoin(info.availableBalance, 2),
-        [this.$t('detail.address.miner.accountChange.charts.pledgeBalance')]: this.getFilecoin(info.pledgeBalance, 2)
+        [this.$t('detail.address.miner.accountChange.charts.balance')]: this.getFilecoin(info.balance, 2)
       }))
       this.loading = false
     },

@@ -88,6 +88,8 @@
       </div>
     </div>
 
+    <AddressBalanceDetailChart :address-data="addressData" />
+
     <div v-loading="loading" class="mt-2 pt-3 bg-white border-t border-background">
       <div class="flex h-10 items-center mb-3 justify-center">
         <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
