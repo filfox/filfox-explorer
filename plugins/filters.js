@@ -28,7 +28,7 @@ Vue.filter('coin', (value, decimals, precision = null) => {
   }
 })
 
-Vue.filter('filecoin', (value, precision = null, suffix = '') => {
+Vue.filter('filecoin', (value, precision = null, suffix = '', nanoFixed = false) => {
   if (value == null) {
     return 'N/A'
   }
@@ -39,7 +39,11 @@ Vue.filter('filecoin', (value, precision = null, suffix = '') => {
   } else if (digits <= 7) {
     return `${Number(value).toLocaleString('en')} attoFIL${suffix}`
   } else if (digits <= 13) {
-    return `${Vue.filter('coin')(value, 9, 0)} nanoFIL${suffix}`
+    if (nanoFixed) {
+      return `${Vue.filter('coin')(value, 9, 0)} nanoFIL${suffix}`
+    } else {
+      return `${Vue.filter('coin')(value, 9, precision)} nanoFIL${suffix}`
+    }
   } else {
     return `${Vue.filter('coin')(value, 18, precision)} FIL${suffix}`
   }
