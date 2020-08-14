@@ -135,7 +135,7 @@
                   {{ gas.fee | filecoin(4) }}
                 </td>
                 <td>
-                  {{ gas.totalFee | filecoin(0) }}
+                  {{ gas.totalFee | filecoin(6) }}
                   /
                   {{ gas.totalFee / gasList[0].totalFee | percentage }}
                 </td>
