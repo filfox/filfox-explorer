@@ -3,14 +3,14 @@
     <img v-if="location" :src="location.flag" class="border border-background rounded-sm w-5 mr-1">
     <template v-if="location">
       <p v-if="type === 0" class="text-sm">
-        {{ location[`${$i18n.locale}ContinentName`] }}-{{ location[`${$i18n.locale}CountryName`] }}-{{ location[`${$i18n.locale}RegionName`] }}-{{ location[`${$i18n.locale}City`] }}
+        {{ fullLocation }}
         ({{ splitedIP(location.ip) }})
       </p>
       <p v-if="type === 1" class="text-sm">
         {{ location[`${$i18n.locale}CountryName`] }}-{{ location[`${$i18n.locale}City`] }}
       </p>
       <p v-if="type === 2" class="text-xs text-gray-800 text-right">
-        {{ location[`${$i18n.locale}ContinentName`] }}-{{ location[`${$i18n.locale}CountryName`] }}-{{ location[`${$i18n.locale}RegionName`] }}-{{ location[`${$i18n.locale}City`] }}
+        {{ fullLocation }}
         ({{ splitedIP(location.ip) }})
       </p>
     </template>
@@ -30,6 +30,25 @@ export default {
   props: {
     location: { type: null, required: true },
     type: { type: Number, default: 0 }
+  },
+  computed: {
+    fullLocation() {
+      const locations = []
+      if (this.location[`${this.$i18n.locale}ContinentName`]) {
+        locations.push(this.location[`${this.$i18n.locale}ContinentName`])
+      }
+      if (this.location[`${this.$i18n.locale}CountryName`]) {
+        locations.push(this.location[`${this.$i18n.locale}CountryName`])
+      }
+      if (this.location[`${this.$i18n.locale}RegionName`]) {
+        locations.push(this.location[`${this.$i18n.locale}RegionName`])
+      }
+      if (this.location[`${this.$i18n.locale}City`]) {
+        locations.push(this.location[`${this.$i18n.locale}City`])
+      }
+      const result = locations.join('-')
+      return result
+    }
   },
   methods: {
     splitedIP(ip) {
