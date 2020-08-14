@@ -51,14 +51,14 @@ export default {
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter: '{value} nanoFIL'
+          formatter: '{value} attoFIL'
         }
       },
       tooltip: {
         trigger: 'axis',
         formatter: params => [
           this.getDateTime(this.rawData[params[0].dataIndex].timestamp),
-          ...params.map(param => `${param.marker}${param.seriesName}: ${param.value[1]} nanoFIL`)
+          ...params.map(param => `${param.marker}${param.seriesName}: ${param.value[1]} attoFIL`)
         ].join('<br>')
       }
     }
@@ -92,7 +92,7 @@ export default {
       }
       this.chartData.rows = this.rawData.map(info => ({
         time: this.getTime(info.timestamp),
-        baseFee: info.baseFee / 1e9
+        baseFee: info.baseFee
       }))
       this.loading = false
     },
