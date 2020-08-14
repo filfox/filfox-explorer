@@ -108,7 +108,7 @@
             <p class="text-sm mt-2">
               {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
             </p>
-            <IpAddress :location="addressData.miner.location" class="mt-2" />
+            <IpAddress :location="addressData.miner.location" class="mt-2 text-right" />
           </div>
         </div>
       </div>
