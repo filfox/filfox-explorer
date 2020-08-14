@@ -121,7 +121,7 @@
         <p class="text-xs text-gray-800">
           {{ $t('detail.address.miner.accountOverview.headers.address') }}:
         </p>
-        <p class="text-xs text-gray-800 text-right w-3/4 break-all">
+        <p class="text-xs text-gray-800 text-right w-4/5 break-all">
           {{ addressData.alias || 'N/A' }}
         </p>
       </div>
