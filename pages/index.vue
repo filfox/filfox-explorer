@@ -122,17 +122,17 @@ export default {
   methods: {
     async getTopMinersByPower() {
       this.topMinersLoading = true
-      this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: { count: 10 } })
+      this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: { count: 20 } })
       this.topMinersLoading = false
     },
     async getTopMinersByBlocks(duration) {
       this.topMinersLoading = true
-      this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: { count: 10, duration } })
+      this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: { count: 20, duration } })
       this.topMinersLoading = false
     },
     async getTopMinersByPowerDelta(duration) {
       this.topMinersLoading = true
-      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-delta', { params: { count: 10, duration } })
+      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-delta', { params: { count: 20, duration } })
       this.topMinersLoading = false
     },
     async getRecentTipsets() {

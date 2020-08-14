@@ -16,10 +16,10 @@
 
     <div v-if="!loading">
       <div v-if="type == 0" class="flex bg-mobileHeader text-xs px-4">
-        <div class="w-1/6">
+        <div class="w-1/8">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
         </div>
-        <div class="w-1/3">
+        <div class="w-3/8">
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
         </div>
         <div class="w-1/2 text-right">
@@ -28,10 +28,10 @@
       </div>
 
       <div v-if="type == 1" class="flex bg-mobileHeader text-xs px-4">
-        <div class="w-1/6">
+        <div class="w-1/8">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
         </div>
-        <div class="w-1/3">
+        <div class="w-3/8">
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
         </div>
         <div class="w-1/2 text-right">
@@ -40,27 +40,27 @@
       </div>
 
       <div v-if="type == 2" class="flex bg-mobileHeader text-xs px-4">
-        <div class="w-1/6">
+        <div class="w-1/8">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
         </div>
-        <div class="w-1/3">
+        <div class="w-3/8">
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
         </div>
         <div class="w-1/2 text-right">
-          {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
+          {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
         </div>
       </div>
 
       <template v-if="type == 0">
         <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs px-4 border-b">
-          <div class="w-1/6 pl-1">
+          <div class="w-1/8 pl-1">
             <RankIndex :index="index + 1" />
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
             <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
           </div>
-          <div class="w-1/3 text-right">
+          <div class="w-3/8 text-right">
             {{ miner.qualityAdjPower | size_metric(2) }}
             /
             {{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}
@@ -70,14 +70,14 @@
 
       <template v-if="type == 1">
         <div v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="flex items-center text-xs px-4 border-b">
-          <div class="w-1/6 pl-1">
+          <div class="w-1/8 pl-1">
             <RankIndex :index="index + 1" />
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
             <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
           </div>
-          <div class="w-1/3 text-right">
+          <div class="w-3/8 text-right">
             {{ miner.weightedBlocksMined }} / {{ miner.luckyValue | percentage }}
           </div>
         </div>
@@ -85,14 +85,14 @@
 
       <template v-if="type == 2">
         <div v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="flex items-center text-xs px-4 border-b">
-          <div class="w-1/6 pl-1">
+          <div class="w-1/8 pl-1">
             <RankIndex :index="index + 1" />
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
             <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
           </div>
-          <div class="w-1/3 text-right">
+          <div class="w-3/8 text-right">
             {{ (miner.qualityAdjPowerDelta / durationDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
             /
             {{ $t('shared.time.day') }}
