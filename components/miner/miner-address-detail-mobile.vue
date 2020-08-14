@@ -160,13 +160,13 @@
         <p class="text-xs text-gray-800">
           {{ $t('detail.address.miner.accountOverview.headers.owner') }}:
         </p>
-        <AddressLink :id="addressData.miner.owner" class="text-xs text-main" />
+        <AddressLink :id="addressData.miner.owner" :format="10" class="text-xs text-main" />
       </div>
       <div class="flex items-center justify-between mx-3 mt-1">
         <p class="text-xs text-gray-800">
           {{ $t('detail.address.miner.accountOverview.headers.worker') }}:
         </p>
-        <AddressLink :id="addressData.miner.worker" class="text-xs text-main" />
+        <AddressLink :id="addressData.miner.worker" :format="10" class="text-xs text-main" />
       </div>
       <div class="flex items-center justify-between mx-3 mt-1 mb-3">
         <p class="text-xs text-gray-800">
