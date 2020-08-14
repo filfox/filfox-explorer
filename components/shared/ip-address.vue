@@ -46,8 +46,7 @@ export default {
       if (this.location[`${this.$i18n.locale}City`]) {
         locations.push(this.location[`${this.$i18n.locale}City`])
       }
-      const result = locations.join('-')
-      return result
+      return locations.join('-')
     }
   },
   methods: {
