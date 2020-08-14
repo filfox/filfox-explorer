@@ -195,27 +195,27 @@
           {{ total }}
           {{ $t('detail.transfer.transaction') }}
         </p>
-        <table v-if="!loading" class="w-full table-fixed">
+        <table v-if="!loading" class="w-full table-auto">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
-              <th class="sticky top-0 bg-white z-10 w-1/8">
+              <th class="sticky top-0 bg-white z-10">
                 {{ $t('detail.transfer.tableHeaders.time') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/4">
+              <th class="sticky top-0 bg-white z-10">
                 {{ $t('detail.transfer.tableHeaders.message') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32 xl:29/160">
+              <th class="sticky top-0 bg-white z-10">
                 {{ $t('detail.transfer.tableHeaders.from') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/16 ">
+              <th class="sticky top-0 bg-white z-10">
               </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32 xl:29/160">
+              <th class="sticky top-0 bg-white z-10">
                 {{ $t('detail.transfer.tableHeaders.to') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 lg:w-1/16 xl:w-1/10">
+              <th class="sticky top-0 bg-white z-10 w-1/16">
                 {{ $t('detail.transfer.tableHeaders.income') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 lg:w-1/16 xl:w-1/10">
+              <th class="sticky top-0 bg-white z-10 w-1/16">
                 {{ $t('detail.transfer.tableHeaders.type') }}
               </th>
             </tr>
@@ -230,7 +230,7 @@
                 {{ transfer.timestamp | timestamp('datetime') }}
               </td>
               <td>
-                <MessageLink v-if="transfer.message" :id="transfer.message" :format="12" />
+                <MessageLink v-if="transfer.message" :id="transfer.message" :format="8" />
                 <span v-else> N/A </span>
               </td>
               <td>
