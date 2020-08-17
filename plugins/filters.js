@@ -28,24 +28,24 @@ Vue.filter('coin', (value, decimals, precision = null) => {
   }
 })
 
-Vue.filter('filecoin', (value, precision = null, suffix = '', nanoFixed = false) => {
+Vue.filter('filecoin', (value, precision = null, nanoFixed = false) => {
   if (value == null) {
     return 'N/A'
   }
   value = typeof value === 'string' ? value : value.toLocaleString('en').replace(/,/g, '')
   const digits = value.includes('.') ? value.indexOf('.') : value.length
   if (value === '0') {
-    return `0 FIL${suffix}`
+    return '0 FIL'
   } else if (digits <= 7) {
-    return `${Number(value).toLocaleString('en')} attoFIL${suffix}`
+    return `${Number(value).toLocaleString('en')} attoFIL`
   } else if (digits <= 13) {
     if (nanoFixed) {
-      return `${Vue.filter('coin')(value, 9, 0)} nanoFIL${suffix}`
+      return `${Vue.filter('coin')(value, 9, 0)} nanoFIL`
     } else {
-      return `${Vue.filter('coin')(value, 9, precision)} nanoFIL${suffix}`
+      return `${Vue.filter('coin')(value, 9, precision)} nanoFIL`
     }
   } else {
-    return `${Vue.filter('coin')(value, 18, precision)} FIL${suffix}`
+    return `${Vue.filter('coin')(value, 18, precision)} FIL`
   }
 })
 
