@@ -4,16 +4,10 @@
       <HomeTitle type="minerRanks" />
       <div class="flex justify-between">
         <div class="flex w-full h-10 px-4 items-center relative">
-          <el-tabs class="w-full">
-            <el-tab-pane :label="$t('home.minerRanks.filters.qualityAdjPower')" class="text-sm">
-              <nuxt-link :to="localePath('/ranks/power')" class="block" />
-            </el-tab-pane>
-            <el-tab-pane :label="$t('home.minerRanks.filters.blocks')" class="text-sm">
-              <nuxt-link :to="localePath('/ranks/blocks')" class="block" />
-            </el-tab-pane>
-            <el-tab-pane :label="$t('home.minerRanks.filters.powerDelta')" class="text-sm">
-              <nuxt-link :to="localePath('/ranks/power-growth')" class="block" />
-            </el-tab-pane>
+          <el-tabs v-model="type" class="w-full text-sm">
+            <el-tab-pane :label="$t('home.minerRanks.filters.qualityAdjPower')" name="power" />
+            <el-tab-pane :label="$t('home.minerRanks.filters.blocks')" name="blocks" />
+            <el-tab-pane :label="$t('home.minerRanks.filters.powerDelta')" name="power-growth" />
           </el-tabs>
           <DurationSelect v-if="category !== 'power'" v-model="duration" portable class="absolute right-0 bottom-0 mb-4 mr-4" />
         </div>
@@ -66,8 +60,17 @@
 <script>
 export default {
   data() {
+    let type = null
+    for (const route of this.$route.matched) {
+      const matchResult = route.name?.match(/^ranks-(power-growth|power|blocks)/)
+      if (matchResult) {
+        type = matchResult[1]
+        break
+      }
+    }
     return {
-      duration: '24h'
+      duration: '24h',
+      type
     }
   },
   computed: {
@@ -79,6 +82,11 @@ export default {
         }
       }
       return null
+    }
+  },
+  watch: {
+    type() {
+      this.$router.push(this.localePath(`/ranks/${this.type}`))
     }
   },
   head() {
