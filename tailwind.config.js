@@ -22,7 +22,9 @@ module.exports = {
         merchantBg: '#f8f9fe',
         merchantTextColor: '#9b9b9b',
         tableHeaderColor: '#000000b3',
-        dealTimeText: '#88898d'
+        dealTimeText: '#88898d',
+        socialBg: '#1a4fc9',
+        socialHeader: '#1448BF'
       },
       width: {
         '1/32': '3.125%',
