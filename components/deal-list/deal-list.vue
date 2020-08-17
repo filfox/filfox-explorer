@@ -70,10 +70,10 @@
                 <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="1" />
               </div>
             </td>
-            <td> {{ deal.pieceSize | size_metric(2) }} </td>
-            <td> {{ deal.verifiedDeal }} </td>
-            <td> {{ deal.storagePrice | filecoin(8) }} </td>
-            <td> {{ deal.status || 'N/A' }} </td>
+            <td>{{ deal.pieceSize | size_metric(2) }}</td>
+            <td>{{ deal.verifiedDeal }}</td>
+            <td>{{ deal.storagePrice | filecoin(8) }}</td>
+            <td>{{ deal.status || 'N/A' }}</td>
           </tr>
         </tbody>
       </table>

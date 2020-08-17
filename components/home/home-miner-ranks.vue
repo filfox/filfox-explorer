@@ -159,7 +159,7 @@
           </td>
           <td>{{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}</td>
           <td>{{ miner.totalRewards | filecoin(2) }}</td>
-          <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB') }}</td>
+          <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB</td>
           <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
         </tr>
       </tbody>

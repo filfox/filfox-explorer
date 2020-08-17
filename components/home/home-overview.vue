@@ -8,99 +8,104 @@
     </div>
     <div class="bg-white px-4 pt-4 lg:p-4 lg:rounded-b-md">
       <div class="grid grid-flow-row grid-cols-2 lg:grid-cols-5 gap-2 lg:gap-4 overview-list" :class="{'overview-expanded': overviewExpanded}">
+        <OverviewCell :name="$t('home.overview.titles.height')">
+          {{ overview.height | locale }}
+        </OverviewCell>
         <OverviewCell
-          :name="$t('home.overview.titles.height')"
-          :value="overview.height"
-        />
-        <OverviewCell
-          :name="$t('home.overview.titles.timestamp')"
-          :value="overview.timestamp"
           type="FromNow"
+          :name="$t('home.overview.titles.timestamp')"
+          :timestamp="overview.timestamp"
         />
         <OverviewCell
           :name="$t('home.overview.titles.qualityAdjPower')"
-          :value="overview.totalQualityAdjPower | size_metric(2)"
           :tip-content="$t('home.overview.tips.qualityAdjPower')"
-        />
+        >
+          {{ overview.totalQualityAdjPower | size_metric(2) }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.activeMiners')"
-          :value="overview.activeMiners"
           :tip-content="$t('home.overview.tips.activeMiners')"
-        />
+        >
+          {{ overview.activeMiners }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.price')"
-          :value="'$ ' + overview.price.toFixed(2)"
           :tip-content="$t('home.overview.tips.price')"
-        />
+        >
+          $ {{ overview.price | locale(2) }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.blockReward')"
-          :value="overview.blockReward | filecoin(4)"
           :tip-content="$t('home.overview.tips.blockReward')"
-        />
+        >
+          {{ overview.blockReward | filecoin(4) }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.averageRewardPerByte')"
-          :value="overview.averageRewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB')"
           :tip-content="$t('home.overview.tips.averageRewardPerByte')"
-        />
+        >
+          {{ overview.averageRewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.output24h')"
-          :value="overview.dailyCoinsMined | filecoin(0)"
           :tip-content="$t('home.overview.tips.output24h')"
-        />
-        <OverviewCell
-          :name="$t('home.overview.titles.sectorInitialPledge')"
-          :value="overview.estimatedInitialPledgeCollateral * 32 * 2 ** 30 | filecoin(2, '/32GiB')"
-        />
+        >
+          {{ overview.dailyCoinsMined | filecoin(0) }}
+        </OverviewCell>
+        <OverviewCell :name="$t('home.overview.titles.sectorInitialPledge')">
+          {{ overview.estimatedInitialPledgeCollateral * 32 * 2 ** 30 | filecoin(2) }}/32GiB
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.totalPledgeCollateral')"
-          :value="overview.totalPledgeCollateral | filecoin(0)"
           :tip-content="$t('home.overview.tips.totalPledgeCollateral')"
-        />
+        >
+          {{ overview.totalPledgeCollateral | filecoin(0) }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.circulatingSupply')"
-          :value="overview.circulatingSupply | filecoin(0)"
           :tip-content="$t('home.overview.tips.circulatingSupply')"
-        />
-        <OverviewCell
-          :name="$t('home.overview.titles.accounts')"
-          :value="overview.accounts"
-        />
+        >
+          {{ overview.circulatingSupply | filecoin(0) }}
+        </OverviewCell>
+        <OverviewCell :name="$t('home.overview.titles.accounts')">
+          {{ overview.accounts }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.averageTipsetInterval')"
-          :value="overview.averageTipsetInterval.toFixed(2) + ' ' + $t('shared.time.sec')"
           :tip-content="$t('home.overview.tips.averageTipsetInterval')"
-        />
-        <OverviewCell
-          :name="$t('home.overview.titles.dailyMessages')"
-          :value="overview.dailyMessages | locale"
-        />
+        >
+          {{ overview.averageTipsetInterval.toFixed(2) }} {{ $t('shared.time.sec') }}
+        </OverviewCell>
+        <OverviewCell :name="$t('home.overview.titles.dailyMessages')">
+          {{ overview.dailyMessages | locale }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.averageTipsetBlocks')"
-          :value="overview.averageTipsetBlocks.toFixed(2)"
           :tip-content="$t('home.overview.tips.averageTipsetBlocks')"
-        />
+        >
+          {{ overview.averageTipsetBlocks.toFixed(2) }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.rawBytePower')"
-          :value="overview.totalRawBytePower | size_metric(2)"
           :tip-content="$t('home.overview.tips.rawBytePower')"
-        />
-        <OverviewCell
-          name="Current Base Fee"
-          :value="overview.baseFee | filecoin(2)"
-        />
-        <OverviewCell
-          :name="$t('home.overview.titles.burntSupply')"
-          :value="overview.burntSupply | filecoin(0)"
-        />
-        <OverviewCell
-          :name="$t('home.overview.titles.totalMaxSupply')"
-          :value="overview.totalMaxSupply | filecoin(0)"
-        />
+        >
+          {{ overview.totalRawBytePower | size_metric(2) }}
+        </OverviewCell>
+        <OverviewCell name="Current Base Fee">
+          {{ overview.baseFee | filecoin(2) }}
+        </OverviewCell>
+        <OverviewCell :name="$t('home.overview.titles.burntSupply')">
+          {{ overview.burntSupply | filecoin(0) }}
+        </OverviewCell>
+        <OverviewCell :name="$t('home.overview.titles.totalMaxSupply')">
+          {{ overview.totalMaxSupply | filecoin(0) }}
+        </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.circulatingSupplyRate')"
-          :value="overview.circulatingSupply / overview.totalMaxSupply | percentage"
           :tip-content="$t('home.overview.tips.circulatingSupplyRate')"
-        />
+        >
+          {{ overview.circulatingSupply / overview.totalMaxSupply | percentage }}
+        </OverviewCell>
       </div>
       <div class="flex mx-auto h-10 items-center lg:hidden">
         <el-button type="text" class="mx-auto" size="small" @click="overviewExpanded = !overviewExpanded">

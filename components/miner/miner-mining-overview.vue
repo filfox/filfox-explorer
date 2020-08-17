@@ -64,7 +64,7 @@
           {{ $t('detail.address.miner.miningOverview.headers.miningEfficiency') }}:
         </p>
         <p class="text-xs text-gray-800">
-          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB') }}
+          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-2">
@@ -123,7 +123,7 @@
       <div class="flex items-center w-full">
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.miningEfficiency') }}:
-          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2, '/TiB') }}
+          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB
         </p>
         <div class="text-sm w-5/12 text-left flex flex-row items-center">
           {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}
