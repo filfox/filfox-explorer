@@ -1,9 +1,10 @@
 <template>
-  <div class="bg-white lg:bg-transparent lg:container lg:mx-auto">
-    <div class="lg:hidden">
+  <div v-loading="sharingLoading" element-loading-text="生成图片中..." element-loading-background="rgba(0, 0, 0, 0.71)" class="bg-white lg:bg-transparent lg:container lg:mx-auto relative">
+    <RanksShare :loading="sharingLoading" :sharing="sharing" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
+    <div v-if="!sharing" class="lg:hidden">
       <div class="flex justify-between items-center">
         <HomeTitle type="minerRanks" />
-        <div v-if="$i18n.locale == 'zh'" class="flex items-center border border-socialTagBg rounded-full px-2 mr-3 text-xs cursor-pointer hover:border-button">
+        <div v-if="$i18n.locale == 'zh'" class="flex items-center border border-socialTagBg rounded-full px-2 mr-3 text-xs cursor-pointer hover:border-button" @click="didSharedBtnClicked">
           <img src="~/assets/img/social/share.svg" class="h-2 mr-1">
           <span> 分享 </span>
         </div>
@@ -19,7 +20,8 @@
         </div>
       </div>
     </div>
-    <div class="mt-4 bg-white rounded-md hidden lg:block">
+
+    <div v-if="!sharing" class="mt-4 bg-white rounded-md hidden lg:block">
       <div class="border-b border-background">
         <div class="flex justify-between items-center">
           <HomeTitle type="minerRanks" />
@@ -65,7 +67,7 @@
       </div>
     </div>
 
-    <nuxt-child :duration="duration" />
+    <nuxt-child v-if="!sharing" :duration="duration" />
   </div>
 </template>
 
@@ -82,7 +84,10 @@ export default {
     }
     return {
       duration: '24h',
-      type
+      type,
+      sharing: false,
+      sharingImageURL: '',
+      sharingLoading: false
     }
   },
   computed: {
@@ -99,6 +104,21 @@ export default {
   watch: {
     type() {
       this.$router.push(this.localePath(`/ranks/${this.type}`))
+    }
+  },
+  methods: {
+    didDismissAreaClicked() {
+      this.sharing = false
+    },
+    didSharedBtnClicked() {
+      this.sharing = true
+      this.getRanksImage()
+    },
+    async getRanksImage() {
+      this.sharingLoading = true
+      const result = await this.$axios.$post('/request-share/ranks')
+      this.sharingImageURL = result
+      this.sharingLoading = false
     }
   },
   head() {

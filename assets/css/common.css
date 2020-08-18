@@ -78,3 +78,8 @@ button:focus {
     word-break: normal;
     text-align: left;
 }
+
+.el-loading-spinner .el-loading-text {
+    font-size: 12px;
+    margin-top: 10px;
+}
