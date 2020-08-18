@@ -7,6 +7,14 @@
     font-display: swap;
     src: url('~assets/fonts/Alibaba-PuHuiTi-Light.otf') format('truetype');
 }
+
+@font-face {
+    font-family: 'Filfox';
+    font-style: medium;
+    font-weight: 500;
+    font-display: swap;
+    src: url('~assets/fonts/Alibaba-PuHuiTi-Bold.otf') format('truetype');
+}
   
 @font-face {
     font-family: 'Filfox';

@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs overflow-hidden" :class="{'bg-socialTableBg':index %2 === 0}">
+      <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs overflow-hidden font-normal" :class="{'bg-socialTableBg':index %2 === 0}">
         <div class="pl-3 w-1/8 z-40">
           <RankIndex :index="index + 1" :type="1" :class="{'mb-1': index < 3}" />
         </div>
