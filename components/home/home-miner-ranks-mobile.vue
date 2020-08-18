@@ -1,7 +1,13 @@
 <template>
   <div class="mb-2 bg-white">
     <div>
-      <HomeTitle type="minerRanks" />
+      <div class="flex justify-between items-center">
+        <HomeTitle type="minerRanks" />
+        <div v-if="$i18n.locale == 'zh'" class="flex items-center border border-socialTagBg rounded-full px-2 mr-4 text-xs cursor-pointer hover:border-button">
+          <img src="~/assets/img/social/share.svg" class="h-2 mr-1">
+          <span> 分享 </span>
+        </div>
+      </div>
       <div class="flex justify-between">
         <div class="flex w-full h-10 px-4 items-center relative">
           <el-tabs v-model="type" class="w-full">
