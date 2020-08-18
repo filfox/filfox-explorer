@@ -1,13 +1,13 @@
 <template>
   <div class="bg-socialBg">
-    <div class="relative flex items-end h-64">
-      <img src="~/assets/img/social/ranks-header.png" class="absolute w-full">
-      <span class="text-white text-sm mx-auto text-center mb-5">
+    <div class="relative flex items-end h-56">
+      <img src="~/assets/img/social/ranks-header.png" class="absolute w-full top-0">
+      <span class="text-white text-sm mx-auto text-center mb-2">
         Filfox.info 更新于 {{ topMinersByPower.timestamp | timestamp('datetime') }} ({{ network.networks[network.currentNetwork].name }})
       </span>
     </div>
     <div class="h-2 bg-socialHeader mx-3 rounded"></div>
-    <div class="bg-white rounded-sm mx-4">
+    <div class="bg-white rounded-sm mx-4 overflow-hidden">
       <div class="flex text-xs pt-2">
         <div class="pl-2 w-1/8 font-medium">
           {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
@@ -43,22 +43,47 @@
         </div>
       </div>
     </div>
+
+    <div class="flex flex-row justify-between text-white m-4">
+      <div class="flex-col">
+        <img src="~/assets/img/home/logo.svg" class="h-6 mt-3">
+        <div class="text-xl font-medium mt-4">
+          更多Filcoin挖矿数据
+        </div>
+        <div class="text-xs mt-1">
+          立刻扫码查看，由Filfox.info独家提供
+        </div>
+      </div>
+      <canvas id="canvas" class="my-auto rounded-md"></canvas>
+    </div>
   </div>
 </template>
 
 <script>
+import QrCodeWithLogo from 'qr-code-with-logo'
 import { network } from '~/filecoin/filecoin.config'
+
 export default {
   data() {
     return {
       topMinersByPower: {},
       loading: false,
       pageSize: 20,
-      network
+      network,
+      QrCodeWithLogo
     }
   },
   mounted() {
     this.getTopMinersByPower(this.pageSize, 0)
+    QrCodeWithLogo.toCanvas({
+      canvas: document.getElementById('canvas'),
+      content: 'https://filfox.info/ranks',
+      width: 110,
+      logo: {
+        src: 'https://filfox.info/favicon.ico?v=1',
+        radius: 5
+      }
+    })
   },
   methods: {
     async getTopMinersByPower(pageSize, page) {
