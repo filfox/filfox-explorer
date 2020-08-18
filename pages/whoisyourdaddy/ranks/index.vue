@@ -55,7 +55,7 @@
           更多实时挖矿排行榜
         </div>
         <div class="text-xs mt-1">
-          尽在Filfox.info，立即扫码查看
+          尽在飞狐浏览器（Filfox.info），立即扫码查看
         </div>
       </div>
       <canvas id="canvas" class="my-auto rounded-md"></canvas>
@@ -84,7 +84,7 @@ export default {
   mounted() {
     QrCodeWithLogo.toCanvas({
       canvas: document.getElementById('canvas'),
-      content: 'https://filfox.info/ranks',
+      content: 'https://filfox.info/ranks?utm_source=picshare&utm_campaign=ranks',
       width: 110,
       logo: {
         src: 'https://filfox.info/favicon.ico?v=1',
