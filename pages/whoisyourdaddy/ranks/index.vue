@@ -84,7 +84,7 @@ export default {
   mounted() {
     QrCodeWithLogo.toCanvas({
       canvas: document.getElementById('canvas'),
-      content: 'https://filfox.info/ranks?utm_source=picshare&utm_campaign=ranks',
+      content: 'https://filfox.info/ranks/power?utm_source=picshare&utm_campaign=ranks',
       width: 110,
       logo: {
         src: 'https://filfox.info/favicon.ico?v=1',
