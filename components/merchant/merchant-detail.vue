@@ -131,10 +131,10 @@
                 {{ (miner.qualityAdjPowerDelta / 30 / merchant.durationPercentage) | size_metric(2) }} / {{ $t('shared.time.day') }}
               </td>
               <td class="pt-2">
-                {{ miner.rewards | filecoin(2) }}
+                {{ miner.totalRewards | filecoin(2) }}
               </td>
               <td class="pt-2">
-                {{ miner.blocksMined }}
+                {{ miner.weightedBlocksMined }}
               </td>
             </tr>
           </tbody>
