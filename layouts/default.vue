@@ -24,7 +24,7 @@ export default {
   },
   mounted() {
     if (navigator.share) {
-      this.showShareIcon = true
+      this.showShareIcon = false
     }
   },
   methods: {
