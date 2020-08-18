@@ -8,7 +8,7 @@
       class="lg:hidden"
       style="height:70vh"
     >
-      <RanksShare :loading="sharingLoading" :sharing="sharing" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
+      <RanksShare v-if="sharing" :loading="sharingLoading" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
     </div>
     <div
       v-if="sharing"
@@ -18,16 +18,20 @@
       class="hidden lg:block my-4 bg-transparent"
       style="height:70vh"
     >
-      <RanksShare :loading="sharingLoading" :sharing="sharing" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
+      <RanksShare v-if="sharing" :loading="sharingLoading" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
     </div>
     <div v-if="!sharing">
       <div class="lg:hidden">
         <div class="flex justify-between items-center">
           <HomeTitle type="minerRanks" />
-          <div v-if="$i18n.locale == 'zh'" class="flex items-center border border-socialTagBg rounded-full px-2 mr-3 text-xs cursor-pointer hover:border-button" @click="didSharedBtnClicked">
+          <button
+            v-if="$i18n.locale == 'zh'"
+            class="flex items-center border border-socialTagBg rounded-full px-2 mr-3 text-xs cursor-pointer hover:border-button"
+            @click="didSharedBtnClicked"
+          >
             <img src="~/assets/img/social/share.svg" class="h-2 mr-1">
-            <span> 分享 </span>
-          </div>
+            <span>分享</span>
+          </button>
         </div>
         <div class="flex justify-between">
           <div class="flex w-full h-10 px-4 items-center relative">
@@ -45,10 +49,14 @@
         <div class="border-b border-background">
           <div class="flex justify-between items-center">
             <HomeTitle type="minerRanks" />
-            <div v-if="$i18n.locale == 'zh'" class="flex items-center border border-socialTagBg rounded-full px-3 py-1 mr-4 text-xs cursor-pointer hover:border-button" @click="didSharedBtnClicked">
+            <button
+              v-if="$i18n.locale == 'zh'"
+              class="flex items-center border border-socialTagBg rounded-full px-3 py-1 mr-4 text-xs cursor-pointer hover:border-button"
+              @click="didSharedBtnClicked"
+            >
               <img src="~/assets/img/social/share.svg" class="h-3 mr-1">
-              <span> 分享 </span>
-            </div>
+              <span>分享</span>
+            </button>
           </div>
           <div class="flex justify-between mb-2">
             <div class="flex h-12 ml-4 items-center">

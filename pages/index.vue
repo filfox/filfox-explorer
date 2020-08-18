@@ -76,8 +76,14 @@
         </div>
       </div>
     </div>
-    <div v-if="sharing" v-loading="sharingLoading" element-loading-text="生成图片中..." element-loading-background="rgba(0, 0, 0, 0.71)" style="height:70vh">
-      <RanksShare :loading="sharingLoading" :sharing="sharing" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
+    <div
+      v-if="sharing"
+      v-loading="sharingLoading"
+      element-loading-text="生成图片中..."
+      element-loading-background="rgba(0, 0, 0, 0.71)"
+      style="height:70vh"
+    >
+      <RanksShare v-if="sharing" :loading="sharingLoading" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
     </div>
   </div>
 </template>
@@ -179,7 +185,7 @@ export default {
   },
   head() {
     return {
-      title: `${this.$t('meta.titles.indexTitle')}`,
+      title: this.$t('meta.titles.indexTitle'),
       titleTemplate: null
     }
   }

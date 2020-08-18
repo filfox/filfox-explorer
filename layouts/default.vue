@@ -9,7 +9,7 @@
       plain
       circle
       icon="el-icon-share"
-      class="fixed lg:fixed bottom-0 right-0 mb-12 mr-8 lg:mr-12"
+      class="fixed bottom-0 right-0 mb-12 mr-8 lg:mr-12"
       @click="share"
     />
   </div>

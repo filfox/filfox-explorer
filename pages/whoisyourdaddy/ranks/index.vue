@@ -3,7 +3,7 @@
     <div class="relative flex items-end h-56">
       <img src="~/assets/img/social/ranks-header.png" class="absolute w-full top-0">
       <span class="text-white text-sm mx-auto text-center mb-2">
-        Filfox.info 更新于 {{ topMinersByPower.timestamp | timestamp('datetime') }} ({{ network.networks[network.currentNetwork].name }})
+        Filfox.info 更新于 {{ topMinersByPower.timestamp | timestamp('datetime') }} ({{ currentNetwork.name }})
       </span>
     </div>
     <div class="h-2 bg-socialHeader mx-3 rounded"></div>
@@ -23,17 +23,25 @@
         </div>
       </div>
 
-      <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs overflow-hidden font-normal" :class="{'bg-socialTableBg':index %2 === 0}">
+      <div
+        v-for="(miner, index) in topMinersByPower.miners"
+        :key="index"
+        class="flex items-center text-xs overflow-hidden font-normal"
+        :class="{'bg-socialTableBg': index % 2 === 0}"
+      >
         <div class="pl-3 w-1/8 z-40">
           <RankIndex :index="index + 1" :type="1" :class="{'mb-1': index < 3}" />
         </div>
         <div class="w-3/8 flex items-center py-2 z-40">
-          <AddressLink :id="miner.address" :format="4" />
+          <AddressLink :id="miner.address" />
           <MinerTag v-if="miner.tag" :tag="miner.tag" :type="3" />
         </div>
         <div class="w-1/4 flex items-center py-2 relative">
-          <div :key="index" :style="{'width':`${miner.qualityAdjPower / topMinersByPower.miners[0].qualityAdjPower * 100}%`,'background':'#d5eaff'}" class="absolute left-0 top-1 h-8">
-          </div>
+          <div
+            :key="index"
+            :style="{width: `${miner.qualityAdjPower / topMinersByPower.miners[0].qualityAdjPower * 100}%`, background: '#d5eaff'}"
+            class="absolute left-0 top-1 h-8"
+          ></div>
           <p class="z-40 pl-1">
             {{ miner.qualityAdjPower | size_metric(2) }}
             /
@@ -48,8 +56,8 @@
       </div>
     </div>
 
-    <div class="flex flex-row justify-between text-white m-4">
-      <div class="flex-col">
+    <div class="flex flex-row justify-between text-white p-4">
+      <div>
         <img src="~/assets/img/home/logo.svg" class="h-6 mt-3">
         <div class="text-xl font-bold mt-4">
           更多实时挖矿排行榜
@@ -58,7 +66,7 @@
           尽在飞狐浏览器（Filfox.info），立即扫码查看
         </div>
       </div>
-      <canvas id="canvas" class="my-auto rounded-md"></canvas>
+      <canvas ref="canvas" class="my-auto rounded-md"></canvas>
     </div>
   </div>
 </template>
@@ -76,25 +84,23 @@ export default {
     return {
       topMinersByPower: {},
       loading: false,
-      pageSize: 20,
-      network,
-      QrCodeWithLogo
+      currentNetwork: network.networks[network.currentNetwork]
     }
   },
   mounted() {
     QrCodeWithLogo.toCanvas({
-      canvas: document.getElementById('canvas'),
-      content: 'https://filfox.info/ranks/power?utm_source=picshare&utm_campaign=ranks',
+      canvas: this.$refs.canvas,
+      content: `${this.currentNetwork.url}/ranks/power?utm_source=picshare&utm_campaign=ranks`,
       width: 110,
       logo: {
-        src: 'https://filfox.info/favicon.ico?v=1',
+        src: `${this.currentNetwork.url}/favicon.ico?v=1`,
         radius: 5
       }
     })
   },
   head() {
     return {
-      title: `${this.$t('meta.titles.ranks')}`
+      title: this.$t('meta.titles.ranks')
     }
   },
   layout(context) {
