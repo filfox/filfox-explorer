@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-socialBg">
+  <div class="bg-socialBg social">
     <div class="relative flex items-end h-56">
       <img src="~/assets/img/social/ranks-header.png" class="absolute w-full top-0">
       <span class="text-white text-sm mx-auto text-center mb-2">
@@ -23,20 +23,24 @@
         </div>
       </div>
 
-      <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs" :class="{'bg-socialTableBg': index % 2 != 0}">
-        <div class="pl-3 w-1/8">
+      <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs overflow-hidden" :class="{'bg-socialTableBg':index %2 === 0}">
+        <div class="pl-3 w-1/8 z-40">
           <RankIndex :index="index + 1" :type="1" :class="{'mb-1': index < 3}" />
         </div>
-        <div class="w-3/8 flex items-center py-2">
+        <div class="w-3/8 flex items-center py-2 z-40">
           <AddressLink :id="miner.address" :format="4" />
           <MinerTag v-if="miner.tag" :tag="miner.tag" :type="3" />
         </div>
-        <div class="w-1/4">
-          {{ miner.qualityAdjPower | size_metric(2) }}
-          /
-          {{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}
+        <div class="w-1/4 flex items-center py-2 relative">
+          <div :key="index" :style="{'width':`${miner.qualityAdjPower / topMinersByPower.miners[0].qualityAdjPower * 100}%`,'background':'#d5eaff'}" class="absolute left-0 top-1 h-8">
+          </div>
+          <p class="z-40 pl-1">
+            {{ miner.qualityAdjPower | size_metric(2) }}
+            /
+            {{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}
+          </p>
         </div>
-        <div class="w-1/4 text-right pr-2">
+        <div class="w-1/4 text-right pr-2 z-40">
           {{ (miner.qualityAdjPowerDelta) | size_metric(2) }}
           /
           {{ $t('shared.time.day') }}
@@ -47,7 +51,7 @@
     <div class="flex flex-row justify-between text-white m-4">
       <div class="flex-col">
         <img src="~/assets/img/home/logo.svg" class="h-6 mt-3">
-        <div class="text-xl font-medium mt-4">
+        <div class="text-xl font-bold mt-4">
           更多实时挖矿排行榜
         </div>
         <div class="text-xs mt-1">
