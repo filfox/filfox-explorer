@@ -30,6 +30,10 @@
       {{ tag[$i18n.locale] || '--' }}
       <Signed v-if="tag.signed && type== 2" :content="$t('tag.signed')" />
     </div>
+    <div v-if="type == 3" class="lg:hidden text-xs bg-socialTagBg rounded-full px-2 text-black flex ml-1 items-center truncate">
+      {{ tag[$i18n.locale] || '--' }}
+      <Signed v-if="tag.signed && type== 3" :content="$t('tag.signed')" />
+    </div>
   </div>
 </template>
 

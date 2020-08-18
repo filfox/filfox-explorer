@@ -24,7 +24,9 @@ module.exports = {
         tableHeaderColor: '#000000b3',
         dealTimeText: '#88898d',
         socialBg: '#1a4fc9',
-        socialHeader: '#1448BF'
+        socialHeader: '#1448BF',
+        socialTableBg: '#faf8fe',
+        socialTagBg: '#e7ecf8'
       },
       width: {
         '1/32': '3.125%',

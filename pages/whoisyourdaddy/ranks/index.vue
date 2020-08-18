@@ -23,13 +23,13 @@
         </div>
       </div>
 
-      <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs border-b">
+      <div v-for="(miner, index) in topMinersByPower.miners" :key="index" class="flex items-center text-xs" :class="{'bg-socialTableBg': index % 2 != 0}">
         <div class="pl-3 w-1/8">
-          <RankIndex :index="index + 1" />
+          <RankIndex :index="index + 1" :type="1" :class="{'mb-1': index < 3}" />
         </div>
         <div class="w-3/8 flex items-center py-2">
           <AddressLink :id="miner.address" :format="4" />
-          <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
+          <MinerTag v-if="miner.tag" :tag="miner.tag" :type="3" />
         </div>
         <div class="w-1/4">
           {{ miner.qualityAdjPower | size_metric(2) }}
@@ -48,10 +48,10 @@
       <div class="flex-col">
         <img src="~/assets/img/home/logo.svg" class="h-6 mt-3">
         <div class="text-xl font-medium mt-4">
-          更多Filcoin挖矿数据
+          更多实时挖矿排行榜
         </div>
         <div class="text-xs mt-1">
-          立刻扫码查看，由Filfox.info独家提供
+          尽在Filfox.info，立即扫码查看
         </div>
       </div>
       <canvas id="canvas" class="my-auto rounded-md"></canvas>
@@ -64,6 +64,10 @@ import QrCodeWithLogo from 'qr-code-with-logo'
 import { network } from '~/filecoin/filecoin.config'
 
 export default {
+  async asyncData({ $axios, error, params }) {
+    const topMinersByPower = await $axios.$get('/miner/list/power', { params: { pageSize: 20, page: 0 } })
+    return { topMinersByPower }
+  },
   data() {
     return {
       topMinersByPower: {},
@@ -74,7 +78,6 @@ export default {
     }
   },
   mounted() {
-    this.getTopMinersByPower(this.pageSize, 0)
     QrCodeWithLogo.toCanvas({
       canvas: document.getElementById('canvas'),
       content: 'https://filfox.info/ranks',
@@ -84,13 +87,6 @@ export default {
         radius: 5
       }
     })
-  },
-  methods: {
-    async getTopMinersByPower(pageSize, page) {
-      this.loading = true
-      this.topMinersByPower = await this.$axios.$get('/miner/list/power', { params: { pageSize, page } })
-      this.loading = false
-    }
   },
   head() {
     return {
