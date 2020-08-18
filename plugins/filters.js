@@ -2,9 +2,13 @@ import moment from 'moment'
 import Vue from 'vue'
 import exitCodes from '@/filecoin/exit-codes.json'
 
+function toLocaleString(n) {
+  return n.toLocaleString('en') || n.toString()
+}
+
 Vue.filter('locale', value => {
   if (typeof value === 'number') {
-    return value.toLocaleString('en')
+    return toLocaleString(value)
   } else {
     return addAmountDelimiters(value)
   }
@@ -32,12 +36,12 @@ Vue.filter('filecoin', (value, precision = null, nanoFixed = false) => {
   if (value == null) {
     return 'N/A'
   }
-  value = typeof value === 'string' ? value : value.toLocaleString('en').replace(/,/g, '')
+  value = typeof value === 'string' ? value : toLocaleString(value).replace(/,/g, '')
   const digits = value.includes('.') ? value.indexOf('.') : value.length
   if (value === '0') {
     return '0 FIL'
   } else if (digits <= 7) {
-    return `${Number(value).toLocaleString('en')} attoFIL`
+    return `${toLocaleString(Number(value))} attoFIL`
   } else if (digits <= 13) {
     if (nanoFixed) {
       return `${Vue.filter('coin')(value, 9, 0)} nanoFIL`
