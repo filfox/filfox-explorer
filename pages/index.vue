@@ -1,77 +1,83 @@
 <template>
   <div class="container mx-auto">
-    <HomeOverview :overview="overview" />
+    <div v-if="!sharing">
+      <HomeOverview :overview="overview" />
 
-    <div class="hidden lg:grid lg:grid-flow-col lg:grid-rows-1 lg:grid-cols-2 mb-2 lg:mb-4">
-      <div class="bg-white lg:rounded-md lg:mr-2 mb-2 lg:mb-0">
-        <HomeTitle type="powerDistribution" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
-        <client-only>
-          <PowerDistributionChart class="mt-2 mx-1 lg:mx-4 lg:mt-12" />
-        </client-only>
-      </div>
-
-      <div class="bg-white lg:ml-2 lg:rounded-md">
-        <div class="flex items-center border-b border-background h-10 lg:h-12 lg:pr-4">
-          <HomeTitle type="baseFee" />
-          <Tip class="ml-1" :content="$t('chart.gas.baseFeeChart.tips')" />
+      <div class="hidden lg:grid lg:grid-flow-col lg:grid-rows-1 lg:grid-cols-2 mb-2 lg:mb-4">
+        <div class="bg-white lg:rounded-md lg:mr-2 mb-2 lg:mb-0">
+          <HomeTitle type="powerDistribution" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
+          <client-only>
+            <PowerDistributionChart class="mt-2 mx-1 lg:mx-4 lg:mt-12" />
+          </client-only>
         </div>
-        <client-only>
-          <BaseFeeChartHome class="mt-2 mx-1 lg:mx-0 lg:my-4" />
-        </client-only>
+
+        <div class="bg-white lg:ml-2 lg:rounded-md">
+          <div class="flex items-center border-b border-background h-10 lg:h-12 lg:pr-4">
+            <HomeTitle type="baseFee" />
+            <Tip class="ml-1" :content="$t('chart.gas.baseFeeChart.tips')" />
+          </div>
+          <client-only>
+            <BaseFeeChartHome class="mt-2 mx-1 lg:mx-0 lg:my-4" />
+          </client-only>
+        </div>
+      </div>
+
+      <HomeMinerRanksMobile
+        class="lg:hidden"
+        :top-miners-by-power="topMinersByPower"
+        :top-miners-by-blocks="topMinersByBlocks"
+        :top-miners-by-power-delta="topMinersByPowerDelta"
+        :loading="topMinersLoading"
+        @updateTopMinersByPower="getTopMinersByPower"
+        @updateTopMinersByBlocks="getTopMinersByBlocks"
+        @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
+        @didSharedBtnClicked="didSharedBtnClicked"
+      />
+      <HomeMinerRanks
+        class="hidden lg:block"
+        :top-miners-by-power="topMinersByPower"
+        :top-miners-by-blocks="topMinersByBlocks"
+        :top-miners-by-power-delta="topMinersByPowerDelta"
+        :loading="topMinersLoading"
+        @updateTopMinersByPower="getTopMinersByPower"
+        @updateTopMinersByBlocks="getTopMinersByBlocks"
+        @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
+      />
+
+      <div class="mb-4 hidden lg:flex">
+        <HomeRecentTipsets :recent-tipsets="recentTipsets" :recent-tipsets-loading="recentTipsetsLoading" class="w-1/2" />
+        <HomeRichList :rich-list="richList" :rich-list-loading="richListLoading" class="w-1/2" />
+      </div>
+
+      <HomeRecentTipsetsMobile
+        class="lg:hidden"
+        :recent-tipsets="recentTipsets"
+        :recent-tipsets-loading="recentTipsetsLoading"
+      />
+      <HomeRichListMobile
+        class="lg:hidden"
+        :rich-list="richList"
+        :rich-list-loading="richListLoading"
+      />
+
+      <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
+        <div class="bg-white  mb-2">
+          <HomeTitle type="powerDistribution" class="border-b border-background h-10 pr-4" />
+          <client-only>
+            <PowerDistributionChart class="mt-2 mx-1" />
+          </client-only>
+        </div>
+
+        <div class="bg-white lg:hidden">
+          <HomeTitle type="baseFee" class="border-b border-background h-10 pr-4" />
+          <client-only>
+            <BaseFeeChartHome class="mt-2 lg:mx-0 lg:my-4" />
+          </client-only>
+        </div>
       </div>
     </div>
-
-    <HomeMinerRanksMobile
-      class="lg:hidden"
-      :top-miners-by-power="topMinersByPower"
-      :top-miners-by-blocks="topMinersByBlocks"
-      :top-miners-by-power-delta="topMinersByPowerDelta"
-      :loading="topMinersLoading"
-      @updateTopMinersByPower="getTopMinersByPower"
-      @updateTopMinersByBlocks="getTopMinersByBlocks"
-      @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
-    />
-    <HomeMinerRanks
-      class="hidden lg:block"
-      :top-miners-by-power="topMinersByPower"
-      :top-miners-by-blocks="topMinersByBlocks"
-      :top-miners-by-power-delta="topMinersByPowerDelta"
-      :loading="topMinersLoading"
-      @updateTopMinersByPower="getTopMinersByPower"
-      @updateTopMinersByBlocks="getTopMinersByBlocks"
-      @updateTopMinersByPowerDelta="getTopMinersByPowerDelta"
-    />
-
-    <div class="mb-4 hidden lg:flex">
-      <HomeRecentTipsets :recent-tipsets="recentTipsets" :recent-tipsets-loading="recentTipsetsLoading" class="w-1/2" />
-      <HomeRichList :rich-list="richList" :rich-list-loading="richListLoading" class="w-1/2" />
-    </div>
-
-    <HomeRecentTipsetsMobile
-      class="lg:hidden"
-      :recent-tipsets="recentTipsets"
-      :recent-tipsets-loading="recentTipsetsLoading"
-    />
-    <HomeRichListMobile
-      class="lg:hidden"
-      :rich-list="richList"
-      :rich-list-loading="richListLoading"
-    />
-
-    <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
-      <div class="bg-white  mb-2">
-        <HomeTitle type="powerDistribution" class="border-b border-background h-10 pr-4" />
-        <client-only>
-          <PowerDistributionChart class="mt-2 mx-1" />
-        </client-only>
-      </div>
-
-      <div class="bg-white lg:hidden">
-        <HomeTitle type="baseFee" class="border-b border-background h-10 pr-4" />
-        <client-only>
-          <BaseFeeChartHome class="mt-2 lg:mx-0 lg:my-4" />
-        </client-only>
-      </div>
+    <div v-if="sharing" v-loading="sharingLoading" element-loading-text="生成图片中..." element-loading-background="rgba(0, 0, 0, 0.71)" style="height:70vh">
+      <RanksShare :loading="sharingLoading" :sharing="sharing" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
     </div>
   </div>
 </template>
@@ -100,7 +106,10 @@ export default {
       recentTipsets: [],
       recentTipsetsLoading: false,
       richList: { totalCount: 0, list: [], totalSupply: '0' },
-      richListLoading: false
+      richListLoading: false,
+      sharing: false,
+      sharingImageURL: '',
+      sharingLoading: false
     }
   },
   mounted() {
@@ -153,6 +162,19 @@ export default {
     },
     onUpdateRecentTipsets(tipsets) {
       this.recentTipsets = tipsets
+    },
+    didDismissAreaClicked() {
+      this.sharing = false
+    },
+    didSharedBtnClicked() {
+      this.sharing = true
+      this.getRanksImage()
+    },
+    async getRanksImage() {
+      this.sharingLoading = true
+      const result = await this.$axios.$post('/request-share/ranks')
+      this.sharingImageURL = result
+      this.sharingLoading = false
     }
   },
   head() {

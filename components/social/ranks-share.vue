@@ -6,9 +6,7 @@
     <div v-if="!loading" id="image" class="mx-auto w-3/4 mt-0">
       <img id="image" :src="url" class="w-full">
     </div>
-    <div v-if="!loading" class="h-64">
-    </div>
-    <div v-if="!loading" class="h-64">
+    <div v-if="!loading" style="height:70vh">
     </div>
   </div>
 </template>
