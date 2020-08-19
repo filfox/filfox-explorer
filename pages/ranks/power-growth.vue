@@ -13,7 +13,7 @@
           <div class="flex justify-between my-1 mx-2 text-xs">
             <p>
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}:
-              {{ (miner.qualityAdjPowerDelta / durationDays / topMiners.durationPercentage) | size_metric(2) }}
+              {{ (miner.qualityAdjPowerGrowth / durationDays / topMiners.durationPercentage) | size_metric(2) }}
               /
               {{ $t('shared.time.day') }}
             </p>
@@ -91,12 +91,12 @@
               <div class="flex items-center">
                 <el-progress
                   v-if="page === 0"
-                  :percentage="miner.qualityAdjPowerDelta / topMiners.miners[0].qualityAdjPowerDelta * 100"
+                  :percentage="miner.qualityAdjPowerGrowth / topMiners.miners[0].qualityAdjPowerGrowth * 100"
                   :show-text="false"
                   class="flex w-1/2 ml-8 mr-3"
                 />
                 <div class="flex" :class="{'mx-auto': page > 0}">
-                  {{ (miner.qualityAdjPowerDelta / durationDays / topMiners.durationPercentage) | size_metric(2) }}
+                  {{ (miner.qualityAdjPowerGrowth / durationDays / topMiners.durationPercentage) | size_metric(2) }}
                   /
                   {{ $t('shared.time.day') }}
                 </div>
@@ -131,7 +131,7 @@ export default {
   },
   async asyncData({ $axios, error }) {
     try {
-      const topMiners = await $axios.$get('/miner/list/power-delta', { params: { pageSize: 20, page: 0, duration: '24h' } })
+      const topMiners = await $axios.$get('/miner/list/power-growth', { params: { pageSize: 20, page: 0, duration: '24h' } })
       return { topMiners }
     } catch (err) {
       if (err?.response) {
@@ -179,7 +179,7 @@ export default {
     async getMinerList() {
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page, duration: this.duration }
-      this.topMiners = await this.$axios.$get('/miner/list/power-delta', { params })
+      this.topMiners = await this.$axios.$get('/miner/list/power-growth', { params })
       this.loading = false
     },
     didCurrentPageChanged(currentPage) {

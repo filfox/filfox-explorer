@@ -99,7 +99,7 @@
             <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
           </div>
           <div class="w-3/8 text-right">
-            {{ (miner.qualityAdjPowerDelta / durationDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
+            {{ (miner.qualityAdjPowerGrowth / durationDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
             /
             {{ $t('shared.time.day') }}
           </div>

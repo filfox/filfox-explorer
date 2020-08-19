@@ -39,11 +39,11 @@
         <div class="w-1/4 flex items-center py-2 relative">
           <div
             :key="index"
-            :style="{width: `${miner.qualityAdjPowerDelta / topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100}%`, background: '#d5eaff'}"
+            :style="{width: `${miner.qualityAdjPowerGrowth / topMinersByPowerDelta.miners[0].qualityAdjPowerGrowth * 100}%`, background: '#d5eaff'}"
             class="absolute left-0 top-1 h-8"
           ></div>
           <p class="z-40 pl-1">
-            {{ miner.qualityAdjPowerDelta | size_metric(2) }}
+            {{ miner.qualityAdjPowerGrowth | size_metric(2) }}
             /
             {{ $t('shared.time.day') }}
           </p>
@@ -75,7 +75,7 @@ import { network } from '~/filecoin/filecoin.config'
 
 export default {
   async asyncData({ $axios, error, params }) {
-    const topMinersByPowerDelta = await $axios.$get('/miner/list/power-delta', { params: { pageSize: 50, page: 0, duration: '24h' } })
+    const topMinersByPowerDelta = await $axios.$get('/miner/list/power-growth', { params: { pageSize: 50, page: 0, duration: '24h' } })
     return { topMinersByPowerDelta }
   },
   data() {

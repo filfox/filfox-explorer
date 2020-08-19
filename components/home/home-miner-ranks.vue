@@ -206,12 +206,12 @@
           <td>
             <div class="flex items-center justify-end">
               <el-progress
-                :percentage="miner.qualityAdjPowerDelta/topMinersByPowerDelta.miners[0].qualityAdjPowerDelta * 100"
+                :percentage="miner.qualityAdjPowerGrowth / topMinersByPowerDelta.miners[0].qualityAdjPowerGrowth * 100"
                 :show-text="false"
                 class="flex w-1/2 mx-1 mr-3"
               />
               <div class="flex w-1/3">
-                {{ (miner.qualityAdjPowerDelta / durationDays / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
+                {{ (miner.qualityAdjPowerGrowth / durationDays / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
                 /
                 {{ $t('shared.time.day') }}
               </div>
