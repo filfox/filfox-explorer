@@ -144,7 +144,7 @@ export default {
     },
     async getRanksImage() {
       this.sharingLoading = true
-      const result = await this.$axios.$post('/request-share/ranks')
+      const result = await this.$axios.$post(`/request-share/ranks/${this.category}`)
       this.sharingImageURL = result
       this.sharingLoading = false
     }
