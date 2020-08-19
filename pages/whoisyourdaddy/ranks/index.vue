@@ -77,7 +77,7 @@ import { network } from '~/filecoin/filecoin.config'
 
 export default {
   async asyncData({ $axios, error, params }) {
-    const topMinersByPower = await $axios.$get('/miner/list/power', { params: { pageSize: 20, page: 0 } })
+    const topMinersByPower = await $axios.$get('/miner/list/power', { params: { pageSize: 50, page: 0 } })
     return { topMinersByPower }
   },
   data() {
