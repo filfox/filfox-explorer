@@ -91,7 +91,7 @@
         >
           {{ overview.totalRawBytePower | size_metric(2) }}
         </OverviewCell>
-        <OverviewCell name="Current Base Fee">
+        <OverviewCell name="$t('home.overview.titles.currentBaseFee')">
           {{ overview.baseFee | filecoin(2) }}
         </OverviewCell>
         <OverviewCell :name="$t('home.overview.titles.burntSupply')">

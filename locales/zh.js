@@ -69,7 +69,8 @@ export default {
         totalMarketBalance: '订单锁定量',
         totalMaxSupply: 'FIL总供给量',
         circulatingSupplyRate: 'FIL流通率',
-        sectorInitialPledge: '当前扇区质押量'
+        sectorInitialPledge: '当前扇区质押量',
+        currentBaseFee: '当前基础费率'
       },
       tips: {
         qualityAdjPower: '当前全网有效算力（有效存储空间）的总和',
