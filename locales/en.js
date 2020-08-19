@@ -80,7 +80,8 @@ export default {
         totalMarketBalance: 'Total Market Balance',
         totalMaxSupply: 'Total Max Supply',
         circulatingSupplyRate: 'Circulating Rate',
-        sectorInitialPledge: 'Current Sector Initial Pledge'
+        sectorInitialPledge: 'Current Sector Initial Pledge',
+        currentBaseFee: 'Current Base Fee'
       },
       tips: {
         qualityAdjPower: 'Total adjusted storage power (storage space) of the network.',
