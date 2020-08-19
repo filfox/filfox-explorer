@@ -154,7 +154,7 @@ export default {
       },
       tipsByPowerDelta: {
         equivalentMiners: '채굴자가 보유한 채굴파워를 공식 벤치마크 추천 구성 ( AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）을 기준으로 환산하여 얻은 값.',
-        powerIncreaseSpeed: '해당 기간 채굴 파워 증가량의 평균치',
+        powerIncreaseSpeed: 'Daily total adj. power of the sealed sectors within selected period.',
         powerDelta: '해당 기간 채굴자의 유효 채굴파워 증가량'
       },
       moreBtn: '더 보기'
