@@ -19,7 +19,7 @@
           24h{{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
         </div>
         <div class="w-1/4 text-right font-medium pr-2">
-          24h{{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
+          {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
         </div>
       </div>
 
@@ -49,9 +49,7 @@
           </p>
         </div>
         <div class="w-1/4 text-right pr-2 z-40">
-          {{ (miner.qualityAdjPowerDelta) | size_metric(2) }}
-          /
-          {{ $t('shared.time.day') }}
+          {{ (miner.qualityAdjPower) | size_metric(2) }}
         </div>
       </div>
     </div>
