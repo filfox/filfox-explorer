@@ -108,6 +108,7 @@ export default {
       topMinersByPower: {},
       topMinersByBlocks: {},
       topMinersByPowerDelta: {},
+      topMinersType: 'power',
       topMinersLoading: false,
       recentTipsets: [],
       recentTipsetsLoading: false,
@@ -136,16 +137,19 @@ export default {
   },
   methods: {
     async getTopMinersByPower() {
+      this.topMinersType = 'power'
       this.topMinersLoading = true
       this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: { count: 20 } })
       this.topMinersLoading = false
     },
     async getTopMinersByBlocks(duration) {
+      this.topMinersType = 'blocks'
       this.topMinersLoading = true
       this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: { count: 20, duration } })
       this.topMinersLoading = false
     },
     async getTopMinersByPowerDelta(duration) {
+      this.topMinersType = 'power-growth'
       this.topMinersLoading = true
       this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-delta', { params: { count: 20, duration } })
       this.topMinersLoading = false
@@ -178,7 +182,7 @@ export default {
     },
     async getRanksImage() {
       this.sharingLoading = true
-      const result = await this.$axios.$post('/request-share/ranks')
+      const result = await this.$axios.$post(`/request-share/ranks/${this.topMinersType}`)
       this.sharingImageURL = result
       this.sharingLoading = false
     }
