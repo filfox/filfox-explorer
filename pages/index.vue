@@ -151,7 +151,7 @@ export default {
     async getTopMinersByPowerDelta(duration) {
       this.topMinersType = 'power-growth'
       this.topMinersLoading = true
-      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-delta', { params: { count: 20, duration } })
+      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-growth', { params: { count: 20, duration } })
       this.topMinersLoading = false
     },
     async getRecentTipsets() {

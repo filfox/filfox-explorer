@@ -155,7 +155,7 @@ export default {
       },
       tipsByPowerDelta: {
         equivalentMiners: "Take the official benchmark environment as the baseline (AMD Ryzen Threadripper 3970X, NVidia GTX 2080Ti, 128GB 2133mhz), we estamate the miner's machine amount by calculate the ratio of its storage power growth and the baseline.",
-        powerIncreaseSpeed: 'Daily adjusted storage power growth of a miner.',
+        powerIncreaseSpeed: 'Daily total adj. power of the sealed sectors within selected period.',
         powerDelta: "Miner's adjusted storage power increment in the selected period."
       },
       moreBtn: 'More'
