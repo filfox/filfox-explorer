@@ -1,7 +1,7 @@
 <template>
   <div class="bg-socialBg social">
     <div class="relative flex items-end h-56">
-      <img src="~/assets/img/social/ranks-header.png" class="absolute w-full top-0">
+      <img src="~/assets/img/social/power-header.png" class="absolute w-full top-0">
       <span class="text-white text-sm mx-auto text-center mb-2">
         Filfox.info 更新于 {{ topMinersByPower.timestamp | timestamp('datetime') }} ({{ currentNetwork.name }})
       </span>
