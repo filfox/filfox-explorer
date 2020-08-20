@@ -18,6 +18,7 @@
         class="lg:hidden"
         width="100%"
         height="250px"
+        :animation="null"
       />
     </client-only>
   </div>

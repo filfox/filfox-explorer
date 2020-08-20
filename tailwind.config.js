@@ -26,7 +26,11 @@ module.exports = {
         socialBg: '#1a4fc9',
         socialHeader: '#1448BF',
         socialTableBg: '#faf8fe',
-        socialTagBg: '#e7ecf8'
+        socialTagBg: '#e7ecf8',
+        socialTagTransparentBg: '#ffffff40',
+        socialUpdateTimeText: '#ffffff70',
+        socialMinerTitle: '#00000085',
+        socialMinerBorder: '#0000001a'
       },
       width: {
         '1/32': '3.125%',

@@ -1,325 +1,122 @@
 <template>
-  <div class="container mx-auto">
-    <div>
-      <div class="pt-4 pb-1 bg-white">
-        <p class="text-sm ml-3 font-medium">
-          {{ $t('detail.address.miner.minerOverview.title') }}
+  <div class="container mx-auto social">
+    <div class="bg-socialBg flex flex-col relative h-48 items-start">
+      <img src="~/assets/img/social/miner-header.png" class="absolute w-full top-0">
+      <img src="~/assets/img/home/logo.svg" class="h-6 mt-8 ml-4">
+      <div class="flex mt-6 ml-4">
+        <p class="text-white text-2xl font-medium">
+          矿工 {{ addressData.address }}
         </p>
-        <div class="flex items-center py-2 border-b border-background">
-          <div class="text-xs ml-3">
-            {{ $t('detail.address.normal.title') }} {{ addressData.address }}
-          </div>
-          <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="2" />
-        </div>
-
-        <div class="rounded-sm m-3 mb-0 shadow flex justify-between">
-          <div class="w-1/2 h-full m-auto">
-            <MinerBalanceChart :address-data="addressData" />
-          </div>
-          <div class="py-4 text-right w-1/2 mr-5 mt-8">
-            <p class="text-xs text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.balance') }}
-            </p>
-            <p class="font-medium text-xl">
-              {{ addressData.balance | filecoin(2) }}
-            </p>
-            <p class="text-xs mt-3 text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.availableBalance') }}:
-              {{ addressData.miner.availableBalance | filecoin(2) }}
-            </p>
-            <p class="text-xs mt-1 text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.pledgeBalance') }}:
-              {{ addressData.miner.pledgeBalance | filecoin(2) }}
-            </p>
-          </div>
-        </div>
-
-        <div class="pt-4 pb-2 rounded-sm m-3 shadow justify-between">
-          <p class="text-xs ml-3 text-gray-800">
-            {{ $t('detail.address.miner.minerOverview.headers.qualityAdjPower') }}
-          </p>
-          <div class="flex items-center justify-between mx-3 pb-1 border-b border-dashed border-background">
-            <p class=" font-medium text-xl">
+        <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="4" />
+      </div>
+      <span class="text-socialUpdateTimeText text-xs ml-4 mt-2">
+        Filfox.info 更新于 {{ addressData.timestamp | timestamp('datetime') }} ({{ currentNetwork.name }})
+      </span>
+    </div>
+    <div class="pb-1 bg-white">
+      <div class="p-4 rounded-md mx-2 my-5 shadow flex justify-between text-sm text-socialMinerTitle">
+        <div class="flex flex-col items-start">
+          <p> 有效算力 </p>
+          <div class="flex items-center">
+            <p class="text-2xl font-medium text-socialBg">
               {{ addressData.miner.qualityAdjPower | size_metric(2) }}
             </p>
-            <p class="text-xs pt-1 text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.rate') }}:
-              {{ addressData.miner.qualityAdjPower / addressData.miner.totalQualityAdjPower | percentage }}
+            <p class="ml-5 font-medium">
+              占比: {{ addressData.miner.qualityAdjPower / addressData.miner.totalQualityAdjPower | percentage }}
             </p>
-            <p class="text-xs pt-1 text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.rank') }}:
+          </div>
+          <p class="mt-5">
+            累计出块数：{{ addressData.miner.blocksMined }}
+          </p>
+        </div>
+        <div class="flex flex-col items-end">
+          <p> 排名 </p>
+          <div>
+            <p class="text-2xl text-socialBg">
               {{ addressData.miner.qualityAdjPowerRank || 'N/A' }}
             </p>
           </div>
-
-          <div class="flex items-center justify-between mx-3 mt-2">
-            <p class="text-xs text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.rawBytePower') }}:
-            </p>
-            <p class="text-xs text-gray-800">
-              {{ addressData.miner.rawBytePower | size_metric(2) }}
-            </p>
-          </div>
-          <div class="flex items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
-            </p>
-            <p class="text-xs text-gray-800">
-              {{ addressData.miner.blocksMined }}
-            </p>
-          </div>
-          <div class="flex items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.blocksReward') }}:
-            </p>
-            <p class="text-xs text-gray-800">
-              {{ addressData.miner.totalRewards | filecoin(2) }}
-            </p>
-          </div>
-          <div class="flex items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.sectorSize') }}:
-            </p>
-            <p class="text-xs text-gray-800">
-              {{ addressData.miner.sectorSize | size_metric(2) }}
-            </p>
-          </div>
-          <div class="flex items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.sectors') }}:
-            </p>
-            <p class="text-xs text-gray-800 text-right w-3/4">
-              {{ addressData.miner.sectors | locale }} {{ $t('detail.address.miner.sectors.total') }},
-              {{ addressData.miner.activeSectors | locale }} {{ $t('detail.address.miner.sectors.active') }},
-              {{ addressData.miner.faults | locale }} {{ $t('detail.address.miner.sectors.faults') }},
-              {{ addressData.miner.recoveries | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
-            </p>
-          </div>
+          <p class="mt-5">
+            累计出块奖励：{{ addressData.miner.totalRewards | filecoin(2) }}
+          </p>
         </div>
       </div>
 
-      <MinerMiningOverview :address-data="addressData" portable class="mt-2" />
-
-      <div class="bg-white w-full mt-2">
-        <p class="pl-3 flex py-2 text-sm border-b border-background font-medium">
-          {{ $t('detail.address.miner.accountChange.title') }}
-        </p>
-        <MinerBalanceDetailChart :address-data="addressData" class="mt-4 mx-3" />
-      </div>
-
-      <div class="bg-white w-full mt-2">
-        <p class="pl-3 flex py-2 text-sm border-b border-background font-medium">
+      <div class="bg-white mx-2 shadow flex flex-col rounded-md px-3 mb-5">
+        <p class="flex py-2 text-sm border-b border-background font-medium">
           {{ $t('detail.address.miner.powerChange.title') }}
         </p>
-        <MinerPowerDetailChart :address-data="addressData" class="mt-4 mx-3" />
+        <div>
+          <MinerPowerDetailChart :address-data="addressData" class="mt-4 w-full" />
+        </div>
       </div>
 
-      <div class="bg-white mt-2 py-px">
-        <p class="pl-3 flex py-2 text-sm border-b border-background font-medium">
-          {{ $t('detail.address.miner.accountOverview.title') }}
+      <div class="p-4 rounded-md mx-2 mb-5 shadow grid grid-cols-2 text-sm text-socialMinerTitle">
+        <div class="flex flex-col items-start border-r border-dashed border-socialMinerBorder">
+          <p> 24小时算力增速 </p>
+          <p class="text-2xl font-medium text-black">
+            {{ addressData.miner.miningStats.qualityAdjPowerDelta | size_metric(2) }}
+            /
+            {{ $t('shared.time.day') }}
+          </p>
+          <p class="mt-4">
+            24小时矿机当量
+          </p>
+          <p class="text-2xl font-medium text-black">
+            {{ addressData.miner.miningStats.equivalentMiners.toFixed(2) }}
+          </p>
+        </div>
+        <div class="flex flex-col items-end">
+          <p> 24小时挖矿效率 </p>
+          <p class="text-2xl font-medium text-black">
+            {{ addressData.miner.miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB
+          </p>
+          <p class="mt-4">
+            24小时幸运值
+          </p>
+          <p class="text-2xl font-medium text-black">
+            {{ addressData.miner.miningStats.luckyValue | percentage }}
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-md mx-2 mb-5 shadow flex flex-col text-sm text-socialMinerTitle">
+        <div class="items-start">
+          <p> 账户余额 </p>
+          <p class="text-2xl font-medium text-socialBg">
+            {{ addressData.balance | filecoin(2) }}
+          </p>
+        </div>
+        <div class="flex justify-between mt-4">
+          <div>
+            <p> 可用余额：{{ addressData.miner.availableBalance | filecoin(2) }} </p>
+          </div>
+          <div>
+            <p> 质押金额： {{ addressData.miner.pledgeBalance | filecoin(2) }} </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white mx-2 shadow flex flex-col rounded-md px-3 mb-5">
+        <p class="flex py-2 text-sm border-b border-background font-medium">
+          账户变化
         </p>
-        <div class="flex items-center justify-between mx-3 mt-3">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.address') }}:
-          </p>
-          <p class="text-xs text-gray-800 text-right w-4/5 break-all">
-            {{ addressData.alias || 'N/A' }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-1">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.messageCount') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ addressData.messageCount }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-1">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.actor') }}:
-          </p>
-          <p class="text-xs text-gray-800">
-            {{ $t('actor.' + addressData.actor) }}
-          </p>
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-1 pb-1 border-b border-dashed border-background">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.createTime') }}:
-          </p>
-          <p class="text-xs text-gray-800 text-right">
-            {{ addressData.createTimestamp | timestamp('datetime') }}
-          </p>
-        </div>
-
-        <div class="flex items-center justify-between mx-3 mt-1">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.peerID') }}:
-          </p>
-          <PeerLink :id="addressData.miner.peerId" :format="12" class="text-xs text-main" />
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-1">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.owner') }}:
-          </p>
-          <AddressLink :id="addressData.miner.owner" :format="10" class="text-xs text-main" />
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-1">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.worker') }}:
-          </p>
-          <AddressLink :id="addressData.miner.worker" :format="10" class="text-xs text-main" />
-        </div>
-        <div class="flex items-center justify-between mx-3 mt-1 mb-3">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
-          </p>
-          <IpAddress :location="addressData.miner.location" :type="2" />
+        <div>
+          <MinerBalanceDetailChart :address-data="addressData" class="mt-4 w-full" />
         </div>
       </div>
 
-      <div v-loading="loading" class="mt-2 pt-3 bg-white">
-        <div class="flex h-10 items-center mb-3 justify-center">
-          <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
-            <el-radio-button :label="0">
-              {{ $t('blockchain.message.title') }}
-            </el-radio-button>
-            <el-radio-button :label="1">
-              {{ $t('blockchain.block.title') }}
-            </el-radio-button>
-            <el-radio-button :label="2">
-              {{ $t('detail.transfer.title') }}
-            </el-radio-button>
-          </el-radio-group>
-        </div>
-        <AddressMessageListMobile v-if="listType === 0" :address="addressData.address" />
-        <div v-if="listType === 1">
-          <div class="flex items-center justify-between pb-1 mb-2">
-            <p class="flex ml-3 h-8 items-center text-xs">
-              {{ $t('detail.address.miner.blockList.total') + ' ' + total + ' ' + $t('detail.address.miner.blockList.tipsets') }}
-            </p>
+      <div class="flex flex-row justify-between p-4 border-t border-socialMinerBorder border-dashed">
+        <div>
+          <img src="~/assets/img/home/logo-social.svg" class="h-6 mt-3">
+          <div class="text-xl font-bold mt-4">
+            更多实时挖矿排行榜
           </div>
-
-          <div v-for="(block, index) in blockList.blocks" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white py-2">
-            <div class="flex items-center justify-between mx-3">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.address.miner.blockList.height') }}:
-              </p>
-              <TipsetLink :id="block.height" class="text-main text-xs" />
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.address.miner.blockList.hash') }} :
-              </p>
-              <BlockLink :id="block.cid" :format="10" class="text-xs text-gray-800" />
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.address.miner.blockList.reward') }}:
-              </p>
-              <p v-if="block.reward" class="text-xs text-gray-800">
-                {{ block.reward | filecoin(2) }}
-              </p>
-              <p v-else class="text-xs text-gray-800">
-                N/A
-              </p>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.address.miner.blockList.time') }}:
-              </p>
-              <p class="text-xs text-gray-800">
-                {{ block.timestamp | timestamp('datetime') }}
-              </p>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.address.miner.blockList.messages') }}:
-              </p>
-              <p class="text-xs text-gray-800">
-                {{ block.messageCount }} Bytes
-              </p>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.address.miner.blockList.blockSize') }}:
-              </p>
-              <p class="text-xs text-gray-800">
-                {{ block.size }} Bytes
-              </p>
-            </div>
+          <div class="text-xs mt-1 text-socialMinerTitle">
+            尽在飞狐浏览器（Filfox.info），立即扫码查看
           </div>
         </div>
-        <div v-if="listType === 2">
-          <div class="flex items-center justify-between pb-1 mb-2">
-            <p class="flex ml-3 h-8 items-center text-xs">
-              {{ $t('detail.address.miner.blockList.total') + ' ' + total + ' ' + $t('detail.transfer.transaction') }}
-            </p>
-          </div>
-
-          <div v-for="(transfer, index) in transferList.transfers" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white py-2">
-            <div class="flex items-center justify-between mx-3">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.transfer.tableHeaders.time') }}:
-              </p>
-              <p class="text-xs text-gray-800">
-                {{ transfer.timestamp | timestamp('datetime') }}
-              </p>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.transfer.tableHeaders.message') }} :
-              </p>
-              <MessageLink v-if="transfer.message" :id="transfer.message" :format="8" class="text-xs" />
-              <span v-else class="text-xs text-gray-800"> N/A </span>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.transfer.tableHeaders.from') }}:
-              </p>
-              <div class="flex items-center flex-row justify-end">
-                <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-xs text-main" />
-                <span v-else class="text-xs text-gray-800"> N/A </span>
-                <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="2" />
-              </div>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.transfer.tableHeaders.to') }}:
-              </p>
-              <div class="flex items-center flex-row justify-end">
-                <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-xs text-main" />
-                <span v-else class="text-xs text-gray-800"> N/A </span>
-                <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="2" />
-              </div>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.transfer.tableHeaders.income') }}:
-              </p>
-              <p class="text-xs text-gray-800">
-                {{ transfer.value | filecoin(2) }}
-              </p>
-            </div>
-            <div class="flex items-center justify-between mx-3 mt-1">
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.transfer.tableHeaders.type') }}:
-              </p>
-              <p class="text-xs text-gray-800">
-                {{ $t('detail.transfer.types.' + transfer.type ) }}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div v-if="listType != 0" class="flex items-center text-center h-16 bg-white">
-          <el-pagination
-            layout="prev, pager, next"
-            :page-count="totalPageCount"
-            :pager-count="5"
-            :current-page="page + 1"
-            class="mx-auto"
-            @current-change="didCurrentPageChanged"
-          />
-        </div>
+        <canvas ref="canvas" class="my-auto rounded-md border border-socialMinerBorder"></canvas>
       </div>
     </div>
   </div>
@@ -327,6 +124,9 @@
 
 <script>
 import { epochsInDay } from '@/filecoin/filecoin.config'
+import QrCodeWithLogo from 'qr-code-with-logo'
+import { network } from '~/filecoin/filecoin.config'
+
 export default {
   async asyncData({ $axios, params, query, error }) {
     const id = params.id
@@ -360,7 +160,8 @@ export default {
       total: 0,
       method: 'All',
       duration: '24h',
-      epochsInDay
+      epochsInDay,
+      currentNetwork: network.networks[network.currentNetwork]
     }
   },
   computed: {
@@ -374,50 +175,24 @@ export default {
       return this.addressData.miner.miningStats
     }
   },
-  methods: {
-    async getMinigStats() {
-      this.loading = true
-      const params = { duration: this.duration }
-      this.miningStats = await this.$axios.$get(`/miner/${this.addressData.address}/mining-stats`, { params })
-      this.loading = false
-    },
-    async getBlockList() {
-      this.loading = true
-      const params = { pageSize: this.pageSize, page: this.page }
-      this.blockList = await this.$axios.$get(`/address/${this.addressData.address}/blocks`, { params })
-      this.loading = false
-      this.total = this.blockList.totalCount
-    },
-    async getTransferList() {
-      this.loading = true
-      const params = { pageSize: this.pageSize, page: this.page }
-      this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
-      this.loading = false
-      this.total = this.transferList.totalCount
-    },
-    didCurrentPageChanged(currentPage) {
-      this.page = currentPage - 1
-      if (this.listType === 1) {
-        this.getBlockList()
-      } else if (this.listType === 2) {
-        this.getTransferList()
+  mounted() {
+    QrCodeWithLogo.toCanvas({
+      canvas: this.$refs.canvas,
+      content: `${this.currentNetwork.url}/ranks/blocks?utm_source=picshare&utm_campaign=ranks`,
+      width: 110,
+      logo: {
+        src: `${this.currentNetwork.url}/favicon.ico?v=1`,
+        radius: 5
       }
-    },
-    didListTypeChanged() {
-      this.page = 0
-      this.totalPageCount = 1
-      this.total = 0
-      if (this.listType === 1) {
-        this.getBlockList()
-      } else if (this.listType === 2) {
-        this.getTransferList()
-      }
-    }
+    })
   },
   head() {
     return {
       title: `${this.$t('meta.titles.address')} ${this.id}`
     }
+  },
+  layout(context) {
+    return 'social'
   }
 }
 </script>
