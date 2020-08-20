@@ -26,7 +26,7 @@
             </p>
           </div>
           <p class="mt-5">
-            累计出块数：{{ addressData.miner.blocksMined }}
+            累计出块数：{{ addressData.miner.weightedBlocksMined }}
           </p>
         </div>
         <div class="flex flex-col items-end">
