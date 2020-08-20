@@ -178,7 +178,7 @@ export default {
   mounted() {
     QrCodeWithLogo.toCanvas({
       canvas: this.$refs.canvas,
-      content: `${this.currentNetwork.url}/ranks/blocks?utm_source=picshare&utm_campaign=ranks`,
+      content: `${this.currentNetwork.url}/address/${this.addressData.address}?utm_source=picshare&utm_campaign=miner`,
       width: 110,
       logo: {
         src: `${this.currentNetwork.url}/favicon.ico?v=1`,
