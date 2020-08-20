@@ -110,7 +110,7 @@
         <div>
           <img src="~/assets/img/home/logo-social.svg" class="h-6 mt-3">
           <div class="text-xl font-bold mt-4">
-            更多实时挖矿排行榜
+            更多矿工实时数据
           </div>
           <div class="text-xs mt-1 text-socialMinerTitle">
             尽在飞狐浏览器（Filfox.info），立即扫码查看
