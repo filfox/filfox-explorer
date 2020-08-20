@@ -65,28 +65,25 @@
                   size="mini"
                   round
                   v-bind="category === 'power' ? {type: 'primary', plain: true, class: 'pointer-events-none'} : {}"
+                  @click="e => didRanksTypeSwitched(e,'power')"
                 >
-                  <nuxt-link :to="localePath('/ranks/power')">
-                    {{ $t('home.minerRanks.filters.qualityAdjPower') }}
-                  </nuxt-link>
+                  {{ $t('home.minerRanks.filters.qualityAdjPower') }}
                 </el-button>
                 <el-button
                   size="mini"
                   round
                   v-bind="category === 'blocks' ? {type: 'primary', plain: true, class: 'pointer-events-none'} : {}"
+                  @click="e => didRanksTypeSwitched(e,'blocks')"
                 >
-                  <nuxt-link :to="localePath('/ranks/blocks')">
-                    {{ $t('home.minerRanks.filters.blocks') }}
-                  </nuxt-link>
+                  {{ $t('home.minerRanks.filters.blocks') }}
                 </el-button>
                 <el-button
                   size="mini"
                   round
                   v-bind="category === 'power-growth' ? {type: 'primary', plain: true, class: 'pointer-events-none'} : {}"
+                  @click="e => didRanksTypeSwitched(e,'power-growth')"
                 >
-                  <nuxt-link :to="localePath('/ranks/power-growth')">
-                    {{ $t('home.minerRanks.filters.powerDelta') }}
-                  </nuxt-link>
+                  {{ $t('home.minerRanks.filters.powerDelta') }}
                 </el-button>
               </el-row>
             </div>
@@ -147,6 +144,18 @@ export default {
       const result = await this.$axios.$post(`/request-share/ranks/${this.category}`)
       this.sharingImageURL = result
       this.sharingLoading = false
+    },
+    didRanksTypeSwitched(e, category) {
+      let node = e.target
+      while (true) {
+        if (node?.tagName?.toLowerCase() === 'button') {
+          node.blur()
+          break
+        } else {
+          node = node.parentElement
+        }
+      }
+      this.$router.push(this.localePath(`/ranks/${category}`))
     }
   },
   head() {
