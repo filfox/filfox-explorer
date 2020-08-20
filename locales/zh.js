@@ -292,7 +292,8 @@ export default {
         receive: '接收',
         transfer: '转账',
         'miner-fee': '矿工手续费',
-        'burn-fee': '销毁手续费'
+        'burn-fee': '销毁手续费',
+        penalty: '惩罚'
       },
       total: '共',
       transaction: '条转账'

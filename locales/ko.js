@@ -300,7 +300,8 @@ export default {
         receive: 'Receive',
         transfer: 'Transfer',
         'miner-fee': 'Miner Fee',
-        'burn-fee': 'Burn Fee'
+        'burn-fee': 'Burn Fee',
+        penalty: 'Penalty'
       },
       total: 'Total',
       transaction: 'transactions'
