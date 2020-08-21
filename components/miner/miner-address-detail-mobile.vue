@@ -100,7 +100,7 @@
               {{ $t('detail.address.miner.minerOverview.headers.sectorSize') }}:
             </p>
             <p class="text-xs text-gray-800">
-              {{ addressData.miner.sectorSize | size_metric(2) }}
+              {{ addressData.miner.sectorSize | size_metric }}
             </p>
           </div>
           <div class="flex items-center justify-between mx-3 mt-1">

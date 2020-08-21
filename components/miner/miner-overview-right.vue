@@ -33,7 +33,7 @@
       </p>
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.sectorSize') }}:
-        {{ addressData.miner.sectorSize | size_metric(2) }}
+        {{ addressData.miner.sectorSize | size_metric }}
       </p>
     </div>
     <p class="text-sm mt-2">
