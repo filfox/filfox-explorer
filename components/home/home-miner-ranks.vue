@@ -224,7 +224,7 @@
       </tbody>
     </table>
     <div class="m-auto text-center h-16">
-      <nuxt-link :to="localePath('/ranks')" class="mx-auto">
+      <nuxt-link :to="localePath('/ranks/' + ['power', 'blocks', 'power-growth'][type])" class="mx-auto">
         <el-button size="mini" round>
           {{ $t('home.minerRanks.moreBtn') }}
         </el-button>

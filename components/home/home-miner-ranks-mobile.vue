@@ -109,7 +109,7 @@
     <div v-else v-loading="loading" class="h-16">
     </div>
     <div class="flex items-center h-12">
-      <nuxt-link :to="localePath('/ranks')" class="m-auto">
+      <nuxt-link :to="localePath('/ranks/' + ['power', 'blocks', 'power-growth'][type])" class="m-auto">
         <el-button size="mini" type="text">
           {{ $t('home.minerRanks.moreBtn') }}
         </el-button>
