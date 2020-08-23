@@ -19,9 +19,9 @@
         </dd>
       </dl>
 
-      <dl v-if="addressData.address[1] !== '0'" class="flex my-2 items-center">
+      <dl v-if="addressData.alias" class="flex my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          ID
+          Robust Address
         </dt>
         <dd class="mr-4">
           <AddressLink :id="addressData.alias" plain />
@@ -33,7 +33,7 @@
           {{ $t('detail.address.normal.headers.actor') }}
         </dt>
         <dd class="mr-4">
-          {{ $t(`actor.${addressData.actor}`) }}
+          {{ $t(`actor.fil/1/multisig`) }}
         </dd>
       </dl>
 
@@ -43,6 +43,64 @@
         </dt>
         <dd class="mr-4">
           {{ addressData.balance | filecoin }}
+        </dd>
+      </dl>
+
+      <template v-if="addressData.multisig.unlockDuration">
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/8 pl-8 text-gray-600 px-2">
+            Available Balance
+          </dt>
+          <dd class="mr-4">
+            {{ addressData.multisig.availableBalance | filecoin }}
+          </dd>
+        </dl>
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/8 pl-8 text-gray-600 px-2">
+            Initial Balance
+          </dt>
+          <dd class="mr-4">
+            {{ addressData.multisig.initialBalance | filecoin }}
+          </dd>
+        </dl>
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/8 pl-8 text-gray-600 px-2">
+            Unlock Period
+          </dt>
+          <dd class="mr-4">
+            {{ addressData.createTimestamp | timestamp }}
+            to
+            {{ addressData.createTimestamp + addressData.multisig.unlockDuration * 30 | timestamp }}
+          </dd>
+        </dl>
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/8 pl-8 text-gray-600 px-2">
+            Locking Balance
+          </dt>
+          <dd class="mr-4">
+            {{ addressData.multisig.lockingBalance | filecoin }}
+            ({{ 1 - addressData.multisig.lockingBalance / addressData.multisig.initialBalance | percentage }})
+          </dd>
+        </dl>
+      </template>
+
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
+          Signers
+        </dt>
+        <dd class="mr-4">
+          <p v-for="address in addressData.multisig.signers" :key="address">
+            <AddressLink :id="address" />
+          </p>
+        </dd>
+      </dl>
+
+      <dl class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
+          Approval Threshold
+        </dt>
+        <dd class="mr-4">
+          {{ addressData.multisig.approvalsThreshold }}
         </dd>
       </dl>
 

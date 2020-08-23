@@ -8,16 +8,18 @@
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.address') }}
       </p>
-      <AddressLink :id="addressData.address" plain class="flex w-3/4" />
+      <div class="flex w-3/4">
+        <AddressLink :id="addressData.address" />
+        <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="2" />
+      </div>
     </div>
 
     <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
-        ID
+        Robust Address
       </p>
       <p class="flex w-3/4">
-        <AddressLink :id="addressData.address" plain />
-        <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="2" />
+        <AddressLink :id="addressData.alias" plain />
       </p>
     </div>
 
@@ -26,7 +28,7 @@
         {{ $t('detail.address.normal.headers.actor') }}
       </p>
       <p class="flex w-3/4">
-        {{ $t(`actor.${addressData.actor}`) }}
+        {{ $t(`actor.fil/1/multisig`) }}
       </p>
     </div>
 
@@ -36,6 +38,64 @@
       </p>
       <p class="flex w-3/4">
         {{ addressData.balance | filecoin }}
+      </p>
+    </div>
+
+    <template v-if="addressData.multisig.unlockDuration">
+      <div class="flex justify-between items-center text-xs mx-4 mt-2">
+        <p class="flex w-1/4">
+          Available Balance
+        </p>
+        <p class="flex w-3/4">
+          {{ addressData.multisig.availableBalance | filecoin }}
+        </p>
+      </div>
+      <div class="flex justify-between items-center text-xs mx-4 mt-2">
+        <p class="flex w-1/4">
+          Initial Balance
+        </p>
+        <p class="flex w-3/4">
+          {{ addressData.multisig.initialBalance | filecoin }}
+        </p>
+      </div>
+      <div class="flex justify-between items-center text-xs mx-4 mt-2">
+        <p class="flex w-1/4">
+          Unlock Period
+        </p>
+        <p class="flex w-3/4">
+          {{ addressData.createTimestamp | timestamp }}
+          to
+          {{ addressData.createTimestamp + addressData.multisig.unlockDuration * 30 | timestamp }}
+        </p>
+      </div>
+      <div class="flex justify-between items-center text-xs mx-4 mt-2">
+        <p class="flex w-1/4">
+          Locking Balance
+        </p>
+        <p class="flex w-3/4">
+          {{ addressData.multisig.lockingBalance | filecoin }}
+          ({{ 1 - addressData.multisig.lockingBalance / addressData.multisig.initialBalance | percentage }})
+        </p>
+      </div>
+    </template>
+
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+      <p class="flex w-1/4">
+        Signers
+      </p>
+      <p class="flex flex-wrap w-3/4">
+        <span v-for="address in addressData.multisig.signers" :key="address" class="block w-full">
+          <AddressLink :id="address" :format="8" />
+        </span>
+      </p>
+    </div>
+
+    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+      <p class="flex w-1/4">
+        Approval Threshold
+      </p>
+      <p class="flex w-3/4">
+        {{ addressData.multisig.approvalsThreshold }}
       </p>
     </div>
 

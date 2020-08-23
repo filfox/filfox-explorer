@@ -1,6 +1,10 @@
 <template>
   <div class="container mx-auto">
-    <template v-if="addressData.actor === 'fil/1/storageminer'">
+    <template v-if="addressData.actor === 'fil/1/multisig'">
+      <MultisigAddressDetail :address-data="addressData" class="hidden lg:block" />
+      <MultisigAddressDetailMobile :address-data="addressData" class="lg:hidden" />
+    </template>
+    <template v-else-if="addressData.actor === 'fil/1/storageminer'">
       <MinerAddressDetail :address-data="addressData" class="hidden lg:block" />
       <MinerAddressDetailMobile :address-data="addressData" class="lg:hidden" />
     </template>
