@@ -30,7 +30,8 @@ module.exports = {
         socialTagTransparentBg: '#ffffff40',
         socialUpdateTimeText: '#ffffff70',
         socialMinerTitle: '#00000085',
-        socialMinerBorder: '#0000001a'
+        socialMinerBorder: '#0000001a',
+        spaceRace: '#1f57d8'
       },
       width: {
         '1/32': '3.125%',

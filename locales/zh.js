@@ -598,6 +598,54 @@ export default {
     },
     unknown: '未公开',
     contact: '请填写内容并发送邮件到contact@filfox.io，我们会有专员和您联系'
+  },
+  spaceRace: {
+    overview: {
+      title: '竞赛概览',
+      headers: {
+        unlockRewards: '已解锁全球奖励',
+        counting: '结束倒计时',
+        rawBytePower: '全网原值算力',
+        activeMiner: '活跃矿工'
+      }
+    },
+    ranks: {
+      title: '矿工排行榜',
+      headers: {
+        rank: '排名',
+        entity: '实体',
+        area: '地区',
+        minerCount: '矿工数',
+        rawBytePower: '原值算力/占比',
+        estimatedReward: '预计大洲奖励',
+        estimatedBlocksRewards: '预计区块奖励',
+        dailyPowerDelta: '24h算力增速',
+        equivalentMiners: '矿机当量',
+        totalBlockNums: '总出块数',
+        totalBlockReward: '总出块奖励',
+        miner: '名下矿工',
+        blockNums: '累计出块数/占比',
+        dealSuccessRate: '储存成功率',
+        retrievalDealSuccessRate: '检索成功率',
+        sectorUpgrade: '扇区升级'
+      }
+    },
+    distribution: {
+      title: '大洲分布',
+      continents: {
+        all: '全部',
+        AS: '亚洲',
+        NA: '北美洲',
+        EU: '欧洲',
+        SA: '南美洲',
+        OA: '大洋洲',
+        AF: '非洲'
+      },
+      headers: {
+        unlockRewards: '解锁奖励',
+        rawBytePower: '原值算力',
+        activeMiners: '活跃矿工'
+      }
+    }
   }
-
 }
