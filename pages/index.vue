@@ -91,7 +91,7 @@
       <div class="mt-4 p-1 bg-white rounded">
         <img src="~/assets/img/wechat/group.png" class="h-20 mx-auto">
         <p class="text-xs text-center">
-          扫码进吐槽1群
+          扫码进挖矿1群
         </p>
       </div>
       <div class="mt-4 p-1 bg-white rounded">
