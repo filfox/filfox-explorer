@@ -111,7 +111,7 @@ export default {
   pwa: {
     meta: false,
     manifest: {
-      name: 'Filfox Calibration',
+      name: 'Filfox',
       short_name: 'Filfox',
       theme_color: '#1a4fc9'
     },
