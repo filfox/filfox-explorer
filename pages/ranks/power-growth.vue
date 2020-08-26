@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white lg:mb-4">
+  <div class="bg-white">
     <div class="lg:hidden">
       <div v-if="loading" v-loading="loading" class="bg-white h-16"></div>
 
@@ -40,10 +40,10 @@
       <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
         <thead class="text-gray-600 text-sm">
           <tr>
-            <th class="w-1/10">
+            <th class="w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.rank') }}
             </th>
-            <th class="w-1/10">
+            <th class="w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.miner') }}
             </th>
             <th class="w-1/10">
@@ -55,20 +55,23 @@
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerIncreaseSpeed')" />
               </div>
             </th>
-            <th class="w-7/50">
+            <th class="w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
               </div>
             </th>
-            <th class="w-7/50">
+            <th class="w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerDelta')" />
               </div>
             </th>
-            <th class="w-7/50">
+            <th class="w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPowerDelta.location') }}
             </th>
           </tr>
         </thead>
@@ -79,7 +82,7 @@
             class="border-b border-background h-10"
           >
             <td>
-              <rankIndex :index="page * pageSize + index+1" />
+              <RankIndex :index="page * pageSize + index+1" />
             </td>
             <td>
               <AddressLink :id="miner.address" :format="10" />
@@ -88,14 +91,13 @@
               <MinerTag :tag="miner.tag" />
             </td>
             <td>
-              <div class="flex items-center">
+              <div class="flex items-center justify-end">
                 <el-progress
-                  v-if="page === 0"
                   :percentage="miner.qualityAdjPowerGrowth / topMiners.miners[0].qualityAdjPowerGrowth * 100"
                   :show-text="false"
-                  class="flex w-1/2 ml-8 mr-3"
+                  class="flex w-1/2 mx-1 mr-3"
                 />
-                <div class="flex" :class="{'mx-auto': page > 0}">
+                <div class="flex w-1/3">
                   {{ (miner.qualityAdjPowerGrowth / durationDays / topMiners.durationPercentage) | size_metric(2) }}
                   /
                   {{ $t('shared.time.day') }}
@@ -105,6 +107,7 @@
             <td>{{ miner.equivalentMiners.toFixed(2) }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
+            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>
@@ -127,7 +130,8 @@
 
 export default {
   props: {
-    duration: { type: String, required: true }
+    duration: { type: String, required: true },
+    continent: { type: String, default: null }
   },
   async asyncData({ $axios, error }) {
     try {
@@ -173,12 +177,16 @@ export default {
     duration() {
       this.page = 0
       this.getMinerList()
+    },
+    continent() {
+      this.page = 0
+      this.getMinerList()
     }
   },
   methods: {
     async getMinerList() {
       this.loading = true
-      const params = { pageSize: this.pageSize, page: this.page, duration: this.duration }
+      const params = this.continent === 'All' ? { pageSize: this.pageSize, page: this.page } : { pageSize: this.pageSize, page: this.page, continent: this.continent }
       this.topMiners = await this.$axios.$get('/miner/list/power-growth', { params })
       this.loading = false
     },

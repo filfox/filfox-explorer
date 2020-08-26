@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="mt-4 bg-white rounded-md hidden lg:block">
+      <div class="mt-4 bg-white rounded-t-md hidden lg:block">
         <div class="border-b border-background">
           <div class="flex justify-between items-center">
             <HomeTitle type="minerRanks" />
@@ -87,16 +87,24 @@
                 </el-button>
               </el-row>
             </div>
-            <DurationSelect v-if="category !== 'power'" v-model="duration" class="flex items-center mr-4" />
+            <div class="flex items-center">
+              <el-select v-model="currentContinent" placeholder="" size="mini" class="mr-4">
+                <el-option v-for="item in continents" :key="item.code" :label="item[$i18n.locale]" :value="item.code" />
+              </el-select>
+              <DurationSelect v-if="category !== 'power'" v-model="duration" class="flex items-center mr-4" />
+            </div>
           </div>
         </div>
       </div>
-      <nuxt-child :duration="duration" />
+      <div class=" bg-white overflow-hidden lg:mb-4 lg:px-2 lg:rounded-b-md">
+        <nuxt-child :duration="duration" :continent="currentContinent" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { continents } from '@/filecoin/continent'
 export default {
   data() {
     let type = null
@@ -112,7 +120,9 @@ export default {
       type,
       sharing: false,
       sharingImageURL: '',
-      sharingLoading: false
+      sharingLoading: false,
+      continents,
+      currentContinent: continents[0].code
     }
   },
   computed: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white lg:mb-4">
+  <div class="bg-white">
     <div class="lg:hidden">
       <div v-if="loading" v-loading="loading" class="bg-white h-16"></div>
 
@@ -44,35 +44,35 @@
       <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
         <thead class="text-gray-600 text-sm">
           <tr>
-            <th class="w-1/10">
+            <th class="w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
             </th>
-            <th class="w-1/10">
+            <th class="w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
             </th>
             <th class="w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPower.tag') }}
             </th>
-            <th class="w-1/5">
+            <th class="w-4/15">
               {{ $t('home.minerRanks.tableHeadersByPower.validPower') }}
             </th>
-            <th class="w-1/8">
-              {{ $t('home.minerRanks.tableHeadersByPower.validPowerRate') }}
-            </th>
-            <th class="w-1/8">
+            <th class="w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
             </th>
-            <th class="w-1/8">
+            <th class="w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.miningEfficiency')" />
               </div>
             </th>
-            <th class="w-1/8">
+            <th class="w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
               </div>
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPower.location') }}
             </th>
           </tr>
         </thead>
@@ -83,7 +83,7 @@
             class="border-b border-background h-10"
           >
             <td>
-              <RankIndex :index="page * pageSize + index + 1" />
+              <RankIndex :index="page * pageSize + index+1" />
             </td>
             <td>
               <AddressLink :id="miner.address" :format="10" />
@@ -92,22 +92,21 @@
               <MinerTag :tag="miner.tag" />
             </td>
             <td>
-              <div class="flex items-center">
+              <div class="flex items-center justify-center">
                 <el-progress
-                  v-if="page === 0"
                   :percentage="miner.qualityAdjPower / topMiners.miners[0].qualityAdjPower * 100"
                   :show-text="false"
-                  class="flex w-1/2 ml-8 mr-3"
+                  class="flex w-1/2 pr-3"
                 />
-                <div class="flex" :class="{'mx-auto': page > 0}">
-                  {{ miner.qualityAdjPower | size_metric(2) }}
+                <div>
+                  {{ miner.qualityAdjPower | size_metric(2) }} / {{ miner.qualityAdjPower / topMiners.totalQualityAdjPower | percentage }}
                 </div>
               </div>
             </td>
-            <td>{{ miner.qualityAdjPower / topMiners.totalQualityAdjPower | percentage }}</td>
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
+            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>
@@ -131,7 +130,8 @@ import { epochsInDay } from '@/filecoin/filecoin.config'
 
 export default {
   props: {
-    duration: { type: String, required: true }
+    duration: { type: String, required: true },
+    continent: { type: String, default: null }
   },
   async asyncData({ $axios, error }) {
     try {
@@ -163,10 +163,16 @@ export default {
       return Math.ceil(this.topMiners.totalCount / this.pageSize)
     }
   },
+  watch: {
+    continent() {
+      this.page = 0
+      this.getMinerList()
+    }
+  },
   methods: {
     async getMinerList() {
       this.loading = true
-      const params = { pageSize: this.pageSize, page: this.page }
+      const params = this.continent === 'All' ? { pageSize: this.pageSize, page: this.page } : { pageSize: this.pageSize, page: this.page, continent: this.continent }
       this.topMiners = await this.$axios.$get('/miner/list/power', { params })
       this.loading = false
     },
