@@ -121,11 +121,12 @@ export default {
         rank: 'Rank',
         miner: 'Miner',
         tag: 'Tag',
-        validPower: 'Adj. Power',
+        validPower: 'Adj. Power / Ratio',
         validPowerRate: 'Adj. Power Ratio',
         reward: '24h Reward',
         miningEfficiency: 'Mining Efficiency',
-        powerIncrease: 'Power Growth'
+        powerIncrease: 'Power Growth',
+        location: 'Location'
       },
       tipsByPower: {
         miningEfficiency: 'Average FILs minted by 1 TiB storage power in last 24h.',
@@ -137,9 +138,10 @@ export default {
         tag: 'Tag',
         blockNums: 'Blocks Mined',
         luckyValue: 'Lucky Value',
-        totalRewards: 'Rewards',
+        totalRewards: 'Rewards / Ratio',
         rewardsRatio: 'Rewards Ratio',
-        validPower: 'Adj. Power Ratio'
+        validPower: 'Adj. Power Ratio',
+        location: 'Location'
       },
       tipsByBlock: {
         luckyValue: 'Ratio of actual blocks produced and theoretical value.',
@@ -152,7 +154,8 @@ export default {
         powerIncreaseSpeed: 'Daily Power Growth',
         equivalentMiners: 'Miner Equivalent',
         powerDelta: 'Power Growth',
-        validPower: 'Adj. Power'
+        validPower: 'Adj. Power',
+        location: 'Location'
       },
       tipsByPowerDelta: {
         equivalentMiners: "Take the official benchmark environment as the baseline (AMD Ryzen Threadripper 3970X, NVidia GTX 2080Ti, 128GB 2133mhz), we estamate the miner's machine amount by calculate the ratio of its storage power growth and the baseline.",

@@ -29,12 +29,6 @@
           {{ overview.activeMiners }}
         </OverviewCell>
         <OverviewCell
-          :name="$t('home.overview.titles.price')"
-          :tip-content="$t('home.overview.tips.price')"
-        >
-          $ {{ overview.price | locale(2) }}
-        </OverviewCell>
-        <OverviewCell
           :name="$t('home.overview.titles.blockReward')"
           :tip-content="$t('home.overview.tips.blockReward')"
         >
@@ -61,6 +55,11 @@
         >
           {{ overview.totalPledgeCollateral | filecoin(0) }}
         </OverviewCell>
+        <OverviewCell :name="$t('home.overview.titles.dailyMessages')">
+          {{ overview.dailyMessages | locale }}
+        </OverviewCell>
+
+        <!-- Hidden cells -->
         <OverviewCell
           :name="$t('home.overview.titles.circulatingSupply')"
           :tip-content="$t('home.overview.tips.circulatingSupply')"
@@ -75,9 +74,6 @@
           :tip-content="$t('home.overview.tips.averageTipsetInterval')"
         >
           {{ overview.averageTipsetInterval.toFixed(2) }} {{ $t('shared.time.sec') }}
-        </OverviewCell>
-        <OverviewCell :name="$t('home.overview.titles.dailyMessages')">
-          {{ overview.dailyMessages | locale }}
         </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.averageTipsetBlocks')"
@@ -105,6 +101,12 @@
           :tip-content="$t('home.overview.tips.circulatingSupplyRate')"
         >
           {{ overview.circulatingSupply / overview.totalMaxSupply | percentage }}
+        </OverviewCell>
+        <OverviewCell
+          :name="$t('home.overview.titles.price')"
+          :tip-content="$t('home.overview.tips.price')"
+        >
+          $ {{ overview.price | locale(2) }}
         </OverviewCell>
       </div>
       <div class="flex mx-auto h-10 items-center lg:hidden">

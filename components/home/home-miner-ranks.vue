@@ -31,198 +31,209 @@
             </el-button>
           </el-row>
         </div>
-        <DurationSelect v-if="type !== 0" v-model="duration" class="flex items-center mr-4" />
+        <div class="flex items-center">
+          <el-select v-model="currentContinent" placeholder="" size="mini" class="mr-4" @change="didSelectChanged">
+            <el-option v-for="item in continents" :key="item.code" :label="item[$i18n.locale]" :value="item.code" />
+          </el-select>
+          <DurationSelect v-if="type !== 0" v-model="duration" class="flex items-center mr-4" />
+        </div>
       </div>
     </div>
 
-    <table v-loading="loading" class="table-fixed w-full px-4 mt-3 mb-5">
-      <thead class="text-gray-600 text-sm m-2">
-        <tr v-if="type === 0">
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
-          </th>
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
-          </th>
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByPower.tag') }}
-          </th>
-          <th class="w-1/5">
-            {{ $t('home.minerRanks.tableHeadersByPower.validPower') }}
-          </th>
-          <th class="w-1/8">
-            {{ $t('home.minerRanks.tableHeadersByPower.validPowerRate') }}
-          </th>
-          <th class="w-1/8">
-            {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
-          </th>
-          <th class="w-1/8">
-            <div class="flex justify-center items-center">
-              {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}
-              <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.miningEfficiency')" />
-            </div>
-          </th>
-          <th class="w-1/8">
-            <div class="flex justify-center items-center">
-              {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease') }}
-              <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
-            </div>
-          </th>
-        </tr>
-        <tr v-if="type === 1">
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByBlock.rank') }}
-          </th>
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByBlock.miner') }}
-          </th>
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByBlock.tag') }}
-          </th>
-          <th class="w-1/5">
-            {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
-          </th>
-          <th class="w-1/8">
-            <div class="flex justify-center items-center">
-              {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
-              <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
-            </div>
-          </th>
-          <th class="w-1/8">
-            {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }}
-          </th>
-          <th class="w-1/8">
-            <div class="flex justify-center items-center">
-              {{ $t('home.minerRanks.tableHeadersByBlock.rewardsRatio') }}
-              <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
-            </div>
-          </th>
-          <th class="w-1/8">
-            {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
-          </th>
-        </tr>
-        <tr v-if="type === 2">
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByPowerDelta.rank') }}
-          </th>
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByPowerDelta.miner') }}
-          </th>
-          <th class="w-1/10">
-            {{ $t('home.minerRanks.tableHeadersByPowerDelta.tag') }}
-          </th>
-          <th class="w-7/25">
-            <div class="flex justify-center items-center">
-              {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
-              <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerIncreaseSpeed')" />
-            </div>
-          </th>
-          <th class="w-7/50">
-            <div class="flex justify-center items-center">
-              {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}
-              <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
-            </div>
-          </th>
-          <th class="w-7/50">
-            <div class="flex justify-center items-center">
-              {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
-              <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerDelta')" />
-            </div>
-          </th>
-          <th class="w-7/50">
-            {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
-          </th>
-        </tr>
-      </thead>
-      <tbody v-if="type === 0" class="text-sm text-center">
-        <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10">
-          <td>
-            <RankIndex :index="index + 1" />
-          </td>
-          <td>
-            <AddressLink :id="miner.address" :format="10" />
-          </td>
-          <td>
-            <MinerTag :tag="miner.tag" />
-          </td>
-          <td>
-            <div class="flex items-center justify-end">
-              <el-progress
-                :percentage="miner.qualityAdjPower / topMinersByPower.miners[0].qualityAdjPower * 100"
-                :show-text="false"
-                class="flex w-1/2 mr-3"
-              />
-              <div class="flex w-1/3">
-                {{ miner.qualityAdjPower | size_metric(2) }}
+    <div class="px-4 mt-3 mb-5">
+      <table v-loading="loading" class="table-fixed w-full">
+        <thead class="text-gray-600 text-sm m-2">
+          <tr v-if="type === 0">
+            <th class="w-1/12">
+              {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
+            </th>
+            <th class="w-1/12">
+              {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPower.tag') }}
+            </th>
+            <th class="w-4/15">
+              {{ $t('home.minerRanks.tableHeadersByPower.validPower') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
+            </th>
+            <th class="w-1/10">
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.miningEfficiency')" />
               </div>
-            </div>
-          </td>
-          <td>{{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}</td>
-          <td>{{ miner.totalRewards | filecoin(2) }}</td>
-          <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB</td>
-          <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
-        </tr>
-      </tbody>
-      <tbody v-else-if="type === 1" class="text-sm text-center">
-        <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10">
-          <td>
-            <RankIndex :index="index + 1" />
-          </td>
-          <td>
-            <AddressLink :id="miner.address" :format="10" />
-          </td>
-          <td>
-            <MinerTag :tag="miner.tag" />
-          </td>
-          <td>
-            <div class="flex items-center justify-end">
-              <el-progress
-                :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100"
-                :show-text="false"
-                class="flex w-1/2 mx-1 mr-3"
-              />
-              <div class="flex w-1/4">
-                {{ miner.weightedBlocksMined }}
+            </th>
+            <th class="w-1/10">
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
               </div>
-            </div>
-          </td>
-          <td>{{ miner.luckyValue | percentage }}</td>
-          <td>{{ miner.totalRewards | filecoin(2) }}</td>
-          <td>{{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }}</td>
-          <td>{{ (miner.qualityAdjPower / topMinersByBlocks.totalQualityAdjPower) | percentage }}</td>
-        </tr>
-      </tbody>
-      <tbody v-else-if="type === 2" class="text-sm text-center">
-        <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10">
-          <td>
-            <RankIndex :index="index+1" />
-          </td>
-          <td>
-            <AddressLink :id="miner.address" :format="10" />
-          </td>
-          <td>
-            <MinerTag :tag="miner.tag" />
-          </td>
-          <td>
-            <div class="flex items-center justify-end">
-              <el-progress
-                :percentage="miner.qualityAdjPowerGrowth / topMinersByPowerDelta.miners[0].qualityAdjPowerGrowth * 100"
-                :show-text="false"
-                class="flex w-1/2 mx-1 mr-3"
-              />
-              <div class="flex w-1/3">
-                {{ (miner.qualityAdjPowerGrowth / durationDays / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
-                /
-                {{ $t('shared.time.day') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPower.location') }}
+            </th>
+          </tr>
+          <tr v-if="type === 1">
+            <th class="w-1/12">
+              {{ $t('home.minerRanks.tableHeadersByBlock.rank') }}
+            </th>
+            <th class="w-1/12">
+              {{ $t('home.minerRanks.tableHeadersByBlock.miner') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByBlock.tag') }}
+            </th>
+            <th class="w-4/15">
+              {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
+            </th>
+            <th class="w-1/10">
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
               </div>
-            </div>
-          </td>
-          <td>{{ miner.equivalentMiners.toFixed(2) }}</td>
-          <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
-          <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
-        </tr>
-      </tbody>
-    </table>
+            </th>
+            <th class="w-3/20">
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
+              </div>
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByBlock.location') }}
+            </th>
+          </tr>
+          <tr v-if="type === 2">
+            <th class="w-1/12">
+              {{ $t('home.minerRanks.tableHeadersByPowerDelta.rank') }}
+            </th>
+            <th class="w-1/12">
+              {{ $t('home.minerRanks.tableHeadersByPowerDelta.miner') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPowerDelta.tag') }}
+            </th>
+            <th class="w-7/25">
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerIncreaseSpeed')" />
+              </div>
+            </th>
+            <th class="w-1/10">
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
+              </div>
+            </th>
+            <th class="w-1/10">
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
+                <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerDelta')" />
+              </div>
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
+            </th>
+            <th class="w-1/10">
+              {{ $t('home.minerRanks.tableHeadersByPowerDelta.location') }}
+            </th>
+          </tr>
+        </thead>
+        <tbody v-if="type === 0" class="text-sm text-center">
+          <tr v-for="(miner, index) in topMinersByPower.miners" :key="index" class="border-b border-background h-10">
+            <td>
+              <RankIndex :index="index + 1" />
+            </td>
+            <td>
+              <AddressLink :id="miner.address" :format="10" />
+            </td>
+            <td>
+              <MinerTag :tag="miner.tag" />
+            </td>
+            <td>
+              <div class="flex items-center justify-center">
+                <el-progress
+                  :percentage="miner.qualityAdjPower / topMinersByPower.miners[0].qualityAdjPower * 100"
+                  :show-text="false"
+                  class="flex w-1/2 pr-3"
+                />
+                <div>
+                  {{ miner.qualityAdjPower | size_metric(2) }} / {{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}
+                </div>
+              </div>
+            </td>
+            <td>{{ miner.totalRewards | filecoin(2) }}</td>
+            <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB</td>
+            <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
+            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+          </tr>
+        </tbody>
+        <tbody v-else-if="type === 1" class="text-sm text-center">
+          <tr v-for="(miner, index) in topMinersByBlocks.miners" :key="index" class="border-b border-background h-10">
+            <td>
+              <RankIndex :index="index + 1" />
+            </td>
+            <td>
+              <AddressLink :id="miner.address" :format="10" />
+            </td>
+            <td>
+              <MinerTag :tag="miner.tag" />
+            </td>
+            <td>
+              <div class="flex items-center justify-center">
+                <el-progress
+                  :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100"
+                  :show-text="false"
+                  class="flex w-2/3 mr-3"
+                />
+                <div>
+                  {{ miner.weightedBlocksMined }}
+                </div>
+              </div>
+            </td>
+            <td>{{ miner.luckyValue | percentage }}</td>
+            <td>{{ miner.totalRewards | filecoin(2) }} / {{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }} </td>
+            <td>{{ (miner.qualityAdjPower / topMinersByBlocks.totalQualityAdjPower) | percentage }}</td>
+            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+          </tr>
+        </tbody>
+        <tbody v-else-if="type === 2" class="text-sm text-center">
+          <tr v-for="(miner, index) in topMinersByPowerDelta.miners" :key="index" class="border-b border-background h-10">
+            <td>
+              <RankIndex :index="index+1" />
+            </td>
+            <td>
+              <AddressLink :id="miner.address" :format="10" />
+            </td>
+            <td>
+              <MinerTag :tag="miner.tag" />
+            </td>
+            <td>
+              <div class="flex items-center justify-end">
+                <el-progress
+                  :percentage="miner.qualityAdjPowerGrowth / topMinersByPowerDelta.miners[0].qualityAdjPowerGrowth * 100"
+                  :show-text="false"
+                  class="flex w-1/2 mx-1 mr-3"
+                />
+                <div class="flex w-1/3">
+                  {{ (miner.qualityAdjPowerGrowth / durationDays / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}
+                  /
+                  {{ $t('shared.time.day') }}
+                </div>
+              </div>
+            </td>
+            <td>{{ miner.equivalentMiners.toFixed(2) }}</td>
+            <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
+            <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
+            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="m-auto text-center h-16">
       <nuxt-link :to="localePath('/ranks/' + ['power', 'blocks', 'power-growth'][type])" class="mx-auto">
         <el-button size="mini" round>
@@ -235,6 +246,7 @@
 
 <script>
 import { epochsInDay } from '@/filecoin/filecoin.config'
+import { continents } from '@/filecoin/continent'
 
 export default {
   props: {
@@ -250,7 +262,9 @@ export default {
       rankTableHeadersByPowers: this.$t('home.minerRanks.tableHeadersByPower'),
       rankTableHeadersByBlocks: this.$t('home.minerRanks.tableHeadersByBlock'),
       rankTableHeadersByPowerDelta: this.$t('home.minerRanks.tableHeadersByPowerDelta'),
-      epochsInDay
+      epochsInDay,
+      continents,
+      currentContinent: continents[0].code
     }
   },
   computed: {
@@ -277,20 +291,9 @@ export default {
   },
   methods: {
     didRankTypeSwitched(e, type) {
+      const code = this.currentContinent === 'All' ? null : this.currentContinent
       this.type = type
-      switch (type) {
-        case 0:
-          this.$emit('updateTopMinersByPower')
-          break
-        case 1:
-          this.$emit('updateTopMinersByBlocks', this.duration)
-          break
-        case 2:
-          this.$emit('updateTopMinersByPowerDelta', this.duration)
-          break
-        default:
-          break
-      }
+      this.requestData(code)
       let node = e.target
       while (true) {
         if (node?.tagName?.toLowerCase() === 'button') {
@@ -299,6 +302,25 @@ export default {
         } else {
           node = node.parentElement
         }
+      }
+    },
+    didSelectChanged() {
+      const code = this.currentContinent === 'All' ? null : this.currentContinent
+      this.requestData(code)
+    },
+    requestData(code) {
+      switch (this.type) {
+        case 0:
+          this.$emit('updateTopMinersByPower', code)
+          break
+        case 1:
+          this.$emit('updateTopMinersByBlocks', this.duration, code)
+          break
+        case 2:
+          this.$emit('updateTopMinersByPowerDelta', this.duration, code)
+          break
+        default:
+          break
       }
     }
   }

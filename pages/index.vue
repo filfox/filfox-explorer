@@ -152,22 +152,22 @@ export default {
     this.$unsubscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
   },
   methods: {
-    async getTopMinersByPower() {
+    async getTopMinersByPower(continent) {
       this.topMinersType = 'power'
       this.topMinersLoading = true
-      this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: { count: 20 } })
+      this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: continent ? { count: 20, continent } : { count: 20 } })
       this.topMinersLoading = false
     },
-    async getTopMinersByBlocks(duration) {
+    async getTopMinersByBlocks(duration, continent) {
       this.topMinersType = 'blocks'
       this.topMinersLoading = true
-      this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: { count: 20, duration } })
+      this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: continent ? { count: 20, duration, continent } : { count: 20, duration } })
       this.topMinersLoading = false
     },
-    async getTopMinersByPowerDelta(duration) {
+    async getTopMinersByPowerDelta(duration, continent) {
       this.topMinersType = 'power-growth'
       this.topMinersLoading = true
-      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-growth', { params: { count: 20, duration } })
+      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-growth', { params: continent ? { count: 20, duration, continent } : { count: 20, duration } })
       this.topMinersLoading = false
     },
     async getRecentTipsets() {

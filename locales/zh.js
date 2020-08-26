@@ -110,11 +110,12 @@ export default {
         rank: '排名',
         miner: '矿工',
         tag: '标签',
-        validPower: '有效算力',
+        validPower: '有效算力 / 占比',
         validPowerRate: '有效算力占比',
         reward: '24h出块奖励',
         miningEfficiency: '24h挖矿效率',
-        powerIncrease: '24h算力增量'
+        powerIncrease: '24h算力增量',
+        location: '地区'
       },
       tipsByPower: {
         miningEfficiency: '近24h矿工平均每T算力所挖出的FIL数量',
@@ -126,9 +127,10 @@ export default {
         tag: '标签',
         blockNums: '出块数',
         luckyValue: '幸运值',
-        totalRewards: '出块奖励',
+        totalRewards: '出块奖励 / 占比',
         rewardsRatio: '出块奖励占比',
-        validPower: '有效算力占比'
+        validPower: '有效算力占比',
+        location: '地区'
       },
       tipsByBlock: {
         luckyValue: '实际爆块数量和理论爆块数量的比值',
@@ -141,7 +143,8 @@ export default {
         powerIncreaseSpeed: '算力增速',
         equivalentMiners: '矿机当量',
         powerDelta: '算力增量',
-        validPower: '有效算力'
+        validPower: '有效算力',
+        location: '地区'
       },
       tipsByPowerDelta: {
         equivalentMiners: '以官方Benchmark推荐配置（AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）视为1台基准矿机，矿机当量为该矿工换算成标准矿机的数量（矿工的算力增速与该基准矿机增速的比值）。',

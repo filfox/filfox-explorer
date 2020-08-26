@@ -120,11 +120,12 @@ export default {
         rank: '순위',
         miner: '채굴자',
         tag: '서명',
-        validPower: '유효 채굴파워',
+        validPower: '유효 채굴파워/비율',
         validPowerRate: '유효 채굴파워 비율',
         reward: '24시간 블록 보상',
         miningEfficiency: '24시간 채굴 효율',
-        powerIncrease: '24시간 채굴파워 증가량'
+        powerIncrease: '24시간 채굴파워 증가량',
+        location: '위치'
       },
       tipsByPower: {
         miningEfficiency: '최근 24시간 채굴파워 1T마다 채굴한 FIL 개수',
@@ -136,9 +137,10 @@ export default {
         tag: '서명',
         blockNums: '블록 생성 개수',
         luckyValue: '행운값',
-        totalRewards: '블록 보상',
+        totalRewards: '블록 보상/비율',
         rewardsRatio: '블록 보상 비율',
-        validPower: '유효 채굴파워 비율'
+        validPower: '유효 채굴파워 비율',
+        location: '위치'
       },
       tipsByBlock: {
         luckyValue: '실제 채굴 개수에서 이론상 채굴 개수를 나눈 비율',
@@ -151,7 +153,8 @@ export default {
         powerIncreaseSpeed: '채굴파워 증가 속도',
         equivalentMiners: '표준 채굴기 대수',
         powerDelta: '채굴파워 증가량',
-        validPower: '유효 채굴파워'
+        validPower: '유효 채굴파워',
+        location: '위치'
       },
       tipsByPowerDelta: {
         equivalentMiners: '채굴자가 보유한 채굴파워를 공식 벤치마크 추천 구성 ( AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）을 기준으로 환산하여 얻은 값.',
