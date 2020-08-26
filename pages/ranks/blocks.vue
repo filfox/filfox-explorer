@@ -88,7 +88,7 @@
             <td>
               <div class="flex items-center justify-center">
                 <el-progress
-                  :percentage="miner.weightedBlocksMined/topMiners.miners[0].weightedBlocksMined * 100"
+                  :percentage="miner.weightedBlocksMined / topMiners.maxWeightedBlocksMined * 100"
                   :show-text="false"
                   class="flex w-2/3 mr-3"
                 />

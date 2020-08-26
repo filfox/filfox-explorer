@@ -93,7 +93,7 @@
             <td>
               <div class="flex items-center justify-end">
                 <el-progress
-                  :percentage="miner.qualityAdjPowerGrowth / topMiners.miners[0].qualityAdjPowerGrowth * 100"
+                  :percentage="miner.qualityAdjPowerGrowth / topMiners.maxQualityAdjPowerGrowth * 100"
                   :show-text="false"
                   class="flex w-1/2 mx-1 mr-3"
                 />
