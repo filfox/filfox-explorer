@@ -156,6 +156,7 @@ export default {
       this.sharingLoading = false
     },
     didRanksTypeSwitched(e, category) {
+      this.currentContinent = this.continents[0].code
       let node = e.target
       while (true) {
         if (node?.tagName?.toLowerCase() === 'button') {

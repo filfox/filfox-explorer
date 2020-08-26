@@ -186,7 +186,7 @@ export default {
   methods: {
     async getMinerList() {
       this.loading = true
-      const params = this.continent === 'All' ? { pageSize: this.pageSize, page: this.page } : { pageSize: this.pageSize, page: this.page, continent: this.continent }
+      const params = this.continent === 'All' ? { pageSize: this.pageSize, page: this.page, duration: this.duration } : { pageSize: this.pageSize, page: this.page, duration: this.duration, continent: this.continent }
       this.topMiners = await this.$axios.$get('/miner/list/power-growth', { params })
       this.loading = false
     },
