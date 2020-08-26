@@ -89,13 +89,13 @@
     </div>
     <div v-if="$i18n.locale == 'zh'" class="hidden lg:block absolute top-0" style="right:-100px">
       <div class="mt-4 p-1 bg-white rounded">
-        <img src="~/assets/img/wechat/staff.png" class="h-20 mx-auto">
+        <img src="~/assets/img/wechat/group.png" class="h-20 mx-auto">
         <p class="text-xs text-center">
           扫码进吐槽1群
         </p>
       </div>
       <div class="mt-4 p-1 bg-white rounded">
-        <img src="~/assets/img/wechat/group.png" class="h-20 mx-auto">
+        <img src="~/assets/img/wechat/staff.png" class="h-20 mx-auto">
         <p class="text-xs text-center">
           Filfox小助手
         </p>
