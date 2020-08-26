@@ -62,22 +62,16 @@ export default {
     this.getPieChartData()
   },
   methods: {
-    getPieChartData() {
+    async getPieChartData() {
       this.loading = true
-      this.$axios.get('/miner/top-miners/power/brief').then(res => {
-        this.convertData(res.data)
-      })
-    },
-    convertData(data) {
+      const data = await this.$axios.$get('/miner/top-miners/power/brief')
       if (data == null) {
         this.dataEmpty = true
         this.loading = false
         return
       }
-      const columns = ['miner', 'power']
-      const rows = []
-      const others = data.otherQualityAdjPower / 2 ** 40
-      for (const miner of data.miners) {
+      this.chartData.columns = ['miner', 'power']
+      this.chartData.rows = data.miners.map(miner => {
         const row = {}
         const tag = miner.tag
         if (tag == null) {
@@ -90,11 +84,9 @@ export default {
           this.mobileSettings.legendName[row.miner] = miner.address
         }
         row.power = miner.qualityAdjPower / 2 ** 40
-        rows.push(row)
-      }
-      rows.push({ miner: 'others', power: others })
-      this.chartData.columns = columns
-      this.chartData.rows = rows
+        return row
+      })
+      this.chartData.rows.push({ miner: 'others', power: data.otherQualityAdjPower / 2 ** 40 })
       this.loading = false
     }
 
