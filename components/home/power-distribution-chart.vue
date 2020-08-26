@@ -64,7 +64,7 @@ export default {
   methods: {
     getPieChartData() {
       this.loading = true
-      this.$axios.get('/miner/top-miners/power').then(res => {
+      this.$axios.get('/miner/top-miners/power/brief').then(res => {
         this.convertData(res.data)
       })
     },
