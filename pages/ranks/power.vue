@@ -40,7 +40,7 @@
       </template>
     </div>
 
-    <div class="lg:block pt-3">
+    <div class="hidden lg:block pt-3">
       <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
         <thead class="text-gray-600 text-sm">
           <tr class="h-8">
