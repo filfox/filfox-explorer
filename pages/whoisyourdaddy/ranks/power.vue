@@ -16,7 +16,7 @@
           {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
         </div>
         <div class="w-1/4 text-left font-medium">
-          {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} /  {{ $t('home.minerRanks.rate') }}
+          {{ $t('home.minerRanks.tableHeadersByPower.validPower') }}
         </div>
         <div class="w-1/4 text-right font-medium pr-2">
           24h{{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
