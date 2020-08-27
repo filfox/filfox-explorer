@@ -40,38 +40,38 @@
       </template>
     </div>
 
-    <div class="hidden lg:block pt-3">
+    <div class="lg:block pt-3">
       <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
         <thead class="text-gray-600 text-sm">
-          <tr>
-            <th class="w-1/12">
+          <tr class="h-8">
+            <th class="bg-white sticky top-0 z-30 w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPower.rank') }}
             </th>
-            <th class="w-1/12">
+            <th class="bg-white sticky top-0 z-30 w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPower.miner') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPower.tag') }}
             </th>
-            <th class="w-4/15">
+            <th class="bg-white sticky top-0 z-30 w-4/15">
               {{ $t('home.minerRanks.tableHeadersByPower.validPower') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPower.miningEfficiency') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.miningEfficiency')" />
               </div>
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPower.powerIncrease') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
               </div>
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPower.location') }}
             </th>
           </tr>
@@ -135,7 +135,7 @@ export default {
   },
   async asyncData({ $axios, error }) {
     try {
-      const topMiners = await $axios.$get('/miner/list/power', { params: { pageSize: 20, page: 0 } })
+      const topMiners = await $axios.$get('/miner/list/power', { params: { pageSize: 50, page: 0 } })
       return { topMiners }
     } catch (err) {
       if (err?.response) {
@@ -152,7 +152,7 @@ export default {
         totalCount: 0,
         totalQualityAdjPower: '0'
       },
-      pageSize: 20,
+      pageSize: 50,
       page: 0,
       epochsInDay,
       loading: false

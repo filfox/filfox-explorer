@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class=" bg-white overflow-hidden lg:mb-4 lg:px-2 lg:rounded-b-md">
+      <div class=" bg-white lg:mb-4 lg:px-2 lg:rounded-b-md">
         <nuxt-child :duration="duration" :continent="currentContinent" />
       </div>
     </div>

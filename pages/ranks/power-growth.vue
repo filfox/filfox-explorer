@@ -40,37 +40,37 @@
       <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
         <thead class="text-gray-600 text-sm">
           <tr>
-            <th class="w-1/12">
+            <th class="bg-white sticky top-0 z-30 w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.rank') }}
             </th>
-            <th class="w-1/12">
+            <th class="bg-white sticky top-0 z-30 w-1/12">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.miner') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.tag') }}
             </th>
-            <th class="w-7/25">
+            <th class="bg-white sticky top-0 z-30 w-7/25">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerIncreaseSpeed') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerIncreaseSpeed')" />
               </div>
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPowerDelta.equivalentMiners') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.equivalentMiners')" />
               </div>
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByPowerDelta.powerDelta') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPowerDelta.powerDelta')" />
               </div>
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.location') }}
             </th>
           </tr>
@@ -135,7 +135,7 @@ export default {
   },
   async asyncData({ $axios, error }) {
     try {
-      const topMiners = await $axios.$get('/miner/list/power-growth', { params: { pageSize: 20, page: 0, duration: '24h' } })
+      const topMiners = await $axios.$get('/miner/list/power-growth', { params: { pageSize: 50, page: 0, duration: '24h' } })
       return { topMiners }
     } catch (err) {
       if (err?.response) {
@@ -152,7 +152,7 @@ export default {
         totalCount: 0,
         totalQualityAdjPower: '0'
       },
-      pageSize: 20,
+      pageSize: 50,
       page: 0,
       loading: false
     }

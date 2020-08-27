@@ -37,35 +37,35 @@
     <div class="hidden lg:block pt-3">
       <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
         <thead class="text-gray-600 text-sm">
-          <tr>
-            <th class="w-1/12">
+          <tr class="h-8">
+            <th class="bg-white sticky top-0 z-30 w-1/12">
               {{ $t('home.minerRanks.tableHeadersByBlock.rank') }}
             </th>
-            <th class="w-1/12">
+            <th class="bg-white sticky top-0 z-30 w-1/12">
               {{ $t('home.minerRanks.tableHeadersByBlock.miner') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByBlock.tag') }}
             </th>
-            <th class="w-4/15">
+            <th class="bg-white sticky top-0 z-30 w-4/15">
               {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.luckyValue')" />
               </div>
             </th>
-            <th class="w-3/20">
+            <th class="bg-white sticky top-0 z-30 w-3/20">
               <div class="flex justify-center items-center">
                 {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
               </div>
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
             </th>
-            <th class="w-1/10">
+            <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByBlock.location') }}
             </th>
           </tr>
@@ -128,7 +128,7 @@ export default {
   },
   async asyncData({ $axios, error }) {
     try {
-      const topMiners = await $axios.$get('/miner/list/blocks', { params: { pageSize: 20, page: 0, duration: '24h' } })
+      const topMiners = await $axios.$get('/miner/list/blocks', { params: { pageSize: 50, page: 0, duration: '24h' } })
       return { topMiners }
     } catch (err) {
       if (err?.response) {
@@ -145,7 +145,7 @@ export default {
         totalCount: 0,
         totalQualityAdjPower: '0'
       },
-      pageSize: 20,
+      pageSize: 50,
       page: 0,
       loading: false
     }
