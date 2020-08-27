@@ -49,9 +49,9 @@
             <p class="text-xs w-1/3">
               {{ $t('detail.tipset.headers.miner') }}
             </p>
-            <div class="flex-reverse items-center">
-              <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="2" />
+            <div class="flex items-center">
               <AddressLink :id="block.miner" class="text-xs text-main" />
+              <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="2" />
             </div>
           </div>
           <div class="flex justify-between mt-2 mx-2">
