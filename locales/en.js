@@ -550,7 +550,7 @@ export default {
     namePlaceholder: 'Optional',
     contactPlaceHolder: 'Email, Cell phone...',
     signaturePlaceHolder: 'Please copy the above sign code, sign it with Filecoin wallet, and enter the signature',
-    specialNotes: 'Special notes: sensitive workds, prohibited words, celebrity names, etc. are not allowed in account names. If there is any violation, the signature will be deleted and prohibited. Thank you for your cooperation.',
+    specialNotes: 'Special notes: sensitive words, prohibited words, celebrity names, etc. are not allowed in account names. If there is any violation, the signature will be deleted and prohibited. Thank you for your cooperation.',
     errorInput: 'Please input',
     success: 'Successfully signed! Please reload this page to see.',
     signed: 'V icon indicates that the account has completed the signature verification of the owner.'
