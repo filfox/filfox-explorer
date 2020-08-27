@@ -61,13 +61,13 @@
             <td class="text-sm">
               <div class="flex items-center flex-row justify-center">
                 <AddressLink :id="deal.client" :format="6" />
-                <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="1" />
+                <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="1" :style="{maxWidth:'66%'}" />
               </div>
             </td>
             <td>
               <div class="flex items-center flex-row justify-center">
                 <AddressLink :id="deal.provider" />
-                <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="1" />
+                <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="1" :style="{maxWidth:'66%'}" />
               </div>
             </td>
             <td>{{ deal.pieceSize | size_metric(2) }}</td>

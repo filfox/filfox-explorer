@@ -13,16 +13,20 @@
       <nuxt-link
         v-if="canClick"
         :to="localePath(`/merchant/${tag.merchant}`)"
-        class="hover:text-main hover:border-main hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center truncate"
+        class="hover:text-main hover:border-main hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center overflow-hidden"
       >
-        {{ tag[$i18n.locale] || '--' }}
+        <p class="truncate">
+          {{ tag[$i18n.locale] || '--' }}
+        </p>
         <Signed v-if="tag.signed && type === 1" :content="$t('tag.signed')" />
       </nuxt-link>
       <div
         v-else
-        class="hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center truncate"
+        class="hidden lg:flex ml-2 text-xs rounded-full px-2 border border-gray-400 items-center overflow-hidden"
       >
-        {{ tag[$i18n.locale] || '--' }}
+        <p class="truncate">
+          {{ tag[$i18n.locale] || '--' }}
+        </p>
         <Signed v-if="tag.signed && type === 1" :content="$t('tag.signed')" />
       </div>
     </template>
