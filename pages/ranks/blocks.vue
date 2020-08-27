@@ -86,11 +86,11 @@
               <MinerTag :tag="miner.tag" />
             </td>
             <td>
-              <div class="flex items-center justify-center">
+              <div class="flex items-center justify-start">
                 <el-progress
                   :percentage="miner.weightedBlocksMined / topMiners.maxWeightedBlocksMined * 100"
                   :show-text="false"
-                  class="flex w-2/3 mr-3"
+                  class="flex w-2/3 mr-3 ml-10"
                 />
                 <div>
                   {{ miner.weightedBlocksMined }}

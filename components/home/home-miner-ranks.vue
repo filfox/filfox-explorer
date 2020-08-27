@@ -155,11 +155,11 @@
               <MinerTag :tag="miner.tag" />
             </td>
             <td>
-              <div class="flex items-center justify-center">
+              <div class="flex items-center justify-start">
                 <el-progress
                   :percentage="miner.qualityAdjPower / topMinersByPower.miners[0].qualityAdjPower * 100"
                   :show-text="false"
-                  class="flex w-1/2 pr-3"
+                  class="flex w-1/2 pr-3 ml-8"
                 />
                 <div>
                   {{ miner.qualityAdjPower | size_metric(2) }} / {{ miner.qualityAdjPower / topMinersByPower.totalQualityAdjPower | percentage }}
@@ -184,11 +184,11 @@
               <MinerTag :tag="miner.tag" />
             </td>
             <td>
-              <div class="flex items-center justify-center">
+              <div class="flex items-center justify-start">
                 <el-progress
                   :percentage="miner.weightedBlocksMined/topMinersByBlocks.miners[0].weightedBlocksMined * 100"
                   :show-text="false"
-                  class="flex w-2/3 mr-3"
+                  class="flex w-2/3 mr-3 ml-10"
                 />
                 <div>
                   {{ miner.weightedBlocksMined }}
