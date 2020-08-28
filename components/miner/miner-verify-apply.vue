@@ -20,7 +20,7 @@
 
       <div class="flex items-center mt-4">
         <div class="form-label">
-          {{ $t('tag.en_sname') }}
+          {{ $t('tag.en_name') }}
           <p class="ml-1 text-red-600">
             *
           </p>
@@ -30,23 +30,9 @@
 
       <div class="flex items-center mt-4">
         <div class="form-label">
-          {{ $t('tag.en_name') }}
-        </div>
-        <el-input v-model="enFull" size="small" :placeholder="$t('tag.namePlaceholder')" class="form-input" />
-      </div>
-
-      <div class="flex items-center mt-4">
-        <div class="form-label">
-          {{ $t('tag.zh_sname') }}
-        </div>
-        <el-input v-model="zh" size="small" :placeholder="$t('tag.snamePlaceholder')" class="form-input" />
-      </div>
-
-      <div class="flex items-center mt-4">
-        <div class="form-label">
           {{ $t('tag.zh_name') }}
         </div>
-        <el-input v-model="zhFull" size="small" :placeholder="$t('tag.namePlaceholder')" class="form-input" />
+        <el-input v-model="zh" size="small" :placeholder="$t('tag.snamePlaceholder')" class="form-input" />
       </div>
 
       <div class="flex items-center mt-4">
@@ -111,9 +97,7 @@ export default {
       loading: false,
       message: '',
       en: '',
-      enFull: '',
       zh: '',
-      zhFull: '',
       contact: '',
       signature: '',
       submitLoading: false
@@ -158,33 +142,22 @@ export default {
       }
       this.submitSignature()
     },
-    submitSignature() {
+    async submitSignature() {
       this.submitLoading = true
       const params = { address: this.addressInfo, en: this.en, contact: this.contact, signature: this.signature }
-      if (this.enFull.length > 0) {
-        params.enFull = this.enFull
-      }
       if (this.zh.length > 0) {
         params.zh = this.zh
       }
-      if (this.zhFull.length > 0) {
-        params.zhFull = this.zhFull
+      const { status, error } = await this.$axios.$post(`/address-tag/create`, params)
+      this.submitLoading = false
+      if (status > 0) {
+        if (error[this.$i18n.locale] != null) {
+          this.$message.error(error[this.$i18n.locale])
+        }
+      } else {
+        this.dialogVisible = false
+        this.$message.success(this.$t('tag.success'))
       }
-      this.$axios
-        .post(`/address-tag/create`, params
-        )
-        .then(res => {
-          this.submitLoading = false
-          const status = res.data.status
-          if (status > 0) {
-            if (res.data.error[this.$i18n.locale] != null) {
-              this.$message.error(res.data.error[this.$i18n.locale])
-            }
-          } else {
-            this.dialogVisible = false
-            this.$message.success(this.$t('tag.success'))
-          }
-        })
     },
     didCopyClicked() {
       const clipBoardContent = this.message.data.command.lotus
