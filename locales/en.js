@@ -614,6 +614,7 @@ export default {
     contact: 'Please send email to contact@filfox.io'
   },
   spaceRace: {
+    title: 'Space race',
     overview: {
       title: 'Overview',
       headers: {

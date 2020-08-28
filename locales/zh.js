@@ -603,6 +603,7 @@ export default {
     contact: '请填写内容并发送邮件到contact@filfox.io，我们会有专员和您联系'
   },
   spaceRace: {
+    title: '太空竞赛',
     overview: {
       title: '竞赛概览',
       headers: {

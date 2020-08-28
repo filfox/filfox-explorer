@@ -56,5 +56,22 @@
         {{ $t('spaceRace.ranks.title') }}
       </p>
     </div>
+
+    <div class="container mx-auto rounded-md bg-white overflow-hidden my-4">
+      <p class="py-2 border-b border-background pl-4 font-medium">
+        {{ $t('spaceRace.distribution.title') }}
+      </p>
+      <SrMap map-width="100%" map-height="600px" />
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  head() {
+    return {
+      title: this.$t('spaceRace.title')
+    }
+  }
+}
+</script>>
