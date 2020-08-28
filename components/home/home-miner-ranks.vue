@@ -54,7 +54,7 @@
               {{ $t('home.minerRanks.tableHeadersByPower.tag') }}
             </th>
             <th class="w-4/15">
-              {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} / / {{ $t('home.minerRanks.tableHeadersByPower.rate') }}
+              {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} / {{ $t('home.minerRanks.tableHeadersByPower.rate') }}
             </th>
             <th class="w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
@@ -96,7 +96,7 @@
             </th>
             <th class="w-3/20">
               <div class="flex justify-center items-center">
-                {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }} / / {{ $t('home.minerRanks.tableHeadersByPower.rate') }}
+                {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }} / {{ $t('home.minerRanks.tableHeadersByPower.rate') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
               </div>
             </th>
