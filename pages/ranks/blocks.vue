@@ -58,7 +58,7 @@
             </th>
             <th class="bg-white sticky top-0 z-30 w-3/20">
               <div class="flex justify-center items-center">
-                {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }}
+                {{ $t('home.minerRanks.tableHeadersByBlock.totalRewards') }} / {{ $t('home.minerRanks.tableHeadersByPower.rate') }}
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByBlock.rewardsRatio')" />
               </div>
             </th>

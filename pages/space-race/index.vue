@@ -4,6 +4,42 @@
       <img v-if="$i18n.locale === 'zh'" src="~/assets/img/space-race/header-zh.png" alt="header" class="w-full mx-auto">
       <img v-else src="~/assets/img/space-race/header-en.png" alt="header" class="w-full mx-auto">
     </div>
+
+    <div class="flex flex-row justify-center items-center mb-2">
+      <div class="mx-2 text-center text-white">
+        <div class="countDown">
+          12
+        </div>
+        <p class="mt-1">
+          {{ $t('shared.time.day') }}
+        </p>
+      </div>
+      <div class="mx-2 text-center text-white">
+        <div class="countDown">
+          01
+        </div>
+        <p class="mt-1">
+          {{ $t('shared.time.hour') }}
+        </p>
+      </div>
+      <div class="mx-2 text-center text-white">
+        <div class="countDown">
+          22
+        </div>
+        <p class="mt-1">
+          {{ $t('shared.time.min') }}
+        </p>
+      </div>
+      <div class="mx-2 text-center text-white">
+        <div class="countDown">
+          30
+        </div>
+        <p class="mt-1">
+          {{ $t('shared.time.sec') }}
+        </p>
+      </div>
+    </div>
+
     <div class="bg-white container mx-auto rounded-md overflow-hidden">
       <p class="py-2 border-b border-background ml-4 font-medium">
         {{ $t('spaceRace.overview.title') }}
@@ -65,6 +101,13 @@
     </div>
   </div>
 </template>
+
+<style lang="postcss" scoped>
+.countDown {
+  @apply rounded w-10 h-10 text-xl font-bold justify-center flex items-center;
+  background-image: linear-gradient()
+}
+</style>>
 
 <script>
 export default {

@@ -54,7 +54,7 @@
               {{ $t('home.minerRanks.tableHeadersByPower.tag') }}
             </th>
             <th class="bg-white sticky top-0 z-30 w-4/15">
-              {{ $t('home.minerRanks.tableHeadersByPower.validPower') }}
+              {{ $t('home.minerRanks.tableHeadersByPower.validPower') }} / {{ $t('home.minerRanks.tableHeadersByPower.rate') }}
             </th>
             <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPower.reward') }}
