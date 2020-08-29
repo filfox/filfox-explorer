@@ -4,9 +4,17 @@
       {{ $t('chart.gas.title') }}
     </div>
 
-    <client-only>
-      <BaseFeeChart class="my-4" />
-    </client-only>
+    <div class="lg:rounded-md bg-white my-4">
+      <div class="flex justify-between items-center h-12 border-b border-background">
+        <div class="items-center pl-4 lg:pl-6 text-xs lg:text-base">
+          {{ $t('chart.gas.baseFeeChart.title') }}
+        </div>
+        <DurationSelect v-model="baseFeeDuration" class="items-center mr-4 hidden lg:flex" />
+        <DurationSelect v-model="baseFeeDuration" portable class="lg:hidden mr-4" />
+      </div>
+      <BaseFeeChart :duration="baseFeeDuration" />
+    </div>
+
 
     <div class="bg-white lg:hidden pb-1">
       <div class="mt-2">
@@ -167,7 +175,8 @@ export default {
   },
   data() {
     return {
-      gasList: []
+      gasList: [],
+      baseFeeDuration: '24h'
     }
   },
   computed: {

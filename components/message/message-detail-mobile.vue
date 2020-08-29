@@ -107,7 +107,7 @@
           <div class="flex items-center">
             <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-main" />
             <span v-else>N/A</span>
-            <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="2" />
+            <AddressTag :tag="transfer.fromTag" type="mobile" />
           </div>
         </div>
         <div class="flex items-center justify-between px-3 mt-1">
@@ -117,7 +117,7 @@
           <div class="flex items-center">
             <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-main" />
             <span v-else>N/A</span>
-            <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="2" />
+            <AddressTag :tag="transfer.toTag" type="mobile" />
           </div>
         </div>
         <div class="flex items-center justify-between px-3 mt-1">

@@ -28,7 +28,7 @@
         <p class="flex w-1/4">
           {{ $t('detail.address.miner.accountOverview.headers.ip') }}
         </p>
-        <IpAddress :location="peer.location" :type="2" class="flex w-3/4" />
+        <IpAddress :location="peer.location" type="mobile" class="flex w-3/4" />
       </div>
 
       <div class="flex justify-between items-center text-xs mx-4 mt-2 pb-2">
@@ -94,7 +94,7 @@
           <dt class="w-1/8 pl-8 text-gray-600 px-2">
             {{ $t('detail.address.miner.accountOverview.headers.ip') }}
           </dt>
-          <dd class="flex mr-4">
+          <dd class="mr-4">
             <IpAddress :location="peer.location" />
           </dd>
         </dl>

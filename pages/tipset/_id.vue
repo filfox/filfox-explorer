@@ -51,7 +51,7 @@
             </p>
             <div class="flex items-center">
               <AddressLink :id="block.miner" class="text-xs text-main" />
-              <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="2" />
+              <AddressTag :tag="block.minerTag" type="mobile" />
             </div>
           </div>
           <div class="flex justify-between mt-2 mx-2">
@@ -125,7 +125,7 @@
             </dt>
             <dd class="flex mr-4">
               <AddressLink :id="block.miner" class="text-main" />
-              <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="1" />
+              <AddressTag :tag="block.minerTag" type="pc" />
             </dd>
           </dl>
           <dl class="flex my-1 items-center">

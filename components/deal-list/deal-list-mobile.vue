@@ -40,7 +40,7 @@
           </p>
           <div class="flex items-center">
             <AddressLink :id="deal.client" :format="6" class="text-main" />
-            <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="2" class="ml-1" />
+            <AddressTag :tag="deal.clientTag" type="mobile" class="ml-1" />
           </div>
         </div>
 
@@ -50,7 +50,7 @@
           </p>
           <div class="flex items-center">
             <AddressLink :id="deal.provider" class="text-main" />
-            <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="2" class="ml-1" />
+            <AddressTag :tag="deal.providerTag" type="mobile" class="ml-1" />
           </div>
         </div>
 

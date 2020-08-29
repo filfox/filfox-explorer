@@ -1,5 +1,5 @@
 <template>
-  <div class="container lg:flex px-4 h-12 mx-auto lg:px-0">
+  <div class="container flex h-12 mx-auto px-0">
     <nuxt-link :to="localePath('/')" class="flex items-center mr-2 xl:mr-3 px-2">
       <div class="text-background text-sm">
         {{ $t('nav.home.title') }}

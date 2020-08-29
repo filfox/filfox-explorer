@@ -23,7 +23,7 @@
         >
           <div class="flex">
             <AddressLink :id="block.miner" class="text-xs" />
-            <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="2" />
+            <AddressTag :tag="block.minerTag" type="mobile" />
           </div>
           <div class="text-xs align-middle">
             {{ $t('home.recentTipsets.tableHeaders.award') }} : {{ block.reward | filecoin(2) }}

@@ -58,7 +58,7 @@
         </dt>
         <dd class="message-value">
           <AddressLink :id="message.from" class="text-main" />
-          <MinerTag v-if="message.fromTag" :tag="message.fromTag" :type="1" />
+          <AddressTag :tag="message.fromTag" type="pc" />
         </dd>
       </dl>
       <dl class="message-item">
@@ -67,7 +67,7 @@
         </dt>
         <dd class="message-value">
           <AddressLink :id="message.to" class="text-main" />
-          <MinerTag v-if="message.toTag" :tag="message.toTag" :type="1" />
+          <AddressTag :tag="message.toTag" type="pc" />
         </dd>
       </dl>
       <dl class="message-item">
@@ -137,7 +137,7 @@
                 <div class="flex items-center flex-row justify-center">
                   <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" />
                   <span v-else>N/A</span>
-                  <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="1" :style="{maxWidth:'66%'}" />
+                  <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
                 </div>
               </td>
               <td>
@@ -149,7 +149,7 @@
                 <div class="flex items-center flex-row justify-center">
                   <AddressLink v-if="transfer.to" :id="transfer.to" :format="8" />
                   <span v-else>N/A</span>
-                  <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="1" :style="{maxWidth:'66%'}" />
+                  <AddressTag :tag="transfer.toTag" type="pc" :style="{maxWidth:'66%'}" />
                 </div>
               </td>
               <td>

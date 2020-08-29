@@ -1,27 +1,20 @@
 <template>
-  <div class="flex" :class="{'justify-center': type === 1, 'items-center': type !=2, 'items-start': type === 2}">
+  <div class="flex" :class="type === 'mobile' ? 'items-start' : 'items-center'">
     <img v-if="location" :src="location.flag" class="border border-background rounded-sm w-5 mr-1">
     <template v-if="location">
-      <p v-if="type === 0" class="text-sm">
-        {{ fullLocation }}
-        ({{ splitedIP(location.ip) }})
+      <p v-if="type === ''" class="text-sm">
+        {{ fullLocation }} ({{ splittedIP }})
       </p>
-      <p v-if="type === 1" class="text-sm">
-        {{ location[`${$i18n.locale}CountryName`] }}-{{ location[`${$i18n.locale}City`] }}
-      </p>
-      <p v-if="type === 2" class="text-xs text-gray-800 text-right">
-        {{ fullLocation }}
-        ({{ splitedIP(location.ip) }})
+      <p v-else-if="type === 'mobile'" class="text-xs text-gray-800 text-right">
+        {{ fullLocation }} ({{ splittedIP }})
       </p>
     </template>
-    <template v-else>
-      <p v-if="type != 2" class="text-sm">
-        {{ $t('shared.unknown') }}
-      </p>
-      <p v-else class="text-xs text-gray-800 text-right">
-        {{ $t('shared.unknown') }}
-      </p>
-    </template>
+    <p v-else-if="type === 'mobile'" class="text-xs text-gray-800 text-right">
+      {{ $t('shared.unknown') }}
+    </p>
+    <p v-else class="text-sm">
+      {{ $t('shared.unknown') }}
+    </p>
   </div>
 </template>
 
@@ -29,33 +22,23 @@
 export default {
   props: {
     location: { type: null, required: true },
-    type: { type: Number, default: 0 }
+    type: { type: String, default: '' }
   },
   computed: {
     fullLocation() {
-      const locations = []
-      if (this.location[`${this.$i18n.locale}ContinentName`]) {
-        locations.push(this.location[`${this.$i18n.locale}ContinentName`])
-      }
-      if (this.location[`${this.$i18n.locale}CountryName`]) {
-        locations.push(this.location[`${this.$i18n.locale}CountryName`])
-      }
-      if (this.location[`${this.$i18n.locale}RegionName`]) {
-        locations.push(this.location[`${this.$i18n.locale}RegionName`])
-      }
-      if (this.location[`${this.$i18n.locale}City`]) {
-        locations.push(this.location[`${this.$i18n.locale}City`])
-      }
-      return locations.join('-')
-    }
-  },
-  methods: {
-    splitedIP(ip) {
-      const ips = ip.split('.')
+      return [
+        this.location[`${this.$i18n.locale}ContinentName`],
+        this.location[`${this.$i18n.locale}CountryName`],
+        this.location[`${this.$i18n.locale}RegionName`],
+        this.location[`${this.$i18n.locale}City`]
+      ].filter(Boolean).join('-')
+    },
+    splittedIP() {
+      const ips = this.location.ip.split('.')
       if (ips.length === 4) {
         return `${ips[0]}. ** . ** .${ips[3]}`
       } else {
-        return ip
+        return this.location.ip
       }
     }
   }

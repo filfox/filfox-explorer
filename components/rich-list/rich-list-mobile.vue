@@ -19,7 +19,7 @@
         <div class="flex pt-2 items-center">
           <RankIndex :index="index+1 + page * pageSize" class="ml-1" />
           <AddressLink :id="rich.address" :format="4" class="ml-2 mr-1" />
-          <MinerTag v-if="rich.tag" :tag="rich.tag" :type="2" />
+          <AddressTag :tag="rich.tag" type="mobile" />
         </div>
 
         <div class="flex justify-between pt-2 mx-1">

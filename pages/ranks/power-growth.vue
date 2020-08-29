@@ -8,7 +8,7 @@
           <div class="flex items-center text-xs my-2 ml-1">
             <RankIndex :index="page * pageSize + index+1" :class="{'mb-1':page * pageSize + index < 3}" class="ml-1" />
             <AddressLink :id="miner.address" :format="4" class="ml-2" />
-            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
+            <AddressTag :tag="miner.tag" type="mobile" />
           </div>
           <div class="flex justify-between my-1 mx-2 text-xs">
             <p>
@@ -88,7 +88,7 @@
               <AddressLink :id="miner.address" :format="10" />
             </td>
             <td>
-              <MinerTag :tag="miner.tag" />
+              <AddressTag :tag="miner.tag" />
             </td>
             <td>
               <div class="flex items-center justify-end">

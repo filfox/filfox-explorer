@@ -30,11 +30,11 @@
         :class="{'bg-socialTableBg': index % 2 === 0}"
       >
         <div class="pl-3 w-1/8 z-40">
-          <RankIndex :index="index + 1" :type="1" :class="{'mb-1': index < 3}" />
+          <RankIndex :index="index + 1" type="pc" :class="{'mb-1': index < 3}" />
         </div>
         <div class="w-3/8 flex items-center py-2 z-40">
           <AddressLink :id="miner.address" />
-          <MinerTag v-if="miner.tag" :tag="miner.tag" :type="3" :style="{maxWidth:'66%'}" />
+          <AddressTag :tag="miner.tag" type="share-rank" :style="{maxWidth:'66%'}" />
         </div>
         <div class="w-1/4 flex items-center py-2 relative">
           <div

@@ -73,7 +73,7 @@
           <img src="~/assets/img/deal/client.svg" alt="client" class="w-10 mt-1">
           <div class="flex items-center mt-1">
             <AddressLink :id="deal.client" :format="6" class="text-main" />
-            <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="2" class="ml-1" />
+            <AddressTag :tag="deal.clientTag" type="mobile" class="ml-1" />
           </div>
           <p class="text-xs mt-1">
             {{ $t('detail.deal.headers.collateral') }} : {{ deal.clientCollateral | filecoin(4) }}
@@ -103,7 +103,7 @@
           <img src="~/assets/img/deal/provider.svg" alt="provider" class="w-10 mt-1">
           <div class="flex items-center mt-1">
             <AddressLink :id="deal.provider" class="text-main" />
-            <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="2" class="ml-1" />
+            <AddressTag :tag="deal.providerTag" type="mobile" class="ml-1" />
           </div>
           <p class="text-xs mt-1">
             {{ $t('detail.deal.headers.collateral') }} : {{ deal.providerCollateral | filecoin(4) }}
@@ -196,7 +196,7 @@
             <img src="~/assets/img/deal/client.svg" alt="client" class="w-10 mt-1">
             <div class="flex items-center mt-1">
               <AddressLink :id="deal.client" :format="6" class="text-main" />
-              <MinerTag v-if="deal.clientTag" :tag="deal.clientTag" :type="1" />
+              <AddressTag :tag="deal.clientTag" type="pc" />
             </div>
             <p class="text-xs mt-1">
               {{ $t('detail.deal.headers.collateral') }} : {{ deal.clientCollateral | filecoin(4) }}
@@ -226,7 +226,7 @@
             <img src="~/assets/img/deal/provider.svg" alt="provider" class="w-10 mt-1">
             <div class="flex items-center mt-1">
               <AddressLink :id="deal.provider" class="text-main" />
-              <MinerTag v-if="deal.providerTag" :tag="deal.providerTag" :type="1" />
+              <AddressTag :tag="deal.providerTag" type="pc" />
             </div>
             <p class="text-xs mt-1">
               {{ $t('detail.deal.headers.collateral') }} : {{ deal.providerCollateral | filecoin(4) }}

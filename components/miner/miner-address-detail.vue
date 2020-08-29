@@ -16,7 +16,7 @@
           <div class="font-medium">
             {{ $t('detail.address.normal.title') }} {{ addressData.address }}
           </div>
-          <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="1" />
+          <AddressTag v-if="addressData.tag" :tag="addressData.tag" type="pc" />
           <div v-else class="text-main text-xs ml-2 mt-1 cursor-pointer" @click="showDialog">
             {{ $t('tag.apply') }}>
           </div>
@@ -257,7 +257,7 @@
                   <div class="flex items-center flex-row justify-center">
                     <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
                     <span v-else> N/A </span>
-                    <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="1" />
+                    <AddressTag :tag="transfer.fromTag" type="pc" />
                   </div>
                 </td>
                 <td>
@@ -269,7 +269,7 @@
                   <div class="flex items-center flex-row justify-center">
                     <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" />
                     <span v-else> N/A </span>
-                    <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="1" />
+                    <AddressTag :tag="transfer.toTag" type="pc" />
                   </div>
                 </td>
                 <td>

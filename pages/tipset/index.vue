@@ -21,7 +21,7 @@
           <div v-for="(block, blockIndex) in tipset.blocks" :key="blockIndex" class="flex justify-between py-1 text-xs">
             <div class="flex">
               <AddressLink :id="block.miner" />
-              <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="2" />
+              <AddressTag :tag="block.minerTag" type="mobile" />
             </div>
             <div>
               {{ $t('home.recentTipsets.tableHeaders.award') }} : {{ block.reward | filecoin(2) }}
@@ -47,8 +47,8 @@
         {{ $t('blockchain.block.title') }}
       </div>
       <div>
-        <table v-if="!loading" class="w-full table-auto">
-          <thead class="text-gray-600 text-sm m-2">
+        <table v-if="!loading" class="w-full table-auto text-sm">
+          <thead class="text-gray-600 m-2">
             <tr class="h-8">
               <th class="table-header">
                 {{ $t('blockchain.block.tableHeaders.height') }}
@@ -83,34 +83,33 @@
                 :key="block.hash"
                 :class="{'border-b border-background': blockIndex == tipset.blocks.length - 1}"
               >
-                <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" :class="{'h-10': tipset.blocks.length == 1}" class="border-b border-background">
-                  <TipsetLink :id="tipset.height" class="text-main text-sm" />
+                <td
+                  v-if="blockIndex === 0"
+                  :rowspan="tipset.blocks.length"
+                  class="border-b border-background"
+                  :class="{'h-10': tipset.blocks.length == 1}"
+                >
+                  <TipsetLink :id="tipset.height" class="text-main" />
                 </td>
                 <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
-                  <FromNow :timestamp="tipset.timestamp" format="seconds" class="text-sm" />
+                  <FromNow :timestamp="tipset.timestamp" format="seconds" />
                 </td>
-
-                <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="text-sm border-b border-background">
+                <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
                   {{ tipset.blockSize }} Bytes
                 </td>
-
                 <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
-                  <BlockLink :id="block.cid" :format="5" class="md:hidden text-sm" />
-                  <BlockLink :id="block.cid" :format="8" class="mdb:hidden text-sm" />
+                  <BlockLink :id="block.cid" :format="8" />
                 </td>
-
                 <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
-                  <AddressLink :id="block.miner" class="text-sm" />
+                  <AddressLink :id="block.miner" />
                 </td>
-
-                <td class="text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
-                  <MinerTag :tag="block.minerTag" />
+                <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
+                  <AddressTag :tag="block.minerTag" />
                 </td>
-
-                <td class="smb:hidden text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
+                <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
                   {{ block.messageCount }}
                 </td>
-                <td class="text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
+                <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
                   {{ block.reward | filecoin(2) }}
                 </td>
               </tr>

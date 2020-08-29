@@ -7,7 +7,7 @@
         <p class="text-white text-2xl font-medium">
           矿工 {{ addressData.address }}
         </p>
-        <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="4" />
+        <AddressTag :tag="addressData.tag" type="share-miner" />
       </div>
       <span class="text-socialUpdateTimeText text-xs ml-4 mt-2">
         Filfox.info 更新于 {{ addressData.timestamp | timestamp('datetime') }} ({{ currentNetwork.name }})

@@ -3,7 +3,7 @@
     <div class="text-base items-center flex">
       <span class="font-medium mr-2">{{ $t('detail.address.normal.title') }}</span>
       <span>{{ addressData.address }}</span>
-      <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="1" :style="{maxWidth:'66%'}" />
+      <AddressTag :tag="addressData.tag" type="pc" :style="{maxWidth:'66%'}" />
     </div>
     <div class="rounded-md my-4 bg-white pb-2 text-sm">
       <div class="flex pl-8 py-4 font-medium border-b border-background">
@@ -158,7 +158,7 @@
                 <div class="flex items-center flex-row justify-center">
                   <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
                   <span v-else>N/A</span>
-                  <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="1" :style="{maxWidth:'66%'}" />
+                  <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
                 </div>
               </td>
               <td>
@@ -170,7 +170,7 @@
                 <div class="flex items-center flex-row justify-center">
                   <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" />
                   <span v-else>N/A</span>
-                  <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="1" :style="{maxWidth:'66%'}" />
+                  <AddressTag :tag="transfer.toTag" type="pc" :style="{maxWidth:'66%'}" />
                 </div>
               </td>
               <td>

@@ -9,8 +9,8 @@
       </nuxt-link>
     </div>
     <div class="flex-grow mt-2 overflow-y-scroll relative">
-      <table v-if="!recentTipsetsLoading" class="w-full table-auto absolute">
-        <thead class="text-gray-600 text-sm m-2">
+      <table v-if="!recentTipsetsLoading" class="w-full table-auto absolute text-sm">
+        <thead class="text-gray-600 m-2">
           <tr>
             <th class="table-header">
               {{ $t('home.recentTipsets.tableHeaders.height') }}
@@ -42,23 +42,22 @@
               <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
                 <div :class="{'py-2': tipset.blocks.length == 1}">
                   <TipsetLink :id="tipset.height" class="block text-main text-base" />
-                  <FromNow :timestamp="tipset.timestamp" format="seconds" class="block text-sm" />
+                  <FromNow :timestamp="tipset.timestamp" format="seconds" class="block" />
                 </div>
               </td>
               <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
-                <BlockLink :id="block.cid" :format="5" class="md:hidden text-sm" />
-                <BlockLink :id="block.cid" :format="4" class="mdb:hidden text-sm" />
+                <BlockLink :id="block.cid" :format="4" />
               </td>
               <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
-                <AddressLink :id="block.miner" class="text-sm" />
+                <AddressLink :id="block.miner" />
               </td>
-              <td class="text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
-                <MinerTag :tag="block.minerTag" :style="{maxWidth:'100%'}" />
+              <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
+                <AddressTag :tag="block.minerTag" class="max-w-full" />
               </td>
-              <td class="smb:hidden text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
+              <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
                 {{ block.messageCount }}
               </td>
-              <td class="text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
+              <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
                 {{ block.reward | filecoin(2) }}
               </td>
             </tr>

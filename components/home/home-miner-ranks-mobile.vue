@@ -5,7 +5,7 @@
         <HomeTitle type="minerRanks" />
         <div v-if="$i18n.locale == 'zh'" class="flex items-center border border-socialTagBg rounded-full px-2 mr-4 text-xs cursor-pointer hover:border-button" @click="didSharedBtnClicked">
           <img src="~/assets/img/social/share.svg" class="h-2 mr-1">
-          <span> 分享 </span>
+          <span>分享</span>
         </div>
       </div>
       <div class="flex justify-between">
@@ -64,7 +64,7 @@
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
-            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" :style="{maxWidth:'66%'}" />
+            <AddressTag :tag="miner.tag" type="mobile" :style="{maxWidth:'66%'}" />
           </div>
           <div class="w-3/8 text-right">
             {{ miner.qualityAdjPower | size_metric(2) }}
@@ -81,7 +81,7 @@
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
-            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" :style="{maxWidth:'66%'}" />
+            <AddressTag :tag="miner.tag" type="mobile" :style="{maxWidth:'66%'}" />
           </div>
           <div class="w-3/8 text-right">
             {{ miner.weightedBlocksMined }} / {{ miner.luckyValue | percentage }}
@@ -96,7 +96,7 @@
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
-            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" :style="{maxWidth:'66%'}" />
+            <AddressTag :tag="miner.tag" type="mobile" :style="{maxWidth:'66%'}" />
           </div>
           <div class="w-3/8 text-right">
             {{ (miner.qualityAdjPowerGrowth / durationDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}

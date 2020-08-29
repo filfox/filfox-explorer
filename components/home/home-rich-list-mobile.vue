@@ -26,7 +26,7 @@
       </div>
       <div class="w-1/2 flex items-center py-2 pl-2">
         <AddressLink :id="rich.address" :format="3" />
-        <MinerTag v-if="rich.tag" :tag="rich.tag" :type="2" />
+        <AddressTag :tag="rich.tag" type="mobile" />
       </div>
       <div class="w-5/12 text-right break-words">
         {{ rich.balance | filecoin(0) }} / {{ rich.balance / richList.totalSupply | percentage }}

@@ -3,22 +3,20 @@
     <div v-if="!sharing">
       <HomeOverview :overview="overview" />
 
-      <div class="hidden lg:grid lg:grid-flow-col lg:grid-rows-1 lg:grid-cols-2 mb-2 lg:mb-4">
-        <div class="bg-white lg:rounded-md lg:mr-2 mb-2 lg:mb-0">
-          <HomeTitle type="powerDistribution" class="border-b border-background h-10 lg:h-12 lg:pr-4" />
+      <div class="hidden lg:grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
+        <div class="rounded-md mr-2 mb-0 bg-white">
+          <HomeTitle type="powerDistribution" class="border-b border-background h-12 pr-4" />
           <client-only>
-            <PowerDistributionChart class="mt-2 mx-1 lg:mx-4 lg:mt-12" />
+            <PowerDistributionChart class="mx-4 mt-12" />
           </client-only>
         </div>
 
-        <div class="bg-white lg:ml-2 lg:rounded-md">
-          <div class="flex items-center border-b border-background h-10 lg:h-12 lg:pr-4">
+        <div class="ml-2 rounded-md bg-white">
+          <div class="flex items-center border-b border-background h-12 pr-4">
             <HomeTitle type="baseFee" />
             <Tip class="ml-1" :content="$t('chart.gas.baseFeeChart.tips')" />
           </div>
-          <client-only>
-            <BaseFeeChartHome class="mt-2 mx-1 lg:mx-0 lg:my-4" />
-          </client-only>
+          <BaseFeeChart class="rounded-md mt-2 ml-2 mr-4" />
         </div>
       </div>
 
@@ -61,18 +59,16 @@
       />
 
       <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
-        <div class="bg-white  mb-2">
+        <div class="mb-2 bg-white">
           <HomeTitle type="powerDistribution" class="border-b border-background h-10 pr-4" />
           <client-only>
             <PowerDistributionChart class="mt-2 mx-1" />
           </client-only>
         </div>
 
-        <div class="bg-white lg:hidden">
+        <div class="bg-white">
           <HomeTitle type="baseFee" class="border-b border-background h-10 pr-4" />
-          <client-only>
-            <BaseFeeChartHome class="mt-2 lg:mx-0 lg:my-4" />
-          </client-only>
+          <BaseFeeChart class="mt-2" />
         </div>
       </div>
     </div>

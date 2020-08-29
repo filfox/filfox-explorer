@@ -1,12 +1,5 @@
 <template>
-  <div class="lg:rounded-md bg-white">
-    <div class="flex justify-between items-center h-12 border-b border-background">
-      <div class="items-center pl-4 lg:pl-6 text-xs lg:text-base">
-        {{ $t('chart.gas.baseFeeChart.title') }}
-      </div>
-      <DurationSelect v-model="duration" class="items-center mr-4 hidden lg:flex" />
-      <DurationSelect v-model="duration" portable class="lg:hidden mr-4" />
-    </div>
+  <div>
     <client-only>
       <VeLine
         :data="chartData"
@@ -53,6 +46,9 @@ export default {
   components: {
     VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
   },
+  props: {
+    duration: { type: String, default: '24h' }
+  },
   data() {
     this.chartSettings = {
       offsetY: 0,
@@ -89,7 +85,6 @@ export default {
         columns: ['time', 'baseFee'],
         rows: []
       },
-      duration: '24h',
       loading: false,
       dataEmpty: false,
       rawData: []

@@ -26,7 +26,7 @@
       </p>
       <div class="flex w-3/4 items-center">
         <AddressLink :id="block.miner" class="text-main" />
-        <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="2" :style="{maxWidth:'66%'}" />
+        <AddressTag :tag="block.minerTag" type="mobile" :style="{maxWidth:'66%'}" />
       </div>
     </div>
 

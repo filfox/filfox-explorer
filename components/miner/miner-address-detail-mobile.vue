@@ -20,7 +20,7 @@
             <div class="text-xs ml-3">
               {{ $t('detail.address.normal.title') }} {{ addressData.address }}
             </div>
-            <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="2" />
+            <AddressTag :tag="addressData.tag" type="mobile" />
           </div>
           <button
             v-if="$i18n.locale == 'zh'"
@@ -192,7 +192,7 @@
           <p class="text-xs text-gray-800">
             {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
           </p>
-          <IpAddress :location="addressData.miner.location" :type="2" />
+          <IpAddress :location="addressData.miner.location" type="mobile" />
         </div>
       </div>
 
@@ -298,7 +298,7 @@
               <div class="flex items-center flex-row justify-end">
                 <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-xs text-main" />
                 <span v-else class="text-xs text-gray-800"> N/A </span>
-                <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="2" />
+                <AddressTag :tag="transfer.fromTag" type="mobile" />
               </div>
             </div>
             <div class="flex items-center justify-between mx-3 mt-1">
@@ -308,7 +308,7 @@
               <div class="flex items-center flex-row justify-end">
                 <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-xs text-main" />
                 <span v-else class="text-xs text-gray-800"> N/A </span>
-                <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="2" />
+                <AddressTag :tag="transfer.toTag" type="mobile" />
               </div>
             </div>
             <div class="flex items-center justify-between mx-3 mt-1">

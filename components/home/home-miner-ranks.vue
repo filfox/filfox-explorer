@@ -152,7 +152,7 @@
               <AddressLink :id="miner.address" :format="10" />
             </td>
             <td>
-              <MinerTag :tag="miner.tag" :style="{maxWidth:'100%'}" />
+              <AddressTag :tag="miner.tag" class="max-w-full" />
             </td>
             <td>
               <div class="flex items-center justify-start">
@@ -181,7 +181,7 @@
               <AddressLink :id="miner.address" :format="10" />
             </td>
             <td>
-              <MinerTag :tag="miner.tag" :style="{maxWidth:'100%'}" />
+              <AddressTag :tag="miner.tag" class="max-w-full" />
             </td>
             <td>
               <div class="flex items-center justify-start">
@@ -210,7 +210,7 @@
               <AddressLink :id="miner.address" :format="10" />
             </td>
             <td>
-              <MinerTag :tag="miner.tag" :style="{maxWidth:'100%'}" />
+              <AddressTag :tag="miner.tag" class="max-w-full" />
             </td>
             <td>
               <div class="flex items-center justify-end">

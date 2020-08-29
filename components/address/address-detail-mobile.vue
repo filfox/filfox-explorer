@@ -17,7 +17,7 @@
       </p>
       <p class="flex w-3/4">
         <AddressLink :id="addressData.address" plain />
-        <MinerTag v-if="addressData.tag" :tag="addressData.tag" :type="2" :style="{maxWidth:'66%'}" />
+        <AddressTag :tag="addressData.tag" type="mobile" :style="{maxWidth:'66%'}" />
       </p>
     </div>
 
@@ -132,7 +132,7 @@
             <div class="flex items-center flex-row justify-end">
               <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-xs text-main" />
               <span v-else class="text-xs text-gray-800"> N/A </span>
-              <MinerTag v-if="transfer.fromTag" :tag="transfer.fromTag" :type="2" :style="{maxWidth:'66%'}" />
+              <AddressTag :tag="transfer.fromTag" type="mobile" :style="{maxWidth:'66%'}" />
             </div>
           </div>
           <div class="flex items-center justify-between mx-3 mt-1">
@@ -142,7 +142,7 @@
             <div class="flex items-center flex-row justify-end">
               <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-xs text-main" />
               <span v-else class="text-xs text-gray-800"> N/A </span>
-              <MinerTag v-if="transfer.toTag" :tag="transfer.toTag" :type="2" :style="{maxWidth:'66%'}" />
+              <AddressTag :tag="transfer.toTag" type="mobile" :style="{maxWidth:'66%'}" />
             </div>
           </div>
           <div class="flex items-center justify-between mx-3 mt-1">

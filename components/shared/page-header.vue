@@ -7,11 +7,11 @@
 
       <div class="flex">
         <div v-if="network.multipleNetworks" class="hidden lg:flex items-center mr-6">
-          <img src="~/assets/img/home/switchNet.svg" alt="net" class="mr-2 w-5 flex">
+          <img v-if="network.networks.length > 1" src="~/assets/img/home/switchNet.svg" alt="net" class="w-5 mr-2">
           <p class="text-white text-sm mr-1">
             {{ $t('shared.currentNetwork') }}
           </p>
-          <el-dropdown class="mr-3 lg:mr-0 flex items-center" trigger="click" hide-on-click>
+          <el-dropdown v-if="network.networks.length > 1" class="flex items-center mr-0" trigger="click" hide-on-click>
             <span class="el-dropdown-link text-background text-sm">
               {{ network.networks[network.currentNetwork].name }} <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
@@ -28,6 +28,7 @@
               </template>
             </el-dropdown-menu>
           </el-dropdown>
+          <span v-else class="text-background text-sm">{{ network.networks[network.currentNetwork].name }}</span>
         </div>
 
         <div class="flex items-center">
