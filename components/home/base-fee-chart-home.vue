@@ -28,6 +28,20 @@
 <script>
 import moment from 'moment'
 
+function toLocaleString(n) {
+  return n.toLocaleString() ?? n.toString()
+}
+
+function formatValue(value) {
+  if (value < 1e9) {
+    return `${toLocaleString(value)} attoFIL`
+  } else if (value < 1e18) {
+    return `${toLocaleString(value / 1e9)} nanoFIL`
+  } else {
+    return `${toLocaleString(value / 1e18)} FIL`
+  }
+}
+
 export default {
   components: {
     VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
@@ -44,14 +58,22 @@ export default {
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter: '{value} attoFIL'
+          formatter(value) {
+            if (value < 1e9) {
+              return `${toLocaleString(value)} attoFIL`
+            } else if (value < 1e18) {
+              return `${toLocaleString(value / 1e9)} nanoFIL`
+            } else {
+              return `${toLocaleString(value / 1e18)} FIL`
+            }
+          }
         }
       },
       tooltip: {
         trigger: 'axis',
         formatter: params => [
           this.getDateTime(this.rawData[params[0].dataIndex].timestamp),
-          ...params.map(param => `${param.marker}${param.seriesName}: ${param.value[1]} attoFIL`)
+          ...params.map(param => `${param.marker}${param.seriesName}: ${formatValue(param.value[1])}`)
         ].join('<br>')
       }
     }
