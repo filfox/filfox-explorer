@@ -31,7 +31,7 @@
         </dt>
         <dd class="flex mr-4">
           <AddressLink :id="block.miner" class="text-main" />
-          <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="1" :style="{maxWidth:'66%'}" />
+          <MinerTag v-if="block.minerTag" :tag="block.minerTag" :type="1" />
         </dd>
       </dl>
 
