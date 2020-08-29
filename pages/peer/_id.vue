@@ -127,7 +127,7 @@ export default {
           })
         }
       } else {
-        error({ code: 500, message: err.toString() })
+        error({ code: 500, message: 'Server Error'() })
       }
     }
   },

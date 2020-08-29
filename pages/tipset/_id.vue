@@ -167,7 +167,7 @@ export default {
           error({ code: err.response.status, message: err.response.statusText })
         }
       } else {
-        error({ code: 500, message: err.toString() })
+        error({ code: 500, message: 'Server Error'() })
       }
     }
   },
