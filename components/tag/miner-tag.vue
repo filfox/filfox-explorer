@@ -30,16 +30,22 @@
         <Signed v-if="tag.signed && type === 1" :content="$t('tag.signed')" />
       </div>
     </template>
-    <div v-if="type == 2" class="lg:hidden text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1 items-center truncate">
-      {{ tag[$i18n.locale] || '--' }}
+    <div v-if="type == 2" class="lg:hidden text-xs bg-background rounded-full px-2 text-gray-500 flex ml-1 items-center overflow-hidden">
+      <p class=" truncate">
+        {{ tag[$i18n.locale] || '--' }}
+      </p>
       <Signed v-if="tag.signed && type== 2" :content="$t('tag.signed')" />
     </div>
-    <div v-if="type == 3" class="lg:hidden text-xs bg-socialTagBg rounded-full px-2 text-black flex ml-1 items-center truncate">
-      {{ tag[$i18n.locale] || '--' }}
+    <div v-if="type == 3" class="lg:hidden text-xs bg-socialTagBg rounded-full px-2 text-black flex ml-1 items-center overflow-hidden">
+      <p class=" truncate">
+        {{ tag[$i18n.locale] || '--' }}
+      </p>
       <Signed v-if="tag.signed && type== 3" :content="$t('tag.signed')" />
     </div>
-    <div v-if="type == 4" class="lg:hidden text-sm bg-socialTagTransparentBg rounded-full px-2 text-white flex ml-1 items-center truncate">
-      {{ tag[$i18n.locale] || '--' }}
+    <div v-if="type == 4" class="lg:hidden text-sm bg-socialTagTransparentBg rounded-full px-2 text-white flex ml-1 items-center overflow-hidden">
+      <p class=" truncate">
+        {{ tag[$i18n.locale] || '--' }}
+      </p>
       <Signed v-if="tag.signed && type== 4" :content="$t('tag.signed')" />
     </div>
   </div>

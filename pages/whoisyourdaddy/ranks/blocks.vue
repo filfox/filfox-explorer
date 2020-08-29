@@ -34,7 +34,7 @@
         </div>
         <div class="w-3/8 flex items-center py-2 z-40">
           <AddressLink :id="miner.address" />
-          <MinerTag v-if="miner.tag" :tag="miner.tag" :type="3" />
+          <MinerTag v-if="miner.tag" :tag="miner.tag" :type="3" :style="{maxWidth:'66%'}" />
         </div>
         <div class="w-1/4 flex items-center py-2 relative">
           <div

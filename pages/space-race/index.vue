@@ -44,6 +44,24 @@
       <p class="py-2 border-b border-background ml-4 font-medium">
         {{ $t('spaceRace.overview.title') }}
       </p>
+      <div class="flex flex-row justify-center items-center my-2">
+        <div class=" font-medium text-sm mr-2">
+          {{ $t('spaceRace.currentRewards') }}:
+        </div>
+        <div class="text-2xl font-medium text-spaceRace">
+          {{ 1000000000000000000000000000 | filecoin() }}
+        </div>
+      </div>
+
+      <div class="my-2">
+        <el-steps :active="2" align-center class="w-full">
+          <el-step title="步骤1" description="这是一段很长很长很长的描述性文字" :space="'10%'" />
+          <el-step title="步骤2" description="这是一段很长很长很长的描述性文字" />
+          <el-step title="步骤3" description="这是一段很长很长很长的描述性文字" />
+          <el-step title="步骤4" description="这是一段很长很长很长的描述性文字" />
+        </el-steps>
+      </div>
+
       <div class="grid grid-cols-4 gap-4 px-4">
         <div>
           <p class="text-xs text-center pt-4 pb-2">
@@ -104,8 +122,8 @@
 
 <style lang="postcss" scoped>
 .countDown {
-  @apply rounded w-10 h-10 text-xl font-bold justify-center flex items-center;
-  background-image: linear-gradient()
+  @apply rounded w-10 h-10 text-xl font-bold justify-center flex items-center shadow;
+  background-image: linear-gradient(#0638AC,#012F9C)
 }
 </style>>
 

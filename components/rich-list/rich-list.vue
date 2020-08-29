@@ -50,7 +50,7 @@
               <AddressLink :id="rich.address" :format="8" />
             </td>
             <td class="text-sm">
-              <MinerTag :tag="rich.tag" />
+              <MinerTag :tag="rich.tag" :style="{maxWidth:'100%'}" />
             </td>
             <td> {{ rich.balance | filecoin(4) }} </td>
             <td> {{ rich.balance / richList.totalSupply | percentage }} </td>

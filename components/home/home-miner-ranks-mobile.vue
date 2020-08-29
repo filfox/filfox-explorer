@@ -64,7 +64,7 @@
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
-            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
+            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" :style="{maxWidth:'66%'}" />
           </div>
           <div class="w-3/8 text-right">
             {{ miner.qualityAdjPower | size_metric(2) }}
@@ -81,7 +81,7 @@
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
-            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
+            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" :style="{maxWidth:'66%'}" />
           </div>
           <div class="w-3/8 text-right">
             {{ miner.weightedBlocksMined }} / {{ miner.luckyValue | percentage }}
@@ -96,7 +96,7 @@
           </div>
           <div class="w-1/2 flex items-center py-2">
             <AddressLink :id="miner.address" :format="4" />
-            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" />
+            <MinerTag v-if="miner.tag" :tag="miner.tag" :type="2" :style="{maxWidth:'66%'}" />
           </div>
           <div class="w-3/8 text-right">
             {{ (miner.qualityAdjPowerGrowth / durationDay / topMinersByPowerDelta.durationPercentage) | size_metric(2) }}

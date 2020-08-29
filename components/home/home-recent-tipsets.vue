@@ -53,7 +53,7 @@
                 <AddressLink :id="block.miner" class="text-sm" />
               </td>
               <td class="text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
-                <MinerTag :tag="block.minerTag" />
+                <MinerTag :tag="block.minerTag" :style="{maxWidth:'100%'}" />
               </td>
               <td class="smb:hidden text-sm" :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
                 {{ block.messageCount }}

@@ -617,6 +617,7 @@ export default {
   },
   spaceRace: {
     title: 'Space race',
+    currentRewards: '当前奖励池',
     overview: {
       title: 'Overview',
       headers: {

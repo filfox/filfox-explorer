@@ -369,8 +369,9 @@ export default {
     }
   },
   computed: {
-    totalPageCount() {
-      return Math.ceil(this.total / this.pageSize)
+    totalPageCount: {
+      get() { return Math.ceil(this.total / this.pageSize) },
+      set(val) { }
     }
   },
   methods: {
