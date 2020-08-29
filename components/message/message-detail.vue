@@ -58,7 +58,7 @@
         </dt>
         <dd class="message-value">
           <AddressLink :id="message.from" class="text-main" />
-          <MinerTag v-if="message.fromTag" :tag="message.fromTag" :type="1" :style="{maxWidth:'66%'}" />
+          <MinerTag v-if="message.fromTag" :tag="message.fromTag" :type="1" />
         </dd>
       </dl>
       <dl class="message-item">
@@ -67,7 +67,7 @@
         </dt>
         <dd class="message-value">
           <AddressLink :id="message.to" class="text-main" />
-          <MinerTag v-if="message.toTag" :tag="message.toTag" :type="1" :style="{maxWidth:'66%'}" />
+          <MinerTag v-if="message.toTag" :tag="message.toTag" :type="1" />
         </dd>
       </dl>
       <dl class="message-item">
