@@ -9,14 +9,15 @@
         {{ $t('detail.address.normal.headers.address') }}
       </p>
       <AddressLink :id="addressData.address" plain class="flex w-3/4" />
+      <AddressTag v-if="addressData.address[1] === '0'" :tag="addressData.tag" type="mobile" :style="{maxWidth:'66%'}" />
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div v-if="addressData.address[1] !== '0'" class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         ID
       </p>
       <p class="flex w-3/4">
-        <AddressLink :id="addressData.address" plain />
+        <AddressLink :id="addressData.alias" plain />
         <AddressTag :tag="addressData.tag" type="mobile" :style="{maxWidth:'66%'}" />
       </p>
     </div>
