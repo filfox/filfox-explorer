@@ -37,7 +37,7 @@
     </div>
 
     <div class="hidden lg:block pt-3">
-      <table v-loading="loading" class="w-full" :class="page === 0 ? 'table-fixed' : 'table-auto ml-4'">
+      <table v-loading="loading" class="w-full table-fixed">
         <thead class="text-gray-600 text-sm">
           <tr>
             <th class="bg-white sticky top-0 z-30 w-1/12">
