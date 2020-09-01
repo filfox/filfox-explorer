@@ -84,7 +84,7 @@
               {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
             </p>
             <p class="text-xs text-gray-800">
-              {{ addressData.miner.blocksMined }}
+              {{ addressData.miner.weightedBlocksMined }}
             </p>
           </div>
           <div class="flex items-center justify-between mx-3 mt-1">

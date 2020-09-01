@@ -23,7 +23,7 @@
       </p>
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
-        {{ addressData.miner.blocksMined }}
+        {{ addressData.miner.weightedBlocksMined }}
       </p>
     </div>
     <div class="flex items-center justify-between w-full mt-2">

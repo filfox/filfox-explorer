@@ -40,7 +40,7 @@
           {{ $t('detail.address.miner.miningOverview.headers.blockNums') }}:
         </p>
         <p class="text-xs text-gray-800">
-          {{ miningStats.blocksMined }}
+          {{ miningStats.weightedBlocksMined }}
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-2">
@@ -109,7 +109,7 @@
       <div class="flex items-center w-full mb-2">
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.blockNums') }}:
-          {{ miningStats.blocksMined }}
+          {{ miningStats.weightedBlocksMined }}
         </p>
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.blocksReward') }}:
