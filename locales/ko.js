@@ -606,53 +606,55 @@ export default {
     contact: '내용을 contact@filfox.io 주소로 보내주시면 담당자가 연락을 드릴 예정입니다. '
   },
   spaceRace: {
-    title: 'Space race',
-    currentRewards: '当前奖励池',
+    title: 'Space Race',
+    ratio: 'Percentage',
     overview: {
-      title: 'Overview',
+      title: 'Race Overview',
       headers: {
-        unlockRewards: '已解锁全球',
-        counting: '结束倒计时',
-        rawBytePower: '全网原值算力',
-        activeMiner: '活跃矿工'
+        unlockRewards: 'Unlocked Rewards',
+        rawBytePower: 'Raw Byte Power',
+        activeMiner: 'Active Miners',
+        qualifiedMiners: 'Qualified Miners',
+        entity: 'Registered Entities'
       }
     },
     ranks: {
-      title: '矿工排行榜',
+      title: 'Ranking List',
       headers: {
-        rank: '排名',
-        entity: '实体',
-        area: '地区',
-        minerCount: '矿工数',
-        rawBytePower: '原值算力/占比',
-        estimatedReward: '预计大洲奖励',
-        estimatedBlocksRewards: '预计区块奖励',
-        dailyPowerDelta: '24h算力增速',
-        equivalentMiners: '矿机当量',
-        totalBlockNums: '总出块数',
-        totalBlockReward: '总出块奖励',
-        miner: '名下矿工',
-        blockNums: '累计出块数/占比',
-        dealSuccessRate: '储存成功率',
-        retrievalDealSuccessRate: '检索成功率',
-        sectorUpgrade: '扇区升级'
+        rank: 'Rank',
+        entity: 'Entity',
+        area: 'Region',
+        minerCount: 'Miner Count',
+        estimatedTotalReward: 'Estimated Global Rewards',
+        estimatedRegionRewards: 'Estimated Regional Rewards',
+        estimatedBlockRewards: 'Estimated Block Rewards',
+        dailyPowerDelta: '24h Power Growth',
+        equivalentMiners: 'Miner Equivalent',
+        totalBlockNums: 'Total Blocks Mined',
+        totalBlockReward: 'Total Blocks Rewards',
+        miner: 'Miners',
+        rawBytePower: 'Raw Power/Percentage',
+        blockNums: 'Blocks Mined/Percentage',
+        dealSuccessRate: 'Storage Deal Success Rate',
+        retrievalDealSuccessRate: 'Retrieval Deal Success Rate',
+        sectorLifeCycle: 'Sector Life Cycle'
       }
     },
     distribution: {
-      title: '大洲分布',
+      title: 'Continent Distribution',
       continents: {
-        all: '全部',
-        AS: '亚洲',
-        NA: '北美洲',
-        EU: '欧洲',
-        SA: '南美洲',
-        OA: '大洋洲',
-        AF: '非洲'
+        all: 'All',
+        AS: 'Asia',
+        NA: 'North America',
+        EU: 'Europe',
+        SA: 'South America',
+        OA: 'Oceania',
+        AF: 'Africa'
       },
       headers: {
-        unlockRewards: '解锁奖励',
-        rawBytePower: '原值算力',
-        activeMiners: '活跃矿工'
+        unlockRewards: 'Unlocked Rewards',
+        rawBytePower: 'Raw Byte Power',
+        activeMiners: 'Active Miners'
       }
     }
   }

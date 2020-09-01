@@ -31,7 +31,8 @@ module.exports = {
         socialUpdateTimeText: '#ffffff70',
         socialMinerTitle: '#00000085',
         socialMinerBorder: '#0000001a',
-        spaceRace: '#1f57d8'
+        spaceRace: '#1f57d8',
+        spaceRaceProgressBg: '#e7ecf6'
       },
       width: {
         '1/32': '3.125%',

@@ -41,66 +41,63 @@
     </div>
 
     <div class="bg-white container mx-auto rounded-md overflow-hidden">
-      <p class="py-2 border-b border-background ml-4 font-medium">
-        {{ $t('spaceRace.overview.title') }}
-      </p>
-      <div class="flex flex-row justify-center items-center my-2">
-        <div class=" font-medium text-sm mr-2">
-          {{ $t('spaceRace.currentRewards') }}:
-        </div>
-        <div class="text-2xl font-medium text-spaceRace">
-          {{ 1000000000000000000000000000 | filecoin() }}
-        </div>
+      <div class="px-4 py-3 border-b border-background flex flex-row justify-between items-center">
+        <p class=" font-medium">
+          {{ $t('spaceRace.overview.title') }}
+        </p>
+        <el-select v-model="region" placeholder="" size="mini">
+          <el-option v-for="item in continents" :key="item.code" :label="item[$i18n.locale]" :value="item.code" />
+        </el-select>
       </div>
 
-      <div class="my-2">
-        <el-steps :active="2" align-center class="w-full">
-          <el-step title="步骤1" description="这是一段很长很长很长的描述性文字" :space="'10%'" />
-          <el-step title="步骤2" description="这是一段很长很长很长的描述性文字" />
-          <el-step title="步骤3" description="这是一段很长很长很长的描述性文字" />
-          <el-step title="步骤4" description="这是一段很长很长很长的描述性文字" />
-        </el-steps>
+      <div class="my-2 mx-10">
+        <SrSteps :type="region === 'All' ? 'global' :'continent'" :current-power="Number(rawBytePower)" />
       </div>
 
-      <div class="grid grid-cols-4 gap-4 px-4">
-        <div>
-          <p class="text-xs text-center pt-4 pb-2">
-            {{ $t('spaceRace.overview.headers.unlockRewards') }}
-          </p>
-          <div class="text-base text-center pb-1 text-main font-bold">
-            1,000,000 FIL
-          </div>
-          <div class="flex justify-center pb-4">
-            <el-progress
-              :percentage="77"
-              :show-text="false"
-              class="flex w-1/2"
-            />
-          </div>
-        </div>
-        <div>
-          <p class="text-xs text-center pt-4 pb-2">
-            {{ $t('spaceRace.overview.headers.counting') }}
-          </p>
-          <div class="text-base text-center pb-4 text-main font-bold">
-            1,000,000 FIL
-          </div>
-        </div>
-        <div>
+      <div class="grid grid-cols-4 gap-4 px-4 mt-16 mb-4">
+        <div class="shadow-md rounded py-6 border-t border-background">
           <p class="text-xs text-center pt-4 pb-2">
             {{ $t('spaceRace.overview.headers.rawBytePower') }}
           </p>
-          <div class="text-base text-center pb-4 text-main font-bold">
-            1,000,000 FIL
+          <div class="text-base text-center text-main font-bold">
+            {{ rawBytePower | size_metric(2) }}
           </div>
+          <p v-if="region !== 'All'" class="text-xs text-center pt-2">
+            {{ $t('spaceRace.ratio') }}: {{ (rawBytePower / overview.totalPower) | percentage }}
+          </p>
         </div>
-        <div>
+        <div class="shadow-md rounded py-6 border-background border-t">
           <p class="text-xs text-center pt-4 pb-2">
             {{ $t('spaceRace.overview.headers.activeMiner') }}
           </p>
-          <div class="text-base text-center pb-4 text-main font-bold">
-            1,000,000 FIL
+          <div class="text-base text-center text-main font-bold">
+            {{ activeMiners }}
           </div>
+          <p v-if="region !== 'All'" class="text-xs text-center pt-2">
+            {{ $t('spaceRace.ratio') }}: {{ (activeMiners / overview.activeMiners) | percentage }}
+          </p>
+        </div>
+        <div class="shadow-md rounded py-6 border-background border-t">
+          <p class="text-xs text-center pt-4 pb-2">
+            {{ $t('spaceRace.overview.headers.qualifiedMiners') }}
+          </p>
+          <div class="text-base text-center text-main font-bold">
+            {{ eligibleMiners }}
+          </div>
+          <p v-if="region !== 'All'" class="text-xs text-center pt-2">
+            {{ $t('spaceRace.ratio') }}: {{ (eligibleMiners / overview.eligibleMiners) | percentage }}
+          </p>
+        </div>
+        <div class="shadow-md rounded py-6 border-background border-t">
+          <p class="text-xs text-center pt-4 pb-2">
+            {{ $t('spaceRace.overview.headers.entity') }}
+          </p>
+          <div class="text-base text-center text-main font-bold">
+            {{ entityCount }}
+          </div>
+          <p v-if="region !== 'All'" class="text-xs text-center pt-2">
+            {{ $t('spaceRace.ratio') }}: {{ (entityCount / overview.entityCount) | percentage }}
+          </p>
         </div>
       </div>
     </div>
@@ -125,10 +122,80 @@
   @apply rounded w-10 h-10 text-xl font-bold justify-center flex items-center shadow;
   background-image: linear-gradient(#0638AC,#012F9C)
 }
-</style>>
+</style>
 
 <script>
+import { continents } from '@/filecoin/continent'
 export default {
+  async asyncData({ $axios, error }) {
+    try {
+      const overview = await $axios.$get('/space-race/overview')
+      return { overview }
+    } catch (err) {
+      if (err?.response) {
+        error({ code: err.response.status, message: err.response.statusText })
+      } else {
+        error({ code: 500, message: 'Server Error'() })
+      }
+    }
+  },
+  data() {
+    return {
+      overview: {},
+      region: 'All',
+      continents
+    }
+  },
+  computed: {
+    rawBytePower() {
+      if (this.region === 'All') {
+        return this.overview.totalPower
+      } else {
+        for (const region of this.overview.regions) {
+          if (region.id === this.region) {
+            return region.totalPower
+          }
+        }
+        return null
+      }
+    },
+    activeMiners() {
+      if (this.region === 'All') {
+        return this.overview.activeMiners
+      } else {
+        for (const region of this.overview.regions) {
+          if (region.id === this.region) {
+            return region.activeMiners
+          }
+        }
+        return null
+      }
+    },
+    eligibleMiners() {
+      if (this.region === 'All') {
+        return this.overview.eligibleMiners
+      } else {
+        for (const region of this.overview.regions) {
+          if (region.id === this.region) {
+            return region.eligibleMiners
+          }
+        }
+        return null
+      }
+    },
+    entityCount() {
+      if (this.region === 'All') {
+        return this.overview.entityCount
+      } else {
+        for (const region of this.overview.regions) {
+          if (region.id === this.region) {
+            return region.entityCount
+          }
+        }
+        return null
+      }
+    }
+  },
   head() {
     return {
       title: this.$t('spaceRace.title')
