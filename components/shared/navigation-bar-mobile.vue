@@ -58,6 +58,10 @@
           </nuxt-link>
         </el-collapse-item>
       </el-collapse>
+
+      <nuxt-link :to="localePath('/space-race')" class="block ranks text-sm py-2 cursor-pointer" @click.native="hideIfNeeded">
+        {{ $t('spaceRace.title') }}
+      </nuxt-link>
     </div>
     <div v-loading.fullscreen.lock="loading" class="flex flex-grow"></div>
   </div>
