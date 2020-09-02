@@ -239,7 +239,7 @@
                                   {{ address.power | size_metric(2) }} / {{ (address.power / entity.power) | percentage }}
                                 </td>
                                 <td class="py-1">
-                                  {{ address.blocksMined }} / {{ (address.blocksMined / entity.blocksMined) | percentage }}
+                                  {{ address.blocksMined }} / {{ address.blocksMined === 0 ? 0 : (address.blocksMined / entity.blocksMined) | percentage }}
                                 </td>
                               </tr>
                             </tbody>
