@@ -69,7 +69,7 @@
       <div class="px-2 text-sm my-2">
         <table v-loading="loading" class="w-full table-auto text-xs">
           <thead class="text-gray-600">
-            <tr class="h-10">
+            <tr class="h-8">
               <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.rank') }}
               </th>
