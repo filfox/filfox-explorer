@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-spaceRace flex-grow flex-col hidden lg:flex">
+  <div class="bg-spaceRace flex-grow flex-col">
     <div class="container mx-auto px-10 mt-2">
       <img v-if="$i18n.locale === 'zh'" src="~/assets/img/space-race/header-zh.png" alt="header" class="w-full mx-auto">
       <img v-else src="~/assets/img/space-race/header-en.png" alt="header" class="w-full mx-auto">
