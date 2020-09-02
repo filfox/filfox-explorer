@@ -107,7 +107,7 @@
         <div class="dot" :style="{left:'100%'}" :class="{'bg-spaceRace': currentPower - 100 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 100 * pib < 0}">
           <div class="label">
             <span> 100 PiB </span>
-            <span> 1.0MM FIL </span>
+            <span> 1M FIL </span>
           </div>
         </div>
         <div v-if="!unlockTotalReward" class="lock" :style="{left:'100%'}">
