@@ -103,9 +103,48 @@
     </div>
 
     <div class="bg-white container mx-auto rounded-md overflow-hidden mt-4">
-      <p class="py-2 border-b border-background ml-4 font-medium">
+      <p class="py-2 border-b border-background pl-4 font-medium">
         {{ $t('spaceRace.ranks.title') }}
       </p>
+      <div class="flex flex-row items-center pt-3 pb-6 px-4 border-b border-background">
+        <div v-for="item in continents" :key="item.code" class="rounded-full px-3 text-sm mr-3 border cursor-pointer hover:text-spaceRace hover:border-spaceRace" :class="{'text-spaceRace border-spaceRace':currentRankRegion === item.code}" @click="didRankRegionSwitched(item.code)">
+          {{ item[$i18n.locale] }}
+        </div>
+      </div>
+      <div class="px-4 text-sm my-2">
+        <table class="w-full">
+          <tr>
+            <th>
+              {{ $t('spaceRace.ranks.headers.rank') }}
+            </th>
+            <th>
+              {{ $t('spaceRace.ranks.headers.entity') }}
+            </th>
+            <th>
+              {{ $t('spaceRace.ranks.headers.area') }}
+            </th>
+            <th>
+              {{ $t('spaceRace.ranks.headers.minerCount') }}
+            </th>
+            <th>
+              {{ $t('spaceRace.ranks.headers.rawBytePower') }}
+            </th>
+            <th>
+              {{ $t('spaceRace.ranks.headers.estimatedTotalReward') }}
+            </th>
+            <th>
+              {{ $t('spaceRace.ranks.headers.estimatedRegionRewards') }}
+            </th>
+            <th>
+              {{ $t('spaceRace.ranks.headers.estimatedBlockRewards') }}
+            </th>
+          </tr>
+          <tbody>
+            <td>
+            </td>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="container mx-auto rounded-md bg-white overflow-hidden my-4">
@@ -143,7 +182,8 @@ export default {
     return {
       overview: {},
       region: 'All',
-      continents
+      continents,
+      currentRankRegion: 'All'
     }
   },
   computed: {
@@ -194,6 +234,14 @@ export default {
         }
         return null
       }
+    }
+  },
+  mounted() {
+
+  },
+  methods: {
+    didRankRegionSwitched(code) {
+      this.currentRankRegion = code
     }
   },
   head() {

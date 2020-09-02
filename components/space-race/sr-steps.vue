@@ -141,6 +141,7 @@ export default {
     }
   },
   computed: {
+    // non-linear computation for percentage if not global one
     percentage() {
       if (this.type === 'global') {
         let percentage = this.currentPower / this.pib
