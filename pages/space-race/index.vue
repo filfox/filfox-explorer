@@ -74,7 +74,7 @@
         {{ $t('spaceRace.ranks.title') }}
       </p>
       <div class="flex flex-row items-center pb-4 px-4 border-b border-background">
-        <div v-for="item in continents" :key="item.code" class="rounded-full px-3 text-sm mr-3 border cursor-pointer hover:text-spaceRace hover:border-spaceRace" :class="{'text-spaceRace border-spaceRace':currentRankRegion === item.code}" @click="didRankRegionSwitched(item.code)">
+        <div v-for="item in continents" :key="item.code" class="rounded-full px-3 text-sm mr-3 border cursor-pointer hover:text-spaceRace hover:border-spaceRace" :class="{'text-spaceRace border-spaceRace':region === item.code}" @click="didRankRegionSwitched(item.code)">
           {{ item[$i18n.locale] }}
         </div>
       </div>
@@ -118,7 +118,7 @@
                 @click="didRowClicked(index+1)"
               >
                 <td>
-                  {{ currentRankRegion === 'All' ? (entity.globalRank || '--') : (entity.regionRank || '--') }}
+                  {{ region === 'All' ? (entity.globalRank || '--') : (entity.regionRank || '--') }}
                 </td>
                 <td>
                   {{ entity.name }}
@@ -133,13 +133,13 @@
                   {{ entity.power | size_metric(2) }}
                 </td>
                 <td>
-                  {{ entity.globalReward ? entity.globalReward.toFixed(2) + ' FIL' : 'N/A' }}
+                  {{ entity.globalReward ? entity.globalReward.toFixed(2) : '0' }} FIL
                 </td>
                 <td>
-                  {{ entity.regionReward ? entity.regionReward.toFixed(2) + ' FIL' : 'N/A' }}
+                  {{ entity.regionReward ? entity.regionReward.toFixed(2) : '0' }} FIL
                 </td>
                 <td>
-                  {{ entity.blockReward ? entity.blockReward.toFixed(2) + ' FIL': 'N/A' }}
+                  {{ entity.blockReward ? entity.blockReward.toFixed(2) : '0' }} FIL
                 </td>
                 <td>
                   <img
@@ -154,9 +154,6 @@
                 <td colspan="9">
                   <div>
                     <div class=" border border-background rounded-sm my-1">
-                      <div class="flex justify-between mx-4">
-                        <span class="text-base mt-2"> {{ entity.name }} </span>
-                      </div>
                       <div class="flex justify-between mx-4">
                         <div class="w-1/2 mr-2">
                           <div class="grid grid-cols-4 gap-4 bg-background my-2 p-2 rounded">
@@ -204,7 +201,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.retrievalDealSuccessRate') }}
                               </p>
-                              <p class="text-xl" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
+                              <p class="text-xl" :class="{'text-red-600' : entity.dealSuccessRate.retrieve < 0.8}">
                                 {{ entity.dealSuccessRate.retrieve | percentage }}
                               </p>
                             </div>
@@ -341,7 +338,6 @@ export default {
       overview: {},
       region: 'All', // for overview
       continents,
-      currentRankRegion: 'All', // for ranks
       ranks: {},
       page: 0,
       pageSize: 20,
@@ -419,7 +415,7 @@ export default {
   methods: {
     async getRanks() {
       this.loading = true
-      const params = this.currentRankRegion === 'All' ? { pageSize: this.pageSize, page: this.page } : { pageSize: this.pageSize, page: this.page, region: this.currentRankRegion }
+      const params = this.region === 'All' ? { pageSize: this.pageSize, page: this.page } : { pageSize: this.pageSize, page: this.page, region: this.region }
       this.ranks = await this.$axios.$get(`/space-race/entities`, { params })
       this.expandedRow = null
       this.total = this.ranks.totalCount
@@ -428,7 +424,7 @@ export default {
     didRankRegionSwitched(code) {
       this.page = 0
       this.total = 0
-      this.currentRankRegion = code
+      this.region = code
       this.getRanks()
     },
     getRewardsByPower(power) {

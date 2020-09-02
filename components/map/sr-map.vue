@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full text-left">
-    <div id="map" :style="mapSize">
+    <div id="map" :style="mapSize" class=" focus:outline-none">
     </div>
   </div>
 </template>
@@ -18,6 +18,9 @@
 .mapboxgl-ctrl-bottom-right {
   width: 0;
   height: 0;
+}
+canvas:focus {
+  outline: none;
 }
 </style>
 
@@ -66,7 +69,7 @@ export default {
         center: [164.6898, 24.2053],
         zoom: 1.2496,
         minZoom: 1.1,
-        maxZoom: 7
+        maxZoom: 1.1
       })
 
       let hoveredContinentId = null
