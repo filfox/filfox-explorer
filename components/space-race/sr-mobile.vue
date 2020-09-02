@@ -23,7 +23,7 @@
 
       <div class="text-xs mt-16 border-t border-background border-dashed p-2">
         <div class="flex justify-between items-center mb-1">
-          <span>{{ $t('spaceRace.overview.headers.rawBytePower') }} </span>
+          <span>{{ $t('spaceRace.overview.headers.rawBytePower') }}: </span>
           <span>{{ rawBytePower | size_metric(2) }}
             <span v-if="region !== 'All'">
               / {{ $t('spaceRace.ratio') }}: {{ (rawBytePower / overview.totalPower) | percentage }}
@@ -31,7 +31,7 @@
           </span>
         </div>
         <div class="flex justify-between items-center mb-1">
-          <span>{{ $t('spaceRace.overview.headers.activeMiner') }} </span>
+          <span>{{ $t('spaceRace.overview.headers.activeMiner') }}: </span>
           <span>{{ activeMiners }}
             <span v-if="region !== 'All'">
               / {{ $t('spaceRace.ratio') }}: {{ (activeMiners / overview.activeMiners) | percentage }}
@@ -39,7 +39,7 @@
           </span>
         </div>
         <div class="flex justify-between items-center mb-1">
-          <span>{{ $t('spaceRace.overview.headers.qualifiedMiners') }} </span>
+          <span>{{ $t('spaceRace.overview.headers.qualifiedMiners') }}: </span>
           <span> {{ eligibleMiners }}
             <span v-if="region !== 'All'">
               / {{ $t('spaceRace.ratio') }}: {{ (eligibleMiners / overview.eligibleMiners) | percentage }}
@@ -47,7 +47,7 @@
           </span>
         </div>
         <div class="flex justify-between items-center ">
-          <span>{{ $t('spaceRace.overview.headers.entity') }} </span>
+          <span>{{ $t('spaceRace.overview.headers.entity') }}: </span>
           <span>{{ entityCount }}
             <span v-if="region !== 'All'">
               / {{ $t('spaceRace.ratio') }}: {{ (entityCount / overview.entityCount) | percentage }}
