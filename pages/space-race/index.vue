@@ -235,7 +235,7 @@
                                   {{ address.power | size_metric(2) }} / {{ (address.power / entity.power) | percentage }}
                                 </td>
                                 <td class="py-1">
-                                  {{ address.totalRewards | filecoin(2) }} / {{ (address.totalRewards / entity.totalRewards) | percentage }}
+                                  {{ address.totalRewards | filecoin(2) }} / {{ (address.blocksMined / entity.blocksMined) | percentage }}
                                 </td>
                               </tr>
                             </tbody>
@@ -249,6 +249,15 @@
             </template>
           </tbody>
         </table>
+        <div v-if="listType != 0" class="flex items-center text-center h-16">
+          <el-pagination
+            layout="prev, pager, next"
+            :page-count="totalPageCount"
+            :current-page="page + 1"
+            class="mx-auto"
+            @current-change="didCurrentPageChanged"
+          />
+        </div>
       </div>
     </div>
 
@@ -329,11 +338,15 @@ export default {
       ranks: {},
       page: 0,
       pageSize: 20,
+      total: 0,
       loading: false,
       expandedRow: null
     }
   },
   computed: {
+    totalPageCount() {
+      return Math.ceil(this.total / this.pageSize)
+    },
     rawBytePower() {
       if (this.region === 'All') {
         return this.overview.totalPower
@@ -392,9 +405,12 @@ export default {
       const params = this.currentRankRegion === 'All' ? { pageSize: this.pageSize, page: this.page } : { pageSize: this.pageSize, page: this.page, region: this.currentRankRegion }
       this.ranks = await this.$axios.$get(`/space-race/entities`, { params })
       this.expandedRow = null
+      this.total = this.ranks.totalCount
       this.loading = false
     },
     didRankRegionSwitched(code) {
+      this.page = 0
+      this.total = 0
       this.currentRankRegion = code
       this.getRanks()
     },
@@ -429,6 +445,10 @@ export default {
         return
       }
       this.expandedRow = index
+    },
+    didCurrentPageChanged(currentPage) {
+      this.page = currentPage - 1
+      this.getRanks()
     }
   },
   head() {
