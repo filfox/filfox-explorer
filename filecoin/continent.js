@@ -1,8 +1,8 @@
 export const continents = [
   {
-    zh: '全部地区',
-    en: 'All Locations',
-    ko: 'All Locations',
+    zh: '全球',
+    en: 'Global',
+    ko: 'Global',
     code: 'All'
   },
   {
