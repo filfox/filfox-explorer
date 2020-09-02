@@ -112,7 +112,7 @@
           </thead>
           <tbody>
             <template v-for="(entity,index) in ranks.entities">
-              <tr :key="index" class="text-center border-b border-background h-10">
+              <tr :key="index + 1" class="text-center border-b border-background h-10">
                 <td>
                   {{ currentRankRegion === 'All' ? (entity.globalRank || '--') : (entity.regionRank || '--') }}
                 </td>
@@ -138,8 +138,105 @@
                   {{ entity.blockReward ? entity.blockReward.toFixed(2): 'N/A' }} FIL
                 </td>
                 <td>
+                  <div @click="didRowClicked(index+1)">
+                    <img src="~/assets/img/space-race/expand.svg" alt="expand" class="w-4" :class="{'is-rotate': expandedRow && expandedRow === index + 1}">
+                  </div>
+                </td>
+              </tr>
+              <tr v-if="expandedRow && expandedRow === index + 1" :key="-(index + 1)" class="border-b border-background">
+                <td colspan="9">
                   <div>
-                    <img src="~/assets/img/space-race/expand.svg" alt="expand" class="w-4">
+                    <div class=" border border-background rounded-sm my-1">
+                      <div class="flex justify-between mx-4">
+                        <span class="text-base mt-2"> {{ entity.name }} </span>
+                      </div>
+                      <div class="flex justify-between mx-4">
+                        <div class="w-1/2 mr-2">
+                          <div class="grid grid-cols-4 gap-4 bg-background my-2 p-2 rounded">
+                            <div class="p-1">
+                              <p class="text-xs font-medium text-gray-600">
+                                {{ $t('spaceRace.ranks.headers.dailyPowerDelta') }}
+                              </p>
+                              <p class="text-xl">
+                                {{ entity.powerGrowth | size_metric(2) }} / {{ $t('shared.time.day') }}
+                              </p>
+                            </div>
+                            <div class="p-1">
+                              <p class="text-xs font-medium text-gray-600">
+                                {{ $t('spaceRace.ranks.headers.totalBlockNums') }}
+                              </p>
+                              <p class="text-xl">
+                                {{ entity.blocksMined }}
+                              </p>
+                            </div>
+                            <div class="p-1">
+                              <p class="text-xs font-medium text-gray-600">
+                                {{ $t('spaceRace.ranks.headers.totalBlockReward') }}
+                              </p>
+                              <p class="text-xl">
+                                {{ entity.totalRewards | filecoin(2) }}
+                              </p>
+                            </div>
+                            <div class="p-1">
+                              <p class="text-xs font-medium text-gray-600">
+                                {{ $t('spaceRace.ranks.headers.equivalentMiners') }}
+                              </p>
+                              <p class="text-xl">
+                                {{ Number(entity.equivalentMiners).toFixed(2) }}
+                              </p>
+                            </div>
+                            <div class="p-1">
+                              <p class="text-xs font-medium text-gray-600">
+                                {{ $t('spaceRace.ranks.headers.dealSuccessRate') }}
+                              </p>
+                              <p class="text-xl">
+                                {{ entity.dealSuccessRate.store | percentage }}
+                              </p>
+                            </div>
+                            <div class="p-1">
+                              <p class="text-xs font-medium text-gray-600">
+                                {{ $t('spaceRace.ranks.headers.retrievalDealSuccessRate') }}
+                              </p>
+                              <p class="text-xl">
+                                {{ entity.dealSuccessRate.store | percentage }}
+                              </p>
+                            </div>
+                            <div class="p-1">
+                              <p class="text-xs font-medium text-gray-600">
+                                {{ $t('spaceRace.ranks.headers.sectorLifeCycle') }}
+                              </p>
+                              <p class="text-xl">
+                                {{ entity.storageLifecycle ? $t('spaceRace.ranks.headers.done') : 'N/A' }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="bg-background w-1/2 my-2 rounded ml-2">
+                          <table class="w-full">
+                            <thead>
+                              <tr class="h-8 text-xs text-gray-600">
+                                <th class="py-1">
+                                  {{ $t('spaceRace.ranks.headers.miner') }}
+                                </th>
+                                <th class="py-1">
+                                  {{ $t('spaceRace.ranks.headers.rawBytePower') }}
+                                </th>
+                                <th class="py-1">
+                                  {{ $t('spaceRace.ranks.headers.blockNums') }}
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="(address,i) in entity.addresses" :key="i" class="text-center">
+                                <td> <AddressLink :id="address.address" /> </td>
+                                <td> {{ address.power | size_metric(2) }} / {{ (address.power / entity.power) | percentage }} </td>
+                                <td> {{ address.totalRewards | filecoin(2) }} / {{ (address.totalRewards / entity.totalRewards) | percentage }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -177,6 +274,31 @@
   </div>
 </template>
 
+<style scoped>
+
+.is-rotate {
+  animation: rotation 0.5s ease-in-out alternate forwards;
+}
+
+@keyframes rotation {
+  0% {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  }
+  100% {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  }
+}
+
+</style>
+
 <script>
 import { continents } from '@/filecoin/continent'
 export default {
@@ -201,7 +323,8 @@ export default {
       ranks: {},
       page: 0,
       pageSize: 20,
-      loading: false
+      loading: false,
+      expandedRow: null
     }
   },
   computed: {
@@ -262,6 +385,7 @@ export default {
       this.loading = true
       const params = this.currentRankRegion === 'All' ? { pageSize: this.pageSize, page: this.page } : { pageSize: this.pageSize, page: this.page, region: this.currentRankRegion }
       this.ranks = await this.$axios.$get(`/space-race/entities`, { params })
+      this.expandedRow = null
       this.loading = false
     },
     didRankRegionSwitched(code) {
@@ -292,6 +416,13 @@ export default {
         }
       }
       return 'N/A'
+    },
+    didRowClicked(index) {
+      if (this.expandedRow === index) {
+        this.expandedRow = null
+        return
+      }
+      this.expandedRow = index
     }
   },
   head() {

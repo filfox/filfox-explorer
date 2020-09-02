@@ -647,7 +647,8 @@ export default {
         blockNums: 'Blocks Mined/Percentage',
         dealSuccessRate: 'Storage Deal Success Rate',
         retrievalDealSuccessRate: 'Retrieval Deal Success Rate',
-        sectorLifeCycle: 'Sector Life Cycle'
+        sectorLifeCycle: 'Sector Life Cycle',
+        done: 'OK'
       }
     },
     distribution: {

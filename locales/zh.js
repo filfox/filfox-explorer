@@ -636,7 +636,8 @@ export default {
         blockNums: '累计出块数/占比',
         dealSuccessRate: '储存成功率',
         retrievalDealSuccessRate: '检索成功率',
-        sectorLifeCycle: '扇区生命周期'
+        sectorLifeCycle: '扇区生命周期',
+        done: '已完成'
       }
     },
     distribution: {
