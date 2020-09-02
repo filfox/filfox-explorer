@@ -189,12 +189,12 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.dealSuccessRate') }}
                               </p>
-                              <p class="text-xl">
+                              <p class="text-xl" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
                                 {{ entity.dealSuccessRate.store | percentage }}
                               </p>
                             </div>
                             <div class="p-1">
-                              <p class="text-xs font-medium text-gray-600">
+                              <p class="text-xs font-medium text-gray-600" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
                                 {{ $t('spaceRace.ranks.headers.retrievalDealSuccessRate') }}
                               </p>
                               <p class="text-xl">
@@ -211,26 +211,32 @@
                             </div>
                           </div>
                         </div>
-                        <div class="bg-background w-1/2 my-2 rounded ml-2">
+                        <div class="bg-background w-1/2 my-2 rounded ml-2 pt-1 pb-2">
                           <table class="w-full">
                             <thead>
                               <tr class="h-8 text-xs text-gray-600">
-                                <th class="py-1">
+                                <th>
                                   {{ $t('spaceRace.ranks.headers.miner') }}
                                 </th>
-                                <th class="py-1">
+                                <th>
                                   {{ $t('spaceRace.ranks.headers.rawBytePower') }}
                                 </th>
-                                <th class="py-1">
+                                <th>
                                   {{ $t('spaceRace.ranks.headers.blockNums') }}
                                 </th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr v-for="(address,i) in entity.addresses" :key="i" class="text-center">
-                                <td> <AddressLink :id="address.address" /> </td>
-                                <td> {{ address.power | size_metric(2) }} / {{ (address.power / entity.power) | percentage }} </td>
-                                <td> {{ address.totalRewards | filecoin(2) }} / {{ (address.totalRewards / entity.totalRewards) | percentage }}</td>
+                                <td class="py-1">
+                                  <AddressLink :id="address.address" />
+                                </td>
+                                <td class="py-1">
+                                  {{ address.power | size_metric(2) }} / {{ (address.power / entity.power) | percentage }}
+                                </td>
+                                <td class="py-1">
+                                  {{ address.totalRewards | filecoin(2) }} / {{ (address.totalRewards / entity.totalRewards) | percentage }}
+                                </td>
                               </tr>
                             </tbody>
                           </table>
