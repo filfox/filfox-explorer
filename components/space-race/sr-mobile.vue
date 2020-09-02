@@ -8,7 +8,7 @@
     <CountDown :timestamp="overview.deadline" />
 
     <div class="bg-white rounded-md overflow-hidden mx-2">
-      <div class="px-4 py-3 border-b border-background flex flex-row justify-between items-center">
+      <div class="px-3 py-3 border-b border-background flex flex-row justify-between items-center">
         <p class="text-sm font-medium">
           {{ $t('spaceRace.overview.title') }}
         </p>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="bg-white mx-2 rounded-md mt-4">
-      <div class="px-4 py-3 border-b border-background flex flex-row justify-between items-center">
+      <div class="px-3 py-3 border-b border-background flex flex-row justify-between items-center">
         <p class="text-sm font-medium">
           {{ $t('spaceRace.ranks.title') }}
         </p>
@@ -176,7 +176,7 @@
     </div>
 
     <div class="mx-2 rounded-md bg-white overflow-hidden my-4">
-      <p class="py-2 border-b border-background pl-4 text-sm font-medium">
+      <p class="py-2 border-b border-background pl-3 text-sm font-medium">
         {{ $t('spaceRace.distribution.title') }}
       </p>
       <div class="flex flex-col mx-2 mb-2">
