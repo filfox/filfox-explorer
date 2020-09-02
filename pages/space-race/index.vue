@@ -194,10 +194,10 @@
                               </p>
                             </div>
                             <div class="p-1">
-                              <p class="text-xs font-medium text-gray-600" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
+                              <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.retrievalDealSuccessRate') }}
                               </p>
-                              <p class="text-xl">
+                              <p class="text-xl" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
                                 {{ entity.dealSuccessRate.store | percentage }}
                               </p>
                             </div>
