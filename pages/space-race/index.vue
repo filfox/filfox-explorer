@@ -1,6 +1,7 @@
 <template>
   <div class=" bg-spaceRace">
     <Sr :overview="overview" class="hidden lg:block" />
+    <SrMobile :overview="overview" class="lg:hidden" /></SrMobile>
   </div>
 </template>
 

@@ -648,7 +648,9 @@ export default {
         dealSuccessRate: 'Storage Deal Success Rate',
         retrievalDealSuccessRate: 'Retrieval Deal Success Rate',
         sectorLifeCycle: 'Sector Life Cycle',
-        done: 'OK'
+        done: 'OK',
+        dealRetrievalRate: 'Storage/Retrieval Success Rate',
+        totalReward: 'Estimated Total Rewards'
       }
     },
     distribution: {

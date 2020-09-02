@@ -637,7 +637,9 @@ export default {
         dealSuccessRate: '储存成功率',
         retrievalDealSuccessRate: '检索成功率',
         sectorLifeCycle: '扇区生命周期',
-        done: '已完成'
+        done: '已完成',
+        dealRetrievalRate: '存储/检索成功率',
+        totalReward: '预计奖励合计'
       }
     },
     distribution: {
