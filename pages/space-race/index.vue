@@ -23,10 +23,10 @@
 
       <div class="grid grid-cols-4 gap-4 px-4 mt-16 mb-4">
         <div class="shadow-md rounded py-6 border-t border-background">
-          <p class="text-xs text-center pt-4 pb-2">
+          <p class="text-xs text-center pb-2">
             {{ $t('spaceRace.overview.headers.rawBytePower') }}
           </p>
-          <div class="text-base text-center text-main font-bold">
+          <div class="text-xl text-center text-main font-bold">
             {{ rawBytePower | size_metric(2) }}
           </div>
           <p v-if="region !== 'All'" class="text-xs text-center pt-2">
@@ -34,10 +34,10 @@
           </p>
         </div>
         <div class="shadow-md rounded py-6 border-background border-t">
-          <p class="text-xs text-center pt-4 pb-2">
+          <p class="text-xs text-center pb-2">
             {{ $t('spaceRace.overview.headers.activeMiner') }}
           </p>
-          <div class="text-base text-center text-main font-bold">
+          <div class="text-xl text-center text-main font-bold">
             {{ activeMiners }}
           </div>
           <p v-if="region !== 'All'" class="text-xs text-center pt-2">
@@ -45,10 +45,10 @@
           </p>
         </div>
         <div class="shadow-md rounded py-6 border-background border-t">
-          <p class="text-xs text-center pt-4 pb-2">
+          <p class="text-xs text-center pb-2">
             {{ $t('spaceRace.overview.headers.qualifiedMiners') }}
           </p>
-          <div class="text-base text-center text-main font-bold">
+          <div class="text-xl text-center text-main font-bold">
             {{ eligibleMiners }}
           </div>
           <p v-if="region !== 'All'" class="text-xs text-center pt-2">
@@ -56,10 +56,10 @@
           </p>
         </div>
         <div class="shadow-md rounded py-6 border-background border-t">
-          <p class="text-xs text-center pt-4 pb-2">
+          <p class="text-xs text-center pb-2">
             {{ $t('spaceRace.overview.headers.entity') }}
           </p>
-          <div class="text-base text-center text-main font-bold">
+          <div class="text-xl text-center text-main font-bold">
             {{ entityCount }}
           </div>
           <p v-if="region !== 'All'" class="text-xs text-center pt-2">
@@ -112,7 +112,11 @@
           </thead>
           <tbody>
             <template v-for="(entity,index) in ranks.entities">
-              <tr :key="index + 1" class="text-center border-b border-background h-10">
+              <tr
+                :key="index + 1"
+                class="text-center border-b border-background h-10 cursor-pointer  hover:bg-background"
+                @click="didRowClicked(index+1)"
+              >
                 <td>
                   {{ currentRankRegion === 'All' ? (entity.globalRank || '--') : (entity.regionRank || '--') }}
                 </td>
@@ -138,9 +142,12 @@
                   {{ entity.blockReward ? entity.blockReward.toFixed(2) + ' FIL': 'N/A' }}
                 </td>
                 <td>
-                  <div @click="didRowClicked(index+1)">
-                    <img src="~/assets/img/space-race/expand.svg" alt="expand" class="w-4" :class="{'is-rotate': expandedRow && expandedRow === index + 1}">
-                  </div>
+                  <img
+                    src="~assets/img/space-race/expand.svg"
+                    alt="expand"
+                    class="w-4"
+                    :class="{'is-rotate': expandedRow && expandedRow === index + 1}"
+                  >
                 </td>
               </tr>
               <tr v-if="expandedRow && expandedRow === index + 1" :key="-(index + 1)" class="border-b border-background">
