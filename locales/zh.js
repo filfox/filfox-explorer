@@ -626,7 +626,7 @@ export default {
         minerCount: '矿工数',
         estimatedTotalReward: '预估全球奖励',
         estimatedRegionRewards: '预估大洲奖励',
-        estimatedBlockRewards: '预估区块奖励',
+        estimatedBlockRewards: '预估出块奖励',
         dailyPowerDelta: '24h算力增速',
         equivalentMiners: '矿机当量',
         totalBlockNums: '总出块数',

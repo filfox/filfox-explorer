@@ -207,7 +207,7 @@ export default {
         } else if (this.currentPower - 100 * this.pib < 0) {
           return '500k FIL'
         } else {
-          return '1.0MM FIL'
+          return '1.0M FIL'
         }
       } else if (this.currentPower - 10 * this.tib < 0) {
         return '0 FIL'
