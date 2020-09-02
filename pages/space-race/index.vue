@@ -205,7 +205,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.sectorLifeCycle') }}
                               </p>
-                              <p class="text-xl">
+                              <p class="text-xl" :class="{'text-red-600' : !entity.storageLifecycle}">
                                 {{ entity.storageLifecycle ? $t('spaceRace.ranks.headers.done') : 'N/A' }}
                               </p>
                             </div>
