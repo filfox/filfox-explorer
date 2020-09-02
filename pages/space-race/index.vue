@@ -12,7 +12,7 @@
         <p class=" font-medium">
           {{ $t('spaceRace.overview.title') }}
         </p>
-        <el-select v-model="region" placeholder="" size="mini">
+        <el-select v-model="region" placeholder="" size="mini" @change="didRankRegionSwitched">
           <el-option v-for="item in continents" :key="item.code" :label="item[$i18n.locale]" :value="item.code" />
         </el-select>
       </div>
