@@ -22,6 +22,7 @@
 </style>
 
 <script>
+import { continents } from '@/filecoin/continent'
 import mapboxgl from 'mapbox-gl'
 export default {
   props: {
@@ -32,11 +33,15 @@ export default {
     mapHeight: {
       type: String,
       required: true
+    },
+    popups: {
+      type: Object,
+      required: true
     }
   },
   data() {
     return {
-
+      continents
     }
   },
   computed: {
@@ -105,7 +110,6 @@ export default {
           }
         })
 
-
         const popup = new mapboxgl.Popup({
           closeButton: false,
           closeOnClick: false
@@ -124,7 +128,7 @@ export default {
             }
             popup
               .setLngLat(e.lngLat)
-              .setHTML(`<strong :style="margin:auto">${e.features[0].properties.CONTINENT}</strong><p>一共有20个矿工正在工作</p>`)
+              .setHTML(`<strong :style="margin:auto">${this.getContinentNameByCode(e.features[0].properties.CONTINENT)}</strong><p>${this.popups[e.features[0].properties.CONTINENT]}</p>`)
               .addTo(map)
             hoveredContinentId = e.features[0].id
             map.setFeatureState(
@@ -146,11 +150,14 @@ export default {
           popup.remove()
         })
       })
-
-      // map.on('move', () => {
-      //   console.log('A move event occurred.')
-      //   console.log(map.getCenter(), map.getZoom())
-      // })
+    },
+    getContinentNameByCode(code) {
+      for (const continent of this.continents) {
+        if (code === continent.code) {
+          return continent[this.$i18n.locale]
+        }
+      }
+      return 'N/A'
     }
   }
 }

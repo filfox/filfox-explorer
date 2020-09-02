@@ -129,13 +129,13 @@
                   {{ entity.power | size_metric(2) }}
                 </td>
                 <td>
-                  {{ entity.globalReward ? entity.globalReward.toFixed(2) : 'N/A' }} FIL
+                  {{ entity.globalReward ? entity.globalReward.toFixed(2) + ' FIL' : 'N/A' }}
                 </td>
                 <td>
-                  {{ entity.regionReward ? entity.regionReward.toFixed(2) : 'N/A' }} FIL
+                  {{ entity.regionReward ? entity.regionReward.toFixed(2) + ' FIL' : 'N/A' }}
                 </td>
                 <td>
-                  {{ entity.blockReward ? entity.blockReward.toFixed(2): 'N/A' }} FIL
+                  {{ entity.blockReward ? entity.blockReward.toFixed(2) + ' FIL': 'N/A' }}
                 </td>
                 <td>
                   <div @click="didRowClicked(index+1)">
@@ -235,7 +235,7 @@
                                   {{ address.power | size_metric(2) }} / {{ (address.power / entity.power) | percentage }}
                                 </td>
                                 <td class="py-1">
-                                  {{ address.totalRewards | filecoin(2) }} / {{ (address.blocksMined / entity.blocksMined) | percentage }}
+                                  {{ address.blocksMined }} / {{ (address.blocksMined / entity.blocksMined) | percentage }}
                                 </td>
                               </tr>
                             </tbody>
@@ -249,7 +249,7 @@
             </template>
           </tbody>
         </table>
-        <div v-if="listType != 0" class="flex items-center text-center h-16">
+        <div class="flex items-center text-center h-16">
           <el-pagination
             layout="prev, pager, next"
             :page-count="totalPageCount"
@@ -265,7 +265,7 @@
       <p class="py-2 border-b border-background pl-4 font-medium">
         {{ $t('spaceRace.distribution.title') }}
       </p>
-      <SrMap map-width="100%" map-height="600px" />
+      <SrMap map-width="100%" map-height="600px" :popups="mapPopups" />
       <div class="grid grid-cols-3 gap-6 px-4 my-6 mx-4">
         <div v-for="(r,index) in overview.regions" :key="index" class="border border-background rounded-sm hover:shadow text-sm px-4">
           <p class=" font-medium py-2">
@@ -344,6 +344,16 @@ export default {
     }
   },
   computed: {
+    mapPopups() {
+      const popups = {}
+      for (const region of this.overview.regions) {
+        popups[region.id] = `${this.$t('spaceRace.overview.headers.unlockRewards')}: ${this.getRewardsByPower(region.totalPower)}<br/>
+        ${this.$t('spaceRace.distribution.headers.activeMiners')}: ${region.activeMiners}<br/>
+        ${this.$t('spaceRace.overview.headers.qualifiedMiners')}: ${region.eligibleMiners}<br/>
+        ${this.$t('spaceRace.overview.headers.entity')}: ${region.entityCount}`
+      }
+      return popups
+    },
     totalPageCount() {
       return Math.ceil(this.total / this.pageSize)
     },
