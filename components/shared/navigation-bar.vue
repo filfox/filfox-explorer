@@ -76,7 +76,8 @@
       size="small"
       suffix-icon="el-icon-search"
       :placeholder="$t('nav.searchPlaceHolder')"
-      class="flex items-center xl:w-2/5 lg:w-3/8"
+      class="flex items-center xl:w-2/5"
+      :class="{'lg:w-1/3' :$i18n.locale === 'en','lg:w-3/8':$i18n.locale !== 'en'}"
       clearable
       @keyup.enter.native="search"
     />
