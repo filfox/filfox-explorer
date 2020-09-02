@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div class="bg-white container mx-auto rounded-md overflow-hidden mt-4">
+    <div class="bg-white container mx-auto rounded-md mt-4">
       <p class="py-4 pl-4 font-medium">
         {{ $t('spaceRace.ranks.title') }}
       </p>
@@ -81,32 +81,32 @@
       <div class="px-4 text-sm my-2">
         <table v-loading="loading" class="w-full table-auto">
           <thead class="text-gray-600">
-            <tr>
-              <th>
+            <tr class="h-10 ">
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.rank') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.entity') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.area') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.minerCount') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.rawBytePower') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.estimatedTotalReward') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.estimatedRegionRewards') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.estimatedBlockRewards') }}
               </th>
-              <th>
+              <th class="sticky z-10 top-0 bg-white">
               </th>
             </tr>
           </thead>
@@ -161,7 +161,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.dailyPowerDelta') }}
                               </p>
-                              <p class="text-xl">
+                              <p class="text-base">
                                 {{ entity.powerGrowth | size_metric(2) }} / {{ $t('shared.time.day') }}
                               </p>
                             </div>
@@ -169,7 +169,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.totalBlockNums') }}
                               </p>
-                              <p class="text-xl">
+                              <p class="text-base">
                                 {{ entity.blocksMined }}
                               </p>
                             </div>
@@ -177,7 +177,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.totalBlockReward') }}
                               </p>
-                              <p class="text-xl">
+                              <p class="text-base">
                                 {{ entity.totalRewards | filecoin(2) }}
                               </p>
                             </div>
@@ -185,7 +185,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.equivalentMiners') }}
                               </p>
-                              <p class="text-xl">
+                              <p class="text-base">
                                 {{ Number(entity.equivalentMiners).toFixed(2) }}
                               </p>
                             </div>
@@ -193,7 +193,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.dealSuccessRate') }}
                               </p>
-                              <p class="text-xl" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
+                              <p class="text-base" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
                                 {{ entity.dealSuccessRate.store | percentage }}
                               </p>
                             </div>
@@ -201,7 +201,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.retrievalDealSuccessRate') }}
                               </p>
-                              <p class="text-xl" :class="{'text-red-600' : entity.dealSuccessRate.retrieve < 0.8}">
+                              <p class="text-base" :class="{'text-red-600' : entity.dealSuccessRate.retrieve < 0.8}">
                                 {{ entity.dealSuccessRate.retrieve | percentage }}
                               </p>
                             </div>
@@ -209,7 +209,7 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.sectorLifeCycle') }}
                               </p>
-                              <p class="text-xl" :class="{'text-red-600' : !entity.storageLifecycle}">
+                              <p class="text-base" :class="{'text-red-600' : !entity.storageLifecycle}">
                                 {{ entity.storageLifecycle ? $t('spaceRace.ranks.headers.done') : 'N/A' }}
                               </p>
                             </div>
