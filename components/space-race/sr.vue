@@ -130,7 +130,7 @@
                   {{ entity.addresses.length }}
                 </td>
                 <td>
-                  {{ entity.power | size_metric(2) }}
+                  {{ entity.power | size_metric(2) }} / {{ entity.power === 0 ? '0%' : (region === 'All' ? (entity.power * 100 / overview.totalPower).toFixed(2) : (entity.power * 100 / rawBytePower).toFixed(2)) }}%
                 </td>
                 <td>
                   {{ entity.globalReward ? entity.globalReward.toFixed(2) : '0' }} FIL

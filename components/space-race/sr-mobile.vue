@@ -103,7 +103,7 @@
                 <td>
                   <div class="flex items-center justify-end">
                     <span>
-                      {{ entity.power | size_metric(2) }}
+                      {{ entity.power | size_metric(2) }} / {{ entity.power === 0 ? '0%' : (region === 'All' ? (entity.power * 100 / overview.totalPower).toFixed(2) : (entity.power * 100 / rawBytePower).toFixed(2)) }}%
                     </span>
                     <img
                       src="~assets/img/space-race/expand.svg"
