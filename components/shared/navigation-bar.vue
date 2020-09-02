@@ -76,7 +76,7 @@
       size="small"
       suffix-icon="el-icon-search"
       :placeholder="$t('nav.searchPlaceHolder')"
-      class="flex items-center w-1/2"
+      class="flex items-center xl:w-1/2 lg:w-3/8"
       clearable
       @keyup.enter.native="search"
     />
