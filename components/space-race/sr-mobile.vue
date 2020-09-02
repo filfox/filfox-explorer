@@ -180,7 +180,7 @@
         {{ $t('spaceRace.distribution.title') }}
       </p>
       <div class="flex flex-col mx-2 mb-2">
-        <div v-for="(r,index) in overview.regions" :key="index" class="rounded-sm shadow text-xs px-4 mt-2">
+        <div v-for="(r,index) in overview.regions" :key="index" class="rounded-sm shadow text-xs px-2 mt-2">
           <p class=" font-medium py-2">
             {{ getContinentNameByCode(r.id) }}
           </p>
