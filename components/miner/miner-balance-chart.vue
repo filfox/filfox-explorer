@@ -28,7 +28,7 @@
 <script>
 export default {
   components: {
-    VeRing: () => import('v-charts/lib/ring.common').then(x => x.default)
+    VeRing: () => import('v-charts/lib/ring').then(x => x.default)
   },
   props: {
     addressData: { type: Object, required: true }
@@ -61,7 +61,7 @@ export default {
     }
     return {
       chartData: {
-        columns: ['type', 'value'],
+        columns: [],
         rows: [
           {
             type: this.$t('detail.address.miner.minerOverview.headers.availableBalance'),
@@ -87,24 +87,13 @@ export default {
   },
   methods: {
     updateChartData() {
-      let ab = this.addressData.miner.availableBalance
-      let pb = this.addressData.miner.pledgeBalance
-      ab = this.convertFilecoin(ab, 4)
-      pb = this.convertFilecoin(pb, 4)
+      const ab = this.convertFilecoin(this.addressData.miner.availableBalance, 4)
+      const pb = this.convertFilecoin(this.addressData.miner.pledgeBalance, 4)
       this.chartData.rows = [
-        {
-          type: this.$t(
-            'detail.address.miner.minerOverview.headers.availableBalance'
-          ),
-          value: ab
-        },
-        {
-          type: this.$t(
-            'detail.address.miner.minerOverview.headers.pledgeBalance'
-          ),
-          value: pb
-        }
+        { type: this.$t('detail.address.miner.minerOverview.headers.availableBalance'), value: ab },
+        { type: this.$t('detail.address.miner.minerOverview.headers.pledgeBalance'), value: pb }
       ]
+      this.chartData.columns = ['type', 'value']
     },
     convertFilecoin(value, precision) {
       if (precision == null) {

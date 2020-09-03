@@ -38,7 +38,7 @@ import { epochsInDay } from '@/filecoin/filecoin.config'
 
 export default {
   components: {
-    VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
+    VeLine: () => import('v-charts/lib/line').then(x => x.default)
   },
   data() {
     this.chartSettings = {
@@ -65,7 +65,7 @@ export default {
     }
     return {
       chartData: {
-        columns: ['time', 'fil'],
+        columns: [],
         rows: []
       },
       duration: '24h',
@@ -95,6 +95,7 @@ export default {
         time: this.getTime(info.timestamp),
         fil: this.getFilecoin(info.rewardPerByte * 2 ** 40 * epochsInDay, 4)
       }))
+      this.chartData.columns = ['time', 'fil']
       this.loading = false
     },
     getTime(time) {

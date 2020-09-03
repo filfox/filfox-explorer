@@ -26,7 +26,7 @@ import moment from 'moment'
 
 export default {
   components: {
-    VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
+    VeLine: () => import('v-charts/lib/line').then(x => x.default)
   },
   props: {
     maxCount: {
@@ -89,7 +89,7 @@ export default {
   methods: {
     async getlineChartData() {
       this.loading = true
-      this.rawData = await this.$axios.$get('/stats/miner/power-delta', {
+      this.rawData = await this.$axios.$get('/stats/miner/power-growth', {
         params: { count: this.maxCount, duration: '7d', samples: '7' }
       })
       if (!this.rawData) {
@@ -97,9 +97,8 @@ export default {
         this.loading = false
         return
       }
-      const columns = []
+      const columns = ['time']
       const rows = []
-      columns.push('time')
       for (const info of this.rawData) {
         const row = { time: this.getTime(info.timestamp) }
         for (const miner of info.miners) {
@@ -117,7 +116,7 @@ export default {
           if (columns.length <= this.maxCount && columns.length <= this.rawData.length) {
             columns.push(res)
           }
-          row[res] = (miner.powerDelta / 2 ** 40).toFixed(2)
+          row[res] = (miner.powerGrowth / 2 ** 40).toFixed(2)
         }
         rows.push(row)
       }

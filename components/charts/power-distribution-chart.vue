@@ -24,7 +24,7 @@
 <script>
 export default {
   components: {
-    VePie: () => import('v-charts/lib/pie.common').then(x => x.default)
+    VePie: () => import('v-charts/lib/pie').then(x => x.default)
   },
   data() {
     this.chartSettings = {
@@ -70,7 +70,6 @@ export default {
         this.loading = false
         return
       }
-      this.chartData.columns = ['miner', 'power']
       this.chartData.rows = data.miners.map(miner => {
         const row = {}
         const tag = miner.tag
@@ -87,6 +86,7 @@ export default {
         return row
       })
       this.chartData.rows.push({ miner: 'others', power: data.otherQualityAdjPower / 2 ** 40 })
+      this.chartData.columns = ['miner', 'power']
       this.loading = false
     }
 

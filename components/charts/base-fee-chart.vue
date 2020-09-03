@@ -44,7 +44,7 @@ function formatValue(value) {
 
 export default {
   components: {
-    VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
+    VeLine: () => import('v-charts/lib/line').then(x => x.default)
   },
   props: {
     duration: { type: String, default: '24h' }
@@ -82,7 +82,7 @@ export default {
     }
     return {
       chartData: {
-        columns: ['time', 'baseFee'],
+        columns: [],
         rows: []
       },
       loading: false,
@@ -111,6 +111,7 @@ export default {
         time: this.getTime(info.timestamp),
         baseFee: info.baseFee
       }))
+      this.chartData.columns = ['time', 'baseFee']
       this.loading = false
     },
     getTime(time) {

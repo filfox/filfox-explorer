@@ -29,7 +29,7 @@ import moment from 'moment'
 
 export default {
   components: {
-    VeHistogram: () => import('v-charts/lib/histogram.common').then(x => x.default)
+    VeHistogram: () => import('v-charts/lib/histogram').then(x => x.default)
   },
   props: {
     addressData: { type: Object, required: true }
@@ -80,7 +80,7 @@ export default {
     }
     return {
       chartData: {
-        columns: ['time', this.$t('detail.address.miner.powerChange.charts.qualityAdjPower'), this.$t('detail.address.miner.powerChange.charts.qualityAdjPowerDelta')],
+        columns: [],
         rows: []
       },
       loading: false,
@@ -97,27 +97,24 @@ export default {
     }
   },
   methods: {
-    getlineChartData() {
+    async getlineChartData() {
       this.loading = true
-      this.$axios.get(`/miner/${this.addressData.address}/power-stats`).then(res => {
-        this.convertData(res.data)
-      })
-    },
-    convertData(data) {
+      const data = await this.$axios.$get(`/miner/${this.addressData.address}/power-stats`)
       if (data == null) {
         this.dataEmpty = true
         this.loading = false
         return
       }
-      const rows = []
-      for (const info of data) {
-        const row = {}
-        row.time = this.getTime(info.timestamp)
-        row[this.$t('detail.address.miner.powerChange.charts.qualityAdjPower')] = this.getPower(info.qualityAdjPower)
-        row[this.$t('detail.address.miner.powerChange.charts.qualityAdjPowerDelta')] = this.getPower(info.qualityAdjPowerDelta)
-        rows.push(row)
-      }
-      this.chartData.rows = rows
+      this.chartData.rows = data.map(info => ({
+        time: this.getTime(info.timestamp),
+        [this.$t('detail.address.miner.powerChange.charts.qualityAdjPower')]: this.getPower(info.qualityAdjPower),
+        [this.$t('detail.address.miner.powerChange.charts.qualityAdjPowerDelta')]: this.getPower(info.qualityAdjPowerDelta)
+      }))
+      this.chartData.columns = [
+        'time',
+        this.$t('detail.address.miner.powerChange.charts.qualityAdjPower'),
+        this.$t('detail.address.miner.powerChange.charts.qualityAdjPowerDelta')
+      ]
       this.loading = false
     },
     getTime(time) {

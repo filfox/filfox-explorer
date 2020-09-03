@@ -35,7 +35,7 @@ import moment from 'moment'
 
 export default {
   components: {
-    VeLine: () => import('v-charts/lib/line.common').then(x => x.default)
+    VeLine: () => import('v-charts/lib/line').then(x => x.default)
   },
   props: {
     addressData: { type: Object, required: true }
@@ -81,7 +81,7 @@ export default {
     }
     return {
       chartData: {
-        columns: ['time', this.$t('detail.address.miner.accountChange.charts.balance')],
+        columns: [],
         rows: []
       },
       duration: '24h',
@@ -120,6 +120,7 @@ export default {
         time: this.getTime(info.timestamp),
         [this.$t('detail.address.miner.accountChange.charts.balance')]: this.getFilecoin(info.balance, 2)
       }))
+      this.chartData.columns = ['time', this.$t('detail.address.miner.accountChange.charts.balance')]
       this.loading = false
     },
     getTime(time) {

@@ -30,10 +30,7 @@ import moment from 'moment'
 
 export default {
   components: {
-    VeHistogram: () => Promise.all([
-      import('v-charts/lib/histogram.common'),
-      import('echarts/lib/chart/line')
-    ]).then(([x]) => x.default)
+    VeHistogram: () => import('v-charts/lib/histogram').then(x => x.default)
   },
   props: {
     merchant: { type: String, required: true }
