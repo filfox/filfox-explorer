@@ -20,7 +20,7 @@
           <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
         </p>
         <p v-else class="flex w-3/4">
-          Empty
+          {{ $t('shared.empty') }}
         </p>
       </div>
 
@@ -33,11 +33,11 @@
 
       <div class="flex justify-between items-center text-xs mx-4 mt-2 pb-2">
         <p class="flex w-1/4">
-          {{ $t('detail.peer.headers.IP') }}
+          MultiAddresses
         </p>
-        <div v-if="peer.addresses && peer.addresses.length > 0" class="w-3/4">
-          <p v-for="address in peer.addresses" :key="address" class="flex pb-1">
-            {{ address | ip }}
+        <div v-if="peer.multiAddresses.length" class="w-3/4">
+          <p v-for="(address, index) in peer.multiAddresses" :key="index" class="flex pb-1">
+            {{ address }}
           </p>
         </div>
         <p v-else class="flex w-3/4">
@@ -69,22 +69,6 @@
               <AddressLink v-for="miner in peer.miners" :id="miner" :key="miner" class="mr-4 text-main" />
             </p>
             <template v-else>
-              Empty
-            </template>
-          </dd>
-        </dl>
-
-        <dl class="flex my-2 items-center">
-          <dt class="w-1/8 pl-8 text-gray-600 px-2">
-            {{ $t('detail.peer.headers.IP') }}
-          </dt>
-          <dd class="flex mr-4">
-            <template v-if="peer.addresses && peer.addresses.length > 0">
-              <p v-for="address in peer.addresses" :key="address">
-                {{ address | ip }}
-              </p>
-            </template>
-            <template v-else>
               {{ $t('shared.empty') }}
             </template>
           </dd>
@@ -98,6 +82,22 @@
             <IpAddress :location="peer.location" />
           </dd>
         </dl>
+
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/8 pl-8 text-gray-600 px-2">
+            MultiAddresses
+          </dt>
+          <dd class="mr-4">
+            <template v-if="peer.multiAddresses.length">
+              <p v-for="(address, index) in peer.multiAddresses" :key="index" class="flex pb-1">
+                {{ address }}
+              </p>
+            </template>
+            <template v-else>
+              {{ $t('shared.empty') }}
+            </template>
+          </dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -105,12 +105,6 @@
 
 <script>
 export default {
-  filters: {
-    ip(address) {
-      const matchResult = address.match(/^\/ip4\/((?:\d|\.)+)\/tcp\/\d+$/)
-      return matchResult ? matchResult[1] : address
-    }
-  },
   async asyncData({ $axios, params, error }) {
     const id = params.id
     try {
