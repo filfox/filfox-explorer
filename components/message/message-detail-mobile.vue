@@ -215,6 +215,14 @@
           {{ message.minerTip | filecoin }}
         </p>
       </div>
+      <div v-if="message.minerPenalty" class="message-item">
+        <p class="message-key">
+          Miner Penalty
+        </p>
+        <p class="message-value">
+          {{ message.minerPenalty | filecoin }}
+        </p>
+      </div>
       <div v-if="message.receipt && message.receipt.exitCode === 0" class="message-item">
         <p class="message-key">
           {{ $t('detail.message.headers.return') }}
