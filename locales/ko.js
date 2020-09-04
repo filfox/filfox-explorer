@@ -625,7 +625,7 @@ export default {
         entity: 'Entity',
         area: 'Region',
         minerCount: 'Miner Count',
-        estimatedTotalReward: 'Estimated Global Rewards',
+        estimatedGlobalReward: 'Estimated Global Rewards',
         estimatedRegionRewards: 'Estimated Regional Rewards',
         estimatedBlockRewards: 'Estimated Block Rewards',
         dailyPowerDelta: '24h Power Growth',
@@ -640,7 +640,18 @@ export default {
         sectorLifeCycle: 'Sector Life Cycle',
         done: 'OK',
         dealRetrievalRate: 'Storage/Retrieval Success Rate',
-        totalReward: 'Estimated Total Rewards'
+        totalReward: 'Estimated Total Rewards',
+        smallMinerReward: 'Small Miner Rewards'
+      },
+      tips: {
+        activeMiners: 'Amount of miners that has a positive raw power.',
+        qualifiedMiners: 'The number of miners completed the sector life cycle and whose order successful rate is greater than 80%',
+        registeredEntities: 'The number of entities that have been officially registered and verified.',
+        estimatedGlobalReward: 'The global top 100 miners will share a total of up to 1.5 million FIL rewards based on the proportion of the miners\' raw power during the competition.',
+        estimatedRegionRewards: 'The top 50 miners on each continent will share a total of up to 500,000 FIL rewards based on the proportion of the miners\' raw power during the competition.',
+        estimatedBlockRewards: 'The top 20 miners with block rewards will share an additional 100,000 FIL rewards based on the proportion of block rewards',
+        smallMinerReward: 'Miners who finish the competition wih at least 1TiB of committed storage and qualified for rewards, will be rewarded with 500FIL (power <= 10TiB) or 1000FIL (power > 10TiB)',
+        totalReward: 'Estimated Total Rewards = Global Rewards + Regional Rewards +  Block Rewards + Small Miner Rewards'
       }
     },
     distribution: {

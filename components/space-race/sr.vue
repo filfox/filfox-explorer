@@ -34,9 +34,10 @@
           </p>
         </div>
         <div class="shadow-md rounded py-6 border-background border-t">
-          <p class="text-xs text-center pb-2">
-            {{ $t('spaceRace.overview.headers.activeMiner') }}
-          </p>
+          <div class="flex items-center justify-center text-xs text-center pb-2">
+            <span>{{ $t('spaceRace.overview.headers.activeMiner') }}</span>
+            <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.activeMiners')" />
+          </div>
           <div class="text-xl text-center text-main font-bold">
             {{ activeMiners }}
           </div>
@@ -45,9 +46,10 @@
           </p>
         </div>
         <div class="shadow-md rounded py-6 border-background border-t">
-          <p class="text-xs text-center pb-2">
-            {{ $t('spaceRace.overview.headers.qualifiedMiners') }}
-          </p>
+          <div class="flex items-center justify-center text-xs text-center pb-2">
+            <span>{{ $t('spaceRace.overview.headers.qualifiedMiners') }}</span>
+            <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.qualifiedMiners')" />
+          </div>
           <div class="text-xl text-center text-main font-bold">
             {{ eligibleMiners }}
           </div>
@@ -56,9 +58,10 @@
           </p>
         </div>
         <div class="shadow-md rounded py-6 border-background border-t">
-          <p class="text-xs text-center pb-2">
-            {{ $t('spaceRace.overview.headers.entity') }}
-          </p>
+          <div class="flex items-center justify-center text-xs text-center pb-2">
+            <span>{{ $t('spaceRace.overview.headers.entity') }}</span>
+            <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.registeredEntities')" />
+          </div>
           <div class="text-xl text-center text-main font-bold">
             {{ entityCount }}
           </div>
@@ -89,22 +92,34 @@
                 {{ $t('spaceRace.ranks.headers.entity') }}
               </th>
               <th class="sticky z-10 top-0 bg-white">
-                {{ $t('spaceRace.ranks.headers.area') }}
-              </th>
-              <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.minerCount') }}
               </th>
               <th class="sticky z-10 top-0 bg-white">
                 {{ $t('spaceRace.ranks.headers.rawBytePower') }}
               </th>
               <th class="sticky z-10 top-0 bg-white">
-                {{ $t('spaceRace.ranks.headers.estimatedTotalReward') }}
+                <div class="flex items-center justify-center">
+                  <span>{{ $t('spaceRace.ranks.headers.estimatedGlobalReward') }}</span>
+                  <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.estimatedGlobalReward')" />
+                </div>
               </th>
               <th class="sticky z-10 top-0 bg-white">
-                {{ $t('spaceRace.ranks.headers.estimatedRegionRewards') }}
+                <div class="flex items-center justify-center">
+                  <span>{{ $t('spaceRace.ranks.headers.estimatedRegionRewards') }}</span>
+                  <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.estimatedRegionRewards')" />
+                </div>
               </th>
               <th class="sticky z-10 top-0 bg-white">
-                {{ $t('spaceRace.ranks.headers.estimatedBlockRewards') }}
+                <div class="flex items-center justify-center">
+                  <span>{{ $t('spaceRace.ranks.headers.estimatedBlockRewards') }}</span>
+                  <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.estimatedBlockRewards')" />
+                </div>
+              </th>
+              <th class="sticky z-10 top-0 bg-white">
+                <div class="flex items-center justify-center">
+                  <span>{{ $t('spaceRace.ranks.headers.totalReward') }}</span>
+                  <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.totalReward')" />
+                </div>
               </th>
               <th class="sticky z-10 top-0 bg-white">
               </th>
@@ -124,9 +139,6 @@
                   {{ entity.name ? entity.name : entity.addresses[0].address }}
                 </td>
                 <td>
-                  {{ getContinentNameByCode(entity.region) }}
-                </td>
-                <td>
                   {{ entity.addresses.length }}
                 </td>
                 <td>
@@ -140,6 +152,9 @@
                 </td>
                 <td>
                   {{ entity.blockReward ? entity.blockReward.toFixed(2) : '0' }} FIL
+                </td>
+                <td>
+                  {{ ((entity.globalReward ? entity.globalReward : 0) + (entity.regionReward ? entity.regionReward : 0) + (entity.blockReward ? entity.blockReward : 0)).toFixed(2) }} FIL
                 </td>
                 <td>
                   <img
@@ -175,10 +190,10 @@
                             </div>
                             <div class="p-1">
                               <p class="text-xs font-medium text-gray-600">
-                                {{ $t('spaceRace.ranks.headers.totalBlockReward') }}
+                                {{ $t('spaceRace.ranks.headers.area') }}
                               </p>
                               <p class="text-base">
-                                {{ entity.totalRewards | filecoin(2) }}
+                                {{ getContinentNameByCode(entity.region) }}
                               </p>
                             </div>
                             <div class="p-1">
@@ -211,6 +226,15 @@
                               </p>
                               <p class="text-base" :class="{'text-red-600' : !entity.storageLifecycle}">
                                 {{ entity.storageLifecycle ? $t('spaceRace.ranks.headers.done') : 'N/A' }}
+                              </p>
+                            </div>
+                            <div class="p-1">
+                              <div class="flex items-center justify-start text-xs font-medium text-gray-600">
+                                <span>{{ $t('spaceRace.ranks.headers.smallMinerReward') }}</span>
+                                <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.smallMinerReward')" />
+                              </div>
+                              <p class="text-base">
+                                {{ entity.smallMinerReward ? entity.smallMinerReward : 0 }} FIL
                               </p>
                             </div>
                           </div>

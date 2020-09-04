@@ -624,7 +624,7 @@ export default {
         entity: '实体',
         area: '地区',
         minerCount: '矿工数',
-        estimatedTotalReward: '预估全球奖励',
+        estimatedGlobalReward: '预估全球奖励',
         estimatedRegionRewards: '预估大洲奖励',
         estimatedBlockRewards: '预估出块奖励',
         dailyPowerDelta: '24h算力增速',
@@ -639,7 +639,18 @@ export default {
         sectorLifeCycle: '扇区生命周期',
         done: '已完成',
         dealRetrievalRate: '存储/检索成功率',
-        totalReward: '预计奖励合计'
+        totalReward: '预计奖励合计',
+        smallMinerReward: '预估小矿工奖励'
+      },
+      tips: {
+        activeMiners: '当前原值算力值大于0的矿工数',
+        qualifiedMiners: '已完成扇区生命周期并订单成功率均大于80% 矿工数',
+        registeredEntities: '已在官方完成注册验证的实体数量',
+        estimatedGlobalReward: '全球排名前100名的矿工将根据比赛期间矿工原值算力比例瓜分总计高达150万FIL的奖励',
+        estimatedRegionRewards: '各大洲排名前50名的矿工将根据比赛期间矿工原值算力比例瓜分各洲总计高达50万FIL的奖励',
+        estimatedBlockRewards: '获得出块奖励数在前20名的矿工，将根据所获区块奖励数按比例瓜分额外10万FIL的奖励',
+        smallMinerReward: '竞赛结束前完成至少1TiB扇区封装并条件合格的矿工，将获得500FIL（算力<=10TiB）或1000FIL（算力>10TiB）的奖励',
+        totalReward: '预计奖励合计=全球奖励+大洲奖励+出块奖励+小矿工奖励'
       }
     },
     distribution: {
