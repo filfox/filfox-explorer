@@ -92,22 +92,28 @@
             <span> 200k FIL </span>
           </div>
         </div>
-        <div class="dot" :style="{left:'28%'}" :class="{'bg-spaceRace': currentPower - 25 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 25 * pib < 0}">
+        <div class="dot" :style="{left:'25%'}" :class="{'bg-spaceRace': currentPower - 25 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 25 * pib < 0}">
           <div class="label">
             <span> 25 PiB </span>
             <span> 300k FIL </span>
           </div>
         </div>
-        <div class="dot" :style="{left:'50%'}" :class="{'bg-spaceRace': currentPower - 50 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 50 * pib < 0}">
+        <div class="dot" :style="{left:'45%'}" :class="{'bg-spaceRace': currentPower - 50 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 50 * pib < 0}">
           <div class="label">
             <span> 50 PiB </span>
             <span> 500k FIL </span>
           </div>
         </div>
-        <div class="dot" :style="{left:'100%'}" :class="{'bg-spaceRace': currentPower - 100 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 100 * pib < 0}">
+        <div class="dot" :style="{left:'66%'}" :class="{'bg-spaceRace': currentPower - 100 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 100 * pib < 0}">
           <div class="label">
             <span> 100 PiB </span>
             <span> 1M FIL </span>
+          </div>
+        </div>
+        <div class="dot" :style="{left:'100%'}" :class="{'bg-spaceRace': currentPower - 200 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 200 * pib < 0}">
+          <div class="label">
+            <span> 200 PiB </span>
+            <span> 1.5M FIL </span>
           </div>
         </div>
         <div v-if="!unlockTotalReward" class="lock" :style="{left:'100%'}">
