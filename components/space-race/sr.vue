@@ -99,25 +99,25 @@
               </th>
               <th class="sticky z-10 top-0 bg-white">
                 <div class="flex items-center justify-center">
-                  <span :style="{'max-width':'66%'}">{{ $t('spaceRace.ranks.headers.estimatedGlobalReward') }}</span>
+                  <span>{{ $t('spaceRace.ranks.headers.estimatedGlobalReward') }}</span>
                   <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.estimatedGlobalReward')" />
                 </div>
               </th>
               <th class="sticky z-10 top-0 bg-white">
                 <div class="flex items-center justify-center">
-                  <span :style="{'max-width':'66%'}">{{ $t('spaceRace.ranks.headers.estimatedRegionRewards') }}</span>
+                  <span>{{ $t('spaceRace.ranks.headers.estimatedRegionRewards') }}</span>
                   <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.estimatedRegionRewards')" />
                 </div>
               </th>
               <th class="sticky z-10 top-0 bg-white">
                 <div class="flex items-center justify-center">
-                  <span :style="{'max-width':'66%'}">{{ $t('spaceRace.ranks.headers.estimatedBlockRewards') }}</span>
+                  <span>{{ $t('spaceRace.ranks.headers.estimatedBlockRewards') }}</span>
                   <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.estimatedBlockRewards')" />
                 </div>
               </th>
               <th class="sticky z-10 top-0 bg-white">
                 <div class="flex items-center justify-center">
-                  <span :style="{'max-width':'66%'}">{{ $t('spaceRace.ranks.headers.totalReward') }}</span>
+                  <span>{{ $t('spaceRace.ranks.headers.totalReward') }}</span>
                   <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.totalReward')" />
                 </div>
               </th>
