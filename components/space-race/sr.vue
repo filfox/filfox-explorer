@@ -47,18 +47,6 @@
         </div>
         <div class="shadow-md rounded py-6 border-background border-t">
           <div class="flex items-center justify-center text-xs text-center pb-2">
-            <span>{{ $t('spaceRace.overview.headers.qualifiedMiners') }}</span>
-            <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.qualifiedMiners')" />
-          </div>
-          <div class="text-xl text-center text-main font-bold">
-            {{ eligibleMiners }}
-          </div>
-          <p v-if="region !== 'All'" class="text-xs text-center pt-2">
-            {{ $t('spaceRace.ratio') }}: {{ (eligibleMiners / overview.eligibleMiners) | percentage }}
-          </p>
-        </div>
-        <div class="shadow-md rounded py-6 border-background border-t">
-          <div class="flex items-center justify-center text-xs text-center pb-2">
             <span>{{ $t('spaceRace.overview.headers.entity') }}</span>
             <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.registeredEntities')" />
           </div>
@@ -67,6 +55,18 @@
           </div>
           <p v-if="region !== 'All'" class="text-xs text-center pt-2">
             {{ $t('spaceRace.ratio') }}: {{ (entityCount / overview.entityCount) | percentage }}
+          </p>
+        </div>
+        <div class="shadow-md rounded py-6 border-background border-t">
+          <div class="flex items-center justify-center text-xs text-center pb-2">
+            <span>{{ $t('spaceRace.overview.headers.qualifiedMiners') }}</span>
+            <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.qualifiedMiners')" />
+          </div>
+          <div class="text-xl text-center text-main font-bold">
+            {{ eligibleMiners }}
+          </div>
+          <p v-if="region !== 'All'" class="text-xs text-center pt-2">
+            {{ $t('spaceRace.ratio') }}: {{ (eligibleMiners / overview.eligibleMiners) | percentage }}
           </p>
         </div>
       </div>
