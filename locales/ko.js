@@ -650,7 +650,7 @@ export default {
         estimatedGlobalReward: 'An estimated value. The global top 100 miners will share a total of up to 1.5 million FIL rewards based on the proportion of the miners\' raw power during the competition.',
         estimatedRegionRewards: 'An estimated value. The top 50 miners on each continent will share a total of up to 500,000 FIL rewards based on the proportion of the miners\' raw power during the competition.',
         estimatedBlockRewards: 'An estimated value. The top 20 miners with block rewards will share an additional 100,000 FIL rewards based on the proportion of block rewards',
-        smallMinerReward: 'An estimated value. Miners who finish the competition wih at least 1TiB of committed storage and qualified for rewards, will be rewarded with 500FIL (power <= 10TiB) or 1000FIL (power > 10TiB)',
+        smallMinerReward: 'An estimated value. All miners who submitted competition registration and committed a sector before September 2nd 1200 UTC, miners who finish the competition with at least 1TiB of committed storage and qualified for rewards, will be rewarded with 500FIL (power <= 10TiB) or 1000FIL (power > 10TiB) for a minimum total reward.',
         totalReward: 'Estimated Total Rewards = Global Rewards + Regional Rewards +  Block Rewards + Small Miner Rewards'
       }
     },
