@@ -121,7 +121,7 @@
                   {{ region === 'All' ? (entity.globalRank || '--') : (entity.regionRank || '--') }}
                 </td>
                 <td>
-                  {{ entity.name }}
+                  {{ entity.name ? entity.name : entity.addresses[0].address }}
                 </td>
                 <td>
                   {{ getContinentNameByCode(entity.region) }}
