@@ -239,7 +239,7 @@
                                 <Tip class="mx-1" :content="$t('spaceRace.ranks.tips.smallMinerReward')" />
                               </div>
                               <p class="text-base">
-                                {{ entity.smallMinerReward ? entity.smallMinerReward : 0 }} FIL
+                                {{ (entity.smallMinerReward ? entity.smallMinerReward : 0).toFixed(2) }} FIL
                               </p>
                             </div>
                           </div>
