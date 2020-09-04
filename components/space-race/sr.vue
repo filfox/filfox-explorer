@@ -159,7 +159,7 @@
                   {{ entity.blockReward ? entity.blockReward.toFixed(2) : '0' }} FIL
                 </td>
                 <td>
-                  {{ ((entity.globalReward ? entity.globalReward : 0) + (entity.regionReward ? entity.regionReward : 0) + (entity.blockReward ? entity.blockReward : 0)).toFixed(2) }} FIL
+                  {{ ((entity.globalReward ? entity.globalReward : 0) + (entity.regionReward ? entity.regionReward : 0) + (entity.blockReward ? entity.blockReward : 0) + (entity.smallMinerReward ? entity.smallMinerReward : 0)).toFixed(2) }} FIL
                 </td>
                 <td>
                   <img
