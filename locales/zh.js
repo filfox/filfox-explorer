@@ -649,7 +649,7 @@ export default {
         estimatedGlobalReward: '全球排名前100名的矿工将根据比赛期间矿工原值算力比例瓜分总计高达150万FIL的奖励',
         estimatedRegionRewards: '各大洲排名前50名的矿工将根据比赛期间矿工原值算力比例瓜分各洲总计高达50万FIL的奖励',
         estimatedBlockRewards: '获得出块奖励数在前20名的矿工，将根据所获区块奖励数按比例瓜分额外10万FIL的奖励',
-        smallMinerReward: '竞赛结束前完成至少1TiB扇区封装并条件合格的矿工，将获得500FIL（算力<=10TiB）或1000FIL（算力>10TiB）的奖励',
+        smallMinerReward: '在9月2日12:00UTC前完成登记并封装1个扇区的矿工，若竞赛结束前完成至少1TiB扇区封装并条件合格的矿工，最少将获得500FIL（算力<=10TiB）或1000FIL（算力>10TiB）的奖励',
         totalReward: '预计奖励合计=全球奖励+大洲奖励+出块奖励+小矿工奖励'
       }
     },
