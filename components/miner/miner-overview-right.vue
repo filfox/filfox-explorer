@@ -36,13 +36,25 @@
         {{ addressData.miner.sectorSize | size_metric }}
       </p>
     </div>
-    <p class="text-sm mt-2">
-      {{ $t('detail.address.miner.minerOverview.headers.sectors') }}:
-      {{ addressData.miner.sectors | locale }} {{ $t('detail.address.miner.sectors.total') }},
-      {{ addressData.miner.activeSectors | locale }} {{ $t('detail.address.miner.sectors.active') }},
-      {{ addressData.miner.faults | locale }} {{ $t('detail.address.miner.sectors.faults') }},
-      {{ addressData.miner.recoveries | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
-    </p>
+    <div class="text-sm mt-2 items-center justify-between flex">
+      <p>
+        {{ $t('detail.address.miner.minerOverview.headers.sectors') }}:
+      </p>
+      <div>
+        <span>
+          {{ $t('detail.address.miner.sectors.total') }} {{ addressData.miner.sectors | locale }} ,
+        </span>
+        <span class=" text-green-600">
+          {{ $t('detail.address.miner.sectors.active') }} {{ addressData.miner.activeSectors | locale }} ,
+        </span>
+        <span class=" text-red-700">
+          {{ $t('detail.address.miner.sectors.faults') }} {{ addressData.miner.faults | locale }} ,
+        </span>
+        <span class=" text-yellow-500">
+          {{ $t('detail.address.miner.sectors.recoveries') }} {{ addressData.miner.recoveries | locale }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
