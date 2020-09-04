@@ -613,7 +613,7 @@ export default {
         unlockRewards: '已解锁奖励',
         rawBytePower: '原值算力',
         activeMiner: '活跃矿工',
-        qualifiedMiners: '已达标矿工',
+        qualifiedMiners: '已达标实体',
         entity: '注册实体数'
       }
     },
@@ -644,7 +644,7 @@ export default {
       },
       tips: {
         activeMiners: '当前原值算力值大于0的矿工数',
-        qualifiedMiners: '已完成扇区生命周期并订单成功率均大于80% 矿工数',
+        qualifiedMiners: '已完成扇区生命周期并订单成功率均大于80%实体数量',
         registeredEntities: '已在官方完成注册验证的实体数量',
         estimatedGlobalReward: '全球排名前100名的矿工将根据比赛期间矿工原值算力比例瓜分总计高达150万FIL的奖励',
         estimatedRegionRewards: '各大洲排名前50名的矿工将根据比赛期间矿工原值算力比例瓜分各洲总计高达50万FIL的奖励',

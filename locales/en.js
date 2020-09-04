@@ -624,7 +624,7 @@ export default {
         unlockRewards: 'Unlocked Rewards',
         rawBytePower: 'Raw Byte Power',
         activeMiner: 'Active Miners',
-        qualifiedMiners: 'Qualified Miners',
+        qualifiedMiners: 'Qualified Entities',
         entity: 'Registered Entities'
       }
     },
@@ -655,7 +655,7 @@ export default {
       },
       tips: {
         activeMiners: 'Amount of miners that has a positive raw power.',
-        qualifiedMiners: 'The number of miners completed the sector life cycle and whose order successful rate is greater than 80%',
+        qualifiedMiners: 'The number of entities completed the sector life cycle and whose order successful rate is greater than 80%',
         registeredEntities: 'The number of entities that have been officially registered and verified.',
         estimatedGlobalReward: 'An estimated value. The global top 100 miners will share a total of up to 1.5 million FIL rewards based on the proportion of the miners\' raw power during the competition.',
         estimatedRegionRewards: 'An estimated value. The top 50 miners on each continent will share a total of up to 500,000 FIL rewards based on the proportion of the miners\' raw power during the competition.',
