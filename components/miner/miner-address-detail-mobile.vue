@@ -109,16 +109,16 @@
             </p>
             <div class="text-xs text-gray-800 text-right w-3/4">
               <span>
-                {{ $t('detail.address.miner.sectors.total') }} {{ addressData.miner.sectors | locale }} ,
+                {{ addressData.miner.sectors | locale }} {{ $t('detail.address.miner.sectors.total') }},
               </span>
               <span class=" text-green-600">
-                {{ $t('detail.address.miner.sectors.active') }} {{ addressData.miner.activeSectors | locale }} ,
+                {{ addressData.miner.activeSectors | locale }} {{ $t('detail.address.miner.sectors.active') }},
               </span>
               <span class=" text-red-700">
-                {{ $t('detail.address.miner.sectors.faults') }} {{ addressData.miner.faults | locale }} ,
+                {{ addressData.miner.faults | locale }} {{ $t('detail.address.miner.sectors.faults') }},
               </span>
               <span class=" text-yellow-500">
-                {{ $t('detail.address.miner.sectors.recoveries') }} {{ addressData.miner.recoveries | locale }}
+                {{ addressData.miner.recoveries | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
               </span>
             </div>
           </div>
