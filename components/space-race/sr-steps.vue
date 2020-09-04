@@ -263,7 +263,7 @@ export default {
 
 <style lang="postcss" scoped>
 .indicator {
-    z-index: 10;
+    z-index: 20;
     width: 14px;
     position: absolute;
     top:50%;
