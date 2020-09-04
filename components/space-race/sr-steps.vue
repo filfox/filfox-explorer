@@ -2,7 +2,7 @@
   <div>
     <div class="my-2 relative h-10">
       <div
-        v-if="(type === 'global' && currentPower < 90 * pib) || (type !== 'global' && currentPower < 9 * pib)"
+        v-if="(type === 'global' && currentPower < 180 * pib) || (type !== 'global' && currentPower < 9 * pib)"
         class="absolute top-2 whitespace-no-wrap"
         :style="{left: textPercentage}"
       >
@@ -150,9 +150,21 @@ export default {
     // non-linear computation for percentage if not global one
     percentage() {
       if (this.type === 'global') {
-        let percentage = this.currentPower / this.pib
-        percentage = percentage >= 100 ? 100 : percentage
-        return `${percentage}%`
+        if (this.currentPower - 5 * this.pib < 0) {
+          return `${this.currentPower / (5 * this.pib) * 7}%`
+        } else if (this.currentPower - 10 * this.pib < 0) {
+          return `${7 + (this.currentPower - 5 * this.pib) / (5 * this.tib) * 7}%`
+        } else if (this.currentPower - 25 * this.pib < 0) {
+          return `${14 + (this.currentPower - 10 * this.pib) / (15 * this.pib) * 11}%`
+        } else if (this.currentPower - 50 * this.pib < 0) {
+          return `${25 + (this.currentPower - 25 * this.pib) / (25 * this.pib) * 20}%`
+        } else if (this.currentPower - 100 * this.pib < 0) {
+          return `${45 + (this.currentPower - 50 * this.pib) / (50 * this.pib) * 21}%`
+        } else if (this.currentPower - 200 * this.pib < 0) {
+          return `${66 + (this.currentPower - 100 * this.pib) / (100 * this.pib) * 34}%`
+        } else {
+          return '100%'
+        }
       } else if (this.currentPower - 10 * this.tib < 0) {
         return `${this.currentPower / (10 * this.tib) * 7}%`
       } else if (this.currentPower - 100 * this.tib < 0) {
@@ -169,8 +181,22 @@ export default {
     },
     textPercentage() {
       if (this.type === 'global') {
-        let percentage = this.currentPower / this.pib
-        percentage = percentage >= 100 ? 100 : percentage
+        let percentage = 0
+        if (this.currentPower - 5 * this.pib < 0) {
+          percentage = this.currentPower / (5 * this.pib) * 7
+        } else if (this.currentPower - 10 * this.pib < 0) {
+          percentage = 7 + (this.currentPower - 5 * this.pib) / (5 * this.tib) * 7
+        } else if (this.currentPower - 25 * this.pib < 0) {
+          percentage = 14 + (this.currentPower - 10 * this.pib) / (15 * this.pib) * 11
+        } else if (this.currentPower - 50 * this.pib < 0) {
+          percentage = 25 + (this.currentPower - 25 * this.pib) / (25 * this.pib) * 20
+        } else if (this.currentPower - 100 * this.pib < 0) {
+          percentage = 45 + (this.currentPower - 50 * this.pib) / (50 * this.pib) * 21
+        } else if (this.currentPower - 200 * this.pib < 0) {
+          percentage = 66 + (this.currentPower - 100 * this.pib) / (100 * this.pib) * 34
+        } else {
+          percentage = 100
+        }
         if (percentage > 15) {
           percentage -= 10
         } else {
@@ -212,8 +238,10 @@ export default {
           return '300k FIL'
         } else if (this.currentPower - 100 * this.pib < 0) {
           return '500k FIL'
-        } else {
+        } else if (this.currentPower - 200 * this.pib < 0) {
           return '1.0M FIL'
+        } else {
+          return '1.5M FIL'
         }
       } else if (this.currentPower - 10 * this.tib < 0) {
         return '0 FIL'
