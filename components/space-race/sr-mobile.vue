@@ -122,7 +122,7 @@
                         <p class="font-medium text-gray-600">
                           {{ $t('spaceRace.ranks.headers.totalReward') }}
                         </p>
-                        <p> {{ (entity.globalReward && entity.regionReward && entity.blockReward) ? (entity.globalReward + entity.regionReward + entity.blockReward).toFixed(2) : '0' }} FIL </p>
+                        <p> {{ (entity.globalReward || entity.regionReward || entity.blockReward) ? (entity.globalReward || 0 + entity.regionReward || 0 + entity.blockReward || 0).toFixed(2) : '0' }} FIL </p>
                       </div>
                       <div class="text-center">
                         <p class="font-medium text-gray-600">
