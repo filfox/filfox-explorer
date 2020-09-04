@@ -61,34 +61,40 @@
         <div class="indicator" :style="{left: percentage}">
           <img src="~/assets/img/space-race/indicator.svg" alt="indicator" class="mb-1">
         </div>
-        <div class="dot" :style="{left:'20%'}" :class="{'bg-spaceRace': currentPower - 5 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 5 * pib < 0}">
+        <div class="dot" :style="{left:'16.66%'}" :class="{'bg-spaceRace': currentPower - 5 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 5 * pib < 0}">
           <div class="label">
             <span> 5 PiB </span>
             <span> 100k FIL </span>
           </div>
         </div>
-        <div class="dot" :style="{left:'40%'}" :class="{'bg-spaceRace': currentPower - 10 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 10 * pib < 0}">
+        <div class="dot" :style="{left:'32.32%'}" :class="{'bg-spaceRace': currentPower - 10 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 10 * pib < 0}">
           <div class="label">
             <span> 10 PiB </span>
             <span> 200k FIL </span>
           </div>
         </div>
-        <div class="dot" :style="{left:'60%'}" :class="{'bg-spaceRace': currentPower - 25 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 25 * pib < 0}">
+        <div class="dot" :style="{left:'50%'}" :class="{'bg-spaceRace': currentPower - 25 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 25 * pib < 0}">
           <div class="label">
             <span> 25 PiB </span>
             <span> 300k FIL </span>
           </div>
         </div>
-        <div class="dot" :style="{left:'80%'}" :class="{'bg-spaceRace': currentPower - 50 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 50 * pib < 0}">
+        <div class="dot" :style="{left:'66.66%'}" :class="{'bg-spaceRace': currentPower - 50 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 50 * pib < 0}">
           <div class="label">
             <span> 50 PiB </span>
             <span> 500k FIL </span>
           </div>
         </div>
-        <div class="dot" :style="{left:'100%'}" :class="{'bg-spaceRace': currentPower - 100 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 100 * pib < 0}">
+        <div class="dot" :style="{left:'83.32%'}" :class="{'bg-spaceRace': currentPower - 100 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 100 * pib < 0}">
           <div class="label">
             <span> 100 PiB </span>
             <span> 1M FIL </span>
+          </div>
+        </div>
+        <div class="dot" :style="{left:'100%'}" :class="{'bg-spaceRace': currentPower - 100 * pib >= 0, 'bg-spaceRaceProgressBg':currentPower - 100 * pib < 0}">
+          <div class="label">
+            <span> 200 PiB </span>
+            <span> 1.5M FIL </span>
           </div>
         </div>
         <div v-if="!unlockTotalReward" class="lock" :style="{left:'100%'}">
@@ -125,19 +131,31 @@ export default {
     // non-linear computation for percentage if not global one
     percentage() {
       if (this.type === 'global') {
-        let percentage = this.currentPower / this.pib
-        percentage = percentage >= 100 ? 100 : percentage
-        return `${percentage}%`
+        if (this.currentPower - 5 * this.pib < 0) {
+          return `${this.currentPower / (5 * this.pib) * 16.66}%`
+        } else if (this.currentPower - 10 * this.pib < 0) {
+          return `${16.66 + (this.currentPower - 5 * this.pib) / (5 * this.tib) * 16.66}%`
+        } else if (this.currentPower - 25 * this.pib < 0) {
+          return `${32.32 + (this.currentPower - 10 * this.pib) / (15 * this.pib) * 16.66}%`
+        } else if (this.currentPower - 50 * this.pib < 0) {
+          return `${50 + (this.currentPower - 25 * this.pib) / (25 * this.pib) * 16.66}%`
+        } else if (this.currentPower - 100 * this.pib < 0) {
+          return `${66.66 + (this.currentPower - 50 * this.pib) / (50 * this.pib) * 16.66}%`
+        } else if (this.currentPower - 200 * this.pib < 0) {
+          return `${83.32 + (this.currentPower - 100 * this.pib) / (100 * this.pib) * 16.66}%`
+        } else {
+          return '100%'
+        }
       } else if (this.currentPower - 10 * this.tib < 0) {
         return `${this.currentPower / (10 * this.tib) * 20}%`
       } else if (this.currentPower - 100 * this.tib < 0) {
         return `${20 + (this.currentPower - 10 * this.tib) / (90 * this.tib) * 20}%`
       } else if (this.currentPower - this.pib < 0) {
-        return `${40 + (this.currentPower - 100 * this.tib) / (900 * this.tib) * 40}%`
+        return `${40 + (this.currentPower - 100 * this.tib) / (900 * this.tib) * 20}%`
       } else if (this.currentPower - 5 * this.pib < 0) {
-        return `${60 + (this.currentPower - this.pib) / (4 * this.pib) * 60}%`
+        return `${60 + (this.currentPower - this.pib) / (4 * this.pib) * 20}%`
       } else if (this.currentPower - 10 * this.pib < 0) {
-        return `${80 + (this.currentPower - 5 * this.pib) / (9 * this.pib) * 80}%`
+        return `${80 + (this.currentPower - 5 * this.pib) / (9 * this.pib) * 20}%`
       } else {
         return '100%'
       }
@@ -154,8 +172,10 @@ export default {
           return '300k FIL'
         } else if (this.currentPower - 100 * this.pib < 0) {
           return '500k FIL'
-        } else {
+        } else if (this.currentPower - 200 * this.pib < 0) {
           return '1.0M FIL'
+        } else {
+          return '1.5M FIL'
         }
       } else if (this.currentPower - 10 * this.tib < 0) {
         return '0 FIL'
