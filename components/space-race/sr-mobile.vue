@@ -128,7 +128,7 @@
                         <p class="font-medium text-gray-600">
                           {{ $t('spaceRace.ranks.headers.dealRetrievalRate') }}
                         </p>
-                        <p>  {{ entity.dealSuccessRate.store | percentage }} / {{ entity.dealSuccessRate.retrieve | percentage }} </p>
+                        <p>  {{ entity.dealSuccessRate.store ? (entity.dealSuccessRate.store * 100).toFixed(2) + '%' : 'N/A' }} / {{ entity.dealSuccessRate.retrieve ? (entity.dealSuccessRate.retrieve * 100).toFixed(2) + '%' : 'N/A' }} </p>
                       </div>
                       <div class="text-right">
                         <p class="font-medium text-gray-600">

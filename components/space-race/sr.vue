@@ -213,16 +213,16 @@
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.dealSuccessRate') }}
                               </p>
-                              <p class="text-base" :class="{'text-red-600' : entity.dealSuccessRate.store < 0.8}">
-                                {{ entity.dealSuccessRate.store | percentage }}
+                              <p class="text-base" :class="{'text-red-600' : ( entity.dealSuccessRate.store && entity.dealSuccessRate.store < 0.8)}">
+                                {{ entity.dealSuccessRate.store ? (entity.dealSuccessRate.store * 100).toFixed(2) + '%' : 'N/A' }}
                               </p>
                             </div>
                             <div class="p-1">
                               <p class="text-xs font-medium text-gray-600">
                                 {{ $t('spaceRace.ranks.headers.retrievalDealSuccessRate') }}
                               </p>
-                              <p class="text-base" :class="{'text-red-600' : entity.dealSuccessRate.retrieve < 0.8}">
-                                {{ entity.dealSuccessRate.retrieve | percentage }}
+                              <p class="text-base" :class="{'text-red-600' : ( entity.dealSuccessRate.retrieve && entity.dealSuccessRate.retrieve < 0.8)}">
+                                {{ entity.dealSuccessRate.retrieve ? (entity.dealSuccessRate.retrieve * 100).toFixed(2) + '%' : 'N/A' }}
                               </p>
                             </div>
                             <div class="p-1">
