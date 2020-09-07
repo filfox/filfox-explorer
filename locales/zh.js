@@ -480,17 +480,17 @@ export default {
     }
   },
   actor: {
-    'fil/1/account': '普通账户',
-    'fil/1/cron': '定时任务',
-    'fil/1/init': '初始化',
-    'fil/1/multisig': '多重签名',
-    'fil/1/paymentchannel': '支付通道',
-    'fil/1/reward': '奖励',
-    'fil/1/storagemarket': '存储市场',
-    'fil/1/storageminer': '矿工账户',
-    'fil/1/storagepower': '存储算力',
-    'fil/1/system': '系统',
-    'fil/1/verifiedregistry': '注册确认'
+    account: '普通账户',
+    cron: '定时任务',
+    init: '初始化',
+    multisig: '多重签名',
+    paymentchannel: '支付通道',
+    reward: '奖励',
+    storagemarket: '存储市场',
+    storageminer: '矿工账户',
+    storagepower: '存储算力',
+    system: '系统',
+    verifiedregistry: '注册确认'
   },
   chart: {
     miner: {

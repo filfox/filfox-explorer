@@ -86,17 +86,17 @@ Vue.filter('size_metric', (number, precision = null) => {
 })
 
 Vue.filter('actor', actor => ({
-  'fil/1/account': 'Account',
-  'fil/1/cron': 'Cron',
-  'fil/1/init': 'Init',
-  'fil/1/multisig': 'Multisig',
-  'fil/1/paymentchannel': 'Payment Channel',
-  'fil/1/reward': 'Reward',
-  'fil/1/storagemarket': 'Storage Market',
-  'fil/1/storageminer': 'Storage Miner',
-  'fil/1/storagepower': 'Storage Power',
-  'fil/1/system': 'System',
-  'fil/1/verifiedregistry': 'Verified Registry'
+  account: 'Account',
+  cron: 'Cron',
+  init: 'Init',
+  multisig: 'Multisig',
+  paymentchannel: 'Payment Channel',
+  reward: 'Reward',
+  storagemarket: 'Storage Market',
+  storageminer: 'Storage Miner',
+  storagepower: 'Storage Power',
+  system: 'System',
+  verifiedregistry: 'Verified Registry'
 }[actor]))
 
 Vue.filter('exit-code', code => exitCodes[code] ?? code)

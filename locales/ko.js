@@ -483,17 +483,17 @@ export default {
     }
   },
   actor: {
-    'fil/1/account': '일반 계정',
-    'fil/1/cron': '시간 지정 작업 실행',
-    'fil/1/init': '초기화',
-    'fil/1/multisig': '다중 서명',
-    'fil/1/paymentchannel': '지불 채널',
-    'fil/1/reward': '보상',
-    'fil/1/storagemarket': '스토리지 마켓',
-    'fil/1/storageminer': '채굴자 계정',
-    'fil/1/storagepower': '스토리지 파워',
-    'fil/1/system': '시스템',
-    'fil/1/verifiedregistry': '등록 확인'
+    account: '일반 계정',
+    cron: '시간 지정 작업 실행',
+    init: '초기화',
+    multisig: '다중 서명',
+    paymentchannel: '지불 채널',
+    reward: '보상',
+    storagemarket: '스토리지 마켓',
+    storageminer: '채굴자 계정',
+    storagepower: '스토리지 파워',
+    system: '시스템',
+    verifiedregistry: '등록 확인'
   },
   chart: {
     miner: {

@@ -120,7 +120,7 @@ export default {
     getMinersRichList() {
       this.loading = true
       this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'fil/1/storageminer' } })
+        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'storageminer' } })
         .then(res => {
           this.richList = res.data
           this.total = this.richList.totalCount
@@ -130,7 +130,7 @@ export default {
     getNormalAccountsRichList() {
       this.loading = true
       this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'fil/1/account' } })
+        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'account' } })
         .then(res => {
           this.richList = res.data
           this.total = this.richList.totalCount
