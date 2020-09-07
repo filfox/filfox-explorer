@@ -137,7 +137,7 @@ export default {
         rank: 'Rank',
         miner: 'Miner',
         tag: 'Tag',
-        blockNums: 'Blocks Mined',
+        blockNums: 'Win Count',
         luckyValue: 'Lucky Value',
         totalRewards: 'Rewards',
         rate: 'Ratio',
@@ -147,7 +147,9 @@ export default {
       },
       tipsByBlock: {
         luckyValue: 'Ratio of actual blocks produced and theoretical value.',
-        rewardsRatio: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.'
+        rewardsRatio: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.',
+        winCount: 'In Filecoin mining model, there may be multiple blocks under a tipset, and each block may receive multiple win counts. Cumulative win counts = the sum of win counts for each block.',
+        blocksMined: 'Blocks mined =  the sum of blocks mined'
       },
       tableHeadersByPowerDelta: {
         rank: 'Rank',
@@ -421,6 +423,7 @@ export default {
             sectorSize: 'Sector Size',
             sectors: 'Sector Status',
             blockNums: 'Blocks Mined',
+            WinCount: 'Win Count',
             blocksReward: 'Total Reward'
           }
         },
@@ -433,6 +436,7 @@ export default {
             blockNums: 'Blocks Mined',
             blocksReward: 'Rewards',
             blocksRewardRate: 'Rewards Ratio',
+            winCount: 'Win Count',
             miningEfficiency: 'Mining Efficiency',
             luckyValue: 'Lucky Value'
           }

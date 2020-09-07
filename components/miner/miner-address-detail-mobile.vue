@@ -80,9 +80,11 @@
             </p>
           </div>
           <div class="flex items-center justify-between mx-3 mt-1">
-            <p class="text-xs text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
-            </p>
+            <div class="text-xs text-gray-800 flex justify-start items-center">
+              {{ $t('detail.address.miner.minerOverview.headers.WinCount') }}
+              <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.winCount')" />
+              :
+            </div>
             <p class="text-xs text-gray-800">
               {{ addressData.miner.weightedBlocksMined }}
             </p>

@@ -146,7 +146,9 @@ export default {
       },
       tipsByBlock: {
         luckyValue: '실제 채굴 개수에서 이론상 채굴 개수를 나눈 비율',
-        rewardsRatio: '특정 기간 채굴한 보상에서 누적 보상을 나눈 비율'
+        rewardsRatio: '특정 기간 채굴한 보상에서 누적 보상을 나눈 비율',
+        winCount: 'In Filecoin mining model, there may be multiple blocks under a tipset, and each block may receive multiple win counts. Cumulative win counts = the sum of win counts for each block.',
+        blocksMined: 'Blocks mined =  the sum of blocks mined'
       },
       tableHeadersByPowerDelta: {
         rank: '순위',
@@ -413,6 +415,7 @@ export default {
             sectorSize: '섹터 크기',
             sectors: '섹터 현황',
             blockNums: '누적된 채굴 개수',
+            WinCount: 'Win Count',
             blocksReward: '누적된 채굴 보상'
           }
         },
@@ -425,6 +428,7 @@ export default {
             blockNums: '블록 채굴 개수',
             blocksReward: '블록 리워드',
             blocksRewardRate: '블록 리워드 비율',
+            winCount: 'Win Count',
             miningEfficiency: '채굴 효율',
             luckyValue: '럭키 벨류'
           }

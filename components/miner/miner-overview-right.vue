@@ -21,10 +21,12 @@
         {{ $t('detail.address.miner.minerOverview.headers.rawBytePower') }}:
         {{ addressData.miner.rawBytePower | size_metric(2) }}
       </p>
-      <p class="text-sm">
-        {{ $t('detail.address.miner.minerOverview.headers.blockNums') }}:
+      <div class="text-sm items-center justify-end flex">
+        {{ $t('detail.address.miner.minerOverview.headers.WinCount') }}
+        <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.winCount')" />
+        :
         {{ addressData.miner.weightedBlocksMined }}
-      </p>
+      </div>
     </div>
     <div class="flex items-center justify-between w-full mt-2">
       <p class="text-sm">

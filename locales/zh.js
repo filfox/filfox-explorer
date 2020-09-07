@@ -126,7 +126,7 @@ export default {
         rank: '排名',
         miner: '矿工',
         tag: '标签',
-        blockNums: '出块数',
+        blockNums: '出块份数',
         luckyValue: '幸运值',
         totalRewards: '出块奖励',
         rate: '占比',
@@ -136,7 +136,9 @@ export default {
       },
       tipsByBlock: {
         luckyValue: '实际爆块数量和理论爆块数量的比值',
-        rewardsRatio: '在选定周期内，矿工获得出块奖励与累计产出区块奖励的比值'
+        rewardsRatio: '在选定周期内，矿工获得出块奖励与累计产出区块奖励的比值',
+        winCount: 'Filecoin挖矿模型中，一个高度（tipset）下可能有多个区块（block），每个区块可能获得多份奖励（win count）。累计出块份数=每次出块获得奖励份数的总和',
+        blocksMined: '出块数 = 挖矿出块数量（block）的总和'
       },
       tableHeadersByPowerDelta: {
         rank: '排名',
@@ -409,7 +411,8 @@ export default {
             rank: '排名',
             sectorSize: '扇区大小',
             sectors: '扇区状态',
-            blockNums: '累计出块数量',
+            WinCount: '累计出块份数',
+            blockNums: '出块数',
             blocksReward: '累计出块奖励'
           }
         },
@@ -422,6 +425,7 @@ export default {
             blockNums: '出块数量',
             blocksReward: '出块奖励',
             blocksRewardRate: '出块奖励占比',
+            winCount: '出块份数',
             miningEfficiency: '挖矿效率',
             luckyValue: '幸运值'
           }

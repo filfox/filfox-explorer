@@ -11,10 +11,11 @@
             <AddressTag :tag="miner.tag" type="mobile" />
           </div>
           <div class="flex justify-between my-1 mx-2 text-xs">
-            <p>
-              {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}:
+            <div class="flex items-center justify-start">
+              {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
+              <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.winCount')" />:
               {{ miner.weightedBlocksMined }}
-            </p>
+            </div>
             <p>
               {{ $t('home.minerRanks.tableHeadersByBlock.luckyValue') }}:
               {{ miner.luckyValue | percentage }}
@@ -48,7 +49,10 @@
               {{ $t('home.minerRanks.tableHeadersByBlock.tag') }}
             </th>
             <th class="bg-white sticky top-0 z-30 w-4/15">
-              {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
+                <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.winCount')" />
+              </div>
             </th>
             <th class="bg-white sticky top-0 z-30 w-1/10">
               <div class="flex justify-center items-center">

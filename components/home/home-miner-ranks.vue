@@ -86,7 +86,10 @@
               {{ $t('home.minerRanks.tableHeadersByBlock.tag') }}
             </th>
             <th class="w-4/15">
-              {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
+              <div class="flex justify-center items-center">
+                {{ $t('home.minerRanks.tableHeadersByBlock.blockNums') }}
+                <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.winCount')" />
+              </div>
             </th>
             <th class="w-1/10">
               <div class="flex justify-center items-center">
