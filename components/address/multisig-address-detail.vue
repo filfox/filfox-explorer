@@ -33,7 +33,7 @@
           {{ $t('detail.address.normal.headers.actor') }}
         </dt>
         <dd class="mr-4">
-          {{ $t(`actor.fil/1/multisig`) }}
+          {{ $t(`actor.multisig`) }}
         </dd>
       </dl>
 

@@ -28,7 +28,7 @@
         {{ $t('detail.address.normal.headers.actor') }}
       </p>
       <p class="flex w-3/4">
-        {{ $t(`actor.fil/1/multisig`) }}
+        {{ $t(`actor.multisig`) }}
       </p>
     </div>
 
