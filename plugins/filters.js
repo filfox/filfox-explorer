@@ -36,7 +36,7 @@ Vue.filter('filecoin', (value, precision = null, nanoFixed = false) => {
   if (value == null) {
     return 'N/A'
   }
-  value = typeof value === 'string' ? value : toLocaleString(value).replace(/,/g, '')
+  value = toLocaleString(typeof value === 'string' ? Number(value) : value).replace(/,/g, '')
   const digits = value.includes('.') ? value.indexOf('.') : value.length
   if (value === '0') {
     return '0 FIL'

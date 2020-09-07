@@ -37,8 +37,10 @@ function formatValue(value) {
     return `${toLocaleString(value)} attoFIL`
   } else if (value < 1e18) {
     return `${toLocaleString(value / 1e9)} nanoFIL`
-  } else {
+  } else if (value < 1e27) {
     return `${toLocaleString(value / 1e18)} FIL`
+  } else {
+    return `${toLocaleString(value / 1e27)} Billion FIL`
   }
 }
 
@@ -61,15 +63,7 @@ export default {
       yAxis: {
         type: 'value',
         axisLabel: {
-          formatter(value) {
-            if (value < 1e9) {
-              return `${toLocaleString(value)} attoFIL`
-            } else if (value < 1e18) {
-              return `${toLocaleString(value / 1e9)} nanoFIL`
-            } else {
-              return `${toLocaleString(value / 1e18)} FIL`
-            }
-          }
+          formatter: formatValue
         }
       },
       tooltip: {
