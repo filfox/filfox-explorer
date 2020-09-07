@@ -5,16 +5,30 @@
 
       <div class="hidden lg:grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
         <div class="rounded-md mr-2 mb-0 bg-white">
-          <HomeTitle type="powerDistribution" class="border-b border-background h-12 pr-4" />
+          <div class="flex items-center justify-between border-b border-background h-12">
+            <HomeTitle type="powerDistribution" />
+            <nuxt-link :to="localePath('/stats/miner')" class="mr-4">
+              <el-button round size="mini">
+                {{ $t('shared.more') }}
+              </el-button>
+            </nuxt-link>
+          </div>
           <client-only>
             <PowerDistributionChart class="mx-4 mt-12" />
           </client-only>
         </div>
 
         <div class="ml-2 rounded-md bg-white">
-          <div class="flex items-center border-b border-background h-12 pr-4">
-            <HomeTitle type="baseFee" />
-            <Tip class="ml-1" :content="$t('chart.gas.baseFeeChart.tips')" />
+          <div class="flex items-center justify-between border-b border-background h-12">
+            <div class="flex items-center">
+              <HomeTitle type="baseFee" />
+              <Tip class="ml-1" :content="$t('chart.gas.baseFeeChart.tips')" />
+            </div>
+            <nuxt-link :to="localePath('/stats/gas')" class="mr-4">
+              <el-button round size="mini">
+                {{ $t('shared.more') }}
+              </el-button>
+            </nuxt-link>
           </div>
           <BaseFeeChart class="rounded-md mt-2 ml-2 mr-4" />
         </div>
