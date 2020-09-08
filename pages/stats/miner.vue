@@ -17,7 +17,7 @@
         {{ $t('chart.miner.headers.qualityAdjPowerDeltaLine') }}
       </div>
       <client-only>
-        <PowerDeltaChart :max-count="5" class="ml-3 lg:ml-0 mt-4 lg:mt-12" />
+        <PowerDeltaChart :max-count="5" class="mx-4 mt-4 lg:mt-12" />
       </client-only>
     </div>
 
