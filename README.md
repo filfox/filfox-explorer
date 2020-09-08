@@ -1,6 +1,6 @@
 # FilFox
 
-> Filecoin browser
+> Filecoin explorer
 
 ## Build Setup
 

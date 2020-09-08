@@ -16,7 +16,7 @@ export default {
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-        { name: 'keywords', content: '飞狐浏览器, Filfox, 飞狐区块浏览器, Filecoin, Filecoin Browser, Filecoin 浏览器, FIL, IPFS, 6Block, 石榴矿池' },
+        { name: 'keywords', content: '飞狐浏览器, Filfox, 飞狐区块浏览器, Filecoin, Filecoin Explorer, Filecoin 浏览器, FIL, IPFS, 6Block, 石榴矿池' },
         { name: 'description', content: this.$t('meta.description.default') },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
