@@ -34,7 +34,7 @@ export default {
     },
     charts: {
       title: '统计',
-      subMenus: ['挖矿图表', 'Gas 统计']
+      subMenus: ['挖矿图表', 'Gas 统计', 'Lotus版本分布']
     },
     resources: {
       title: '资源',
@@ -398,6 +398,9 @@ export default {
           faults: '错误',
           recoveries: '恢复中'
         },
+        tips: {
+          lotus: '该矿工当前使用的lotus版本，绿色代表使用的是最新版本的Lotus代码，红色代表非最新版本，点击可查看官方最新版本代码发布情况'
+        },
         minerOverview: {
           title: '矿工概览',
           headers: {
@@ -522,6 +525,9 @@ export default {
         fee: '手续费合计/占比',
         count: '消息数合计/占比'
       }
+    },
+    lotus: {
+      pie: 'Lotus版本分布'
     }
   },
   footer: {

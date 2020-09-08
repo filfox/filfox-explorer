@@ -42,7 +42,8 @@ export default {
       title: 'Stats',
       subMenus: [
         'Mining Charts',
-        'Gas Stats'
+        'Gas Stats',
+        'Lotus Version Distribution'
       ]
     },
     resources: {
@@ -409,6 +410,9 @@ export default {
           faults: 'faults',
           recoveries: 'recoveries'
         },
+        tips: {
+          lotus: 'The current version of Lotus which the miner is using. Green means the latest version and the red is a lower one. Click to see the releases of Lotus.'
+        },
         minerOverview: {
           title: 'Miner Overview',
           headers: {
@@ -533,6 +537,9 @@ export default {
         fee: 'Total Fees/Pencentage',
         count: 'Total Messages/Pencentage'
       }
+    },
+    lotus: {
+      pie: 'Lotus Version Distribution'
     }
   },
   footer: {

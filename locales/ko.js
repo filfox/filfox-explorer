@@ -41,7 +41,8 @@ export default {
       title: '통계량',
       subMenus: [
         '채굴',
-        '가스 데이터'
+        '가스 데이터',
+        '버전 배포'
       ]
     },
     resources: {
@@ -401,6 +402,9 @@ export default {
           faults: 'faults',
           recoveries: 'recoveries'
         },
+        tips: {
+          lotus: 'The current version of Lotus which the miner is using. Green means the latest version and the red is a lower one. Click to see the releases of Lotus.'
+        },
         minerOverview: {
           title: '채굴자 개요',
           headers: {
@@ -524,6 +528,9 @@ export default {
         fee: '수수료 합계 / 백분율',
         count: '메시지 합계 / 백분율'
       }
+    },
+    lotus: {
+      pie: 'Lotus Version Distribution'
     }
   },
   footer: {

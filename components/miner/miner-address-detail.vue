@@ -36,9 +36,25 @@
       <MinerVerifyApply ref="verifyApplication" :address-info="addressData.address" :tag="addressData.tag" />
 
       <div class="rounded-md mt-4 bg-white pt-4 pb-2">
-        <p class="mx-8 flex">
-          {{ $t('detail.address.miner.minerOverview.title') }}
-        </p>
+        <div class="flex justify-start items-center">
+          <p class="ml-8 flex">
+            {{ $t('detail.address.miner.minerOverview.title') }}
+          </p>
+          <el-popover
+            placement="bottom-start"
+            width="280"
+            trigger="hover"
+            :content="$t('detail.address.miner.tips.lotus')"
+          >
+            <div v-if="addressData.miner.nodeVersion" slot="reference" class="flex items-center text-xs ml-1">
+              [
+              <a :class="{'text-green-600':addressData.miner.nodeVersion.includes('latest'), 'text-red-600':!addressData.miner.nodeVersion.includes('latest')}" href="https://github.com/filecoin-project/lotus/releases" target="_blank">
+                {{ addressData.miner.nodeVersion }}
+              </a>
+              ]
+            </div>
+          </el-popover>
+        </div>
         <div class="grid grid-rows-1 grid-cols-2 gap-4 my-4 mx-8">
           <div class="border border-background rounded-sm">
             <MinerBalance :address-data="addressData" />
