@@ -160,73 +160,90 @@
         </p>
       </div>
       <div class="message-item">
-        <p class="message-key">
+        <div class="message-key">
           Gas Fee Cap
-        </p>
+          <Tip class="mx-1" :content="$t('detail.message.tips.gasFeeCap')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.gasFeeCap | filecoin }}
         </p>
       </div>
       <div class="message-item">
-        <p class="message-key">
+        <div class="message-key">
           Gas Premium
-        </p>
+          <Tip class="mx-1" :content="$t('detail.message.tips.gasPremium')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.gasPremium | filecoin }}
         </p>
       </div>
       <div class="message-item">
-        <p class="message-key">
-          {{ $t('detail.message.headers.gasLimit') }}
-        </p>
+        <div class="message-key">
+          Gas Limit
+          <Tip class="mx-1" :content="$t('detail.message.tips.gasLimit')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.gasLimit | locale }}
         </p>
       </div>
       <div v-if="message.receipt" class="message-item">
-        <p class="message-key">
+        <div class="message-key">
           {{ $t('detail.message.headers.gasUsed') }}
-        </p>
+          <Tip class="mx-1" :content="$t('detail.message.tips.gasUsed')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.receipt.gasUsed | locale }}
         </p>
       </div>
       <div v-if="message.baseFee" class="message-item">
-        <p class="message-key">
+        <div class="message-key">
           Base Fee
-        </p>
+          <Tip class="mx-1" :content="$t('detail.message.tips.baseFee')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.baseFee | filecoin }}
         </p>
       </div>
       <div v-if="message.baseFeeBurn" class="message-item">
-        <p class="message-key">
+        <div class="message-key">
           Base Fee Burn
-        </p>
+          <Tip class="mx-1" :content="$t('detail.message.tips.baseFeeBurn')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.baseFeeBurn | filecoin }}
         </p>
       </div>
       <div v-if="message.overEstimationBurn" class="message-item">
-        <p class="message-key">
-          Over Estimation Burn
-        </p>
+        <div class="message-key">
+          Over Estimation Burn<Tip class="mx-1" :content="$t('detail.message.tips.overEstimationBurn')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.overEstimationBurn | filecoin }}
         </p>
       </div>
       <div v-if="message.minerTip" class="message-item">
-        <p class="message-key">
+        <div class="message-key">
           Miner Tip
-        </p>
+          <Tip class="mx-1" :content="$t('detail.message.tips.minerTip')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.minerTip | filecoin }}
         </p>
       </div>
       <div v-if="message.minerPenalty" class="message-item">
-        <p class="message-key">
+        <div class="message-key">
           Miner Penalty
-        </p>
+          <Tip class="mx-1" :content="$t('detail.message.tips.minerPenalty')" />
+          :
+        </div>
         <p class="message-value">
           {{ message.minerPenalty | filecoin }}
         </p>
@@ -272,9 +289,9 @@ export default {
     @apply flex justify-between items-center text-xs mx-4 mt-2;
   }
   .message-key {
-    @apply w-1/4;
+    @apply w-3/8 flex items-center justify-start;
   }
   .message-value {
-    @apply w-3/4 ml-2;
+    @apply w-5/8 text-right mr-2;
   }
 </style>
