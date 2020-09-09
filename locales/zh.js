@@ -343,6 +343,17 @@ export default {
         'create-account': '{createBy} 创建了{actor} {idAddress}',
         'create-account:transfer': '{createBy} 创建了{actor} {idAddress} 并转入 {value}'
       },
+      tips: {
+        gasFeeCap: '用户选择支付的总手续费率',
+        gasPremium: '用户选择支付给矿工的手续费率',
+        gasLimit: '该笔交易能消耗的最大Gas量',
+        gasUsed: '完成这笔交易真实消耗的Gas量',
+        baseFee: '根据区块链网络拥堵状况实时更新的基础手续费率',
+        baseFeeBurn: '该笔交易的基础销毁手续费',
+        overEstimationBurn: '因Gas限额超出Gas使用量的10%，需要额外销毁的手续费',
+        minerTip: '矿工获得的手续费。Miner Tip = Gas Premium * Gas 使用量',
+        minerPenalty: '当Gas Fee Cap低于基础手续费率时，其消耗手续费的差额将作为Miner Penalty来抵扣'
+      },
       null: '(无)'
     },
     tipset: {

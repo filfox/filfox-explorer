@@ -192,7 +192,11 @@
       </dl>
       <dl class="message-item">
         <dt class="message-key">
-          Gas Fee Cap
+          <div class="flex items-center justify-start">
+            Gas Fee Cap
+            <Tip class="mx-1" :content="$t('detail.message.tips.gasFeeCap')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.gasFeeCap | filecoin }}
@@ -200,7 +204,11 @@
       </dl>
       <dl class="message-item">
         <dt class="message-key">
-          Gas Premium
+          <div class="flex items-center justify-start">
+            Gas Premium
+            <Tip class="mx-1" :content="$t('detail.message.tips.gasPremium')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.gasPremium | filecoin }}
@@ -208,7 +216,11 @@
       </dl>
       <dl class="message-item">
         <dt class="message-key">
-          {{ $t('detail.message.headers.gasLimit') }}
+          <div class="flex items-center justify-start">
+            {{ $t('detail.message.headers.gasLimit') }}
+            <Tip class="mx-1" :content="$t('detail.message.tips.gasLimit')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.gasLimit | locale }}
@@ -216,7 +228,11 @@
       </dl>
       <dl v-if="message.receipt" class="message-item">
         <dt class="message-key">
-          {{ $t('detail.message.headers.gasUsed') }}
+          <div class="flex items-center justify-start">
+            {{ $t('detail.message.headers.gasUsed') }}
+            <Tip class="mx-1" :content="$t('detail.message.tips.gasUsed')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.receipt.gasUsed | locale }}
@@ -224,7 +240,11 @@
       </dl>
       <dl v-if="message.baseFee" class="message-item">
         <dt class="message-key">
-          Base Fee
+          <div class="flex items-center justify-start">
+            Base Fee
+            <Tip class="mx-1" :content="$t('detail.message.tips.baseFee')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.baseFee | filecoin }}
@@ -232,7 +252,11 @@
       </dl>
       <dl v-if="message.baseFeeBurn" class="message-item">
         <dt class="message-key">
-          Base Fee Burn
+          <div class="flex items-center justify-start">
+            Base Fee Burn
+            <Tip class="mx-1" :content="$t('detail.message.tips.baseFeeBurn')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.baseFeeBurn | filecoin }}
@@ -240,7 +264,11 @@
       </dl>
       <dl v-if="message.overEstimationBurn" class="message-item">
         <dt class="message-key">
-          Over Estimation Burn
+          <div class="flex items-center justify-start">
+            Over Estimation Burn
+            <Tip class="mx-1" :content="$t('detail.message.tips.overEstimationBurn')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.overEstimationBurn | filecoin }}
@@ -248,7 +276,11 @@
       </dl>
       <dl v-if="message.minerTip" class="message-item">
         <dt class="message-key">
-          Miner Tip
+          <div class="flex items-center justify-start">
+            Miner Tip
+            <Tip class="mx-1" :content="$t('detail.message.tips.minerTip')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.minerTip | filecoin }}
@@ -256,7 +288,11 @@
       </dl>
       <dl v-if="message.penalty" class="message-item">
         <dt class="message-key">
-          Miner Penalty
+          <div class="flex items-center justify-start">
+            Miner Penalty
+            <Tip class="mx-1" :content="$t('detail.message.tips.minerPenalty')" />
+            :
+          </div>
         </dt>
         <dd class="message-value">
           {{ message.penalty | filecoin }}
@@ -309,7 +345,7 @@ export default {
     @apply flex items-center my-2;
   }
   .message-key {
-    @apply w-48 flex-shrink-0 pl-8 pr-2 text-gray-600;
+    @apply w-56 flex-shrink-0 pl-8 pr-2 text-gray-600;
   }
   .message-value {
     @apply mr-8 flex flex-row items-center;

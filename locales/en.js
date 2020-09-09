@@ -355,6 +355,17 @@ export default {
         'create-account': '{createBy} creates {actor} {idAddress}',
         'create-account:transfer': '{createBy} creates {actor} {idAddress} with initial balance {value}'
       },
+      tips: {
+        gasFeeCap: 'The total fee rate set by sender',
+        gasPremium: 'The fee rate paid to miners set by sender',
+        gasLimit: 'The maximum amount of gas used',
+        gasUsed: 'The actual amount of gas used',
+        baseFee: 'The base fee updated in real time according to the congestion of blockchain network',
+        baseFeeBurn: 'The basic burn fee of the transaction',
+        overEstimationBurn: 'Due to the gas limit exceeds 10% of the gas used,  required additioinal fee (Over Estimation Burn) to burn',
+        minerTip: 'Fee received by miners. Miner Tip = Gas Premium * Gas used',
+        minerPenalty: 'When the Gas Fee Cap is lower than the base fee, the difference will be deducted as Miner Penalty'
+      },
       null: '(Null)'
     },
     tipset: {
@@ -411,7 +422,7 @@ export default {
           recoveries: 'recoveries'
         },
         tips: {
-          lotus: 'The current version of Lotus which the miner is using. Green means the latest version and the red is a lower one. Click to see the releases of Lotus.'
+          lotus: 'The current version of Lotus which the miner is using. Green means the latest version and red means lower version. Click to see the releases of Lotus.'
         },
         minerOverview: {
           title: 'Miner Overview',
