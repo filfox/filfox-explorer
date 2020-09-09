@@ -222,6 +222,14 @@
           {{ message.receipt.gasUsed | locale }}
         </dd>
       </dl>
+      <dl v-if="message.baseFee" class="message-item">
+        <dt class="message-key">
+          Base Fee
+        </dt>
+        <dd class="message-value">
+          {{ message.baseFee | filecoin }}
+        </dd>
+      </dl>
       <dl v-if="message.baseFeeBurn" class="message-item">
         <dt class="message-key">
           Base Fee Burn
