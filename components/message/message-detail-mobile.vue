@@ -191,6 +191,14 @@
           {{ message.receipt.gasUsed | locale }}
         </p>
       </div>
+      <div v-if="message.baseFee" class="message-item">
+        <p class="message-key">
+          Base Fee
+        </p>
+        <p class="message-value">
+          {{ message.baseFee | filecoin }}
+        </p>
+      </div>
       <div v-if="message.baseFeeBurn" class="message-item">
         <p class="message-key">
           Base Fee Burn

@@ -108,6 +108,15 @@
           {{ block.penalty | filecoin }}
         </dd>
       </dl>
+
+      <dl v-if="block.parentBaseFee" class="flex mt-4 my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
+          Parent Base Fee
+        </dt>
+        <dd class="flex mr-4">
+          {{ block.parentBaseFee | filecoin }}
+        </dd>
+      </dl>
     </div>
 
     <div class="rounded-md my-4 bg-white flex flex-col">

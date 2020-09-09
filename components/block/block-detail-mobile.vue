@@ -103,6 +103,15 @@
       </p>
     </div>
 
+    <div v-if="block.parentBaseFee" class="block-item">
+      <p class="w-1/4">
+        Parent Base Fee
+      </p>
+      <p class="w-3/4">
+        {{ block.parentBaseFee | filecoin }}
+      </p>
+    </div>
+
     <div v-loading="loading" class="mt-4">
       <p class="pl-3 py-2 text-sm font-medium border-t border-background">
         {{ $t('blockchain.message.title') }}
