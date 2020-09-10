@@ -33,13 +33,13 @@ function toLocaleString(n) {
 }
 
 function formatValue(value) {
-  if (value < 1e9) {
+  if (value < 1e6) {
     return `${toLocaleString(value)} attoFIL`
-  } else if (value < 1e18) {
+  } else if (value < 1e15) {
     return `${toLocaleString(value / 1e9)} nanoFIL`
-  } else if (value < 1e27) {
+  } else if (value < 1e24) {
     return `${toLocaleString(value / 1e18)} FIL`
-  } else if (value < 1e36) {
+  } else if (value < 1e33) {
     return `${toLocaleString(value / 1e27)} Billion FIL`
   } else {
     return `${toLocaleString(value / 1e36)} Quintillion FIL`
