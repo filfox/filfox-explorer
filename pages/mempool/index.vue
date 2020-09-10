@@ -84,7 +84,7 @@
         </div>
         <div class="flex items-center text-center h-16 bg-white">
           <el-pagination
-            layout="prev, pager, next"
+            layout="prev, pager, next, jumper"
             :page-count="totalPageCount"
             :pager-count="5"
             :current-page="page + 1"
@@ -181,7 +181,7 @@
         </div>
         <div class="flex items-center text-center h-16">
           <el-pagination
-            layout="prev, pager, next"
+            layout="prev, pager, next, jumper"
             :page-count="totalPageCount"
             :current-page="page + 1"
             class="mx-auto"

@@ -20,8 +20,6 @@ import Row from 'element-ui/lib/row'
 import Select from 'element-ui/lib/select'
 import TabPane from 'element-ui/lib/tab-pane'
 import Tabs from 'element-ui/lib/tabs'
-import locale from 'element-ui/lib/locale'
-import en from 'element-ui/lib/locale/lang/en'
 import Steps from 'element-ui/lib/steps'
 import Step from 'element-ui/lib/step'
 
@@ -49,4 +47,3 @@ Vue.use(Step)
 Vue.use(Loading.directive)
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$message = Message
-locale.use(en)

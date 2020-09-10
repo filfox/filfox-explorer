@@ -1,14 +1,18 @@
 import Cookie from 'cookie'
 import moment from 'moment'
+import ElementLocale from 'element-ui/lib/locale'
+import ElementEn from 'element-ui/lib/locale/lang/en'
+import ElementZh from 'element-ui/lib/locale/lang/zh-CN'
 import { detectBrowserLanguage, localeCodes, vueI18n, routesNameSeparator, defaultLocaleRouteNameSuffix } from '~/.nuxt/nuxt-i18n/options'
 import { createLocaleFromRouteGetter } from '~/.nuxt/nuxt-i18n/utils-common'
+
 
 const getLocaleFromRoute = createLocaleFromRouteGetter(localeCodes, { routesNameSeparator, defaultLocaleRouteNameSuffix })
 const localeMapping = {
   zh: 'zh-cn'
 }
 
-export default ({ route, isHMR, req, res, redirect }) => {
+export default ({ app, route, isHMR, req, res, redirect }) => {
   if (isHMR) {
     return
   }
@@ -71,4 +75,9 @@ export default ({ route, isHMR, req, res, redirect }) => {
     setLocaleCookie(routeLocale)
   }
   moment.locale(localeMapping[routeLocale] ?? routeLocale)
+  if (localeMapping[routeLocale] ?? routeLocale === 'zh-cn') {
+    ElementLocale.use(ElementZh)
+  } else {
+    ElementLocale.use(ElementEn)
+  }
 }

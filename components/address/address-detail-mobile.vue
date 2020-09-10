@@ -16,10 +16,10 @@
       <p class="flex w-1/4">
         ID
       </p>
-      <p class="flex w-3/4">
+      <div class="flex w-3/4">
         <AddressLink :id="addressData.alias" plain />
         <AddressTag :tag="addressData.tag" type="mobile" :style="{maxWidth:'66%'}" />
-      </p>
+      </div>
     </div>
 
     <div class="flex justify-between items-center text-xs mx-4 mt-2">
@@ -72,9 +72,9 @@
         {{ $t('detail.address.normal.headers.ownedMiners') }}
       </p>
       <div class="w-3/4">
-        <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="flex text-main pb-1">
+        <div v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="flex text-main pb-1">
           <AddressLink :id="ownedMiner" />
-        </p>
+        </div>
       </div>
     </div>
 
@@ -83,9 +83,9 @@
         {{ $t('detail.address.normal.headers.workers') }}
       </p>
       <div class="w-3/4">
-        <p v-for="worker in addressData.workerMiners" :key="worker" class="pb-1 flex text-main">
+        <div v-for="worker in addressData.workerMiners" :key="worker" class="pb-1 flex text-main">
           <AddressLink :id="worker" />
-        </p>
+        </div>
       </div>
     </div>
 
