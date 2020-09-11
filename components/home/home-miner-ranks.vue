@@ -172,7 +172,7 @@
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
-            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
         <tbody v-else-if="type === 1" class="text-sm text-center">
@@ -201,7 +201,7 @@
             <td>{{ miner.luckyValue | percentage }}</td>
             <td>{{ miner.totalRewards | filecoin(2) }} / {{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }} </td>
             <td>{{ (miner.qualityAdjPower / topMinersByBlocks.totalQualityAdjPower) | percentage }}</td>
-            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
         <tbody v-else-if="type === 2" class="text-sm text-center">
@@ -232,7 +232,7 @@
             <td>{{ miner.equivalentMiners.toFixed(2) }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
-            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>

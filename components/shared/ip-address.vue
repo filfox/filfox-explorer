@@ -27,10 +27,10 @@ export default {
   computed: {
     fullLocation() {
       return [
-        this.location[`${this.$i18n.locale}ContinentName`],
-        this.location[`${this.$i18n.locale}CountryName`],
-        this.location[`${this.$i18n.locale}RegionName`],
-        this.location[`${this.$i18n.locale}City`]
+        this.location.continentName,
+        this.location.countryName,
+        this.location.regionName,
+        this.location.city
       ].filter(Boolean).join('-')
     },
     splittedIP() {

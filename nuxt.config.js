@@ -46,6 +46,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/i18n.js',
+    '@/plugins/axios',
     '@/plugins/filters',
     '@/plugins/websocket.client',
     '@/plugins/components'

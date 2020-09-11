@@ -3,7 +3,7 @@
     <div v-if="loading" v-loading="loading" class="h-20"></div>
     <div v-else v-loading="submitLoading">
       <div class="font-medium">
-        {{ $t('tag.description', {power: message.data ? getAdjPower(message.data.minPower, 2) : '0 B' }) }}
+        {{ $t('tag.description', {power: message ? getAdjPower(message.minPower, 2) : '0 B' }) }}
       </div>
 
       <div class="flex items-center mt-4">
@@ -13,8 +13,8 @@
             *
           </p>
         </div>
-        <p v-if="message.data" class="form-input">
-          {{ message.data.addressToSign || "" }}
+        <p v-if="message" class="form-input">
+          {{ message.addressToSign || "" }}
         </p>
       </div>
 
@@ -45,13 +45,13 @@
         <el-input v-model="contact" size="small" :placeholder="$t('tag.contactPlaceHolder')" class="form-input" />
       </div>
 
-      <template v-if="message.data">
+      <template v-if="message">
         <div class="flex items-center mt-4">
           <div class="form-label">
             {{ $t('tag.message') }}
           </div>
           <div class="w-5/6 flex items-center justify-between pl-2">
-            <code class="code">{{ message.data.message }}</code>
+            <code class="code">{{ message.message }}</code>
           </div>
         </div>
         <div class="flex items-center mt-4">
@@ -59,7 +59,7 @@
             {{ $t('tag.command') }}
           </div>
           <div class="w-5/6 flex items-center justify-between pl-2">
-            <code class="code">{{ message.data.command.lotus }}</code>
+            <code class="code">{{ message.command.lotus }}</code>
             <el-button icon="el-icon-document-copy" size="small" class="ml-2" @click="didCopyClicked" />
           </div>
         </div>
@@ -95,7 +95,7 @@ export default {
     return {
       dialogVisible: false,
       loading: false,
-      message: '',
+      message: null,
       en: '',
       zh: '',
       contact: '',
@@ -104,24 +104,19 @@ export default {
     }
   },
   methods: {
-    getSignatureInfo() {
+    async getSignatureInfo() {
       this.loading = true
       const params = { address: this.addressInfo }
-      this.$axios
-        .post(`/address-tag/create/message`, params
-        )
-        .then(res => {
-          this.loading = false
-          const status = res.data.status
-          if (status > 0) {
-            if (res.data.error[this.$i18n.locale] != null) {
-              this.dialogVisible = false
-              this.$message.error(res.data.error[this.$i18n.locale])
-            }
-          } else {
-            this.message = res.data
-          }
-        })
+      const { status, data, error } = await this.$axios.$post(`/address-tag/create/message`, params)
+      this.loading = false
+      if (status > 0) {
+        if (error != null) {
+          this.dialogVisible = false
+          this.$message.error(error)
+        }
+      } else {
+        this.message = data
+      }
     },
     showDialog() {
       this.dialogVisible = true
@@ -151,8 +146,8 @@ export default {
       const { status, error } = await this.$axios.$post(`/address-tag/create`, params)
       this.submitLoading = false
       if (status > 0) {
-        if (error[this.$i18n.locale] != null) {
-          this.$message.error(error[this.$i18n.locale])
+        if (error != null) {
+          this.$message.error(error)
         }
       } else {
         this.dialogVisible = false
@@ -160,7 +155,7 @@ export default {
       }
     },
     didCopyClicked() {
-      const clipBoardContent = this.message.data.command.lotus
+      const clipBoardContent = this.message.command.lotus
       const textarea = document.createElement('textarea')
       textarea.textContent = clipBoardContent
       textarea.style.position = 'fixed'
@@ -173,7 +168,7 @@ export default {
       }
       this.$message.success(this.$t('shared.copySuccess'))
     },
-    getAdjPower(number, precision = null) {
+    getAdjPower(number) {
       const metrics = 'kMGTPEZY'
       let metricIndex = -1
       number = Number(number)
@@ -186,15 +181,9 @@ export default {
         ++metricIndex
         number /= 2 ** 10
       }
-      if (precision == null) {
-        return flag
-          ? `-${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
-          : `${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
-      } else {
-        return flag
-          ? `-${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
-          : `${number.toFixed(precision)} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
-      }
+      return flag
+        ? `-${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
+        : `${number} ${metricIndex < 0 ? '' : `${metrics[metricIndex]}i`}B`
     }
   }
 }

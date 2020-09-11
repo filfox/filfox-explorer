@@ -104,7 +104,7 @@
             <td>{{ miner.luckyValue | percentage }}</td>
             <td>{{ miner.totalRewards | filecoin(2) }} / {{ miner.totalRewards / topMiners.totalRewards | percentage }} </td>
             <td>{{ (miner.qualityAdjPower / topMiners.totalQualityAdjPower) | percentage }}</td>
-            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>

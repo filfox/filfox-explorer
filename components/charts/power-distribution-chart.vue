@@ -78,7 +78,7 @@ export default {
           this.chartSettings.legendName[miner.address] = miner.address
           this.mobileSettings.legendName[miner.address] = miner.address
         } else {
-          row.miner = `${miner.address}(${miner.tag[this.$i18n.locale]})`
+          row.miner = `${miner.address}(${miner.tag.name})`
           this.chartSettings.legendName[row.miner] = miner.address
           this.mobileSettings.legendName[row.miner] = miner.address
         }

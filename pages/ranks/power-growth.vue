@@ -107,7 +107,7 @@
             <td>{{ miner.equivalentMiners.toFixed(2) }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
-            <td>{{ miner.location ? miner.location[`${$i18n.locale}CountryName`] : 'N/A' }}</td>
+            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>

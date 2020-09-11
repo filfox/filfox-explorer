@@ -1,20 +1,15 @@
 <template>
   <div class="w-full h-full text-left">
-    <div id="map" :style="mapSize" class=" focus:outline-none">
-    </div>
+    <div id="map" :style="mapSize" class="focus:outline-none"></div>
   </div>
 </template>
 
-<style scoped>
-@import url("https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css");
-</style>
-
 <style>
+@import url("https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css");
 .mapboxgl-ctrl-bottom-left {
   width: 0;
   height: 0;
 }
-
 .mapboxgl-ctrl-bottom-right {
   width: 0;
   height: 0;
