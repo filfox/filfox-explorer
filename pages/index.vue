@@ -136,14 +136,14 @@ export default {
     this.$onUpdateOverview = this.onUpdateOverview.bind(this)
     this.$subscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
     this.$onUpdateRichList = this.onUpdateRichList.bind(this)
-    this.$subscribe('account', 'account/rich-list', this.$onUpdateRichList)
+    this.$subscribe('account', `account/rich-list/${this.$i18n.locale}`, this.$onUpdateRichList)
     this.$onUpdateRecentTipsets = this.onUpdateRecentTipsets.bind(this)
-    this.$subscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
+    this.$subscribe('tipset', `tipset/recent/${this.$i18n.locale}`, this.$onUpdateRecentTipsets)
   },
   beforeDestroy() {
     this.$unsubscribe('blockchain', 'blockchain/overview', this.$onUpdateOverview)
-    this.$unsubscribe('account', 'account/rich-list', this.$onUpdateRichList)
-    this.$unsubscribe('tipset', 'tipset/recent', this.$onUpdateRecentTipsets)
+    this.$unsubscribe('account', `account/rich-list/${this.$i18n.locale}`, this.$onUpdateRichList)
+    this.$unsubscribe('tipset', `tipset/recent/${this.$i18n.locale}`, this.$onUpdateRecentTipsets)
   },
   methods: {
     async getTopMinersByPower(continent) {
