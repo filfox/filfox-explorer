@@ -63,9 +63,9 @@
           Unlock Period
         </p>
         <p class="flex w-3/4">
-          {{ addressData.createTimestamp | timestamp }}
+          {{ addressData.multisig.unlockStartTimestamp | timestamp }}
           to
-          {{ addressData.createTimestamp + addressData.multisig.unlockDuration * 30 | timestamp }}
+          {{ addressData.multisig.unlockEndTimestamp | timestamp }}
         </p>
       </div>
       <div class="flex justify-between items-center text-xs mx-4 mt-2">

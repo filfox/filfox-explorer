@@ -68,9 +68,9 @@
             Unlock Period
           </dt>
           <dd class="mr-4">
-            {{ addressData.createTimestamp | timestamp }}
+            {{ addressData.multisig.unlockStartTimestamp | timestamp }}
             to
-            {{ addressData.createTimestamp + addressData.multisig.unlockDuration * 30 | timestamp }}
+            {{ addressData.multisig.unlockEndTimestamp | timestamp }}
           </dd>
         </dl>
         <dl class="flex my-2 items-center">
