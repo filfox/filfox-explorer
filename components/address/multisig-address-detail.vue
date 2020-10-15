@@ -19,12 +19,12 @@
         </dd>
       </dl>
 
-      <dl v-if="addressData.alias" class="flex my-2 items-center">
+      <dl v-if="addressData.robust" class="flex my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           Robust Address
         </dt>
         <dd class="mr-4">
-          <AddressLink :id="addressData.alias" plain />
+          <AddressLink :id="addressData.robust" plain />
         </dd>
       </dl>
 

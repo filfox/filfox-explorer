@@ -77,7 +77,7 @@ export default {
     'nuxt-i18n'
   ],
   axios: {
-    baseURL: 'https://filfox.info/api/v0'
+    baseURL: 'https://filfox.info/api/v1'
   },
   i18n: {
     locales: [

@@ -24,7 +24,7 @@
           ID
         </dt>
         <dd class="mr-4">
-          <AddressLink :id="addressData.alias" plain />
+          <AddressLink :id="addressData.id" plain />
         </dd>
       </dl>
 

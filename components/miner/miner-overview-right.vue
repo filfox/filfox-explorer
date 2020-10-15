@@ -9,7 +9,7 @@
       </p>
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.rate') }}:
-        {{ addressData.miner.qualityAdjPower / addressData.miner.totalQualityAdjPower | percentage }}
+        {{ addressData.miner.qualityAdjPower / addressData.miner.networkQualityAdjPower | percentage }}
       </p>
       <p class="text-sm">
         {{ $t('detail.address.miner.minerOverview.headers.rank') }}:
@@ -44,16 +44,16 @@
       </p>
       <div>
         <span>
-          {{ addressData.miner.sectors | locale }} {{ $t('detail.address.miner.sectors.total') }},
+          {{ addressData.miner.sectors.live | locale }} {{ $t('detail.address.miner.sectors.total') }},
         </span>
         <span class=" text-green-600">
-          {{ addressData.miner.activeSectors | locale }} {{ $t('detail.address.miner.sectors.active') }},
+          {{ addressData.miner.sectors.active | locale }} {{ $t('detail.address.miner.sectors.active') }},
         </span>
         <span class=" text-red-700">
-          {{ addressData.miner.faults | locale }} {{ $t('detail.address.miner.sectors.faults') }},
+          {{ addressData.miner.sectors.faulty | locale }} {{ $t('detail.address.miner.sectors.faults') }},
         </span>
         <span class=" text-yellow-500">
-          {{ addressData.miner.recoveries | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
+          {{ addressData.miner.sectors.recovering | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
         </span>
       </div>
     </div>

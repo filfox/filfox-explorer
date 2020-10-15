@@ -17,7 +17,7 @@
         ID
       </p>
       <div class="flex w-3/4">
-        <AddressLink :id="addressData.alias" plain />
+        <AddressLink :id="addressData.id" plain />
         <AddressTag :tag="addressData.tag" type="mobile" :style="{maxWidth:'66%'}" />
       </div>
     </div>

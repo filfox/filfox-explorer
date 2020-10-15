@@ -63,7 +63,7 @@
             </p>
             <p class="text-xs pt-1 text-gray-800">
               {{ $t('detail.address.miner.minerOverview.headers.rate') }}:
-              {{ addressData.miner.qualityAdjPower / addressData.miner.totalQualityAdjPower | percentage }}
+              {{ addressData.miner.qualityAdjPower / addressData.miner.networkQualityAdjPower | percentage }}
             </p>
             <p class="text-xs pt-1 text-gray-800">
               {{ $t('detail.address.miner.minerOverview.headers.rank') }}:
@@ -111,16 +111,16 @@
             </p>
             <div class="text-xs text-gray-800 text-right w-3/4">
               <span>
-                {{ addressData.miner.sectors | locale }} {{ $t('detail.address.miner.sectors.total') }},
+                {{ addressData.miner.sectors.live | locale }} {{ $t('detail.address.miner.sectors.total') }},
               </span>
               <span class=" text-green-600">
-                {{ addressData.miner.activeSectors | locale }} {{ $t('detail.address.miner.sectors.active') }},
+                {{ addressData.miner.sectors.active | locale }} {{ $t('detail.address.miner.sectors.active') }},
               </span>
               <span class=" text-red-700">
-                {{ addressData.miner.faults | locale }} {{ $t('detail.address.miner.sectors.faults') }},
+                {{ addressData.miner.sectors.faulty | locale }} {{ $t('detail.address.miner.sectors.faults') }},
               </span>
               <span class=" text-yellow-500">
-                {{ addressData.miner.recoveries | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
+                {{ addressData.miner.sectors.recovering | locale }} {{ $t('detail.address.miner.sectors.recoveries') }}
               </span>
             </div>
           </div>
@@ -152,7 +152,7 @@
             {{ $t('detail.address.miner.accountOverview.headers.address') }}:
           </p>
           <p class="text-xs text-gray-800 text-right w-4/5 break-all">
-            {{ addressData.alias || 'N/A' }}
+            {{ addressData.robust || 'N/A' }}
           </p>
         </div>
         <div class="flex items-center justify-between mx-3 mt-1">
@@ -190,13 +190,13 @@
           <p class="text-xs text-gray-800">
             {{ $t('detail.address.miner.accountOverview.headers.owner') }}:
           </p>
-          <AddressLink :id="addressData.miner.owner" :format="10" class="text-xs text-main" />
+          <AddressLink :id="addressData.miner.owner.address" :format="10" class="text-xs text-main" />
         </div>
         <div class="flex items-center justify-between mx-3 mt-1">
           <p class="text-xs text-gray-800">
             {{ $t('detail.address.miner.accountOverview.headers.worker') }}:
           </p>
-          <AddressLink :id="addressData.miner.worker" :format="10" class="text-xs text-main" />
+          <AddressLink :id="addressData.miner.worker.address" :format="10" class="text-xs text-main" />
         </div>
         <div class="flex items-center justify-between mx-3 mt-1 mb-3">
           <p class="text-xs text-gray-800">

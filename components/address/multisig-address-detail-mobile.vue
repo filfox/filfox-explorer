@@ -14,12 +14,12 @@
       </div>
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div v-if="addressData.robust" class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         Robust Address
       </p>
       <p class="flex w-3/4">
-        <AddressLink :id="addressData.alias" plain />
+        <AddressLink :id="addressData.robust" plain />
       </p>
     </div>
 

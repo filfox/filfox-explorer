@@ -25,14 +25,6 @@
           {{ tipset.messageCount }}
         </p>
       </div>
-      <div class="px-4 bg-white flex justify-between pt-1 pb-2">
-        <p class="text-gray-600 text-xs">
-          {{ $t('detail.tipset.headers.size') }}
-        </p>
-        <p class="text-xs">
-          {{ tipset.blockSize }} bytes
-        </p>
-      </div>
 
       <div class="my-2 bg-white pb-2">
         <p class="pl-4 text-sm font-medium py-2 border-b border-background mb-2">
@@ -95,15 +87,6 @@
             </dt>
             <dd class="flex mr-4">
               {{ tipset.messageCount }}
-            </dd>
-          </dl>
-
-          <dl class="flex my-2 items-center">
-            <dt class="w-9/50 pl-8 text-gray-600 px-2">
-              {{ $t('detail.tipset.headers.size') }}
-            </dt>
-            <dd class="flex mr-4">
-              {{ tipset.blockSize }} bytes
             </dd>
           </dl>
         </div>

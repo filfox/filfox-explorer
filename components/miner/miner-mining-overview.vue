@@ -194,7 +194,7 @@ export default {
     async getMinigStats() {
       this.loading = true
       const params = { duration: this.duration }
-      this.miningStats = await this.$axios.$get(`/miner/${this.addressData.address}/mining-stats`, { params })
+      this.miningStats = await this.$axios.$get(`/address/${this.addressData.address}/mining-stats`, { params })
       this.loading = false
     }
   }

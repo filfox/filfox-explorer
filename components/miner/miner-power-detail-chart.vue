@@ -99,7 +99,7 @@ export default {
   methods: {
     async getlineChartData() {
       this.loading = true
-      const data = await this.$axios.$get(`/miner/${this.addressData.address}/power-stats`)
+      const data = await this.$axios.$get(`/address/${this.addressData.address}/power-stats`)
       if (data == null) {
         this.dataEmpty = true
         this.loading = false

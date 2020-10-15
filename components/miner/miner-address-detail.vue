@@ -93,7 +93,7 @@
                 {{ $t('detail.address.miner.accountOverview.headers.address') }}:
               </p>
               <p class="text-sm mt-2">
-                {{ addressData.alias || 'N/A' }}
+                {{ addressData.robust || 'N/A' }}
               </p>
             </div>
             <div class="flex justify-between">
@@ -132,13 +132,13 @@
               <p class="text-sm mt-2">
                 {{ $t('detail.address.miner.accountOverview.headers.owner') }}:
               </p>
-              <AddressLink :id="addressData.miner.owner" :format="12" class="text-sm mt-2 text-main text-right" />
+              <AddressLink :id="addressData.miner.owner.address" :format="12" class="text-sm mt-2 text-main text-right" />
             </div>
             <div class="flex justify-between">
               <p class="text-sm mt-2">
                 {{ $t('detail.address.miner.accountOverview.headers.worker') }}:
               </p>
-              <AddressLink :id="addressData.miner.worker" :format="12" class="text-sm mt-2 text-main text-right" />
+              <AddressLink :id="addressData.miner.worker.address" :format="12" class="text-sm mt-2 text-main text-right" />
             </div>
             <div class="flex justify-between">
               <p class="text-sm mt-2">
