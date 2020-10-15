@@ -301,7 +301,8 @@ export default {
         transfer: '转账',
         'miner-fee': '矿工手续费',
         'burn-fee': '销毁手续费',
-        penalty: '惩罚'
+        penalty: '惩罚',
+        rebalance: '余额重置'
       },
       total: '共',
       transaction: '条转账'

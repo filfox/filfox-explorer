@@ -313,7 +313,8 @@ export default {
         transfer: 'Transfer',
         'miner-fee': 'Miner Fee',
         'burn-fee': 'Burn Fee',
-        penalty: 'Penalty'
+        penalty: 'Penalty',
+        rebalance: 'Rebalance'
       },
       total: 'Total',
       transaction: 'transactions'
