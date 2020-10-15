@@ -5,14 +5,14 @@
     </div>
     <div class="lg:flex items-center justify-center overflow-x-scroll pt-6 pb-10 hidden">
       <div v-for="(partner,index) in partners" :key="index" class="mx-8 cursor-pointer">
-        <a :href="partner.url" target="_blank">
+        <a :href="partner.url[$i18n.locale]" target="_blank">
           <img :src="partner.img" :alt="partner.name" class="h-8">
         </a>
       </div>
     </div>
     <div class="lg:hidden grid grid-cols-3 my-4 px-3">
       <div v-for="(partner,index) in partners" :key="index" class="cursor-pointer mx-1 border rounded-sm mb-4">
-        <a :href="partner.url" target="_blank">
+        <a :href="partner.url[$i18n.locale]" target="_blank">
           <img :src="partner.img" :alt="partner.name" class="h-5 mx-auto my-2">
         </a>
       </div>

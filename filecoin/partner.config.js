@@ -11,31 +11,55 @@ export const partners = [
   {
     name: 'Huobi',
     img: imgs[0],
-    url: 'https://www.huobi.com/?from=filfox'
+    url: {
+      en: 'https://www.huobi.com/?from=filfox',
+      zh: 'https://www.huobi.fm/?from=filfox',
+      ko: 'https://www.huobi.com/?from=filfox'
+    }
   },
   {
     name: 'zb',
     img: imgs[1],
-    url: 'https://www.zb.com/?from=filfox'
+    url: {
+      en: 'https://www.zb.com/?from=filfox',
+      zh: 'https://www.zb.com/?from=filfox',
+      ko: 'https://www.zb.com/?from=filfox'
+    }
   },
   {
     name: 'gateio',
     img: imgs[2],
-    url: 'https://www.gatecn.io/?from=filfox'
+    url: {
+      en: 'https://www.gatecn.io/?from=filfox',
+      zh: 'https://www.gatecn.io/?from=filfox',
+      ko: 'https://www.gatecn.io/?from=filfox'
+    }
   },
   {
     name: 'jubi',
     img: imgs[3],
-    url: 'https://www.jbex.com/?from=filfox'
+    url: {
+      en: 'https://www.jbex.com/?from=filfox',
+      zh: 'https://www.jbex.com/?from=filfox',
+      ko: 'https://www.jbex.com/?from=filfox'
+    }
   },
   {
     name: 'whaleex',
     img: imgs[4],
-    url: 'https://w.whaleex.com.cn/?from=filfox'
+    url: {
+      en: 'https://w.whaleex.com.cn/?from=filfox',
+      zh: 'https://w.whaleex.com.cn/?from=filfox',
+      ko: 'https://w.whaleex.com.cn/?from=filfox'
+    }
   },
   {
     name: '6block',
     img: imgs[5],
-    url: 'https://6block.com/?from=filfox'
+    url: {
+      en: 'https://6block.com/?from=filfox',
+      zh: 'https://6block.com/?from=filfox',
+      ko: 'https://6block.com/?from=filfox'
+    }
   }
 ]
