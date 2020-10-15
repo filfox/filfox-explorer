@@ -177,7 +177,8 @@ export default {
         balance: '余额',
         balanceRate: '余额占比'
       }
-    }
+    },
+    partner: '合作伙伴'
   },
   blockchain: {
     block: {

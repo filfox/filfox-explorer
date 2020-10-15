@@ -85,6 +85,7 @@
           <BaseFeeChart class="mt-2" />
         </div>
       </div>
+      <Partner />
     </div>
     <div
       v-if="sharing"

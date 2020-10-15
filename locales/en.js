@@ -189,7 +189,8 @@ export default {
         balance: 'Balance',
         balanceRate: 'Balance Ratio'
       }
-    }
+    },
+    partner: 'Partners'
   },
   blockchain: {
     block: {

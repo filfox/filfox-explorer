@@ -188,7 +188,8 @@ export default {
         balance: '잔액',
         balanceRate: '잔액 비율'
       }
-    }
+    },
+    partner: '파트너'
   },
   blockchain: {
     block: {
