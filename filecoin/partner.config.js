@@ -12,9 +12,9 @@ export const partners = [
     name: 'Huobi',
     img: imgs[0],
     url: {
-      en: 'https://www.huobi.com/?from=filfox',
-      zh: 'https://www.huobi.fm/?from=filfox',
-      ko: 'https://www.huobi.com/?from=filfox'
+      en: 'https://www.huobi.com/en-us/?invite_code=adu85',
+      zh: 'https://www.huobi.fm/zh-cn/?invite_code=adu85',
+      ko: 'https://www.huobi.com/en-us/?invite_code=adu85'
     }
   },
   {
