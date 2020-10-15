@@ -691,5 +691,8 @@ export default {
         activeMiners: '活跃矿工'
       }
     }
+  },
+  wallet: {
+    title: '钱包'
   }
 }

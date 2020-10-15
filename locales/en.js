@@ -703,5 +703,8 @@ export default {
         activeMiners: 'Active Miners'
       }
     }
+  },
+  wallet: {
+    title: 'Wallet'
   }
 }

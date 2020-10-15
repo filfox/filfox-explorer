@@ -66,12 +66,12 @@
       </el-dropdown-menu>
     </el-dropdown>
 
-    <nuxt-link class="flex items-center mx-2 xl:mx-3 px-2" :to="localePath('/space-race')">
+    <a class="flex items-center mx-2 xl:mx-3 px-2" href="https://wallet.filfox.info" target="_blank">
       <div class="text-background text-sm flex items-center">
-        {{ $t('spaceRace.title') }}
+        {{ $t('wallet.title') }}
         <img src="~/assets/img/space-race/hot.svg" alt="hot" class="ml-2 h-4 mt-1">
       </div>
-    </nuxt-link>
+    </a>
 
     <div class="flex-grow"></div>
     <el-input

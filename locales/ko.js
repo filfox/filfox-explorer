@@ -693,5 +693,8 @@ export default {
         activeMiners: 'Active Miners'
       }
     }
+  },
+  wallet: {
+    title: '지갑'
   }
 }
