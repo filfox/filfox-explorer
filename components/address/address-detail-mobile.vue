@@ -16,9 +16,12 @@
       <p class="flex w-1/4">
         ID
       </p>
-      <div class="flex w-3/4">
+      <div v-if="addressData.id" class="flex w-3/4">
         <AddressLink :id="addressData.id" plain />
         <AddressTag :tag="addressData.tag" type="mobile" :style="{maxWidth:'66%'}" />
+      </div>
+      <div v-else class="flex w-3/4">
+        --
       </div>
     </div>
 
@@ -26,8 +29,11 @@
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.actor') }}
       </p>
-      <p class="flex w-3/4">
+      <p v-if="addressData.actor" class="flex w-3/4">
         {{ $t(`actor.${addressData.actor}`) }}
+      </p>
+      <p v-else class="flex w-3/4">
+        {{ $t(`actor.account`) }}
       </p>
     </div>
 
@@ -36,7 +42,7 @@
         {{ $t('detail.address.normal.headers.balance') }}
       </p>
       <p class="flex w-3/4">
-        {{ addressData.balance | filecoin }}
+        {{ (addressData.balance || 0) | filecoin }}
       </p>
     </div>
 
@@ -45,7 +51,7 @@
         {{ $t('detail.address.normal.headers.messages') }}
       </p>
       <p class="flex w-3/4">
-        {{ addressData.messageCount }}
+        {{ addressData.messageCount || 0 }}
       </p>
     </div>
 
@@ -53,8 +59,11 @@
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.createTime') }}
       </p>
-      <p class="flex w-3/4">
+      <p v-if="addressData.createTimestamp" class="flex w-3/4">
         {{ addressData.createTimestamp | timestamp('datetime') }}
+      </p>
+      <p v-else class="flex w-3/4">
+        --
       </p>
     </div>
 
@@ -62,12 +71,15 @@
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.lastSeenTime') }}
       </p>
-      <p class="flex w-3/4">
+      <p v-if="addressData.lastSeenTimestamp" class="flex w-3/4">
         {{ addressData.lastSeenTimestamp | timestamp('datetime') }}
+      </p>
+      <p v-else class="flex w-3/4">
+        --
       </p>
     </div>
 
-    <div v-if="addressData.ownedMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
+    <div v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
       <p class="w-1/4">
         {{ $t('detail.address.normal.headers.ownedMiners') }}
       </p>
@@ -78,7 +90,7 @@
       </div>
     </div>
 
-    <div v-if="addressData.workerMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
+    <div v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
       <p class="w-1/4">
         {{ $t('detail.address.normal.headers.workers') }}
       </p>
@@ -89,7 +101,7 @@
       </div>
     </div>
 
-    <AddressBalanceDetailChart :address-data="addressData" />
+    <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
     <div v-loading="loading" class="mt-2 pt-3 bg-white border-t border-background">
       <div class="flex h-10 items-center mb-3 justify-center">
@@ -200,6 +212,9 @@ export default {
   },
   methods: {
     async getTransferList() {
+      if (this.addressData.id == null || this.addressData.id === undefined) {
+        return
+      }
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page }
       this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })

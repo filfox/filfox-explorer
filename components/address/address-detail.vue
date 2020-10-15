@@ -23,8 +23,11 @@
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           ID
         </dt>
-        <dd class="mr-4">
+        <dd v-if="addressData.id" class="mr-4">
           <AddressLink :id="addressData.id" plain />
+        </dd>
+        <dd v-else class="mr-4">
+          --
         </dd>
       </dl>
 
@@ -32,8 +35,11 @@
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.actor') }}
         </dt>
-        <dd class="mr-4">
+        <dd v-if="addressData.actor" class="mr-4">
           {{ $t(`actor.${addressData.actor}`) }}
+        </dd>
+        <dd v-else class="mr-4">
+          {{ $t(`actor.account`) }}
         </dd>
       </dl>
 
@@ -42,7 +48,7 @@
           {{ $t('detail.address.normal.headers.balance') }}
         </dt>
         <dd class="mr-4">
-          {{ addressData.balance | filecoin }}
+          {{ (addressData.balance || 0) | filecoin }}
         </dd>
       </dl>
 
@@ -51,7 +57,7 @@
           {{ $t('detail.address.normal.headers.messages') }}
         </dt>
         <dd class="mr-4">
-          {{ addressData.messageCount }}
+          {{ addressData.messageCount || 0 }}
         </dd>
       </dl>
 
@@ -59,8 +65,11 @@
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.createTime') }}
         </dt>
-        <dd class="mr-4">
+        <dd v-if="addressData.createTimestamp" class="mr-4">
           {{ addressData.createTimestamp | timestamp('datetime') }}
+        </dd>
+        <dd v-else class="mr-4">
+          --
         </dd>
       </dl>
 
@@ -68,12 +77,15 @@
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.lastSeenTime') }}
         </dt>
-        <dd class="mr-4">
+        <dd v-if="addressData.lastSeenTimestamp" class="mr-4">
           {{ addressData.lastSeenTimestamp | timestamp('datetime') }}
+        </dd>
+        <dd v-else class="mr-4">
+          --
         </dd>
       </dl>
 
-      <dl v-if="addressData.ownedMiners.length > 0" class="flex items-center my-2">
+      <dl v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex items-center my-2">
         <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
           {{ $t('detail.address.normal.headers.ownedMiners') }}
         </dt>
@@ -84,7 +96,7 @@
         </dd>
       </dl>
 
-      <dl v-if="addressData.workerMiners.length > 0" class="flex items-center my-2">
+      <dl v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex items-center my-2">
         <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
           {{ $t('detail.address.normal.headers.workers') }}
         </dt>
@@ -96,7 +108,7 @@
       </dl>
     </div>
 
-    <AddressBalanceDetailChart :address-data="addressData" />
+    <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
     <div class="rounded-md my-4 bg-white pt-4">
       <div class="flex h-12 items-center ml-8">
@@ -219,6 +231,9 @@ export default {
   },
   methods: {
     async getTransferList() {
+      if (this.addressData.id == null || this.addressData.id === undefined) {
+        return
+      }
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page }
       this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
