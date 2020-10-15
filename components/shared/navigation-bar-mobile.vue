@@ -62,9 +62,11 @@
         </el-collapse-item>
       </el-collapse>
 
-      <a href="https://wallet.filfox.info" target="_blank" class="block ranks text-sm py-2 cursor-pointer" @click.native="hideIfNeeded">
-        {{ $t('wallet.title') }}
-      </a>
+      <div class="block ranks text-sm py-2 cursor-pointer" @click="hideIfNeeded">
+        <a href="https://wallet.filfox.info" target="_blank">
+          {{ $t('wallet.title') }}
+        </a>
+      </div>
     </div>
     <div v-loading.fullscreen.lock="loading" class="flex flex-grow"></div>
   </div>
