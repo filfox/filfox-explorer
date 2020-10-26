@@ -197,7 +197,7 @@
 export default {
   async asyncData({ $axios, error }) {
     try {
-      const messageList = await $axios.$get('/mempool/list', { params: { pageSize: 20, page: 0 } })
+      const messageList = await $axios.$get('/message/mempool/list', { params: { pageSize: 20, page: 0 } })
       return { messageList }
     } catch (err) {
       if (err?.response) {
@@ -241,7 +241,7 @@ export default {
       if (this.method !== 'All') {
         params.method = this.method
       }
-      this.messageList = await this.$axios.$get('/mempool/list', { params })
+      this.messageList = await this.$axios.$get('/message/mempool/list', { params })
       this.loading = false
     },
     didCurrentPageChanged(currentPage) {

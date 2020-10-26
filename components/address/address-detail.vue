@@ -73,6 +73,15 @@
         </dd>
       </dl>
 
+      <dl v-if="addressData.deleteTimestamp" class="flex my-2 items-center">
+        <dt class="w-1/8 pl-8 text-gray-600 px-2">
+          {{ $t('detail.address.normal.headers.createTime') }}
+        </dt>
+        <dd class="mr-4">
+          {{ addressData.deleteTimestamp | timestamp('datetime') }}
+        </dd>
+      </dl>
+
       <dl class="flex my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
           {{ $t('detail.address.normal.headers.lastSeenTime') }}

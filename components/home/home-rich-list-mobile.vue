@@ -20,7 +20,7 @@
     <div v-else v-loading="richListLoading">
     </div>
 
-    <div v-for="(rich, index) in richList.list" :key="index" class="flex items-center text-xs px-3 border-b">
+    <div v-for="(rich, index) in richList.richList" :key="index" class="flex items-center text-xs px-3 border-b">
       <div class="w-1/12 pl-2">
         <RankIndex :index="index + 1" />
       </div>

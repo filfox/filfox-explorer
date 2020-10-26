@@ -4,7 +4,7 @@ export const network = {
   currentNetwork: 0,
   networks: [
     {
-      name: 'Testnet',
+      name: 'Mainnet',
       url: 'https://filfox.info'
     },
     {

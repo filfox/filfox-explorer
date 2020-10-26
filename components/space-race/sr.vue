@@ -298,7 +298,9 @@
       <p class="py-2 border-b border-background pl-4 font-medium">
         {{ $t('spaceRace.distribution.title') }}
       </p>
-      <SrMap map-width="100%" map-height="600px" :popups="mapPopups" />
+      <client-only>
+        <SrMap map-width="100%" map-height="600px" :popups="mapPopups" />
+      </client-only>
       <div class="grid grid-cols-3 gap-6 px-4 my-6 mx-4">
         <div v-for="(r,index) in overview.regions" :key="index" class="border border-background rounded-sm hover:shadow text-sm px-4">
           <p class=" font-medium py-2">

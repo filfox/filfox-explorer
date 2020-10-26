@@ -67,6 +67,15 @@
       </p>
     </div>
 
+    <div v-if="addressData.deleteTimestamp" class="flex justify-between items-center text-xs mx-4 mt-2">
+      <p class="flex w-1/4">
+        Delete Time
+      </p>
+      <p class="flex w-3/4">
+        {{ addressData.deleteTimestamp | timestamp('datetime') }}
+      </p>
+    </div>
+
     <div class="flex justify-between items-center text-xs mx-4 mt-2">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.lastSeenTime') }}

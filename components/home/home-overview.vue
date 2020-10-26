@@ -38,7 +38,7 @@
           :name="$t('home.overview.titles.averageRewardPerByte')"
           :tip-content="$t('home.overview.tips.averageRewardPerByte')"
         >
-          {{ overview.averageRewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB
+          {{ overview.averageRewardPerByte * 2 ** 40 * epochsInDay | filecoin(4) }}/TiB
         </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.output24h')"
@@ -47,7 +47,7 @@
           {{ overview.dailyCoinsMined | filecoin(0) }}
         </OverviewCell>
         <OverviewCell :name="$t('home.overview.titles.sectorInitialPledge')">
-          {{ overview.estimatedInitialPledgeCollateral * 32 * 2 ** 30 | filecoin(2) }}/32GiB
+          {{ overview.estimatedInitialPledgeCollateral * 32 * 2 ** 30 | filecoin(4) }}/32GiB
         </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.totalPledgeCollateral')"

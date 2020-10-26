@@ -171,7 +171,7 @@
         <dt class="message-key pt-2">
           {{ $t('detail.message.headers.version') }}
           <a
-            :href="`${network.networks[network.currentNetwork].url}/api/v0/message/${message.cid}`"
+            :href="`${network.networks[network.currentNetwork].url}/api/v1/message/${message.cid}`"
             target="_blank"
             class="text-main"
           >

@@ -6,7 +6,9 @@
     <div class="w-full bg-white rounded-md mt-4 mb-4">
       <div class="flex items-center justify-between border-b border-background">
         <p class="flex ml-4 h-12 items-center text-sm">
-          {{ $t('blockchain.richList.info.total') + ' ' + total + ' ' + $t('blockchain.richList.info.accounts') }}
+          {{ $t('blockchain.richList.info.total') }}
+          {{ richList.totalCount }}
+          {{ $t('blockchain.richList.info.accounts') }}
         </p>
         <el-select v-model="type" size="mini" class="mr-4" @change="didSelectChanged">
           <el-option v-for="item in options" :key="item.type" :label="item.label" :value="item.type" />
@@ -42,9 +44,9 @@
           </tr>
         </thead>
         <tbody class="text-center text-sm">
-          <tr v-for="(rich, index) in richList.list" :key="index" class="border-b border-background h-10">
+          <tr v-for="(rich, index) in richList.richList" :key="index" class="border-b border-background h-10">
             <td>
-              <RankIndex :index="index+1 + page * pageSize" />
+              <RankIndex :index="index + 1 + page * pageSize" />
             </td>
             <td>
               <AddressLink :id="rich.address" :format="8" />
@@ -65,7 +67,7 @@
         <el-pagination
           layout="prev, pager, next, jumper"
           :page-count="totalPageCount"
-          :current-page="page+1"
+          :current-page="page + 1"
           class="mx-auto"
           @current-change="didCurrentPageChanged"
         />
@@ -81,8 +83,11 @@ export default {
       page: 0,
       pageSize: 20,
       loading: false,
-      richList: {},
-      total: 0,
+      richList: {
+        totalCount: 0,
+        totalSupply: '0',
+        richList: []
+      },
       type: 0,
       options: [{
         type: 0,
@@ -100,42 +105,27 @@ export default {
   },
   computed: {
     totalPageCount() {
-      return Math.ceil(this.total / this.pageSize)
+      return Math.ceil(this.richList.totalCount / this.pageSize)
     }
   },
   mounted() {
     this.getRichList()
   },
   methods: {
-    getRichList() {
+    async getRichList() {
       this.loading = true
-      this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page } })
-        .then(res => {
-          this.richList = res.data
-          this.total = this.richList.totalCount
-          this.loading = false
-        })
+      this.richList = await this.$axios.$get('/rich-list', { params: { pageSize: this.pageSize, page: this.page } })
+      this.loading = false
     },
-    getMinersRichList() {
+    async getMinersRichList() {
       this.loading = true
-      this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'storageminer' } })
-        .then(res => {
-          this.richList = res.data
-          this.total = this.richList.totalCount
-          this.loading = false
-        })
+      this.richList = await this.$axios.$get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'storageminer' } })
+      this.loading = false
     },
-    getNormalAccountsRichList() {
+    async getNormalAccountsRichList() {
       this.loading = true
-      this.$axios
-        .get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'account' } })
-        .then(res => {
-          this.richList = res.data
-          this.total = this.richList.totalCount
-          this.loading = false
-        })
+      this.richList = await this.$axios.$get('/rich-list', { params: { pageSize: this.pageSize, page: this.page, actor: 'account' } })
+      this.loading = false
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
@@ -155,9 +145,7 @@ export default {
     },
     didSelectChanged(currentType) {
       this.type = currentType
-      this.page = 0
       this.totalPageCount = 1
-      this.total = 0
       switch (this.type) {
         case 0:
           this.getRichList()

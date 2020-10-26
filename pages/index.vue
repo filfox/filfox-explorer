@@ -123,7 +123,7 @@ export default {
       topMinersLoading: false,
       recentTipsets: [],
       recentTipsetsLoading: false,
-      richList: { totalCount: 0, list: [], totalSupply: '0' },
+      richList: { totalCount: 0, richList: [], totalSupply: '0' },
       richListLoading: false,
       sharing: false,
       sharingImageURL: '',

@@ -20,7 +20,7 @@
       </thead>
       <tbody class="text-center text-sm">
         <tr
-          v-for="(rich, index) in richList.list"
+          v-for="(rich, index) in richList.richList"
           :key="index"
           class="border-b border-background h-10"
         >
