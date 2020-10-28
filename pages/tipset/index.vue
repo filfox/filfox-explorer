@@ -57,9 +57,6 @@
                 {{ $t('blockchain.block.tableHeaders.time') }}
               </th>
               <th class="table-header">
-                {{ $t('blockchain.block.tableHeaders.size') }}
-              </th>
-              <th class="table-header">
                 {{ $t('blockchain.block.tableHeaders.hash') }}
               </th>
               <th class="table-header">
@@ -93,9 +90,6 @@
                 </td>
                 <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
                   <FromNow :timestamp="tipset.timestamp" format="seconds" />
-                </td>
-                <td v-if="blockIndex === 0" :rowspan="tipset.blocks.length" class="border-b border-background">
-                  {{ tipset.blockSize }} Bytes
                 </td>
                 <td :class="{'pt-2': blockIndex == 0, 'pb-2': blockIndex == tipset.blocks.length - 1}">
                   <BlockLink :id="block.cid" :format="8" />
