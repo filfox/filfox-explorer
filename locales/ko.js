@@ -86,7 +86,7 @@ export default {
       tips: {
         qualityAdjPower: '현재 유효한 채굴파워의 총합',
         activeMiners: '현재 채굴파워가 0보다 큰 채굴자의 수',
-        price: 'FIL[IOU] 최신가격 (데이터소스: Coingecko)',
+        price: 'FIL 최신가격 (데이터소스: Coingecko)',
         blockReward: '현재 블록 높이에서의 보상, 모든 같은 높이의 블록은 같은 보상을 받을 예정',
         averageRewardPerByte: '최근 24시간 블록 보상을 유효 채굴파워로 나눈 값',
         output24h: '최근 24시간 블록 채굴해서 얻은 FIL 수량',

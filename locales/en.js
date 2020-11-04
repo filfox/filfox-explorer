@@ -87,7 +87,7 @@ export default {
       tips: {
         qualityAdjPower: 'Total adjusted storage power (storage space) of the network.',
         activeMiners: 'Amount of miners that has a positive storage power.',
-        price: 'Current price of FIL[IOU]. Data source: coingecko.com',
+        price: 'Current price of FIL. Data source: coingecko.com',
         blockReward: 'Block reward of current tipset height. Every tipset could have multiple blocks, and every block receives the same reward.',
         averageRewardPerByte: 'Average value in last 24h of the ratio of total block rewards at every tipset and corresponding adjusted storage power.',
         output24h: 'New FILs minted in last 24h.',
@@ -147,7 +147,7 @@ export default {
         location: 'Location'
       },
       tipsByBlock: {
-        luckyValue: 'Ratio of actual blocks produced and theoretical value.',
+        luckyValue: 'Ratio of actual blocks produced and theoretical value. If the miner\'s Adj. Power is less than 1PiB, the value has a large randomness and is for reference only.',
         rewardsRatio: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.',
         winCount: 'In Filecoin mining model, there may be multiple blocks under a tipset, and each block may receive multiple win counts. Cumulative win counts = the sum of win counts for each block.',
         blocksMined: 'Blocks mined =  the sum of blocks mined'

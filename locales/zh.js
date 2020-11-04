@@ -75,7 +75,7 @@ export default {
       tips: {
         qualityAdjPower: '当前全网有效算力（有效存储空间）的总和',
         activeMiners: '当前有效算力值大于0的矿工数',
-        price: 'FIL[IOU]最新价格，数据来源Coingecko',
+        price: 'FIL最新价格，数据来源Coingecko',
         blockReward: '当前高度下的区块奖励，每个高度有多个区块，每个区块均可获得该奖励',
         averageRewardPerByte: '近24h每个高度出块奖励与有效算力比值的均值',
         output24h: '近24h累计挖矿产出的FIL数量',
@@ -135,7 +135,7 @@ export default {
         location: '地区'
       },
       tipsByBlock: {
-        luckyValue: '实际爆块数量和理论爆块数量的比值',
+        luckyValue: '实际爆块数量和理论爆块数量的比值。若矿工有效算力低于1PiB，则该值存在较大随机性，仅供参考。',
         rewardsRatio: '在选定周期内，矿工获得出块奖励与累计产出区块奖励的比值',
         winCount: 'Filecoin挖矿模型中，一个高度（tipset）下可能有多个区块（block），每个区块可能获得多份奖励（win count）。累计出块份数=每次出块获得奖励份数的总和',
         blocksMined: '出块数 = 挖矿出块数量（block）的总和'
