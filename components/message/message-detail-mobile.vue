@@ -248,14 +248,6 @@
           {{ message.minerPenalty | filecoin }}
         </p>
       </div>
-      <div v-if="message.receipt && message.receipt.exitCode === 0" class="message-item">
-        <p class="message-key">
-          {{ $t('detail.message.headers.return') }}
-        </p>
-        <p class="message-value break-all">
-          {{ message.receipt.return || $t('detail.message.null') }}
-        </p>
-      </div>
       <div v-if="message.error" class="message-item">
         <p class="message-key">
           {{ $t('detail.message.headers.error') }}
@@ -264,12 +256,26 @@
           {{ message.error }}
         </p>
       </div>
-      <div class="message-item">
+      <div class="message-item message-item-start">
         <p class="message-key">
           {{ $t('detail.message.headers.params') }}
         </p>
-        <p class="message-value break-all">
+        <p v-if="message.decodedParams" class="message-value flex-1 text-xs break-all">
+          <pre class="whitespace-pre-wrap text-left">{{ message.decodedParams }}</pre>
+        </p>
+        <p v-else class="message-value flex-1 break-all">
           {{ message.params || $t('detail.message.null') }}
+        </p>
+      </div>
+      <div v-if="message.receipt && message.receipt.exitCode === 0" class="message-item message-item-start">
+        <p class="message-key">
+          {{ $t('detail.message.headers.return') }}
+        </p>
+        <p v-if="message.decodedReturnValue" class="message-value flex-1 text-xs break-all">
+          <pre class="whitespace-pre-wrap text-left">{{ message.decodedReturnValue }}</pre>
+        </p>
+        <p v-else class="message-value flex-1 break-all">
+          {{ message.receipt.return || $t('detail.message.null') }}
         </p>
       </div>
     </div>
@@ -287,6 +293,9 @@ export default {
 <style lang="postcss" scoped>
   .message-item {
     @apply flex justify-between items-center text-xs mx-4 mt-2;
+    &.message-item-start {
+      @apply items-start;
+    }
   }
   .message-key {
     @apply w-3/8 flex items-center justify-start;

@@ -298,14 +298,6 @@
           {{ message.penalty | filecoin }}
         </dd>
       </dl>
-      <dl v-if="message.receipt && message.receipt.exitCode === 0" class="message-item">
-        <dt class="message-key">
-          {{ $t('detail.message.headers.return') }}
-        </dt>
-        <dd class="message-value">
-          {{ message.receipt.return || $t('detail.message.null') }}
-        </dd>
-      </dl>
       <dl v-if="message.error" class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.error') }}
@@ -318,8 +310,22 @@
         <dt class="message-key">
           {{ $t('detail.message.headers.params') }}
         </dt>
-        <dd class="message-value flex-1 break-all">
+        <dd v-if="message.decodedParams" class="message-value flex-1 text-xs break-all">
+          <pre class="whitespace-pre-wrap">{{ JSON.stringify(message.decodedParams, null, 2) }}</pre>
+        </dd>
+        <dd v-else class="message-value flex-1 break-all">
           {{ message.params || $t('detail.message.null') }}
+        </dd>
+      </dl>
+      <dl v-if="message.receipt && message.receipt.exitCode === 0" class="flex items-start">
+        <dt class="message-key">
+          {{ $t('detail.message.headers.return') }}
+        </dt>
+        <dd v-if="message.decodedReturnValue" class="message-value flex-1 text-xs break-all">
+          <pre class="whitespace-pre-wrap">{{ JSON.stringify(message.decodedReturnValue, null, 2) }}</pre>
+        </dd>
+        <dd v-else class="message-value flex-1 break-all">
+          {{ message.receipt.return || $t('detail.message.null') }}
         </dd>
       </dl>
     </div>
