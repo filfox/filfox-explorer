@@ -549,6 +549,7 @@ export default {
   },
   tag: {
     apply: '申领账户',
+    edit: '修改签名',
     sign: '签名验证',
     description: '目前仅对 有效算力 ≥ {power} 的矿工开放自主认证',
     owner: 'Owner地址',

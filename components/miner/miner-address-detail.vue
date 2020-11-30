@@ -16,16 +16,18 @@
           <div class="font-medium">
             {{ $t('detail.address.normal.title') }} {{ addressData.address }}
           </div>
-          <AddressTag v-if="addressData.tag" :tag="addressData.tag" type="pc" />
-          <div v-else class="text-main text-xs ml-2 mt-1 cursor-pointer" @click="showDialog">
+          <template v-if="addressData.tag">
+            <AddressTag :tag="addressData.tag" type="pc" />
+            <div class="apply-tag" @click="showDialog">
+              {{ addressData.tag.signed ? $t('tag.edit') : $t('tag.sign') }}>
+            </div>
+          </template>
+          <div v-else class="apply-tag" @click="showDialog">
             {{ $t('tag.apply') }}>
-          </div>
-          <div v-if="addressData.tag && !addressData.tag.signed" class="text-main text-xs ml-2 cursor-pointer" @click="showDialog">
-            {{ $t('tag.sign') }}>
           </div>
         </div>
         <button
-          v-if="$i18n.locale == 'zh'"
+          v-if="$i18n.locale == 'zh' && false"
           class="flex items-center border border-socialTagBg rounded-full px-3 py-1 text-xs cursor-pointer hover:border-button mt-6"
           @click="didSharedBtnClicked"
         >
@@ -375,3 +377,9 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss" scoped>
+.apply-tag {
+  @apply text-main text-xs ml-2 cursor-pointer;
+}
+</style>

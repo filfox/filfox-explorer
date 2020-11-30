@@ -561,6 +561,7 @@ export default {
   },
   tag: {
     apply: 'Claim account',
+    edit: 'Edit Signature',
     sign: 'Signature verification',
     description: 'Only open claim for accounts with storage power ≥ {power}',
     owner: 'Owner address',
