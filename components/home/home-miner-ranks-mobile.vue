@@ -3,7 +3,11 @@
     <div>
       <div class="flex justify-between items-center">
         <HomeTitle type="minerRanks" />
-        <div v-if="$i18n.locale == 'zh'" class="flex items-center border border-socialTagBg rounded-full px-2 mr-4 text-xs cursor-pointer hover:border-button" @click="didSharedBtnClicked">
+        <div
+          v-if="$i18n.locale == 'zh' && false"
+          class="flex items-center border border-socialTagBg rounded-full px-2 mr-4 text-xs cursor-pointer hover:border-button"
+          @click="didSharedBtnClicked"
+        >
           <img src="~/assets/img/social/share.svg" class="h-2 mr-1">
           <span>分享</span>
         </div>
