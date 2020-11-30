@@ -25,7 +25,7 @@
         <div class="flex justify-between items-center">
           <HomeTitle type="minerRanks" />
           <button
-            v-if="$i18n.locale == 'zh'"
+            v-if="$i18n.locale == 'zh' && false"
             class="flex items-center border border-socialTagBg rounded-full px-2 mr-3 text-xs cursor-pointer hover:border-button"
             @click="didSharedBtnClicked"
           >
@@ -50,7 +50,7 @@
           <div class="flex justify-between items-center">
             <HomeTitle type="minerRanks" />
             <button
-              v-if="$i18n.locale == 'zh'"
+              v-if="$i18n.locale == 'zh' && false"
               class="flex items-center border border-socialTagBg rounded-full px-3 py-1 mr-4 text-xs cursor-pointer hover:border-button"
               @click="didSharedBtnClicked"
             >

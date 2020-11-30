@@ -2,7 +2,7 @@ import Vue from 'vue'
 import io from 'socket.io-client'
 
 export default function({ app }) {
-  const ws = io(process.env.WEBSOCKET_URL ?? 'wss://beta.filfox.info', { transports: ['websocket'] })
+  const ws = io(process.env.WEBSOCKET_URL ?? 'wss://filfox.info', { transports: ['websocket'] })
 
   ws.on('tipset', tipset => app.store.commit('blockchain/height', tipset.height))
 
