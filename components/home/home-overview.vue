@@ -59,6 +59,7 @@
           {{ overview.dailyMessages | locale }}
         </OverviewCell>
 
+
         <!-- Hidden cells -->
         <OverviewCell
           :name="$t('home.overview.titles.circulatingSupply')"
