@@ -76,7 +76,15 @@
           {{ $t('detail.address.miner.miningOverview.headers.miningEfficiency') }}:
         </p>
         <p class="text-xs text-gray-800">
-          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB
+          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(4) }}/TiB
+        </p>
+      </div>
+      <div class="flex items-center justify-between mx-3 mt-2">
+        <p class="text-xs text-gray-800">
+          {{ $t('detail.address.miner.miningOverview.headers.miningCost') }}:
+        </p>
+        <p class="text-xs text-gray-800">
+          {{ miningStats.windowedPoStFeePerByte * 2 ** 40 | filecoin(4) }}/TiB
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-2">
@@ -125,25 +133,30 @@
           :
           {{ miningStats.blocksMined }}
         </div>
-        <p class="text-sm w-5/12 text-left">
-          {{ $t('detail.address.miner.miningOverview.headers.blocksReward') }}:
-          {{ miningStats.totalRewards | filecoin(4) }}
-        </p>
-        <p class="text-sm w-1/6 text-right">
-          {{ $t('detail.address.miner.miningOverview.headers.blocksRewardRate') }}:
-          {{ miningStats.totalRewards / miningStats.networkTotalRewards | percentage }}
-        </p>
-      </div>
-      <div class="flex items-center w-full">
-        <div class="text-sm w-5/12 text-left justify-start items-center flex">
+        <div class="text-sm w-1/4 text-left flex flex-row items-center">
           {{ $t('detail.address.miner.miningOverview.headers.winCount') }}
           <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.winCount')" />
           :
           {{ miningStats.weightedBlocksMined }}
         </div>
-        <p class="text-sm w-5/12 text-left">
-          {{ $t('detail.address.miner.miningOverview.headers.miningEfficiency') }}:
-          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB
+        <p class="text-sm w-1/3 text-right justify-end">
+          {{ $t('detail.address.miner.miningOverview.headers.blocksRewardWithRate') }}:
+          {{ miningStats.totalRewards | filecoin(4) }}
+          ({{ miningStats.totalRewards / miningStats.networkTotalRewards | percentage }})
+        </p>
+      </div>
+      <div class="flex items-center w-full">
+        <p class="text-sm w-5/12 text-left flex justify-start items-center">
+          {{ $t('detail.address.miner.miningOverview.headers.miningEfficiency') }}
+          <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.miningEfficiency')" />
+          :
+          {{ miningStats.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(4) }}/TiB
+        </p>
+        <p class="text-sm w-5/12 text-left flex items-center">
+          {{ $t('detail.address.miner.miningOverview.headers.miningCost') }}
+          <Tip class="mx-1" :content="$t('home.minerRanks.tipsByBlock.miningCost')" />
+          :
+          {{ miningStats.windowedPoStFeePerByte * 2 ** 40 | filecoin(4) }}/TiB
         </p>
         <div class="text-sm w-1/6 text-right flex flex-row items-center justify-end">
           {{ $t('detail.address.miner.miningOverview.headers.luckyValue') }}

@@ -150,7 +150,9 @@ export default {
         luckyValue: 'Ratio of actual blocks produced and theoretical value. If the miner\'s Adj. Power is less than 1PiB, the value has a large randomness and is for reference only.',
         rewardsRatio: 'The ratio of block rewards earnd by a certain miner and total block rewards in the selected period.',
         winCount: 'In Filecoin mining model, there may be multiple blocks under a tipset, and each block may receive multiple win counts. Cumulative win counts = the sum of win counts for each block.',
-        blocksMined: 'Blocks mined =  the sum of blocks mined'
+        blocksMined: 'Blocks mined =  the sum of blocks mined',
+        miningEfficiency: "The ratio of miner's cumulative block reward to the adjusted storage power in the selected period.",
+        miningCost: "The ratio of miner's total SubmitWindowPoSt fees to the adjusted storage power in the selected period."
       },
       tableHeadersByPowerDelta: {
         rank: 'Rank',
@@ -453,8 +455,10 @@ export default {
             blockNums: 'Blocks Mined',
             blocksReward: 'Rewards',
             blocksRewardRate: 'Rewards Ratio',
+            blocksRewardWithRate: 'Rewards (Ratio)',
             winCount: 'Win Count',
             miningEfficiency: 'Mining Efficiency',
+            miningCost: 'Mining Cost',
             luckyValue: 'Lucky Value'
           }
         },
