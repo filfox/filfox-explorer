@@ -4,7 +4,8 @@ const imgs = [
   require('~/assets/img/partner/gateio.png'),
   require('~/assets/img/partner/jubi.png'),
   require('~/assets/img/partner/whaleex.png'),
-  require('~/assets/img/partner/6block.png')
+  require('~/assets/img/partner/6block.png'),
+  require('~/assets/img/partner/binance.png')
 ]
 
 export const partners = [
@@ -60,6 +61,15 @@ export const partners = [
       en: 'https://6block.com/?from=filfox',
       zh: 'https://6block.com/?from=filfox',
       ko: 'https://6block.com/?from=filfox'
+    }
+  },
+  {
+    name: 'Binance',
+    img: imgs[6],
+    url: {
+      en: 'https://www.binance.com/',
+      zh: 'https://www.binance.com/',
+      ko: 'https://www.binance.com/'
     }
   }
 ]
