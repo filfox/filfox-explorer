@@ -421,6 +421,9 @@ export default {
           headers: {
             balance: '账户余额',
             availableBalance: '可用余额',
+            sectorPledge: '扇区抵押',
+            lockedRewards: '挖矿锁仓',
+            feeDebt: '欠款',
             pledgeBalance: '质押余额',
             miningPenalty: '处罚金额',
             qualityAdjPower: '有效算力',

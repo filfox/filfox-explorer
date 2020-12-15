@@ -11,10 +11,20 @@
         {{ addressData.balance | filecoin(4) }}
       </p>
       <p class="text-sm mt-4">
-        {{ $t('detail.address.miner.minerOverview.headers.availableBalance') }}: {{ addressData.miner.availableBalance | filecoin(4) }}
+        {{ $t('detail.address.miner.minerOverview.headers.availableBalance') }}:
+        {{ addressData.miner.availableBalance[0] === '-' ? '0' : addressData.miner.availableBalance | filecoin(4) }}
       </p>
       <p class="text-sm mt-2">
-        {{ $t('detail.address.miner.minerOverview.headers.pledgeBalance') }}: {{ addressData.miner.pledgeBalance | filecoin(4) }}
+        {{ $t('detail.address.miner.minerOverview.headers.sectorPledge') }}:
+        {{ addressData.miner.sectorPledgeBalance | filecoin(4) }}
+      </p>
+      <p class="text-sm mt-2">
+        {{ $t('detail.address.miner.minerOverview.headers.lockedRewards') }}:
+        {{ addressData.miner.vestingFunds | filecoin(4) }}
+      </p>
+      <p v-if="addressData.miner.availableBalance[0] === '-'" class="text-sm mt-2 text-red-700">
+        {{ $t('detail.address.miner.minerOverview.headers.feeDebt') }}:
+        {{ addressData.miner.availableBalance.slice(1) | filecoin(4) }}
       </p>
     </div>
   </div>

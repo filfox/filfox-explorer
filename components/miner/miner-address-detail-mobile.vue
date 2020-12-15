@@ -44,11 +44,19 @@
             </p>
             <p class="text-xs mt-3 text-gray-800">
               {{ $t('detail.address.miner.minerOverview.headers.availableBalance') }}:
-              {{ addressData.miner.availableBalance | filecoin(2) }}
+              {{ addressData.miner.availableBalance[0] === '-' ? '0' : addressData.miner.availableBalance | filecoin(2) }}
             </p>
             <p class="text-xs mt-1 text-gray-800">
-              {{ $t('detail.address.miner.minerOverview.headers.pledgeBalance') }}:
-              {{ addressData.miner.pledgeBalance | filecoin(2) }}
+              {{ $t('detail.address.miner.minerOverview.headers.sectorPledge') }}:
+              {{ addressData.miner.sectorPledgeBalance | filecoin(2) }}
+            </p>
+            <p class="text-xs mt-1 text-gray-800">
+              {{ $t('detail.address.miner.minerOverview.headers.lockedRewards') }}:
+              {{ addressData.miner.vestingFunds | filecoin(2) }}
+            </p>
+            <p v-if="addressData.miner.availableBalance[0] === '-'" class="text-xs mt-1 text-red-700">
+              {{ $t('detail.address.miner.minerOverview.headers.feeDebt') }}:
+              {{ addressData.miner.availableBalance.slice(1) | filecoin(2) }}
             </p>
           </div>
         </div>

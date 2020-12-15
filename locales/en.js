@@ -433,6 +433,9 @@ export default {
           headers: {
             balance: 'Address Balance',
             availableBalance: 'Available Balance',
+            sectorPledge: 'Initial Pledge',
+            lockedRewards: 'Locked Rewards',
+            feeDebt: 'Fee Debt',
             pledgeBalance: 'Pledged Balance',
             miningPenalty: 'Penalty',
             qualityAdjPower: 'Adjusted Power',
