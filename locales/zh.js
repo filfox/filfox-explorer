@@ -58,7 +58,6 @@ export default {
         output24h: '近24h产出量',
         circulatingSupply: 'FIL流通量',
         totalPledgeCollateral: 'FIL质押量',
-        // default hide items
         accounts: '总账户数',
         averageTipsetInterval: '平均区块间隔',
         dailyMessages: '24h消息数',
@@ -70,7 +69,8 @@ export default {
         totalMaxSupply: 'FIL总供给量',
         circulatingSupplyRate: 'FIL流通率',
         sectorInitialPledge: '当前扇区质押量',
-        currentBaseFee: '当前基础费率'
+        currentBaseFee: '当前基础费率',
+        sealCost: '新增算力成本'
       },
       tips: {
         qualityAdjPower: '当前全网有效算力（有效存储空间）的总和',
@@ -86,7 +86,8 @@ export default {
         rawBytePower: '当前全网算力（存储空间）的总和',
         averageGasPrice: '近24h网络消耗gas的平均费率',
         totalMarketBalance: '在储存市场内发起订单时被锁定的FIL数量',
-        circulatingSupplyRate: '流通率=流通量/总供给量'
+        circulatingSupplyRate: '流通率=流通量/总供给量',
+        sealCost: '新增算力锁需要花费的成本，包括扇区质押和封装手续费'
       }
     },
     powerDistribution: {
@@ -449,7 +450,7 @@ export default {
             blocksRewardWithRate: '出块奖励 (占比)',
             winCount: '出块份数',
             miningEfficiency: '挖矿效率',
-            miningCost: '挖矿成本',
+            miningCost: '抽查成本',
             luckyValue: '幸运值'
           }
         },

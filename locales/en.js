@@ -82,7 +82,8 @@ export default {
         totalMaxSupply: 'Total Max Supply',
         circulatingSupplyRate: 'Circulating Rate',
         sectorInitialPledge: 'Current Sector Initial Pledge',
-        currentBaseFee: 'Current Base Fee'
+        currentBaseFee: 'Current Base Fee',
+        sealCost: 'Cost of Sealing Sectors'
       },
       tips: {
         qualityAdjPower: 'Total adjusted storage power (storage space) of the network.',
@@ -98,7 +99,8 @@ export default {
         rawBytePower: 'Total storage power (storage space) of the network.',
         averageGasPrice: 'Average gas fee for the last 24h.',
         totalMarketBalance: 'FILs locked in storage market by placing order.',
-        circulatingSupplyRate: 'Circulating rate = circulating supply / max supply'
+        circulatingSupplyRate: 'Circulating rate = circulating supply / max supply',
+        sealCost: 'The cost of sealing sectors, including sector initial pledge and message fees'
       }
     },
     powerDistribution: {
@@ -461,7 +463,7 @@ export default {
             blocksRewardWithRate: 'Rewards (Ratio)',
             winCount: 'Win Count',
             miningEfficiency: 'Mining Efficiency',
-            miningCost: 'Mining Cost',
+            miningCost: 'WindowedPoSt Cost',
             luckyValue: 'Lucky Value'
           }
         },

@@ -20,7 +20,7 @@
           :name="$t('home.overview.titles.qualityAdjPower')"
           :tip-content="$t('home.overview.tips.qualityAdjPower')"
         >
-          {{ overview.totalQualityAdjPower | size_metric(2) }}
+          {{ overview.totalQualityAdjPower | size_metric(3) }}
         </OverviewCell>
         <OverviewCell
           :name="$t('home.overview.titles.activeMiners')"
@@ -83,10 +83,10 @@
           {{ overview.averageTipsetBlocks.toFixed(2) }}
         </OverviewCell>
         <OverviewCell
-          :name="$t('home.overview.titles.rawBytePower')"
-          :tip-content="$t('home.overview.tips.rawBytePower')"
+          :name="$t('home.overview.titles.sealCost')"
+          :tip-content="$t('home.overview.tips.sealCost')"
         >
-          {{ overview.totalRawBytePower | size_metric(2) }}
+          {{ overview.sealCost * 32 | filecoin(2) }}/TiB
         </OverviewCell>
         <OverviewCell :name="$t('home.overview.titles.currentBaseFee')">
           {{ overview.baseFee | filecoin(2) }}
