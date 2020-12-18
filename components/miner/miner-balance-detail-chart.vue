@@ -102,13 +102,15 @@ export default {
         time: this.getTime(info.timestamp),
         [this.$t('detail.address.miner.accountChange.charts.balance')]: this.getFilecoin(info.balance, 2),
         [this.$t('detail.address.miner.accountChange.charts.availableBalance')]: this.getFilecoin(info.availableBalance, 2),
-        [this.$t('detail.address.miner.accountChange.charts.pledgeBalance')]: this.getFilecoin(info.pledgeBalance, 2)
+        [this.$t('detail.address.miner.accountChange.charts.sectorPledge')]: this.getFilecoin(info.sectorPledgeBalance, 2),
+        [this.$t('detail.address.miner.accountChange.charts.lockedRewards')]: this.getFilecoin(info.vestingFunds, 2)
       }))
       this.chartData.columns = [
         'time',
         this.$t('detail.address.miner.accountChange.charts.balance'),
         this.$t('detail.address.miner.accountChange.charts.availableBalance'),
-        this.$t('detail.address.miner.accountChange.charts.pledgeBalance')
+        this.$t('detail.address.miner.accountChange.charts.sectorPledge'),
+        this.$t('detail.address.miner.accountChange.charts.lockedRewards')
       ]
       this.loading = false
     },

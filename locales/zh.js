@@ -459,7 +459,8 @@ export default {
           charts: {
             balance: '总余额',
             availableBalance: '可用余额',
-            pledgeBalance: '质押金额'
+            sectorPledge: '扇区抵押',
+            lockedRewards: '挖矿锁仓'
           }
         },
         powerChange: {

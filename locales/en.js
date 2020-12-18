@@ -472,7 +472,8 @@ export default {
           charts: {
             balance: 'Total Balance',
             availableBalance: 'Available Balance',
-            pledgeBalance: 'Pledged Balance'
+            sectorPledge: 'Initial Pledge',
+            lockedRewards: 'Locked Rewards'
           }
         },
         powerChange: {

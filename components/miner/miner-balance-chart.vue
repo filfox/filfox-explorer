@@ -62,16 +62,7 @@ export default {
     return {
       chartData: {
         columns: [],
-        rows: [
-          {
-            type: this.$t('detail.address.miner.minerOverview.headers.availableBalance'),
-            value: 0
-          },
-          {
-            type: this.$t('detail.address.miner.minerOverview.headers.pledgeBalance'),
-            value: 0
-          }
-        ]
+        rows: []
       },
       dataEmpty: false
     }
@@ -88,10 +79,12 @@ export default {
   methods: {
     updateChartData() {
       const ab = this.convertFilecoin(this.addressData.miner.availableBalance, 4)
-      const pb = this.convertFilecoin(this.addressData.miner.pledgeBalance, 4)
+      const sb = this.convertFilecoin(this.addressData.miner.sectorPledgeBalance, 4)
+      const lr = this.convertFilecoin(this.addressData.miner.vestingFunds, 4)
       this.chartData.rows = [
         { type: this.$t('detail.address.miner.minerOverview.headers.availableBalance'), value: ab },
-        { type: this.$t('detail.address.miner.minerOverview.headers.pledgeBalance'), value: pb }
+        { type: this.$t('detail.address.miner.minerOverview.headers.sectorPledge'), value: sb },
+        { type: this.$t('detail.address.miner.minerOverview.headers.lockedRewards'), value: lr }
       ]
       this.chartData.columns = ['type', 'value']
     },
