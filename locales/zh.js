@@ -436,6 +436,9 @@ export default {
             WinCount: '累计出块份数',
             blockNums: '出块数',
             blocksReward: '累计出块奖励'
+          },
+          tips: {
+            availableBalance: '可用余额 = 账户余额 - 扇区抵押 - 挖矿锁仓'
           }
         },
         miningOverview: {

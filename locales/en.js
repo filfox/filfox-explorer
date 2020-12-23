@@ -449,6 +449,9 @@ export default {
             blockNums: 'Blocks Mined',
             WinCount: 'Win Count',
             blocksReward: 'Total Reward'
+          },
+          tips: {
+            availableBalance: 'Available Balance = Address Balance - Initial Pledged - Rewards Locked'
           }
         },
         miningOverview: {

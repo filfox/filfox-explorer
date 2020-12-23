@@ -10,8 +10,9 @@
       <p class="font-medium text-2xl">
         {{ addressData.balance | filecoin(4) }}
       </p>
-      <p class="text-sm mt-4">
-        {{ $t('detail.address.miner.minerOverview.headers.availableBalance') }}:
+      <p class="flex items-center text-sm mt-4">
+        {{ $t('detail.address.miner.minerOverview.headers.availableBalance') }}
+        <Tip class="mx-1" :content="$t('detail.address.miner.minerOverview.tips.availableBalance')" />:
         {{ addressData.miner.availableBalance[0] === '-' ? '0' : addressData.miner.availableBalance | filecoin(4) }}
       </p>
       <p class="text-sm mt-2">
