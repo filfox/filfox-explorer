@@ -34,7 +34,7 @@ export default {
     },
     charts: {
       title: '统计',
-      subMenus: ['挖矿图表', 'Gas 统计', 'Lotus版本分布']
+      subMenus: ['存储服务图表', 'Gas 统计', 'Lotus版本分布']
     },
     resources: {
       title: '资源',
@@ -51,10 +51,10 @@ export default {
         height: '区块高度',
         timestamp: '最新区块时间',
         qualityAdjPower: '全网有效算力',
-        activeMiners: '活跃矿工数',
+        activeMiners: '活跃存储提供者',
         price: '最新价格',
         blockReward: '每区块奖励',
-        averageRewardPerByte: '24h平均挖矿收益',
+        averageRewardPerByte: '24h平均提供存储服务收益',
         output24h: '近24h产出量',
         circulatingSupply: 'FIL流通量',
         totalPledgeCollateral: 'FIL质押量',
@@ -78,9 +78,9 @@ export default {
         price: 'FIL最新价格，数据来源Coingecko',
         blockReward: '当前高度下的区块奖励，每个高度有多个区块，每个区块均可获得该奖励',
         averageRewardPerByte: '近24h每个高度出块奖励与有效算力比值的均值',
-        output24h: '近24h累计挖矿产出的FIL数量',
+        output24h: '近24h累计提供存储服务产出的FIL数量',
         circulatingSupply: '当前自由流通的FIL总和',
-        totalPledgeCollateral: '当前矿工进行挖矿所质押的FIL总和',
+        totalPledgeCollateral: '当前提供存储服务所质押的FIL总和',
         averageTipsetInterval: '近24h出块的平均时间间隔',
         averageTipsetBlocks: '近24h相同高度下的平均区块数量',
         rawBytePower: '当前全网算力（存储空间）的总和',
@@ -100,7 +100,7 @@ export default {
       title: '24h基础手续费率走势'
     },
     minerRanks: {
-      title: '挖矿排行榜',
+      title: '存储服务排行榜',
       rate: '占比',
       filters: {
         qualityAdjPower: '有效算力',
@@ -109,23 +109,23 @@ export default {
       },
       tableHeadersByPower: {
         rank: '排名',
-        miner: '矿工',
+        miner: '存储提供者',
         tag: '标签',
         validPower: '有效算力',
         rate: '占比',
         validPowerRate: '有效算力占比',
         reward: '24h出块奖励',
-        miningEfficiency: '24h挖矿效率',
+        miningEfficiency: '24h存储效率',
         powerIncrease: '24h算力增量',
         location: '地区'
       },
       tipsByPower: {
-        miningEfficiency: '近24h矿工平均每T算力所挖出的FIL数量',
-        powerIncrease: '近24h矿工有效算力的增量'
+        miningEfficiency: '近24h存储服务提供者平均每T算力所产出的FIL数量',
+        powerIncrease: '近24h存储服务提供者有效算力的增量'
       },
       tableHeadersByBlock: {
         rank: '排名',
-        miner: '矿工',
+        miner: '存储提供者',
         tag: '标签',
         blockNums: '出块份数',
         luckyValue: '幸运值',
@@ -136,27 +136,27 @@ export default {
         location: '地区'
       },
       tipsByBlock: {
-        luckyValue: '实际爆块数量和理论爆块数量的比值。若矿工有效算力低于1PiB，则该值存在较大随机性，仅供参考。',
-        rewardsRatio: '在选定周期内，矿工获得出块奖励与累计产出区块奖励的比值',
-        winCount: 'Filecoin挖矿模型中，一个高度（tipset）下可能有多个区块（block），每个区块可能获得多份奖励（win count）。累计出块份数=每次出块获得奖励份数的总和',
-        blocksMined: '出块数 = 挖矿出块数量（block）的总和',
-        miningEfficiency: '选定周期内，矿工累计出块奖励与有效算力的比值',
-        miningCost: '选定周期内，矿工累计抽查手续费与有效算力的比值'
+        luckyValue: '实际爆块数量和理论爆块数量的比值。若存储提供者有效算力低于1PiB，则该值存在较大随机性，仅供参考。',
+        rewardsRatio: '在选定周期内，存储提供者获得出块奖励与累计产出区块奖励的比值',
+        winCount: 'Filecoin提供存储服务模型中，一个高度（tipset）下可能有多个区块（block），每个区块可能获得多份奖励（win count）。累计出块份数=每次出块获得奖励份数的总和',
+        blocksMined: '出块数 = 提供存储服务出块数量（block）的总和',
+        miningEfficiency: '选定周期内，存储提供者累计出块奖励与有效算力的比值',
+        miningCost: '选定周期内，存储提供者累计抽查手续费与有效算力的比值'
       },
       tableHeadersByPowerDelta: {
         rank: '排名',
-        miner: '矿工',
+        miner: '存储提供者',
         tag: '标签',
         powerIncreaseSpeed: '算力增速',
-        equivalentMiners: '矿机当量',
+        equivalentMiners: '存储节点当量',
         powerDelta: '算力增量',
         validPower: '有效算力',
         location: '地区'
       },
       tipsByPowerDelta: {
-        equivalentMiners: '以官方Benchmark推荐配置（AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）视为1台基准矿机，矿机当量为该矿工换算成标准矿机的数量（矿工的算力增速与该基准矿机增速的比值）。',
+        equivalentMiners: '以官方Benchmark推荐配置（AMD Ryzen Threadripper 3970X、NVidia GTX 2080Ti、128GB 2133mhz）视为1台基准存储节点，存储节点当量为该存储提供者换算成标准存储节点的数量（存储提供者的算力增速与该基准存储节点增速的比值）。',
         powerIncreaseSpeed: '选定周期内，平均每天完成封装扇区的有效算力总和',
-        powerDelta: '在选定周期内，矿工的有效算力增量'
+        powerDelta: '在选定周期内，存储提供者的有效算力增量'
       },
       moreBtn: '查看更多'
     },
@@ -165,7 +165,7 @@ export default {
       tableHeaders: {
         height: '高度',
         blockId: '区块ID',
-        miner: '矿工',
+        miner: '存储提供者',
         tag: '标签',
         message: '消息',
         award: '奖励'
@@ -188,7 +188,7 @@ export default {
       title: '区块列表',
       tableHeaders: {
         height: '高度',
-        miner: '矿工',
+        miner: '存储提供者',
         time: '时间',
         size: '区块大小',
         hash: 'ID',
@@ -238,7 +238,7 @@ export default {
       type: {
         all: '全部类型',
         normal: '普通账户',
-        miner: '矿工账户'
+        miner: '存储提供者账户'
       }
     },
     dealList: {
@@ -278,7 +278,7 @@ export default {
         verified: '已验证',
         status: '状态',
         client: '客户',
-        provider: '托管矿工',
+        provider: '托管存储提供者',
         collateral: '质押金额',
         fee: '托管费用',
         to: '至'
@@ -302,7 +302,7 @@ export default {
         send: '发出',
         receive: '接收',
         transfer: '转账',
-        'miner-fee': '矿工手续费',
+        'miner-fee': '存储提供者手续费',
         'burn-fee': '销毁手续费',
         penalty: '惩罚',
         rebalance: '余额重置'
@@ -350,13 +350,13 @@ export default {
       },
       tips: {
         gasFeeCap: '用户选择支付的总手续费率',
-        gasPremium: '用户选择支付给矿工的手续费率',
+        gasPremium: '用户选择支付给存储提供者的手续费率',
         gasLimit: '该笔交易能消耗的最大Gas量',
         gasUsed: '完成这笔交易真实消耗的Gas量',
         baseFee: '根据区块链网络拥堵状况实时更新的基础手续费率',
         baseFeeBurn: '该笔交易的基础销毁手续费',
         overEstimationBurn: '因Gas限额超出Gas使用量的10%，需要额外销毁的手续费',
-        minerTip: '矿工获得的手续费。Miner Tip = Gas Premium * Gas 使用量',
+        minerTip: '存储提供者获得的手续费。Miner Tip = Gas Premium * Gas 使用量',
         minerPenalty: '当Gas Fee Cap低于基础手续费率时，其消耗手续费的差额将作为Miner Penalty来抵扣'
       },
       null: '(无)'
@@ -369,7 +369,7 @@ export default {
         size: '大小',
         totalMsgCount: '累计消息数（去重）',
         id: '区块ID',
-        miner: '矿工',
+        miner: '存储提供者',
         tag: '标签',
         bonus: '奖励',
         messageCount: '消息数'
@@ -386,7 +386,7 @@ export default {
         messages: '消息',
         reward: '奖励',
         winCount: '奖励份数',
-        miner: '矿工',
+        miner: '存储提供者',
         parents: '父区块',
         parentWeight: '父区块权重',
         penalty: '罚金'
@@ -403,8 +403,8 @@ export default {
           messages: '消息数',
           createTime: '创建时间',
           lastSeenTime: '最新交易',
-          ownedMiners: '名下矿工',
-          workers: '实际工作矿工'
+          ownedMiners: '名下存储提供者',
+          workers: '实际工作存储提供者'
         }
       },
       miner: {
@@ -415,15 +415,15 @@ export default {
           recoveries: '恢复中'
         },
         tips: {
-          lotus: '该矿工当前使用的lotus版本，绿色代表使用的是最新版本的Lotus代码，红色代表非最新版本，点击可查看官方最新版本代码发布情况'
+          lotus: '该存储提供者当前使用的lotus版本，绿色代表使用的是最新版本的Lotus代码，红色代表非最新版本，点击可查看官方最新版本代码发布情况'
         },
         minerOverview: {
-          title: '矿工概览',
+          title: '存储提供者概览',
           headers: {
             balance: '账户余额',
             availableBalance: '可用余额',
             sectorPledge: '扇区抵押',
-            lockedRewards: '挖矿锁仓',
+            lockedRewards: '提供存储服务锁仓',
             feeDebt: '欠款',
             pledgeBalance: '质押余额',
             miningPenalty: '处罚金额',
@@ -438,21 +438,21 @@ export default {
             blocksReward: '累计出块奖励'
           },
           tips: {
-            availableBalance: '可用余额 = 账户余额 - 扇区抵押 - 挖矿锁仓'
+            availableBalance: '可用余额 = 账户余额 - 扇区抵押 - 提供存储服务锁仓'
           }
         },
         miningOverview: {
-          title: '挖矿统计',
+          title: '提供存储服务统计',
           headers: {
             qualityAdjPowerDelta: '算力增量',
             qualityAdjPowerDeltaSpeed: '算力增速',
-            minerEquivalent: '矿机当量',
+            minerEquivalent: '存储节点当量',
             blockNums: '出块数量',
             blocksReward: '出块奖励',
             blocksRewardRate: '出块奖励占比',
             blocksRewardWithRate: '出块奖励 (占比)',
             winCount: '出块份数',
-            miningEfficiency: '挖矿效率',
+            miningEfficiency: '存储服务效率',
             miningCost: '抽查成本',
             luckyValue: '幸运值'
           }
@@ -463,7 +463,7 @@ export default {
             balance: '总余额',
             availableBalance: '可用余额',
             sectorPledge: '扇区抵押',
-            lockedRewards: '挖矿锁仓'
+            lockedRewards: '提供存储服务锁仓'
           }
         },
         powerChange: {
@@ -502,7 +502,7 @@ export default {
       title: '节点详情',
       headers: {
         id: 'ID',
-        miners: '矿工',
+        miners: '存储提供者',
         IP: 'IP列表'
       }
     }
@@ -515,19 +515,19 @@ export default {
     paymentchannel: '支付通道',
     reward: '奖励',
     storagemarket: '存储市场',
-    storageminer: '矿工账户',
+    storageminer: '存储提供者账户',
     storagepower: '存储算力',
     system: '系统',
     verifiedregistry: '注册确认'
   },
   chart: {
     miner: {
-      title: '挖矿图表',
+      title: '存储服务图表',
       headers: {
-        qualityAdjPowerPie: '矿工有效算力分布',
-        qualityAdjPowerLine: '矿工有效算力走势',
-        qualityAdjPowerDeltaLine: '矿工算力增量走势',
-        rewardLine: '挖矿收益变化',
+        qualityAdjPowerPie: '存储提供者有效算力分布',
+        qualityAdjPowerLine: '存储提供者有效算力走势',
+        qualityAdjPowerDeltaLine: '存储提供者算力增量走势',
+        rewardLine: '提供存储服务收益变化',
         sectorInitialPledgeVariations: '扇区质押量变化'
       }
     },
@@ -563,7 +563,7 @@ export default {
     apply: '申领账户',
     edit: '修改签名',
     sign: '签名验证',
-    description: '目前仅对 有效算力 ≥ {power} 的矿工开放自主认证',
+    description: '目前仅对 有效算力 ≥ {power} 的存储提供者开放自主认证',
     owner: 'Owner地址',
     en_sname: '账户英文简称',
     zh_sname: '账户中文简称',
@@ -597,8 +597,8 @@ export default {
       dealList: '订单列表',
       deal: '订单详情',
       messages: '消息列表',
-      ranks: '挖矿排行榜',
-      minerCharts: '挖矿图表',
+      ranks: '存储服务排行榜',
+      minerCharts: '提供存储服务图表',
       tools: '常用工具',
       wiki: '知识库'
     },
@@ -615,24 +615,24 @@ export default {
       powerDelta: '30天算力增速',
       blockReward: '累计出块奖励',
       blocksMined: '累计出块数',
-      minerEquivalent: '矿机当量',
+      minerEquivalent: '存储节点当量',
       rate: '占比'
     },
     miner: {
-      miners: '名下矿工',
+      miners: '名下存储提供者',
       qualityAdjPower: '有效算力',
       powerDelta: '30天算力增速',
       blockReward: '累计出块奖励',
       blocksMined: '累计出块数',
-      minerEquivalent: '矿机当量'
+      minerEquivalent: '存储节点当量'
     },
     sales: {
-      title: '矿机销售信息',
+      title: '存储节点销售信息',
       description: '根据公开信息整理，请以官方公布为准',
       issue: '问题提交',
       price: '售价',
       transparent: '透明指数',
-      transparentDesp: '根据矿机厂商官网销售方案中公开指标的数量占比计算得出，透明指数=公开指标数量/指标总数量 * 5 ，满分为5分',
+      transparentDesp: '根据存储节点厂商官网销售方案中公开指标的数量占比计算得出，透明指数=公开指标数量/指标总数量 * 5 ，满分为5分',
       detail: '了解详情',
       services: '配套服务',
       hardware: '硬件参数'
@@ -648,26 +648,26 @@ export default {
       headers: {
         unlockRewards: '已解锁奖励',
         rawBytePower: '原值算力',
-        activeMiner: '活跃矿工',
+        activeMiner: '活跃存储提供者',
         qualifiedMiners: '已达标实体',
         entity: '注册实体数'
       }
     },
     ranks: {
-      title: '矿工排行榜',
+      title: '存储提供者排行榜',
       headers: {
         rank: '排名',
         entity: '实体',
         area: '地区',
-        minerCount: '矿工数',
+        minerCount: '存储提供者数量',
         estimatedGlobalReward: '预估全球奖励',
         estimatedRegionRewards: '预估大洲奖励',
         estimatedBlockRewards: '预估出块奖励',
         dailyPowerDelta: '24h算力增速',
-        equivalentMiners: '矿机当量',
+        equivalentMiners: '存储节点当量',
         totalBlockNums: '总出块数',
         totalBlockReward: '总出块奖励',
-        miner: '名下矿工',
+        miner: '名下存储提供者',
         rawBytePower: '原值算力/占比',
         blockNums: '累计出块数/占比',
         dealSuccessRate: '储存成功率',
@@ -676,17 +676,17 @@ export default {
         done: '已完成',
         dealRetrievalRate: '存储/检索成功率',
         totalReward: '预计奖励合计',
-        smallMinerReward: '预估小矿工奖励'
+        smallMinerReward: '预估小存储提供者奖励'
       },
       tips: {
-        activeMiners: '当前原值算力值大于0的矿工数',
+        activeMiners: '当前原值算力值大于0的存储提供者数',
         qualifiedMiners: '已完成扇区生命周期并订单成功率均大于80%实体数量',
         registeredEntities: '已在官方完成注册验证的实体数量',
-        estimatedGlobalReward: '全球排名前100名的矿工将根据比赛期间矿工原值算力比例瓜分总计高达150万FIL的奖励',
-        estimatedRegionRewards: '各大洲排名前50名的矿工将根据比赛期间矿工原值算力比例瓜分各洲总计高达50万FIL的奖励',
-        estimatedBlockRewards: '获得出块奖励数在前20名的矿工，将根据所获区块奖励数按比例瓜分额外10万FIL的奖励',
-        smallMinerReward: '在9月2日12:00UTC前完成登记并封装1个扇区的矿工，若竞赛结束前完成至少1TiB扇区封装并条件合格的矿工，最少将获得500FIL（算力<=10TiB）或1000FIL（算力>10TiB）的奖励',
-        totalReward: '预计奖励合计=全球奖励+大洲奖励+出块奖励+小矿工奖励'
+        estimatedGlobalReward: '全球排名前100名的存储提供者将根据比赛期间存储提供者原值算力比例瓜分总计高达150万FIL的奖励',
+        estimatedRegionRewards: '各大洲排名前50名的存储提供者将根据比赛期间存储提供者原值算力比例瓜分各洲总计高达50万FIL的奖励',
+        estimatedBlockRewards: '获得出块奖励数在前20名的存储提供者，将根据所获区块奖励数按比例瓜分额外10万FIL的奖励',
+        smallMinerReward: '在9月2日12:00UTC前完成登记并封装1个扇区的存储提供者，若竞赛结束前完成至少1TiB扇区封装并条件合格的存储提供者，最少将获得500FIL（算力<=10TiB）或1000FIL（算力>10TiB）的奖励',
+        totalReward: '预计奖励合计=全球奖励+大洲奖励+出块奖励+小存储提供者奖励'
       }
     },
     distribution: {
@@ -703,7 +703,7 @@ export default {
       headers: {
         unlockRewards: '解锁奖励',
         rawBytePower: '原值算力',
-        activeMiners: '活跃矿工'
+        activeMiners: '活跃存储提供者'
       }
     }
   },
