@@ -140,8 +140,7 @@ export default {
         rewardsRatio: '在选定周期内，存储提供者获得出块奖励与累计产出区块奖励的比值',
         winCount: 'Filecoin提供存储服务模型中，一个高度（tipset）下可能有多个区块（block），每个区块可能获得多份奖励（win count）。累计出块份数=每次出块获得奖励份数的总和',
         blocksMined: '出块数 = 提供存储服务出块数量（block）的总和',
-        miningEfficiency: '选定周期内，存储提供者累计出块奖励与有效算力的比值',
-        miningCost: '选定周期内，存储提供者累计抽查手续费与有效算力的比值'
+        miningEfficiency: '选定周期内，存储提供者累计出块奖励与有效算力的比值'
       },
       tableHeadersByPowerDelta: {
         rank: '排名',
@@ -453,7 +452,6 @@ export default {
             blocksRewardWithRate: '出块奖励 (占比)',
             winCount: '出块份数',
             miningEfficiency: '存储服务效率',
-            miningCost: '抽查成本',
             luckyValue: '幸运值'
           }
         },
