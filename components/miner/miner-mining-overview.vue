@@ -6,13 +6,13 @@
       </p>
       <DurationSelect v-model="duration" portable class="my-2 mr-3" />
     </div>
-    <div v-loading="loading" class="pt-2 pb-2 rounded-sm mx-3 mt-3 shadow justify-between">
+    <div v-if="miningStats" v-loading="loading" class="pt-2 pb-2 rounded-sm mx-3 mt-3 shadow justify-between">
       <div class="flex items-center justify-between mx-3">
         <p class="text-xs text-gray-800">
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDelta') }}:
         </p>
         <p class="text-xs text-gray-800">
-          {{ addressData.miner.miningStats.qualityAdjPowerDelta | size_metric(2) }}
+          {{ miningStats.qualityAdjPowerDelta | size_metric(2) }}
         </p>
       </div>
       <div class="flex items-center justify-between mx-3 mt-2">
@@ -99,11 +99,11 @@
       </p>
       <DurationSelect v-model="duration" class="flex items-center mr-8" />
     </div>
-    <div v-loading="loading" class="mx-8 border border-background rounded-sm p-4">
+    <div v-if="miningStats" v-loading="loading" class="mx-8 border border-background rounded-sm p-4">
       <div class="flex items-center w-full mb-2">
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDelta') }}:
-          {{ addressData.miner.miningStats.qualityAdjPowerDelta | size_metric(2) }}
+          {{ miningStats.qualityAdjPowerDelta | size_metric(2) }}
         </p>
         <p class="text-sm w-5/12 text-left">
           {{ $t('detail.address.miner.miningOverview.headers.qualityAdjPowerDeltaSpeed') }}:
@@ -166,7 +166,7 @@ export default {
   data() {
     return {
       duration: '24h',
-      miningStats: this.addressData.miner.miningStats,
+      miningStats: null,
       epochsInDay,
       loading: false
     }
@@ -186,11 +186,14 @@ export default {
   },
   watch: {
     duration() {
-      this.getMinigStats()
+      this.getMiningStats()
     }
   },
+  mounted() {
+    this.getMiningStats()
+  },
   methods: {
-    async getMinigStats() {
+    async getMiningStats() {
       this.loading = true
       const params = { duration: this.duration }
       this.miningStats = await this.$axios.$get(`/address/${this.addressData.address}/mining-stats`, { params })

@@ -379,7 +379,6 @@ export default {
       total: 0,
       method: 'All',
       duration: '24h',
-      miningStats: this.addressData.miner.miningStats,
       epochsInDay,
       sharing: false,
       sharingImageURL: '',
@@ -393,12 +392,6 @@ export default {
     }
   },
   methods: {
-    async getMinigStats() {
-      this.loading = true
-      const params = { duration: this.duration }
-      this.miningStats = await this.$axios.$get(`/miner/${this.addressData.address}/mining-stats`, { params })
-      this.loading = false
-    },
     async getBlockList() {
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page }
