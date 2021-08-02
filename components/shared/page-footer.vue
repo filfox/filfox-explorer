@@ -37,7 +37,7 @@
             <div class="p-1 bg-white rounded mr-4">
               <img src="~/assets/img/wechat/group.png" class="h-20 mx-auto">
               <p class="text-xs text-center">
-                扫码进挖矿群
+                扫码进交流群
               </p>
             </div>
             <div class="p-1 bg-white rounded">

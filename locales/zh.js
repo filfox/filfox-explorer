@@ -555,7 +555,7 @@ export default {
   },
   footer: {
     contact: '联系方式: contact@filfox.io',
-    intro: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，提供基于 Filecoin 的各类挖矿排行、区块链数据查询、可视化图表等一站式数据服务。'
+    intro: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，提供基于 Filecoin 的各类排行、区块链数据查询、可视化图表等一站式数据服务。'
   },
   tag: {
     apply: '申领账户',
