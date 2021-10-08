@@ -7,7 +7,7 @@
 
       <div class="flex items-center">
         <a target="_blank" href="https://t.me/Filfoxofficial">
-          <img src="~/assets/img/home/telegram.svg" alt="telegram" class="w-6 mr-6">
+          <img src="~/assets/img/home/telegram.svg" alt="telegram" class="w-6 lg:mr-6 mr-2">
         </a>
         <div v-if="network.multipleNetworks" class="hidden lg:flex items-center mr-6">
           <img v-if="network.networks.length > 1" src="~/assets/img/home/switchNet.svg" alt="net" class="w-5 mr-2">
