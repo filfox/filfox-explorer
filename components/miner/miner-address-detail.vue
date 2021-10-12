@@ -128,12 +128,6 @@
               </p>
               <AddressLink :id="addressData.miner.worker.address" :format="12" class="text-sm mt-2 text-main text-right" />
             </div>
-            <div class="flex justify-between">
-              <p class="text-sm mt-2">
-                {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
-              </p>
-              <IpAddress :location="addressData.miner.location" class="mt-2 text-right" />
-            </div>
           </div>
         </div>
       </div>

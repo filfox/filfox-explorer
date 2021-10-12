@@ -71,9 +71,6 @@
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
               </div>
             </th>
-            <th class="w-1/10">
-              {{ $t('home.minerRanks.tableHeadersByPower.location') }}
-            </th>
           </tr>
           <tr v-if="type === 1">
             <th class="w-1/12">
@@ -105,9 +102,6 @@
             </th>
             <th class="w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
-            </th>
-            <th class="w-1/10">
-              {{ $t('home.minerRanks.tableHeadersByBlock.location') }}
             </th>
           </tr>
           <tr v-if="type === 2">
@@ -141,9 +135,6 @@
             <th class="w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
             </th>
-            <th class="w-1/10">
-              {{ $t('home.minerRanks.tableHeadersByPowerDelta.location') }}
-            </th>
           </tr>
         </thead>
         <tbody v-if="type === 0" class="text-sm text-center">
@@ -172,7 +163,6 @@
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
-            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
         <tbody v-else-if="type === 1" class="text-sm text-center">
@@ -201,7 +191,6 @@
             <td>{{ miner.luckyValue | percentage }}</td>
             <td>{{ miner.totalRewards | filecoin(2) }} / {{ miner.totalRewards / topMinersByBlocks.totalRewards | percentage }} </td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
-            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
         <tbody v-else-if="type === 2" class="text-sm text-center">
@@ -232,7 +221,6 @@
             <td>{{ miner.equivalentMiners.toFixed(2) }}</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }}</td>
-            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>

@@ -69,9 +69,6 @@
             <th class="bg-white sticky top-0 z-30 w-1/10">
               {{ $t('home.minerRanks.tableHeadersByPowerDelta.validPower') }}
             </th>
-            <th class="bg-white sticky top-0 z-30 w-1/10">
-              {{ $t('home.minerRanks.tableHeadersByBlock.location') }}
-            </th>
           </tr>
         </thead>
         <tbody class="text-sm text-center">
@@ -104,7 +101,6 @@
             <td>{{ miner.luckyValue | percentage }}</td>
             <td>{{ miner.totalRewards | filecoin(2) }} / {{ miner.totalRewards / topMiners.totalRewards | percentage }} </td>
             <td>{{ miner.qualityAdjPower | size_metric(2) }} </td>
-            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>

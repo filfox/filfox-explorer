@@ -206,12 +206,6 @@
           </p>
           <AddressLink :id="addressData.miner.worker.address" :format="10" class="text-xs text-main" />
         </div>
-        <div class="flex items-center justify-between mx-3 mt-1 mb-3">
-          <p class="text-xs text-gray-800">
-            {{ $t('detail.address.miner.accountOverview.headers.ip') }}:
-          </p>
-          <IpAddress :location="addressData.miner.location" type="mobile" />
-        </div>
       </div>
 
       <div v-loading="loading" class="mt-2 pt-3 bg-white">

@@ -71,9 +71,6 @@
                 <Tip class="ml-1" :content="$t('home.minerRanks.tipsByPower.powerIncrease')" />
               </div>
             </th>
-            <th class="bg-white sticky top-0 z-30 w-1/10">
-              {{ $t('home.minerRanks.tableHeadersByPower.location') }}
-            </th>
           </tr>
         </thead>
         <tbody class="text-sm text-center">
@@ -106,7 +103,6 @@
             <td>{{ miner.totalRewards | filecoin(2) }}</td>
             <td>{{ miner.rewardPerByte * 2 ** 40 * epochsInDay | filecoin(2) }}/TiB</td>
             <td>{{ miner.qualityAdjPowerDelta | size_metric(2) }}</td>
-            <td>{{ miner.location ? miner.location.countryName : 'N/A' }}</td>
           </tr>
         </tbody>
       </table>
