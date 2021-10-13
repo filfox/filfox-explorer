@@ -88,9 +88,6 @@
               </el-row>
             </div>
             <div class="flex items-center">
-              <el-select v-model="currentContinent" placeholder="" size="mini" class="mr-4">
-                <el-option v-for="item in continents" :key="item.code" :label="item[$i18n.locale]" :value="item.code" />
-              </el-select>
               <DurationSelect v-if="category !== 'power'" v-model="duration" class="flex items-center mr-4" />
             </div>
           </div>
