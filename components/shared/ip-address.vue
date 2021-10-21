@@ -1,7 +1,7 @@
 <template>
   <div class="flex" :class="type === 'mobile' ? 'items-start' : 'items-center'">
-    <img v-if="location" :src="location.flag" class="border border-background rounded-sm w-5 mr-1">
-    <template v-if="location">
+    <img v-if="location && false" :src="location.flag" class="border border-background rounded-sm w-5 mr-1">
+    <template v-if="location && false">
       <p v-if="type === ''" class="text-sm">
         {{ fullLocation }} ({{ splittedIP }})
       </p>

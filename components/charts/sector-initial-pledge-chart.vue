@@ -92,7 +92,7 @@ export default {
       }
       this.chartData.rows = this.rawData.map(info => ({
         time: this.getTime(info.timestamp),
-        fil: this.getFilecoin(info.initialPledge * 32 * 2 ** 30, 2)
+        fil: this.getFilecoin(info.initialPledge * 32 * 2 ** 30, 4)
       }))
       this.chartData.columns = ['time', 'fil']
       this.loading = false

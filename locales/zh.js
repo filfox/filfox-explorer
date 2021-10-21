@@ -87,7 +87,7 @@ export default {
         averageGasPrice: '近24h网络消耗gas的平均费率',
         totalMarketBalance: '在储存市场内发起订单时被锁定的FIL数量',
         circulatingSupplyRate: '流通率=流通量/总供给量',
-        sealCost: '新增算力锁需要花费的成本，包括扇区质押和封装手续费'
+        sealCost: '新增算力所需要花费的成本，包括扇区质押和封装手续费'
       }
     },
     powerDistribution: {
