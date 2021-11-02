@@ -3,9 +3,9 @@ import moment from 'moment'
 import ElementLocale from 'element-ui/lib/locale'
 import ElementEn from 'element-ui/lib/locale/lang/en'
 import ElementZh from 'element-ui/lib/locale/lang/zh-CN'
-import { detectBrowserLanguage, localeCodes, vueI18n, routesNameSeparator, defaultLocaleRouteNameSuffix } from '~/.nuxt/nuxt-i18n/options'
+import { options } from '~/.nuxt/nuxt-i18n/options'
 import { createLocaleFromRouteGetter } from '~/.nuxt/nuxt-i18n/utils-common'
-
+const { detectBrowserLanguage, localeCodes, vueI18n, routesNameSeparator, defaultLocaleRouteNameSuffix } = options
 
 const getLocaleFromRoute = createLocaleFromRouteGetter(localeCodes, { routesNameSeparator, defaultLocaleRouteNameSuffix })
 const localeMapping = {

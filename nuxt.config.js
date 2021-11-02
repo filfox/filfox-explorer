@@ -4,7 +4,6 @@ import messages from './locales'
 
 export default {
   mode: 'universal',
-  components: true,
   /*
   ** Headers of the page
   */
@@ -50,6 +49,23 @@ export default {
     '@/plugins/filters',
     '@/plugins/websocket.client',
     '@/plugins/components'
+  ],
+  components: [
+    '~/components/address',
+    '~/components/block',
+    '~/components/charts',
+    '~/components/deal-list',
+    '~/components/home',
+    '~/components/markdown',
+    '~/components/merchant',
+    '~/components/message',
+    '~/components/miner',
+    '~/components/partner',
+    '~/components/rich-list',
+    '~/components/shared',
+    '~/components/social',
+    '~/components/tag',
+    '~/components/utils'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '@/plugins/i18n.js')
