@@ -170,7 +170,7 @@
       <AddressMessageList v-if="listType === 0" :address="addressData.address" />
       <div v-if="listType === 1" class="mx-8">
         <div class="flex items-center justify-between border-b border-background">
-          <p class="flex ml-8 h-12 items-center text-sm">
+          <p class="flex h-12 items-center text-sm">
             {{ $t('detail.transfer.total') }}
             {{ total }}
             {{ $t('detail.transfer.transaction') }}
@@ -179,7 +179,6 @@
             v-model="trans"
             :methods="transferList.types"
             :el-select-options="{size: 'mini'}"
-            class="mr-4"
           />
         </div>
         <table v-if="!loading" class="w-full table-fixed">
