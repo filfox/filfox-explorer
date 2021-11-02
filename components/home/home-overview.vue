@@ -109,7 +109,7 @@
           :tip-content="$t('home.overview.tips.price')"
         >
           $ {{ overview.price | locale(2) }}
-        </OverviewCell> -->
+        </OverviewCell>
       </div>
       <div class="flex mx-auto h-10 items-center lg:hidden">
         <el-button type="text" class="mx-auto" size="small" @click="overviewExpanded = !overviewExpanded">

@@ -228,6 +228,12 @@
             <p class="flex ml-3 h-8 items-center text-xs">
               {{ $t('detail.address.miner.blockList.total') + ' ' + total + ' ' + $t('detail.address.miner.blockList.tipsets') }}
             </p>
+            <TransferTypeSelect
+              v-model="trans"
+              :methods="transferList.types"
+              :el-select-options="{size: 'mini'}"
+              class="mr-3"
+            />
           </div>
 
           <div v-for="(block, index) in blockList.blocks" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white py-2">
@@ -285,6 +291,12 @@
             <p class="flex ml-3 h-8 items-center text-xs">
               {{ $t('detail.address.miner.blockList.total') + ' ' + total + ' ' + $t('detail.transfer.transaction') }}
             </p>
+            <TransferTypeSelect
+              v-model="trans"
+              :methods="transferList.types"
+              :el-select-options="{size: 'mini'}"
+              class="mr-3"
+            />
           </div>
 
           <div v-for="(transfer, index) in transferList.transfers" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white py-2">
@@ -328,7 +340,7 @@
                 {{ $t('detail.transfer.tableHeaders.income') }}:
               </p>
               <p class="text-xs text-gray-800">
-                {{ transfer.value | filecoin(2) }}
+                {{ transfer.value | filecoin(4) }}
               </p>
             </div>
             <div class="flex items-center justify-between mx-3 mt-1">
@@ -366,7 +378,12 @@ export default {
     return {
       listType: 0,
       blockList: {},
-      transferList: {},
+      trans: 'All',
+      transferList: {
+        totalCount: 0,
+        transfers: [],
+        types: []
+      },
       page: 0,
       pageSize: 3,
       loading: false,
@@ -385,6 +402,12 @@ export default {
       set(val) { }
     }
   },
+  watch: {
+    trans() {
+      this.page = 0
+      this.getTransferList()
+    }
+  },
   methods: {
     async getBlockList() {
       this.loading = true
@@ -396,6 +419,9 @@ export default {
     async getTransferList() {
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page }
+      if (this.trans !== 'All') {
+        params.type = this.trans
+      }
       this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
       this.loading = false
       this.total = this.transferList.totalCount

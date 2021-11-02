@@ -208,32 +208,40 @@
           </table>
         </div>
         <div v-if="listType === 2" class="mx-8">
-          <p class="flex h-12 items-center text-sm border-b border-background mb-4">
-            {{ $t('detail.transfer.total') }}
-            {{ total }}
-            {{ $t('detail.transfer.transaction') }}
-          </p>
+          <div class="flex items-center justify-between border-b border-background">
+            <p class="flex ml-8 h-12 items-center text-sm">
+              {{ $t('detail.transfer.total') }}
+              {{ total }}
+              {{ $t('detail.transfer.transaction') }}
+            </p>
+            <TransferTypeSelect
+              v-model="trans"
+              :methods="transferList.types"
+              :el-select-options="{size: 'mini'}"
+              class="mr-4"
+            />
+          </div>
           <table v-if="!loading" class="w-full table-auto">
             <thead class="text-gray-600 text-sm m-2">
               <tr class="h-8">
-                <th class="sticky top-0 bg-white z-10">
+                <th class="sticky top-0 bg-white z-10 w-1/8">
                   {{ $t('detail.transfer.tableHeaders.time') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="sticky top-0 bg-white z-10 w-1/4">
                   {{ $t('detail.transfer.tableHeaders.message') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="sticky top-0 bg-white z-10 w-5/32">
                   {{ $t('detail.transfer.tableHeaders.from') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="sticky top-0 bg-white z-10 w-1/16">
                 </th>
-                <th class="sticky top-0 bg-white z-10">
+                <th class="sticky top-0 bg-white z-10 5/32">
                   {{ $t('detail.transfer.tableHeaders.to') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10 w-1/16">
+                <th class="sticky top-0 bg-white z-10 w-1/8">
                   {{ $t('detail.transfer.tableHeaders.income') }}
                 </th>
-                <th class="sticky top-0 bg-white z-10 w-1/16">
+                <th class="sticky top-0 bg-white z-10 w-1/8">
                   {{ $t('detail.transfer.tableHeaders.type') }}
                 </th>
               </tr>
@@ -271,7 +279,7 @@
                   </div>
                 </td>
                 <td>
-                  {{ transfer.value | filecoin(2) }}
+                  {{ transfer.value | filecoin(4) }}
                 </td>
                 <td>
                   {{ $t('detail.transfer.types.' + transfer.type ) }}
@@ -303,7 +311,12 @@ export default {
   data() {
     return {
       blockList: {},
-      transferList: {},
+      trans: 'All',
+      transferList: {
+        totalCount: 0,
+        transfers: [],
+        types: []
+      },
       listType: 0,
       page: 0,
       pageSize: 20,
@@ -320,6 +333,12 @@ export default {
       return Math.ceil(this.total / this.pageSize)
     }
   },
+  watch: {
+    trans() {
+      this.page = 0
+      this.getTransferList()
+    }
+  },
   methods: {
     async getBlockList() {
       this.loading = true
@@ -331,6 +350,9 @@ export default {
     async getTransferList() {
       this.loading = true
       const params = { pageSize: this.pageSize, page: this.page }
+      if (this.trans !== 'All') {
+        params.type = this.trans
+      }
       this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
       this.loading = false
       this.total = this.transferList.totalCount
