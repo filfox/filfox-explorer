@@ -103,7 +103,8 @@
         >
           {{ overview.circulatingSupply / overview.totalMaxSupply | percentage }}
         </OverviewCell>
-        <!-- <OverviewCell
+        <OverviewCell
+          v-if="false"
           :name="$t('home.overview.titles.price')"
           :tip-content="$t('home.overview.tips.price')"
         >

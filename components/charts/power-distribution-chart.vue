@@ -28,8 +28,7 @@ export default {
   },
   data() {
     this.chartSettings = {
-      legendName: {},
-      offsetY: 220
+      legendName: {}
     }
     this.mobileSettings = {
       legendName: {},
@@ -64,7 +63,7 @@ export default {
   methods: {
     async getPieChartData() {
       this.loading = true
-      const data = await this.$axios.$get('/miner/top-miners/power/brief')
+      const data = await this.$axios.$get('/miner/top-miners/power/brief', { params: { count: 30 } })
       if (data == null) {
         this.dataEmpty = true
         this.loading = false

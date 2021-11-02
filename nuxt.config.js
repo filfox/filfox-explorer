@@ -102,11 +102,11 @@ export default {
         iso: 'en-US',
         name: 'English'
       },
-      {
-        code: 'zh',
-        iso: 'zh-CN',
-        name: '中文'
-      },
+      // {
+      //   code: 'zh',
+      //   iso: 'zh-CN',
+      //   name: '中文'
+      // },
       {
         code: 'ko',
         iso: 'ko_KR',

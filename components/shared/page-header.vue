@@ -68,9 +68,9 @@ export default {
   data() {
     return {
       mobileNavHidden: true,
-      languages: ['中文', 'English', '한국어'],
+      languages: [/* '中文', */'English', '한국어'],
       localeMap: {
-        zh: '中文',
+        // zh: '中文',
         en: 'English',
         ko: '한국어'
       },
@@ -91,11 +91,11 @@ export default {
     },
     didLanguageSwitched(command) {
       if (command === 0) {
-        if (this.$i18n.locale === 'zh') {
-          return
-        }
-        this.$i18n.locale = 'zh'
-      } else if (command === 1) {
+      //   if (this.$i18n.locale === 'zh') {
+      //     return
+      //   }
+      //   this.$i18n.locale = 'zh'
+      // } else if (command === 1) {
         if (this.$i18n.locale === 'en') {
           return
         }

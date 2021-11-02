@@ -6,7 +6,7 @@
       class="bg-white lg:rounded-md mt-2 lg:mt-4"
     >
       <p class="text-xs lg:text-sm px-4 border-b py-2 border-background font-medium">
-        {{ info.category[$i18n.locale] }}
+        {{ info.title }}
       </p>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 my-2 px-2 lg:px-0">
@@ -17,7 +17,7 @@
           :href="link.url"
           target="_blank"
         >
-          {{ link[$i18n.locale] }}
+          {{ link.title }}
         </a>
       </div>
     </div>
