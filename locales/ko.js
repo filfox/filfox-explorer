@@ -52,7 +52,8 @@ export default {
         '정보'
       ]
     },
-    searchPlaceHolder: '\b블록/계정/주소/소식 검색'
+    searchPlaceHolder: '\b블록/계정/주소/소식 검색',
+    language: '언어'
   },
   home: {
     overview: {

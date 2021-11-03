@@ -40,7 +40,8 @@ export default {
       title: '资源',
       subMenus: ['常用工具', '知识库']
     },
-    searchPlaceHolder: '搜索区块/账户/地址/消息...'
+    searchPlaceHolder: '搜索区块/账户/地址/消息...',
+    language: '语言'
   },
   home: {
     overview: {

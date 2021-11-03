@@ -53,7 +53,8 @@ export default {
         'Wiki'
       ]
     },
-    searchPlaceHolder: 'Search for Block/Account/Address/Message...'
+    searchPlaceHolder: 'Search for Block/Account/Address/Message...',
+    language: 'Language'
   },
   home: {
     overview: {

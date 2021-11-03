@@ -90,41 +90,15 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      searchText: '',
-      loading: false
+      searchText: ''
     }
   },
   methods: {
     pageNotAvailable() {
       this.$message(this.$t('shared.notAvailable'))
     },
-    async search() {
-      const id = this.searchText.trim()
-      if (!id) {
-        return
-      }
-      this.loading = true
-      const result = await this.$axios.$get('/search', { params: { id } })
-      switch (result?.type) {
-        case 'tipset':
-          this.$router.push(this.localePath(`/tipset/${result.height}`))
-          break
-        case 'block':
-          this.$router.push(this.localePath(`/block/${result.cid}`))
-          break
-        case 'message':
-          this.$router.push(this.localePath(`/message/${result.cid}`))
-          break
-        case 'address':
-          this.$router.push(this.localePath(`/address/${result.address}`))
-          break
-        case 'peer':
-          this.$router.push(this.localePath(`/peer/${result.id}`))
-          break
-        default:
-          this.$message.error(this.$t('shared.noSearchResult'))
-      }
-      this.loading = false
+    search() {
+      this.$emit('search', this.searchText.trim())
     }
   }
 }

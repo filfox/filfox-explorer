@@ -1,17 +1,5 @@
 <template>
   <div class="flex flex-col bg-white overflow-hidden pb-1 border-b border-background">
-    <div class="w-full flex">
-      <el-input
-        v-model="searchText"
-        size="mini"
-        suffix-icon="el-icon-search"
-        :clearable="true"
-        :placeholder="$t('nav.searchPlaceHolder')"
-        class="mx-3 mt-3"
-        @keyup.enter.native="search"
-      />
-    </div>
-
     <div class="ml-4 mr-1 mt-1">
       <el-collapse class="w-full">
         <el-collapse-item :title="$t('nav.blocks.title')">
@@ -64,8 +52,19 @@
           {{ $t('wallet.title') }}
         </a>
       </div>
+      <div class="block ranks text-sm py-2 cursor-pointer" @click="hideIfNeeded">
+        <a href="https://t.me/Filfoxofficial" target="_blank">
+          Telegram
+        </a>
+      </div>
+      <el-collapse class="w-full">
+        <el-collapse-item :title="$t('nav.language')">
+          <p v-for="(item, index) in languages" :key="item" class="link cursor-pointer" @click="switchLanguage(index)">
+            {{ item }}
+          </p>
+        </el-collapse-item>
+      </el-collapse>
     </div>
-    <div v-loading.fullscreen.lock="loading" class="flex flex-grow"></div>
   </div>
 </template>
 
@@ -75,12 +74,15 @@ export default {
     mobileNavHidden: {
       type: Boolean,
       default: true
+    },
+    languages: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      searchText: '',
-      loading: false
+      searchText: ''
     }
   },
   methods: {
@@ -90,39 +92,9 @@ export default {
     hideIfNeeded() {
       this.$emit('hideIfNeeded')
     },
-    async search() {
-      const id = this.searchText.trim()
-      if (!id) {
-        return
-      }
-      this.loading = true
-      const result = await this.$axios.$get('/search', { params: { id } })
-      switch (result?.type) {
-        case 'tipset':
-          this.searchString = ''
-          this.$router.push(this.localePath(`/tipset/${result.height}`))
-          break
-        case 'block':
-          this.searchString = ''
-          this.$router.push(this.localePath(`/block/${result.cid}`))
-          break
-        case 'message':
-          this.searchString = ''
-          this.$router.push(this.localePath(`/message/${result.cid}`))
-          break
-        case 'address':
-          this.searchString = ''
-          this.$router.push(this.localePath(`/address/${result.address}`))
-          break
-        case 'peer':
-          this.searchString = ''
-          this.$router.push(this.localePath(`/peer/${result.id}`))
-          break
-        default:
-          this.$message.error(this.$t('shared.noSearchResult'))
-      }
-      this.loading = false
-      this.hideIfNeeded()
+    switchLanguage(index) {
+      this.$emit('changeLanguage', index)
+      this.$emit('hideIfNeeded')
     }
   }
 }

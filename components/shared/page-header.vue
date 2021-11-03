@@ -1,12 +1,20 @@
 <template>
   <nav class="mx-auto bg-main h-28 w-full">
-    <div class="flex h-16 container mx-auto lg:items-center lg:pt-2 justify-between">
-      <nuxt-link :to="localePath('/')" class="flex items-center lg:-ml-4 px-4" @click.native="hideIfNeeded">
-        <img src="~/assets/img/home/logo.svg" alt="filfox" class="h-8 lg:h-8">
+    <div class="flex h-16 container mx-auto items-center lg:pt-2 justify-between">
+      <nuxt-link :to="localePath('/')" class="flex items-center lg:-ml-4 px-1 lg:px-4" @click.native="hideIfNeeded">
+        <img src="~/assets/img/home/logo.svg" alt="filfox" class="h-6 lg:h-8">
       </nuxt-link>
-
+      <el-input
+        v-model="searchText"
+        size="mini"
+        suffix-icon="el-icon-search"
+        :clearable="true"
+        :placeholder="$t('nav.searchPlaceHolder')"
+        class="lg:hidden mx-3 md:mx-8 flex-1"
+        @keyup.enter.native="search(searchText)"
+      />
       <div class="flex items-center">
-        <a target="_blank" href="https://t.me/Filfoxofficial">
+        <a target="_blank" href="https://t.me/Filfoxofficial" class="hidden lg:block">
           <img src="~/assets/img/home/telegram.svg" alt="telegram" class="w-6 lg:mr-6 mr-2">
         </a>
         <div v-if="network.multipleNetworks" class="hidden lg:flex items-center mr-6">
@@ -35,8 +43,8 @@
         </div>
 
         <div class="flex items-center">
-          <img src="~/assets/img/home/language.svg" alt="china" class="mr-2">
-          <el-dropdown class="mr-3 lg:mr-0 flex items-center" trigger="click" hide-on-click @command="didLanguageSwitched">
+          <img src="~/assets/img/home/language.svg" alt="china" class="mr-2 hidden lg:block">
+          <el-dropdown class="mr-3 lg:mr-0 flex items-center hidden lg:block" trigger="click" hide-on-click @command="didLanguageSwitched">
             <span class="el-dropdown-link text-background text-sm">
               {{ selectedLanguage }} <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
@@ -52,8 +60,9 @@
         </div>
       </div>
     </div>
-    <NavigationBar class="hidden lg:flex" />
-    <NavigationBarMobile class="lg:hidden" :class="{'hidden': mobileNavHidden}" @hideIfNeeded="hideIfNeeded" />
+    <NavigationBar class="hidden lg:flex" @search="search" />
+    <NavigationBarMobile class="lg:hidden" :languages="languages" :class="{'hidden': mobileNavHidden}" @changeLanguage="didLanguageSwitched" @hideIfNeeded="hideIfNeeded" />
+    <div v-loading.fullscreen.lock="loading" class="flex flex-grow"></div>
   </nav>
 </template>
 
@@ -74,7 +83,9 @@ export default {
         en: 'English',
         ko: '한국어'
       },
-      network
+      searchText: '',
+      network,
+      loading: false
     }
   },
   computed: {
@@ -111,6 +122,34 @@ export default {
       } else {
         this.$router.push(this.localePath(this.$route.path.slice(3)))
       }
+    },
+    async search(searchText) {
+      const id = searchText.trim()
+      if (!id) {
+        return
+      }
+      this.loading = true
+      const result = await this.$axios.$get('/search', { params: { id } })
+      switch (result?.type) {
+        case 'tipset':
+          this.$router.push(this.localePath(`/tipset/${result.height}`))
+          break
+        case 'block':
+          this.$router.push(this.localePath(`/block/${result.cid}`))
+          break
+        case 'message':
+          this.$router.push(this.localePath(`/message/${result.cid}`))
+          break
+        case 'address':
+          this.$router.push(this.localePath(`/address/${result.address}`))
+          break
+        case 'peer':
+          this.$router.push(this.localePath(`/peer/${result.id}`))
+          break
+        default:
+          this.$message.error(this.$t('shared.noSearchResult'))
+      }
+      this.loading = false
     }
   }
 }
