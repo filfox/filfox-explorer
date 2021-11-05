@@ -40,12 +40,12 @@
                 扫码进交流群
               </p>
             </div>
-            <div class="p-1 bg-white rounded">
+            <!-- <div class="p-1 bg-white rounded">
               <img src="~/assets/img/wechat/staff.png" class="h-20 mx-auto">
               <p class="text-xs text-center">
                 Filfox小助手
               </p>
-            </div>
+            </div> -->
           </div>
         </div>
       </template>
