@@ -22,6 +22,8 @@ import TabPane from 'element-ui/lib/tab-pane'
 import Tabs from 'element-ui/lib/tabs'
 import Steps from 'element-ui/lib/steps'
 import Step from 'element-ui/lib/step'
+import Carousel from 'element-ui/lib/carousel'
+import CarouselItem from 'element-ui/lib/carousel-item'
 
 Vue.use(Button)
 Vue.use(Collapse)
@@ -44,6 +46,8 @@ Vue.use(TabPane)
 Vue.use(Tabs)
 Vue.use(Steps)
 Vue.use(Step)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
 Vue.use(Loading.directive)
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$message = Message

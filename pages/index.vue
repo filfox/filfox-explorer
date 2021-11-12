@@ -1,6 +1,7 @@
 <template>
   <div class="container mx-auto relative">
     <div v-if="!sharing">
+      <ActivityBanner />
       <HomeOverview :overview="overview" />
 
       <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
