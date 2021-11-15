@@ -1,7 +1,7 @@
 <template>
   <el-carousel indicator-position="none" class="mt-2 lg:mt-4" :height="bannerHeight+'px'">
     <el-carousel-item v-for="item in banners" :key="item">
-      <a :href="'https://foxwallet.com/'+locale" target="_black">
+      <a :href="url" target="_black">
         <img ref="bannerHeight" :src="item" alt="home-page-banner">
       </a>
     </el-carousel-item>
@@ -14,7 +14,8 @@ export default {
     return {
       bannerHeight: 0,
       locale: this.$i18n.locale === 'zh' ? 'zh' : 'en',
-      banners: this.$i18n.locale === 'zh' ? zhBanners : enBanners
+      banners: this.$i18n.locale === 'zh' ? zhBanners : enBanners,
+      url: this.$i18n.locale === 'zh' ? 'http://ab8p3tzb49ia4urb.mikecrm.com/mrTNcl2' : 'https://docs.google.com/forms/d/e/1FAIpQLSdWhNaQguufS88mHABbCEM78XF4OXzcYh-ycm6TV3QpTydyqQ/viewform?usp=send_form'
     }
   },
   mounted() {
@@ -27,7 +28,9 @@ export default {
   methods: {
     imgLoad() {
       this.$nextTick(() => {
-        this.bannerHeight = this.$refs.bannerHeight[0].height
+        setTimeout(() => {
+          this.bannerHeight = this.$refs.bannerHeight[0].height
+        }, 500)
       })
     }
   }
