@@ -1,5 +1,5 @@
 <template>
-  <el-carousel indicator-position="none" class="mt-2 lg:mt-4" :height="bannerHeight+'px'">
+  <el-carousel indicator-position="none" class="mt-2 lg:mt-4" :height="bannerHeight+'px'" :direction="bannerHeight < 50 ? 'vertical' : 'horizontal'">
     <el-carousel-item v-for="item in banners" :key="item.url">
       <a :href="item.url" target="_black">
         <img ref="bannerHeight" :src="item.img" alt="home-page-banner">
