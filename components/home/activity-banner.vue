@@ -1,8 +1,8 @@
 <template>
   <el-carousel indicator-position="none" class="mt-2 lg:mt-4" :height="bannerHeight+'px'">
-    <el-carousel-item v-for="item in banners" :key="item">
-      <a :href="url" target="_black">
-        <img ref="bannerHeight" :src="item" alt="home-page-banner">
+    <el-carousel-item v-for="item in banners" :key="item.url">
+      <a :href="item.url" target="_black">
+        <img ref="bannerHeight" :src="item.img" alt="home-page-banner">
       </a>
     </el-carousel-item>
   </el-carousel>
@@ -11,11 +11,11 @@
 import { enBanners, zhBanners } from '@/filecoin/banner.config.js'
 export default {
   data() {
+    const locale = this.$i18n.locale
     return {
       bannerHeight: 0,
-      locale: this.$i18n.locale === 'zh' ? 'zh' : 'en',
-      banners: this.$i18n.locale === 'zh' ? zhBanners : enBanners,
-      url: this.$i18n.locale === 'zh' ? 'http://ab8p3tzb49ia4urb.mikecrm.com/mrTNcl2' : 'https://docs.google.com/forms/d/e/1FAIpQLSdWhNaQguufS88mHABbCEM78XF4OXzcYh-ycm6TV3QpTydyqQ/viewform?usp=send_form'
+      locale: locale === 'zh' ? 'zh' : 'en',
+      banners: locale === 'zh' ? zhBanners : enBanners
     }
   },
   mounted() {
