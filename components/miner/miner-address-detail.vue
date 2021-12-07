@@ -46,7 +46,7 @@
             v-model="downloadCodeShow"
             placement="bottom"
             trigger="click"
-            popper-class="p-0"
+            popper-class="p-0 hidden lg:block"
             :width="50"
             :content="content"
           >
