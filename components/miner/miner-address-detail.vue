@@ -38,10 +38,27 @@
       <MinerVerifyApply ref="verifyApplication" :address-info="addressData.address" :tag="addressData.tag" />
 
       <div class="rounded-md mt-4 bg-white pt-4 pb-2">
-        <div class="flex justify-start items-center">
+        <div class="flex justify-between items-center w-full">
           <p class="ml-8 flex">
             {{ $t('detail.address.miner.minerOverview.title') }}
           </p>
+          <el-popover
+            v-model="downloadCodeShow"
+            placement="bottom"
+            trigger="click"
+            popper-class="p-0"
+            :width="50"
+            :content="content"
+          >
+            <div slot="reference" class="text-xs mr-8 hover:opacity-75 cursor-pointer text-main">
+              {{ $t('detail.address.miner.minerOverview.useFoxWallet') }}
+              <i class="el-icon-arrow-down"></i>
+            </div>
+            <div class="w-full p-0">
+              <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/code-fox-wallet-download-zh.jpg" alt="filfox" class="p-1 pb-0">
+              <img v-else src="~/assets/img/download/code-fox-wallet-download-en.jpg" alt="filfox" class="p-1 pb-0">
+            </div>
+          </el-popover>
         </div>
         <div class="grid grid-rows-1 grid-cols-2 gap-4 my-4 mx-8">
           <div class="border border-background rounded-sm">
@@ -324,7 +341,8 @@ export default {
       method: 'All',
       sharing: false,
       sharingImageURL: '',
-      sharingLoading: false
+      sharingLoading: false,
+      downloadCodeShow: false
     }
   },
   computed: {
@@ -337,6 +355,11 @@ export default {
       this.page = 0
       this.getTransferList()
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.downloadCodeShow = true
+    }, 500)
   },
   methods: {
     async getBlockList() {

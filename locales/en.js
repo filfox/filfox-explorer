@@ -432,6 +432,7 @@ export default {
         },
         minerOverview: {
           title: 'Miner Overview',
+          useFoxWallet: 'Fox Wallet App',
           headers: {
             balance: 'Address Balance',
             availableBalance: 'Available Balance',

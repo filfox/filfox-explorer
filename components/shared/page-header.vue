@@ -63,6 +63,7 @@
     <NavigationBar class="hidden lg:flex" @search="search" />
     <NavigationBarMobile class="lg:hidden" :languages="languages" :class="{'hidden': mobileNavHidden}" @changeLanguage="didLanguageSwitched" @hideIfNeeded="hideIfNeeded" />
     <div v-loading.fullscreen.lock="loading" class="flex flex-grow"></div>
+    <DownloadAffix />
   </nav>
 </template>
 

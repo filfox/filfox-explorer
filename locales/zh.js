@@ -419,6 +419,7 @@ export default {
         },
         minerOverview: {
           title: '存储提供者概览',
+          useFoxWallet: '使用Fox Wallet查看更多信息',
           headers: {
             balance: '账户余额',
             availableBalance: '可用余额',

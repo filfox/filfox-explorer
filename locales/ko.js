@@ -420,6 +420,7 @@ export default {
         },
         minerOverview: {
           title: '채굴자 개요',
+          useFoxWallet: 'Fox Wallet 사용',
           headers: {
             balance: '계정 잔액',
             availableBalance: '사용 가능한 잔액',
