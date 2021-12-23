@@ -50,9 +50,9 @@
             :width="50"
             :content="content"
           >
-            <div slot="reference" class="text-xs mr-8 hover:opacity-75 cursor-pointer text-main">
+            <div slot="reference" class="flex flex-row justify-center items-center text-xs mr-8 hover:opacity-75 cursor-pointer text-main">
               {{ $t('detail.address.miner.minerOverview.useFoxWallet') }}
-              <i class="el-icon-arrow-down"></i>
+              <img src="~/assets/img/space-race/hot.svg" alt="hot" class="h-4">
             </div>
             <div class="w-full p-0">
               <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/code-fox-wallet-download-zh.jpg" alt="filfox" class="p-1 pb-0">
