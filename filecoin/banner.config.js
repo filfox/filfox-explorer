@@ -1,6 +1,6 @@
 export const enBanners = [
   {
-    url: 'https://t.me/FoxWallet_Official',
+    url: 'https://givelab.com/foxwalletxmas',
     img: require('~/assets/img/home/banner-en-1.jpg')
   },
   {
@@ -11,7 +11,7 @@ export const enBanners = [
 
 export const zhBanners = [
   {
-    url: 'https://t.me/FoxWallet_Official',
+    url: 'https://giv.gg/foxwalletxmas',
     img: require('~/assets/img/home/banner-zh-1.jpg')
   },
   {
