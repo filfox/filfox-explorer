@@ -19,7 +19,8 @@ export default {
     copySuccess: '복사 되었습니다',
     submit: '제출',
     backToHome: '홈페이지로 돌아 가기',
-    currentNetwork: '현재 네트워크: '
+    currentNetwork: '현재 네트워크: ',
+    openApp: 'APP 다운로드/열기'
   },
   nav: {
     home: {
@@ -53,7 +54,11 @@ export default {
       ]
     },
     searchPlaceHolder: '\b블록/계정/주소/소식 검색',
-    language: '언어'
+    language: '언어',
+    app: {
+      title: '모바일 앱',
+      website: '핸드폰 앱'
+    }
   },
   home: {
     overview: {
@@ -409,6 +414,15 @@ export default {
         }
       },
       miner: {
+        app: {
+          label: '계정 변경 모니터링',
+          download: '다운로드 >',
+          title: 'Fox Wallet App 으로 계정 변경 모니터링',
+          step1: 'APP 다운로드',
+          step2: '데이터 페이지 들어가기',
+          step3: '광부 ID 또는 주소 찾기 입력',
+          step4: '클릭하여 수집'
+        },
         sectors: {
           total: 'total',
           active: 'active',
@@ -420,7 +434,6 @@ export default {
         },
         minerOverview: {
           title: '채굴자 개요',
-          useFoxWallet: 'Fox Wallet 사용',
           headers: {
             balance: '계정 잔액',
             availableBalance: '사용 가능한 잔액',

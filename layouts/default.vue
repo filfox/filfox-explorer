@@ -3,6 +3,7 @@
     <page-header />
     <nuxt class="flex-grow" />
     <page-footer />
+    <DownloadAppButton />
     <el-button
       v-if="showShareIcon"
       type="primary"

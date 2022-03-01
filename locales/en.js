@@ -19,7 +19,8 @@ export default {
     copySuccess: 'Copied',
     submit: 'Submit',
     backToHome: 'Back to home page',
-    currentNetwork: 'Current network: '
+    currentNetwork: 'Current network: ',
+    openApp: 'DOWNLOAD/OPEN APP'
   },
   nav: {
     home: {
@@ -54,7 +55,11 @@ export default {
       ]
     },
     searchPlaceHolder: 'Search for Block/Account/Address/Message...',
-    language: 'Language'
+    language: 'Language',
+    app: {
+      title: 'APP',
+      website: 'Go to website'
+    }
   },
   home: {
     overview: {
@@ -421,6 +426,15 @@ export default {
         }
       },
       miner: {
+        app: {
+          label: 'Watch accounts change',
+          download: 'DOWNLOAD >',
+          title: 'Use Fox Wallet App to watch accounts',
+          step1: 'Download APP',
+          step2: 'Enter data page',
+          step3: 'Search by miner ID or address',
+          step4: 'Collect'
+        },
         sectors: {
           total: 'total',
           active: 'active',
@@ -432,7 +446,6 @@ export default {
         },
         minerOverview: {
           title: 'Miner Overview',
-          useFoxWallet: 'Fox Wallet App',
           headers: {
             balance: 'Address Balance',
             availableBalance: 'Available Balance',

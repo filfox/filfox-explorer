@@ -19,7 +19,8 @@ export default {
     copySuccess: '复制成功',
     submit: '确定并提交',
     backToHome: '回到首页',
-    currentNetwork: '当前网络:'
+    currentNetwork: '当前网络:',
+    openApp: '下载APP/APP内打开'
   },
   nav: {
     home: {
@@ -41,7 +42,11 @@ export default {
       subMenus: ['常用工具', '知识库']
     },
     searchPlaceHolder: '搜索区块/账户/地址/消息...',
-    language: '语言'
+    language: '语言',
+    app: {
+      title: '手机APP',
+      website: '跳转官网'
+    }
   },
   home: {
     overview: {
@@ -408,6 +413,15 @@ export default {
         }
       },
       miner: {
+        app: {
+          label: '监控账户变动',
+          download: '点击下载 >',
+          title: '使用Fox Wallet App监控账户变动',
+          step1: '下载APP',
+          step2: '进入数据页',
+          step3: '输入矿工ID或地址查找',
+          step4: '点击收藏'
+        },
         sectors: {
           total: '全部',
           active: '有效',
@@ -419,7 +433,6 @@ export default {
         },
         minerOverview: {
           title: '存储提供者概览',
-          useFoxWallet: '使用Fox Wallet查看更多信息',
           headers: {
             balance: '账户余额',
             availableBalance: '可用余额',

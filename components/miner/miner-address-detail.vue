@@ -25,6 +25,7 @@
           <div v-else class="apply-tag" @click="showDialog">
             {{ $t('tag.apply') }}>
           </div>
+          <MinerAppGuide />
         </div>
         <button
           v-if="$i18n.locale == 'zh' && false"
@@ -42,23 +43,6 @@
           <p class="ml-8 flex">
             {{ $t('detail.address.miner.minerOverview.title') }}
           </p>
-          <el-popover
-            v-model="downloadCodeShow"
-            placement="bottom"
-            trigger="click"
-            popper-class="p-0 hidden lg:block"
-            :width="50"
-            :content="content"
-          >
-            <div slot="reference" class="flex flex-row justify-center items-center text-xs mr-8 hover:opacity-75 cursor-pointer text-main">
-              {{ $t('detail.address.miner.minerOverview.useFoxWallet') }}
-              <img src="~/assets/img/space-race/hot.svg" alt="hot" class="h-4">
-            </div>
-            <div class="w-full p-0">
-              <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/code-fox-wallet-download-zh.jpg" alt="filfox" class="p-1 pb-0">
-              <img v-else src="~/assets/img/download/code-fox-wallet-download-en.jpg" alt="filfox" class="p-1 pb-0">
-            </div>
-          </el-popover>
         </div>
         <div class="grid grid-rows-1 grid-cols-2 gap-4 my-4 mx-8">
           <div class="border border-background rounded-sm">

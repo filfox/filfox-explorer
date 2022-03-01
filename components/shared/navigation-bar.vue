@@ -70,6 +70,24 @@
       </div>
     </a>
 
+    <el-popover
+      placement="bottom"
+      trigger="hover"
+      popper-class="p-0"
+      width="50"
+    >
+      <div slot="reference" class="text-background text-sm flex h-12 items-center justify-center cursor-pointer">
+        {{ $t('nav.app.title') }}
+      </div>
+      <div class="w-full p-0">
+        <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.png" alt="foxwallet" class="p-1 pb-0">
+        <img v-else src="~/assets/img/download/fox-wallet-web-en.png" alt="foxwallet" class="p-1 pb-0">
+        <a class="text-xs text-center block hover:text-main" target="_blank" :href="$i18n.locale == 'zh' ? 'https://foxwallet.com/zh':'https://foxwallet.com/en'">
+          {{ $t("nav.app.website") }}
+        </a>
+      </div>
+    </el-popover>
+
     <div class="flex-grow"></div>
     <el-input
       v-model="searchText"

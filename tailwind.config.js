@@ -32,7 +32,8 @@ module.exports = {
         socialMinerTitle: '#00000085',
         socialMinerBorder: '#0000001a',
         spaceRace: '#1f57d8',
-        spaceRaceProgressBg: '#e7ecf6'
+        spaceRaceProgressBg: '#e7ecf6',
+        customBackground: '#f0f6fa'
       },
       width: {
         '1/32': '3.125%',
