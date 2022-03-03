@@ -1,13 +1,5 @@
 <template>
   <div class="flex flex-col bg-white mr-2 rounded-md overflow-hidden">
-    <div class="flex items-center justify-between border-b border-background">
-      <HomeTitle type="recentTipsets" />
-      <nuxt-link :to="localePath('/tipset')" class="mr-4">
-        <el-button round size="mini">
-          {{ $t('shared.more') }}
-        </el-button>
-      </nuxt-link>
-    </div>
     <div class="flex-grow mt-2 overflow-y-scroll relative">
       <table v-if="!recentTipsetsLoading" class="w-full table-auto absolute text-sm">
         <thead class="text-gray-600 m-2">

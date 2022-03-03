@@ -1,6 +1,5 @@
 <template>
   <el-popover
-    v-model="show"
     placement="bottom"
     trigger="hover"
     popper-class="p-0 hidden lg:block"
@@ -69,17 +68,3 @@
     </div>
   </el-popover>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      show: false
-    }
-  },
-  mounted() {
-    setTimeout(() => {
-      this.show = true
-    }, 1000)
-  }
-}
-</script>
