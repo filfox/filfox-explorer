@@ -57,7 +57,10 @@ export default {
     language: '언어',
     app: {
       title: '모바일 앱',
-      website: '핸드폰 앱'
+      download: '다운로드',
+      website: '핸드폰 앱',
+      downloadApp: '다운로드 FoxWallet APP',
+      description: '블록체인 세계로 안내'
     }
   },
   home: {

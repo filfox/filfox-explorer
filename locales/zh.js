@@ -45,7 +45,10 @@ export default {
     language: '语言',
     app: {
       title: '手机APP',
-      website: '跳转官网'
+      download: '点击下载',
+      website: '跳转官网',
+      downloadApp: '下载 FoxWallet APP',
+      description: '最好用的区块链钱包，你的区块链世界入口'
     }
   },
   home: {

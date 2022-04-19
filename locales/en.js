@@ -57,8 +57,11 @@ export default {
     searchPlaceHolder: 'Search for Block/Account/Address/Message...',
     language: 'Language',
     app: {
-      title: 'APP',
-      website: 'Go to website'
+      title: 'Mobile APP',
+      download: 'Download',
+      website: 'Website',
+      downloadApp: 'Download FoxWallet APP',
+      description: 'Leading you to the world of blockchain'
     }
   },
   home: {

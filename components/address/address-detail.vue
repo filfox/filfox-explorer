@@ -4,117 +4,123 @@
       <span class="font-medium mr-2">{{ $t('detail.address.normal.title') }}</span>
       <span>{{ addressData.address }}</span>
       <AddressTag :tag="addressData.tag" type="pc" :style="{maxWidth:'66%'}" />
+      <MinerAppGuide />
     </div>
-    <div class="rounded-md my-4 bg-white pb-2 text-sm">
-      <div class="flex pl-8 py-4 font-medium border-b border-background">
-        {{ $t('detail.address.normal.headers.overview') }}
+    <div class="flex my-4 pb-2">
+      <div class="rounded-md bg-white text-sm mr-4 flex-1">
+        <div class="flex pl-8 py-4 font-medium border-b border-background">
+          {{ $t('detail.address.normal.headers.overview') }}
+        </div>
+
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            {{ $t('detail.address.normal.headers.address') }}
+          </dt>
+          <dd class="mr-4">
+            <AddressLink :id="addressData.address" plain />
+          </dd>
+        </dl>
+
+        <dl v-if="addressData.address[1] !== '0'" class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            ID
+          </dt>
+          <dd v-if="addressData.id" class="mr-4">
+            <AddressLink :id="addressData.id" plain />
+          </dd>
+          <dd v-else class="mr-4">
+            --
+          </dd>
+        </dl>
+
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            {{ $t('detail.address.normal.headers.actor') }}
+          </dt>
+          <dd v-if="addressData.actor" class="mr-4">
+            {{ $t(`actor.${addressData.actor}`) }}
+          </dd>
+          <dd v-else class="mr-4">
+            {{ $t(`actor.account`) }}
+          </dd>
+        </dl>
+
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            {{ $t('detail.address.normal.headers.balance') }}
+          </dt>
+          <dd class="mr-4">
+            {{ (addressData.balance || 0) | filecoin }}
+          </dd>
+        </dl>
+
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            {{ $t('detail.address.normal.headers.messages') }}
+          </dt>
+          <dd class="mr-4">
+            {{ addressData.messageCount || 0 }}
+          </dd>
+        </dl>
+
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            {{ $t('detail.address.normal.headers.createTime') }}
+          </dt>
+          <dd v-if="addressData.createTimestamp" class="mr-4">
+            {{ addressData.createTimestamp | timestamp('datetime') }}
+          </dd>
+          <dd v-else class="mr-4">
+            --
+          </dd>
+        </dl>
+
+        <dl v-if="addressData.deleteTimestamp" class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            {{ $t('detail.address.normal.headers.createTime') }}
+          </dt>
+          <dd class="mr-4">
+            {{ addressData.deleteTimestamp | timestamp('datetime') }}
+          </dd>
+        </dl>
+
+        <dl class="flex my-2 items-center">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+            {{ $t('detail.address.normal.headers.lastSeenTime') }}
+          </dt>
+          <dd v-if="addressData.lastSeenTimestamp" class="mr-4">
+            {{ addressData.lastSeenTimestamp | timestamp('datetime') }}
+          </dd>
+          <dd v-else class="mr-4">
+            --
+          </dd>
+        </dl>
+
+        <dl v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex items-center my-2">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2 items-center">
+            {{ $t('detail.address.normal.headers.ownedMiners') }}
+          </dt>
+          <dd class="flex flex-wrap flex-1 text-main">
+            <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="mr-4">
+              <AddressLink :id="ownedMiner" />
+            </p>
+          </dd>
+        </dl>
+
+        <dl v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex items-center my-2">
+          <dt class="w-1/6 pl-8 text-gray-600 px-2 items-center">
+            {{ $t('detail.address.normal.headers.workers') }}
+          </dt>
+          <dd class="flex flex-wrap flex-1 text-main">
+            <p v-for="worker in addressData.workerMiners" :key="worker" class="mr-4">
+              <AddressLink :id="worker" />
+            </p>
+          </dd>
+        </dl>
       </div>
-
-      <dl class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          {{ $t('detail.address.normal.headers.address') }}
-        </dt>
-        <dd class="mr-4">
-          <AddressLink :id="addressData.address" plain />
-        </dd>
-      </dl>
-
-      <dl v-if="addressData.address[1] !== '0'" class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          ID
-        </dt>
-        <dd v-if="addressData.id" class="mr-4">
-          <AddressLink :id="addressData.id" plain />
-        </dd>
-        <dd v-else class="mr-4">
-          --
-        </dd>
-      </dl>
-
-      <dl class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          {{ $t('detail.address.normal.headers.actor') }}
-        </dt>
-        <dd v-if="addressData.actor" class="mr-4">
-          {{ $t(`actor.${addressData.actor}`) }}
-        </dd>
-        <dd v-else class="mr-4">
-          {{ $t(`actor.account`) }}
-        </dd>
-      </dl>
-
-      <dl class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          {{ $t('detail.address.normal.headers.balance') }}
-        </dt>
-        <dd class="mr-4">
-          {{ (addressData.balance || 0) | filecoin }}
-        </dd>
-      </dl>
-
-      <dl class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          {{ $t('detail.address.normal.headers.messages') }}
-        </dt>
-        <dd class="mr-4">
-          {{ addressData.messageCount || 0 }}
-        </dd>
-      </dl>
-
-      <dl class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          {{ $t('detail.address.normal.headers.createTime') }}
-        </dt>
-        <dd v-if="addressData.createTimestamp" class="mr-4">
-          {{ addressData.createTimestamp | timestamp('datetime') }}
-        </dd>
-        <dd v-else class="mr-4">
-          --
-        </dd>
-      </dl>
-
-      <dl v-if="addressData.deleteTimestamp" class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          {{ $t('detail.address.normal.headers.createTime') }}
-        </dt>
-        <dd class="mr-4">
-          {{ addressData.deleteTimestamp | timestamp('datetime') }}
-        </dd>
-      </dl>
-
-      <dl class="flex my-2 items-center">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2">
-          {{ $t('detail.address.normal.headers.lastSeenTime') }}
-        </dt>
-        <dd v-if="addressData.lastSeenTimestamp" class="mr-4">
-          {{ addressData.lastSeenTimestamp | timestamp('datetime') }}
-        </dd>
-        <dd v-else class="mr-4">
-          --
-        </dd>
-      </dl>
-
-      <dl v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex items-center my-2">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
-          {{ $t('detail.address.normal.headers.ownedMiners') }}
-        </dt>
-        <dd class="flex flex-wrap flex-1 text-main">
-          <p v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="mr-4">
-            <AddressLink :id="ownedMiner" />
-          </p>
-        </dd>
-      </dl>
-
-      <dl v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex items-center my-2">
-        <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
-          {{ $t('detail.address.normal.headers.workers') }}
-        </dt>
-        <dd class="flex flex-wrap flex-1 text-main">
-          <p v-for="worker in addressData.workerMiners" :key="worker" class="mr-4">
-            <AddressLink :id="worker" />
-          </p>
-        </dd>
-      </dl>
+      <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh' : 'https://foxwallet.com/en'" class="inline-block h-68">
+        <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="border border-dashed border-gray-500 block h-full">
+      </a>
     </div>
 
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />

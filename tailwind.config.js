@@ -59,6 +59,12 @@ module.exports = {
         '7/12': '58.3%',
         '5/8': '62.5%',
         '7/8': '87.5%'
+      },
+      height: {
+        68: '17rem'
+      },
+      boxShadow: {
+        container: '2px 2px 20px rgb(0 0 0 / 60%)'
       }
     },
     minWidth: {

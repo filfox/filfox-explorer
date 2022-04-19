@@ -63,28 +63,46 @@
       </el-dropdown-menu>
     </el-dropdown>
 
-    <a class="flex items-center mx-2 xl:mx-3 px-2" href="https://wallet.filfox.info" target="_blank">
+    <!-- <a class="flex items-center mx-2 xl:mx-3 px-2" href="https://wallet.filfox.info" target="_blank">
       <div class="text-background text-sm flex items-center">
         {{ $t('wallet.title') }}
         <img src="~/assets/img/space-race/hot.svg" alt="hot" class="ml-2 h-4 mt-1">
       </div>
-    </a>
+    </a> -->
 
     <el-popover
       placement="bottom"
       trigger="hover"
       popper-class="p-0"
-      width="50"
+      width="220"
     >
       <div slot="reference" class="text-background text-sm flex h-12 items-center justify-center cursor-pointer">
         {{ $t('nav.app.title') }}
+        <img src="~/assets/img/shared/fire.svg" alt="hot" class="ml-1 h-4">
       </div>
-      <div class="w-full p-0">
-        <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.png" alt="foxwallet" class="p-1 pb-0">
-        <img v-else src="~/assets/img/download/fox-wallet-web-en.png" alt="foxwallet" class="p-1 pb-0">
-        <a class="text-xs text-center block hover:text-main" target="_blank" :href="$i18n.locale == 'zh' ? 'https://foxwallet.com/zh':'https://foxwallet.com/en'">
-          {{ $t("nav.app.website") }}
-        </a>
+      <div class="p-2">
+        <div class="flex flex-row items-center">
+          <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.png" alt="foxwallet download" class="w-24 border border-dashed border-gray-500" draggable="false">
+          <img v-else src="~/assets/img/download/fox-wallet-web-en.png" alt="foxwallet" class="w-24 border border-dashed border-gray-500" draggable="false">
+          <div class="flex-1 flex items-center justify-between flex-col ml-2">
+            <a
+              class="block cursor-pointer primary-button rounded-md text-xs text-white w-24 text-center py-1 hover:opacity-75"
+              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/download/zh' : 'https://foxwallet.com/download/en'"
+              target="_blank"
+            >
+              <i class="el-icon-download mr-1"></i>
+              {{ $t("nav.app.download") }}
+            </a>
+            <a
+              class="block cursor-pointer primary-button rounded-md text-xs text-white w-24 text-center py-1 mt-4 hover:opacity-75"
+              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh' : 'https://foxwallet.com/en'"
+              target="_blank"
+            >
+              <i class="el-icon-monitor mr-1"></i>
+              {{ $t("nav.app.website") }}
+            </a>
+          </div>
+        </div>
       </div>
     </el-popover>
 
@@ -121,3 +139,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.primary-button {
+    background: #1a4fc9;
+}
+</style>

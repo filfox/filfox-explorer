@@ -6,7 +6,7 @@
     :width="470"
     class="hidden md:block"
   >
-    <div slot="reference" class="ml-4 flex flex-row justify-center items-center text-xs border border-gray-400 px-2 rounded-full hover:opacity-75 cursor-pointer hover:text-main hover:border-main">
+    <div slot="reference" class="blink ml-4 flex flex-row justify-center items-center text-xs border border-main px-2 rounded-full hover:opacity-75 cursor-pointer hover:text-main hover:border-main">
       <i class="el-icon-message-solid pr-1"></i>
       {{ $t('detail.address.miner.app.label') }}
     </div>
@@ -68,3 +68,20 @@
     </div>
   </el-popover>
 </template>
+<style scoped>
+@keyframes blink{
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
+
+@-webkit-keyframes blink {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.blink{
+  color: #1a4fc9;
+  animation: blink 2s linear infinite;
+  -webkit-animation: blink 2s linear infinite;
+}
+</style>

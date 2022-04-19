@@ -4,11 +4,16 @@
       <span class="font-medium mr-2">{{ $t('detail.address.normal.title') }}</span>
       <span>{{ addressData.address }}</span>
       <AddressTag :tag="addressData.tag" type="pc" :style="{maxWidth:'66%'}" />
+      <MinerAppGuide />
     </div>
-    <div class="rounded-md my-4 bg-white pb-2 text-sm">
+    <div class="rounded-md my-4 bg-white pb-2 text-sm relative">
       <div class="flex pl-8 py-4 font-medium border-b border-background">
         {{ $t('detail.address.normal.headers.overview') }}
       </div>
+
+      <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh' : 'https://foxwallet.com/en'" class="inline-block h-48 absolute right-0">
+        <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="border border-dashed border-gray-500 block h-full">
+      </a>
 
       <dl class="flex my-2 items-center">
         <dt class="w-1/8 pl-8 text-gray-600 px-2">
