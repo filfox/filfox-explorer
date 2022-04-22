@@ -112,6 +112,11 @@ export default {
         sealCost: 'The cost of sealing sectors, including sector initial pledge and message fees'
       }
     },
+    entireQualityAdjPower: {
+      title: 'Storage power trend',
+      qualityAdjPower: 'AdjPower',
+      qualityAdjPowerDelta: 'AdjPower Delta'
+    },
     powerDistribution: {
       title: 'Storage Power Distribution'
     },

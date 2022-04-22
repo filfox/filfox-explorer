@@ -11,9 +11,10 @@
         </div>
 
         <div class="mb-2 bg-white">
-          <HomeTitle type="powerDistribution" class="border-b border-background h-10 pr-4" />
+          <HomeTitle type="entireQualityAdjPower" class="border-b border-background h-10 pr-4" />
           <client-only>
-            <PowerDistributionChart class="mt-2 mx-1" />
+            <!-- <PowerDistributionChart class="mt-2 mx-1" /> -->
+            <EntirePowerChart class="mt-2" />
           </client-only>
         </div>
       </div>
@@ -21,7 +22,7 @@
       <div class="hidden lg:grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
         <div class="rounded-md mr-2 mb-0 bg-white">
           <div class="flex items-center justify-between border-b border-background h-12">
-            <HomeTitle type="powerDistribution" />
+            <HomeTitle type="entireQualityAdjPower" />
             <nuxt-link :to="localePath('/stats/miner')" class="mr-4">
               <el-button round size="mini">
                 {{ $t('shared.more') }}
@@ -29,7 +30,8 @@
             </nuxt-link>
           </div>
           <client-only>
-            <PowerDistributionChart class="mx-4 mt-12" />
+            <!-- <PowerDistributionChart class="mx-4 mt-12" /> -->
+            <EntirePowerChart class="mt-2" />
           </client-only>
         </div>
 
@@ -206,6 +208,5 @@ export default {
       titleTemplate: null
     }
   }
-
 }
 </script>

@@ -17,7 +17,7 @@
             </p>
           </div>
         </div>
-        <div class="xl:flex">
+        <div class="md:flex lg:block xl:flex">
           <div class="flex flex-row flex-grow-0 mt-4 lg:mt-0">
             <div v-if="$i18n.locale==='zh'" class="p-1 rounded mr-4">
               <p class="text-xs text-center text-white mb-2">

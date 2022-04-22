@@ -99,6 +99,11 @@ export default {
         sealCost: '新增算力所需要花费的成本，包括扇区质押和封装手续费'
       }
     },
+    entireQualityAdjPower: {
+      title: '全网算力走势',
+      qualityAdjPower: '全网算力',
+      qualityAdjPowerDelta: '算力增量'
+    },
     powerDistribution: {
       title: '有效算力分布'
     },
@@ -540,6 +545,7 @@ export default {
     miner: {
       title: '存储服务图表',
       headers: {
+        qualityAdjPowerEntireLine: '全网算力走势',
         qualityAdjPowerPie: '存储提供者有效算力分布',
         qualityAdjPowerLine: '存储提供者有效算力走势',
         qualityAdjPowerDeltaLine: '存储提供者算力增量走势',

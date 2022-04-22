@@ -109,6 +109,11 @@ export default {
         circulatingSupplyRate: '유통비율=유통량/총공급량'
       }
     },
+    entireQualityAdjPower: {
+      title: '에너지 저장 추세',
+      qualityAdjPower: '유효 계산력',
+      qualityAdjPowerDelta: '산력 증량'
+    },
     powerDistribution: {
       title: '유효 채굴파워 분포 현황'
     },
