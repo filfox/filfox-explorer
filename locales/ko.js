@@ -50,7 +50,8 @@ export default {
       title: '사용자 도구',
       subMenus: [
         '도구',
-        '정보'
+        '정보',
+        '웹 지갑'
       ]
     },
     searchPlaceHolder: '\b블록/계정/주소/소식 검색',

@@ -44,6 +44,9 @@
           <nuxt-link :to="localePath('/wiki/0')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.resources.subMenus.1') }}
           </nuxt-link>
+          <a href="https://wallet.filfox.info" target="_blank" class="link">
+            {{ $t('nav.resources.subMenus.2') }}
+          </a>
         </el-collapse-item>
       </el-collapse>
 

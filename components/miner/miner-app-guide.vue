@@ -15,7 +15,7 @@
         <h3 class="text-black font-bold">
           {{ $t('detail.address.miner.app.title') }}
         </h3>
-        <a class="text-xs hover:opacity-75 hover:text-main" target="_blank" :href="$i18n.locale == 'zh' ? 'https://foxwallet.com/zh':'https://foxwallet.com/en'">
+        <a class="text-xs hover:opacity-75 hover:text-main" target="_blank" :href="$i18n.locale == 'zh' ? 'https://foxwallet.com/zh?invite=JVvUytv69E':'https://foxwallet.com/en?invite=JVvUytv69E'">
           {{ $t('detail.address.miner.app.download') }}
         </a>
       </div>

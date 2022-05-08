@@ -11,7 +11,7 @@
         {{ $t('detail.address.normal.headers.overview') }}
       </div>
 
-      <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh' : 'https://foxwallet.com/en'" class="inline-block h-48 absolute right-0">
+      <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=JVvUytv69E' : 'https://foxwallet.com/en?invite=JVvUytv69E'" class="inline-block h-48 absolute right-0">
         <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="border border-dashed border-gray-500 block h-full">
       </a>
 

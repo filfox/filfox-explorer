@@ -11,8 +11,8 @@
         {{ $t('nav.app.description') }}
       </div>
       <div class="mt-1 flex justify-between">
-        <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.png" alt="foxwallet download" class="w-20 border border-dashed border-gray-500" draggable="false">
-        <img v-else src="~/assets/img/download/fox-wallet-web-en.png" alt="foxwallet" class="w-20 border border-dashed border-gray-500" draggable="false">
+        <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.jpg" alt="foxwallet download" class="w-20 border border-dashed border-gray-500" draggable="false">
+        <img v-else src="~/assets/img/download/fox-wallet-web-en.jpg" alt="foxwallet" class="w-20 border border-dashed border-gray-500" draggable="false">
         <div class="w-40 flex flex-wrap">
           <a class="bg-black text-white py-2 rounded-md ml-2 text-xs flex items-center justify-center w-16 hover:opacity-75 cursor-pointer" @click="download('ios')">
             <img src="@/assets/img/download/ios.svg" class="mr-1">

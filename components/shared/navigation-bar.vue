@@ -60,6 +60,9 @@
         <nuxt-link :to="localePath('/wiki/0')">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
+        <a href="https://wallet.filfox.info" target="_blank">
+          <el-dropdown-item>{{ $t('nav.resources.subMenus.2') }}</el-dropdown-item>
+        </a>
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -82,12 +85,12 @@
       </div>
       <div class="p-2">
         <div class="flex flex-row items-center">
-          <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.png" alt="foxwallet download" class="w-24 border border-dashed border-gray-500" draggable="false">
-          <img v-else src="~/assets/img/download/fox-wallet-web-en.png" alt="foxwallet" class="w-24 border border-dashed border-gray-500" draggable="false">
+          <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.jpg" alt="foxwallet download" class="w-24 border border-dashed border-gray-500" draggable="false">
+          <img v-else src="~/assets/img/download/fox-wallet-web-en.jpg" alt="foxwallet" class="w-24 border border-dashed border-gray-500" draggable="false">
           <div class="flex-1 flex items-center justify-between flex-col ml-2">
             <a
               class="block cursor-pointer primary-button rounded-md text-xs text-white w-24 text-center py-1 hover:opacity-75"
-              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/download/zh' : 'https://foxwallet.com/download/en'"
+              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/download/zh?invite=JVvUytv69E' : 'https://foxwallet.com/download/en?invite=JVvUytv69E'"
               target="_blank"
             >
               <i class="el-icon-download mr-1"></i>
@@ -95,7 +98,7 @@
             </a>
             <a
               class="block cursor-pointer primary-button rounded-md text-xs text-white w-24 text-center py-1 mt-4 hover:opacity-75"
-              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh' : 'https://foxwallet.com/en'"
+              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=JVvUytv69E' : 'https://foxwallet.com/en?invite=JVvUytv69E'"
               target="_blank"
             >
               <i class="el-icon-monitor mr-1"></i>

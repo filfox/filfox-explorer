@@ -26,11 +26,11 @@
               <img src="~/assets/img/wechat/group.png" class="h-20 mx-auto bg-white p-1">
             </div>
             <div class="p-1 rounded mr-4">
-              <a class="block text-xs text-center text-white mb-2 hover:text-main" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh' : 'https://foxwallet.com/en'" target="_blank">
+              <a class="block text-xs text-center text-white mb-2 hover:text-main" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=JVvUytv69E' : 'https://foxwallet.com/en?invite=JVvUytv69E'" target="_blank">
                 {{ $t("nav.app.download") }}
               </a>
-              <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.png" alt="foxwallet download" class="h-20 mx-auto bg-white p-1" draggable="false">
-              <img v-else src="~/assets/img/download/fox-wallet-web-en.png" alt="foxwallet" class="h-20 mx-auto bg-white p-1" draggable="false">
+              <img v-if="$i18n.locale === 'zh'" src="~/assets/img/download/fox-wallet-web-zh.jpg" alt="foxwallet download" class="h-20 mx-auto bg-white p-1" draggable="false">
+              <img v-else src="~/assets/img/download/fox-wallet-web-en.jpg" alt="foxwallet" class="h-20 mx-auto bg-white p-1" draggable="false">
             </div>
           </div>
           <div class="items-center flex mt-4 xl:mt-0 -ml-4 xl:ml-0">
