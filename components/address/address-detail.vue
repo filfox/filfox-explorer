@@ -118,7 +118,7 @@
           </dd>
         </dl>
       </div>
-      <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=JVvUytv69E' : 'https://foxwallet.com/en?invite=JVvUytv69E'" class="inline-block h-68">
+      <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
         <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="border border-dashed border-gray-500 block h-full">
       </a>
     </div>

@@ -90,7 +90,7 @@
           <div class="flex-1 flex items-center justify-between flex-col ml-2">
             <a
               class="block cursor-pointer primary-button rounded-md text-xs text-white w-24 text-center py-1 hover:opacity-75"
-              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/download/zh?invite=JVvUytv69E' : 'https://foxwallet.com/download/en?invite=JVvUytv69E'"
+              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/download/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/download/en?invite=evkZv8g5TG'"
               target="_blank"
             >
               <i class="el-icon-download mr-1"></i>
@@ -98,7 +98,7 @@
             </a>
             <a
               class="block cursor-pointer primary-button rounded-md text-xs text-white w-24 text-center py-1 mt-4 hover:opacity-75"
-              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=JVvUytv69E' : 'https://foxwallet.com/en?invite=JVvUytv69E'"
+              :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'"
               target="_blank"
             >
               <i class="el-icon-monitor mr-1"></i>

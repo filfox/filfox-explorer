@@ -9,7 +9,7 @@ let CallApp = null
 export default {
   data() {
     return {
-      downloadWebsite: this.$i18n.locale === 'zh' ? 'https://foxwallet.com/download/zh?invite=JVvUytv69E' : 'https://foxwallet.com/download/en?invite=JVvUytv69E'
+      downloadWebsite: this.$i18n.locale === 'zh' ? 'https://foxwallet.com/download/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/download/en?invite=evkZv8g5TG'
     }
   },
   mounted() {
