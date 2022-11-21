@@ -1,15 +1,15 @@
 export const network = {
   // Index of networks
   multipleNetworks: true,
-  currentNetwork: 0,
+  currentNetwork: 1,
   networks: [
     {
       name: 'Mainnet',
       url: 'https://filfox.info'
     },
     {
-      name: 'Calibration',
-      url: 'https://calibration.filfox.info'
+      name: 'Wallaby',
+      url: 'https://wallaby.filfox.info'
     }
   ]
 }
