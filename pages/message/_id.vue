@@ -34,6 +34,9 @@ export default {
       return this.$route.params.id
     }
   },
+  mounted() {
+    console.log(this.message)
+  },
   head() {
     return {
       title: `${this.$t('meta.titles.message')} ${this.id}`

@@ -332,8 +332,12 @@ export default {
     },
     message: {
       title: '메시지 내역',
+      replaced: '메시지 {oldCid} 가 메시지 {cid} 에 의해 무시됨',
+      testNetOnly: '이 메시지는 Wallaby 네트워크만 지원합니다',
       modules: {
         overview: '개요',
+        logs: '거래 이벤트',
+        internaltransfer: '내부 이체',
         transfer: '거래내역',
         others: '기타'
       },
@@ -350,12 +354,22 @@ export default {
         method: '방법',
         params: '변수',
         value: '금액',
+        address: '주소',
+        topics: 'Topics',
+        data: '매개변수',
         gasPrice: '가스비용',
         gasLimit: '가스 리밋',
         gasUsed: '가스 사용량',
         exitCode: '상태',
         return: '리턴값',
         error: '오류'
+      },
+      internaltransfer: {
+        remind: '계약 {contractFrom} 부터 계약 {contractTo} 까지 총 {amount} 건의 메시지가 있습니다.',
+        method: '방법',
+        from: '보내는 이',
+        to: '받는 이',
+        value: '유형'
       },
       transfer: {
         from: '보내는 이',

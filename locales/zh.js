@@ -325,8 +325,12 @@ export default {
     },
     message: {
       title: '消息详情',
+      replaced: '消息 {oldCid} 已被 {cid} 覆盖',
+      testNetOnly: '此消息只支持Wallaby网络',
       modules: {
         overview: '消息概览',
+        logs: '交易事件',
+        internaltransfer: '内部转账',
         transfer: '转账信息',
         others: '其他信息'
       },
@@ -343,12 +347,22 @@ export default {
         method: '方法',
         params: '参数',
         value: '金额',
+        address: '地址',
+        topics: 'Topics',
+        data: '参数',
         gasPrice: 'Gas 价格',
         gasLimit: 'Gas 限额',
         gasUsed: 'Gas 使用量',
         exitCode: '状态',
         return: '返回值',
         error: '错误信息'
+      },
+      internaltransfer: {
+        remind: '从合约 {contractFrom} 到 {contractTo} 共产生 {amount} 条交易',
+        method: '方式',
+        from: '发送方',
+        to: '接收方',
+        value: '金额'
       },
       transfer: {
         from: '发送方',

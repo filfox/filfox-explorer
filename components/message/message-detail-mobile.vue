@@ -4,6 +4,12 @@
       <p class="pl-4 py-3 border-b border-background text-xs font-medium">
         {{ $t('detail.message.modules.overview') }}
       </p>
+      <div v-if="network.networks[network.currentNetwork].name === 'Wallaby'" class="message-item bg-gray-100 mx-8 px-4 text-red-500 py-2 text-xs">
+        {{ $t('detail.message.testNetOnly') }}
+      </div>
+      <div v-if="message.replaced" class="message-item bg-gray-100 mx-8 text-gray-500 p-2 text-xs flex items-center break-all">
+        <pre class="whitespace-pre-wrap">{{ $t('detail.message.replaced', { oldCid: message.oldCid, cid: message.cid}) }}</pre>
+      </div>
       <div class="message-item">
         <p class="message-key">
           {{ $t('detail.message.headers.cid') }}
@@ -88,6 +94,97 @@
         <p class="message-value">
           <MessageDescription :detail="message.details[0]" />
         </p>
+      </div>
+    </div>
+    <div v-if="message.eventLogs.length" class="mt-2 py-px bg-white text-xs">
+      <p class="pl-4 py-3 border-b border-background font-medium">
+        {{ $t('detail.message.modules.logs') }}
+      </p>
+      <div
+        v-for="item in message.eventLogs"
+        :key="item.data"
+        class="mx-3 my-3 py-2 rounded-sm shadow bg-white text-gray-800"
+      >
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.headers.address') }}:
+          </p>
+          <div class="flex items-center">
+            <AddressLink :id="item.address" :format="4" class="text-main" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.headers.topics') }}:
+          </p>
+          <div class="flex items-center flex-col">
+            <div v-for="(topic,index) in item.topics" :key="topic" class="flex items-center mb-2">
+              <div class="w-5 h-5 mx-1 flex items-center justify-center bg-gray-100 rounded-md text-gray-500">
+                {{ index }}
+              </div>
+              <span>{{ topic.substr(0,4) + '...' + topic.substr(-4) }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.headers.data') }}:
+          </p>
+          <p class="message-value flex-1 text-xs pl-4 break-all">
+            <pre class="whitespace-pre-wrap text-right">_Value: {{ item.data }}</pre>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="message.subcalls && message.subcalls.length > 0" class="mt-2 py-px bg-white text-xs">
+      <p class="pl-4 py-3 border-b border-background font-medium">
+        {{ $t('detail.message.modules.internaltransfer') }}
+      </p>
+      <div class="message-item bg-gray-100 mx-8 text-gray-500 p-2 text-xs flex items-center">
+        {{ $t('detail.message.internaltransfer.remind', { contractFrom: message.from, contractTo: message.to, amount: message.subcalls.length }) }}
+      </div>
+      <div
+        v-for="(transfer, index) in message.subcalls"
+        :key="index"
+        class="mx-3 my-3 py-2 rounded-sm shadow bg-white text-gray-800"
+      >
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.method') }}:
+          </p>
+          <p>
+            {{ transfer.method }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.from') }}:
+          </p>
+          <div class="flex items-center">
+            <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-main" />
+            <span v-else>N/A</span>
+            <AddressTag :tag="transfer.fromTag" type="mobile" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.to') }}:
+          </p>
+          <div class="flex items-center">
+            <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-main" />
+            <span v-else>N/A</span>
+            <AddressTag :tag="transfer.toTag" type="mobile" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.value') }}:
+          </p>
+          <p>
+            {{ transfer.value | filecoin(2) }}
+          </p>
+        </div>
       </div>
     </div>
 
@@ -283,9 +380,15 @@
 </template>
 
 <script>
+import { network } from '~/filecoin/filecoin.config'
 export default {
   props: {
     message: { type: Object, required: true }
+  },
+  data() {
+    return {
+      network
+    }
   }
 }
 </script>

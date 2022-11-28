@@ -339,8 +339,12 @@ export default {
     },
     message: {
       title: 'Message Details',
+      replaced: 'Message {oldCid} was replaced by {cid}',
+      testNetOnly: 'This is a Wallaby Testnet transaction only',
       modules: {
         overview: 'Overview',
+        logs: 'Logs',
+        internaltransfer: 'Internal Transfer',
         transfer: 'Transactions',
         others: 'Others'
       },
@@ -357,12 +361,22 @@ export default {
         method: 'Method',
         params: 'Parameters',
         value: 'Value',
+        address: 'Address',
+        topics: 'Topics',
+        data: 'Data',
         gasPrice: 'Gas Price',
         gasLimit: 'Gas Limit',
         gasUsed: 'Gas Used',
         exitCode: 'Status',
         return: 'Return',
         error: 'Error Message'
+      },
+      internaltransfer: {
+        remind: 'The contract call from {contractFrom} to {contractTo} produced {amount} internal transactions',
+        method: 'Method',
+        from: 'From',
+        to: 'To',
+        value: 'Value'
       },
       transfer: {
         from: 'From',
