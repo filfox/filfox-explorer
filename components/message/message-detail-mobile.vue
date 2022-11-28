@@ -138,7 +138,6 @@
         </div>
       </div>
     </div>
-
     <div class="bg-white mt-2 pb-3">
       <p class="pl-4 py-3 border-b border-background text-xs font-medium">
         {{ $t('detail.message.modules.others') }}
