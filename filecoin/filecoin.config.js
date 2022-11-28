@@ -10,6 +10,10 @@ export const network = {
     {
       name: 'Calibration',
       url: 'https://calibration.filfox.info'
+    },
+    {
+      name: 'Wallaby',
+      url: 'https://wallaby.filfox.info'
     }
   ]
 }
