@@ -372,9 +372,9 @@ export default {
         error: 'Error Message'
       },
       internaltransfer: {
-        contractFrom: 'The contract call from ',
+        contractFrom: 'The contract call from',
         contractTo: 'to',
-        produced: 'produces{amount}internal transactions',
+        produced: 'produces {amount} internal transactions',
         method: 'Method',
         from: 'From',
         to: 'To',
