@@ -358,7 +358,9 @@ export default {
         error: '错误信息'
       },
       internaltransfer: {
-        remind: '从合约 {contractFrom} 到 {contractTo} 共产生 {amount} 条交易',
+        contractFrom: '从合约',
+        contractTo: '到',
+        produced: '共{amount}条交易',
         method: '方式',
         from: '发送方',
         to: '接收方',

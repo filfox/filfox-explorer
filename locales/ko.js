@@ -365,7 +365,9 @@ export default {
         error: '오류'
       },
       internaltransfer: {
-        remind: '계약 {contractFrom} 부터 계약 {contractTo} 까지 총 {amount} 건의 메시지가 있습니다.',
+        contractFrom: '계약',
+        contractTo: '부터 계약',
+        produced: '{amount} 건의 메시지가 있습니다',
         method: '방법',
         from: '보내는 이',
         to: '받는 이',

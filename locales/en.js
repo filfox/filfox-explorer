@@ -372,7 +372,9 @@ export default {
         error: 'Error Message'
       },
       internaltransfer: {
-        remind: 'The contract call from {contractFrom} to {contractTo} produced {amount} internal transactions',
+        contractFrom: 'The contract call from ',
+        contractTo: 'to',
+        produced: 'produces{amount}internal transactions',
         method: 'Method',
         from: 'From',
         to: 'To',

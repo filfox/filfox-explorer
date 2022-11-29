@@ -130,7 +130,7 @@
           <p>
             {{ $t('detail.message.headers.data') }}:
           </p>
-          <p class="message-value flex-1 text-xs pl-4 break-all">
+          <p class="message-value flex-1 text-xs pl-4 break-all px-2 text-xs">
             <pre class="whitespace-pre-wrap text-right">_Value: {{ item.data }}</pre>
           </p>
         </div>
@@ -141,8 +141,12 @@
       <p class="pl-4 py-3 border-b border-background font-medium">
         {{ $t('detail.message.modules.internaltransfer') }}
       </p>
-      <div class="message-item bg-gray-100 mx-8 text-gray-500 p-2 text-xs flex items-center">
-        {{ $t('detail.message.internaltransfer.remind', { contractFrom: message.from, contractTo: message.to, amount: message.subcalls.length }) }}
+      <div class="mt-2 bg-gray-100 mx-3 text-gray-500 p-2">
+        {{ $t('detail.message.internaltransfer.contractFrom') }}
+        <AddressLink v-if="message.from" :id="message.from" :format="8" class="text-main" />
+        {{ $t('detail.message.internaltransfer.contractTo') }}
+        <AddressLink v-if="message.to" :id="message.to" :format="8" class="text-main" />
+        {{ $t('detail.message.internaltransfer.produced', { amount:message.subcalls.length }) }}
       </div>
       <div
         v-for="(transfer, index) in message.subcalls"
