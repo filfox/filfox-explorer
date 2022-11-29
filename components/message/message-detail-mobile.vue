@@ -126,12 +126,13 @@
             </div>
           </div>
         </div>
-        <div class="flex items-center justify-between px-3 mt-1">
+        <div class="flex items-center justify-between px-3 pr-0 mt-1">
           <p>
             {{ $t('detail.message.headers.data') }}:
           </p>
-          <p class="message-value flex-1 text-xs pl-4 break-all px-2 text-xs">
-            <pre class="whitespace-pre-wrap text-right">_Value: {{ item.data }}</pre>
+          <p class="message-value flex-1 pl-4 break-all text-xs flex items-center">
+            _Value:
+            <pre class="flex-1 whitespace-pre-wrap text-main text-right pl-2">{{ item.data }}</pre>
           </p>
         </div>
       </div>
