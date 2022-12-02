@@ -132,7 +132,7 @@
           </p>
           <p class="message-value flex-1 pl-4 break-all text-xs flex items-center">
             _Value:
-            <pre class="flex-1 whitespace-pre-wrap text-main text-right pl-2">{{ item.data }}</pre>
+            <pre class="flex-1 whitespace-pre-wrap text-right pl-2">{{ item.data }}</pre>
           </p>
         </div>
       </div>

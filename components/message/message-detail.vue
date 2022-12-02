@@ -144,7 +144,7 @@
             <p class="w-12">
               _Value:
             </p>
-            <pre class="whitespace-pre-wrap flex-1"> <span class="text-main">{{ item.data }}</span></pre>
+            <pre class="whitespace-pre-wrap flex-1"> <span>{{ item.data }}</span></pre>
           </dd>
         </dl>
       </div>
