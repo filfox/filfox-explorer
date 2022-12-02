@@ -140,11 +140,11 @@
           <dt class="message-key">
             {{ $t('detail.message.headers.data') }}
           </dt>
-          <dd class="w-full py-2 bg-gray-100 break-all px-2 text-xs flex">
-            <p class="w-12">
+          <dd class="w-full py-2 bg-gray-100 break-all px-2 text-xs flex items-center">
+            <!-- <p class="w-12">
               _Value:
-            </p>
-            <pre class="whitespace-pre-wrap flex-1"> <span>{{ item.data }}</span></pre>
+            </p> -->
+            <pre class="whitespace-pre-wrap flex-1"><span>{{ item.data }}</span></pre>
           </dd>
         </dl>
       </div>
