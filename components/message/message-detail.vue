@@ -133,14 +133,6 @@
         </dl>
         <dl class="message-item pt-2">
           <dt class="message-key">
-            Name
-          </dt>
-          <dd class="message-value">
-            {{ item.name }}
-          </dd>
-        </dl>
-        <dl class="message-item pt-2">
-          <dt class="message-key">
             {{ $t('detail.message.headers.topics') }}
           </dt>
           <dd class="flex flex-col">
