@@ -16,7 +16,6 @@
 </template>
 
 <script>
-const { validateAddressString } = require('@glif/filecoin-address')
 export default {
   async asyncData({ $axios, params, query, error }) {
     const id = params.id

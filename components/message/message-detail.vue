@@ -125,6 +125,22 @@
         </dl>
         <dl class="message-item pt-2">
           <dt class="message-key">
+            Name
+          </dt>
+          <dd class="message-value">
+            {{ item.name }}
+          </dd>
+        </dl>
+        <dl class="message-item pt-2">
+          <dt class="message-key">
+            Name
+          </dt>
+          <dd class="message-value">
+            {{ item.name }}
+          </dd>
+        </dl>
+        <dl class="message-item pt-2">
+          <dt class="message-key">
             {{ $t('detail.message.headers.topics') }}
           </dt>
           <dd class="flex flex-col">
@@ -145,6 +161,22 @@
               _Value:
             </p> -->
             <pre class="whitespace-pre-wrap flex-1"><span>{{ item.data }}</span></pre>
+          </dd>
+        </dl>
+        <dl class="message-item pt-2">
+          <dt class="message-key">
+            Log Index
+          </dt>
+          <dd class="message-value">
+            {{ item.logIndex }}
+          </dd>
+        </dl>
+        <dl class="message-item pt-2">
+          <dt class="message-key">
+            Removed
+          </dt>
+          <dd class="message-value">
+            {{ item.removed }}
           </dd>
         </dl>
       </div>

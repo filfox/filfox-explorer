@@ -569,7 +569,11 @@ export default {
     storageminer: 'Storage Miner',
     storagepower: 'Storage Power',
     system: 'System',
-    verifiedregistry: 'Verified Registry'
+    verifiedregistry: 'Verified Registry',
+    evm: 'EVM',
+    eam: 'EAM',
+    datacap: 'Datacap',
+    embryo: 'Embryo'
   },
   chart: {
     miner: {

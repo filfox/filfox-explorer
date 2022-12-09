@@ -549,7 +549,11 @@ export default {
     storageminer: '채굴자 계정',
     storagepower: '스토리지 파워',
     system: '시스템',
-    verifiedregistry: '등록 확인'
+    verifiedregistry: '등록 확인',
+    evm: 'EVM',
+    eam: 'EAM',
+    datacap: 'Datacap',
+    embryo: 'Embryo'
   },
   chart: {
     miner: {

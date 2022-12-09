@@ -555,7 +555,11 @@ export default {
     storageminer: '存储提供者账户',
     storagepower: '存储算力',
     system: '系统',
-    verifiedregistry: '注册确认'
+    verifiedregistry: '注册确认',
+    evm: 'EVM',
+    eam: 'EAM',
+    datacap: 'Datacap',
+    embryo: 'Embryo'
   },
   chart: {
     miner: {

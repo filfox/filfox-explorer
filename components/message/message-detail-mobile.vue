@@ -115,6 +115,14 @@
         </div>
         <div class="flex items-center justify-between px-3 mt-1">
           <p>
+            Name:
+          </p>
+          <div class="flex items-center">
+            {{ item.name }}
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
             {{ $t('detail.message.headers.topics') }}:
           </p>
           <div class="flex items-center flex-col">
@@ -134,6 +142,22 @@
             <!-- _Value: -->
             <pre class="flex-1 whitespace-pre-wrap text-right pl-2">{{ item.data }}</pre>
           </p>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            Log Index:
+          </p>
+          <div class="flex items-center">
+            {{ item.logIndex }}
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            removed:
+          </p>
+          <div class="flex items-center">
+            {{ item.removed }}
+          </div>
         </div>
       </div>
     </div>

@@ -31,6 +31,7 @@
       </p>
       <p v-if="addressData.actor" class="flex w-3/4">
         {{ $t(`actor.${addressData.actor}`) }}
+        {{ addressData.actor }}
       </p>
       <p v-else class="flex w-3/4">
         {{ $t(`actor.account`) }}
