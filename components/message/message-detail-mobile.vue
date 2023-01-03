@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-4">
+  <div v-if="message" class="pb-4">
     <div class="bg-white pb-3">
       <p class="pl-4 py-3 border-b border-background text-xs font-medium">
         {{ $t('detail.message.modules.overview') }}
@@ -45,8 +45,8 @@
         <p class="message-key">
           {{ $t('detail.message.headers.inBlocks') }}
         </p>
-        <div class="message-value">
-          <p v-for="block in message.blocks" :key="block" class="flex items-center mt-2 text-main">
+        <div>
+          <p v-for="block, index in message.blocks" :key="index" class="mt-2 text-main text-end">
             <BlockLink :id="block" />
           </p>
         </div>
@@ -100,63 +100,65 @@
       <p class="pl-4 py-3 border-b border-background font-medium">
         {{ $t('detail.message.modules.logs') }}
       </p>
-      <div
-        v-for="item in message.eventLogs"
-        :key="item.data"
-        class="mx-3 my-3 py-2 rounded-sm shadow bg-white text-gray-800"
-      >
-        <div class="flex items-center justify-between px-3 mt-1">
-          <p>
-            {{ $t('detail.message.headers.address') }}:
-          </p>
-          <div class="flex items-center">
-            <AddressLink :id="item.address" :format="4" class="text-main" />
-          </div>
-        </div>
-        <div class="flex items-center justify-between px-3 mt-1">
-          <p>
-            Name:
-          </p>
-          <div class="flex items-center">
-            {{ item.name }}
-          </div>
-        </div>
-        <div class="flex items-center justify-between px-3 mt-1">
-          <p>
-            {{ $t('detail.message.headers.topics') }}:
-          </p>
-          <div class="flex items-center flex-col">
-            <div v-for="(topic,index) in item.topics" :key="topic" class="flex items-center mb-2">
-              <div class="w-5 h-5 mx-1 flex items-center justify-center bg-gray-100 rounded-md text-gray-500">
-                {{ index }}
-              </div>
-              <span>{{ topic.substr(0,4) + '...' + topic.substr(-4) }}</span>
+      <div class="h-136 overflow-y-auto">
+        <div
+          v-for="item, index in message.eventLogs"
+          :key="index"
+          class="mx-3 my-3 py-2 rounded-sm shadow bg-white text-gray-800"
+        >
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              {{ $t('detail.message.headers.address') }}:
+            </p>
+            <div class="flex items-center">
+              <AddressLink :id="item.address" :format="4" class="text-main" />
             </div>
           </div>
-        </div>
-        <div class="flex items-center justify-between px-3 pr-0 mt-1">
-          <p>
-            {{ $t('detail.message.headers.data') }}:
-          </p>
-          <p class="message-value flex-1 pl-4 break-all text-xs flex items-center">
-            <!-- _Value: -->
-            <pre class="flex-1 whitespace-pre-wrap text-right pl-2">{{ item.data }}</pre>
-          </p>
-        </div>
-        <div class="flex items-center justify-between px-3 mt-1">
-          <p>
-            Log Index:
-          </p>
-          <div class="flex items-center">
-            {{ item.logIndex }}
+          <div v-if="item.name" class="flex items-center justify-between px-3 mt-1">
+            <p>
+              Name:
+            </p>
+            <div class="flex items-center">
+              {{ item.name }}
+            </div>
           </div>
-        </div>
-        <div class="flex items-center justify-between px-3 mt-1">
-          <p>
-            removed:
-          </p>
-          <div class="flex items-center">
-            {{ item.removed }}
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              {{ $t('detail.message.headers.topics') }}:
+            </p>
+            <div class="flex items-center flex-col">
+              <div v-for="topic, _index in item.topics" :key="_index" class="flex items-center mb-2">
+                <div class="w-5 h-5 mx-1 flex items-center justify-center bg-gray-100 rounded-md text-gray-500">
+                  {{ index }}
+                </div>
+                <span>{{ topic.substr(0,4) + '...' + topic.substr(-4) }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between px-3 pr-0 mt-1">
+            <p>
+              {{ $t('detail.message.headers.data') }}:
+            </p>
+            <p class="message-value flex-1 pl-4 break-all text-xs flex items-center">
+              <!-- _Value: -->
+              <pre class="flex-1 whitespace-pre-wrap text-right pl-2">{{ item.data }}</pre>
+            </p>
+          </div>
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              Log Index:
+            </p>
+            <div class="flex items-center">
+              {{ item.logIndex }}
+            </div>
+          </div>
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              removed:
+            </p>
+            <div class="flex items-center">
+              {{ item.removed }}
+            </div>
           </div>
         </div>
       </div>

@@ -18,5 +18,6 @@
   "20": "ErrIllegalState",
   "21": "ErrSerialization",
   "32": "ErrTooManyProveCommits",
+  "33": "SysErrContractReverted",
   "1000": "ErrPlaceholder"
 }

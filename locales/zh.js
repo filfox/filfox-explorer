@@ -559,7 +559,8 @@ export default {
     evm: 'EVM',
     eam: 'EAM',
     datacap: 'Datacap',
-    embryo: 'Embryo'
+    embryo: 'Embryo',
+    ethaccount: 'EthAccount'
   },
   chart: {
     miner: {
