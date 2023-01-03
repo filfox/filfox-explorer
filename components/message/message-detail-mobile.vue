@@ -96,7 +96,7 @@
         </p>
       </div>
     </div>
-    <div v-if="message.eventLogs.length" class="mt-2 py-px bg-white text-xs">
+    <div v-if="message.eventLogs && message.eventLogs.length" class="mt-2 py-px bg-white text-xs">
       <p class="pl-4 py-3 border-b border-background font-medium">
         {{ $t('detail.message.modules.logs') }}
       </p>
