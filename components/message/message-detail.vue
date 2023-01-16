@@ -7,7 +7,7 @@
       <p class="pl-8 pb-3 border-b border-background">
         {{ $t('detail.message.modules.overview') }}
       </p>
-      <div v-if="network.networks[network.currentNetwork].name === 'Wallaby'" class="message-item bg-gray-100 mx-8 px-4 text-red-500 py-2 text-xs">
+      <div v-if="network.networks[network.currentNetwork].name === 'Hyperspace'" class="message-item bg-gray-100 mx-8 px-4 text-red-500 py-2 text-xs">
         {{ $t('detail.message.testNetOnly') }}
       </div>
       <div v-if="message.replaced" class="message-item bg-gray-100 mx-8 text-gray-500 p-2 text-xs flex items-center">

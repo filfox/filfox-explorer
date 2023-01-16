@@ -340,7 +340,7 @@ export default {
     message: {
       title: 'Message Details',
       replaced: 'Message {oldCid} was replaced by {cid}',
-      testNetOnly: 'This is a Wallaby Testnet transaction only',
+      testNetOnly: 'This is a Hyperspace Testnet transaction only',
       modules: {
         overview: 'Overview',
         logs: 'Logs',
