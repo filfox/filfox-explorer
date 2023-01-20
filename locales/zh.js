@@ -559,7 +559,7 @@ export default {
     evm: 'EVM',
     eam: 'EAM',
     datacap: 'Datacap',
-    embryo: 'Embryo',
+    placeholder: 'Placeholder',
     ethaccount: 'EthAccount'
   },
   chart: {
@@ -752,5 +752,25 @@ export default {
   },
   wallet: {
     title: '钱包'
+  },
+  fns: {
+    search: {
+      title: 'Filecoin域名搜索',
+      placeholder: '请输入地址或域名',
+      fail: '失败',
+      resultFor: '查询结果: '
+    },
+    address: {
+      overview: '概览',
+      expirationDate: '到期日期',
+      names: '域名',
+      reverseRecord: 'Reverse Record'
+    },
+    name: {
+      resolvedAddress: 'Resolved Address',
+      expiration: 'Expiration Data',
+      registrant: 'Registrant',
+      controller: 'Controller'
+    }
   }
 }

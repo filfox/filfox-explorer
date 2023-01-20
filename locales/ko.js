@@ -553,7 +553,7 @@ export default {
     evm: 'EVM',
     eam: 'EAM',
     datacap: 'Datacap',
-    embryo: 'Embryo',
+    placeholder: 'Placeholder',
     ethaccount: 'EthAccount'
   },
   chart: {
@@ -742,5 +742,25 @@ export default {
   },
   wallet: {
     title: '지갑'
+  },
+  fns: {
+    search: {
+      title: 'Filecoin 도메인 이름 검색',
+      placeholder: '주소 또는 도메인 이름을 입력하십시오',
+      fail: '실패',
+      resultFor: '의 질의 결과'
+    },
+    address: {
+      overview: '개요',
+      names: '이름',
+      expirationDate: '만료 날짜',
+      reverseRecord: 'Reverse Record'
+    },
+    name: {
+      resolvedAddress: 'Resolved Address',
+      expiration: 'Expiration Data',
+      registrant: 'Registrant',
+      controller: 'Controller'
+    }
   }
 }

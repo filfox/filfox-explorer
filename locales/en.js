@@ -573,7 +573,7 @@ export default {
     evm: 'EVM',
     eam: 'EAM',
     datacap: 'Datacap',
-    embryo: 'Embryo',
+    placeholder: 'Placeholder',
     ethaccount: 'EthAccount'
   },
   chart: {
@@ -765,5 +765,25 @@ export default {
   },
   wallet: {
     title: 'Wallet'
+  },
+  fns: {
+    search: {
+      title: 'Filecoin Name Lookup',
+      placeholder: 'Search FNS name or address',
+      failWords: 'Please enter effective domain name or address',
+      resultFor: 'Result for '
+    },
+    address: {
+      overview: 'Overview',
+      expirationDate: 'Expiration Date',
+      names: 'Names',
+      reverseRecord: 'Reverse Record'
+    },
+    name: {
+      resolvedAddress: 'Resolved Address',
+      expiration: 'Expiration Data',
+      registrant: 'Registrant',
+      controller: 'Controller'
+    }
   }
 }

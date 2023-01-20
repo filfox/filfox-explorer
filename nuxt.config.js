@@ -66,7 +66,8 @@ export default {
     '~/components/social',
     '~/components/tag',
     '~/components/utils',
-    '~/components/transfer'
+    '~/components/transfer',
+    '~/components/fns'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '@/plugins/i18n.js')
