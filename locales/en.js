@@ -773,15 +773,28 @@ export default {
       failWords: 'Please enter effective domain name or address',
       resultFor: 'Result for '
     },
+    registrations: {
+      title: 'Filcoin Name Registrations',
+      address: 'Address',
+      name: 'Filecoin Name',
+      expiration: 'Expiration Date',
+      handle: 'Handle',
+      moreDetails: 'More Details'
+    },
     address: {
       overview: 'Overview',
       expirationDate: 'Expiration Date',
       names: 'Names',
-      reverseRecord: 'Reverse Record'
+      reverseRecord: 'Reverse Record',
+      registrant: 'Registrant',
+      realatedTransactions: 'Realated Transactions',
+      block: 'Block',
+      actions: 'Actions',
+      txHash: 'Tx Hash'
     },
     name: {
       resolvedAddress: 'Resolved Address',
-      expiration: 'Expiration Data',
+      expiration: 'Expiration Date',
       registrant: 'Registrant',
       controller: 'Controller'
     }

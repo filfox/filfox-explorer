@@ -18,4 +18,6 @@ export const wiki = {
   url: 'http://localhost:3000/wiki'
 }
 
+export const fnsServer = 'http://localhost:7001'
+
 export const epochsInDay = 2880

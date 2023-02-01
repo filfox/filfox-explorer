@@ -14,20 +14,21 @@
         >
           <el-button slot="append" icon="el-icon-search" type="primary" :loading="loading" @click="search(searchVal)" />
         </el-input>
-        <div v-if="showing" class="text-success text-xs pt-2 font-bold">
+        <div v-if="result" class="text-success text-xs pt-2 font-bold">
           {{ $t('fns.search.resultFor') }}
           {{ result }}
         </div>
       </div>
     </div>
-    <FnsAddressDetail v-if="showing === 'address'" :reverse-record="addressDetail.reverseRecord" :names="addressDetail.names" />
+    <FnsRegistrations v-if="!showing" class="hidden md:block" />
+    <FnsRegistrationsMobile v-if="!showing" class="md:hidden" />
+    <FnsAddressDetail v-if="showing === 'address'" :detail="addressDetail" />
     <FnsNameDetail v-if="showing === 'name'" :detail="nameDetail" />
   </div>
 </template>
 <script>
 import { getDomaisByAddress, getAddressByDomain } from '@/utils/fns/utils'
-import { Notification } from 'element-ui'
-
+import { fnsServer } from '../../filecoin/filecoin.config'
 export default {
   data() {
     return {
@@ -37,7 +38,8 @@ export default {
       addressDetail: {
         address: '',
         reverseRecord: '',
-        names: []
+        names: [],
+        transactions: []
       },
       nameDetail: {
         name: '',
@@ -68,22 +70,32 @@ export default {
   },
   methods: {
     async search(val) {
+      const addr = val.trim()
       this.loading = true
-      this.showing = ''
+      this.showing = '-'
       try {
-        if (val.endsWith('.fil')) {
-          this.nameDetail = await getAddressByDomain(val)
+        if (addr.endsWith('.fil')) {
+          this.nameDetail = await getAddressByDomain(addr)
           this.showing = 'name'
         } else {
-          const { names, reverseRecord } = await getDomaisByAddress(val)
+          this.addressDetail = {
+            names: [],
+            reverseRecord: '',
+            address: '',
+            transactions: []
+          }
+          const { names, reverseRecord, address } = await getDomaisByAddress(addr)
           this.addressDetail.names = names
           this.addressDetail.reverseRecord = reverseRecord
-          this.addressDetail.address = val
+          this.addressDetail.address = address
           this.showing = 'address'
+          const transactions = await this.$axios.$get(`${fnsServer}/fns/address/transactions`, { params: { address } })
+          this.addressDetail.transactions = transactions.data
         }
         this.loading = false
       } catch (e) {
         this.$message.error(this.$t('fns.search.failWords'))
+        this.showing = ''
         this.loading = false
       }
     }

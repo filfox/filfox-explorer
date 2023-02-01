@@ -750,15 +750,28 @@ export default {
       fail: '실패',
       resultFor: '의 질의 결과'
     },
+    registrations: {
+      title: 'Filcoin 이름 등록',
+      address: '주소',
+      name: '이름',
+      expiration: '만료 날짜',
+      handle: '작업',
+      moreDetails: '자세한 내용'
+    },
     address: {
       overview: '개요',
       names: '이름',
       expirationDate: '만료 날짜',
-      reverseRecord: 'Reverse Record'
+      reverseRecord: 'Reverse Record',
+      registrant: 'Registrant',
+      realatedTransactions: '관련 거래',
+      block: '청크',
+      actions: '작업',
+      txHash: '거래 ID'
     },
     name: {
       resolvedAddress: 'Resolved Address',
-      expiration: 'Expiration Data',
+      expiration: '만료 날짜',
       registrant: 'Registrant',
       controller: 'Controller'
     }

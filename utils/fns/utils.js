@@ -39,7 +39,7 @@ const publicResolverContract = new ethers.Contract(
   provider
 )
 
-const transAddress = address => {
+export const transAddress = address => {
   const addressFormat = newFromString(address)
   return `0x${addressFormat.subAddrHex}`
 }
@@ -57,6 +57,7 @@ export async function getDomaisByAddress(address) {
   const reverseNode = await reverseRegistarContract.node(address)
   const reverseRecord = await publicResolverContract.name(reverseNode)
   return {
+    address,
     names,
     reverseRecord
   }

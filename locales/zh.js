@@ -760,16 +760,29 @@ export default {
       fail: '失败',
       resultFor: '查询结果: '
     },
+    registrations: {
+      title: 'Filcoin 域名注册记录',
+      address: '地址',
+      name: '名称',
+      expiration: '到期日期',
+      handle: '操作',
+      moreDetails: '详情'
+    },
     address: {
       overview: '概览',
       expirationDate: '到期日期',
       names: '域名',
-      reverseRecord: 'Reverse Record'
+      reverseRecord: 'Reverse Record',
+      registrant: '注册地址',
+      realatedTransactions: '相关交易',
+      block: '区块',
+      actions: '类型',
+      txHash: '交易ID'
     },
     name: {
       resolvedAddress: 'Resolved Address',
-      expiration: 'Expiration Data',
-      registrant: 'Registrant',
+      expiration: '到期日期',
+      registrant: '注册地址',
       controller: 'Controller'
     }
   }
