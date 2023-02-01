@@ -18,6 +18,6 @@ export const wiki = {
   url: 'http://localhost:3000/wiki'
 }
 
-export const fnsServer = 'https://hyperspace.filfox.info/fns'
+export const fnsServer = 'https://hyperspace.filfox.info/api/fns'
 
 export const epochsInDay = 2880
