@@ -51,7 +51,8 @@ export default {
       subMenus: [
         '도구',
         '정보',
-        '웹 지갑'
+        '웹 지갑',
+        'FNS'
       ]
     },
     searchPlaceHolder: '\b블록/계정/주소/소식 검색',

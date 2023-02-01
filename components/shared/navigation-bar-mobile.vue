@@ -47,6 +47,9 @@
           <a href="https://wallet.filfox.info" target="_blank" class="link">
             {{ $t('nav.resources.subMenus.2') }}
           </a>
+          <nuxt-link :to="localePath('/fns')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.resources.subMenus.3') }}
+          </nuxt-link>
         </el-collapse-item>
       </el-collapse>
 

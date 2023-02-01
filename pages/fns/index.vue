@@ -89,7 +89,7 @@ export default {
           this.addressDetail.reverseRecord = reverseRecord
           this.addressDetail.address = address
           this.showing = 'address'
-          const transactions = await this.$axios.$get(`${fnsServer}/fns/address/transactions`, { params: { address } })
+          const transactions = await this.$axios.$get(`${fnsServer}/address/transactions`, { params: { address } })
           this.addressDetail.transactions = transactions.data
         }
         this.loading = false

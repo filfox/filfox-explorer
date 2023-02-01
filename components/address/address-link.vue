@@ -70,7 +70,7 @@ export default {
           }
         }
 
-        const result = (await this.$axios.$get(`${fnsServer}/fns/name/find`, { params: { address: transAddress(id) } })).data
+        const result = (await this.$axios.$get(`${fnsServer}/name/find`, { params: { address: transAddress(id) } })).data
         if (result.name) {
           localStorage.setItem(`fns:${id}`, JSON.stringify({ time: Number(new Date()), name: result.name }))
           this.name = result.name

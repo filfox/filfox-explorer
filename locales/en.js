@@ -52,7 +52,8 @@ export default {
       subMenus: [
         'Tools',
         'Wiki',
-        'Web Wallet'
+        'Web Wallet',
+        'FNS'
       ]
     },
     searchPlaceHolder: 'Search for Block/Account/Address/Message...',

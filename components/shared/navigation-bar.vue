@@ -63,6 +63,9 @@
         <a href="https://wallet.filfox.info" target="_blank">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.2') }}</el-dropdown-item>
         </a>
+        <nuxt-link :to="localePath('/fns')">
+          <el-dropdown-item>{{ $t('nav.resources.subMenus.3') }}</el-dropdown-item>
+        </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>
 
