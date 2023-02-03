@@ -4,20 +4,18 @@
       <h1 class="font-bold">
         {{ $t('fns.address.overview') }}
       </h1>
-      <div class="bg-card p-4 my-4 rounded-md">
+      <div class="bg-card p-4 my-4 rounded-md text-sm">
         <div class="flex items-center">
           <div class="w-64 text-gray-700">
             {{ $t('fns.address.reverseRecord') }}
           </div>
-          <a :href="'http://app.filns.domains/domain/' + detail.reverseRecord" target="_blank" class="text-main cursor-pointer">{{ detail.reverseRecord }}</a>
+          <a target="_blank" class="text-main cursor-pointer" @click="$emit('detail', detail.reverseRecord)">{{ detail.reverseRecord }}</a>
         </div>
         <div class="flex items-center mt-4">
           <div class="w-64 text-gray-700">
             {{ $t('fns.address.registrant') }}
           </div>
-          <div class="flex break-all">
-            {{ detail.address }}
-          </div>
+          <AddressLink :id="detail.address" class="flex break-all text-main" />
         </div>
       </div>
     </div>
@@ -25,7 +23,7 @@
       <h1 class="font-bold">
         {{ $t('fns.address.names') }}
       </h1>
-      <table class="w-full my-4">
+      <table class="w-full my-4 text-sm">
         <thead class="text-gray-600 m-2">
           <tr class="h-12 bg-card">
             <th class="sticky top-0 z-10">
@@ -43,7 +41,7 @@
             class="h-12 border-b border-background hover:bg-cardHighlight"
           >
             <td>
-              <a :href="'http://app.filns.domains/domain/' + item.name" target="_blank" class="text-main cursor-pointer">{{ item.name }}</a>
+              <a class="text-main cursor-pointer" @click="$emit('detail', item.name)">{{ item.name }}</a>
             </td>
             <td>
               {{ item.expiration | timestamp }}
@@ -56,7 +54,7 @@
       <h1 class="font-bold">
         {{ $t('fns.address.realatedTransactions') }}
       </h1>
-      <table class="w-full my-4">
+      <table class="w-full my-4 text-sm">
         <thead class="text-gray-600 m-2">
           <tr class="h-12 bg-card">
             <th class="sticky top-0 z-10">

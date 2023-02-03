@@ -752,7 +752,7 @@ export default {
       resultFor: '의 질의 결과'
     },
     registrations: {
-      title: 'Filcoin 이름 등록',
+      title: 'Filecoin 이름 등록',
       address: '주소',
       name: '이름',
       expiration: '만료 날짜',

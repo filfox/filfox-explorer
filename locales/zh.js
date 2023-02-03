@@ -761,7 +761,7 @@ export default {
       resultFor: '查询结果: '
     },
     registrations: {
-      title: 'Filcoin 域名注册记录',
+      title: 'Filecoin 域名注册记录',
       address: '地址',
       name: '名称',
       expiration: '到期日期',

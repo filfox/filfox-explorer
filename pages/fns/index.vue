@@ -20,9 +20,9 @@
         </div>
       </div>
     </div>
-    <FnsRegistrations v-if="!showing" class="hidden md:block" />
-    <FnsRegistrationsMobile v-if="!showing" class="md:hidden" />
-    <FnsAddressDetail v-if="showing === 'address'" :detail="addressDetail" />
+    <FnsRegistrations v-show="!showing" class="hidden md:block" @detail="detail" />
+    <FnsRegistrationsMobile v-show="!showing" class="md:hidden" @detail="detail" />
+    <FnsAddressDetail v-if="showing === 'address'" :detail="addressDetail" @detail="detail" />
     <FnsNameDetail v-if="showing === 'name'" :detail="nameDetail" />
   </div>
 </template>
@@ -98,6 +98,10 @@ export default {
         this.showing = ''
         this.loading = false
       }
+    },
+    detail(address) {
+      this.searchVal = address
+      this.search(address)
     }
   },
   head() {

@@ -7,7 +7,7 @@
     <div v-if="!loading" class="mt-2 text-xs">
       <div v-for="(item, index) in registrationList.list" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white px-1">
         <div class="flex pt-2 items-center">
-          <a :href="'http://app.filns.domains/domain/' + item.name" target="_blank" class="text-main cursor-pointer">{{ item.name }}</a>
+          <a class="text-main cursor-pointer" @click="$emit('detail', item.name)">{{ item.name }}</a>
         </div>
 
         <div class="flex justify-between pt-2 mx-1">
@@ -33,7 +33,7 @@
             {{ $t('fns.registrations.handle') }}
           </p>
           <p>
-            <a :href="'http://app.filns.domains/domain/' + item.name" target="_blank" class="text-main">
+            <a class="text-main cursor-pointer" @click="$emit('detail', item.name)">
               {{ $t('fns.registrations.moreDetails') }} >
             </a>
           </p>

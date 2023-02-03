@@ -775,7 +775,7 @@ export default {
       resultFor: 'Result for '
     },
     registrations: {
-      title: 'Filcoin Name Registrations',
+      title: 'Filecoin Name Registrations',
       address: 'Address',
       name: 'Filecoin Name',
       expiration: 'Expiration Date',

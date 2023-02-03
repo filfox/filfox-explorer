@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between border-b border-background p-4 font-bold">
         {{ $t('fns.registrations.title') }}
       </div>
-      <table v-if="!loading" class="w-full table-fixed mt-2">
+      <table v-if="!loading" class="w-full table-fixed mt-2 text-sm">
         <thead class="text-gray-600 border-b border-background">
           <tr class="h-8">
             <th class="table-header w-2/5 pb-2">
@@ -27,13 +27,13 @@
               <AddressLink :id="item.owner" :format="10" class="text-main" />
             </td>
             <td>
-              <a :href="'http://app.filns.domains/domain/' + item.name" target="_blank" class="text-main cursor-pointer">{{ item.name }}</a>
+              <a class="text-main cursor-pointer" @click="$emit('detail', item.name)">{{ item.name }}</a>
             </td>
             <td>
               {{ item.expires | timestamp }}
             </td>
             <td>
-              <a :href="'http://app.filns.domains/domain/' + item.name" target="_blank" class="bg-gray-100 text-main p-2 font-bold rounded-md hover:opacity-75">
+              <a class="bg-gray-100 text-main p-2 font-bold rounded-md hover:opacity-75 cursor-pointer" @click="$emit('detail', item.name)">
                 {{ $t('fns.registrations.moreDetails') }}
               </a>
             </td>
