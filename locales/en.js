@@ -33,7 +33,8 @@ export default {
         'Messages',
         'Rich List',
         'Deal List',
-        'Mempool'
+        'Mempool',
+        'FNS Lookup'
       ]
     },
     ranks: {
@@ -53,7 +54,7 @@ export default {
         'Tools',
         'Wiki',
         'Web Wallet',
-        'FNS'
+        'FNS Lookup'
       ]
     },
     searchPlaceHolder: 'Search for Block/Account/Address/Message...',

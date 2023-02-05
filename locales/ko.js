@@ -32,7 +32,8 @@ export default {
         '블록',
         '메시지',
         '자산 순위',
-        '주문'
+        '주문',
+        'FNS Lookup'
       ]
     },
     ranks: {
@@ -52,7 +53,7 @@ export default {
         '도구',
         '정보',
         '웹 지갑',
-        'FNS'
+        'FNS Lookup'
       ]
     },
     searchPlaceHolder: '\b블록/계정/주소/소식 검색',

@@ -28,7 +28,7 @@ export default {
     },
     blocks: {
       title: '区块链',
-      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池']
+      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池', 'FNS Lookup']
     },
     ranks: {
       title: '排行榜'
@@ -39,7 +39,7 @@ export default {
     },
     resources: {
       title: '资源',
-      subMenus: ['常用工具', '知识库', '网页钱包', 'FNS']
+      subMenus: ['常用工具', '知识库', '网页钱包', 'FNS Lookup']
     },
     searchPlaceHolder: '搜索区块/账户/地址/消息...',
     language: '语言',

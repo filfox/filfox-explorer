@@ -1,19 +1,19 @@
 <template>
   <div class="pt-6">
-    <div class="text-base items-center flex">
-      <span class="font-medium mr-2">{{ $t('detail.address.normal.title') }}</span>
-      <span>{{ addressData.address }}</span>
+    <div class="flex items-center text-base">
+      <span class="mr-2 font-medium">{{ $t('detail.address.normal.title') }}</span>
+      <AddressLink :id="addressData.address" />
       <AddressTag :tag="addressData.tag" type="pc" :style="{maxWidth:'66%'}" />
       <MinerAppGuide />
     </div>
-    <div class="flex my-4 pb-2">
-      <div class="rounded-md bg-white text-sm mr-4 flex-1">
-        <div class="flex pl-8 py-4 font-medium border-b border-background">
+    <div class="flex pb-2 my-4">
+      <div class="flex-1 mr-4 text-sm bg-white rounded-md">
+        <div class="flex py-4 pl-8 font-medium border-b border-background">
           {{ $t('detail.address.normal.headers.overview') }}
         </div>
 
-        <dl class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.address') }}
           </dt>
           <dd class="mr-4">
@@ -21,8 +21,8 @@
           </dd>
         </dl>
 
-        <dl v-if="addressData.address[1] !== '0'" class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl v-if="addressData.address[1] !== '0'" class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             ID
           </dt>
           <dd v-if="addressData.id" class="mr-4">
@@ -33,8 +33,8 @@
           </dd>
         </dl>
 
-        <dl class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.actor') }}
           </dt>
           <dd v-if="addressData.actor" class="mr-4">
@@ -45,8 +45,8 @@
           </dd>
         </dl>
 
-        <dl class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.balance') }}
           </dt>
           <dd class="mr-4">
@@ -54,8 +54,8 @@
           </dd>
         </dl>
 
-        <dl class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.messages') }}
           </dt>
           <dd class="mr-4">
@@ -63,8 +63,8 @@
           </dd>
         </dl>
 
-        <dl class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.createTime') }}
           </dt>
           <dd v-if="addressData.createTimestamp" class="mr-4">
@@ -75,8 +75,8 @@
           </dd>
         </dl>
 
-        <dl v-if="addressData.deleteTimestamp" class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl v-if="addressData.deleteTimestamp" class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.createTime') }}
           </dt>
           <dd class="mr-4">
@@ -84,8 +84,8 @@
           </dd>
         </dl>
 
-        <dl class="flex my-2 items-center">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2">
+        <dl class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.lastSeenTime') }}
           </dt>
           <dd v-if="addressData.lastSeenTimestamp" class="mr-4">
@@ -97,7 +97,7 @@
         </dl>
 
         <dl v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex items-center my-2">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2 items-center">
+          <dt class="items-center w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.ownedMiners') }}
           </dt>
           <dd class="flex flex-wrap flex-1 text-main">
@@ -108,7 +108,7 @@
         </dl>
 
         <dl v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex items-center my-2">
-          <dt class="w-1/6 pl-8 text-gray-600 px-2 items-center">
+          <dt class="items-center w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.workers') }}
           </dt>
           <dd class="flex flex-wrap flex-1 text-main">
@@ -119,14 +119,14 @@
         </dl>
       </div>
       <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
-        <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="border border-dashed border-gray-500 block h-full">
+        <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="block h-full border border-gray-500 border-dashed">
       </a>
     </div>
 
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
-    <div class="rounded-md my-4 bg-white pt-4">
-      <div class="flex h-12 items-center ml-8">
+    <div class="pt-4 my-4 bg-white rounded-md">
+      <div class="flex items-center h-12 ml-8">
         <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
           <el-radio-button :label="0">
             {{ $t('blockchain.message.title') }}
@@ -139,7 +139,7 @@
       <AddressMessageList v-if="listType === 0" :address="addressData.address" />
       <div v-if="listType === 1" class="mx-8">
         <div class="flex items-center justify-between border-b border-background">
-          <p class="flex h-12 items-center text-sm">
+          <p class="flex items-center h-12 text-sm">
             {{ $t('detail.transfer.total') }}
             {{ total }}
             {{ $t('detail.transfer.transaction') }}
@@ -151,26 +151,26 @@
           />
         </div>
         <table v-if="!loading" class="w-full table-fixed">
-          <thead class="text-gray-600 text-sm m-2">
+          <thead class="m-2 text-sm text-gray-600">
             <tr class="h-8">
-              <th class="sticky top-0 bg-white z-10 w-1/8">
+              <th class="sticky top-0 z-10 bg-white w-1/8">
                 {{ $t('detail.transfer.tableHeaders.time') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/4">
+              <th class="sticky top-0 z-10 w-1/4 bg-white">
                 {{ $t('detail.transfer.tableHeaders.message') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32">
+              <th class="sticky top-0 z-10 bg-white w-5/32">
                 {{ $t('detail.transfer.tableHeaders.from') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/16">
+              <th class="sticky top-0 z-10 bg-white w-1/16">
               </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32">
+              <th class="sticky top-0 z-10 bg-white w-5/32">
                 {{ $t('detail.transfer.tableHeaders.to') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/8">
+              <th class="sticky top-0 z-10 bg-white w-1/8">
                 {{ $t('detail.transfer.tableHeaders.income') }}
               </th>
-              <th class="sticky top-0 bg-white z-10 w-1/8">
+              <th class="sticky top-0 z-10 bg-white w-1/8">
                 {{ $t('detail.transfer.tableHeaders.type') }}
               </th>
             </tr>
@@ -179,7 +179,7 @@
             <tr
               v-for="(transfer, index) in transferList.transfers"
               :key="index"
-              class="h-12 border-b border-background text-sm"
+              class="h-12 text-sm border-b border-background"
             >
               <td>
                 {{ transfer.timestamp | timestamp('datetime') }}
@@ -189,7 +189,7 @@
                 <span v-else>N/A</span>
               </td>
               <td>
-                <div class="flex items-center flex-row justify-center">
+                <div class="flex flex-row items-center justify-center">
                   <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
                   <span v-else>N/A</span>
                   <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
@@ -201,7 +201,7 @@
                 </div>
               </td>
               <td>
-                <div class="flex items-center flex-row justify-center">
+                <div class="flex flex-row items-center justify-center">
                   <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" />
                   <span v-else>N/A</span>
                   <AddressTag :tag="transfer.toTag" type="pc" :style="{maxWidth:'66%'}" />
@@ -218,7 +218,7 @@
         </table>
       </div>
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div v-if="listType != 0" class="flex items-center text-center h-16">
+      <div v-if="listType != 0" class="flex items-center h-16 text-center">
         <el-pagination
           layout="prev, pager, next, jumper"
           :page-count="totalPageCount"
