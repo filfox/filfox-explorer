@@ -3,13 +3,13 @@
     <span v-if="!$slots.default">
       <span v-if="plain || !id" class="plain">
         {{ formatString }}
-        <a :href="'http://app.filns.domains/domain/' + nameExist" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
+        <a :href="'http://app.filns.domains/domain/' + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
       </span>
       <span v-else>
         <nuxt-link :class="colorClass" :to="to">
           {{ formatString }}
         </nuxt-link>
-        <a :href="'http://app.filns.domains/domain/' + nameExist" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
+        <a :href="'http://app.filns.domains/domain/' + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
       </span>
     </span>
     <slot v-else></slot>
