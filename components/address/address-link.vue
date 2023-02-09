@@ -65,6 +65,7 @@ export default {
       const id = this.id || ''
       if (id.startsWith('t4')) {
         let name = localStorage.getItem(`fns:${id}`)
+        console.log(name)
         if (name) {
           name = JSON.parse(name)
           if (Number(new Date()) - name.time > 60 * 10 * 1000) {
@@ -75,7 +76,6 @@ export default {
             return
           }
         }
-
         const result = (await this.$axios.$get(`${fnsServer}/name/find`, { params: { address: transAddress(id) } })).data
         if (result.name) {
           localStorage.setItem(`fns:${id}`, JSON.stringify({ time: Number(new Date()), name: result.name }))
