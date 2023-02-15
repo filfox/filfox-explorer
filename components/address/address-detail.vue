@@ -40,6 +40,9 @@
           <dd v-if="addressData.actor" class="mr-4">
             {{ $t(`actor.${addressData.actor}`) }}
           </dd>
+          <dd v-else-if="addressData.ethAddress" class="mr-4">
+            {{ $t(`actor.created`) }}
+          </dd>
           <dd v-else class="mr-4">
             {{ $t(`actor.account`) }}
           </dd>
@@ -261,6 +264,11 @@ export default {
       this.page = 0
       this.getTransferList()
     }
+  },
+  mounted() {
+    setInterval(() => {
+      console.log(this.addressData)
+    }, 1000)
   },
   methods: {
     async getTransferList() {

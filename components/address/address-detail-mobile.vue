@@ -32,6 +32,9 @@
       <p v-if="addressData.actor" class="flex w-3/4">
         {{ $t(`actor.${addressData.actor}`) }}
       </p>
+      <p v-else-if="addressData.ethAddress" class="flex w-3/4">
+        {{ $t(`actor.created`) }}
+      </p>
       <p v-else class="flex w-3/4">
         {{ $t(`actor.account`) }}
       </p>

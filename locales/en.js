@@ -576,7 +576,8 @@ export default {
     eam: 'EAM',
     datacap: 'Datacap',
     placeholder: 'Placeholder',
-    ethaccount: 'EthAccount'
+    ethaccount: 'EthAccount',
+    created: 'To be created'
   },
   chart: {
     miner: {
