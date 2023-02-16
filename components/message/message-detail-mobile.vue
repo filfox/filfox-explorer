@@ -100,7 +100,7 @@
       <p class="pl-4 py-3 border-b border-background font-medium">
         {{ $t('detail.message.modules.logs') }}
       </p>
-      <div class="h-136 overflow-y-auto">
+      <div class="max-h-136 overflow-y-auto">
         <div
           v-for="item, index in message.eventLogs"
           :key="index"
