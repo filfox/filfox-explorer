@@ -8,6 +8,10 @@ export const network = {
       url: 'https://filfox.info'
     },
     {
+      name: 'Calibration',
+      url: 'https://calibration.filfox.info'
+    },
+    {
       name: 'Hyperspace',
       url: 'https://hyperspace.filfox.info'
     }
@@ -18,6 +22,6 @@ export const wiki = {
   url: 'http://localhost:3000/wiki'
 }
 
-export const fnsServer = 'https://hyperspace.filfox.info/api/fns'
+export const fnsServer = 'https://calibration.filfox.info/api/fns'
 
 export const epochsInDay = 2880

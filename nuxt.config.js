@@ -95,7 +95,7 @@ export default {
     'nuxt-i18n'
   ],
   axios: {
-    baseURL: 'https://hyperspace.filfox.info/api/v1'
+    baseURL: 'https://calibration.filfox.info/api/v1'
   },
   i18n: {
     locales: [
