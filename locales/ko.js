@@ -33,7 +33,9 @@ export default {
         '메시지',
         '자산 순위',
         '주문',
-        'FNS Lookup'
+        'FNS Lookup',
+        'Mempool',
+        '계약 확인'
       ]
     },
     ranks: {

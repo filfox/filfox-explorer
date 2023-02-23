@@ -24,7 +24,9 @@ import Steps from 'element-ui/lib/steps'
 import Step from 'element-ui/lib/step'
 import Carousel from 'element-ui/lib/carousel'
 import CarouselItem from 'element-ui/lib/carousel-item'
+import Checkbox from 'element-ui/lib/checkbox'
 
+Vue.use(Checkbox)
 Vue.use(Button)
 Vue.use(Collapse)
 Vue.use(CollapseItem)

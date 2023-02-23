@@ -34,7 +34,8 @@ export default {
         'Rich List',
         'Deal List',
         'Mempool',
-        'FNS Lookup'
+        'FNS Lookup',
+        'Contract verification'
       ]
     },
     ranks: {

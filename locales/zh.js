@@ -28,7 +28,7 @@ export default {
     },
     blocks: {
       title: '区块链',
-      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池', 'FNS Lookup']
+      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池', 'FNS Lookup', '合约验证']
     },
     ranks: {
       title: '排行榜'

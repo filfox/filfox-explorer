@@ -29,6 +29,9 @@
         <nuxt-link :to="localePath('/fns')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.5') }}</el-dropdown-item>
         </nuxt-link>
+        <nuxt-link :to="localePath('/contract')">
+          <el-dropdown-item>{{ $t('nav.blocks.subMenus.6') }}</el-dropdown-item>
+        </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>
 
