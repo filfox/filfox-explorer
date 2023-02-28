@@ -388,7 +388,10 @@ export default {
         minerTip: '存储提供者获得的手续费。Miner Tip = Gas Premium * Gas 使用量',
         minerPenalty: '当Gas Fee Cap低于基础手续费率时，其消耗手续费的差额将作为Miner Penalty来抵扣'
       },
-      null: '(无)'
+      null: '(无)',
+      contract: {
+        title: '合约'
+      }
     },
     tipset: {
       title: '区块高度',
@@ -433,7 +436,8 @@ export default {
           createTime: '创建时间',
           lastSeenTime: '最新交易',
           ownedMiners: '名下存储提供者',
-          workers: '实际工作存储提供者'
+          workers: '实际工作存储提供者',
+          benefitedMiners: '受益矿工'
         }
       },
       miner: {
@@ -520,7 +524,8 @@ export default {
             worker: 'Worker',
             peerID: '节点ID',
             createTime: '创建时间',
-            ip: '地区（公开IP）'
+            ip: '地区（公开IP）',
+            beneficiary: '受益人'
           }
         },
         blockList: {

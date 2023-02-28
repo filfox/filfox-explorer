@@ -394,7 +394,10 @@ export default {
         minerTip: 'Fee received by miners. Miner Tip = Gas Premium * Gas used',
         minerPenalty: 'When the Gas Fee Cap is lower than the base fee, the difference will be deducted as Miner Penalty'
       },
-      null: '없음'
+      null: '없음',
+      contract: {
+        title: '계약'
+      }
     },
     tipset: {
       title: '블록 높이',
@@ -439,7 +442,8 @@ export default {
           createTime: '생성 시간',
           lastSeenTime: '최근 거래',
           ownedMiners: '보유 채굴자',
-          workers: '유효 채굴자'
+          workers: '유효 채굴자',
+          benefitedMiners: '광부 혜택'
         }
       },
       miner: {
@@ -518,7 +522,8 @@ export default {
             worker: 'Worker',
             peerID: '노드 ID',
             createTime: '생성 시간',
-            ip: '지역 (공개 IP)'
+            ip: '지역 (공개 IP)',
+            beneficiary: '수익자'
           }
         },
         blockList: {

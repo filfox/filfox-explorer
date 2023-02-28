@@ -407,6 +407,9 @@ export default {
       },
       null: '(Null)'
     },
+    contract: {
+      title: 'Contract'
+    },
     tipset: {
       title: 'Tipset Height',
       all: 'All',
@@ -450,7 +453,8 @@ export default {
           createTime: 'Create Time',
           lastSeenTime: 'Latest Transaction',
           ownedMiners: 'Owned Miner',
-          workers: 'Active Miner'
+          workers: 'Active Miner',
+          benefitedMiners: 'Benefited Miners'
         }
       },
       miner: {
@@ -537,7 +541,8 @@ export default {
             worker: 'Worker',
             peerID: 'Peer ID',
             createTime: 'Create Time',
-            ip: 'Region(Public IP)'
+            ip: 'Region(Public IP)',
+            beneficiary: 'Beneficiary'
           }
         },
         blockList: {

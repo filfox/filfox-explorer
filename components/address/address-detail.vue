@@ -120,6 +120,17 @@
             </p>
           </dd>
         </dl>
+
+        <dl v-if="addressData.benefitedMiners && addressData.benefitedMiners.length > 0" class="flex items-center my-2">
+          <dt class="items-center w-1/6 px-2 pl-8 text-gray-600">
+            {{ $t('detail.address.normal.headers.benefitedMiners') }}
+          </dt>
+          <dd class="flex flex-wrap flex-1 text-main">
+            <p v-for="worker in addressData.benefitedMiners" :key="worker" class="mr-4">
+              <AddressLink :id="worker" />
+            </p>
+          </dd>
+        </dl>
       </div>
       <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
         <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="block h-full border border-gray-500 border-dashed">
@@ -136,6 +147,9 @@
           </el-radio-button>
           <el-radio-button :label="1">
             {{ $t('detail.transfer.title') }}
+          </el-radio-button>
+          <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
+            {{ $t('detail.contract.title') }}
           </el-radio-button>
         </el-radio-group>
       </div>
@@ -220,6 +234,8 @@
           </tbody>
         </table>
       </div>
+      <ContractCode v-if="listType === 2" :address="addressData.address" />
+
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
       <div v-if="listType != 0" class="flex items-center h-16 text-center">
         <el-pagination
@@ -266,9 +282,6 @@ export default {
     }
   },
   mounted() {
-    setInterval(() => {
-      console.log(this.addressData)
-    }, 1000)
   },
   methods: {
     async getTransferList() {
