@@ -4,11 +4,11 @@
       <img src="@/assets/img/contract/warn.svg" alt="warn" class="w-4.5 h-4.5 mr-2">
       <span class="text-sm">This contract may be a proxy contract</span>
     </div>
-    <div class="text-customGray-600 flex items-center p-2 mt-4">
+    <div class="text-customGray-600 flex items-center px-1">
       <img src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 mr-2">
       <span class="font-semibold text-sm">Contract Source Code Verified</span>
     </div>
-    <div class="bg-customGray-200 px-3 text-sm rounded-md">
+    <div class="bg-customGray-200 px-3 text-sm rounded-md mt-2.5">
       <div class="border-b border-customGray-300 flex justify-between p-4">
         <div class="flex">
           <div class="w-48 text-customGray-450">
@@ -45,7 +45,7 @@
         <span class="flex items-center">
           <div
             class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main"
-            @click="copyTxt(contract.sourceFiles[0].content)"
+            @click="copyTxt(sourceCodes)"
           >
             <img src="@/assets/img/contract/copy.svg" class="w-4 h-4 m-auto">
           </div>

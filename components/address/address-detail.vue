@@ -234,10 +234,8 @@
           </tbody>
         </table>
       </div>
-      <ContractCode v-if="listType === 2" :address="addressData.address" />
-
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div v-if="listType != 0" class="flex items-center h-16 text-center">
+      <div v-if="listType != 0 && listType != 2" class="flex items-center h-16 text-center">
         <el-pagination
           layout="prev, pager, next, jumper"
           :page-count="totalPageCount"
@@ -246,6 +244,7 @@
           @current-change="didCurrentPageChanged"
         />
       </div>
+      <ContractCode v-if="listType === 2" :address="addressData.address" />
     </div>
   </div>
 </template>

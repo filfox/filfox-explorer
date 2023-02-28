@@ -4,12 +4,9 @@
       <p class="text-lg font-bold">
         Verify & Publish Contract Source Code
       </p>
-      <div v-if="compilerType == 2" class="bg-main rounded-full text-white px-10 py-2 mt-3 text-sm">
-        Complier Type: SOLIDITY MULTHPART VERIFILER (IMPORTS)
-      </div>
-      <div v-else class="bg-success rounded-full text-white px-10 py-2 mt-3 text-sm">
-        Complier Type: SINGLE FILE/ CONC ATENANTED NETHOD
-      </div>
+      <p class="text-sm text-customGray-600 mt-2 uppercase">
+        Select one or more *.sol files
+      </p>
     </div>
     <div class="p-4 bg-white rounded-md mt-5">
       <el-radio-group v-model="activeTab">
@@ -80,7 +77,7 @@
       </div>
 
       <div class="rounded-md p-4 mt-5 bg-white flex flex-col font-light">
-        <div class="flex items-center">
+        <div class="flex items-center text-sm">
           <el-upload
             ref="upload"
             multiple
@@ -90,16 +87,16 @@
             :on-remove="onChange"
             action="/api/upload"
           >
-            <button slot="trigger" class="text-sm rounded px-4 py-2 bg-main text-white hover:opacity-75 font-medium transition duration-200">
+            <button slot="trigger" class="rounded px-4 py-2 bg-main text-white hover:opacity-75 font-medium transition duration-200">
               Select *.sol files
             </button>
+            <span class="ml-2 text-customGray-500">Select the Solidity *.sol files</span>
           </el-upload>
         </div>
-        <span class="mt-2">Enter the Solidity Contract Code below or Select the Solidity (*.sol) files</span>
         <textarea
-          v-model.trim="contractCode"
+          v-model.trim="contractCodes"
           readonly
-          class="rounded-lg bg-customGray-200 border h-64 mt-2 p-4 overflow-auto text-sm outline-none focus:border-main transition duration-200"
+          class="rounded-lg bg-customGray-200 border h-64 mt-3 p-4 overflow-auto text-sm outline-none focus:border-main transition duration-200"
         ></textarea>
       </div>
 
@@ -114,8 +111,8 @@
         </p>
         <div class="bg-white text-center p-4 my-4">
           <button
-            :disabled="loading"
-            :class="{ 'cursor-not-allowed bg-customGray-400': loading }"
+            :disabled="loading || !allowPublish"
+            :class="{ 'cursor-not-allowed bg-customGray-400': loading || !allowPublish }"
             class="rounded px-4 py-2.5 bg-main text-white hover:opacity-75 font-medium transition duration-200"
             @click="doVerify"
           >
@@ -201,7 +198,7 @@ export default {
         { name: 'Compiler Output', label: 2 }
       ],
       activeTab: 1,
-      contractCode: '',
+      contractCodes: [],
       parameters: '',
       fileList: [],
       optimize: false,
@@ -236,7 +233,7 @@ export default {
     sourceFiles() {
       if (!this.fileList.length) return {}
 
-      const [codes, sourceFiles] = [this.contractCode, {}]
+      const [codes, sourceFiles] = [this.contractCodes, {}]
       codes.forEach((code, index) => (sourceFiles[this.fileList[index].name] = { content: code }))
       return sourceFiles
     },
@@ -248,6 +245,18 @@ export default {
           || this.verifiedResult.errorMsg
           || 'Unknow Error'
       }
+    },
+
+    contractCodesTxt() {
+      if (!this.contractCodes.length) return ''
+      return this.contractCodes.reduce((p, n) => `${p}\n${n}`)
+    },
+
+    allowPublish() {
+      return this.contractCodesTxt
+        && this.contractAddress
+        && this.compilerVersion
+        && this.parameters
     },
 
     hasOutput() {
@@ -277,9 +286,9 @@ export default {
 
     reset() {
       this.parameters = ''
-      this.contractCode = ''
-      this.fileList = []
+      this.contractCodes = []
       this.$refs.upload?.clearFiles()
+      this.fileList = []
       this.verifiedResult = {}
     },
 
@@ -289,7 +298,7 @@ export default {
 
     readFiles(files) {
       if (!files.length) {
-        this.contractCode = ''
+        this.contractCodes = ''
         return
       }
 
@@ -304,7 +313,7 @@ export default {
       })
 
       Promise.all(promises)
-        .then(fileContents => (this.contractCode = fileContents))
+        .then(fileContents => (this.contractCodes = fileContents))
         .catch(error => console.error(error))
     },
 
