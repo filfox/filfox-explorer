@@ -25,6 +25,7 @@ export default {
   },
   async mounted() {
     this.contract = await this.$axios.$get(`/address/${this.address}/contract`)
+    this.contract.address = this.address
   },
   methods: {}
 }

@@ -49,7 +49,10 @@
           >
             <img src="@/assets/img/contract/copy.svg" class="w-4 h-4 m-auto">
           </div>
-          <div class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main ml-2">
+          <div
+            class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main ml-2"
+            @click="copyLink"
+          >
             <img src="@/assets/img/contract/link.svg" class="w-4 h-4 m-auto">
           </div>
         </span>
@@ -69,11 +72,12 @@
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item
-                  v-for="name in abis"
-                  :key="name"
-                  icon="el-icon-circle-plus-outline"
-                  @click="exportAbi(name)"
-                >{{ name }}</el-dropdown-item>
+                  v-for="{ format, label} in abis"
+                  :key="format"
+                  icon="el-icon-document"
+                >
+                  <a :href="`/contract/abi?address=${contract.address}&format=${format}`" target="_blank">{{ label }}</a>
+                </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>
@@ -110,20 +114,18 @@ export default {
   },
   data() {
     return {
-      value: ''
+      value: '',
+      abis: [
+        { format: 'json', label: 'JSON Format' },
+        { format: 'text', label: 'Text Format' }
+      ]
     }
   },
   computed: {
-    abis() {
-      const ABI = JSON.parse(this.contract?.abi)
-      return ABI.map(item => item.name ?? 'unknow')
-    },
     sourceCodes() {
       const codes = this.contract.sourceFiles.map(({ content }) => content)
       return codes.reduce((p, n) => `${p}\n${n}`)
     }
-  },
-  watch: {
   },
   methods: {
     copyTxt(content) {
@@ -131,8 +133,8 @@ export default {
       this.$message.success(this.$t('shared.copySuccess'))
     },
 
-    exportAbi(name) {
-      this.$message.success(name)
+    copyLink() {
+      this.copyTxt(window.location.href)
     }
   }
 }
