@@ -57,7 +57,6 @@
       <div class="rounded-lg bg-customGray-200 border h-68 mt-2 p-4 overflow-auto break-all text-sm whitespace-pre">
         {{ sourceCodes }}
       </div>
-      <prism-editor v-model="sourceCodes" line-numbers></prism-editor>
     </div>
     <div class="rounded-md mt-5 bg-white">
       <div class="flex items-center justify-between px-1">

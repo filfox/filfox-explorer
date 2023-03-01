@@ -27,10 +27,6 @@ import CarouselItem from 'element-ui/lib/carousel-item'
 import Checkbox from 'element-ui/lib/checkbox'
 import Upload from 'element-ui/lib/upload'
 
-import { PrismEditor } from 'vue-prism-editor'
-import 'vue-prism-editor/dist/prismeditor.min.css'
-Vue.component('PrismEditor', PrismEditor)
-
 Vue.use(Upload)
 Vue.use(Checkbox)
 Vue.use(Button)
