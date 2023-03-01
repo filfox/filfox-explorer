@@ -1,33 +1,33 @@
 <template>
   <div class="container mx-auto bg-white rounded-md my-5 font-light">
-    <div class="pt-6 pb-4 border-b-2 border-customGray-100 text-center ">
+    <div class="pt-6 pb-4 border-b-2 border-customGray-100 text-center">
       <p class="text-lg font-bold">
-        Verify & Publish Contract Source Code
+        {{ $t('contract.guide.title.0') }}
       </p>
       <p class="text-sm text-customGray-600 mt-2">
-        COMPILER TYPE AND VERSION SELECTION
+        {{ $t('contract.guide.title.1') }}
       </p>
     </div>
 
     <div class="flex flex-col items-center p-6">
-      <p class="text-sm text-customGray-500 text-center leading-relaxed w-10/12">
-        Source code verification provides transparency for users interacting with smart contracts. By uploading the source code, Filfox will match the compiled code with that on the blockchain. Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.<br><br>Please be informed that advanced settings (e.g. bytecodeHash: "none" or viaIR: "true") can be accessed via Solidity (Standard-Json-Input) verification method. More information can be found under Solidity's "Compiler Input and Output JSON Description" documentation section.
+      <p class="text-sm text-customGray-500 text-center leading-relaxed w-11/12 md:w-10/12">
+        {{ $t('contract.guide.tips.0') }}<br><br>{{ $t('contract.guide.tips.1') }}
       </p>
 
       <p class="mt-12">
-        Please enter the Contract Address you would like to verify
+        {{ $t('contract.guide.enterContractAddress') }}
       </p>
       <input
         v-model.trim="contractAddress"
         :class="{ 'text-red-500': !isRightAddress(contractAddress) }"
-        class="bg-customGray-200 rounded h-11 px-8 mt-4 text-sm font-light w-6/12 border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-customGray-600"
-        placeholder="Please center address"
+        class="bg-customGray-200 rounded h-11 px-8 mt-4 text-sm font-light w-11/12 md:w-1/2 border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-customGray-600"
+        :placeholder="$t('contract.guide.pleaseCenterAddress')"
       >
 
       <p class="mt-8">
-        Please select Compiler Version
+        {{ $t('contract.guide.selectCompiler') }}
       </p>
-      <el-select v-model="compilerVersion" placeholder="Please Select" class="w-1/2 mt-4 bg-customGray-200 compiler-select">
+      <el-select v-model="compilerVersion" :placeholder="$t('contract.guide.pleaseSelect')" class="w-11/12 md:w-1/2 mt-4 bg-customGray-200 compiler-select">
         <el-option
           v-for="value in compilerVersions"
           :key="value"
@@ -38,9 +38,9 @@
       </el-select>
 
       <p class="mt-8">
-        {{ 'Please select Open Source License Type' }}
+        {{ $t('contract.guide.selectLicense') }}
       </p>
-      <el-select v-model="licenseType" placeholder="Please Select" class="w-1/2 mt-4 bg-customGray-200 compiler-select">
+      <el-select v-model="licenseType" :placeholder="$t('contract.guide.pleaseSelect')" class="w-11/12 md:w-1/2 mt-4 bg-customGray-200 compiler-select">
         <el-option
           v-for="{ label, value } in licenseTypes"
           :key="value"
@@ -52,24 +52,24 @@
 
       <el-checkbox v-model="agreeService" class="mt-6 mb-8">
         <p class="text-customGray-400 text-xs">
-          {{ 'I Agree to the terms of service' }}
+          {{ $t('contract.guide.agreeService') }}
         </p>
       </el-checkbox>
 
-      <div class="flex items-center mb-16">
+      <div class="flex items-center mb-8 md:mb-16">
         <button
-          class="rounded w-26 py-2.5 bg-main text-white hover:opacity-75 mr-4 font-medium transition duration-200"
+          class="rounded w-26 py-2 md:py-2.5 bg-main text-white hover:opacity-75 mr-4 font-medium transition duration-200"
           :class="{ 'cursor-not-allowed bg-customGray-400': !allowNextStep }"
           :disabled="!allowNextStep"
           @click="nextStep"
         >
-          Continue
+          {{ $t('contract.continue') }}
         </button>
         <button
-          class="rounded w-26 py-2.5 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200"
+          class="rounded w-26 py-2 md:py-2.5 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200"
           @click="resetForm"
         >
-          Reset
+          {{ $t('contract.reset') }}
         </button>
       </div>
     </div>
@@ -226,7 +226,7 @@ export default {
 
   head() {
     return {
-      title: `${this.$t('fns.search.title')}`
+      title: `${this.$t('contract.guide.title.0')}`
     }
   }
 }

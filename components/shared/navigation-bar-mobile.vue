@@ -21,6 +21,9 @@
           <nuxt-link :to="localePath('/fns')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.5') }}
           </nuxt-link>
+          <nuxt-link :to="localePath('/contract')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.blocks.subMenus.6') }}
+          </nuxt-link>
         </el-collapse-item>
       </el-collapse>
 

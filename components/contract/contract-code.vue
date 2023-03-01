@@ -1,5 +1,5 @@
 <template>
-  <div class="font-light px-8 pb-8 pt-3">
+  <div class="font-light px-4 md:px-8 pb-6 md:pb-8 pt-3">
     <CodeVerified v-if="verified" :contract="contract" />
     <CodeNotVerified v-else :contract="contract" />
   </div>

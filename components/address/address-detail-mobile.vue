@@ -135,6 +135,9 @@
           <el-radio-button :label="1">
             {{ $t('detail.transfer.title') }}
           </el-radio-button>
+          <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
+            {{ $t('detail.contract.title') }}
+          </el-radio-button>
         </el-radio-group>
       </div>
       <AddressMessageListMobile v-if="listType === 0" :address="addressData.address" />
@@ -205,7 +208,7 @@
           </div>
         </div>
       </div>
-      <div v-if="listType != 0" class="flex items-center h-16 text-center bg-white">
+      <div v-if="listType != 0 && listType != 2" class="flex items-center h-16 text-center bg-white">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
@@ -215,6 +218,7 @@
           @current-change="didCurrentPageChanged"
         />
       </div>
+      <ContractCode v-if="listType === 2" :address="addressData.address" />
     </div>
   </div>
 </template>

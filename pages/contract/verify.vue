@@ -1,34 +1,34 @@
 <template>
   <div v-loading="loading" class="container mx-auto my-5">
-    <div class="pt-6 pb-5 bg-white rounded-md flex flex-col items-center">
+    <div class="pt-6 pb-5 bg-white rounded-none md:rounded-md flex flex-col items-center">
       <p class="text-lg font-bold">
-        Verify & Publish Contract Source Code
+        {{ $t('contract.verify.title.0') }}
       </p>
       <p class="text-sm text-customGray-600 mt-2 uppercase">
-        Select one or more *.sol files
+        {{ $t('contract.verify.title.1') }}
       </p>
     </div>
-    <div class="p-4 bg-white rounded-md mt-5">
+    <div class="p-4 bg-white rounded-none md:rounded-md mt-5">
       <el-radio-group v-model="activeTab">
         <el-radio-button v-for="{ name, label } in tabs" :key="label" :label="label">
           {{ name }}
         </el-radio-button>
       </el-radio-group>
       <p class="text-sm font-light text-customGray-500 bg-customGray-250 p-3 mt-4 rounded-md leading-loose">
-        1. If the contract compiles correctly at <span class="text-main">REMIX</span>, it should also compile correctly here. <br>
-        2. We have limited support for verifying contracts created by another contract and there is a timeout of up to 45 seconds for each contract compiled. <br>
-        3. For programatic contract verification, check out the <span class="text-main">Contract API Endpoint</span>.
+        1. {{ $t('contract.verify.tips.0') }}<br>
+        2. {{ $t('contract.verify.tips.1') }}<br>
+        3. {{ $t('contract.verify.tips.2') }}
       </p>
       <template v-if="activeTab == 2 && hasOutput">
         <div class="text-sm font-light text-customGray-500 bg-customGray-250 p-3 mt-4 rounded-md leading-loose">
-          <span class="font-medium">Compiler debug log:</span><br>
-          <div v-if="verifiedResult.success" class="flex items-center text-green-600">
-            <i class="el-icon-circle-check mr-1 text-base"></i>
-            Success : {{ verifiedTip }}
-          </div>
-          <div v-else class="flex items-center text-red-600">
-            <i class="el-icon-circle-close mr-1 text-base"></i>
-            <span>Error : {{ verifiedTip }}</span>
+          <p class="font-medium">
+            {{ $t('contract.verify.debugLog') }}:
+          </p>
+          <div
+            class="w-full whitespace-pre break-all leading-relaxed text-red-600 overflow-auto"
+            :class="[ verifiedResult.success ? 'text-green-600 el-icon-circle-check' : 'text-red-600 el-icon-circle-close' ]"
+          >
+            {{ verifiedResult.success ? 'Success' : 'Error' }} : {{ verifiedTip }}
           </div>
         </div>
         <div
@@ -41,28 +41,35 @@
     </div>
 
     <template v-if="activeTab == 1">
-      <div class="rounded-md p-4 mt-5 bg-white flex text-lg">
-        <div class="w-1/3 pr-2.5">
-          <p>Contract Address</p>
+      <div class="rounded-none md:rounded-md p-4 mt-5 bg-white flex flex-col md:flex-row">
+        <div class="w-full md:w-1/3 pr-0 md:pr-2.5">
+          <p class="text-base md:text-lg">
+            {{ $t('contract.verify.contractAddress') }}
+          </p>
           <input
             v-model="contractAddress"
             readonly
-            class="w-full bg-customGray-200 rounded px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-black"
-            placeholder="Please center address">
+            class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-black"
+            :placeholder="$t('contract.guide.pleaseCenterAddress')"
+          >
         </div>
-        <div class="w-1/3 px-2.5">
-          <p>Complier</p>
+        <div class="w-full md:w-1/3 px-0 md:px-2.5 mt-4 md:mt-0">
+          <p class="text-base md:text-lg">
+            {{ $t('contract.verify.complier') }}
+          </p>
           <input
             v-model="compilerVersion"
             readonly
-            class="w-full bg-customGray-200 rounded px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
+            class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
           >
         </div>
-        <div class="w-1/3 pl-2.5">
-          <p>Optimizations</p>
+        <div class="w-full md:w-1/3 pl-0 md:pl-2.5 mt-4 md:mt-0">
+          <p class="text-base md:text-lg">
+            {{ $t('contract.verify.optimizations') }}
+          </p>
           <el-select
             v-model="optimize"
-            placeholder="Please Select"
+            :placeholder="$t('contract.guide.pleaseSelect')"
             class="optimize-select w-full mt-3"
           >
             <el-option
@@ -76,7 +83,7 @@
         </div>
       </div>
 
-      <div class="rounded-md p-4 mt-5 bg-white flex flex-col font-light">
+      <div class="rounded-none md:rounded-md p-4 mt-5 bg-white flex flex-col font-light">
         <div class="flex items-center text-sm">
           <el-upload
             ref="upload"
@@ -88,88 +95,88 @@
             action="/api/upload"
           >
             <button slot="trigger" class="rounded px-4 py-2 bg-main text-white hover:opacity-75 font-medium transition duration-200">
-              Select *.sol files
+              {{ $t('contract.verify.selectFiles') }}
             </button>
-            <span class="ml-2 text-customGray-500">Select the Solidity *.sol files</span>
+            <span class="ml-2 text-customGray-500">{{ $t('contract.verify.selectFilesDes') }}</span>
           </el-upload>
         </div>
         <textarea
-          v-model.trim="contractCodes"
+          v-model.trim="contractCodesTxt"
           readonly
           class="rounded-lg bg-customGray-200 border h-64 mt-3 p-4 overflow-auto text-sm outline-none focus:border-main transition duration-200"
         ></textarea>
       </div>
 
-      <div class="rounded-md p-4 mt-5 bg-white">
-        <span class="font-light">Constructor Argument</span>
+      <div class="rounded-none md:rounded-md p-4 mt-5 bg-white">
+        <span class="font-light">{{ $t('contract.verify.constructorArg') }}</span>
         <textarea
           v-model.trim="parameters"
           class="text-sm block w-full rounded-lg bg-customGray-200 border h-64 mt-2 p-4 overflow-auto font-light outline-none focus:border-main transition duration-200"
         ></textarea>
         <p class="text-xs text-customGray-400 pl-1 mt-3">
-          For additition information on Constructor Arguments <span class="text-main">See Our KB Entry</span>
+          {{ $t('contract.verify.argTip') }}
         </p>
         <div class="bg-white text-center p-4 my-4">
           <button
             :disabled="loading || !allowPublish"
             :class="{ 'cursor-not-allowed bg-customGray-400': loading || !allowPublish }"
-            class="rounded px-4 py-2.5 bg-main text-white hover:opacity-75 font-medium transition duration-200"
+            class="rounded px-4 py-2 md:py-2.5 bg-main text-white hover:opacity-75 font-medium transition duration-200"
             @click="doVerify"
           >
-            Verify and Publish
+            {{ $t('contract.publish') }}
           </button>
           <button
-            class="rounded px-4 py-2.5 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200 mx-4"
+            class="rounded px-4 py-2 md:py-2.5 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200 mx-4"
             @click="reset"
           >
-            Reset
+            {{ $t('contract.reset') }}
           </button>
           <button
-            class="rounded px-4 py-2.5 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200"
+            class="rounded px-4 py-2 md:py-2.5 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200"
             @click="returnToMain"
           >
-            Return to Main
+            {{ $t('contract.return') }}
           </button>
         </div>
       </div>
     </template>
 
     <template v-if="activeTab == 2 && hasOutput">
-      <ul class="rounded-md p-4 mt-5 bg-white text-sm font-light">
+      <ul class="rounded-none md:rounded-md p-4 mt-5 bg-white text-sm font-light">
         <li class="mb-2 flex items-center">
-          <label class="w-48 text-customGray-500">Complier Version:</label>
+          <label class="w-48 text-customGray-500">{{ $t('contract.verify.complierVersion') }}:</label>
           {{ compilerVersion }}
         </li>
         <li class="my-3 flex items-center">
-          <label class="w-48 text-customGray-500">Optimization Enabled:</label>
-          {{ optimize }}
+          <label class="w-48 text-customGray-500">{{ $t('contract.verify.optimizationEnabled') }}:</label>
+          {{ optimize ? 'Yes' : 'No' }}
         </li>
         <li class="mt-2 flex items-center">
           <label class="w-48 text-customGray-500">Runs:</label>
-          {{ '200' }}
+          {{ optimize ? 200 : '--' }}
         </li>
       </ul>
 
-      <div class="rounded-md p-4 mt-5 bg-white font-light">
+      <div class="rounded-none md:rounded-md p-4 mt-5 bg-white font-light">
         <template v-if="parameters">
           <div class="px-1">
-            Consturctor Arguments Used
+            {{ $t('contract.verify.argsUsed') }}
           </div>
-          <div class="bg-customGray-200 text-customGray-500 text-sm p-3 mt-3 rounded-md">
+          <div class="bg-customGray-200 text-customGray-500 text-sm p-3 mt-3 rounded-md overflow-auto">
             {{ parameters }}
           </div>
         </template>
         <template v-if="verifiedResult.contractName">
           <div class="px-1 mt-6">
-            Contract Name
+            {{ $t('contract.verify.contractName') }}
           </div>
-          <div class="bg-customGray-200 text-customGray-500 text-sm p-3 mt-3 rounded-md">
+          <div class="bg-customGray-200 text-customGray-500 text-sm p-3 mt-3 rounded-md overflow-auto">
             {{ verifiedResult.contractName }}
           </div>
         </template>
         <template v-if="verifiedResult.byteCode">
           <div class="px-1 mt-6 mb-3">
-            Contract Bytecode
+            {{ $t('contract.verify.contractBytecode') }}
           </div>
           <div class="h-64 rounded-md bg-customGray-200 border p-4 overflow-auto text-sm break-all">
             {{ verifiedResult.byteCode }}
@@ -177,7 +184,7 @@
         </template>
         <template v-if="verifiedResult.abi">
           <div class="px-1 mt-6 mb-3">
-            Contract ABI
+            {{ $t('contract.verify.contractAbi') }}
           </div>
           <div class="h-64 rounded-md bg-customGray-200 border p-4 overflow-auto text-sm">
             {{ verifiedResult.abi }}
@@ -194,8 +201,8 @@ export default {
     return {
       loading: false,
       tabs: [
-        { name: 'Contract Source Code', label: 1 },
-        { name: 'Compiler Output', label: 2 }
+        { name: this.$t('contract.verify.source'), label: 1 },
+        { name: this.$t('contract.verify.output'), label: 2 }
       ],
       activeTab: 1,
       contractCodes: [],
@@ -206,15 +213,7 @@ export default {
         { label: 'Yes', value: true },
         { label: 'No', value: false }
       ],
-      verifiedResult: {},
-      verifyErrorMap: {
-        1: '未找到源代码',
-        2: '未找到合约 bytecode',
-        3: '加载编译器失败',
-        4: '验证失败',
-        5: '不支持该语言',
-        6: '合约已经被验证过'
-      }
+      verifiedResult: {}
     }
   },
   computed: {
@@ -239,9 +238,9 @@ export default {
     },
     verifiedTip() {
       if (this.verifiedResult?.success) {
-        return '验证成功'
+        return this.$t('contract.verify.verifySuccess')
       } else {
-        return this.verifyErrorMap[this.verifiedResult.errorCode]
+        return this.$t('contract.verify.error')[this.verifiedResult.errorCode]
           || this.verifiedResult.errorMsg
           || 'Unknow Error'
       }
@@ -280,7 +279,7 @@ export default {
       this.verifiedResult = res
       this.activeTab = 2
       if (res?.success) {
-        this.$message.success('Successfully verified')
+        this.$message.success(this.$t('contract.verify.verifySuccess'))
       }
     },
 
@@ -324,7 +323,7 @@ export default {
   },
   head() {
     return {
-      title: `${this.$t('fns.search.title')}`
+      title: `${this.$t('contract.guide.title.0')}`
     }
   }
 }

@@ -6,42 +6,42 @@
     </div>
     <div class="text-customGray-600 flex items-center px-1">
       <img src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 mr-2">
-      <span class="font-semibold text-sm">Contract Source Code Verified</span>
+      <span class="font-semibold text-sm">{{ $t('detail.contract.codeVerified') }}</span>
     </div>
     <div class="bg-customGray-200 px-3 text-sm rounded-md mt-2.5">
-      <div class="border-b border-customGray-300 flex justify-between p-4">
-        <div class="flex">
+      <div class="border-b border-customGray-300 flex flex-col md:flex-row justify-between p-4">
+        <div class="flex justify-between md:justify-start">
           <div class="w-48 text-customGray-450">
-            Contract Name:
+            {{ $t('detail.contract.contractName') }}:
           </div>
           <span>{{ contract.contractName }}</span>
         </div>
-        <div class="flex w-1/2">
+        <div class="flex justify-between md:w-1/2 md:justify-start mt-2 md:mt-0">
           <div class="w-48 text-customGray-450">
-            Optimization Enabled:
+            {{ $t('detail.contract.optimizeEnabled') }}:
           </div>
           <span>{{ contract.optimizeRuns }}</span>
         </div>
       </div>
-      <div class="flex justify-between p-4">
-        <div class="flex items-cenetr">
+      <div class="flex flex-col md:flex-row md:justify-between p-4">
+        <div class="flex justify-between md:justify-start">
           <div class="w-48 text-customGray-450">
-            Compiler Version:
+            {{ $t('detail.contract.compilerVersion') }}:
           </div>
           <span>{{ contract.compiler }}</span>
         </div>
-        <div class="flex items-cenetr w-1/2">
+        <div class="flex justify-between md:w-1/2 md:justify-start mt-2 md:mt-0">
           <div class="w-48 text-customGray-450">
-            Other Settings:
+            {{ $t('detail.contract.otherSettings') }}
           </div>
-          <span>Default evmVersion, {{ contract.license || 'None license' }}</span>
+          <span class="text-right md:text-left">Default evmVersion, {{ contract.license || 'None license' }}</span>
         </div>
       </div>
     </div>
 
     <div class="rounded-md mt-5 bg-white">
       <div class="flex items-center justify-between px-1">
-        <span class="text-sm">Contract Source Code <span class="text-customGray-400">( {{ contract.language }} )</span></span>
+        <span class="text-sm">{{ $t('detail.contract.contractSourceCode') }} <span class="text-customGray-400">( {{ contract.language }} )</span></span>
         <span class="flex items-center">
           <div
             class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main"
@@ -49,7 +49,7 @@
           >
             <img src="@/assets/img/contract/copy.svg" class="w-4 h-4 m-auto">
           </div>
-          <div class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer ml-2">
+          <div class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main ml-2">
             <img src="@/assets/img/contract/link.svg" class="w-4 h-4 m-auto">
           </div>
         </span>
@@ -57,15 +57,16 @@
       <div class="rounded-lg bg-customGray-200 border h-68 mt-2 p-4 overflow-auto break-all text-sm whitespace-pre">
         {{ sourceCodes }}
       </div>
+      <prism-editor v-model="sourceCodes" line-numbers></prism-editor>
     </div>
     <div class="rounded-md mt-5 bg-white">
       <div class="flex items-center justify-between px-1">
-        <span class="text-sm">Contract ABI</span>
+        <span class="text-sm">{{ $t('detail.contract.contractAbi') }}</span>
         <span class="flex items-center">
           <div class="px-2 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main">
             <el-dropdown>
               <span class="el-dropdown-link text-main text-xs">
-                Export ABI<i class="el-icon-arrow-down el-icon--right"></i>
+                {{ $t('detail.contract.exportAbi') }}<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item
@@ -90,7 +91,7 @@
       </div>
     </div>
     <div class="rounded-md mt-5 bg-white">
-      <span class="text-sm">Contract Creation Code</span>
+      <span class="text-sm">{{ $t('detail.contract.contractCreationCode') }}</span>
       <div class="rounded-lg bg-customGray-200 border h-64 mt-2 p-4 overflow-auto break-all text-sm">
         {{ contract.initCode }}
       </div>
