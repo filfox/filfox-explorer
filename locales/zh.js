@@ -28,7 +28,7 @@ export default {
     },
     blocks: {
       title: '区块链',
-      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池', 'FNS Lookup']
+      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池', 'FNS Lookup', '合约验证']
     },
     ranks: {
       title: '排行榜'
@@ -323,6 +323,19 @@ export default {
       total: '共',
       transaction: '条转账'
     },
+    contract: {
+      title: '合约',
+      verifyTip: ['你是合约创建者吗', '验证并发布', '你的合约源代码'],
+      codeVerified: '合约源代码已通过验证',
+      contractName: '合约名',
+      compilerVersion: '编译器版本',
+      optimizeEnabled: '优化开启',
+      otherSettings: '其他设置',
+      contractSourceCode: '合约源代码',
+      contractAbi: '合约 ABI',
+      contractCreationCode: '合约创建代码',
+      exportAbi: '导出 ABI'
+    },
     message: {
       title: '消息详情',
       replaced: '消息 {oldCid} 已被 {cid} 覆盖',
@@ -433,7 +446,8 @@ export default {
           createTime: '创建时间',
           lastSeenTime: '最新交易',
           ownedMiners: '名下存储提供者',
-          workers: '实际工作存储提供者'
+          workers: '实际工作存储提供者',
+          benefitedMiners: '受益矿工'
         }
       },
       miner: {
@@ -520,7 +534,8 @@ export default {
             worker: 'Worker',
             peerID: '节点ID',
             createTime: '创建时间',
-            ip: '地区（公开IP）'
+            ip: '地区（公开IP）',
+            beneficiary: '受益人'
           }
         },
         blockList: {
@@ -773,7 +788,7 @@ export default {
       overview: '概览',
       expirationDate: '到期日期',
       names: '域名',
-      reverseRecord: 'Reverse Record',
+      reverseRecord: '反向记录',
       registrant: '注册地址',
       realatedTransactions: '相关交易',
       block: '区块',
@@ -781,10 +796,65 @@ export default {
       txHash: '交易ID'
     },
     name: {
-      resolvedAddress: 'Resolved Address',
+      resolvedAddress: '解析到地址',
       expiration: '到期日期',
       registrant: '注册地址',
-      controller: 'Controller'
+      controller: '控制者'
+    }
+  },
+  contract: {
+    reset: '重置',
+    continue: '下一步',
+    return: '返回',
+    publish: '验证并发布',
+
+    guide: {
+      title: ['验证并发布合同源代码', '编译器类型和版本选择'],
+      tips: [
+        '源代码验证为与智能合约交互的用户提供了透明度。通过上传源代码，Filfox将把编译后的代码与区块链上的代码进行匹配。就像合同一样，“智能合同”应该为最终用户提供更多关于他们“数字签名”的信息，并让用户有机会审核代码，以独立验证代码是否确实完成了它应该做的事情。',
+        '请注意，高级设置（例如bytecodeHash:“none”或viaIR:“true”）可以通过Solidity（标准Json输入）验证方法访问。更多信息可在Solidity的“编译器输入和输出JSON描述”文档部分找到。'
+      ],
+      pleaseSelect: '请选择',
+      pleaseCenterAddress: '请输入合约地址',
+      enterContractAddress: '请输入您要验证的合同地址',
+      selectCompiler: '请选择编译器版本',
+      selectLicense: '请选择开源许可证类型',
+      agreeService: '我同意服务条款'
+    },
+    verify: {
+      title: ['验证和发布合同源代码', '请选择单个或多个 *.SOL 文件'],
+      source: '合约源码',
+      output: '编译输出',
+      tips: [
+        '如果合同在 REMIX 处编译正确，则此处也应编译正确',
+        '我们对验证由另一个合约创建的合约的支持有限，编译的每个合约的超时时间最多为45秒',
+        '对于编程合同验证，请查看合同 API 端点'
+      ],
+      contractAddress: '合约地址',
+      complier: '编译器',
+      optimizations: '优化参数',
+      selectFiles: '选择 *.sol 文件',
+      selectFilesDes: '选择单个或多个 Solidity 文件',
+      constructorArg: '构造函数参数',
+      argTip: '有关构造函数参数的附加信息，请参阅我们的知识库条目',
+      debugLog: '编译日志',
+      complierVersion: '编译器版本',
+      optimizationEnabled: '优化开启',
+      runs: '运行',
+      argsUsed: '使用的构造函数参数',
+      contractName: '合约名',
+      contractAbi: '合约 ABI',
+      contractBytecode: '合约字节码',
+      verifyFailed: '验证失败',
+      verifySuccess: '验证成功',
+      error: {
+        1: '未找到源代码',
+        2: '未找到合约字节码',
+        3: '加载编译器失败',
+        4: '验证失败',
+        5: '不支持该语言',
+        6: '合约已经被验证过'
+      }
     }
   }
 }

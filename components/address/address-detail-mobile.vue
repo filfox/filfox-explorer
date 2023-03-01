@@ -113,6 +113,17 @@
       </div>
     </div>
 
+    <div v-if="addressData.benefitedMiners && addressData.benefitedMiners.length > 0" class="flex justify-between mx-4 mt-2 text-xs">
+      <p class="w-1/4">
+        {{ $t('detail.address.normal.headers.benefitedMiners') }}
+      </p>
+      <div class="w-3/4">
+        <div v-for="worker in addressData.benefitedMiners" :key="worker" class="flex pb-1 text-main">
+          <AddressLink :id="worker" />
+        </div>
+      </div>
+    </div>
+
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
     <div v-loading="loading" class="pt-3 mt-2 bg-white border-t border-background">
@@ -123,6 +134,9 @@
           </el-radio-button>
           <el-radio-button :label="1">
             {{ $t('detail.transfer.title') }}
+          </el-radio-button>
+          <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
+            {{ $t('detail.contract.title') }}
           </el-radio-button>
         </el-radio-group>
       </div>
@@ -194,7 +208,7 @@
           </div>
         </div>
       </div>
-      <div v-if="listType != 0" class="flex items-center h-16 text-center bg-white">
+      <div v-if="listType != 0 && listType != 2" class="flex items-center h-16 text-center bg-white">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
@@ -204,6 +218,7 @@
           @current-change="didCurrentPageChanged"
         />
       </div>
+      <ContractCode v-if="listType === 2" :address="addressData.address" />
     </div>
   </div>
 </template>

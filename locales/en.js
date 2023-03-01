@@ -34,7 +34,8 @@ export default {
         'Rich List',
         'Deal List',
         'Mempool',
-        'FNS Lookup'
+        'FNS Lookup',
+        'Verify Contract'
       ]
     },
     ranks: {
@@ -339,6 +340,19 @@ export default {
       total: 'Total',
       transaction: 'transactions'
     },
+    contract: {
+      title: 'Contract',
+      verifyTip: ['Are you the contract creator', 'Verify and Publish', 'your contract source code today'],
+      codeVerified: 'Contract Source Code Verified',
+      contractName: 'Contract Name',
+      compilerVersion: 'Compiler Version',
+      optimizeEnabled: 'Optimization Enabled',
+      otherSettings: 'Other Settings',
+      contractSourceCode: 'Contract Source Code',
+      contractAbi: 'Contract ABI',
+      contractCreationCode: 'Contract Creation Code',
+      exportAbi: 'Export ABI'
+    },
     message: {
       title: 'Message Details',
       replaced: 'Message {oldCid} was replaced by {cid}',
@@ -449,7 +463,8 @@ export default {
           createTime: 'Create Time',
           lastSeenTime: 'Latest Transaction',
           ownedMiners: 'Owned Miner',
-          workers: 'Active Miner'
+          workers: 'Active Miner',
+          benefitedMiners: 'Benefited Miners'
         }
       },
       miner: {
@@ -536,7 +551,8 @@ export default {
             worker: 'Worker',
             peerID: 'Peer ID',
             createTime: 'Create Time',
-            ip: 'Region(Public IP)'
+            ip: 'Region(Public IP)',
+            beneficiary: 'Beneficiary'
           }
         },
         blockList: {
@@ -800,6 +816,61 @@ export default {
       expiration: 'Expiration Date',
       registrant: 'Registrant',
       controller: 'Controller'
+    }
+  },
+  contract: {
+    reset: 'Reset',
+    continue: 'Continue',
+    return: 'Return to Main',
+    publish: 'Verify and Publish',
+
+    guide: {
+      title: ['Verify & Publish Contract Source Code', 'COMPILER TYPE AND VERSION SELECTION'],
+      tips: [
+        'Source code verification provides transparency for users interacting with smart contracts. By uploading the source code, Filfox will match the compiled code with that on the blockchain. Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.',
+        'Please be informed that advanced settings (e.g. bytecodeHash: "none" or viaIR: "true") can be accessed via Solidity (Standard-Json-Input) verification method. More information can be found under Solidity\'s \"Compiler Input and Output JSON Description\" documentation section.'
+      ],
+      pleaseSelect: 'Please Select',
+      pleaseCenterAddress: 'Please center address',
+      enterContractAddress: 'Please enter the Contract Address you would like to verify',
+      selectCompiler: 'Please select Compiler Version',
+      selectLicense: 'Please select Open Source License Type',
+      agreeService: 'I agree to the terms of service'
+    },
+    verify: {
+      title: ['Verify & Publish Contract Source Code', 'SELECT ONE OR MORE *.SOL FILES'],
+      source: 'Contract Source Code',
+      output: 'Compiler Output',
+      tips: [
+        'If the contract compiles correctly at REMIX, it should also compile correctly here.',
+        'We have limited support for verifying contracts created by another contract and there is a timeout of up to 45 seconds for each contract compiled.',
+        'For programatic contract verification, check out the Contract API Endpoint.'
+      ],
+      contractAddress: 'Contract Address',
+      complier: 'Complier',
+      optimizations: 'Optimizations',
+      selectFiles: 'Select *.sol files',
+      selectFilesDes: 'Select single or multiple Solidity files',
+      constructorArg: 'Constructor Argument',
+      argTip: 'For additition information on Constructor Arguments See Our KB Entry',
+      debugLog: 'Compiler debug log',
+      complierVersion: 'Complier Version',
+      optimizationEnabled: 'Optimization Enabled',
+      runs: 'Runs',
+      argsUsed: 'Consturctor Arguments Used',
+      contractName: 'Contract Name',
+      contractAbi: 'Contract ABI',
+      contractBytecode: 'Contract Bytecode',
+      verifyFailed: 'Verification failed',
+      verifySuccess: 'Verification success',
+      error: {
+        1: 'Source code not found',
+        2: 'Contract bytecode not found',
+        3: 'Failed to load compiler',
+        4: 'Verification failed',
+        5: 'The language is not supported',
+        6: 'The contract has been verified'
+      }
     }
   }
 }

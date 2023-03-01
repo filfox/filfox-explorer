@@ -36,7 +36,19 @@ module.exports = {
         customBackground: '#f0f6fa',
         success: '#5ac6a8',
         card: '#F8F9FA',
-        cardHighlight: '#eef1f8'
+        cardHighlight: '#eef1f8',
+        customGray: {
+          100: '#F1F6FA',
+          200: '#F7F8F9',
+          250: '#F4F6FC',
+          300: '#E3E7EC',
+          350: '#B6BDC7',
+          400: '#858E98',
+          450: '#748094',
+          500: '#6F7B88',
+          550: '#748094',
+          600: '#3F4449'
+        }
       },
       width: {
         '1/32': '3.125%',
@@ -61,14 +73,21 @@ module.exports = {
         '3/8': '37.5%',
         '7/12': '58.3%',
         '5/8': '62.5%',
-        '7/8': '87.5%'
+        '7/8': '87.5%',
+        26: '6.5rem',
+        27: '6.75rem',
+        28: '7rem'
       },
       height: {
+        11: '2.75rem',
         68: '17rem',
         136: '34rem'
       },
       boxShadow: {
         container: '2px 2px 20px rgb(0 0 0 / 60%)'
+      },
+      spacing: {
+        '2.5': '0.625rem'
       }
     },
     minWidth: {

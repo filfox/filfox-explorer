@@ -20,7 +20,7 @@ module.exports = {
     'plugin:nuxt/recommended'
   ],
   rules: {
-    'array-bracket-newline': ['warn', 'consistent'],
+    'array-bracket-newline': ['off', 'consistent'],
     'arrow-body-style': ['warn', 'as-needed'],
     'arrow-parens': ['warn', 'as-needed'],
     'arrow-spacing': 'warn',
@@ -133,7 +133,7 @@ module.exports = {
     'wrap-iife': 'error',
     'yield-star-spacing': 'warn',
     yoda: 'error',
-    'vue/html-self-closing': ['warn', {
+    'vue/html-self-closing': ['off', {
       html: {
         void: 'never',
         normal: 'never',

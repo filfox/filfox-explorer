@@ -33,7 +33,9 @@ export default {
         '메시지',
         '자산 순위',
         '주문',
-        'FNS Lookup'
+        'FNS Lookup',
+        'Mempool',
+        '계약 확인'
       ]
     },
     ranks: {
@@ -332,6 +334,19 @@ export default {
       total: 'Total',
       transaction: 'transactions'
     },
+    contract: {
+      title: '계약',
+      verifyTip: ['계약 작성자입니까', '확인 및 게시', '계약 소스 코드'],
+      codeVerified: '계약 소스 코드가 확인되었습니다',
+      contractName: '계약명',
+      compilerVersion: '컴파일러 버전',
+      optimizeEnabled: '최적화',
+      otherSettings: '다른 설정',
+      contractSourceCode: '계약 소스 코드',
+      contractAbi: '계약 ABI',
+      contractCreationCode: '계약 생성 코드',
+      exportAbi: '수출 ABI'
+    },
     message: {
       title: '메시지 내역',
       replaced: '메시지 {oldCid} 가 메시지 {cid} 에 의해 무시됨',
@@ -437,7 +452,8 @@ export default {
           createTime: '생성 시간',
           lastSeenTime: '최근 거래',
           ownedMiners: '보유 채굴자',
-          workers: '유효 채굴자'
+          workers: '유효 채굴자',
+          benefitedMiners: '광부 혜택'
         }
       },
       miner: {
@@ -516,7 +532,8 @@ export default {
             worker: 'Worker',
             peerID: '노드 ID',
             createTime: '생성 시간',
-            ip: '지역 (공개 IP)'
+            ip: '지역 (공개 IP)',
+            beneficiary: '수익자'
           }
         },
         blockList: {
@@ -765,18 +782,73 @@ export default {
       overview: '개요',
       names: '이름',
       expirationDate: '만료 날짜',
-      reverseRecord: 'Reverse Record',
-      registrant: 'Registrant',
+      reverseRecord: '레코드 반전',
+      registrant: '등록자',
       realatedTransactions: '관련 거래',
       block: '청크',
       actions: '작업',
       txHash: '거래 ID'
     },
     name: {
-      resolvedAddress: 'Resolved Address',
+      resolvedAddress: '처리된 주소',
       expiration: '만료 날짜',
-      registrant: 'Registrant',
-      controller: 'Controller'
+      registrant: '등록자',
+      controller: '컨트롤러'
+    }
+  },
+  contract: {
+    reset: '재설정',
+    continue: '지속',
+    return: '반환',
+    publish: '검증 및 게시',
+
+    guide: {
+      title: ['계약 소스 코드 검증 및 게시', '컴파일러 유형 및 버전 선택'],
+      tips: [
+        '소스 코드 유효성 검사는 스마트 계약과 상호 작용하는 사용자에게 투명도를 제공합니다.소스 코드를 업로드하면 Filfox는 컴파일된 코드를 블록 체인의 코드와 일치시킵니다.계약과 마찬가지로"스마트 계약"은 최종 사용자에게"디지털 서명"에 대한 더 많은 정보를 제공하고 코드가 실제로 해야 할 일을 완료했는지 독립적으로 확인하기 위해 코드를 검토할 수있는 기회를 주어야합니다.',
+        'bytecodeHash: "none" 또는 viaIR: "true"와 같은 고급 설정은 Solidity(표준 Json 입력) 인증 방법을 통해 액세스할 수 있습니다.자세한 내용은 Solidity의 컴파일러 JSON 설명 가져오기 및 내보내기 문서 섹션에서 확인할 수 있습니다.'
+      ],
+      pleaseSelect: '선택하십시오',
+      pleaseCenterAddress: '계약 주소를 입력하십시오',
+      enterContractAddress: '확인하려는 계약 주소를 입력하십시오',
+      selectCompiler: '컴파일러 버전을 선택하십시오',
+      selectLicense: '오픈 소스 라이센스 유형을 선택하십시오',
+      agreeService: '서비스 약관에 동의합니다'
+    },
+    verify: {
+      title: ['계약 소스 코드 검증 및 게시', '하나 이상의 *.SOL 파일을 선택하십시오.'],
+      source: '계약 소스 코드',
+      output: '컴파일러 출력',
+      tips: [
+        '계약이 REMIX에서 올바르게 컴파일된 경우 여기에서도 올바르게 컴파일되어야 합니다.',
+        '다른 계약에 의해 작성된 계약의 유효성 검사에 대한 지원은 제한적이며 컴파일된 각 계약의 제한 시간은 최대 45초입니다.',
+        '프로그래밍 계약 확인의 경우 계약 API 끝점을 확인합니다.'
+      ],
+      contractAddress: '계약 주소',
+      complier: '준수자',
+      optimizations: '최적화',
+      selectFiles: '*.sol 파일 선택',
+      selectFilesDes: '하나 이상의 Solidity 파일 선택',
+      constructorArg: '생성자 매개변수',
+      argTip: '생성자 매개변수에 대한 추가 정보는 기술 자료 항목을 참조하십시오',
+      debugLog: '컴파일러 디버그 로그',
+      complierVersion: '컴파일러 버전',
+      optimizationEnabled: '최적화 오픈',
+      runs: '실행',
+      argsUsed: '사용된 생성자 매개변수',
+      contractName: '계약 이름',
+      contractAbi: '계약 ABI',
+      contractBytecode: '계약 바이트 코드',
+      verifyFailed: '인증 실패',
+      verifySuccess: '인증 성공',
+      error: {
+        1: '소스 코드를 찾을 수 없음',
+        2: '계약 바이트 코드를 찾을 수 없음',
+        3: '컴파일러 로드 실패',
+        4: '인증 실패',
+        5: '이 언어는 지원되지 않습니다.',
+        6: '계약은 이미 검증되었다'
+      }
     }
   }
 }
