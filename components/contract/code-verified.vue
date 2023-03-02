@@ -12,13 +12,13 @@
       <div class="border-b border-customGray-300 flex flex-col md:flex-row justify-between p-4">
         <div class="flex justify-between md:justify-start">
           <div class="w-48 text-customGray-450">
-            {{ $t('detail.contract.contractName') }}:
+            {{ $t('detail.contract.contractName') }}
           </div>
           <span>{{ contract.contractName }}</span>
         </div>
         <div class="flex justify-between md:w-1/2 md:justify-start mt-2 md:mt-0">
           <div class="w-48 text-customGray-450">
-            {{ $t('detail.contract.optimizeEnabled') }}:
+            {{ $t('detail.contract.optimizeEnabled') }}
           </div>
           <span>{{ contract.optimizeRuns }}</span>
         </div>
@@ -26,7 +26,7 @@
       <div class="flex flex-col md:flex-row md:justify-between p-4">
         <div class="flex justify-between md:justify-start">
           <div class="w-48 text-customGray-450">
-            {{ $t('detail.contract.compilerVersion') }}:
+            {{ $t('detail.contract.compilerVersion') }}
           </div>
           <span>{{ contract.compiler }}</span>
         </div>
@@ -42,10 +42,13 @@
     <div class="rounded-md mt-5 bg-white">
       <div class="flex items-center justify-between px-1">
         <span class="text-sm">{{ $t('detail.contract.contractSourceCode') }} <span class="text-customGray-400">( {{ contract.language }} )</span></span>
-        <span class="flex items-center">
+      </div>
+      <template v-for="{ name, content } in contract.sourceFiles">
+        <div :key="name" class="flex items-center mt-4 px-1">
+          <span class="text-customGray-600 text-sm el-icon-document flex-1"> {{ name }}</span>
           <div
             class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main"
-            @click="copyTxt(sourceCodes)"
+            @click="copyTxt(content)"
           >
             <img src="@/assets/img/contract/copy.svg" class="w-4 h-4 m-auto">
           </div>
@@ -55,11 +58,11 @@
           >
             <img src="@/assets/img/contract/link.svg" class="w-4 h-4 m-auto">
           </div>
-        </span>
-      </div>
-      <div class="rounded-lg bg-customGray-200 border h-68 mt-2 p-4 overflow-auto break-all text-sm whitespace-pre">
-        {{ sourceCodes }}
-      </div>
+        </div>
+        <div :key="name" class="rounded-lg bg-customGray-200 border h-68 mt-2 p-4 overflow-auto break-all text-sm whitespace-pre">
+          {{ content }}
+        </div>
+      </template>
     </div>
     <div class="rounded-md mt-5 bg-white">
       <div class="flex items-center justify-between px-1">
@@ -119,12 +122,6 @@ export default {
         { format: 'json', label: 'JSON Format' },
         { format: 'text', label: 'Text Format' }
       ]
-    }
-  },
-  computed: {
-    sourceCodes() {
-      const codes = this.contract.sourceFiles.map(({ content }) => content)
-      return codes.reduce((p, n) => `${p}\n${n}`)
     }
   },
   methods: {

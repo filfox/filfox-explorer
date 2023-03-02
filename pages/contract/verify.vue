@@ -84,14 +84,15 @@
       </div>
 
       <div class="rounded-none md:rounded-md p-4 mt-5 bg-white flex flex-col font-light">
-        <div class="flex items-center text-sm">
+        <div class="flex justify-between text-sm" :class="{ 'border-b border-dashed pb-3': hasFiles}">
           <el-upload
             ref="upload"
             multiple
-            accept="*.sol"
+            accept="text"
+            :show-file-list="true"
             :auto-upload="false"
-            :on-change="onChange"
-            :on-remove="onChange"
+            :on-change="onAddFile"
+            :on-remove="onRemoveFile"
             action="/api/upload"
           >
             <button slot="trigger" class="rounded px-4 py-2 bg-main text-white hover:opacity-75 font-medium transition duration-200">
@@ -99,12 +100,25 @@
             </button>
             <span class="ml-2 text-customGray-500">{{ $t('contract.verify.selectFilesDes') }}</span>
           </el-upload>
+
+          <button
+            v-if="hasFiles"
+            class="rounded px-4 py-2 bg-red-400 text-white hover:opacity-75 font-medium transition duration-200 self-start"
+            @click="clearFiles"
+          >
+            {{ $t('contract.verify.clearFiles') }}
+          </button>
         </div>
-        <textarea
-          v-model.trim="contractCodesTxt"
-          readonly
-          class="rounded-lg bg-customGray-200 border h-64 mt-3 p-4 overflow-auto text-sm outline-none focus:border-main transition duration-200"
-        ></textarea>
+        <div v-for="(fileCode, fileName ) in sourceFiles" :key="fileName" class="mt-4">
+          <p class="text-customGray-600 text-sm el-icon-document px-1">
+            {{ fileName }}
+          </p>
+          <textarea
+            :value="fileCode"
+            readonly
+            class="w-full rounded-lg bg-customGray-200 border h-64 mt-2 p-4 overflow-auto text-sm outline-none focus:border-main transition duration-200"
+          ></textarea>
+        </div>
       </div>
 
       <div class="rounded-none md:rounded-md p-4 mt-5 bg-white">
@@ -205,9 +219,8 @@ export default {
         { name: this.$t('contract.verify.output'), label: 2 }
       ],
       activeTab: 1,
-      contractCodes: [],
       parameters: '',
-      fileList: [],
+      sourceFiles: {},
       optimize: false,
       optimizations: [
         { label: 'Yes', value: true },
@@ -229,13 +242,6 @@ export default {
     licenseType() {
       return this.$route.query.licenseType
     },
-    sourceFiles() {
-      if (!this.fileList.length) return {}
-
-      const [codes, sourceFiles] = [this.contractCodes, {}]
-      codes.forEach((code, index) => (sourceFiles[this.fileList[index].name] = { content: code }))
-      return sourceFiles
-    },
     verifiedTip() {
       if (this.verifiedResult?.success) {
         return this.$t('contract.verify.verifySuccess')
@@ -245,21 +251,16 @@ export default {
           || 'Unknow Error'
       }
     },
-
-    contractCodesTxt() {
-      if (!this.contractCodes.length) return ''
-      return this.contractCodes.reduce((p, n) => `${p}\n${n}`)
-    },
-
     allowPublish() {
-      return this.contractCodesTxt
+      return this.hasFiles
         && this.contractAddress
         && this.compilerVersion
-        && this.parameters
     },
-
     hasOutput() {
       return JSON.stringify(this.verifiedResult) !== '{}'
+    },
+    hasFiles() {
+      return Object.keys(this.sourceFiles).length
     }
   },
   methods: {
@@ -283,11 +284,14 @@ export default {
       }
     },
 
+    clearFiles() {
+      this.$refs.upload.clearFiles()
+      this.sourceFiles = {}
+    },
+
     reset() {
+      this.clearFiles()
       this.parameters = ''
-      this.contractCodes = []
-      this.$refs.upload?.clearFiles()
-      this.fileList = []
       this.verifiedResult = {}
     },
 
@@ -295,13 +299,20 @@ export default {
       this.$router.back()
     },
 
-    readFiles(files) {
-      if (!files.length) {
-        this.contractCodes = ''
-        return
-      }
+    onAddFile(_, files) {
+      const oldFiles = Object.keys(this.sourceFiles)
+      const addFiles = files.filter(({ name }) => !oldFiles.includes(name))
+      this.readFiles(addFiles)
+    },
 
-      const promises = Array.from(files).map(({ raw }) => {
+    onRemoveFile(file) {
+      this.$delete(this.sourceFiles, file.name)
+    },
+
+    readFiles(files) {
+      if (!files.length) return
+
+      const readTasks = Array.from(files).map(({ raw }) => {
         const file = raw
         return new Promise((resolve, reject) => {
           const reader = new FileReader()
@@ -311,14 +322,13 @@ export default {
         })
       })
 
-      Promise.all(promises)
-        .then(fileContents => (this.contractCodes = fileContents))
+      Promise.all(readTasks)
+        .then(fileContents => {
+          files.forEach(({ name }, index) => {
+            this.$set(this.sourceFiles, name, fileContents[index] ?? '')
+          })
+        })
         .catch(error => console.error(error))
-    },
-
-    onChange(_, files) {
-      this.fileList = files
-      this.readFiles(files)
     }
   },
   head() {

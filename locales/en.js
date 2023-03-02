@@ -851,6 +851,7 @@ export default {
       optimizations: 'Optimizations',
       selectFiles: 'Select *.sol files',
       selectFilesDes: 'Select single or multiple Solidity files',
+      clearFiles: 'Clear files',
       constructorArg: 'Constructor Argument',
       argTip: 'For additition information on Constructor Arguments See Our KB Entry',
       debugLog: 'Compiler debug log',

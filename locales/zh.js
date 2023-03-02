@@ -835,6 +835,7 @@ export default {
       optimizations: '优化参数',
       selectFiles: '选择 *.sol 文件',
       selectFilesDes: '选择单个或多个 Solidity 文件',
+      clearFiles: '清除文件',
       constructorArg: '构造函数参数',
       argTip: '有关构造函数参数的附加信息，请参阅我们的知识库条目',
       debugLog: '编译日志',

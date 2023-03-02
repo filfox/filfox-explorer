@@ -829,6 +829,7 @@ export default {
       optimizations: '최적화',
       selectFiles: '*.sol 파일 선택',
       selectFilesDes: '하나 이상의 Solidity 파일 선택',
+      clearFiles: '파일 지우기',
       constructorArg: '생성자 매개변수',
       argTip: '생성자 매개변수에 대한 추가 정보는 기술 자료 항목을 참조하십시오',
       debugLog: '컴파일러 디버그 로그',

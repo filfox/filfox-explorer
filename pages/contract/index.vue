@@ -11,7 +11,7 @@
 
     <div class="flex flex-col items-center p-6">
       <p class="text-sm text-customGray-500 text-center leading-relaxed w-11/12 md:w-10/12">
-        {{ $t('contract.guide.tips.0') }}<br><br>{{ $t('contract.guide.tips.1') }}
+        {{ $t('contract.guide.tips.0') }}
       </p>
 
       <p class="mt-12">
@@ -84,7 +84,7 @@ export default {
   data() {
     return {
       agreeService: true,
-      contractAddress: '',
+      contractAddress: this.$route.query.address || '',
       licenseType: '',
       licenseTypes: [
         { label: 'No License (None)', value: 1 },
