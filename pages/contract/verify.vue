@@ -109,13 +109,13 @@
             {{ $t('contract.verify.clearFiles') }}
           </button>
         </div>
-        <div v-for="(fileCode, fileName ) in sourceFiles" :key="fileName" class="mt-4">
+        <div v-for="(_, fileName ) in sourceFiles" :key="fileName" class="mt-4">
           <p class="text-sm el-icon-document px-1">
             {{ fileName }}
           </p>
           <editor
             :key="fileName"
-            v-model="sourceFiles[fileName]"
+            v-model="sourceFiles[fileName].content"
             class="bg-customGray-200 mt-2 rounded-md border"
             height="350"
             theme="chrome"
@@ -332,7 +332,7 @@ export default {
       Promise.all(readTasks)
         .then(fileContents => {
           files.forEach(({ name }, index) => {
-            this.$set(this.sourceFiles, name, fileContents[index] ?? '')
+            this.$set(this.sourceFiles, name, { content: fileContents[index] ?? '' })
           })
         })
         .catch(error => console.error(error))
