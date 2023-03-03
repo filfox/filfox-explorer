@@ -346,7 +346,7 @@ export default {
   },
   head() {
     return {
-      title: `${this.$t('contract.guide.title.0')}`
+      title: this.$t('contract.guide.title.0')
     }
   }
 }
