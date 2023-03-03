@@ -119,7 +119,7 @@
             class="bg-customGray-200 mt-2 rounded-md border"
             height="350"
             theme="chrome"
-            :options="{ readOnly: true }"
+            :options="{ readOnly: true, mode: 'ace/mode/solidity' }"
             @init="editorInit"
           ></editor>
         </div>
@@ -340,7 +340,7 @@ export default {
 
     editorInit() {
       require('brace/ext/language_tools')
-      require('brace/mode/javascript')
+      require('ace-mode-solidity')
       require('brace/theme/chrome')
     }
   },
