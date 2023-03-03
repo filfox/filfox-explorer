@@ -110,14 +110,18 @@
           </button>
         </div>
         <div v-for="(fileCode, fileName ) in sourceFiles" :key="fileName" class="mt-4">
-          <p class="text-customGray-600 text-sm el-icon-document px-1">
+          <p class="text-sm el-icon-document px-1">
             {{ fileName }}
           </p>
-          <textarea
-            :value="fileCode"
-            readonly
-            class="w-full rounded-lg bg-customGray-200 border h-64 mt-2 p-4 overflow-auto text-sm outline-none focus:border-main transition duration-200"
-          ></textarea>
+          <editor
+            :key="fileName"
+            v-model="sourceFiles[fileName]"
+            class="bg-customGray-200 mt-2 rounded-md border"
+            height="350"
+            theme="chrome"
+            :options="{ readOnly: true }"
+            @init="editorInit"
+          ></editor>
         </div>
       </div>
 
@@ -211,6 +215,9 @@
 
 <script>
 export default {
+  components: {
+    editor: require('vue2-ace-editor')
+  },
   data() {
     return {
       loading: false,
@@ -329,6 +336,12 @@ export default {
           })
         })
         .catch(error => console.error(error))
+    },
+
+    editorInit() {
+      require('brace/ext/language_tools')
+      require('brace/mode/javascript')
+      require('brace/theme/chrome')
     }
   },
   head() {

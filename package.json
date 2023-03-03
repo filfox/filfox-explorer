@@ -45,6 +45,7 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "moment-locales-webpack-plugin": "^1.2.0",
-    "raw-loader": "^4.0.1"
+    "raw-loader": "^4.0.1",
+    "vue2-ace-editor": "^0.0.15"
   }
 }

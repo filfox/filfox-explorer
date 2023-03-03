@@ -43,9 +43,13 @@
       <div class="flex items-center justify-between px-1">
         <span class="text-sm">{{ $t('detail.contract.contractSourceCode') }} <span class="text-customGray-400">( {{ contract.language }} )</span></span>
       </div>
-      <template v-for="{ name, content } in contract.sourceFiles">
-        <div :key="name" class="flex items-center mt-4 px-1">
-          <span class="text-customGray-600 text-sm el-icon-document flex-1"> {{ name }}</span>
+      <template v-for="({ name, content }, index) in contract.sourceFiles">
+        <div :key="name" class="flex items-end mt-4 px-1">
+          <span class="text-sm el-icon-document flex-1"> {{ name }}
+            <span class="text-customGray-500 text-xs">
+              - {{ index + 1 }}/{{ contract.sourceFiles.length }} Files
+            </span>
+          </span>
           <div
             class="w-6 h-6 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main"
             @click="copyTxt(content)"
@@ -59,9 +63,15 @@
             <img src="@/assets/img/contract/link.svg" class="w-4 h-4 m-auto">
           </div>
         </div>
-        <div :key="name" class="rounded-lg bg-customGray-200 border h-68 mt-2 p-4 overflow-auto break-all text-sm whitespace-pre">
-          {{ content }}
-        </div>
+        <editor
+          :key="name"
+          v-model="contract.sourceFiles[index].content"
+          class="bg-customGray-200 mt-2 rounded-md border"
+          height="350"
+          theme="chrome"
+          :options="{ readOnly: true }"
+          @init="editorInit"
+        ></editor>
       </template>
     </div>
     <div class="rounded-md mt-5 bg-white">
@@ -109,6 +119,9 @@
 import copy from 'copy-to-clipboard'
 
 export default {
+  components: {
+    editor: require('vue2-ace-editor')
+  },
   props: {
     contract: {
       type: Object,
@@ -132,6 +145,12 @@ export default {
 
     copyLink() {
       this.copyTxt(window.location.href)
+    },
+
+    editorInit() {
+      require('brace/ext/language_tools')
+      require('brace/mode/javascript')
+      require('brace/theme/chrome')
     }
   }
 }
