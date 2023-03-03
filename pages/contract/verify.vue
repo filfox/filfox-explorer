@@ -318,6 +318,7 @@ export default {
 
     readFiles(files) {
       if (!files.length) return
+
       const readTasks = Array.from(files).map(({ raw }) => {
         const file = raw
         return new Promise((resolve, reject) => {
