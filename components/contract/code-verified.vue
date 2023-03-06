@@ -79,7 +79,7 @@
         <span class="text-sm">{{ $t('detail.contract.contractAbi') }}</span>
         <span class="flex items-center">
           <div class="px-2 flex bg-customGray-200 rounded cursor-pointer border border-customGray-200 transition duration-200 hover:border-main">
-            <el-dropdown>
+            <el-dropdown trigger="click">
               <span class="el-dropdown-link text-main text-xs">
                 {{ $t('detail.contract.exportAbi') }}<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
@@ -88,6 +88,7 @@
                   v-for="{ format, label} in abis"
                   :key="format"
                   icon="el-icon-document"
+                  class="font-light"
                 >
                   <a :href="`/contract/abi?address=${contract.address}&format=${format}`" target="_blank">{{ label }}</a>
                 </el-dropdown-item>
@@ -139,7 +140,7 @@ export default {
   },
   methods: {
     copyTxt(content) {
-      copy(JSON.stringify(content))
+      copy(typeof content === 'object' ? JSON.stringify(content) : content)
       this.$message.success(this.$t('shared.copySuccess'))
     },
 

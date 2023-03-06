@@ -84,7 +84,7 @@
       </div>
 
       <div class="rounded-none md:rounded-md p-4 mt-5 bg-white flex flex-col font-light">
-        <div class="flex justify-between text-sm" :class="{ 'border-b border-dashed pb-3': hasFiles}">
+        <div class="flex flex-col md:flex-row justify-between text-sm" :class="{ 'border-b border-dashed pb-3': hasFiles}">
           <el-upload
             ref="upload"
             multiple
@@ -103,7 +103,7 @@
 
           <button
             v-if="hasFiles"
-            class="rounded px-4 py-2 bg-red-400 text-white hover:opacity-75 font-medium transition duration-200 self-start"
+            class="el-icon-delete rounded px-4 py-2 bg-red-400 text-white hover:opacity-75 font-medium transition duration-200 self-start mt-4 md:mt-0"
             @click="clearFiles"
           >
             {{ $t('contract.verify.clearFiles') }}
