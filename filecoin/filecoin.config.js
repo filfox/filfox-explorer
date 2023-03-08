@@ -7,10 +7,10 @@ export const network = {
       name: 'Mainnet',
       url: 'https://filfox.info'
     },
-    // {
-    //   name: 'Calibration',
-    //   url: 'https://calibration.filfox.info'
-    // },
+    {
+      name: 'Calibration',
+      url: 'https://calibration.filfox.info'
+    },
     {
       name: 'Hyperspace',
       url: 'https://hyperspace.filfox.info'
