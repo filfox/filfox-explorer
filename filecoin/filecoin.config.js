@@ -19,7 +19,7 @@ export const network = {
 }
 
 export const wiki = {
-  url: 'http://localhost:3000/wiki'
+  url: 'https://filfox.info/wiki'
 }
 
 export const epochsInDay = 2880

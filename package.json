@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "API_URL=http://filfox.info/api/v1 API_URL_BROWSER=/api/v1 WEBSOCKET_URL=wss://filfox.info nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "analyze": "nuxt build --analyze",
