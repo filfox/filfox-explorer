@@ -127,7 +127,6 @@ export default {
 
   mounted() {
     if (!this.categories.length) return
-
     this.category = this.categories[0].categoryCode
     this.getNotifyList()
   },
