@@ -38,7 +38,7 @@
           <div
             class="bg-customGray-200 flex-1 rounded font-light hover:bg-customGray-300 transition duration-200 cursor-pointer flex flex-col md:flex-row overflow-hidden"
           >
-            <img :src="cover || 'none'" alt="cover" class="w-full md:w-40 object-cover" @error="onError">
+            <img v-if="cover" :src="cover" alt="cover" class="w-full md:w-40 object-cover">
             <div class="px-4 py-3">
               <p class="font-medium">
                 {{ title }}
@@ -70,7 +70,7 @@ import store from 'store'
 
 export default {
   async asyncData({ $axios }) {
-    const { result } = await $axios.$get(`https://zk.work/admin/api/blog/category/list/en`)
+    const { result } = await $axios.$get(`https://hyperspace.filfox.info/admin/api/blog/category/list`)
     return { categories: result }
   },
 
@@ -95,7 +95,6 @@ export default {
         limit: 5,
         status: 1,
         sort: { publishTime: -1 },
-        lang: 'en',
         category: this.category
       }
     },
@@ -133,7 +132,7 @@ export default {
   methods: {
     async getNotifyList() {
       this.loading = true
-      const data = await this.$axios.$get('https://zk.work/admin/api/blog/list', { params: this.params })
+      const data = await this.$axios.$get('https://hyperspace.filfox.info/admin/api/blog/list', { params: this.params })
       this.loading = false
 
       const { result: { blogs, totalCount } } = data
@@ -142,7 +141,7 @@ export default {
     },
 
     async getAllIds() {
-      const { result: { blogs } } = await this.$axios.$get('https://zk.work/admin/api/blog/list', { params: { limit: 100000 } })
+      const { result: { blogs } } = await this.$axios.$get('https://hyperspace.filfox.info/admin/api/blog/list', { params: { limit: 100000 } })
       return blogs.map(({ _id }) => _id)
     },
 
@@ -161,10 +160,6 @@ export default {
 
     storeIds(ids) {
       store.set('notify_ids_readed', ids)
-    },
-
-    onError({ target }) {
-      target.src = 'https://zk.work/admin/file/blog-default-cover.png'
     }
   },
 

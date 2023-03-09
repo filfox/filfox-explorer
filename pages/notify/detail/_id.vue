@@ -7,7 +7,7 @@
 <script>
 export default {
   async asyncData({ $axios, params }) {
-    const res = await $axios.$get(`https://zk.work/admin/api/blog/${params.id}`)
+    const res = await $axios.$get(`https://hyperspace.filfox.info/admin/api/blog/${params.id}`)
     return { content: res.result.content }
   },
 
