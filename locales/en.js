@@ -675,7 +675,8 @@ export default {
       ranks: 'Top Miners',
       minerCharts: 'Miner Charts',
       tools: 'Tools',
-      wiki: 'Wiki'
+      wiki: 'Wiki',
+      notify: 'In-station notification'
     },
     description: {
       default: 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'
@@ -873,5 +874,14 @@ export default {
         6: 'The contract has been verified'
       }
     }
+  },
+  notify: {
+    news: 'News',
+    documents: 'Documents',
+    announcements: 'Announcements',
+    tutorial: 'Tutorial',
+    markAllRead: 'Mark all as read',
+    hideReaded: 'Hide readed notifications',
+    cancelHideReaded: 'Unhide'
   }
 }
