@@ -656,7 +656,8 @@ export default {
       ranks: '채굴 순위',
       minerCharts: '채굴 도표',
       tools: '도구',
-      wiki: '위키'
+      wiki: '위키',
+      notify: '사이트 내 알림'
     },
     description: {
       default: 'Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 파일코인과 관련된 채굴 랭킹, 블록 데이터 조회, 차트 등을 제공합니다.'
@@ -854,5 +855,14 @@ export default {
         6: '계약은 이미 검증되었다'
       }
     }
+  },
+  notify: {
+    news: '메시지',
+    documents: '파일',
+    announcements: '공지',
+    tutorial: '지도의',
+    markAllRead: '모두 읽음으로 표시',
+    hideReaded: '읽기 알림 숨기기',
+    cancelHideReaded: '숨기기 취소'
   }
 }

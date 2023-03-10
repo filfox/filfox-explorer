@@ -662,7 +662,8 @@ export default {
       ranks: '存储服务排行榜',
       minerCharts: '提供存储服务图表',
       tools: '常用工具',
-      wiki: '知识库'
+      wiki: '知识库',
+      notify: '站内通知'
     },
     description: {
       default: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，为用户稳定地提供 Filecoin 相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。'
@@ -860,5 +861,14 @@ export default {
         6: '合约已经被验证过'
       }
     }
+  },
+  notify: {
+    news: '新闻',
+    documents: '文档',
+    announcements: '通知',
+    tutorial: '教程',
+    markAllRead: '全标记为已读',
+    hideReaded: '隐藏已读消息',
+    cancelHideReaded: '取消隐藏'
   }
 }
