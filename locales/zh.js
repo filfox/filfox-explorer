@@ -349,6 +349,7 @@ export default {
       },
       headers: {
         cid: '消息ID',
+        ethTransactionHash: 'ETH 交易哈希',
         height: '高度',
         time: '时间',
         createTime: '创建时间',
@@ -440,6 +441,8 @@ export default {
         headers: {
           overview: '账户概览',
           address: '地址',
+          ethAddress: 'ETH 地址',
+          robustAddress: '稳定地址',
           actor: '类型',
           balance: '余额',
           messages: '消息数',

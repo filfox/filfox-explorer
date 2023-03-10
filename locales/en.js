@@ -366,6 +366,7 @@ export default {
       },
       headers: {
         cid: 'Message ID',
+        ethTransactionHash: 'ETH Transaction Hash',
         height: 'Height',
         time: 'Time',
         createTime: 'Create Time',
@@ -457,6 +458,8 @@ export default {
         headers: {
           overview: 'Address Overview',
           address: 'Address',
+          ethAddress: 'ETH Address',
+          robustAddress: 'Robust Address',
           actor: 'Actor',
           balance: 'Balance',
           messages: 'Messages',

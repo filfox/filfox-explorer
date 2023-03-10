@@ -33,6 +33,24 @@
           </dd>
         </dl>
 
+        <dl v-if="addressData.ethAddress" class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+            {{ $t('detail.address.normal.headers.ethAddress') }}
+          </dt>
+          <dd class="mr-4">
+            <AddressLink :id="addressData.ethAddress" plain />
+          </dd>
+        </dl>
+
+        <dl v-if="addressData.robustAddress" class="flex items-center my-2">
+          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+            {{ $t('detail.address.normal.headers.robustAddress') }}
+          </dt>
+          <dd class="mr-4">
+            <AddressLink :id="addressData.robustAddress" plain />
+          </dd>
+        </dl>
+
         <dl class="flex items-center my-2">
           <dt class="w-1/6 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.actor') }}

@@ -360,6 +360,7 @@ export default {
       },
       headers: {
         cid: '메시지 ID',
+        ethTransactionHash: 'ETH 트랜잭션 해시',
         height: '높이',
         time: '시간',
         createTime: '생성 시간',
@@ -446,6 +447,8 @@ export default {
         headers: {
           overview: '계정 개요',
           address: '주소',
+          ethAddress: 'ETH 주소',
+          robustAddress: '강력한 주소',
           actor: '유형',
           balance: '잔액',
           messages: '메시지 개수',

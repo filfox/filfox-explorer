@@ -25,6 +25,24 @@
       </div>
     </div>
 
+    <div v-if="addressData.ethAddress" class="flex items-center justify-between mx-4 mt-2 text-xs">
+      <p class="flex w-1/4">
+        {{ $t('detail.address.normal.headers.ethAddress') }}
+      </p>
+      <div class="w-3/4">
+        <AddressLink :id="addressData.ethAddress" plain />
+      </div>
+    </div>
+
+    <div v-if="addressData.robustAddress" class="flex items-center justify-between mx-4 mt-2 text-xs">
+      <p class="flex w-1/4">
+        {{ $t('detail.address.normal.headers.robustAddress') }}
+      </p>
+      <div class="w-3/4">
+        <AddressLink :id="addressData.robustAddress" plain />
+      </div>
+    </div>
+
     <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.actor') }}
