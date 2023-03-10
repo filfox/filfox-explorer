@@ -448,7 +448,7 @@ export default {
           overview: '계정 개요',
           address: '주소',
           ethAddress: 'ETH 주소',
-          robustAddress: '강력한 주소',
+          robustAddress: '안정적인 주소',
           actor: '유형',
           balance: '잔액',
           messages: '메시지 개수',
