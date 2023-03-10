@@ -58,7 +58,7 @@
             <img src="~/assets/img/home/menu.svg" alt="menu" class="cursor-pointer h-3">
           </button>
         </div>
-        <HomeHeadNotifyBell />
+        <!-- <HomeHeadNotifyBell /> -->
       </div>
     </div>
     <NavigationBar class="hidden lg:flex" @search="search" />
