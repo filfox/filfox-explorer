@@ -6,6 +6,7 @@
       <AddressTag :tag="addressData.tag" type="pc" :style="{maxWidth:'66%'}" />
       <MinerAppGuide />
     </div>
+
     <div class="flex pb-2 my-4">
       <div class="flex-1 mr-4 text-sm bg-white rounded-md">
         <div class="flex py-4 pl-8 font-medium border-b border-background">
