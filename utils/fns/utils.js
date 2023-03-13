@@ -1,6 +1,6 @@
 // 0x76346faC442F153ED8691fF88b1297643260d8a0
 import { ethers, utils } from 'ethers'
-import { newFromString } from '@glif/filecoin-address'
+import { newFromString, validateAddressString } from '@glif/filecoin-address'
 import registrarAbi from './abi/registrar.abi.json'
 import registryAbi from './abi/registry.abi.json'
 import registrarControllerAbi from './abi/registrar.controller.abi.json'
@@ -92,3 +92,6 @@ export async function getAddressByDomain(domain) {
   }
 }
 
+export function isFilAddress(address) {
+  return validateAddressString(address)
+}

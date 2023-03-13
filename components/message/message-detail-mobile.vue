@@ -18,6 +18,14 @@
       </div>
       <div class="message-item">
         <p class="message-key">
+          {{ $t('detail.message.headers.ethTransactionHash') }}
+        </p>
+        <p class="message-value break-all">
+          {{ message.ethTransactionHash }}
+        </p>
+      </div>
+      <div class="message-item">
+        <p class="message-key">
           {{ $t('detail.message.headers.height') }}
         </p>
         <TipsetLink v-if="message.height" :id="message.height" class="message-value text-main" />

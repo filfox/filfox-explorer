@@ -22,6 +22,14 @@
           <MessageLink :id="message.cid" plain />
         </dd>
       </dl>
+      <dl v-if="message.ethTransactionHash" class="message-item">
+        <dt class="message-key">
+          {{ $t('detail.message.headers.ethTransactionHash') }}
+        </dt>
+        <dd class="message-value">
+          {{ message.ethTransactionHash }}
+        </dd>
+      </dl>
       <dl v-if="message.height" class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.height') }}

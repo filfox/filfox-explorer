@@ -67,7 +67,8 @@ export default {
     '~/components/tag',
     '~/components/utils',
     '~/components/transfer',
-    '~/components/fns'
+    '~/components/fns',
+    '~/components/contract'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '@/plugins/i18n.js')
