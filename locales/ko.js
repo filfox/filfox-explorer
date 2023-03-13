@@ -35,7 +35,7 @@ export default {
         '주문',
         'FNS Lookup',
         'Mempool',
-        '계약 확인'
+        '컨트랙트 검증'
       ]
     },
     ranks: {
@@ -336,13 +336,13 @@ export default {
     },
     contract: {
       title: '계약',
-      verifyTip: ['계약 작성자입니까', '확인 및 게시', '계약 소스 코드'],
-      codeVerified: '계약 소스 코드가 확인되었습니다',
+      verifyTip: ['계약 작성자입니까', '확인 및 게시', '컨트랙트 소스 코드'],
+      codeVerified: '컨트랙트 소스 코드가 확인되었습니다',
       contractName: '계약명',
       compilerVersion: '컴파일러 버전',
       optimizeEnabled: '최적화',
       otherSettings: '다른 설정',
-      contractSourceCode: '계약 소스 코드',
+      contractSourceCode: '컨트랙트 소스 코드',
       contractAbi: '계약 ABI',
       contractCreationCode: '계약 생성 코드',
       exportAbi: '수출 ABI'
@@ -802,34 +802,34 @@ export default {
   },
   contract: {
     reset: '재설정',
-    continue: '지속',
-    return: '반환',
-    publish: '검증 및 게시',
+    continue: '계속',
+    return: '메인 페이지',
+    publish: '검증 및 배포',
 
     guide: {
-      title: ['계약 소스 코드 검증 및 게시', '컴파일러 유형 및 버전 선택'],
+      title: ['컨트랙트 소스 코드 검증 및 배포', '컴파일러 유형 및 버전 선택'],
       tips: [
-        '소스 코드 유효성 검사는 스마트 계약과 상호 작용하는 사용자에게 투명도를 제공합니다.소스 코드를 업로드하면 Filfox는 컴파일된 코드를 블록 체인의 코드와 일치시킵니다.계약과 마찬가지로"스마트 계약"은 최종 사용자에게"디지털 서명"에 대한 더 많은 정보를 제공하고 코드가 실제로 해야 할 일을 완료했는지 독립적으로 확인하기 위해 코드를 검토할 수있는 기회를 주어야합니다.',
+        '소스 코드 유효성 검사는 스마트 컨트랙트와 상호 작용하는 유저들에게 투명성을 제공합니다.소스 코드를 업로드하면 Filfox는 컴파일된 코드를 블록 체인의 코드와 매치시킵니다. "스마트 컨트랙트"는 말 그대로 계약임으로 엔드 유저들에게 "디지털 서명"에 대한 더 많은 정보를 제공해야 하고 코드가 실제로 해야 할 일을 수행하고 있는지 독립적으로 검증할 수 있는 기회를 주어야합니다.',
         'bytecodeHash: "none" 또는 viaIR: "true"와 같은 고급 설정은 Solidity(표준 Json 입력) 인증 방법을 통해 액세스할 수 있습니다.자세한 내용은 Solidity의 컴파일러 JSON 설명 가져오기 및 내보내기 문서 섹션에서 확인할 수 있습니다.'
       ],
       pleaseSelect: '선택하십시오',
-      pleaseCenterAddress: '계약 주소를 입력하십시오',
-      enterContractAddress: '확인하려는 계약 주소를 입력하십시오',
+      pleaseCenterAddress: '컨트랙트 주소를 입력하십시오',
+      enterContractAddress: '검증하려는 컨트랙트 주소를 입력하십시오',
       selectCompiler: '컴파일러 버전을 선택하십시오',
       selectLicense: '오픈 소스 라이센스 유형을 선택하십시오',
       agreeService: '서비스 약관에 동의합니다'
     },
     verify: {
-      title: ['계약 소스 코드 검증 및 게시', '하나 이상의 *.SOL 파일을 선택하십시오.'],
-      source: '계약 소스 코드',
+      title: ['컨트랙트 소스 코드 검증 및 배포', '하나 이상의 *.SOL 파일을 선택하십시오.'],
+      source: '컨트랙트 소스 코드',
       output: '컴파일러 출력',
       tips: [
-        '계약이 REMIX에서 올바르게 컴파일된 경우 여기에서도 올바르게 컴파일되어야 합니다.',
-        '다른 계약에 의해 작성된 계약의 유효성 검사에 대한 지원은 제한적이며 컴파일된 각 계약의 제한 시간은 최대 45초입니다.',
-        '프로그래밍 계약 확인의 경우 계약 API 끝점을 확인합니다.'
+        '컨트랙트가 REMIX에서 올바르게 컴파일된 경우 여기에서도 올바르게 컴파일되어야 합니다.',
+        '다른 컨트랙트에 의해 작성된 컨트랙트의 유효성 검증에 대한 지원은 제한적이며 컴파일된 각 컨트랙트의 타임아웃 설정은 최대 45초입니다.',
+        '프로그래밍 컨트랙트 검증의 경우 컨트랙트 API 엔드포인트를 확인해야 합니다.'
       ],
-      contractAddress: '계약 주소',
-      complier: '준수자',
+      contractAddress: '컨트랙트 주소',
+      complier: '컴파일러',
       optimizations: '최적화',
       selectFiles: '*.sol 파일 선택',
       selectFilesDes: '하나 이상의 Solidity 파일 선택',
