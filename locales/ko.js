@@ -33,8 +33,8 @@ export default {
         '메시지',
         '자산 순위',
         '주문',
-        'FNS Lookup',
         'Mempool',
+        'FNS Lookup',
         '컨트랙트 검증'
       ]
     },
