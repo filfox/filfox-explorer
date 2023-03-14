@@ -1,14 +1,28 @@
 <template>
-  <div class="pb-4">
+  <div v-if="message" class="pb-4">
     <div class="bg-white pb-3">
       <p class="pl-4 py-3 border-b border-background text-xs font-medium">
         {{ $t('detail.message.modules.overview') }}
       </p>
+      <div v-if="network.networks[network.currentNetwork].name === 'Hyperspace'" class="message-item bg-gray-100 mx-8 px-4 text-red-500 py-2 text-xs">
+        {{ $t('detail.message.testNetOnly') }}
+      </div>
+      <div v-if="message.replaced" class="message-item bg-gray-100 mx-8 text-gray-500 p-2 text-xs flex items-center break-all">
+        <pre class="whitespace-pre-wrap">{{ $t('detail.message.replaced', { oldCid: message.oldCid, cid: message.cid}) }}</pre>
+      </div>
       <div class="message-item">
         <p class="message-key">
           {{ $t('detail.message.headers.cid') }}
         </p>
         <MessageLink :id="message.cid" class="message-value" />
+      </div>
+      <div class="message-item">
+        <p class="message-key">
+          {{ $t('detail.message.headers.ethTransactionHash') }}
+        </p>
+        <p class="message-value break-all">
+          {{ message.ethTransactionHash }}
+        </p>
       </div>
       <div class="message-item">
         <p class="message-key">
@@ -39,8 +53,8 @@
         <p class="message-key">
           {{ $t('detail.message.headers.inBlocks') }}
         </p>
-        <div class="message-value">
-          <p v-for="block in message.blocks" :key="block" class="flex items-center mt-2 text-main">
+        <div>
+          <p v-for="block, index in message.blocks" :key="index" class="mt-2 text-main text-end">
             <BlockLink :id="block" />
           </p>
         </div>
@@ -88,6 +102,128 @@
         <p class="message-value">
           <MessageDescription :detail="message.details[0]" />
         </p>
+      </div>
+    </div>
+    <div v-if="message.eventLogs && message.eventLogs.length" class="mt-2 py-px bg-white text-xs">
+      <p class="pl-4 py-3 border-b border-background font-medium">
+        {{ $t('detail.message.modules.logs') }}
+      </p>
+      <div class="overflow-y-auto max-h-136">
+        <div
+          v-for="item, index in message.eventLogs"
+          :key="index"
+          class="mx-3 my-3 py-2 rounded-sm shadow bg-white text-gray-800"
+        >
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              {{ $t('detail.message.headers.address') }}:
+            </p>
+            <div class="flex items-center">
+              <AddressLink :id="item.address" :format="4" class="text-main" />
+            </div>
+          </div>
+          <div v-if="item.name" class="flex items-center justify-between px-3 mt-1">
+            <p>
+              Name:
+            </p>
+            <div class="flex items-center">
+              {{ item.name }}
+            </div>
+          </div>
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              {{ $t('detail.message.headers.topics') }}:
+            </p>
+            <div class="flex items-center flex-col">
+              <div v-for="topic, _index in item.topics" :key="_index" class="flex items-center mb-2">
+                <div class="w-5 h-5 mx-1 flex items-center justify-center bg-gray-100 rounded-md text-gray-500">
+                  {{ index }}
+                </div>
+                <span>{{ topic.substr(0,4) + '...' + topic.substr(-4) }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between px-3 pr-0 mt-1">
+            <p>
+              {{ $t('detail.message.headers.data') }}:
+            </p>
+            <p class="message-value flex-1 pl-4 break-all text-xs flex items-center">
+              <!-- _Value: -->
+              <pre class="flex-1 whitespace-pre-wrap text-right pl-2">{{ item.data }}</pre>
+            </p>
+          </div>
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              Log Index:
+            </p>
+            <div class="flex items-center">
+              {{ item.logIndex }}
+            </div>
+          </div>
+          <div class="flex items-center justify-between px-3 mt-1">
+            <p>
+              removed:
+            </p>
+            <div class="flex items-center">
+              {{ item.removed }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="message.subcalls && message.subcalls.length > 0" class="mt-2 py-px bg-white text-xs">
+      <p class="pl-4 py-3 border-b border-background font-medium">
+        {{ $t('detail.message.modules.internaltransfer') }}
+      </p>
+      <div class="mt-2 bg-gray-100 mx-3 text-gray-500 p-2">
+        {{ $t('detail.message.internaltransfer.contractFrom') }}
+        <AddressLink v-if="message.from" :id="message.from" :format="8" class="text-main" />
+        {{ $t('detail.message.internaltransfer.contractTo') }}
+        <AddressLink v-if="message.to" :id="message.to" :format="8" class="text-main" />
+        {{ $t('detail.message.internaltransfer.produced', { amount:message.subcalls.length }) }}
+      </div>
+      <div
+        v-for="(transfer, index) in message.subcalls"
+        :key="index"
+        class="mx-3 my-3 py-2 rounded-sm shadow bg-white text-gray-800"
+      >
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.method') }}:
+          </p>
+          <p>
+            {{ transfer.method }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.from') }}:
+          </p>
+          <div class="flex items-center">
+            <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-main" />
+            <span v-else>N/A</span>
+            <AddressTag :tag="transfer.fromTag" type="mobile" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.to') }}:
+          </p>
+          <div class="flex items-center">
+            <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-main" />
+            <span v-else>N/A</span>
+            <AddressTag :tag="transfer.toTag" type="mobile" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.internaltransfer.value') }}:
+          </p>
+          <p>
+            {{ transfer.value | filecoin(2) }}
+          </p>
+        </div>
       </div>
     </div>
 
@@ -282,9 +418,15 @@
 </template>
 
 <script>
+import { network } from '~/filecoin/filecoin.config'
 export default {
   props: {
     message: { type: Object, required: true }
+  },
+  data() {
+    return {
+      network
+    }
   }
 }
 </script>

@@ -16,14 +16,9 @@
 </template>
 
 <script>
-const { validateAddressString } = require('@glif/filecoin-address')
 export default {
   async asyncData({ $axios, params, query, error }) {
     const id = params.id
-    if (!validateAddressString(id)) {
-      error({ code: 404, message: `Invalid address` })
-      return
-    }
     try {
       const addressData = await $axios.$get(`/address/${id}`, { params: query })
       return { addressData }

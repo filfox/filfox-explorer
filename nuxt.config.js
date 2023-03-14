@@ -68,7 +68,9 @@ export default {
     '~/components/social',
     '~/components/tag',
     '~/components/utils',
-    '~/components/transfer'
+    '~/components/transfer',
+    '~/components/fns',
+    '~/components/contract'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '@/plugins/i18n.js')
@@ -96,7 +98,7 @@ export default {
     'nuxt-i18n'
   ],
   axios: {
-    baseURL: 'https://filfox.info/api/v1'
+    baseURL: 'https://hyperspace.filfox.info/api/v1'
   },
   i18n: {
     locales: [

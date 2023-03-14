@@ -1,7 +1,7 @@
 export const network = {
   // Index of networks
   multipleNetworks: true,
-  currentNetwork: 0,
+  currentNetwork: 1,
   networks: [
     {
       name: 'Mainnet',
@@ -21,5 +21,7 @@ export const network = {
 export const wiki = {
   url: 'https://filfox.info/wiki'
 }
+
+export const fnsServer = 'https://calibration.filfox.info/api/fns'
 
 export const epochsInDay = 2880

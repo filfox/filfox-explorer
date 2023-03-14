@@ -1,10 +1,10 @@
 <template>
   <div class="bg-white">
-    <div class="flex font-medium text-sm pl-4 py-3 border-b border-background">
+    <div class="flex py-3 pl-4 text-sm font-medium border-b border-background">
       {{ $t('detail.address.normal.headers.overview') }}
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.address') }}
       </p>
@@ -12,7 +12,7 @@
       <AddressTag v-if="addressData.address[1] === '0'" :tag="addressData.tag" type="mobile" :style="{maxWidth:'66%'}" />
     </div>
 
-    <div v-if="addressData.address[1] !== '0'" class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div v-if="addressData.address[1] !== '0'" class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         ID
       </p>
@@ -25,19 +25,40 @@
       </div>
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div v-if="addressData.ethAddress" class="flex items-center justify-between mx-4 mt-2 text-xs">
+      <p class="flex w-1/4">
+        {{ $t('detail.address.normal.headers.ethAddress') }}
+      </p>
+      <div class="w-3/4">
+        <AddressLink :id="addressData.ethAddress" plain />
+      </div>
+    </div>
+
+    <div v-if="addressData.robustAddress" class="flex items-center justify-between mx-4 mt-2 text-xs">
+      <p class="flex w-1/4">
+        {{ $t('detail.address.normal.headers.robustAddress') }}
+      </p>
+      <div class="w-3/4">
+        <AddressLink :id="addressData.robustAddress" plain />
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.actor') }}
       </p>
       <p v-if="addressData.actor" class="flex w-3/4">
         {{ $t(`actor.${addressData.actor}`) }}
       </p>
+      <p v-else-if="addressData.ethAddress" class="flex w-3/4">
+        {{ $t(`actor.created`) }}
+      </p>
       <p v-else class="flex w-3/4">
         {{ $t(`actor.account`) }}
       </p>
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.balance') }}
       </p>
@@ -46,7 +67,7 @@
       </p>
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.messages') }}
       </p>
@@ -55,7 +76,7 @@
       </p>
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.createTime') }}
       </p>
@@ -67,7 +88,7 @@
       </p>
     </div>
 
-    <div v-if="addressData.deleteTimestamp" class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div v-if="addressData.deleteTimestamp" class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         Delete Time
       </p>
@@ -76,7 +97,7 @@
       </p>
     </div>
 
-    <div class="flex justify-between items-center text-xs mx-4 mt-2">
+    <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.lastSeenTime') }}
       </p>
@@ -88,23 +109,34 @@
       </p>
     </div>
 
-    <div v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
+    <div v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex justify-between mx-4 mt-2 text-xs">
       <p class="w-1/4">
         {{ $t('detail.address.normal.headers.ownedMiners') }}
       </p>
       <div class="w-3/4">
-        <div v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="flex text-main pb-1">
+        <div v-for="ownedMiner in addressData.ownedMiners" :key="ownedMiner" class="flex pb-1 text-main">
           <AddressLink :id="ownedMiner" />
         </div>
       </div>
     </div>
 
-    <div v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
+    <div v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex justify-between mx-4 mt-2 text-xs">
       <p class="w-1/4">
         {{ $t('detail.address.normal.headers.workers') }}
       </p>
       <div class="w-3/4">
-        <div v-for="worker in addressData.workerMiners" :key="worker" class="pb-1 flex text-main">
+        <div v-for="worker in addressData.workerMiners" :key="worker" class="flex pb-1 text-main">
+          <AddressLink :id="worker" />
+        </div>
+      </div>
+    </div>
+
+    <div v-if="addressData.benefitedMiners && addressData.benefitedMiners.length > 0" class="flex justify-between mx-4 mt-2 text-xs">
+      <p class="w-1/4">
+        {{ $t('detail.address.normal.headers.benefitedMiners') }}
+      </p>
+      <div class="w-3/4">
+        <div v-for="worker in addressData.benefitedMiners" :key="worker" class="flex pb-1 text-main">
           <AddressLink :id="worker" />
         </div>
       </div>
@@ -112,8 +144,8 @@
 
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
-    <div v-loading="loading" class="mt-2 pt-3 bg-white border-t border-background">
-      <div class="flex h-10 items-center mb-3 justify-center">
+    <div v-loading="loading" class="pt-3 mt-2 bg-white border-t border-background">
+      <div class="flex items-center justify-center h-10 mb-3">
         <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
           <el-radio-button :label="0">
             {{ $t('blockchain.message.title') }}
@@ -121,12 +153,15 @@
           <el-radio-button :label="1">
             {{ $t('detail.transfer.title') }}
           </el-radio-button>
+          <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
+            {{ $t('detail.contract.title') }}
+          </el-radio-button>
         </el-radio-group>
       </div>
       <AddressMessageListMobile v-if="listType === 0" :address="addressData.address" />
       <div v-if="listType === 1">
         <div class="flex items-center justify-between pb-1 mb-2">
-          <p class="flex ml-3 h-8 items-center text-xs">
+          <p class="flex items-center h-8 ml-3 text-xs">
             {{ $t('detail.address.miner.blockList.total') + ' ' + total + ' ' + $t('detail.transfer.transaction') }}
           </p>
           <TransferTypeSelect
@@ -137,7 +172,7 @@
           />
         </div>
 
-        <div v-for="(transfer, index) in transferList.transfers" :key="index" class="rounded-sm mx-3 mb-3 shadow bg-white py-2">
+        <div v-for="(transfer, index) in transferList.transfers" :key="index" class="py-2 mx-3 mb-3 bg-white rounded-sm shadow">
           <div class="flex items-center justify-between mx-3">
             <p class="text-xs text-gray-800">
               {{ $t('detail.transfer.tableHeaders.time') }}:
@@ -157,7 +192,7 @@
             <p class="text-xs text-gray-800">
               {{ $t('detail.transfer.tableHeaders.from') }}:
             </p>
-            <div class="flex items-center flex-row justify-end">
+            <div class="flex flex-row items-center justify-end">
               <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-xs text-main" />
               <span v-else class="text-xs text-gray-800"> N/A </span>
               <AddressTag :tag="transfer.fromTag" type="mobile" :style="{maxWidth:'66%'}" />
@@ -167,7 +202,7 @@
             <p class="text-xs text-gray-800">
               {{ $t('detail.transfer.tableHeaders.to') }}:
             </p>
-            <div class="flex items-center flex-row justify-end">
+            <div class="flex flex-row items-center justify-end">
               <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-xs text-main" />
               <span v-else class="text-xs text-gray-800"> N/A </span>
               <AddressTag :tag="transfer.toTag" type="mobile" :style="{maxWidth:'66%'}" />
@@ -191,7 +226,7 @@
           </div>
         </div>
       </div>
-      <div v-if="listType != 0" class="flex items-center text-center h-16 bg-white">
+      <div v-if="listType != 0 && listType != 2" class="flex items-center h-16 text-center bg-white">
         <el-pagination
           layout="prev, pager, next"
           :page-count="totalPageCount"
@@ -201,6 +236,7 @@
           @current-change="didCurrentPageChanged"
         />
       </div>
+      <ContractCode v-if="listType === 2" :address="addressData.address" />
     </div>
   </div>
 </template>

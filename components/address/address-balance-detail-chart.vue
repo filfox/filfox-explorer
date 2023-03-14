@@ -134,7 +134,6 @@ export default {
         return (value / 1e18).toFixed(precision)
       }
     }
-
   }
 }
 </script>
