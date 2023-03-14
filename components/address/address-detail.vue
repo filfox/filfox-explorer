@@ -14,7 +14,7 @@
         </div>
 
         <dl class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.address') }}
           </dt>
           <dd class="mr-4">
@@ -23,7 +23,7 @@
         </dl>
 
         <dl v-if="addressData.address[1] !== '0'" class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             ID
           </dt>
           <dd v-if="addressData.id" class="mr-4">
@@ -35,7 +35,7 @@
         </dl>
 
         <dl v-if="addressData.ethAddress" class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.ethAddress') }}
           </dt>
           <dd class="mr-4">
@@ -44,7 +44,7 @@
         </dl>
 
         <dl v-if="addressData.robustAddress" class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.robustAddress') }}
           </dt>
           <dd class="mr-4">
@@ -53,7 +53,7 @@
         </dl>
 
         <dl class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.actor') }}
           </dt>
           <dd v-if="addressData.actor" class="mr-4">
@@ -68,7 +68,7 @@
         </dl>
 
         <dl class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.balance') }}
           </dt>
           <dd class="mr-4">
@@ -77,7 +77,7 @@
         </dl>
 
         <dl class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.messages') }}
           </dt>
           <dd class="mr-4">
@@ -86,7 +86,7 @@
         </dl>
 
         <dl class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.createTime') }}
           </dt>
           <dd v-if="addressData.createTimestamp" class="mr-4">
@@ -98,7 +98,7 @@
         </dl>
 
         <dl v-if="addressData.deleteTimestamp" class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.createTime') }}
           </dt>
           <dd class="mr-4">
@@ -107,7 +107,7 @@
         </dl>
 
         <dl class="flex items-center my-2">
-          <dt class="w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.lastSeenTime') }}
           </dt>
           <dd v-if="addressData.lastSeenTimestamp" class="mr-4">
@@ -119,7 +119,7 @@
         </dl>
 
         <dl v-if="addressData.ownedMiners && addressData.ownedMiners.length > 0" class="flex items-center my-2">
-          <dt class="items-center w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="items-center w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.ownedMiners') }}
           </dt>
           <dd class="flex flex-wrap flex-1 text-main">
@@ -130,7 +130,7 @@
         </dl>
 
         <dl v-if="addressData.workerMiners && addressData.workerMiners.length > 0" class="flex items-center my-2">
-          <dt class="items-center w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="items-center w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.workers') }}
           </dt>
           <dd class="flex flex-wrap flex-1 text-main">
@@ -141,7 +141,7 @@
         </dl>
 
         <dl v-if="addressData.benefitedMiners && addressData.benefitedMiners.length > 0" class="flex items-center my-2">
-          <dt class="items-center w-1/6 px-2 pl-8 text-gray-600">
+          <dt class="items-center w-1/5 px-2 pl-8 text-gray-600">
             {{ $t('detail.address.normal.headers.benefitedMiners') }}
           </dt>
           <dd class="flex flex-wrap flex-1 text-main">
