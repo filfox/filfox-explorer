@@ -150,7 +150,7 @@
 
     <div v-if="addressData.benefitedMiners.length > 0" class="flex justify-between text-xs mx-4 mt-2">
       <p class="w-1/4">
-        {{ $t('detail.address.normal.headers.workers') }}
+        {{ $t('detail.address.normal.headers.benefitedMiners') }}
       </p>
       <div class="w-3/4">
         <p v-for="worker in addressData.benefitedMiners" :key="worker" class="pb-1 flex text-main">

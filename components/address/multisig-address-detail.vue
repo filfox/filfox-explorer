@@ -160,7 +160,7 @@
 
       <dl v-if="addressData.benefitedMiners.length > 0" class="flex items-center my-2">
         <dt class="w-1/8 pl-8 text-gray-600 px-2 items-center">
-          {{ $t('detail.address.normal.headers.workers') }}
+          {{ $t('detail.address.normal.headers.benefitedMiners') }}
         </dt>
         <dd class="flex flex-wrap flex-1 text-main">
           <p v-for="worker in addressData.benefitedMiners" :key="worker" class="mr-4">
