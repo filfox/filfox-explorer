@@ -6,7 +6,7 @@ import registryAbi from './abi/registry.abi.json'
 import registrarControllerAbi from './abi/registrar.controller.abi.json'
 import reverseRegistrarAbi from './abi/reverse.registrar.abi.json'
 import publicResolverAbi from './abi/public.resolver.abi.json'
-const rpcUrl = 'https://hyperspace.filfox.info/rpc/v1'
+const rpcUrl = 'https://filfox.info/rpc/v1'
 const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
 
 const registryContract = new ethers.Contract(
