@@ -868,6 +868,8 @@ export default {
       contractBytecode: 'Contract Bytecode',
       verifyFailed: 'Verification failed',
       verifySuccess: 'Verification success',
+      whatWeGot: 'What we got',
+      whatWeLookingFor: 'What we looking for',
       error: {
         1: 'Source code not found',
         2: 'Contract bytecode not found',

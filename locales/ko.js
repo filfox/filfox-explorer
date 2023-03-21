@@ -846,6 +846,8 @@ export default {
       contractBytecode: '계약 바이트 코드',
       verifyFailed: '인증 실패',
       verifySuccess: '인증 성공',
+      whatWeGot: '우리가 얻은 것',
+      whatWeLookingFor: '우리가 찾는 것',
       error: {
         1: '소스 코드를 찾을 수 없음',
         2: '계약 바이트 코드를 찾을 수 없음',
