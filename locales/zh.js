@@ -852,6 +852,8 @@ export default {
       contractBytecode: '合约字节码',
       verifyFailed: '验证失败',
       verifySuccess: '验证成功',
+      whatWeGot: '编译的',
+      whatWeLookingFor: '链上的',
       error: {
         1: '未找到源代码',
         2: '未找到合约字节码',
