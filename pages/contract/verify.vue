@@ -35,6 +35,9 @@
           v-if="verifiedResult.initCode"
           class="border bg-customGray-200 rounded-md h-64 mt-4 p-4 font-light overflow-auto break-all text-sm"
         >
+          <p class="text-customGray-500">
+            - {{ $t('contract.verify.whatWeLookingFor') }}
+          </p>
           {{ verifiedResult.initCode }}
         </div>
       </template>
@@ -197,6 +200,9 @@
             {{ $t('contract.verify.contractBytecode') }}
           </div>
           <div class="h-64 rounded-md bg-customGray-200 border p-4 overflow-auto text-sm break-all">
+            <p class="text-customGray-500">
+              - {{ $t('contract.verify.whatWeGot') }}
+            </p>
             {{ verifiedResult.byteCode }}
           </div>
         </template>
