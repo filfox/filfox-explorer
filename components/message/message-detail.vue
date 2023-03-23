@@ -22,6 +22,14 @@
           <MessageLink :id="message.cid" plain />
         </dd>
       </dl>
+      <dl v-if="message.ethTransactionHash" class="message-item">
+        <dt class="message-key">
+          {{ $t('detail.message.headers.ethTransactionHash') }}
+        </dt>
+        <dd class="message-value">
+          {{ message.ethTransactionHash }}
+        </dd>
+      </dl>
       <dl v-if="message.height" class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.height') }}
@@ -114,7 +122,7 @@
       <p class="pl-8 pb-3 border-b border-background">
         {{ $t('detail.message.modules.logs') }}
       </p>
-      <div class="h-136 overflow-y-auto">
+      <div class="max-h-136 overflow-y-auto">
         <div v-for="item, index in message.eventLogs" :key="index" class="border-b border-background">
           <dl class="message-item pt-2">
             <dt class="message-key">
@@ -139,7 +147,7 @@
             <dd class="flex flex-col">
               <div v-for="topic, _index in item.topics" :key="_index" class="flex items-center mb-2">
                 <div class="w-6 h-6 mr-2 flex items-center justify-center bg-gray-100 rounded-md text-gray-500">
-                  {{ index }}
+                  {{ _index }}
                 </div>
                 {{ topic }}
               </div>

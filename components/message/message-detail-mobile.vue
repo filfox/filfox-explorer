@@ -18,6 +18,14 @@
       </div>
       <div class="message-item">
         <p class="message-key">
+          {{ $t('detail.message.headers.ethTransactionHash') }}
+        </p>
+        <p class="message-value break-all">
+          {{ message.ethTransactionHash }}
+        </p>
+      </div>
+      <div class="message-item">
+        <p class="message-key">
           {{ $t('detail.message.headers.height') }}
         </p>
         <TipsetLink v-if="message.height" :id="message.height" class="message-value text-main" />
@@ -100,7 +108,7 @@
       <p class="pl-4 py-3 border-b border-background font-medium">
         {{ $t('detail.message.modules.logs') }}
       </p>
-      <div class="h-136 overflow-y-auto">
+      <div class="overflow-y-auto max-h-136">
         <div
           v-for="item, index in message.eventLogs"
           :key="index"

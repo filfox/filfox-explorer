@@ -5,7 +5,7 @@
     </template>
     <template v-else-if="type === ''">
       <nuxt-link v-if="canClick" :to="localePath(`/merchant/${tag.merchant}`)" class="hover:text-main truncate">
-        {{ tag.name }}111
+        {{ tag.name }}
       </nuxt-link>
       <div v-else class="truncate">
         {{ tag.name }}
