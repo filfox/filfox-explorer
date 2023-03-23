@@ -10,31 +10,31 @@ const rpcUrl = 'https://filfox.info/rpc/v1'
 const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
 
 const registryContract = new ethers.Contract(
-  '0x889d4f6667ab1aa0a77bc8befbfc9dca5d6ead3d',
+  '0x5eefe33358d32a61aceb2a13640b72bb6f4bfd11',
   registryAbi,
   provider
 )
 
 const registryControllerContract = new ethers.Contract(
-  '0x12aea3f77ae98b33f27f20825b15e4ab8b381684',
+  '0x3d5ec2dbe382e293fa8c6a53f15fb0ef3b070cb6',
   registrarControllerAbi,
   provider
 )
 
 const registarContract = new ethers.Contract(
-  '0xf87d4c3c91555fecfe684fa58dd26a817c75892b',
+  '0x6dfb3d26c3b9e45d95ca035cc06033532c08beb9',
   registrarAbi,
   provider
 )
 
 const reverseRegistarContract = new ethers.Contract(
-  '0x7b053507c2e0f9be1632c4b17c2e871c1770cb14',
+  '0x805bCf9D3038c0e0F0e8Ab4FbeDaFeD62B300443',
   reverseRegistrarAbi,
   provider
 )
 
 const publicResolverContract = new ethers.Contract(
-  '0xe2c015abb52e22227354f78297f0c2de3807b311',
+  '0x1620524ae061C8Ec6EDBfA19bB6cd138191A834A',
   publicResolverAbi,
   provider
 )
