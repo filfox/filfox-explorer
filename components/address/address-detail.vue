@@ -265,11 +265,6 @@ export default {
       this.getTransferList()
     }
   },
-  mounted() {
-    setInterval(() => {
-      console.log(this.addressData)
-    }, 1000)
-  },
   methods: {
     async getTransferList() {
       if (this.addressData.id == null || this.addressData.id === undefined) {
