@@ -63,9 +63,8 @@ export default {
   async mounted() {
     try {
       const id = this.id || ''
-      if (id.startsWith('t4')) {
+      if (id.startsWith('f4')) {
         let name = localStorage.getItem(`fns:${id}`)
-        console.log(name)
         if (name) {
           name = JSON.parse(name)
           if (Number(new Date()) - name.time > 60 * 10 * 1000) {
