@@ -54,15 +54,23 @@ Vue.filter('filecoin', (value, precision = null, nanoFixed = false) => {
 })
 
 Vue.filter('timestamp', (time, type = 'datetime') => {
-  if (time == null) {
-    return '-'
-  } else {
-    return moment(time * 1000).format({
-      datetime: 'YYYY-MM-DD HH:mm:ss',
-      date: 'YYYY-MM-DD',
-      time: 'HH:mm:ss'
-    }[type])
-  }
+  if (!time) return '-'
+
+  return moment(time * 1000).format({
+    datetime: 'YYYY-MM-DD HH:mm:ss',
+    date: 'YYYY-MM-DD',
+    time: 'HH:mm:ss'
+  }[type])
+})
+
+Vue.filter('lookfortime', (str, type = 'datetime') => {
+  if (!/^\d+$/.test(str)) return str
+
+  return moment(str * 1000).format({
+    datetime: 'YYYY-MM-DD HH:mm:ss',
+    date: 'YYYY-MM-DD',
+    time: 'HH:mm:ss'
+  }[type])
 })
 
 Vue.filter('size_metric', (number, precision = null) => {
