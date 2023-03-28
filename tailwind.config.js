@@ -37,6 +37,10 @@ module.exports = {
         success: '#5ac6a8',
         card: '#F8F9FA',
         cardHighlight: '#eef1f8',
+        customBlue: {
+          100: '#F1F6FA',
+          200: '#F8FAFD'
+        },
         customGray: {
           100: '#F1F6FA',
           200: '#F7F8F9',

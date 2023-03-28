@@ -51,6 +51,8 @@
         </div>
       </div>
 
+      <HomeFnsRegistrations />
+
       <HomeMinerRanksMobile
         class="lg:hidden"
         :top-miners-by-power="topMinersByPower"
@@ -104,7 +106,9 @@
 </template>
 
 <script>
+import homeFnsRegistrations from '../components/home/home-fns-registrations.vue'
 export default {
+  components: { homeFnsRegistrations },
   async asyncData({ $axios, error }) {
     try {
       const overview = await $axios.$get('/overview')
