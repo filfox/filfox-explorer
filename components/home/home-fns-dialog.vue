@@ -1,8 +1,7 @@
 <template>
   <el-dialog
     :visible.sync="dialogVisible"
-    :show-close="false"
-    class="fns"
+    class="fns-news"
     custom-class="w-11/12 lg:w-1/3"
   >
     <template slot="title">
@@ -41,7 +40,7 @@ export default {
 </script>
 
 <style lang="postcss">
-.fns {
+.fns-news {
   & .el-dialog {
     @apply overflow-hidden rounded-lg !important;
     & .el-dialog__header {
