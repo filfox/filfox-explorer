@@ -83,7 +83,7 @@ export default {
   methods: {
     async getList() {
       const data = await this.$axios.$get(`${fnsServer}/registration/list`, {
-        params: { pageSize: 10, page: 1 }
+        params: { pageSize: 5, page: 1 }
       })
       this.names = data.data.list
     }
