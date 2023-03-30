@@ -74,7 +74,7 @@
             v-model="optimize"
             :placeholder="$t('contract.guide.pleaseSelect')"
             class="optimize-select w-full mt-3"
-            @change="val => optimizeRuns = val ? 200: '--'"
+            @change="val => optimizeRuns = val ? 200 : '--'"
           >
             <el-option
               v-for="{ label, value } in optimizations"
