@@ -47,6 +47,7 @@ module.exports = {
           250: '#F4F6FC',
           300: '#E3E7EC',
           350: '#B6BDC7',
+          375: '#979797',
           400: '#858E98',
           450: '#748094',
           500: '#6F7B88',
@@ -96,7 +97,7 @@ module.exports = {
         container: '2px 2px 20px rgb(0 0 0 / 60%)'
       },
       spacing: {
-        '2.5': '0.625rem'
+        2.5: '0.625rem'
       }
     },
     minWidth: {

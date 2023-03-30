@@ -353,6 +353,9 @@ export default {
       contractCreationCode: 'Contract Creation Code',
       exportAbi: 'Export ABI'
     },
+    eventLogs: {
+      title: 'Event Logs'
+    },
     message: {
       title: 'Message Details',
       replaced: 'Message {oldCid} was replaced by {cid}',

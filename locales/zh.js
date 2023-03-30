@@ -336,6 +336,9 @@ export default {
       contractCreationCode: '合约创建代码',
       exportAbi: '导出 ABI'
     },
+    eventLogs: {
+      title: '事件日志'
+    },
     message: {
       title: '消息详情',
       replaced: '消息 {oldCid} 已被 {cid} 覆盖',

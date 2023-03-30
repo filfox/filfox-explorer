@@ -170,6 +170,9 @@
           <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
             {{ $t('detail.contract.title') }}
           </el-radio-button>
+          <el-radio-button v-if="addressData.actor == 'evm'" :label="3">
+            {{ $t('detail.eventLogs.title') }}
+          </el-radio-button>
         </el-radio-group>
       </div>
       <AddressMessageList v-if="listType === 0" :address="addressData.address" />
@@ -264,6 +267,7 @@
         />
       </div>
       <ContractCode v-if="listType === 2" :address="addressData.address" />
+      <!-- <MessageLogs v-if="listType === 3" :message="eventLogs" /> -->
     </div>
   </div>
 </template>
@@ -285,7 +289,8 @@ export default {
       page: 0,
       pageSize: 20,
       loading: false,
-      total: 0
+      total: 0,
+      eventLogs: {}
     }
   },
   computed: {
@@ -300,6 +305,7 @@ export default {
     }
   },
   mounted() {
+    this.getEventLogs()
   },
   methods: {
     async getTransferList() {
@@ -314,6 +320,11 @@ export default {
       this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
       this.loading = false
       this.total = this.transferList.totalCount
+    },
+    async getEventLogs() {
+      const { eventLogs } = await this.$axios.$get(`/address/${this.addressData.address}/events`,
+        { params: { page: 0, pageSize: 10 } })
+      this.eventLogs = eventLogs
     },
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1

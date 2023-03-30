@@ -8,15 +8,18 @@
       <div class="bg-main py-3 lg:py-4 text-sm lg:text-lg text-center text-white font-semibold">
         GOOD NEWS
       </div>
-      <p class="text-center text-sm lg:text-lg font-semibold text-black w-2/3 mt-4 mx-auto">
-        Filfox has been supported fvm in Filecoin mainnet
-      </p>
+      <div class="text-center text-sm lg:text-lg font-semibold text-black w-4/5 mt-4 mx-auto">
+        FNS Beta Version is now live at fns.space!<br>
+        <div class="font-light text-customGray-375 text-base mt-2">
+          FNS is devoted to creating a decentralized personal portal and DID system for Web3 users based on FVM, welcome to join us!
+        </div>
+      </div>
     </template>
     <img src="../../assets/img/home/fns-dialog.png" alt="FNS" class="w-full">
     <div slot="footer" class="flex justify-center">
-      <a target="_blank" href="https://app.fns.space" class="btn active text-sm lg:text-base" @click="skipToFns">Try It Now</a>
+      <a target="_blank" href="https://app.fns.space" class="btn active text-sm lg:text-base" @click="dialogVisible = false">Go</a>
       <div class="btn text-sm lg:text-base ml-4" @click="dialogVisible = false">
-        Hold On
+        Skip
       </div>
     </div>
   </el-dialog>
@@ -27,15 +30,15 @@ export default {
   data() {
     return { dialogVisible: false }
   },
+  watch: {
+    dialogVisible(val) {
+      if (!val) localStorage.setItem('FNS_NEWS', true)
+    }
+  },
   mounted() {
     this.dialogVisible = !localStorage.getItem('FNS_NEWS')
-  },
-  methods: {
-    skipToFns() {
-      this.dialogVisible = false
-      localStorage.setItem('FNS_NEWS', true)
-    }
   }
+
 }
 </script>
 

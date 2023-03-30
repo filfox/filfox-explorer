@@ -347,6 +347,9 @@ export default {
       contractCreationCode: '계약 생성 코드',
       exportAbi: '수출 ABI'
     },
+    eventLogs: {
+      title: '이벤트 로그'
+    },
     message: {
       title: '메시지 내역',
       replaced: '메시지 {oldCid} 가 메시지 {cid} 에 의해 무시됨',
