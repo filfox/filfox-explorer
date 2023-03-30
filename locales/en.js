@@ -861,7 +861,7 @@ export default {
       debugLog: 'Compiler debug log',
       complierVersion: 'Complier Version',
       optimizationEnabled: 'Optimization Enabled',
-      runs: 'Runs',
+      runs: 'Runs(Optimizer)',
       argsUsed: 'Consturctor Arguments Used',
       contractName: 'Contract Name',
       contractAbi: 'Contract ABI',

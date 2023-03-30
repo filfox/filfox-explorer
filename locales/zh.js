@@ -845,7 +845,7 @@ export default {
       debugLog: '编译日志',
       complierVersion: '编译器版本',
       optimizationEnabled: '优化开启',
-      runs: '运行',
+      runs: '运行（优化器）',
       argsUsed: '使用的构造函数参数',
       contractName: '合约名',
       contractAbi: '合约 ABI',
