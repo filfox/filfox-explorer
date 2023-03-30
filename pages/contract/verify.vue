@@ -186,7 +186,7 @@
         </li>
         <li class="mt-2 flex items-center">
           <label class="w-48 text-customGray-500">Runs:</label>
-          {{ optimize ? 200 : '--' }}
+          {{ optimize ? optimizeRuns : '--' }}
         </li>
       </ul>
 
@@ -297,7 +297,7 @@ export default {
         language: 'Solidity',
         compiler: this.compilerVersion,
         optimize: this.optimize,
-        optimizeRuns: this.optimizeRuns,
+        optimizeRuns: Number(this.optimizeRuns),
         sourceFiles: this.sourceFiles,
         parameters: this.parameters,
         license: this.licenseType

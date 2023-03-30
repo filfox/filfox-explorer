@@ -118,173 +118,52 @@
         </dd>
       </dl>
     </div>
-    <div v-if="message.eventLogs && message.eventLogs.length" class="rounded-md my-4 py-4 bg-white">
+    <MessageLogs v-if="message.eventLogs && message.eventLogs.length" :message="message" />
+    <div v-if="message.subcalls && message.subcalls.length" class="rounded-md my-4 py-4 bg-white">
       <p class="pl-8 pb-3 border-b border-background">
-        {{ $t('detail.message.modules.logs') }}
+        {{ $t('detail.message.modules.internaltransfer') }}
       </p>
-      <div class="max-h-136 overflow-y-auto">
-        <div v-for="item, index in message.eventLogs" :key="index" class="border-b border-background">
-          <dl class="message-item pt-2">
-            <dt class="message-key">
-              {{ $t('detail.message.headers.address') }}
-            </dt>
-            <dd class="message-value">
-              <AddressLink :id="item.address" class="text-main" />
-            </dd>
-          </dl>
-          <dl v-if="item.name" class="message-item pt-2">
-            <dt class="message-key">
-              Name
-            </dt>
-            <dd class="message-value">
-              {{ item.name }}
-            </dd>
-          </dl>
-          <dl class="message-item pt-2">
-            <dt class="message-key">
-              {{ $t('detail.message.headers.topics') }}
-            </dt>
-            <dd class="flex flex-col">
-              <div v-for="topic, _index in item.topics" :key="_index" class="flex items-center mb-2">
-                <div class="w-6 h-6 mr-2 flex items-center justify-center bg-gray-100 rounded-md text-gray-500">
-                  {{ _index }}
-                </div>
-                {{ topic }}
-              </div>
-            </dd>
-          </dl>
-          <dl class="message-item pt-2">
-            <dt class="message-key">
-              {{ $t('detail.message.headers.data') }}
-            </dt>
-            <dd class="w-full py-2 bg-gray-100 break-all px-2 text-xs flex items-center">
-              <!-- <p class="w-12">
-                _Value:
-              </p> -->
-              <pre class="whitespace-pre-wrap flex-1"><span>{{ item.data }}</span></pre>
-            </dd>
-          </dl>
-          <dl class="message-item pt-2">
-            <dt class="message-key">
-              Log Index
-            </dt>
-            <dd class="message-value">
-              {{ item.logIndex }}
-            </dd>
-          </dl>
-          <dl class="message-item pt-2">
-            <dt class="message-key">
-              Removed
-            </dt>
-            <dd class="message-value">
-              {{ item.removed }}
-            </dd>
-          </dl>
-        </div>
+      <div class="message-item bg-gray-100 mx-8 text-gray-500 p-2 flex items-center">
+        {{ $t('detail.message.internaltransfer.contractFrom') }}
+        <AddressLink v-if="message.from" :id="message.from" :format="8" class="text-main px-2" />
+        {{ $t('detail.message.internaltransfer.contractTo') }}
+        <AddressLink v-if="message.to" :id="message.to" :format="8" class="text-main px-2" />
+        {{ $t('detail.message.internaltransfer.produced', { amount:message.subcalls.length }) }}
       </div>
-      <div v-if="message.subcalls && message.subcalls.length" class="rounded-md my-4 py-4 bg-white mt-4">
-        <p class="pl-8 pb-3 border-b border-background">
-          {{ $t('detail.message.modules.internaltransfer') }}
-        </p>
-        <div class="message-item bg-gray-100 mx-8 text-gray-500 p-2 flex items-center">
-          {{ $t('detail.message.internaltransfer.contractFrom') }}
-          <AddressLink v-if="message.from" :id="message.from" :format="8" class="text-main px-2" />
-          {{ $t('detail.message.internaltransfer.contractTo') }}
-          <AddressLink v-if="message.to" :id="message.to" :format="8" class="text-main px-2" />
-          {{ $t('detail.message.internaltransfer.produced', { amount:message.subcalls.length }) }}
-        </div>
-        <div class="px-8">
-          <table class="w-full table-fixed">
-            <thead class="text-gray-600 text-sm m-2">
-              <tr class="h-8">
-                <th class="sticky top-0 bg-white z-10 w-1/4">
-                  {{ $t('detail.message.internaltransfer.method') }}
-                </th>
-                <th class="sticky top-0 bg-white z-10 w-1/4">
-                  {{ $t('detail.message.internaltransfer.from') }}
-                </th>
-                <th class="sticky top-0 bg-white z-10 w-1/8">
-                </th>
-                <th class="sticky top-0 bg-white z-10 w-1/4">
-                  {{ $t('detail.message.internaltransfer.to') }}
-                </th>
-                <th class="sticky top-0 bg-white z-10 w-1/8">
-                  {{ $t('detail.message.internaltransfer.value') }}
-                </th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr
-                v-for="(transfer, index) in message.subcalls"
-                :key="index"
-                class="h-12 border-b border-background text-sm"
-              >
-                <td>
-                  <div class="flex items-center flex-row justify-center">
-                    {{ transfer.method }}
-                  </div>
-                </td>
-                <td>
-                  <div class="flex items-center flex-row justify-center">
-                    <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" />
-                  </div>
-                </td>
-                <td>
-                  <div class="flex justify-center">
-                    <img src="~/assets/img/shared/to.svg" alt="3" class="w-4">
-                  </div>
-                </td>
-                <td>
-                  <div class="flex items-center flex-row justify-center">
-                    <AddressLink v-if="transfer.to" :id="transfer.to" :format="8" />
-                    <span v-else>N/A</span>
-                    <AddressTag :tag="transfer.toTag" type="pc" :style="{maxWidth:'66%'}" />
-                  </div>
-                </td>
-                <td>
-                  {{ transfer.value | filecoin }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div v-if="message.transfers && message.transfers.length" class="rounded-md my-4 py-4 bg-white mt-4">
-      <p class="pl-8 pb-3 border-b border-background">
-        {{ $t('detail.message.modules.transfer') }}
-      </p>
       <div class="px-8">
         <table class="w-full table-fixed">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">
               <th class="sticky top-0 bg-white z-10 w-1/4">
-                {{ $t('detail.message.transfer.from') }}
+                {{ $t('detail.message.internaltransfer.method') }}
+              </th>
+              <th class="sticky top-0 bg-white z-10 w-1/4">
+                {{ $t('detail.message.internaltransfer.from') }}
               </th>
               <th class="sticky top-0 bg-white z-10 w-1/8">
               </th>
               <th class="sticky top-0 bg-white z-10 w-1/4">
-                {{ $t('detail.message.transfer.to') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10 w-1/4">
-                {{ $t('detail.message.transfer.value') }}
+                {{ $t('detail.message.internaltransfer.to') }}
               </th>
               <th class="sticky top-0 bg-white z-10 w-1/8">
-                {{ $t('detail.message.transfer.type') }}
+                {{ $t('detail.message.internaltransfer.value') }}
               </th>
             </tr>
           </thead>
           <tbody class="text-center">
             <tr
-              v-for="(transfer, index) in message.transfers"
+              v-for="(transfer, index) in message.subcalls"
               :key="index"
               class="h-12 border-b border-background text-sm"
             >
               <td>
                 <div class="flex items-center flex-row justify-center">
+                  {{ transfer.method }}
+                </div>
+              </td>
+              <td>
+                <div class="flex items-center flex-row justify-center">
                   <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" />
-                  <span v-else>N/A</span>
-                  <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
                 </div>
               </td>
               <td>
@@ -302,14 +181,13 @@
               <td>
                 {{ transfer.value | filecoin }}
               </td>
-              <td>
-                {{ $t('detail.transfer.types.' + transfer.type ) }}
-              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+    <MessageTransfers v-if="message.transfers && message.transfers.length" :message="message" />
+
     <div class="rounded-md my-4 pb-4 bg-white">
       <p class="pl-8 py-3 border-b border-background">
         {{ $t('detail.message.modules.others') }}
