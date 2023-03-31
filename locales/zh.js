@@ -171,7 +171,7 @@ export default {
         powerIncreaseSpeed: '选定周期内，平均每天完成封装扇区的有效算力总和',
         powerDelta: '在选定周期内，存储提供者的有效算力增量'
       },
-      moreBtn: '查看更多'
+      moreBtn: '更多'
     },
     recentTipsets: {
       title: '最新区块',
@@ -365,8 +365,11 @@ export default {
         params: '参数',
         value: '金额',
         address: '地址',
-        topics: 'Topics',
+        name: '方法',
+        topics: '主题',
         data: '参数',
+        logIndex: '序号',
+        removed: '移除',
         gasPrice: 'Gas 价格',
         gasLimit: 'Gas 限额',
         gasUsed: 'Gas 使用量',

@@ -256,8 +256,10 @@
           </tbody>
         </table>
       </div>
+      <ContractCode v-if="listType === 2" :address="addressData.address" />
+      <AddressEventLogs v-if="listType === 3" :address="addressData.address" />
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div v-if="listType != 0 && listType != 2" class="flex items-center h-16 text-center">
+      <div v-if="listType != 0 && listType != 2 && listType != 3" class="flex items-center h-16 text-center">
         <el-pagination
           layout="prev, pager, next, jumper"
           :page-count="totalPageCount"
@@ -266,8 +268,6 @@
           @current-change="didCurrentPageChanged"
         />
       </div>
-      <ContractCode v-if="listType === 2" :address="addressData.address" />
-      <!-- <MessageLogs v-if="listType === 3" :message="eventLogs" /> -->
     </div>
   </div>
 </template>
@@ -304,9 +304,6 @@ export default {
       this.getTransferList()
     }
   },
-  mounted() {
-    this.getEventLogs()
-  },
   methods: {
     async getTransferList() {
       if (this.addressData.id == null || this.addressData.id === undefined) {
@@ -321,17 +318,14 @@ export default {
       this.loading = false
       this.total = this.transferList.totalCount
     },
-    async getEventLogs() {
-      const { eventLogs } = await this.$axios.$get(`/address/${this.addressData.address}/events`,
-        { params: { page: 0, pageSize: 10 } })
-      this.eventLogs = eventLogs
-    },
+
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
       if (this.listType === 1) {
         this.getTransferList()
       }
     },
+
     didListTypeChanged() {
       this.page = 0
       this.total = 0
