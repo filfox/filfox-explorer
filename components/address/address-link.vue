@@ -3,13 +3,13 @@
     <span v-if="!$slots.default">
       <span v-if="plain || !id" class="plain">
         {{ formatString }}
-        <a :href="'http://testapp.fns.space/domain/' + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
+        <a :href="`${FNS}/domain/` + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
       </span>
       <span v-else>
         <nuxt-link :class="colorClass" :to="to">
           {{ formatString }}
         </nuxt-link>
-        <a :href="'http://testapp.fns.space/domain/' + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
+        <a :href="`${FNS}/domain/` + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
       </span>
     </span>
     <slot v-else></slot>
@@ -17,7 +17,7 @@
 </template>
 <script>
 import { transAddress } from '../../utils/fns/utils'
-import { fnsServer } from '../../filecoin/filecoin.config'
+import { fnsServer, FNS } from '../../filecoin/filecoin.config'
 export default {
   props: {
     id: { type: null, required: true },
@@ -33,7 +33,8 @@ export default {
   },
   data() {
     return {
-      name: ''
+      name: '',
+      FNS
     }
   },
   computed: {

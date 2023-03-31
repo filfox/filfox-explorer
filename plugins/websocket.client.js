@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import io from 'socket.io-client'
+import { DOMAIN } from '@/filecoin/filecoin.config'
 
 export default function({ app }) {
-  const ws = io('wss://filfox.info', { transports: ['websocket'] })
+  const ws = io(`wss://${DOMAIN}`, { transports: ['websocket'] })
 
   ws.on('tipset', tipset => app.store.commit('blockchain/height', tipset.height))
 
