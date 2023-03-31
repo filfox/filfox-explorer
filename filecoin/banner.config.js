@@ -1,6 +1,8 @@
+import { FNS } from './filecoin.config'
+
 export const enBanners = [
   {
-    url: 'https://app.fns.space',
+    url: FNS,
     img: require('~/assets/img/home/banner-en-fns.png'),
     mobileImg: require('~/assets/img/home/banner-en-fns-mobile.png')
   },
@@ -13,7 +15,7 @@ export const enBanners = [
 
 export const zhBanners = [
   {
-    url: 'https://app.fns.space',
+    url: FNS,
     img: require('~/assets/img/home/banner-en-fns.png'),
     mobileImg: require('~/assets/img/home/banner-en-fns-mobile.png')
   },

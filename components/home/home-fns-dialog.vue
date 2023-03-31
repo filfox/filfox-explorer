@@ -17,7 +17,7 @@
     </template>
     <img src="../../assets/img/home/fns-dialog.png" alt="FNS" class="w-full">
     <div slot="footer" class="flex justify-center">
-      <a target="_blank" href="https://app.fns.space" class="btn active text-sm lg:text-base" @click="dialogVisible = false">Go</a>
+      <a target="_blank" :href="FNS" class="btn active text-sm lg:text-base" @click="dialogVisible = false">Go</a>
       <div class="btn text-sm lg:text-base ml-4" @click="dialogVisible = false">
         Skip
       </div>
@@ -26,9 +26,11 @@
 </template>
 
 <script>
+import { FNS } from '@/filecoin/filecoin.config'
+
 export default {
   data() {
-    return { dialogVisible: false }
+    return { dialogVisible: false, FNS }
   },
   watch: {
     dialogVisible(val) {

@@ -1,13 +1,14 @@
 // 0x76346faC442F153ED8691fF88b1297643260d8a0
 import { ethers, utils } from 'ethers'
 import { newFromString, validateAddressString } from '@glif/filecoin-address'
+import { RPC } from '@/filecoin/filecoin.config'
 import registrarAbi from './abi/registrar.abi.json'
 import registryAbi from './abi/registry.abi.json'
 import registrarControllerAbi from './abi/registrar.controller.abi.json'
 import reverseRegistrarAbi from './abi/reverse.registrar.abi.json'
 import publicResolverAbi from './abi/public.resolver.abi.json'
-const rpcUrl = 'https://hyperspace.filfox.info/rpc/v1'
-const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
+
+const provider = new ethers.providers.JsonRpcProvider(RPC)
 
 const registryContract = new ethers.Contract(
   '0x889d4f6667ab1aa0a77bc8befbfc9dca5d6ead3d',
