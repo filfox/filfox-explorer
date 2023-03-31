@@ -36,7 +36,7 @@ export default {
     }
   },
   mounted() {
-    this.dialogVisible = !localStorage.getItem('FNS_NEWS')
+    // this.dialogVisible = !localStorage.getItem('FNS_NEWS')
   }
 
 }
