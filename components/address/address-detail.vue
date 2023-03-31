@@ -170,6 +170,9 @@
           <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
             {{ $t('detail.contract.title') }}
           </el-radio-button>
+          <el-radio-button v-if="addressData.actor == 'evm'" :label="3">
+            {{ $t('detail.eventLogs.title') }}
+          </el-radio-button>
         </el-radio-group>
       </div>
       <AddressMessageList v-if="listType === 0" :address="addressData.address" />
@@ -253,8 +256,10 @@
           </tbody>
         </table>
       </div>
+      <ContractCode v-if="listType === 2" :address="addressData.address" />
+      <AddressEventLogs v-if="listType === 3" :address="addressData.address" />
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div v-if="listType != 0 && listType != 2" class="flex items-center h-16 text-center">
+      <div v-if="listType != 0 && listType != 2 && listType != 3" class="flex items-center h-16 text-center">
         <el-pagination
           layout="prev, pager, next, jumper"
           :page-count="totalPageCount"
@@ -263,7 +268,6 @@
           @current-change="didCurrentPageChanged"
         />
       </div>
-      <ContractCode v-if="listType === 2" :address="addressData.address" />
     </div>
   </div>
 </template>
@@ -285,7 +289,8 @@ export default {
       page: 0,
       pageSize: 20,
       loading: false,
-      total: 0
+      total: 0,
+      eventLogs: {}
     }
   },
   computed: {
@@ -298,8 +303,6 @@ export default {
       this.page = 0
       this.getTransferList()
     }
-  },
-  mounted() {
   },
   methods: {
     async getTransferList() {
@@ -315,12 +318,14 @@ export default {
       this.loading = false
       this.total = this.transferList.totalCount
     },
+
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
       if (this.listType === 1) {
         this.getTransferList()
       }
     },
+
     didListTypeChanged() {
       this.page = 0
       this.total = 0

@@ -45,7 +45,7 @@
 
     <template v-if="activeTab == 1">
       <div class="rounded-none md:rounded-md p-4 mt-5 bg-white flex flex-col md:flex-row">
-        <div class="w-full md:w-1/3 pr-0 md:pr-2.5">
+        <div class="w-full md:w-1/4 pr-0 md:pr-2">
           <p class="text-base md:text-lg">
             {{ $t('contract.verify.contractAddress') }}
           </p>
@@ -56,7 +56,7 @@
             :placeholder="$t('contract.guide.pleaseCenterAddress')"
           >
         </div>
-        <div class="w-full md:w-1/3 px-0 md:px-2.5 mt-4 md:mt-0">
+        <div class="w-full md:w-1/4 px-0 md:px-2 mt-4 md:mt-0">
           <p class="text-base md:text-lg">
             {{ $t('contract.verify.complier') }}
           </p>
@@ -66,7 +66,7 @@
             class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
           >
         </div>
-        <div class="w-full md:w-1/3 pl-0 md:pl-2.5 mt-4 md:mt-0">
+        <div class="w-full md:w-1/4 pl-0 md:px-2 mt-4 md:mt-0">
           <p class="text-base md:text-lg">
             {{ $t('contract.verify.optimizations') }}
           </p>
@@ -74,6 +74,7 @@
             v-model="optimize"
             :placeholder="$t('contract.guide.pleaseSelect')"
             class="optimize-select w-full mt-3"
+            @change="val => optimizeRuns = val ? 200 : '--'"
           >
             <el-option
               v-for="{ label, value } in optimizations"
@@ -83,6 +84,17 @@
             >
             </el-option>
           </el-select>
+        </div>
+        <div class="w-full md:w-1/4 px-0 md:pl-2 mt-4 md:mt-0">
+          <p class="text-base md:text-lg">
+            {{ $t('contract.verify.runs') }}
+          </p>
+          <input
+            v-model="optimizeRuns"
+            :readonly="!optimize"
+            :class="{ 'cursor-not-allowed': !optimize }"
+            class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
+          >
         </div>
       </div>
 
@@ -174,7 +186,7 @@
         </li>
         <li class="mt-2 flex items-center">
           <label class="w-48 text-customGray-500">Runs:</label>
-          {{ optimize ? 200 : '--' }}
+          {{ optimize ? optimizeRuns : '--' }}
         </li>
       </ul>
 
@@ -234,7 +246,8 @@ export default {
       activeTab: 1,
       parameters: '',
       sourceFiles: {},
-      optimize: false,
+      optimize: true,
+      optimizeRuns: 200,
       optimizations: [
         { label: 'Yes', value: true },
         { label: 'No', value: false }
@@ -284,7 +297,7 @@ export default {
         language: 'Solidity',
         compiler: this.compilerVersion,
         optimize: this.optimize,
-        optimizeRuns: 200,
+        optimizeRuns: Number(this.optimizeRuns),
         sourceFiles: this.sourceFiles,
         parameters: this.parameters,
         license: this.licenseType

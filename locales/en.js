@@ -353,6 +353,9 @@ export default {
       contractCreationCode: 'Contract Creation Code',
       exportAbi: 'Export ABI'
     },
+    eventLogs: {
+      title: 'Event Logs'
+    },
     message: {
       title: 'Message Details',
       replaced: 'Message {oldCid} was replaced by {cid}',
@@ -379,8 +382,11 @@ export default {
         params: 'Parameters',
         value: 'Value',
         address: 'Address',
+        name: 'Name',
         topics: 'Topics',
         data: 'Data',
+        logIndex: 'Log Index',
+        removed: 'Removed',
         gasPrice: 'Gas Price',
         gasLimit: 'Gas Limit',
         gasUsed: 'Gas Used',
@@ -861,7 +867,7 @@ export default {
       debugLog: 'Compiler debug log',
       complierVersion: 'Complier Version',
       optimizationEnabled: 'Optimization Enabled',
-      runs: 'Runs',
+      runs: 'Runs(Optimizer)',
       argsUsed: 'Consturctor Arguments Used',
       contractName: 'Contract Name',
       contractAbi: 'Contract ABI',
