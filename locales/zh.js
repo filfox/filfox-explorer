@@ -342,7 +342,7 @@ export default {
     message: {
       title: '消息详情',
       replaced: '消息 {oldCid} 已被 {cid} 覆盖',
-      testNetOnly: '此消息只支持Hyperspace网络',
+      testNetOnly: '此消息只支持Calibration网络',
       modules: {
         overview: '消息概览',
         logs: '交易事件',

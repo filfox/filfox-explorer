@@ -353,7 +353,7 @@ export default {
     message: {
       title: '메시지 내역',
       replaced: '메시지 {oldCid} 가 메시지 {cid} 에 의해 무시됨',
-      testNetOnly: '이 메시지는 Hyperspace 네트워크만 지원합니다',
+      testNetOnly: '이 메시지는 Calibration 네트워크만 지원합니다',
       modules: {
         overview: '개요',
         logs: '거래 이벤트',
