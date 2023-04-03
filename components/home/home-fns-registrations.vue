@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-white rounded-md pb-2 mb-4">
+    <div class="bg-white lg:rounded-md pb-2 mb-4">
       <div class="flex justify-between items-center px-4 py-2 lg:py-4">
         <span class="text-sm lg:text-base flex items-center">
           <img src="../../assets/img/home/icon-fns.svg" alt="FNS" class="h-5 mr-2">
