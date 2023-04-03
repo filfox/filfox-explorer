@@ -20,7 +20,7 @@
           <div class="w-48 text-customGray-450">
             {{ $t('detail.contract.runs') }}
           </div>
-          <span>{{ contract.optimizeRuns }}</span>
+          <span>{{ contract.optimizeRuns || '-' }}</span>
         </div>
       </div>
       <div class="flex flex-col md:flex-row md:justify-between p-4">

@@ -330,6 +330,7 @@ export default {
       contractName: '合约名',
       compilerVersion: '编译器版本',
       optimizeEnabled: '优化开启',
+      runs: '运行（优化器）',
       otherSettings: '其他设置',
       contractSourceCode: '合约源代码',
       contractAbi: '合约 ABI',

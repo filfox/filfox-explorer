@@ -341,6 +341,7 @@ export default {
       contractName: '계약명',
       compilerVersion: '컴파일러 버전',
       optimizeEnabled: '최적화',
+      runs: '실행（최적화기）',
       otherSettings: '다른 설정',
       contractSourceCode: '컨트랙트 소스 코드',
       contractAbi: '계약 ABI',
