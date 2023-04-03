@@ -27,6 +27,6 @@ export const wiki = {
 export const DOMAIN = network.networks[network.currentNetwork].url
 export const RPC = `${DOMAIN}/rpc/v1`
 export const FNS = network.networks[network.currentNetwork].fns
-export const fnsServer = `${network.networks[network.currentNetwork][network.currentNetwork ? 'url' : 'fns']}/api/${network.currentNetwork ? 'fns' : 'lookup'}`
+export const fnsServer = 'https://hyperspace.filfox.info/api/lookup'
 
 export const epochsInDay = 2880
