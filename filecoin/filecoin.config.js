@@ -1,7 +1,7 @@
 export const network = {
   // Index of networks
   multipleNetworks: true,
-  currentNetwork: 0,
+  currentNetwork: 2,
   networks: [
     {
       name: 'Mainnet',
