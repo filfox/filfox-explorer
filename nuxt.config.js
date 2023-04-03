@@ -25,7 +25,9 @@ export default {
         { name: 'application-name', content: this.$t('meta.titles.filfox') }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        { rel: 'manifest', href: '/dist/manifest.210c225a.json' },
+        { rel: 'icon', href: '/dist/icons/icon_64x64.5eb771.png' },
+        { rel: 'apple-touch-icon', href: '/dist/icons/icon_512x512.5eb771.png', sizes: '512x512' }
       ]
     }
   },
@@ -96,7 +98,7 @@ export default {
     'nuxt-i18n'
   ],
   axios: {
-    baseURL: 'https://hyperspace.filfox.info/api/v1'
+    baseURL: 'https://filfox.info/api/v1'
   },
   i18n: {
     locales: [
