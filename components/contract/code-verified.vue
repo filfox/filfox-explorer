@@ -18,7 +18,7 @@
         </div>
         <div class="flex justify-between md:w-1/2 md:justify-start mt-2 md:mt-0">
           <div class="w-48 text-customGray-450">
-            {{ $t('detail.contract.runs') }}
+            {{ $t('detail.contract.optimizeEnabled') }}
           </div>
           <span>{{ contract.optimize ? `Yes with ${contract.optimizeRuns} runs` : 'No' }}</span>
         </div>
