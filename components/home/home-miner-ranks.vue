@@ -1,9 +1,16 @@
 <template>
-  <div class="mb-4 bg-white rounded-md">
+  <div class="mb-4 pb-2 bg-white rounded-md">
     <div class="border-b border-background">
-      <HomeTitle type="minerRanks" />
-      <div class="flex justify-between mb-2">
-        <div class="flex h-12 ml-4 items-center">
+      <div class="flex items-center pt-1">
+        <HomeTitle type="minerRanks" />
+        <nuxt-link :to="localePath('/ranks/' + ['power', 'blocks', 'power-growth'][type])" class="ml-auto mr-4">
+          <el-button size="mini" round>
+            {{ $t('home.minerRanks.moreBtn') }}
+          </el-button>
+        </nuxt-link>
+      </div>
+      <div class="flex justify-between mb-2 px-4">
+        <div class="flex h-12 items-center">
           <el-row>
             <el-button
               size="mini"
@@ -32,7 +39,7 @@
           </el-row>
         </div>
         <div class="flex items-center">
-          <DurationSelect v-if="type !== 0" v-model="duration" class="flex items-center mr-4" />
+          <DurationSelect v-if="type !== 0" v-model="duration" class="flex items-center" />
         </div>
       </div>
     </div>
@@ -221,13 +228,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="m-auto text-center h-16">
-      <nuxt-link :to="localePath('/ranks/' + ['power', 'blocks', 'power-growth'][type])" class="mx-auto">
-        <el-button size="mini" round>
-          {{ $t('home.minerRanks.moreBtn') }}
-        </el-button>
-      </nuxt-link>
     </div>
   </div>
 </template>

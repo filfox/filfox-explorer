@@ -1,12 +1,12 @@
 <template>
   <div class="container bg-white mx-auto my-8 rounded-md">
     <div class="w-full">
-      <div class="flex items-center justify-between border-b border-background p-4 font-bold">
+      <div class="flex items-center justify-between border-b border-background p-4 font-semibold">
         {{ $t('fns.registrations.title') }}
       </div>
-      <table v-if="!loading" class="w-full table-fixed mt-2 text-sm">
-        <thead class="text-gray-600 border-b border-background">
-          <tr class="h-8">
+      <table v-if="!loading" class="w-full mt-4 table-fixed text-sm">
+        <thead class="text-gray-500 border-background">
+          <tr>
             <th class="table-header w-2/5 pb-2">
               {{ $t('fns.registrations.address') }}
             </th>
@@ -27,15 +27,20 @@
               <AddressLink :id="item.owner" :format="10" class="text-main" />
             </td>
             <td>
-              <a class="text-main cursor-pointer" @click="$emit('detail', item.name)">{{ item.name }}</a>
+              <NuxtLink :to="localePath(`/fns/name/${item.name}`)" class="text-main cursor-pointer">
+                {{ item.name }}
+              </NuxtLink>
             </td>
             <td>
               {{ item.expires | timestamp }}
             </td>
             <td>
-              <a class="bg-gray-100 text-main p-2 font-bold rounded-md hover:opacity-75 cursor-pointer" @click="$emit('detail', item.name)">
+              <NuxtLink
+                :to="localePath(`/fns/name/${item.name}`)"
+                class="px-4 py-1 rounded text-xs font-semibold text-main bg-customBlue-200 border border-transparent hover:border-main transition duration-200"
+              >
                 {{ $t('fns.registrations.moreDetails') }}
-              </a>
+              </NuxtLink>
             </td>
           </tr>
         </tbody>

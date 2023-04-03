@@ -51,6 +51,8 @@
         </div>
       </div>
 
+      <HomeFnsRegistrations />
+
       <HomeMinerRanksMobile
         class="lg:hidden"
         :top-miners-by-power="topMinersByPower"
@@ -100,11 +102,14 @@
     >
       <RanksShare v-if="sharing" :loading="sharingLoading" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
     </div>
+    <HomeFnsDialog />
   </div>
 </template>
 
 <script>
+import homeFnsRegistrations from '../components/home/home-fns-registrations.vue'
 export default {
+  components: { homeFnsRegistrations },
   async asyncData({ $axios, error }) {
     try {
       const overview = await $axios.$get('/overview')
@@ -154,19 +159,19 @@ export default {
     async getTopMinersByPower(continent) {
       this.topMinersType = 'power'
       this.topMinersLoading = true
-      this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: continent ? { count: 20, continent } : { count: 20 } })
+      this.topMinersByPower = await this.$axios.$get('/miner/top-miners/power', { params: continent ? { count: 10, continent } : { count: 10 } })
       this.topMinersLoading = false
     },
     async getTopMinersByBlocks(duration, continent) {
       this.topMinersType = 'blocks'
       this.topMinersLoading = true
-      this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: continent ? { count: 20, duration, continent } : { count: 20, duration } })
+      this.topMinersByBlocks = await this.$axios.$get('/miner/top-miners/blocks', { params: continent ? { count: 10, duration, continent } : { count: 10, duration } })
       this.topMinersLoading = false
     },
     async getTopMinersByPowerDelta(duration, continent) {
       this.topMinersType = 'power-growth'
       this.topMinersLoading = true
-      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-growth', { params: continent ? { count: 20, duration, continent } : { count: 20, duration } })
+      this.topMinersByPowerDelta = await this.$axios.$get('/miner/top-miners/power-growth', { params: continent ? { count: 10, duration, continent } : { count: 10, duration } })
       this.topMinersLoading = false
     },
     async getRecentTipsets() {

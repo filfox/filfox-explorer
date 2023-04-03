@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white p-4 rounded-md my-8">
+  <div v-loading="loading" class="bg-white p-4 rounded-md my-8">
     <div>
-      <h1 class="font-bold">
+      <h1 class="font-semibold">
         {{ $t('fns.address.overview') }}
       </h1>
       <div class="bg-card p-4 my-4 rounded-md text-sm">
@@ -9,7 +9,9 @@
           <div class="w-64 text-gray-700">
             {{ $t('fns.address.reverseRecord') }}
           </div>
-          <a target="_blank" class="text-main cursor-pointer" @click="$emit('detail', detail.reverseRecord)">{{ detail.reverseRecord }}</a>
+          <NuxtLink :to="localePath(`/fns/name/${detail.reverseRecord}`)" class="text-main cursor-pointer">
+            {{ detail.reverseRecord }}
+          </NuxtLink>
         </div>
         <div class="flex items-center mt-4">
           <div class="w-64 text-gray-700">
@@ -20,7 +22,7 @@
       </div>
     </div>
     <div>
-      <h1 class="font-bold">
+      <h1 class="font-semibold">
         {{ $t('fns.address.names') }}
       </h1>
       <table class="w-full my-4 text-sm">
@@ -41,7 +43,9 @@
             class="h-12 border-b border-background hover:bg-cardHighlight"
           >
             <td>
-              <a class="text-main cursor-pointer" @click="$emit('detail', item.name)">{{ item.name }}</a>
+              <NuxtLink :to="localePath(`/fns/name/${item.name}`)" class="text-main cursor-pointer">
+                {{ item.name }}
+              </NuxtLink>
             </td>
             <td>
               {{ item.expiration | timestamp }}
@@ -51,7 +55,7 @@
       </table>
     </div>
     <div>
-      <h1 class="font-bold">
+      <h1 class="font-semibold">
         {{ $t('fns.address.realatedTransactions') }}
       </h1>
       <table class="w-full my-4 text-sm">
@@ -95,6 +99,10 @@
 <script>
 export default {
   props: {
+    loading: {
+      type: Boolean,
+      default: true
+    },
     detail: {
       type: Object,
       default: () => ({

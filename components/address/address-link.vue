@@ -3,13 +3,13 @@
     <span v-if="!$slots.default">
       <span v-if="plain || !id" class="plain">
         {{ formatString }}
-        <a :href="'http://app.filns.domains/domain/' + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
+        <a :href="`${FNS}/domain/` + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
       </span>
       <span v-else>
         <nuxt-link :class="colorClass" :to="to">
           {{ formatString }}
         </nuxt-link>
-        <a :href="'http://app.filns.domains/domain/' + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
+        <a :href="`${FNS}/domain/` + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
       </span>
     </span>
     <slot v-else></slot>
@@ -17,7 +17,7 @@
 </template>
 <script>
 import { transAddress } from '../../utils/fns/utils'
-import { fnsServer } from '../../filecoin/filecoin.config'
+import { fnsServer, FNS } from '../../filecoin/filecoin.config'
 export default {
   props: {
     id: { type: null, required: true },
@@ -33,7 +33,8 @@ export default {
   },
   data() {
     return {
-      name: ''
+      name: '',
+      FNS
     }
   },
   computed: {
@@ -63,9 +64,8 @@ export default {
   async mounted() {
     try {
       const id = this.id || ''
-      if (id.startsWith('t4')) {
+      if (id.startsWith('f4')) {
         let name = localStorage.getItem(`fns:${id}`)
-        console.log(name)
         if (name) {
           name = JSON.parse(name)
           if (Number(new Date()) - name.time > 60 * 10 * 1000) {
@@ -76,6 +76,7 @@ export default {
             return
           }
         }
+
         const result = (await this.$axios.$get(`${fnsServer}/name/find`, { params: { address: transAddress(id) } })).data
         if (result.name) {
           localStorage.setItem(`fns:${id}`, JSON.stringify({ time: Number(new Date()), name: result.name }))

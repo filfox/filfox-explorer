@@ -347,6 +347,9 @@ export default {
       contractCreationCode: '계약 생성 코드',
       exportAbi: '수출 ABI'
     },
+    eventLogs: {
+      title: '이벤트 로그'
+    },
     message: {
       title: '메시지 내역',
       replaced: '메시지 {oldCid} 가 메시지 {cid} 에 의해 무시됨',
@@ -373,8 +376,11 @@ export default {
         params: '변수',
         value: '금액',
         address: '주소',
-        topics: 'Topics',
+        name: '방법',
+        topics: '화제',
         data: '매개변수',
+        logIndex: '일련번호',
+        removed: '멀리했어',
         gasPrice: '가스비용',
         gasLimit: '가스 리밋',
         gasUsed: '가스 사용량',
@@ -839,7 +845,7 @@ export default {
       debugLog: '컴파일러 디버그 로그',
       complierVersion: '컴파일러 버전',
       optimizationEnabled: '최적화 오픈',
-      runs: '실행',
+      runs: '실행（최적화기）',
       argsUsed: '사용된 생성자 매개변수',
       contractName: '계약 이름',
       contractAbi: '계약 ABI',

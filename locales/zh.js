@@ -171,7 +171,7 @@ export default {
         powerIncreaseSpeed: '选定周期内，平均每天完成封装扇区的有效算力总和',
         powerDelta: '在选定周期内，存储提供者的有效算力增量'
       },
-      moreBtn: '查看更多'
+      moreBtn: '更多'
     },
     recentTipsets: {
       title: '最新区块',
@@ -336,6 +336,9 @@ export default {
       contractCreationCode: '合约创建代码',
       exportAbi: '导出 ABI'
     },
+    eventLogs: {
+      title: '事件日志'
+    },
     message: {
       title: '消息详情',
       replaced: '消息 {oldCid} 已被 {cid} 覆盖',
@@ -362,8 +365,11 @@ export default {
         params: '参数',
         value: '金额',
         address: '地址',
-        topics: 'Topics',
+        name: '方法',
+        topics: '主题',
         data: '参数',
+        logIndex: '序号',
+        removed: '移除',
         gasPrice: 'Gas 价格',
         gasLimit: 'Gas 限额',
         gasUsed: 'Gas 使用量',
@@ -845,7 +851,7 @@ export default {
       debugLog: '编译日志',
       complierVersion: '编译器版本',
       optimizationEnabled: '优化开启',
-      runs: '运行',
+      runs: '运行（优化器）',
       argsUsed: '使用的构造函数参数',
       contractName: '合约名',
       contractAbi: '合约 ABI',
