@@ -1,6 +1,6 @@
 export const network = {
   multipleNetworks: true,
-  currentNetwork: 2,
+  currentNetwork: 1,
   networks: [
     {
       name: 'Mainnet',
