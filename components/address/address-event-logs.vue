@@ -3,10 +3,18 @@
     <div v-for="item, index in eventLogs" :key="index" class="border-customGray-250 border-b py-3">
       <dl class="message-item">
         <dt class="message-key w-16">
-          {{ $t('detail.message.headers.address') }}
+          {{ $t('detail.message.headers.height') }}
         </dt>
         <dd class="message-value">
-          <AddressLink :id="item.address" class="text-main" />
+          <TipsetLink :id="item.blockNumber" class="text-main" />
+        </dd>
+      </dl>
+      <dl v-if="item.name" class="message-item">
+        <dt class="message-key">
+          {{ $t('detail.message.headers.cid') }}
+        </dt>
+        <dd class="message-value">
+          {{ item.transactionHash }}
         </dd>
       </dl>
       <dl v-if="item.name" class="message-item">
