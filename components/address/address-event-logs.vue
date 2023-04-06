@@ -1,6 +1,6 @@
 <template>
-  <div v-loading="loading" class="w-full text-xs px-4 lg:px-10 lg:text-sm">
-    <div v-for="item, index in eventLogs" :key="index" class="border-customGray-250 border-b py-3">
+  <div v-loading="loading" class="w-full text-xs px-4 lg:px-8 lg:text-sm">
+    <div v-for="item, index in eventLogs" :key="index" class="bg-customGray-200 px-3 lg:px-4 py-1 lg:py-2.5 mt-3 lg:mt-4">
       <dl class="message-item">
         <dt class="message-key w-16">
           {{ $t('detail.message.headers.height') }}
@@ -14,7 +14,7 @@
           {{ $t('detail.message.headers.cid') }}
         </dt>
         <dd class="message-value">
-          {{ item.transactionHash }}
+          <MessageLink :id="item.transactionHash" :format="18" class="text-main" />
         </dd>
       </dl>
       <dl v-if="item.name" class="message-item">
@@ -31,7 +31,7 @@
         </dt>
         <dd class="flex flex-col">
           <div v-for="topic, _index in item.topics" :key="_index" class="flex items-center mb-2 break-all">
-            <div class="w-6 h-6 mr-2 flex items-center justify-center bg-gray-100 rounded-md text-gray-500">
+            <div class="w-6 h-6 mr-2 flex items-center justify-center bg-gray-200 rounded text-gray-500">
               {{ _index }}
             </div>
             {{ topic }}
@@ -42,7 +42,7 @@
         <dt class="message-key">
           {{ $t('detail.message.headers.data') }}
         </dt>
-        <dd class="w-full py-2 bg-gray-100 break-all px-2 text-xs flex items-center">
+        <dd class="w-full py-2 bg-gray-200 break-all px-2 text-xs flex items-center">
           <pre class="whitespace-pre-wrap flex-1"><span>{{ item.data }}</span></pre>
         </dd>
       </dl>
@@ -68,8 +68,9 @@
         layout="prev, pager, next, jumper"
         :current-page="page + 1"
         :page-size="pageSize"
+        :pager-count="5"
         :total="totalCount"
-        class="mx-auto"
+        class="mx-auto flex justify-center flex-wrap"
         @current-change="p => page = p - 1"
       />
     </div>
