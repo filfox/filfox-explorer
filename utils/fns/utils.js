@@ -89,7 +89,7 @@ export async function getAddressByDomain(domain) {
     controller,
     registrant,
     expiration: expiration.toNumber(),
-    resolveAddress
+    resolveAddress: utils.toUtf8String(resolveAddress)
   }
 }
 
