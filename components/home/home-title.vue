@@ -8,6 +8,8 @@
     <img v-else-if="type == 'minerRanks'" src="~/assets/img/home/miner-ranks.svg" alt="icon" class="image">
     <img v-else-if="type == 'recentTipsets'" src="~/assets/img/home/blocks.svg" alt="icon" class="image">
     <img v-else-if="type == 'richManRanks'" src="~/assets/img/home/rich.svg" alt="icon" class="image">
+    <img v-else-if="type == 'fvmOverview'" src="~/assets/img/home/fvmOverview.svg" alt="icon" class="image">
+    <img v-else-if="type == 'fvmTopContracts'" src="~/assets/img/home/fvmTopContracts.svg" alt="icon" class="image">
     <div class="ml-2 text-sm lg:text-base">
       {{ $t(`home.${type}.title`) }}
     </div>

@@ -35,7 +35,7 @@ export default {
     },
     charts: {
       title: '统计',
-      subMenus: ['存储服务图表', 'Gas 统计', 'Lotus版本分布']
+      subMenus: ['存储服务图表', 'Gas 统计', 'FVM 统计', 'Lotus版本分布']
     },
     resources: {
       title: '资源',
@@ -98,6 +98,27 @@ export default {
         circulatingSupplyRate: '流通率=流通量/总供给量',
         sealCost: '新增算力所需要花费的成本，包括扇区质押和封装手续费'
       }
+    },
+    fvmOverview: {
+      title: 'FVM 概览',
+      totalAddressCount: '总地址数',
+      totalBalance: '总余额',
+      evmCount: 'EVM 地址数',
+      evmBalance: 'EVM 地址总余额',
+      ethaccountCount: 'ETHaccount 地址数',
+      ethaccountBalance: 'ETHaccount 地址总余额',
+      placeholderCount: 'Placeholder 地址数',
+      placeholderBalance: 'Placeholder 地址总余额'
+    },
+    fvmTopContracts: {
+      title: '热门合约(最近24小时)',
+      orderBy: '排序方式',
+      more: '更多',
+      contractAddress: '合约地址',
+      transactions: '交易数量',
+      uniqueUsers: '独立用户数',
+      balance: '余额',
+      gasCost: '燃气费用'
     },
     entireQualityAdjPower: {
       title: '全网算力走势',
@@ -670,7 +691,8 @@ export default {
       minerCharts: '提供存储服务图表',
       tools: '常用工具',
       wiki: '知识库',
-      notify: '站内通知'
+      notify: '站内通知',
+      fvm: 'FVM 统计'
     },
     description: {
       default: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，为用户稳定地提供 Filecoin 相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。'

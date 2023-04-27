@@ -46,6 +46,7 @@ export default {
       subMenus: [
         '채굴',
         '가스 데이터',
+        'FVM 통계',
         '버전 배포'
       ]
     },
@@ -113,6 +114,27 @@ export default {
         totalMarketBalance: '스토리지 마켓에서 주문을 넣을 때 락업되는 FIL 개수',
         circulatingSupplyRate: '유통비율=유통량/총공급량'
       }
+    },
+    fvmOverview: {
+      title: 'FVM 개요',
+      totalAddressCount: '총 주소 수',
+      totalBalance: '총 잔액',
+      evmCount: 'EVM 주소 수',
+      evmBalance: 'EVM 주소 총 잔액',
+      ethaccountCount: 'ETH 계정 주소 수',
+      ethaccountBalance: 'ETH 계정 주소 총 잔액',
+      placeholderCount: '플레이스홀더 주소 수',
+      placeholderBalance: '플레이스홀더 주소 총 잔액'
+    },
+    fvmTopContracts: {
+      title: '인기 계약 (최근 24시간)',
+      orderBy: '정렬 기준',
+      more: '더 보기',
+      contractAddress: '계약 주소',
+      transactions: '거래 수',
+      uniqueUsers: '고유 사용자 수',
+      balance: '잔액',
+      gasCost: '가스 비용'
     },
     entireQualityAdjPower: {
       title: '에너지 저장 추세',
@@ -664,7 +686,8 @@ export default {
       minerCharts: '채굴 도표',
       tools: '도구',
       wiki: '위키',
-      notify: '사이트 내 알림'
+      notify: '사이트 내 알림',
+      fvm: 'FVM 통계'
     },
     description: {
       default: 'Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 파일코인과 관련된 채굴 랭킹, 블록 데이터 조회, 차트 등을 제공합니다.'

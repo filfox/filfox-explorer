@@ -39,6 +39,9 @@
           <nuxt-link :to="localePath('/stats/gas')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.charts.subMenus.1') }}
           </nuxt-link>
+          <nuxt-link :to="localePath('/stats/fvm')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.charts.subMenus.2') }}
+          </nuxt-link>
         </el-collapse-item>
       </el-collapse>
 

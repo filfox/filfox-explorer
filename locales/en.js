@@ -46,6 +46,7 @@ export default {
       subMenus: [
         'Mining Charts',
         'Gas Stats',
+        'FVM Stats',
         'Lotus Version Distribution'
       ]
     },
@@ -115,6 +116,27 @@ export default {
         circulatingSupplyRate: 'Circulating rate = circulating supply / max supply',
         sealCost: 'The cost of sealing sectors, including sector initial pledge and message fees'
       }
+    },
+    fvmOverview: {
+      title: 'FVM Overview',
+      totalAddressCount: 'Total Address',
+      totalBalance: 'Total Balance',
+      evmCount: 'No. of EVM address',
+      evmBalance: 'Balance of EVM address',
+      ethaccountCount: 'No. of Ethaccount address',
+      ethaccountBalance: 'Ethaccount Balance of  address',
+      placeholderCount: 'No. of placeholder address',
+      placeholderBalance: 'Balance of placeholder address'
+    },
+    fvmTopContracts: {
+      title: 'Top Contracts(Latest 24H)',
+      orderBy: 'Order By',
+      more: 'More',
+      contractAddress: 'Contract Address',
+      transactions: 'Transactions',
+      uniqueUsers: 'Unique Users',
+      balance: 'Balance',
+      gasCost: 'Gas cost'
     },
     entireQualityAdjPower: {
       title: 'Storage power trend',
@@ -686,7 +708,8 @@ export default {
       minerCharts: 'Miner Charts',
       tools: 'Tools',
       wiki: 'Wiki',
-      notify: 'In-station notification'
+      notify: 'In-station notification',
+      fvm: 'FVM Stats'
     },
     description: {
       default: 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'
