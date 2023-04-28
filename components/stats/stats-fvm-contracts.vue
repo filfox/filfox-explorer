@@ -53,7 +53,7 @@
       </li>
     </ul>
 
-    <div class="flex items-center text-center mt-4">
+    <div v-if="pagination" class="flex items-center text-center mt-4">
       <el-pagination
         layout="prev, pager, next"
         :total="totalCount"
@@ -72,6 +72,10 @@ export default {
     sortBy: {
       type: String,
       default: 'transaction'
+    },
+    pagination: {
+      type: Boolean,
+      default: false
     },
     pageSize: {
       type: Number,
@@ -105,9 +109,9 @@ export default {
   methods: {
     async getList() {
       this.loading = true
-      const { totalCount, contractList } = await this.$axios.$get('https://hyperspace.filfox.info/api/v1/stats/fevm/top-contracts', {
+      const { totalCount, contractList } = await this.$axios.$get('/stats/fevm/top-contracts', {
         params: {
-          offset: this.page - 1,
+          offset: (this.page - 1) * this.pageSize,
           limit: this.pageSize,
           sortBy: this.sortBy
         }
