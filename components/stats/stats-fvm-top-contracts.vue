@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="p-4 pt-0 border-t border-background">
-      <StatsFvmContracts :sort-by="sortBy" :page-size="pageSize" />
+      <StatsFvmContracts :sort-by="sortBy" :page-size="pageSize" :pagination="pagination" />
     </div>
   </div>
 </template>
@@ -30,6 +30,10 @@
 export default {
   props: {
     more: {
+      type: Boolean,
+      default: false
+    },
+    pagination: {
       type: Boolean,
       default: false
     },
