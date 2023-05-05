@@ -23,38 +23,38 @@ export default {
     return {
       overview: [
         { k: 'totalAddressCount', v: 0 },
-        { k: 'totalBalance', v: '0' },
         { k: 'evmCount', v: 0 },
-        { k: 'evmBalance', v: '0' },
         { k: 'ethaccountCount', v: 0 },
-        { k: 'ethaccountBalance', v: '0' },
         { k: 'placeholderCount', v: 0 },
+        { k: 'totalBalance', v: '0' },
+        { k: 'evmBalance', v: '0' },
+        { k: 'ethaccountBalance', v: '0' },
         { k: 'placeholderBalance', v: '0' }
       ],
       loading: false
     }
   },
 
-  mounted() {
-    this.loading = true
-    this.$axios
-      .get('/stats/fevm/address')
-      .then(res => {
-        this.overview = this.transformData(res.data)
-        this.loading = false
-      })
+  async mounted() {
+    try {
+      this.loading = true
+      const res = await this.$axios.get('/stats/fevm/address')
+      this.overview = this.transformData(res.data)
+    } catch (error) {} finally {
+      this.loading = false
+    }
   },
 
   methods: {
     transformData(data) {
       return [
         { k: 'totalAddressCount', v: data.totalAddressCount },
-        { k: 'totalBalance', v: data.totalBalance },
         { k: 'evmCount', v: data.addressStat[0].count },
-        { k: 'evmBalance', v: data.addressStat[0].balance },
         { k: 'ethaccountCount', v: data.addressStat[1].count },
-        { k: 'ethaccountBalance', v: data.addressStat[1].balance },
         { k: 'placeholderCount', v: data.addressStat[2].count },
+        { k: 'totalBalance', v: data.totalBalance },
+        { k: 'evmBalance', v: data.addressStat[0].balance },
+        { k: 'ethaccountBalance', v: data.addressStat[1].balance },
         { k: 'placeholderBalance', v: data.addressStat[2].balance }
       ]
     }
