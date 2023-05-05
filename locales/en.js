@@ -121,12 +121,12 @@ export default {
       title: 'FVM Overview',
       totalAddressCount: 'Total Address',
       totalBalance: 'Total Balance',
-      evmCount: 'No. of EVM address',
-      evmBalance: 'Balance of EVM address',
-      ethaccountCount: 'No. of Ethaccount address',
-      ethaccountBalance: 'Ethaccount Balance of  address',
-      placeholderCount: 'No. of placeholder address',
-      placeholderBalance: 'Balance of placeholder address'
+      evmCount: 'EVM Address Count',
+      evmBalance: 'EVM Address Balance',
+      ethaccountCount: 'Ethaccount Address Count',
+      ethaccountBalance: 'Ethaccount Address Balance',
+      placeholderCount: 'Placeholder Address Count',
+      placeholderBalance: 'Placeholder Address Balance'
     },
     fvmTopContracts: {
       title: 'Top Contracts(Latest 24H)',

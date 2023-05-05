@@ -49,13 +49,13 @@ export default {
     transformData(data) {
       return [
         { k: 'totalAddressCount', v: data.totalAddressCount },
-        { k: 'evmCount', v: data.addressStat[0].count },
-        { k: 'ethaccountCount', v: data.addressStat[1].count },
-        { k: 'placeholderCount', v: data.addressStat[2].count },
+        { k: 'evmCount', v: data.addressStates[2].count },
+        { k: 'ethaccountCount', v: data.addressStates[0].count },
+        { k: 'placeholderCount', v: data.addressStates[1].count },
         { k: 'totalBalance', v: data.totalBalance },
-        { k: 'evmBalance', v: data.addressStat[0].balance },
-        { k: 'ethaccountBalance', v: data.addressStat[1].balance },
-        { k: 'placeholderBalance', v: data.addressStat[2].balance }
+        { k: 'evmBalance', v: data.addressStates[2].balance.$numberDecimal },
+        { k: 'ethaccountBalance', v: data.addressStates[0].balance.$numberDecimal },
+        { k: 'placeholderBalance', v: data.addressStates[1].balance.$numberDecimal }
       ]
     }
   }
