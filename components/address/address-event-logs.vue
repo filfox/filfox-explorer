@@ -9,20 +9,20 @@
           <TipsetLink :id="item.blockNumber" class="text-main" />
         </dd>
       </dl>
-      <dl v-if="item.name" class="message-item">
+      <dl v-if="item.transactionHash" class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.cid') }}
         </dt>
         <dd class="message-value">
-          <MessageLink :id="item.transactionHash" :format="18" class="text-main" />
+          <MessageLink :id="item.transactionHash" class="text-main" />
         </dd>
       </dl>
-      <dl v-if="item.name" class="message-item">
+      <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.name') }}
         </dt>
         <dd class="message-value">
-          {{ item.name }}
+          {{ item.name || 'N/A' }}
         </dd>
       </dl>
       <dl class="message-item">
