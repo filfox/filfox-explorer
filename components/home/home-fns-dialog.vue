@@ -11,7 +11,7 @@
       <div class="text-center text-sm lg:text-lg font-semibold text-black w-4/5 mt-4 mx-auto">
         FNS Beta Version is now live at fns.space!<br>
         <div class="font-light text-customGray-375 text-base mt-2">
-          FNS is devoted to creating a decentralized personal portal and DID system for Web3 users based on FVM, welcome to join us!
+          FNS is devoted to creating a decentralized personal portal and DID system for Web3 users based on FEVM, welcome to join us!
         </div>
       </div>
     </template>

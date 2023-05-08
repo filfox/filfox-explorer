@@ -52,8 +52,11 @@
         <nuxt-link :to="localePath('/stats/gas')">
           <el-dropdown-item>{{ $t('nav.charts.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
-        <nuxt-link :to="localePath('/stats/fvm')">
+        <nuxt-link :to="localePath('/stats/fevm')">
           <el-dropdown-item>{{ $t('nav.charts.subMenus.2') }}</el-dropdown-item>
+        </nuxt-link>
+        <nuxt-link :to="localePath('/stats/verified-contracts')">
+          <el-dropdown-item>{{ $t('nav.charts.subMenus.3') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>

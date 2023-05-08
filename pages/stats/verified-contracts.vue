@@ -1,7 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <StatsFvmOverview />
-    <StatsFvmTopContracts more />
+    <StatsFevmVerifiedContracts />
   </div>
 </template>
 <script>
@@ -9,7 +8,7 @@
 export default {
   head() {
     return {
-      title: this.$t('meta.titles.fvm')
+      title: this.$t('meta.titles.fevm')
     }
   }
 }

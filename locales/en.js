@@ -46,7 +46,8 @@ export default {
       subMenus: [
         'Mining Charts',
         'Gas Stats',
-        'FVM Stats',
+        'FEVM Stats',
+        'Verified Contracts',
         'Lotus Version Distribution'
       ]
     },
@@ -118,7 +119,7 @@ export default {
       }
     },
     fvmOverview: {
-      title: 'FVM Overview',
+      title: 'FEVM Overview',
       totalAddressCount: 'Total Address',
       totalBalance: 'Total Balance',
       evmCount: 'EVM Address Count',
@@ -137,6 +138,15 @@ export default {
       uniqueUsers: 'Unique Users',
       balance: 'Balance',
       gasCost: 'Gas cost'
+    },
+    verifiedContracts: {
+      title: 'Verified Contracts',
+      address: 'Address',
+      contractName: 'Contract Name',
+      language: 'Language',
+      compiler: 'Compiler',
+      optimization: 'Optimization',
+      license: 'License'
     },
     entireQualityAdjPower: {
       title: 'Storage power trend',
@@ -709,7 +719,7 @@ export default {
       tools: 'Tools',
       wiki: 'Wiki',
       notify: 'In-station notification',
-      fvm: 'FVM Stats'
+      fevm: 'FEVM Stats'
     },
     description: {
       default: 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'
@@ -857,7 +867,7 @@ export default {
     continue: 'Continue',
     return: 'Return to Main',
     publish: 'Verify and Publish',
-
+    verifiedContractList: 'Verified Contract List',
     guide: {
       title: ['Verify & Publish Contract Source Code', 'COMPILER TYPE AND VERSION SELECTION'],
       tips: [

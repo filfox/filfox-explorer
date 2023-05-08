@@ -39,8 +39,11 @@
           <nuxt-link :to="localePath('/stats/gas')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.charts.subMenus.1') }}
           </nuxt-link>
-          <nuxt-link :to="localePath('/stats/fvm')" class="link" @click.native="hideIfNeeded">
+          <nuxt-link :to="localePath('/stats/fevm')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.charts.subMenus.2') }}
+          </nuxt-link>
+          <nuxt-link :to="localePath('/stats/verified-contracts')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.charts.subMenus.3') }}
           </nuxt-link>
         </el-collapse-item>
       </el-collapse>

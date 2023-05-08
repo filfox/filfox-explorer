@@ -35,7 +35,7 @@ export default {
     },
     charts: {
       title: '统计',
-      subMenus: ['存储服务图表', 'Gas 统计', 'FVM 统计', 'Lotus版本分布']
+      subMenus: ['存储服务图表', 'Gas 统计', 'FEVM 统计', '已验合约', 'Lotus版本分布']
     },
     resources: {
       title: '资源',
@@ -100,7 +100,7 @@ export default {
       }
     },
     fvmOverview: {
-      title: 'FVM 概览',
+      title: 'FEVM 概览',
       totalAddressCount: '总地址数',
       totalBalance: '总余额',
       evmCount: 'EVM 地址数',
@@ -119,6 +119,15 @@ export default {
       uniqueUsers: '独立用户数',
       balance: '余额',
       gasCost: '燃气费用'
+    },
+    verifiedContracts: {
+      title: '已验合约',
+      address: '地址',
+      contractName: '合约名',
+      language: '语言',
+      compiler: '编译器',
+      optimization: '优化',
+      license: '许可证'
     },
     entireQualityAdjPower: {
       title: '全网算力走势',
@@ -692,7 +701,7 @@ export default {
       tools: '常用工具',
       wiki: '知识库',
       notify: '站内通知',
-      fvm: 'FVM 统计'
+      fevm: 'FEVM 统计'
     },
     description: {
       default: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，为用户稳定地提供 Filecoin 相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。'
@@ -840,7 +849,7 @@ export default {
     continue: '下一步',
     return: '返回',
     publish: '验证并发布',
-
+    verifiedContractList: '已验证的合约列表',
     guide: {
       title: ['验证并发布合同源代码', '编译器类型和版本选择'],
       tips: [

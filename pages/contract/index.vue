@@ -56,7 +56,7 @@
         </p>
       </el-checkbox>
 
-      <div class="flex items-center mb-8 md:mb-16">
+      <div class="flex items-center mb-8">
         <button
           class="rounded w-26 py-2 md:py-2.5 bg-main text-white hover:opacity-75 mr-4 font-medium transition duration-200"
           :class="{ 'cursor-not-allowed bg-customGray-400': !allowNextStep }"
@@ -72,6 +72,10 @@
           {{ $t('contract.reset') }}
         </button>
       </div>
+
+      <NuxtLink :to="localePath('/stats/verified-contracts')" class="mb-8 md:mb-16 underline text-main text-sm font-normal">
+        {{ $t('contract.verifiedContractList') }}
+      </NuxtLink>
     </div>
   </div>
 </template>

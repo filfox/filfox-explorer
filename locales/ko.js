@@ -46,7 +46,8 @@ export default {
       subMenus: [
         '채굴',
         '가스 데이터',
-        'FVM 통계',
+        'FEVM 통계',
+        '확인된 계약',
         '버전 배포'
       ]
     },
@@ -116,7 +117,7 @@ export default {
       }
     },
     fvmOverview: {
-      title: 'FVM 개요',
+      title: 'FEVM 개요',
       totalAddressCount: '총 주소 수',
       totalBalance: '총 잔액',
       evmCount: 'EVM 주소 수',
@@ -135,6 +136,15 @@ export default {
       uniqueUsers: '고유 사용자 수',
       balance: '잔액',
       gasCost: '가스 비용'
+    },
+    verifiedContracts: {
+      title: '검증된 계약',
+      address: '주소',
+      contractName: '계약 이름',
+      language: '언어',
+      compiler: '컴파일러',
+      optimization: '최적화',
+      license: '라이선스'
     },
     entireQualityAdjPower: {
       title: '에너지 저장 추세',
@@ -687,7 +697,7 @@ export default {
       tools: '도구',
       wiki: '위키',
       notify: '사이트 내 알림',
-      fvm: 'FVM 통계'
+      fevm: 'FEVM 통계'
     },
     description: {
       default: 'Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 파일코인과 관련된 채굴 랭킹, 블록 데이터 조회, 차트 등을 제공합니다.'
@@ -835,7 +845,7 @@ export default {
     continue: '계속',
     return: '메인 페이지',
     publish: '검증 및 배포',
-
+    verifiedContractList: '검증된 계약서 목록',
     guide: {
       title: ['컨트랙트 소스 코드 검증 및 배포', '컴파일러 유형 및 버전 선택'],
       tips: [

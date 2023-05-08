@@ -14,13 +14,13 @@
         </NuxtLink>
       </div>
       <div class="hidden lg:block">
-        <table class="w-full text-sm font-light border-t border-customGray-100">
+        <table class="w-full text-sm border-t border-customGray-100">
           <tr>
             <th
               v-for="({ key, label }, index) in columns"
               :key="key"
               :class="[index ? 'w-auto' : 'w-1/3']"
-              class="text-customGray-400 text-sm font-light pt-4 pb-1"
+              class="text-customGray-400 text-sm pt-4 pb-1"
             >
               {{ label }}
             </th>
@@ -42,7 +42,7 @@
           </tr>
         </table>
       </div>
-      <ul class="block lg:hidden bg-white p-3 text-xs font-light border-t border-customGray-100">
+      <ul class="block lg:hidden bg-white p-3 text-xs border-t border-customGray-100">
         <li
           v-for="item in names"
           :key="item.name"
@@ -85,7 +85,7 @@ export default {
   methods: {
     async getList() {
       const data = await this.$axios.$get(`${fnsServer}/registration/list`, {
-        params: { pageSize: 5, page: 1 }
+        params: { pageSize: 5, page: 0 }
       })
       this.names = data.data.list
     }

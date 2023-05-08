@@ -13,7 +13,7 @@
             class="capitalize"
           />
         </el-select>
-        <NuxtLink v-if="more" :to="localePath('/stats/fvm/contracts')" class="ml-auto lg:ml-4">
+        <NuxtLink v-if="more" :to="localePath('/stats/fevm/contracts')" class="ml-auto lg:ml-4">
           <el-button round size="mini">
             {{ $t('shared.more') }}
           </el-button>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="p-4 pt-0 border-t border-background">
-      <StatsFvmContracts :sort-by="sortBy" :page-size="pageSize" :pagination="pagination" />
+      <StatsFevmContracts :sort-by="sortBy" :page-size="pageSize" :pagination="pagination" />
     </div>
   </div>
 </template>
