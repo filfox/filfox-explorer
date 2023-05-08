@@ -35,7 +35,7 @@ export default {
     },
     charts: {
       title: '统计',
-      subMenus: ['存储服务图表', 'Gas 统计', 'FEVM 统计', '已验合约', 'Lotus版本分布']
+      subMenus: ['存储服务图表', 'Gas 统计', 'FEVM 统计', '已验证合约', 'Lotus版本分布']
     },
     resources: {
       title: '资源',
@@ -121,7 +121,7 @@ export default {
       gasCost: '燃气费用'
     },
     verifiedContracts: {
-      title: '已验合约',
+      title: '已验证合约',
       address: '地址',
       contractName: '合约名',
       language: '语言',
