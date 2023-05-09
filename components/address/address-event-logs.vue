@@ -17,7 +17,7 @@
           <MessageLink :id="item.transactionHash" class="text-main" />
         </dd>
       </dl>
-      <dl class="message-item">
+      <dl v-if="item.name" class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.name') }}
         </dt>
