@@ -47,18 +47,24 @@ export default {
 
   methods: {
     transformData(data) {
-      return [
+      const result = [
         { k: 'totalAddressCount', v: data.totalAddressCount },
-        { k: 'evmCount', v: data.addressStates[2].count },
-        { k: 'ethaccountCount', v: data.addressStates[0].count },
-        { k: 'placeholderCount', v: data.addressStates[1].count },
-        { k: 'totalBalance', v: data.totalBalance },
-        { k: 'evmBalance', v: data.addressStates[2].balance.$numberDecimal },
-        { k: 'ethaccountBalance', v: data.addressStates[0].balance.$numberDecimal },
-        { k: 'placeholderBalance', v: data.addressStates[1].balance.$numberDecimal }
+        { k: 'totalBalance', v: data.totalBalance }
       ]
+
+      for (const { actor, count, balance } of data.addressStates) {
+        const actorKey = `${actor}Count`
+        const balanceKey = `${actor}Balance`
+
+        result.push({ k: actorKey, v: count })
+        result.push({ k: balanceKey, v: balance.$numberDecimal })
+      }
+
+      const orderMap = new Map(this.overview.map(({ k }, i) => [k, i]))
+      result.sort((a, b) => orderMap.get(a.k) - orderMap.get(b.k))
+
+      return result
     }
   }
 }
 </script>
-
