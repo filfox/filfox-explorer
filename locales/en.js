@@ -384,7 +384,9 @@ export default {
       contractSourceCode: 'Contract Source Code',
       contractAbi: 'Contract ABI',
       contractCreationCode: 'Contract Creation Code',
-      exportAbi: 'Export ABI'
+      exportAbi: 'Export ABI',
+      parameters: 'Constructor Arguments',
+      parametersTip: 'ABI-Encoded and is the last bytes of the Contract Creation Code above'
     },
     eventLogs: {
       title: 'Event Logs'

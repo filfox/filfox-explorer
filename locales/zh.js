@@ -365,7 +365,9 @@ export default {
       contractSourceCode: '合约源代码',
       contractAbi: '合约 ABI',
       contractCreationCode: '合约创建代码',
-      exportAbi: '导出 ABI'
+      exportAbi: '导出 ABI',
+      parameters: '构造参数',
+      parametersTip: 'ABI编码是上述合约创建代码的最后几个字节'
     },
     eventLogs: {
       title: '事件日志'

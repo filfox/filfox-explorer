@@ -378,7 +378,9 @@ export default {
       contractSourceCode: '컨트랙트 소스 코드',
       contractAbi: '계약 ABI',
       contractCreationCode: '계약 생성 코드',
-      exportAbi: '수출 ABI'
+      exportAbi: '수출 ABI',
+      parameters: '생성자 인수',
+      parametersTip: 'ABI 인코딩은 위의 계약 생성 코드의 마지막 바이트입니다'
     },
     eventLogs: {
       title: '이벤트 로그'
