@@ -113,6 +113,12 @@
         {{ contract.initCode }}
       </div>
     </div>
+    <div v-if="contract.parameters" class="rounded-md mt-5 bg-white">
+      <span class="text-sm">{{ $t('detail.contract.parameters') }} <span class="text-gray-500">( {{ $t('detail.contract.parametersTip') }} )</span></span>
+      <div class="rounded-lg bg-customGray-200 border h-32 mt-2 p-4 overflow-auto break-all text-sm">
+        {{ contract.parameters }}
+      </div>
+    </div>
   </div>
 </template>
 
