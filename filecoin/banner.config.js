@@ -31,8 +31,8 @@ export const zhBanners = [
   },
   {
     url: 'https://stfil.io',
-    img: require('~/assets/img/home/banner-en-stfil.png'),
-    mobileImg: require('~/assets/img/home/banner-en-stfil-mobile.png')
+    img: require('~/assets/img/home/banner-zh-stfil.png'),
+    mobileImg: require('~/assets/img/home/banner-zh-stfil-mobile.png')
   }
 ]
 
