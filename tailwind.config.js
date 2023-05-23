@@ -56,6 +56,7 @@ module.exports = {
         }
       },
       width: {
+        '1/6': '16.66%',
         '1/32': '3.125%',
         '1/25': '4%',
         '1/16': '6.25%',
@@ -101,7 +102,9 @@ module.exports = {
         container: '2px 2px 20px rgb(0 0 0 / 60%)'
       },
       spacing: {
-        2.5: '0.625rem'
+        1.5: '0.375rem',
+        2.5: '0.625rem',
+        5.5: '1.375rem'
       }
     },
     minWidth: {
