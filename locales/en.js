@@ -844,7 +844,11 @@ export default {
       name: 'Filecoin Name',
       expiration: 'Expiration Date',
       handle: 'Handle',
-      moreDetails: 'More Details'
+      moreDetails: 'More Details',
+      seeMore: 'See More',
+      fnsRecordShow: 'FNS Record Show',
+      projectName: 'Project Name',
+      description: 'Description'
     },
     address: {
       overview: 'Overview',

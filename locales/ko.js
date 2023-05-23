@@ -822,7 +822,11 @@ export default {
       name: '이름',
       expiration: '만료 날짜',
       handle: '작업',
-      moreDetails: '자세한 내용'
+      moreDetails: '자세한 내용',
+      seeMore: '더보기',
+      fnsRecordShow: 'FNS 레코드 보기',
+      projectName: '프로젝트 이름',
+      description: '설명'
     },
     address: {
       overview: '개요',

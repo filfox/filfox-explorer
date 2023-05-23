@@ -17,7 +17,7 @@
               v-bind="type === 0 ? { type: 'primary', plain: true, class: ['pointer-events-none'] } : {}"
               @click="e => switchTab(e, 0)"
             >
-              {{ 'FNS Record Show' }}
+              {{ $t('fns.registrations.fnsRecordShow') }}
             </el-button>
             <el-button
               size="mini"
@@ -25,7 +25,7 @@
               v-bind="type === 1 ? { type: 'primary', plain: true, class: ['pointer-events-none'] } : {}"
               @click="e => switchTab(e, 1)"
             >
-              {{ 'See More' }}
+              {{ $t('fns.registrations.seeMore') }}
             </el-button>
           </el-row>
         </div>
@@ -39,25 +39,25 @@
       </div>
 
       <div class="text-sm border-t border-customGray-100">
-        <div v-if="type == 0" class="p-4">
-          <div v-for="(i, index) in 3" :key="i" class="rounded mb-3 flex flex-col lg:flex-row relative" :class="[index ? 'bg-card' : 'bg-background']">
+        <div v-if="type == 0" v-loading="loading" class="p-4 min-h-64">
+          <div v-for="(item, index) in fnsRanks" :key="item.ethAddr" class="rounded mb-3 flex flex-col lg:flex-row relative" :class="[index ? 'bg-card' : 'bg-background']">
             <div class="w-20 flex items-start justify-center">
               <img :src="require(`@/assets/img/fns/ranking${index+1}.svg`)" class="w-12" alt="ranking">
             </div>
             <div class="flex-1 p-3">
               <p class="font-semibold text-main text-base lg:text-lg">
-                {{ 'Jacqueline.fil' }}
+                {{ item.name }}
               </p>
               <p class="text-xs lg:text-sm font-light leading-loose">
-                <span class="text-customGray-400 inline-block w-26">Project name :</span>{{ 'xxxxxxxxx' }}
+                <span class="text-customGray-400 inline-block w-26">{{ $t('fns.registrations.projectName') }} :</span>{{ item.texts.projectname }}
               </p>
               <p class="text-xs lg:text-sm font-light">
-                <span class="text-customGray-400 inline-block w-26">Description :</span>{{ 'Hi FNSers! Check out http://FNS.SPACE monthly report!  Our Refer to Earn campaign is still ongoing......' }}
+                <span class="text-customGray-400 inline-block w-26">{{ $t('fns.registrations.description') }} :</span>{{ item.texts.description }}
               </p>
             </div>
             <div class="flex items-end justify-center lg:ml-auto">
               <div class="flex mb-5 lg:mb-3 lg:mr-4">
-                <a v-for="(key, linkIndex) in fnsLinks" :key="key" target="_blank" :href="'https://www.baidu.com'">
+                <a v-for="(key, linkIndex) in fnsLinks" :key="key" target="_blank" :href="item.texts[key]">
                   <img
                     :src="require(`@/assets/img/fns/${key}.png`)"
                     class="h-5.5 cursor-pointer hover:opacity-75 transition duration-200"
@@ -119,6 +119,8 @@
 
 <script>
 import { fnsServer } from '@/filecoin/filecoin.config'
+import FNS from '@filfox/fnsjs'
+const fns = new FNS('mainnet')
 
 export default {
   data() {
@@ -131,7 +133,9 @@ export default {
       ],
       names: [],
       type: 0,
-      fnsLinks: ['url', 'twitter', 'discord', 'telegram', 'github']
+      fnsLinks: ['url', 'com.twitter', 'com.discord', 'com.telegram', 'com.github'],
+      fnsRanks: [],
+      loading: false
     }
   },
   computed: {
@@ -140,6 +144,7 @@ export default {
     }
   },
   mounted() {
+    this.getRanking()
     this.getList()
   },
   methods: {
@@ -161,6 +166,22 @@ export default {
         params: { pageSize: 5, page: 0 }
       })
       this.names = data.data.list
+    },
+
+    async getRanking() {
+      this.loading = true
+      try {
+        const data = await this.$axios.$get(`https://app.fns.space/api/fns/inviteRanking`, {
+          params: { pageSize: 3 }
+        })
+        const addrs = data.data.records.map(({ ethAddr }) => ethAddr)
+        const primaryNames = await Promise.all(addrs.map(addr => fns.address(addr).getPrimaryName()))
+        const texts = await Promise.all(primaryNames.map(name => fns.name(name).getTexts()))
+        this.fnsRanks = primaryNames.map(name => ({ name, texts }))
+      } catch (error) {
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

@@ -826,7 +826,11 @@ export default {
       name: '名称',
       expiration: '到期日期',
       handle: '操作',
-      moreDetails: '详情'
+      moreDetails: '详情',
+      seeMore: '查看更多',
+      fnsRecordShow: 'FNS 竞价排名',
+      projectName: '项目名',
+      description: '描述'
     },
     address: {
       overview: '概览',
