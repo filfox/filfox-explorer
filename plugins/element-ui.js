@@ -26,9 +26,11 @@ import Carousel from 'element-ui/lib/carousel'
 import CarouselItem from 'element-ui/lib/carousel-item'
 import Checkbox from 'element-ui/lib/checkbox'
 import Upload from 'element-ui/lib/upload'
+import Tooltip from 'element-ui/lib/tooltip'
 import Tag from 'element-ui/lib/tag'
 
 Vue.use(Tag)
+Vue.use(Tooltip)
 Vue.use(Upload)
 Vue.use(Checkbox)
 Vue.use(Button)

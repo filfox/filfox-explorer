@@ -16,6 +16,7 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
     "@chenfengyuan/vue-countdown": "^1.1.5",
+    "@filfox/fnsjs": "^1.1.4",
     "@glif/filecoin-address": "^2.0.20",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/google-analytics": "^2.4.0",

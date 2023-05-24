@@ -38,8 +38,8 @@
         </div>
       </div>
 
-      <div class="text-sm border-t border-customGray-100">
-        <div v-if="type == 0" v-loading="loading" class="p-4 min-h-64">
+      <div v-loading="loading" class="text-sm border-t border-customGray-100 min-h-64">
+        <div v-if="type == 0" class="p-4 ">
           <div v-for="(item, index) in fnsRanks" :key="item.ethAddr" class="rounded mb-3 flex flex-col lg:flex-row relative" :class="[index ? 'bg-card' : 'bg-background']">
             <div class="w-20 flex items-start justify-center">
               <img :src="require(`@/assets/img/fns/ranking${index+1}.svg`)" class="w-12" alt="ranking">
@@ -58,12 +58,14 @@
             <div class="flex items-end justify-center lg:ml-auto">
               <div class="flex mb-5 lg:mb-3 lg:mr-4">
                 <a v-for="(key, linkIndex) in fnsLinks" :key="key" target="_blank" :href="item.texts[key]">
-                  <img
-                    :src="require(`@/assets/img/fns/${key}.png`)"
-                    class="h-5.5 cursor-pointer hover:opacity-75 transition duration-200"
-                    :class="{ 'ml-3': linkIndex !== 0 }"
-                    :alt="key"
-                  >
+                  <el-tooltip effect="dark" :content="item.texts[key]" :disabled="!item.texts[key]" placement="top">
+                    <img
+                      :src="require(`@/assets/img/fns/${key}.png`)"
+                      class="h-5.5 cursor-pointer hover:opacity-75 transition duration-200"
+                      :class="{ 'ml-3': linkIndex !== 0 }"
+                      :alt="key"
+                    >
+                  </el-tooltip>
                 </a>
               </div>
               <img src="@/assets/img/fns/ace.png" class="h-24 self-end " :class="{ 'hidden': index !== 0 }">
@@ -71,34 +73,36 @@
           </div>
         </div>
         <template v-if="type == 1">
-          <table class="w-full hidden lg:block">
-            <tr>
-              <th
-                v-for="({ key, label }, index) in columns"
-                :key="key"
-                :class="[index == 0 ? 'w-1/3' : 'w-auto']"
-                class="text-customGray-400 text-sm pt-4 pb-1"
-              >
-                {{ label }}
-              </th>
-            </tr>
-            <tr v-for="{ owner, name, expires } in names" :key="name" class="text-center">
-              <td>
-                <AddressLink :id="owner" :format="18" class="text-main" />
-              </td>
-              <td>{{ name }}</td>
-              <td>{{ expires | timestamp('datetime') }}</td>
-              <td>
-                <NuxtLink
-                  :to="localePath(`/fns/name/${name}`)"
-                  class="px-4 py-1 rounded text-xs font-semibold text-main bg-customBlue-200 border border-transparent hover:border-main transition duration-200"
+          <div class="hidden lg:block">
+            <table class="w-full">
+              <tr>
+                <th
+                  v-for="({ key, label }, index) in columns"
+                  :key="key"
+                  :class="[index ? 'w-auto' : 'w-1/3']"
+                  class="text-customGray-400 text-sm pt-4 pb-1"
                 >
-                  {{ $t('shared.more') }}
-                </NuxtLink>
-              </td>
-            </tr>
-          </table>
-          <ul class="block lg:hidden bg-white p-3 text-xs">
+                  {{ label }}
+                </th>
+              </tr>
+              <tr v-for="{ owner, name, expires } in names" :key="name" class="text-center">
+                <td>
+                  <AddressLink :id="owner" :format="18" class="text-main" />
+                </td>
+                <td>{{ name }}</td>
+                <td>{{ expires | timestamp('datetime') }}</td>
+                <td>
+                  <NuxtLink
+                    :to="localePath(`/fns/name/${name}`)"
+                    class="px-4 py-1 rounded text-xs font-semibold text-main bg-customBlue-200 border border-transparent hover:border-main transition duration-200"
+                  >
+                    {{ $t('shared.more') }}
+                  </NuxtLink>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <ul class="block lg:hidden bg-white p-3 text-xs border-t border-customGray-100">
             <li
               v-for="item in names"
               :key="item.name"
@@ -120,7 +124,7 @@
 <script>
 import { fnsServer } from '@/filecoin/filecoin.config'
 import FNS from '@filfox/fnsjs'
-const fns = new FNS('mainnet')
+const fns = new FNS('hyperspace')
 
 export default {
   data() {
@@ -143,8 +147,12 @@ export default {
       return this.columns.filter(({ key }) => key !== 'handle')
     }
   },
+  watch: {
+    type() {
+      this.getList()
+    }
+  },
   mounted() {
-    this.getRanking()
     this.getList()
   },
   methods: {
@@ -161,7 +169,7 @@ export default {
       }
     },
 
-    async getList() {
+    async getRegistrations() {
       const data = await this.$axios.$get(`${fnsServer}/registration/list`, {
         params: { pageSize: 5, page: 0 }
       })
@@ -169,17 +177,25 @@ export default {
     },
 
     async getRanking() {
-      this.loading = true
-      try {
-        const data = await this.$axios.$get(`https://app.fns.space/api/fns/inviteRanking`, {
-          params: { pageSize: 3 }
-        })
-        const addrs = data.data.records.map(({ ethAddr }) => ethAddr)
-        const primaryNames = await Promise.all(addrs.map(addr => fns.address(addr).getPrimaryName()))
-        const texts = await Promise.all(primaryNames.map(name => fns.name(name).getTexts()))
-        this.fnsRanks = primaryNames.map(name => ({ name, texts }))
-      } catch (error) {
-      } finally {
+      const data = await this.$axios.$get(`https://testapp.fns.space/api/fns/inviteRanking`, {
+        params: { pageSize: 3 }
+      })
+      const addrs = data.data.records.map(({ ethAddr }) => ethAddr)
+      const primaryNames = await Promise.all(addrs.map(addr => fns.address(addr).getPrimaryName()))
+      const texts = await Promise.all(primaryNames.map(name => fns.name(name).getTexts()))
+      this.fnsRanks = primaryNames.map((name, index) => ({ name, texts: texts[index] }))
+    },
+
+    async getList() {
+      if (this.type === 0) {
+        this.fnsRanks.length || (this.loading = true)
+        await this.getRanking()
+        this.loading = false
+      }
+
+      if (this.type === 1) {
+        this.loading = true
+        await this.getRegistrations()
         this.loading = false
       }
     }
