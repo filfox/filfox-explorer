@@ -829,6 +829,7 @@ export default {
       moreDetails: '详情',
       seeMore: '查看更多',
       fnsRecordShow: 'FNS 竞价排名',
+      filecoinName: 'Filecoin 域名',
       projectName: '项目名',
       description: '描述'
     },

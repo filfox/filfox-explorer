@@ -44,15 +44,28 @@
             <div class="w-20 flex items-start justify-center">
               <img :src="require(`@/assets/img/fns/ranking${index+1}.svg`)" class="w-12" alt="ranking">
             </div>
-            <div class="flex-1 p-3">
-              <p class="font-semibold text-main text-base lg:text-lg">
-                {{ item.name }}
+            <div class="flex-1 w-full p-3">
+              <p class="font-semibold text-main text-base lg:text-lg flex items-center">
+                <img :src="item.texts.avatar" alt="logo" class="w-7 h-7 rounded-full bg-white mr-2" @error="handleImgError">
+                {{ item.texts.projectname || '...' }}
               </p>
-              <p class="text-xs lg:text-sm font-light leading-loose">
-                <span class="text-customGray-400 inline-block w-26">{{ $t('fns.registrations.projectName') }} :</span>{{ item.texts.projectname }}
+              <p class="text-xs lg:text-sm font-light leading-loose mt-1">
+                <span class="text-customGray-400 inline-block w-26">{{ $t('fns.registrations.filecoinName') }} :</span>{{ item.name || '...' }}
               </p>
-              <p class="text-xs lg:text-sm font-light">
-                <span class="text-customGray-400 inline-block w-26">{{ $t('fns.registrations.description') }} :</span>{{ item.texts.description }}
+              <p class="text-xs lg:text-sm font-light flex">
+                <span class="text-customGray-400 inline-block w-26">{{ $t('fns.registrations.description') }} :</span>
+                <span class="flex-1">
+                  <el-popover
+                    popper-class="p-3 text-xs text-customGray-400 font-light rounded-md border-none"
+                    placement="bottom"
+                    width="400"
+                    trigger="hover"
+                    :disabled="item.texts.description.length < 100"
+                    :content="item.texts.description"
+                  >
+                    <span slot="reference">{{ truncateString(item.texts.description, 100) || '...' }}</span>
+                  </el-popover>
+                </span>
               </p>
             </div>
             <div class="flex items-end justify-center lg:ml-auto">
@@ -64,6 +77,7 @@
                       class="h-5.5 cursor-pointer hover:opacity-75 transition duration-200"
                       :class="{ 'ml-3': linkIndex !== 0 }"
                       :alt="key"
+                      :style="{ filter: item.texts[key] ? 'grayscale(0%)' : 'grayscale(100%)' }"
                     >
                   </el-tooltip>
                 </a>
@@ -167,6 +181,18 @@ export default {
           node = node.parentElement
         }
       }
+    },
+
+    handleImgError({ target }) {
+      target.onerror = null
+      target.src = require('@/assets/img/fns/logo.png')
+    },
+
+    truncateString(str, n) {
+      if (str.length <= n) {
+        return str
+      }
+      return `${str.slice(0, n)}...`
     },
 
     async getRegistrations() {

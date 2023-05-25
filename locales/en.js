@@ -847,6 +847,7 @@ export default {
       moreDetails: 'More Details',
       seeMore: 'See More',
       fnsRecordShow: 'FNS Record Show',
+      filecoinName: 'Filecoin Name',
       projectName: 'Project Name',
       description: 'Description'
     },

@@ -825,6 +825,7 @@ export default {
       moreDetails: '자세한 내용',
       seeMore: '더보기',
       fnsRecordShow: 'FNS 레코드 보기',
+      filecoinName: 'Filecoin 이름',
       projectName: '프로젝트 이름',
       description: '설명'
     },
