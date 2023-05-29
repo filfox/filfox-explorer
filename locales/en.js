@@ -913,12 +913,13 @@ export default {
       whatWeGot: 'What we got',
       whatWeLookingFor: 'What we looking for',
       error: {
-        1: 'Source code not found',
-        2: 'Contract bytecode not found',
-        3: 'Failed to load compiler',
-        4: 'Verification failed',
-        5: 'The language is not supported',
-        6: 'The contract has been verified'
+        1: 'Source code not found: source code was not provided when calling the API',
+        2: 'Contract initcode not found: backend failed to parse the initcode of the contract; the provided address when calling the API is not an EVM address',
+        3: 'Compiler loading failed: invalid compiler version provided when calling the API',
+        4: 'Verification failed: mismatch between source code, compiler version, optimization parameters, contract constructor arguments, EVM version, etc.; the backend verification logic is incomplete and may not consider all scenarios',
+        5: 'Unsupported language: currently only supporting verification of Solidity source code files',
+        6: 'Contract already verified: the contract has already been verified, no need to repeat the process',
+        7: 'Compilation error: issues with the provided source code when calling the API'
       }
     }
   },

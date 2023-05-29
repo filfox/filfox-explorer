@@ -28,9 +28,15 @@
         <p class="message-key">
           {{ $t('detail.message.headers.height') }}
         </p>
-        <TipsetLink v-if="message.height" :id="message.height" class="message-value text-main" />
+        <template v-if="message.height">
+          <TipsetLink :id="message.height" class="message-value text-main" />
+          <el-tag class="ml-1" size="mini" type="info">
+            {{ message.confirmations }} Block Confirmations
+          </el-tag>
+        </template>
+
         <p v-else class="message-value">
-          N/A
+          Pending
         </p>
       </div>
       <div v-if="message.timestamp" class="message-item">
@@ -87,12 +93,15 @@
           {{ message.value | filecoin }}
         </p>
       </div>
-      <div v-if="message.receipt" class="message-item">
+      <div class="message-item">
         <p class="message-key">
           {{ $t('detail.message.headers.exitCode') }}
         </p>
-        <p class="message-value">
+        <p v-if="message.receipt" class="message-value">
           {{ message.receipt.exitCode | exit-code }}
+        </p>
+        <p v-else class="message-value">
+          Pending
         </p>
       </div>
       <div v-if="message.details && message.details.length" class="message-item">

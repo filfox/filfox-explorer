@@ -30,14 +30,20 @@
           {{ message.ethTransactionHash }}
         </dd>
       </dl>
-      <dl v-if="message.height" class="message-item">
+      <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.height') }}
         </dt>
         <dd class="message-value">
-          <TipsetLink v-if="message.height" :id="message.height" class="text-main" />
+          <template v-if="message.height">
+            <TipsetLink :id="message.height" class="text-main" />
+            <el-tag class="ml-2" size="mini" type="info">
+              {{ message.confirmations }} Block Confirmations
+            </el-tag>
+          </template>
+
           <p v-else>
-            N/A
+            Pending
           </p>
         </dd>
       </dl>
@@ -101,12 +107,22 @@
           {{ message.value | filecoin }}
         </dd>
       </dl>
-      <dl v-if="message.receipt" class="message-item">
+      <dl class="message-item">
         <dt class="message-key">
           {{ $t('detail.message.headers.exitCode') }}
         </dt>
-        <dd class="message-value">
+        <dd
+          v-if="message.receipt"
+          class="message-value"
+          :class="[ message.receipt.exitCode ? 'text-red-500' : 'text-green-600' ]"
+        >
           {{ message.receipt.exitCode | exit-code }}
+        </dd>
+        <dd
+          v-else
+          class="message-value"
+        >
+          Pending
         </dd>
       </dl>
       <dl v-if="message.details && message.details.length" class="message-item">
@@ -120,8 +136,13 @@
     </div>
     <MessageLogs v-if="message.eventLogs && message.eventLogs.length" :message="message" />
     <div v-if="message.subcalls && message.subcalls.length" class="rounded-md my-4 py-4 bg-white">
-      <p class="pl-8 pb-3 border-b border-background">
+      <p class="pl-8 pb-3 border-b border-background flex">
         {{ $t('detail.message.modules.internaltransfer') }}
+        <nuxt-link :to="localePath(`/message/internalTransfer/${message.cid}`)" class="ml-auto mr-8">
+          <el-button size="mini" round>
+            {{ $t('shared.more') }}
+          </el-button>
+        </nuxt-link>
       </p>
       <div class="message-item bg-gray-100 mx-8 text-gray-500 p-2 flex items-center">
         {{ $t('detail.message.internaltransfer.contractFrom') }}
@@ -130,7 +151,7 @@
         <AddressLink v-if="message.to" :id="message.to" :format="8" class="text-main px-2" />
         {{ $t('detail.message.internaltransfer.produced', { amount:message.subcalls.length }) }}
       </div>
-      <div class="px-8">
+      <div class="px-8 max-h-100 overflow-auto">
         <table class="w-full table-fixed">
           <thead class="text-gray-600 text-sm m-2">
             <tr class="h-8">

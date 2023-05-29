@@ -36,6 +36,7 @@
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.7.6",
     "v-charts": "^1.19.0",
+    "vue-json-pretty": "^1.9.4",
     "vue-simple-markdown": "^1.1.4"
   },
   "devDependencies": {

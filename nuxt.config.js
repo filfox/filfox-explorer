@@ -39,7 +39,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '@/assets/css/common.css'
+    '@/assets/css/common.css',
+    'vue-json-pretty/lib/styles.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -50,7 +51,8 @@ export default {
     '@/plugins/axios',
     '@/plugins/filters',
     '@/plugins/websocket.client',
-    '@/plugins/components'
+    '@/plugins/components',
+    '@/plugins/vue-json-pretty'
   ],
   components: [
     '~/components/address',

@@ -93,6 +93,10 @@ module.exports = {
         68: '17rem',
         136: '34rem'
       },
+      maxHeight: {
+        100: '25rem',
+        200: '50rem'
+      },
       boxShadow: {
         container: '2px 2px 20px rgb(0 0 0 / 60%)'
       },
