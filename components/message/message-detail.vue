@@ -138,7 +138,7 @@
     <div v-if="message.subcalls && message.subcalls.length" class="rounded-md my-4 py-4 bg-white">
       <p class="pl-8 pb-3 border-b border-background flex">
         {{ $t('detail.message.modules.internaltransfer') }}
-        <nuxt-link :to="localePath(`/message/internalTransfer/${message.cid}`)" class="ml-auto mr-8">
+        <nuxt-link :to="localePath(`/message/internalTransfer/${message.cid}`)" target="_blank" class="ml-auto mr-8">
           <el-button size="mini" round>
             {{ $t('shared.more') }}
           </el-button>

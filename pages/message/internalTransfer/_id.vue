@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  layout: 'json',
   asyncData({ params }) {
     return { cid: params.id }
   },
