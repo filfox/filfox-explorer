@@ -138,7 +138,7 @@
 <script>
 import { fnsServer } from '@/filecoin/filecoin.config'
 import FNS from '@filfox/fnsjs'
-const fns = new FNS('hyperspace')
+const fns = new FNS('calibration')
 
 export default {
   data() {
