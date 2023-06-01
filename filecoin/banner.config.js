@@ -15,6 +15,11 @@ export const enBanners = [
     url: 'https://stfil.io',
     img: require('~/assets/img/home/banner-en-stfil.png'),
     mobileImg: require('~/assets/img/home/banner-en-stfil-mobile.png')
+  },
+  {
+    url: 'https://www.ndlabs.io/#/',
+    img: require('~/assets/img/home/banner-en-ndlabs.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-en-ndlabs-mobile.jpeg')
   }
 ]
 
@@ -33,6 +38,10 @@ export const zhBanners = [
     url: 'https://stfil.io',
     img: require('~/assets/img/home/banner-zh-stfil.png'),
     mobileImg: require('~/assets/img/home/banner-zh-stfil-mobile.png')
+  },
+  {
+    url: 'https://www.ndlabs.io/#/',
+    img: require('~/assets/img/home/banner-en-ndlabs.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-en-ndlabs-mobile.jpeg')
   }
 ]
-
