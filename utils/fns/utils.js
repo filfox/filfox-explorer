@@ -11,31 +11,31 @@ import publicResolverAbi from './abi/public.resolver.abi.json'
 const provider = new ethers.providers.JsonRpcProvider(RPC)
 
 const registryContract = new ethers.Contract(
-  '0x889d4f6667ab1aa0a77bc8befbfc9dca5d6ead3d',
+  '0x0381f0c42f542DEcEBC3ea1A27B3eF4ac1F258b6',
   registryAbi,
   provider
 )
 
 const registryControllerContract = new ethers.Contract(
-  '0x12aea3f77ae98b33f27f20825b15e4ab8b381684',
+  '0xc5b7f7f5dFB7f16F74476564Fe2e3B5a7C182Cd4',
   registrarControllerAbi,
   provider
 )
 
 const registarContract = new ethers.Contract(
-  '0xf87d4c3c91555fecfe684fa58dd26a817c75892b',
+  '0x392d1959CFbdCA10342e7D32BCeF87e2Ac25221e',
   registrarAbi,
   provider
 )
 
 const reverseRegistarContract = new ethers.Contract(
-  '0x7b053507c2e0f9be1632c4b17c2e871c1770cb14',
+  '0xc2ef6a6dd61529325290894fDC02F7dD3B7D7275',
   reverseRegistrarAbi,
   provider
 )
 
 const publicResolverContract = new ethers.Contract(
-  '0xe2c015abb52e22227354f78297f0c2de3807b311',
+  '0x7EEa7D977fff536d9B8752a5dF24A00E288c1B43',
   publicResolverAbi,
   provider
 )
