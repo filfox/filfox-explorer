@@ -8,6 +8,7 @@ export default {
       sec: '초',
       ago: '전',
       day: '일',
+      month: '월',
       year: '년'
     },
     more: '더 보기',
@@ -128,7 +129,8 @@ export default {
       placeholderBalance: '플레이스홀더 주소 총 잔액'
     },
     fvmTopContracts: {
-      title: '인기 계약 (최근 24시간)',
+      title: '인기 계약',
+      latest24: '최근24시간',
       orderBy: '정렬 기준',
       more: '더 보기',
       contractAddress: '계약 주소',

@@ -8,6 +8,7 @@ export default {
       sec: '秒',
       ago: '前',
       day: '天',
+      month: '月',
       year: '年'
     },
     more: '更多',
@@ -111,7 +112,8 @@ export default {
       placeholderBalance: 'Placeholder 地址总余额'
     },
     fvmTopContracts: {
-      title: '热门合约(最近24小时)',
+      title: '热门合约',
+      latest24: '最近24小时',
       orderBy: '排序方式',
       more: '更多',
       contractAddress: '合约地址',

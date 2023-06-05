@@ -8,6 +8,7 @@ export default {
       sec: ' sec',
       ago: ' ago',
       day: ' day ',
+      month: ' month ',
       year: ' year '
     },
     more: 'More',
@@ -130,7 +131,8 @@ export default {
       placeholderBalance: 'Placeholder Address Balance'
     },
     fvmTopContracts: {
-      title: 'Top Contracts(Latest 24H)',
+      title: 'Top Contracts',
+      latest24: 'Latest 24H',
       orderBy: 'Order By',
       more: 'More',
       contractAddress: 'Contract Address',

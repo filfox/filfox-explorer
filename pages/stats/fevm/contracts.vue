@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <StatsFevmTopContracts :page-size="15" pagination />
+    <StatsFevmTopContracts :page-size="15" pagination time-range api="/stats/fevm/contracts" />
   </div>
 </template>
 <script>

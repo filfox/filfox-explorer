@@ -60,7 +60,7 @@
         :page-size="pageSize"
         :current-page="page"
         class="mx-auto"
-        @current-change="p => page = p"
+        @current-change="p => { page = p; getList() }"
       />
     </div>
   </div>
@@ -69,6 +69,14 @@
 <script>
 export default {
   props: {
+    api: {
+      type: String,
+      default: '/stats/fevm/recent-contracts'
+    },
+    days: {
+      type: Number,
+      default: 7
+    },
     sortBy: {
       type: String,
       default: 'transaction'
@@ -94,10 +102,12 @@ export default {
   },
 
   watch: {
-    page() {
+    sortBy() {
+      this.page = 1
       this.getList()
     },
-    sortBy() {
+    days() {
+      this.page = 1
       this.getList()
     }
   },
@@ -109,11 +119,12 @@ export default {
   methods: {
     async getList() {
       this.loading = true
-      const { totalCount, contractList } = await this.$axios.$get('/stats/fevm/top-contracts', {
+      const { totalCount, contractList } = await this.$axios.$get(this.api, {
         params: {
           offset: (this.page - 1) * this.pageSize,
           limit: this.pageSize,
-          sortBy: this.sortBy
+          sortBy: this.sortBy,
+          days: this.days
         }
       })
       this.loading = false
