@@ -69,13 +69,9 @@
 <script>
 export default {
   props: {
-    api: {
-      type: String,
-      default: '/stats/fevm/recent-contracts'
-    },
     days: {
       type: Number,
-      default: 7
+      default: 1
     },
     sortBy: {
       type: String,
@@ -101,6 +97,17 @@ export default {
     }
   },
 
+  computed: {
+    apiUrl() {
+      switch (this.days) {
+        case 1:
+          return '/stats/fevm/recent-contracts'
+        default:
+          return '/stats/fevm/contracts'
+      }
+    }
+  },
+
   watch: {
     sortBy() {
       this.page = 1
@@ -119,7 +126,7 @@ export default {
   methods: {
     async getList() {
       this.loading = true
-      const { totalCount, contractList } = await this.$axios.$get(this.api, {
+      const { totalCount, contractList } = await this.$axios.$get(this.apiUrl, {
         params: {
           offset: (this.page - 1) * this.pageSize,
           limit: this.pageSize,

@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="p-4 pt-0 border-t border-background">
-      <StatsFevmContracts :sort-by="sortBy" :page-size="pageSize" :pagination="pagination" :days="activeDays" :api="api" />
+      <StatsFevmContracts :sort-by="sortBy" :page-size="pageSize" :pagination="pagination" :days="activeDays" />
     </div>
   </div>
 </template>
@@ -41,10 +41,6 @@
 <script>
 export default {
   props: {
-    api: {
-      type: String,
-      default: '/stats/fevm/recent-contracts'
-    },
     timeRange: {
       type: Boolean,
       default: false
@@ -64,8 +60,9 @@ export default {
   },
   data() {
     return {
-      activeDays: 7,
+      activeDays: 1,
       timeTabs: [
+        { days: 1, label: `24 ${this.$t('shared.time.hour')}` },
         { days: 7, label: `7 ${this.$t('shared.time.day')}` },
         { days: 30, label: `1 ${this.$t('shared.time.month')}` },
         { days: 365, label: `1 ${this.$t('shared.time.year')}` }
