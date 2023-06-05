@@ -11,11 +11,6 @@ export const network = {
       name: 'Calibration',
       url: 'https://calibration.filfox.info',
       fns: 'https://testapp.fns.space'
-    },
-    {
-      name: 'Hyperspace',
-      url: 'https://hyperspace.filfox.info',
-      fns: 'https://testapp.fns.space'
     }
   ]
 }
