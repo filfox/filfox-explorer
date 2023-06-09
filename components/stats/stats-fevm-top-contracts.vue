@@ -18,10 +18,10 @@
         <span class="text-sm">{{ $t('home.fvmTopContracts.orderBy') }}</span>
         <el-select v-model="sortBy" size="mini" class="ml-2 order-by">
           <el-option
-            v-for="item in sorts"
-            :key="item"
-            :label="item"
-            :value="item"
+            v-for="{ label, value } in sorts"
+            :key="value"
+            :label="label"
+            :value="value"
             class="capitalize"
           />
         </el-select>
@@ -69,10 +69,10 @@ export default {
       ],
       sortBy: 'transaction',
       sorts: [
-        'transaction',
-        'users',
-        'balance',
-        'fee'
+        { label: 'Transaction', value: 'transaction' },
+        { label: 'User', value: 'users' },
+        { label: 'Balance', value: 'balance' },
+        { label: 'Fee', value: 'fee' }
       ]
     }
   }
