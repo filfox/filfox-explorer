@@ -2,9 +2,9 @@ import { FNS } from './filecoin.config'
 
 export const enBanners = [
   {
-    url: 'https://fvm.hashmix.org',
-    img: require('~/assets/img/home/banner-en-hashmix.jpg'),
-    mobileImg: require('~/assets/img/home/banner-en-hashmix-mobile.jpg')
+    url: 'https://filfi.io',
+    img: require('~/assets/img/home/banner-en-filfi.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-en-filfi-mobile.jpeg')
   },
   {
     url: FNS,
@@ -25,14 +25,19 @@ export const enBanners = [
     url: 'https://www.ndlabs.io/#/',
     img: require('~/assets/img/home/banner-en-ndlabs.jpeg'),
     mobileImg: require('~/assets/img/home/banner-en-ndlabs-mobile.jpeg')
+  },
+  {
+    url: 'https://fvm.hashmix.org',
+    img: require('~/assets/img/home/banner-en-hashmix.jpg'),
+    mobileImg: require('~/assets/img/home/banner-en-hashmix-mobile.jpg')
   }
 ]
 
 export const zhBanners = [
   {
-    url: 'https://fvm.hashmix.org',
-    img: require('~/assets/img/home/banner-zh-hashmix.jpg'),
-    mobileImg: require('~/assets/img/home/banner-zh-hashmix-mobile.jpg')
+    url: 'https://filfi.io',
+    img: require('~/assets/img/home/banner-en-filfi.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-en-filfi-mobile.jpeg')
   },
   {
     url: FNS,
@@ -53,5 +58,10 @@ export const zhBanners = [
     url: 'https://www.ndlabs.io/#/',
     img: require('~/assets/img/home/banner-en-ndlabs.jpeg'),
     mobileImg: require('~/assets/img/home/banner-en-ndlabs-mobile.jpeg')
+  },
+  {
+    url: 'https://fvm.hashmix.org',
+    img: require('~/assets/img/home/banner-zh-hashmix.jpg'),
+    mobileImg: require('~/assets/img/home/banner-zh-hashmix-mobile.jpg')
   }
 ]
