@@ -8,26 +8,17 @@
 <script>
 export default {
   props: {
-    address: {
-      type: String,
-      default: ''
+    contract: {
+      type: Object,
+      default: () => ({})
     }
   },
-  data() {
-    return {
-      contract: {}
-    }
-  },
+
   computed: {
     verified() {
       return this.contract?.verified || false
     }
-  },
-  async mounted() {
-    this.contract = await this.$axios.$get(`/address/${this.address}/contract`)
-    this.contract.address = this.address
-  },
-  methods: {}
+  }
 }
 </script>
 

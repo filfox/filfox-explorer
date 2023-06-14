@@ -18,18 +18,25 @@
           <nuxt-link :to="localePath('/mempool')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.4') }}
           </nuxt-link>
-          <nuxt-link :to="localePath('/fns')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.blocks.subMenus.5') }}
-          </nuxt-link>
           <nuxt-link :to="localePath('/contract')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.blocks.subMenus.6') }}
           </nuxt-link>
         </el-collapse-item>
       </el-collapse>
 
-      <nuxt-link :to="localePath('/ranks')" class="block py-2 text-sm cursor-pointer ranks" @click.native="hideIfNeeded">
-        {{ $t('nav.ranks.title') }}
-      </nuxt-link>
+      <el-collapse class="w-full">
+        <el-collapse-item title="FEVM">
+          <nuxt-link :to="localePath('/stats/fevm')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.charts.subMenus.2') }}
+          </nuxt-link>
+          <nuxt-link :to="localePath('/stats/verified-contracts')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.charts.subMenus.3') }}
+          </nuxt-link>
+          <nuxt-link :to="localePath('/fns')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.blocks.subMenus.5') }}
+          </nuxt-link>
+        </el-collapse-item>
+      </el-collapse>
 
       <el-collapse class="w-full">
         <el-collapse-item :title="$t('nav.charts.title')">
@@ -39,11 +46,8 @@
           <nuxt-link :to="localePath('/stats/gas')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.charts.subMenus.1') }}
           </nuxt-link>
-          <nuxt-link :to="localePath('/stats/fevm')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.charts.subMenus.2') }}
-          </nuxt-link>
-          <nuxt-link :to="localePath('/stats/verified-contracts')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.charts.subMenus.3') }}
+          <nuxt-link :to="localePath('/ranks')" class="link" @click.native="hideIfNeeded">
+            {{ $t('nav.ranks.title') }}
           </nuxt-link>
         </el-collapse-item>
       </el-collapse>

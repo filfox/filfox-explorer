@@ -26,20 +26,28 @@
         <nuxt-link :to="localePath('/mempool')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.4') }}</el-dropdown-item>
         </nuxt-link>
-        <nuxt-link :to="localePath('/fns')">
-          <el-dropdown-item>{{ $t('nav.blocks.subMenus.5') }}</el-dropdown-item>
-        </nuxt-link>
         <nuxt-link :to="localePath('/contract')">
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.6') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>
 
-    <nuxt-link class="flex items-center px-2 mx-2 xl:mx-3" :to="localePath('/ranks')">
-      <div class="text-sm text-background">
-        {{ $t('nav.ranks.title') }}
-      </div>
-    </nuxt-link>
+    <el-dropdown class="flex items-center mx-2 xl:mx-3">
+      <span class="px-2 text-sm el-dropdown-link text-background">
+        FEVM <i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <nuxt-link :to="localePath('/stats/fevm')">
+          <el-dropdown-item>{{ $t('nav.charts.subMenus.2') }}</el-dropdown-item>
+        </nuxt-link>
+        <nuxt-link :to="localePath('/stats/verified-contracts')">
+          <el-dropdown-item>{{ $t('nav.charts.subMenus.3') }}</el-dropdown-item>
+        </nuxt-link>
+        <nuxt-link :to="localePath('/fns')">
+          <el-dropdown-item>{{ $t('nav.blocks.subMenus.5') }}</el-dropdown-item>
+        </nuxt-link>
+      </el-dropdown-menu>
+    </el-dropdown>
 
     <el-dropdown class="flex items-center mx-2 xl:mx-3">
       <span class="px-2 text-sm el-dropdown-link text-background">
@@ -52,11 +60,9 @@
         <nuxt-link :to="localePath('/stats/gas')">
           <el-dropdown-item>{{ $t('nav.charts.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
-        <nuxt-link :to="localePath('/stats/fevm')">
-          <el-dropdown-item>{{ $t('nav.charts.subMenus.2') }}</el-dropdown-item>
-        </nuxt-link>
-        <nuxt-link :to="localePath('/stats/verified-contracts')">
-          <el-dropdown-item>{{ $t('nav.charts.subMenus.3') }}</el-dropdown-item>
+
+        <nuxt-link :to="localePath('/ranks')">
+          <el-dropdown-item>{{ $t('nav.ranks.title') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>

@@ -10,7 +10,22 @@
     <div class="flex pb-2 my-4">
       <div class="flex-1 mr-4 text-sm bg-white rounded-md">
         <div class="flex py-4 pl-8 font-medium border-b border-background">
-          {{ $t('detail.address.normal.headers.overview') }}
+          <span class="mr-6">{{ $t('detail.address.normal.headers.overview') }}</span>
+          <template v-if="addressData.actor == 'evm'">
+            <span v-if="contract.verified" class="flex items-center font-light">
+              <img src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 mr-1.5">
+              <span class="text-sm">{{ $t('detail.contract.codeVerified') }}</span>
+            </span>
+            <div v-else class="font-light rounded-md text-customGray-600 flex items-center">
+              <img src="@/assets/img/contract/warn.svg" alt="warn" class="w-4.5 h-4.5 mr-1.5">
+              <span>{{ $t('detail.contract.verifyTip.0') }}?
+                <nuxt-link :to="localePath(`/contract?address=${contract.address}`)" class="text-main hover:underline">
+                  {{ $t('detail.contract.verifyTip.1') }}
+                </nuxt-link>
+                {{ $t('detail.contract.verifyTip.2') }}!
+              </span>
+            </div>
+          </template>
         </div>
 
         <dl class="flex items-center my-2">
@@ -169,6 +184,7 @@
           </el-radio-button>
           <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
             {{ $t('detail.contract.title') }}
+            <img v-if="contract.verified" src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 absolute -top-2 -right-1 z-10">
           </el-radio-button>
           <el-radio-button v-if="addressData.actor == 'evm'" :label="3">
             {{ $t('detail.eventLogs.title') }}
@@ -256,7 +272,7 @@
           </tbody>
         </table>
       </div>
-      <ContractCode v-if="listType === 2" :address="addressData.address" />
+      <ContractCode v-if="listType === 2" :contract="contract" />
       <AddressEventLogs v-if="listType === 3" :address="addressData.address" />
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
       <div v-if="listType != 0 && listType != 2 && listType != 3" class="flex items-center h-16 text-center">
@@ -290,7 +306,8 @@ export default {
       pageSize: 20,
       loading: false,
       total: 0,
-      eventLogs: {}
+      eventLogs: {},
+      contract: {}
     }
   },
   computed: {
@@ -303,6 +320,13 @@ export default {
       this.page = 0
       this.getTransferList()
     }
+  },
+  async mounted() {
+    const { actor, address } = this.addressData
+    if (actor !== 'evm') return
+
+    this.contract = await this.$axios.$get(`/address/${address}/contract`)
+    this.contract.address = address
   },
   methods: {
     async getTransferList() {

@@ -848,7 +848,7 @@ export default {
       handle: 'Handle',
       moreDetails: 'More Details',
       seeMore: 'See More',
-      fnsRecordShow: 'FNS Record Show',
+      fnsRecordShow: 'FNS Record',
       filecoinName: 'Filecoin Name',
       projectName: 'Project Name',
       description: 'Description'
