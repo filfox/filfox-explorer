@@ -2,9 +2,14 @@ import { FNS } from './filecoin.config'
 
 export const enBanners = [
   {
+    url: 'https://www.sftproject.io',
+    img: require('~/assets/img/home/banner-en-sftproject.jpg'),
+    mobileImg: require('~/assets/img/home/banner-en-sftproject-mobile.jpg')
+  },
+  {
     url: 'https://filfi.io',
-    img: require('~/assets/img/home/banner-en-filfi.jpeg'),
-    mobileImg: require('~/assets/img/home/banner-en-filfi-mobile.jpeg')
+    img: require('~/assets/img/home/banner-en-filfi.png'),
+    mobileImg: require('~/assets/img/home/banner-en-filfi-mobile.png')
   },
   {
     url: FNS,
@@ -35,9 +40,14 @@ export const enBanners = [
 
 export const zhBanners = [
   {
+    url: 'https://www.sftproject.io',
+    img: require('~/assets/img/home/banner-zh-sftproject.jpg'),
+    mobileImg: require('~/assets/img/home/banner-zh-sftproject-mobile.jpg')
+  },
+  {
     url: 'https://filfi.io',
-    img: require('~/assets/img/home/banner-en-filfi.jpeg'),
-    mobileImg: require('~/assets/img/home/banner-en-filfi-mobile.jpeg')
+    img: require('~/assets/img/home/banner-zh-filfi.png'),
+    mobileImg: require('~/assets/img/home/banner-zh-filfi-mobile.png')
   },
   {
     url: FNS,
