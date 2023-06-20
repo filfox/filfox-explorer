@@ -17,6 +17,11 @@ export const enBanners = [
     mobileImg: require('~/assets/img/home/banner-en-mobile-1.png')
   },
   {
+    url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
+    img: require('~/assets/img/home/banner-en-foxwallet.png'),
+    mobileImg: require('~/assets/img/home/banner-en-foxwallet-mobile.png')
+  },
+  {
     url: 'https://stfil.io',
     img: require('~/assets/img/home/banner-en-stfil.png'),
     mobileImg: require('~/assets/img/home/banner-en-stfil-mobile.png')
@@ -48,6 +53,11 @@ export const zhBanners = [
     url: 'https://foxwallet.com/zh?invite=evkZv8g5TG',
     img: require('~/assets/img/home/banner-zh-1.png'),
     mobileImg: require('~/assets/img/home/banner-zh-mobile-1.png')
+  },
+  {
+    url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
+    img: require('~/assets/img/home/banner-en-foxwallet.png'),
+    mobileImg: require('~/assets/img/home/banner-en-foxwallet-mobile.png')
   },
   {
     url: 'https://stfil.io',
