@@ -2,9 +2,14 @@ import { FNS } from './filecoin.config'
 
 export const enBanners = [
   {
-    url: 'https://www.sftproject.io',
-    img: require('~/assets/img/home/banner-en-sftproject.jpg'),
-    mobileImg: require('~/assets/img/home/banner-en-sftproject-mobile.jpg')
+    url: 'https://minefi.io',
+    img: require('~/assets/img/home/banner-en-minefi.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-en-minefi-mobile.jpeg')
+  },
+  {
+    url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
+    img: require('~/assets/img/home/banner-en-foxwallet.png'),
+    mobileImg: require('~/assets/img/home/banner-en-foxwallet-mobile.png')
   },
   {
     url: FNS,
@@ -16,11 +21,7 @@ export const enBanners = [
     img: require('~/assets/img/home/banner-en-1.png'),
     mobileImg: require('~/assets/img/home/banner-en-mobile-1.png')
   },
-  {
-    url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
-    img: require('~/assets/img/home/banner-en-foxwallet.png'),
-    mobileImg: require('~/assets/img/home/banner-en-foxwallet-mobile.png')
-  },
+
   {
     url: 'https://stfil.io',
     img: require('~/assets/img/home/banner-en-stfil.png'),
@@ -40,9 +41,14 @@ export const enBanners = [
 
 export const zhBanners = [
   {
-    url: 'https://www.sftproject.io',
-    img: require('~/assets/img/home/banner-zh-sftproject.jpg'),
-    mobileImg: require('~/assets/img/home/banner-zh-sftproject-mobile.jpg')
+    url: 'https://minefi.io',
+    img: require('~/assets/img/home/banner-zh-minefi.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-zh-minefi-mobile.jpeg')
+  },
+  {
+    url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
+    img: require('~/assets/img/home/banner-en-foxwallet.png'),
+    mobileImg: require('~/assets/img/home/banner-en-foxwallet-mobile.png')
   },
   {
     url: FNS,
@@ -54,11 +60,7 @@ export const zhBanners = [
     img: require('~/assets/img/home/banner-zh-1.png'),
     mobileImg: require('~/assets/img/home/banner-zh-mobile-1.png')
   },
-  {
-    url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
-    img: require('~/assets/img/home/banner-en-foxwallet.png'),
-    mobileImg: require('~/assets/img/home/banner-en-foxwallet-mobile.png')
-  },
+
   {
     url: 'https://stfil.io',
     img: require('~/assets/img/home/banner-zh-stfil.png'),
