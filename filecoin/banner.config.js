@@ -21,7 +21,6 @@ export const enBanners = [
     img: require('~/assets/img/home/banner-en-1.png'),
     mobileImg: require('~/assets/img/home/banner-en-mobile-1.png')
   },
-
   {
     url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
     img: require('~/assets/img/home/banner-en-foxwallet.png'),
@@ -65,7 +64,6 @@ export const zhBanners = [
     img: require('~/assets/img/home/banner-zh-1.png'),
     mobileImg: require('~/assets/img/home/banner-zh-mobile-1.png')
   },
-
   {
     url: 'https://twitter.com/foxwallet/status/1671079929323323393?s=46&t=sEgPUr8QwFneW2IzVToALQ',
     img: require('~/assets/img/home/banner-en-foxwallet.png'),
