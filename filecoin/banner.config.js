@@ -2,6 +2,11 @@ import { FNS } from './filecoin.config'
 
 export const enBanners = [
   {
+    url: 'https://dspa-asia.io',
+    img: require('~/assets/img/home/banner-zh-dspa.png'),
+    mobileImg: require('~/assets/img/home/banner-zh-dspa-mobile.png')
+  },
+  {
     url: 'https://minefi.io',
     img: require('~/assets/img/home/banner-en-minefi.jpeg'),
     mobileImg: require('~/assets/img/home/banner-en-minefi-mobile.jpeg')
@@ -44,6 +49,11 @@ export const enBanners = [
 ]
 
 export const zhBanners = [
+  {
+    url: 'https://dspa-asia.io',
+    img: require('~/assets/img/home/banner-zh-dspa.png'),
+    mobileImg: require('~/assets/img/home/banner-zh-dspa-mobile.png')
+  },
   {
     url: 'https://minefi.io',
     img: require('~/assets/img/home/banner-zh-minefi.jpeg'),
