@@ -74,7 +74,6 @@
             v-model="optimize"
             :placeholder="$t('contract.guide.pleaseSelect')"
             class="optimize-select w-full mt-3"
-            @change="val => optimizeRuns = val ? 200 : '--'"
           >
             <el-option
               v-for="{ label, value } in optimizations"
@@ -91,8 +90,6 @@
           </p>
           <input
             v-model="optimizeRuns"
-            :readonly="!optimize"
-            :class="{ 'cursor-not-allowed': !optimize }"
             class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
           >
         </div>
@@ -141,14 +138,6 @@
       </div>
 
       <div class="rounded-none md:rounded-md p-4 mt-5 bg-white">
-        <span class="font-light">{{ $t('contract.verify.constructorArg') }}</span>
-        <textarea
-          v-model.trim="parameters"
-          class="text-sm block w-full rounded-lg bg-customGray-200 border h-64 mt-2 p-4 overflow-auto font-light outline-none focus:border-main transition duration-200"
-        ></textarea>
-        <p class="text-xs text-customGray-400 pl-1 mt-3">
-          {{ $t('contract.verify.argTip') }}
-        </p>
         <div class="bg-white text-center p-4 my-4">
           <button
             :disabled="loading || !allowPublish"
