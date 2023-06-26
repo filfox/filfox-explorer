@@ -926,7 +926,7 @@ export default {
         4: 'Verification failed: mismatch between source code, compiler version, optimization parameters, contract constructor arguments, EVM version, etc.; the backend verification logic is incomplete and may not consider all scenarios',
         5: 'Unsupported language: currently only supporting verification of Solidity source code files',
         6: 'Contract already verified: the contract has already been verified, no need to repeat the process',
-        7: 'Compilation error: issues with the provided source code when calling the API'
+        7: 'Compilation error'
       }
     }
   },

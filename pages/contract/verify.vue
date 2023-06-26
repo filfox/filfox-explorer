@@ -29,6 +29,9 @@
             :class="[ verifiedResult.success ? 'text-green-600 el-icon-circle-check' : 'text-red-600 el-icon-circle-close' ]"
           >
             {{ verifiedResult.success ? 'Success' : 'Error' }} : {{ verifiedTip }}
+            <p v-if="verifiedResult.errorMsg" class="whitespace-pre">
+              {{ verifiedResult.errorMsg }}
+            </p>
           </div>
         </div>
         <div
@@ -261,9 +264,7 @@ export default {
       if (this.verifiedResult?.success) {
         return this.$t('contract.verify.verifySuccess')
       } else {
-        return this.$t('contract.verify.error')[this.verifiedResult.errorCode]
-          || this.verifiedResult.errorMsg
-          || 'Unknow Error'
+        return this.$t('contract.verify.error')[this.verifiedResult.errorCode] || 'Unknow Error'
       }
     },
     allowPublish() {
