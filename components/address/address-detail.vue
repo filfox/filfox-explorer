@@ -175,12 +175,15 @@
 
     <div class="pt-4 my-4 bg-white rounded-md">
       <div class="flex items-center h-12 ml-8">
-        <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
+        <el-radio-group v-model="listType" size="mini" fill="#1a4fc9">
           <el-radio-button :label="0">
             {{ $t('blockchain.message.title') }}
           </el-radio-button>
           <el-radio-button :label="1">
             {{ $t('detail.transfer.title') }}
+          </el-radio-button>
+          <el-radio-button v-if="/evm|ethaccount|placeholder/i.test(addressData.actor)" :label="4">
+            {{ $t('detail.tokenTransfer.title') }}
           </el-radio-button>
           <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
             {{ $t('detail.contract.title') }}
@@ -192,98 +195,11 @@
         </el-radio-group>
       </div>
       <AddressMessageList v-if="listType === 0" :address="addressData.address" />
-      <div v-if="listType === 1" class="mx-8">
-        <div class="flex items-center justify-between border-b border-background">
-          <p class="flex items-center h-12 text-sm">
-            {{ $t('detail.transfer.total') }}
-            {{ total }}
-            {{ $t('detail.transfer.transaction') }}
-          </p>
-          <TransferTypeSelect
-            v-model="trans"
-            :methods="transferList.types"
-            :el-select-options="{size: 'mini'}"
-          />
-        </div>
-        <table v-if="!loading" class="w-full table-fixed">
-          <thead class="m-2 text-sm text-gray-600">
-            <tr class="h-8">
-              <th class="sticky top-0 z-10 bg-white w-1/8">
-                {{ $t('detail.transfer.tableHeaders.time') }}
-              </th>
-              <th class="sticky top-0 z-10 w-1/4 bg-white">
-                {{ $t('detail.transfer.tableHeaders.message') }}
-              </th>
-              <th class="sticky top-0 z-10 bg-white w-5/32">
-                {{ $t('detail.transfer.tableHeaders.from') }}
-              </th>
-              <th class="sticky top-0 z-10 bg-white w-1/16">
-              </th>
-              <th class="sticky top-0 z-10 bg-white w-5/32">
-                {{ $t('detail.transfer.tableHeaders.to') }}
-              </th>
-              <th class="sticky top-0 z-10 bg-white w-1/8">
-                {{ $t('detail.transfer.tableHeaders.income') }}
-              </th>
-              <th class="sticky top-0 z-10 bg-white w-1/8">
-                {{ $t('detail.transfer.tableHeaders.type') }}
-              </th>
-            </tr>
-          </thead>
-          <tbody class="text-center">
-            <tr
-              v-for="(transfer, index) in transferList.transfers"
-              :key="index"
-              class="h-12 text-sm border-b border-background"
-            >
-              <td>
-                {{ transfer.timestamp | timestamp('datetime') }}
-              </td>
-              <td>
-                <MessageLink v-if="transfer.message" :id="transfer.message" :format="12" />
-                <span v-else>N/A</span>
-              </td>
-              <td>
-                <div class="flex flex-row items-center justify-center">
-                  <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
-                  <span v-else>N/A</span>
-                  <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
-                </div>
-              </td>
-              <td>
-                <div class="flex justify-center">
-                  <img src="~/assets/img/shared/to.svg" alt="3" class="w-4">
-                </div>
-              </td>
-              <td>
-                <div class="flex flex-row items-center justify-center">
-                  <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" />
-                  <span v-else>N/A</span>
-                  <AddressTag :tag="transfer.toTag" type="pc" :style="{maxWidth:'66%'}" />
-                </div>
-              </td>
-              <td>
-                {{ transfer.value | filecoin(4) }}
-              </td>
-              <td>
-                {{ $t('detail.transfer.types.' + transfer.type ) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <AddressTxList v-if="listType === 1" :address="addressData.address" />
       <ContractCode v-if="listType === 2" :contract="contract" />
       <AddressEventLogs v-if="listType === 3" :address="addressData.address" />
+      <AddressTxTokenList v-if="listType === 4" :address="addressData.address" />
       <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div v-if="listType != 0 && listType != 2 && listType != 3" class="flex items-center h-16 text-center">
-        <el-pagination
-          layout="prev, pager, next, jumper"
-          :page-count="totalPageCount"
-          :current-page="page + 1"
-          class="mx-auto"
-          @current-change="didCurrentPageChanged"
-        />
-      </div>
     </div>
   </div>
 </template>
@@ -291,71 +207,33 @@
 <script>
 export default {
   props: {
-    addressData: { type: Object, required: true }
+    addressData: {
+      type: Object,
+      required: true
+    }
   },
   data() {
     return {
-      trans: 'All',
-      transferList: {
-        totalCount: 0,
-        transfers: [],
-        types: []
-      },
-      listType: 0,
-      page: 0,
-      pageSize: 20,
       loading: false,
-      total: 0,
+      listType: 0,
       eventLogs: {},
       contract: {}
     }
   },
-  computed: {
-    totalPageCount() {
-      return Math.ceil(this.total / this.pageSize)
-    }
-  },
-  watch: {
-    trans() {
-      this.page = 0
-      this.getTransferList()
-    }
-  },
-  async mounted() {
-    const { actor, address } = this.addressData
-    if (actor !== 'evm') return
 
-    this.contract = await this.$axios.$get(`/address/${address}/contract`)
-    this.contract.address = address
+  mounted() {
+    this.getContractAddrData()
   },
+
   methods: {
-    async getTransferList() {
-      if (this.addressData.id == null || this.addressData.id === undefined) {
-        return
-      }
+    async getContractAddrData() {
+      const { actor, address } = this.addressData
+      if (actor !== 'evm') return
+
       this.loading = true
-      const params = { pageSize: this.pageSize, page: this.page }
-      if (this.trans !== 'All') {
-        params.type = this.trans
-      }
-      this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
+      const data = await this.$axios.$get(`/address/${address}/contract`)
       this.loading = false
-      this.total = this.transferList.totalCount
-    },
-
-    didCurrentPageChanged(currentPage) {
-      this.page = currentPage - 1
-      if (this.listType === 1) {
-        this.getTransferList()
-      }
-    },
-
-    didListTypeChanged() {
-      this.page = 0
-      this.total = 0
-      if (this.listType === 1) {
-        this.getTransferList()
-      }
+      this.contract = { ...data, address }
     }
   }
 }

@@ -283,6 +283,65 @@
         </div>
       </div>
     </div>
+
+    <div v-if="message.tokenTransfers && message.tokenTransfers.length > 0" class="mt-2 py-px bg-white text-xs">
+      <p class="pl-4 py-3 border-b border-background font-medium">
+        {{ $t('detail.message.modules.tokenTransfer') }}
+      </p>
+      <div
+        v-for="(transfer, index) in message.tokenTransfers"
+        :key="index"
+        class="mx-3 my-3 py-2 rounded-sm shadow bg-white text-gray-800"
+      >
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.transfer.from') }}:
+          </p>
+          <div class="flex items-center">
+            <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" class="text-main" />
+            <span v-else>N/A</span>
+            <AddressTag :tag="transfer.fromTag" type="mobile" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.transfer.to') }}:
+          </p>
+          <div class="flex items-center">
+            <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" class="text-main" />
+            <span v-else>N/A</span>
+            <AddressTag :tag="transfer.toTag" type="mobile" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.transfer.value') }}:
+          </p>
+          <p>
+            <template v-if="/erc20/i.test(transfer.type)">
+              {{ transfer.value | coin(transfer.decimals) }}
+              <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
+                {{ transfer.symbol }}
+              </NuxtLink>
+            </template>
+            <template v-else>
+              <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
+                {{ transfer.symbol }}
+              </NuxtLink> / {{ transfer.name }}
+            </template>
+          </p>
+        </div>
+        <div class="flex items-center justify-between px-3 mt-1">
+          <p>
+            {{ $t('detail.message.transfer.type') }}:
+          </p>
+          <p>
+            {{ transfer.type }}
+          </p>
+        </div>
+      </div>
+    </div>
+
     <div class="bg-white mt-2 pb-3">
       <p class="pl-4 py-3 border-b border-background text-xs font-medium">
         {{ $t('detail.message.modules.others') }}

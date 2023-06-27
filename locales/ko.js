@@ -387,6 +387,9 @@ export default {
     eventLogs: {
       title: '이벤트 로그'
     },
+    tokenTransfer: {
+      title: '토큰 거래'
+    },
     message: {
       title: '메시지 내역',
       replaced: '메시지 {oldCid} 가 메시지 {cid} 에 의해 무시됨',
@@ -394,7 +397,8 @@ export default {
       modules: {
         overview: '개요',
         logs: '거래 이벤트',
-        internaltransfer: '내부 이체',
+        internaltransfer: '',
+        tokenTransfer: 'Token 내부 이체',
         transfer: '거래내역',
         others: '기타'
       },

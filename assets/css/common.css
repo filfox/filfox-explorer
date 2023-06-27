@@ -15,7 +15,7 @@
     font-display: swap;
     src: url('~assets/fonts/Alibaba-PuHuiTi-Bold.otf') format('truetype');
 }
-  
+
 @font-face {
     font-family: 'Filfox';
     font-style: normal;
@@ -29,51 +29,67 @@
 }
 
 html {
-    font-family: -apple-system, BlinkMacSystemFont,sans-serif,"Helvetica Neue",Helvetica,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYiMicro Hei";
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif, "Helvetica Neue", Helvetica, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYiMicro Hei";
 }
+
 button {
     outline: none;
 }
+
 button:focus {
     outline: none;
 }
+
 .el-button {
     outline: none;
 }
+
 .el-button:focus {
     outline: none;
 }
+
 .el-radio-button {
     outline: none;
 }
+
 .el-radio-button:focus {
     outline: none;
 }
+
 .el-dropdown {
     outline: none;
 }
+
 .el-dropdown:focus {
     outline: none;
 }
+
 .el-dropdown-link {
     outline: none;
 }
+
 .el-dropdown-link:focus {
     outline: none;
 }
+
 .el-loading-spinner svg {
     display: inline-block;
 }
+
 .el-button--text {
     color: #606266
 }
-.el-button--text:focus, .el-button--text:hover {
+
+.el-button--text:focus,
+.el-button--text:hover {
     color: #606266;
 }
+
 .el-tabs__item {
     padding: 0 10px;
     font-size: 12px;
 }
+
 .el-popover {
     word-break: normal;
     text-align: left;
@@ -82,4 +98,8 @@ button:focus {
 .el-loading-spinner .el-loading-text {
     font-size: 12px;
     margin-top: 10px;
+}
+
+.min-h-screen {
+    min-height: 100vh;
 }

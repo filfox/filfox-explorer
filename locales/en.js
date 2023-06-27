@@ -393,6 +393,9 @@ export default {
     eventLogs: {
       title: 'Event Logs'
     },
+    tokenTransfer: {
+      title: 'Token Transactions'
+    },
     message: {
       title: 'Message Details',
       replaced: 'Message {oldCid} was replaced by {cid}',
@@ -401,6 +404,7 @@ export default {
         overview: 'Overview',
         logs: 'Logs',
         internaltransfer: 'Internal Transfer',
+        tokenTransfer: 'Token Transfer',
         transfer: 'Transactions',
         others: 'Others'
       },

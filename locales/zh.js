@@ -374,6 +374,9 @@ export default {
     eventLogs: {
       title: '事件日志'
     },
+    tokenTransfer: {
+      title: '代币交易'
+    },
     message: {
       title: '消息详情',
       replaced: '消息 {oldCid} 已被 {cid} 覆盖',
@@ -382,6 +385,7 @@ export default {
         overview: '消息概览',
         logs: '交易事件',
         internaltransfer: '内部转账',
+        tokenTransfer: 'Token 转账',
         transfer: '转账信息',
         others: '其他信息'
       },

@@ -208,7 +208,7 @@
       </div>
     </div>
     <MessageTransfers v-if="message.transfers && message.transfers.length" :message="message" />
-
+    <MessageTokenTransfers v-if="message.tokenTransfers && message.tokenTransfers.length" :message="message" />
     <div class="rounded-md my-4 pb-4 bg-white">
       <p class="pl-8 py-3 border-b border-background">
         {{ $t('detail.message.modules.others') }}
