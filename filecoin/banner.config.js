@@ -7,11 +7,6 @@ export const enBanners = [
     mobileImg: require('~/assets/img/home/banner-en-FileBunnies-mobile.png')
   },
   {
-    url: 'https://dspa-asia.io',
-    img: require('~/assets/img/home/banner-zh-dspa.png'),
-    mobileImg: require('~/assets/img/home/banner-zh-dspa-mobile.png')
-  },
-  {
     url: 'https://minefi.io',
     img: require('~/assets/img/home/banner-en-minefi.jpeg'),
     mobileImg: require('~/assets/img/home/banner-en-minefi-mobile.jpeg')
@@ -58,11 +53,6 @@ export const zhBanners = [
     url: 'https://FileBunnies.xyz',
     img: require('~/assets/img/home/banner-en-FileBunnies.png'),
     mobileImg: require('~/assets/img/home/banner-en-FileBunnies-mobile.png')
-  },
-  {
-    url: 'https://dspa-asia.io',
-    img: require('~/assets/img/home/banner-zh-dspa.png'),
-    mobileImg: require('~/assets/img/home/banner-zh-dspa-mobile.png')
   },
   {
     url: 'https://minefi.io',
