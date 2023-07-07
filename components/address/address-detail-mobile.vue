@@ -168,7 +168,7 @@
           <el-radio-button :label="1">
             {{ $t('detail.transfer.title') }}
           </el-radio-button>
-          <el-radio-button v-if="/evm|ethaccount|placeholder/i.test(addressData.actor)" :label="4">
+          <el-radio-button v-if="addressData.ethAddress" :label="4">
             {{ $t('detail.tokenTransfer.title') }}
           </el-radio-button>
           <el-radio-button v-if="addressData.actor == 'evm'" :label="2">

@@ -3,7 +3,7 @@
     <div class="flex items-center text-base">
       <span class="mr-2 font-medium">{{ $t('detail.address.normal.title') }}</span>
       <AddressLink :id="addressData.address" />
-      <AddressTag :tag="addressData.tag" type="pc" :style="{maxWidth:'66%'}" />
+      <AddressTag :tag="addressData.tag" type="pc" :style="{ maxWidth: '66%' }" />
       <MinerAppGuide />
     </div>
 
@@ -11,7 +11,7 @@
       <div class="flex-1 mr-4 text-sm bg-white rounded-md">
         <div class="flex py-4 pl-8 font-medium border-b border-background">
           <span class="mr-6">{{ $t('detail.address.normal.headers.overview') }}</span>
-          <template v-if="addressData.actor == 'evm'">
+          <template v-if="addressData.actor == 'evm' && contract.address">
             <span v-if="contract.verified" class="flex items-center font-light">
               <img src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 mr-1.5">
               <span class="text-sm">{{ $t('detail.contract.codeVerified') }}</span>
@@ -182,7 +182,7 @@
           <el-radio-button :label="1">
             {{ $t('detail.transfer.title') }}
           </el-radio-button>
-          <el-radio-button v-if="/evm|ethaccount|placeholder/i.test(addressData.actor)" :label="4">
+          <el-radio-button v-if="addressData.ethAddress" :label="4">
             {{ $t('detail.tokenTransfer.title') }}
           </el-radio-button>
           <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
