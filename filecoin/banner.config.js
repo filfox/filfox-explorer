@@ -25,6 +25,11 @@ export const enBanners = [
     url: 'https://www.ndlabs.io/#/',
     img: require('~/assets/img/home/banner-en-ndlabs.jpeg'),
     mobileImg: require('~/assets/img/home/banner-en-ndlabs-mobile.jpeg')
+  },
+  {
+    url: 'https://forms.gle/iXpeK4b4Z7sqhsiXA',
+    img: require('~/assets/img/home/banner-en-Filscan.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-en-Filscan.jpeg')
   }
 ]
 
@@ -53,5 +58,10 @@ export const zhBanners = [
     url: 'https://www.ndlabs.io/#/',
     img: require('~/assets/img/home/banner-en-ndlabs.jpeg'),
     mobileImg: require('~/assets/img/home/banner-en-ndlabs-mobile.jpeg')
+  },
+  {
+    url: 'https://forms.gle/iXpeK4b4Z7sqhsiXA',
+    img: require('~/assets/img/home/banner-zh-Filscan.jpeg'),
+    mobileImg: require('~/assets/img/home/banner-zh-Filscan.jpeg')
   }
 ]
