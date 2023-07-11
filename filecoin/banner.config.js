@@ -30,6 +30,11 @@ export const enBanners = [
     url: 'https://forms.gle/iXpeK4b4Z7sqhsiXA',
     img: require('~/assets/img/home/banner-en-Filscan.jpeg'),
     mobileImg: require('~/assets/img/home/banner-en-mobile-Filscan.png')
+  },
+  {
+    url: 'https://www.glif.io',
+    img: require('~/assets/img/home/banner-en-glif.svg'),
+    mobileImg: require('~/assets/img/home/banner-en-mobile-glif.svg')
   }
 ]
 
@@ -63,5 +68,10 @@ export const zhBanners = [
     url: 'https://forms.gle/iXpeK4b4Z7sqhsiXA',
     img: require('~/assets/img/home/banner-zh-Filscan.jpeg'),
     mobileImg: require('~/assets/img/home/banner-zh-mobile-Filscan.png')
+  },
+  {
+    url: 'https://www.glif.io',
+    img: require('~/assets/img/home/banner-en-glif.svg'),
+    mobileImg: require('~/assets/img/home/banner-en-mobile-glif.svg')
   }
 ]
