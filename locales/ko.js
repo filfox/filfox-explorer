@@ -892,6 +892,8 @@ export default {
       debugLog: '컴파일러 디버그 로그',
       complierVersion: '컴파일러 버전',
       optimizationEnabled: '최적화 오픈',
+      evmVersion: 'Evm 버전',
+      viaIR: 'Via IR',
       runs: '실행（최적화기）',
       argsUsed: '사용된 생성자 매개변수',
       contractName: '계약 이름',

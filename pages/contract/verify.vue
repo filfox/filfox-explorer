@@ -47,54 +47,93 @@
     </div>
 
     <template v-if="activeTab == 1">
-      <div class="rounded-none md:rounded-md p-4 mt-5 bg-white flex flex-col md:flex-row">
-        <div class="w-full md:w-1/4 pr-0 md:pr-2">
-          <p class="text-base md:text-lg">
-            {{ $t('contract.verify.contractAddress') }}
-          </p>
-          <input
-            v-model="contractAddress"
-            readonly
-            class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-black"
-            :placeholder="$t('contract.guide.pleaseCenterAddress')"
-          >
-        </div>
-        <div class="w-full md:w-1/4 px-0 md:px-2 mt-4 md:mt-0">
-          <p class="text-base md:text-lg">
-            {{ $t('contract.verify.complier') }}
-          </p>
-          <input
-            v-model="compilerVersion"
-            readonly
-            class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
-          >
-        </div>
-        <div class="w-full md:w-1/4 pl-0 md:px-2 mt-4 md:mt-0">
-          <p class="text-base md:text-lg">
-            {{ $t('contract.verify.optimizations') }}
-          </p>
-          <el-select
-            v-model="optimize"
-            :placeholder="$t('contract.guide.pleaseSelect')"
-            class="optimize-select w-full mt-3"
-          >
-            <el-option
-              v-for="{ label, value } in optimizations"
-              :key="label"
-              :label="label"
-              :value="value"
+      <div class="rounded-none md:rounded-md p-4 mt-5 bg-white">
+        <div class="flex flex-col md:flex-row">
+          <div class="w-full md:w-1/4 pr-0 md:pr-2">
+            <p class="text-base md:text-lg">
+              {{ $t('contract.verify.contractAddress') }}
+            </p>
+            <input
+              v-model="contractAddress"
+              readonly
+              class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-2 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-black"
+              :placeholder="$t('contract.guide.pleaseCenterAddress')"
             >
-            </el-option>
-          </el-select>
+          </div>
+          <div class="w-full md:w-1/4 px-0 md:px-2 mt-4 md:mt-0">
+            <p class="text-base md:text-lg">
+              {{ $t('contract.verify.complier') }}
+            </p>
+            <input
+              v-model="compilerVersion"
+              readonly
+              class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-2 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
+            >
+          </div>
+          <div class="w-full md:w-1/4 pl-0 md:px-2 mt-4 md:mt-0">
+            <p class="text-base md:text-lg">
+              {{ $t('contract.verify.evmVersion') }}
+            </p>
+            <el-select
+              v-model="evmVersion"
+              class="optimize-select w-full mt-2"
+            >
+              <el-option
+                v-for="{ label, value } in evmVersions"
+                :key="label"
+                :label="label"
+                :value="value"
+              >
+              </el-option>
+            </el-select>
+          </div>
+          <div class="w-full md:w-1/4 pl-0 md:pl-2 mt-4 md:mt-0">
+            <p class="text-base md:text-lg">
+              {{ $t('contract.verify.viaIR') }}
+            </p>
+            <el-select
+              v-model="viaIR"
+              class="optimize-select w-full mt-2"
+            >
+              <el-option
+                v-for="{ label, value } in viaIROptions"
+                :key="label"
+                :label="label"
+                :value="value"
+              >
+              </el-option>
+            </el-select>
+          </div>
         </div>
-        <div class="w-full md:w-1/4 px-0 md:pl-2 mt-4 md:mt-0">
-          <p class="text-base md:text-lg">
-            {{ $t('contract.verify.runs') }}
-          </p>
-          <input
-            v-model="optimizeRuns"
-            class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-3 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
-          >
+
+        <div class="flex flex-col md:flex-row lg:mt-5">
+          <div class="w-full md:w-1/4 pl-0 md:pr-2 mt-4 md:mt-0">
+            <p class="text-base md:text-lg">
+              {{ $t('contract.verify.optimizations') }}
+            </p>
+            <el-select
+              v-model="optimize"
+              :placeholder="$t('contract.guide.pleaseSelect')"
+              class="optimize-select w-full mt-2"
+            >
+              <el-option
+                v-for="{ label, value } in optimizations"
+                :key="label"
+                :label="label"
+                :value="value"
+              >
+              </el-option>
+            </el-select>
+          </div>
+          <div class="w-full md:w-1/4 px-0 md:px-2 mt-4 md:mt-0">
+            <p class="text-base md:text-lg">
+              {{ $t('contract.verify.runs') }}
+            </p>
+            <input
+              v-model="optimizeRuns"
+              class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-2 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
+            >
+          </div>
         </div>
       </div>
 
@@ -244,7 +283,27 @@ export default {
         { label: 'Yes', value: true },
         { label: 'No', value: false }
       ],
-      verifiedResult: {}
+      verifiedResult: {},
+      viaIR: true,
+      viaIROptions: [
+        { label: 'Yes', value: true },
+        { label: 'No', value: false }
+      ],
+      evmVersion: 'default',
+      evmVersions: [
+        { label: 'Default', value: 'default' },
+        { label: 'Homestead', value: 'homestead' },
+        { label: 'TangerineWhistle', value: 'tangerineWhistle' },
+        { label: 'SpuriousDragon', value: 'spuriousDragon' },
+        { label: 'Byzantium', value: 'byzantium' },
+        { label: 'Constantinople', value: 'constantinople' },
+        { label: 'Petersburg', value: 'petersburg' },
+        { label: 'Istanbul', value: 'istanbul' },
+        { label: 'Berlin', value: 'berlin' },
+        { label: 'London', value: 'london' },
+        { label: 'Paris', value: 'paris' },
+        { label: 'Shanghai', value: 'shanghai' }
+      ]
     }
   },
   computed: {
