@@ -68,9 +68,10 @@
 
     <div class="flex items-center text-center h-16">
       <el-pagination
-        layout="prev, pager, next, jumper"
+        layout="prev, pager, next"
         class="mx-auto"
         :total="total"
+        :pager-count="5"
         :page-size="pageSize"
         :current-page="page + 1"
         @current-change="p => page = p - 1"
