@@ -210,6 +210,8 @@ import SC from '@/assets/img/token/sc.png'
 import THS from '@/assets/img/token/ths.png'
 import USDT from '@/assets/img/token/usdt.png'
 import WFIL from '@/assets/img/token/wfil.png'
+import FIL from '@/assets/img/token/fil.png'
+import DOGE from '@/assets/img/token/doge.png'
 import DEFAULT from '@/assets/img/token/default.png'
 
 export default {
@@ -232,8 +234,10 @@ export default {
       pageSize: 20,
       loading: false,
       tokenIcon: {
+        FIL,
         FILADOGE,
         FILEDOGE,
+        DOGE,
         SC,
         THS,
         USDT,
