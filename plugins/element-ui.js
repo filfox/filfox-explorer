@@ -28,6 +28,7 @@ import Checkbox from 'element-ui/lib/checkbox'
 import Upload from 'element-ui/lib/upload'
 import Tooltip from 'element-ui/lib/tooltip'
 import Tag from 'element-ui/lib/tag'
+import Notification from 'element-ui/lib/notification'
 
 Vue.use(Tag)
 Vue.use(Tooltip)
@@ -59,3 +60,4 @@ Vue.use(CarouselItem)
 Vue.use(Loading.directive)
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$message = Message
+Vue.prototype.$notify = Notification;

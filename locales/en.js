@@ -21,7 +21,8 @@ export default {
     submit: 'Submit',
     backToHome: 'Back to home page',
     currentNetwork: 'Current network: ',
-    openApp: 'DOWNLOAD/OPEN APP'
+    openApp: 'DOWNLOAD/OPEN APP',
+    select: 'Select'
   },
   nav: {
     home: {
@@ -245,7 +246,46 @@ export default {
         balanceRate: 'Balance Ratio'
       }
     },
-    partner: 'Partners'
+    partner: 'Partners',
+    dappRanks: {
+      title: 'FVEM TOP Dapps(24H)',
+      tableFilterOptions: {
+        sort: {
+          uniqueAdders: 'Number of Unique Addressed',
+          contractBalance: 'Contract Balance',
+          transactionBalance: 'Transaction Balance'
+        },
+        category: {
+          all: 'All',
+          defi: 'Defi',
+          nft: 'NFT',
+          lsd: 'LSD',
+          marketPlace: 'MarketPlace',
+          game: 'Game',
+          did: 'DID',
+          others: 'Other'
+        },
+        time: {
+          day: '24H',
+          week: '7D',
+          month: '30D',
+          year: '1Y'
+        }
+      },
+      tableHeaders: {
+        name: 'Name',
+        category: 'Category',
+        contractBalance: 'Contract Balance',
+        uniqueAdders: 'Number of Unique Addressed',
+        transactionAmount: 'Transaction Amount',
+        transactionBalance: 'Transaction Balance'
+      },
+      titleHeader: {
+        sortBy: 'Sort By',
+        category: 'Category',
+        time: 'Time'
+      }
+    }
   },
   blockchain: {
     block: {
@@ -727,7 +767,8 @@ export default {
       tools: 'Tools',
       wiki: 'Wiki',
       notify: 'In-station notification',
-      fevm: 'FEVM Stats'
+      fevm: 'FEVM Stats',
+      dapp: 'FEVM Dapp Status'
     },
     description: {
       default: 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'
@@ -942,5 +983,14 @@ export default {
     markAllRead: 'Mark all as read',
     hideReaded: 'Hide readed notifications',
     cancelHideReaded: 'Unhide'
+  },
+  dapp: {
+    accessDapp: 'Access Dapp',
+    share: 'Share',
+    category: 'Category',
+    description: 'Description',
+    data: 'Data',
+    social: 'Social',
+    copyLink: 'Copy Link'
   }
 }

@@ -21,7 +21,8 @@ export default {
     submit: '确定并提交',
     backToHome: '回到首页',
     currentNetwork: '当前网络:',
-    openApp: '下载APP/APP内打开'
+    openApp: '下载APP/APP内打开',
+    select: '请选择'
   },
   nav: {
     home: {
@@ -226,7 +227,46 @@ export default {
         balanceRate: '余额占比'
       }
     },
-    partner: '合作伙伴'
+    partner: '合作伙伴',
+    dappRanks: {
+      title: 'FVEM TOP Dapps(24H)',
+      tableFilterOptions: {
+        sort: {
+          uniqueAdders: '独立地址数',
+          contractBalance: '合约余额',
+          transactionBalance: '交易额'
+        },
+        category: {
+          all: '全部',
+          defi: 'Defi',
+          nft: 'NFT',
+          lsd: 'LSD',
+          marketPlace: 'MarketPlace',
+          game: 'Game',
+          did: 'DID',
+          others: '其他'
+        },
+        time: {
+          day: '24小时',
+          week: '7日',
+          month: '30日',
+          year: '1年'
+        }
+      },
+      tableHeaders: {
+        name: '名称',
+        category: '类别',
+        contractBalance: '合约余额',
+        uniqueAdders: '独立地址数',
+        transactionAmount: '交易数量',
+        transactionBalance: '交易额'
+      },
+      titleHeader: {
+        sortBy: '排序',
+        category: '类别',
+        time: '时间'
+      }
+    }
   },
   blockchain: {
     block: {
@@ -709,7 +749,8 @@ export default {
       tools: '常用工具',
       wiki: '知识库',
       notify: '站内通知',
-      fevm: 'FEVM 统计'
+      fevm: 'FEVM 统计',
+      dapp: 'FEVM Dapp Status'
     },
     description: {
       default: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，为用户稳定地提供 Filecoin 相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。'
@@ -924,5 +965,14 @@ export default {
     markAllRead: '全标记为已读',
     hideReaded: '隐藏已读消息',
     cancelHideReaded: '取消隐藏'
+  },
+  dapp: {
+    accessDapp: '访问Dapp',
+    share: '分享',
+    category: '类型',
+    description: '描述',
+    data: '数据',
+    social: '社交',
+    copyLink: '复制链接'
   }
 }

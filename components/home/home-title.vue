@@ -11,6 +11,7 @@
     <img v-else-if="type == 'fvmOverview'" src="~/assets/img/home/fvmOverview.svg" alt="icon" class="image">
     <img v-else-if="type == 'fvmTopContracts'" src="~/assets/img/home/fvmTopContracts.svg" alt="icon" class="image">
     <img v-else-if="type == 'verifiedContracts'" src="~/assets/img/home/verifiedContracts.svg" alt="icon" class="image">
+    <img v-else-if="type == 'dappRanks'" src="~/assets/img/home/dapp.svg" alt="icon" class="image">
     <div class="ml-2 text-sm lg:text-base">
       {{ $t(`home.${type}.title`) }}
     </div>
