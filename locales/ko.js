@@ -21,7 +21,8 @@ export default {
     submit: '제출',
     backToHome: '홈페이지로 돌아 가기',
     currentNetwork: '현재 네트워크: ',
-    openApp: 'APP 다운로드/열기'
+    openApp: 'APP 다운로드/열기',
+    select: '선택하다'
   },
   nav: {
     home: {
@@ -242,7 +243,46 @@ export default {
         balanceRate: '잔액 비율'
       }
     },
-    partner: '파트너'
+    partner: '파트너',
+    dappRanks: {
+      title: 'FVEM TOP Dapps(24H)',
+      tableFilterOptions: {
+        sort: {
+          uniqueAdders: '독립 주소 수',
+          contractBalance: '계약 잔액',
+          transactionBalance: '거래액'
+        },
+        category: {
+          all: '전체',
+          defi: 'Defi',
+          nft: 'NFT',
+          lsd: 'LSD',
+          marketPlace: 'MarketPlace',
+          game: '게임',
+          did: 'DID',
+          others: '기타'
+        },
+        time: {
+          day: '24시간',
+          week: '7일',
+          month: '30일',
+          year: '1년'
+        }
+      },
+      tableHeaders: {
+        name: '이름',
+        category: '카테고리',
+        contractBalance: '계약 잔액',
+        uniqueAdders: '독립 주소 수',
+        transactionAmount: '거래 수량',
+        transactionBalance: '거래액'
+      },
+      titleHeader: {
+        sortBy: '정렬',
+        category: '카테고리',
+        time: '시간'
+      }
+    }
   },
   blockchain: {
     block: {
@@ -705,7 +745,8 @@ export default {
       tools: '도구',
       wiki: '위키',
       notify: '사이트 내 알림',
-      fevm: 'FEVM 통계'
+      fevm: 'FEVM 통계',
+      dapp: 'FEVM Dapp Status'
     },
     description: {
       default: 'Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 파일코인과 관련된 채굴 랭킹, 블록 데이터 조회, 차트 등을 제공합니다.'
@@ -922,5 +963,14 @@ export default {
     markAllRead: '모두 읽음으로 표시',
     hideReaded: '읽기 알림 숨기기',
     cancelHideReaded: '숨기기 취소'
+  },
+  dapp: {
+    accessDapp: 'Dapp 접근',
+    share: '공유',
+    category: '카테고리',
+    description: '설명',
+    data: '데이터',
+    social: '소셜',
+    copyLink: '링크 복사'
   }
 }

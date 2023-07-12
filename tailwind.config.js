@@ -11,6 +11,14 @@ module.exports = {
   corePlugins: {
   },
   theme: {
+    inset: {
+      0: '0rem',
+      1: '0.5rem',
+      2: '1rem',
+      3: '1.5rem',
+      3.5: '1.75rem',
+      4: '2rem'
+    },
     extend: {
       colors: {
         main: '#1a4fc9',
@@ -37,14 +45,19 @@ module.exports = {
         success: '#5ac6a8',
         card: '#F8F9FA',
         cardHighlight: '#eef1f8',
+        increaseNum: '#7FCB0A',
+        decreaseNum: '#DE1B0B',
+        iconShadow: '#EEF5FE',
         customBlue: {
           100: '#F1F6FA',
-          200: '#F8FAFD'
+          200: '#F8FAFD',
+          300: '#1950C9'
         },
         customGray: {
           100: '#F1F6FA',
           200: '#F7F8F9',
           250: '#F4F6FC',
+          270: '#F4F4F4',
           300: '#E3E7EC',
           350: '#B6BDC7',
           375: '#979797',
@@ -52,7 +65,8 @@ module.exports = {
           450: '#748094',
           500: '#6F7B88',
           550: '#748094',
-          600: '#3F4449'
+          600: '#3F4449',
+          650: '#606264'
         }
       },
       width: {
@@ -80,27 +94,48 @@ module.exports = {
         '7/12': '58.3%',
         '5/8': '62.5%',
         '7/8': '87.5%',
+        9: '2.25rem',
         26: '6.5rem',
         27: '6.75rem',
         28: '7rem',
+        29: '7.25rem',
         30: '7.5rem',
         36: '9rem',
         38: '9.5rem',
-        40: '10rem'
+        70: '20rem'
       },
       height: {
         7: '1.75rem',
+        9: '2.25rem',
         11: '2.75rem',
+        12: '3rem',
+        13: '3.25rem',
+        14: '3.5rem',
+        15: '3.75rem',
+        29: '7rem',
         30: '7.5rem',
+        32: '8rem',
+        33: '8.5rem',
+        34: '9rem',
         68: '17rem',
+        69: '17.5rem',
+        70: '18rem',
+        72: '19rem',
+        74: '20rem',
         136: '34rem'
+      },
+      margin: {
+        2.5: '0.6rem',
+        3.5: '0.9rem'
       },
       maxHeight: {
         100: '25rem',
         200: '50rem'
       },
       boxShadow: {
-        container: '2px 2px 20px rgb(0 0 0 / 60%)'
+        container: '2px 2px 20px rgb(0 0 0 / 60%)',
+        card: '0px 4px 4px 0px #0000000F',
+        panel: '0px 4px 10px 0px #00000014'
       },
       spacing: {
         1.5: '0.375rem',
@@ -111,7 +146,12 @@ module.exports = {
         '-1': '-0.25rem',
         '-2': '-0.5rem',
         '-4': '-1rem',
+        '-6': '-1.5rem',
         '-8': '-2rem'
+      },
+      lineHeight: {
+        '12': '3rem',
+        '13': '3.5rem'
       }
     },
     minWidth: {
