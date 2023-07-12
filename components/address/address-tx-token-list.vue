@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="loading">
     <div class="mx-8 hidden lg:block">
       <div class="flex items-center justify-between border-b border-background">
         <p class="flex items-center h-12 text-sm">
@@ -13,7 +13,7 @@
         :el-select-options="{ size: 'mini' }"
       /> -->
       </div>
-      <table v-if="!loading" class="w-full table-fixed">
+      <table class="w-full table-fixed">
         <thead class="m-2 text-sm text-gray-600">
           <tr class="h-8">
             <th class="sticky top-0 z-10 bg-white w-1/8">
@@ -76,17 +76,21 @@
               </el-tag>
             </td>
             <td>
-              <template v-if="/erc20/i.test(transfer.type)">
-                {{ transfer.value | coin(transfer.decimals) }}
-                <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
+              <div v-if="/erc20/i.test(transfer.type)" class="flex items-center">
+                <img :src="getTokenIcon(transfer.symbol)" alt="warn" class="w-4 h-4 mr-1.5">
+                {{ transfer.value | parseToken(transfer.decimals, 6) }}
+                <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main ml-1 text-xs font-mono">
                   {{ transfer.symbol }}
                 </NuxtLink>
-              </template>
-              <span v-else class="text-xs">
-                <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
-                  {{ transfer.symbol }}
-                </NuxtLink>
-                <div class="font-light">{{ transfer.name }}</div>
+              </div>
+              <span v-else class="text-xs flex items-center">
+                <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
+                <div>
+                  <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
+                    {{ transfer.symbol }}
+                  </NuxtLink>
+                  <div class="font-light">{{ transfer.name }}</div>
+                </div>
               </span>
             </td>
           </tr>
@@ -166,14 +170,16 @@
           <p class="text-xs text-gray-800">
             Token
           </p>
-          <p class="text-xs text-gray-800">
+          <p class="text-xs text-gray-800 flex items-center">
             <template v-if="/erc20/i.test(transfer.type)">
-              {{ transfer.value | coin(transfer.decimals) }}
+              <img :src="getTokenIcon(transfer.symbol)" alt="warn" class="w-4 h-4 mr-1.5">
+              {{ transfer.value | parseToken(transfer.decimals, 6) }}
               <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
               </NuxtLink>
             </template>
             <template v-else>
+              <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
               <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
               </NuxtLink> / {{ transfer.name }}
@@ -198,6 +204,14 @@
 </template>
 
 <script>
+import FILADOGE from '@/assets/img/token/filadoge.png'
+import FILEDOGE from '@/assets/img/token/filedoge.png'
+import SC from '@/assets/img/token/sc.png'
+import THS from '@/assets/img/token/ths.png'
+import USDT from '@/assets/img/token/usdt.png'
+import WFIL from '@/assets/img/token/wfil.png'
+import DEFAULT from '@/assets/img/token/default.png'
+
 export default {
   props: {
     address: {
@@ -216,7 +230,15 @@ export default {
       total: 0,
       page: 0,
       pageSize: 20,
-      loading: false
+      loading: false,
+      tokenIcon: {
+        FILADOGE,
+        FILEDOGE,
+        SC,
+        THS,
+        USDT,
+        WFIL
+      }
     }
   },
 
@@ -236,6 +258,10 @@ export default {
   },
 
   methods: {
+    getTokenIcon(symbol) {
+      return this.tokenIcon[symbol] || DEFAULT
+    },
+
     async getTokenTxList() {
       if (!this.address) return
 
