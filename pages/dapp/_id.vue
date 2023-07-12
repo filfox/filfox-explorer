@@ -26,9 +26,7 @@
           </div>
         </div>
         <div class="static lg:absolute right-2 bottom-2">
-          <nuxt-link :to="dapp.officialWebSite || ''">
-            <el-button v-if="dapp.officialWebSite" type="primary" class="bg-customBlue-300 text-white border-transparent mr-2">{{ this.$t('dapp.accessDapp') }}</el-button>
-          </nuxt-link>
+          <el-button v-if="dapp.officialWebSite" @click="accessDapp" type="primary" class="bg-customBlue-300 text-white border-transparent mr-2">{{ this.$t('dapp.accessDapp') }}</el-button>
           <el-button type="primary" @click="openShare" class="bg-customBlue-300 text-white border-transparent">{{ this.$t('dapp.share') }}</el-button>
         </div>
       </div>
@@ -177,6 +175,9 @@ export default {
         message: '复制成功',
         type: 'success'
       });
+    },
+    accessDapp() {
+      window.open(this.dapp.officialWebSite, "_blank");
     }
   },
   computed: {
