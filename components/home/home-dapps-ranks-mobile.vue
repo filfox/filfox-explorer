@@ -31,7 +31,7 @@
         <ChangeRate class="text-right text-black" :data="formatNum(dapp.invokeCount.data)" :changeRate="dapp.invokeCount.changeRate" />
         <span>{{ $t('home.dappRanks.tableHeaders.transactionBalance') }}</span>
         <ChangeRate class="text-right text-black" :data="formatNum(dapp.totalFee.data, true)" :changeRate="dapp.totalFee.changeRate" />
-        <div v-if="index < dappList.dappList.length-1" class="border-b"></div>
+        <div v-if="index < dappList.dappList.length-1" class="border-b col-span-2 mb-2"></div>
       </div>
     </div>
     <div v-if="dappListLoading" v-loading="dappListLoading" class="flex h-24"></div>
