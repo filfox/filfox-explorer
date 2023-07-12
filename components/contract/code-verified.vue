@@ -34,7 +34,7 @@
           <div class="w-48 text-customGray-450">
             {{ $t('detail.contract.otherSettings') }}
           </div>
-          <span class="text-right md:text-left">Default evmVersion, {{ contract.license || 'None license' }}</span>
+          <span class="text-right md:text-left capitalize">{{ contract.evmVersion }} evmVersion, {{ contract.viaIR }} viaIR, {{ contract.license || 'None license' }}</span>
         </div>
       </div>
     </div>

@@ -92,6 +92,17 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="flex items-center text-center h-16">
+        <el-pagination
+          layout="prev, pager, next, jumper"
+          class="mx-auto"
+          :total="total"
+          :page-size="pageSize"
+          :current-page="page + 1"
+          @current-change="p => page = p - 1"
+        />
+      </div>
     </div>
 
     <div class="block lg:hidden">
@@ -170,17 +181,18 @@
           </p>
         </div>
       </div>
-    </div>
 
-    <div class="flex items-center text-center h-16">
-      <el-pagination
-        layout="prev, pager, next, jumper"
-        class="mx-auto"
-        :total="total"
-        :page-size="pageSize"
-        :current-page="page + 1"
-        @current-change="p => page = p - 1"
-      />
+      <div class="flex items-center text-center h-16">
+        <el-pagination
+          layout="prev, pager, next"
+          class="mx-auto"
+          :total="total"
+          :pager-count="5"
+          :page-size="pageSize"
+          :current-page="page + 1"
+          @current-change="p => page = p - 1"
+        />
+      </div>
     </div>
   </div>
 </template>

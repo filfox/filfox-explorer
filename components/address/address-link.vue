@@ -1,7 +1,7 @@
 <template>
   <span>
     <span v-if="!$slots.default">
-      <span v-if="plain || !id" class="plain">
+      <span v-if="plain || !id" class="plain break-all">
         {{ formatString }}
         <a :href="`${FNS}/domain/` + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
       </span>

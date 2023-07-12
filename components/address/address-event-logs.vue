@@ -63,9 +63,21 @@
         </dd>
       </dl>
     </div>
-    <div class="flex items-center text-center h-16">
+
+    <div class="hidden lg:flex items-center text-center h-16">
       <el-pagination
         layout="prev, pager, next, jumper"
+        :current-page="page + 1"
+        :page-size="pageSize"
+        :total="totalCount"
+        class="mx-auto flex justify-center flex-wrap"
+        @current-change="p => page = p - 1"
+      />
+    </div>
+
+    <div class="flex lg:hidden items-center text-center h-16">
+      <el-pagination
+        layout="prev, pager, next"
         :current-page="page + 1"
         :page-size="pageSize"
         :pager-count="5"

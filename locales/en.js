@@ -955,6 +955,8 @@ export default {
       debugLog: 'Compiler debug log',
       complierVersion: 'Complier Version',
       optimizationEnabled: 'Optimization Enabled',
+      evmVersion: 'Evm Version',
+      viaIR: 'Via IR',
       runs: 'Runs(Optimizer)',
       argsUsed: 'Consturctor Arguments Used',
       contractName: 'Contract Name',
