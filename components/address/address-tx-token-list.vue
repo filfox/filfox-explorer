@@ -77,7 +77,7 @@
             </td>
             <td>
               <div v-if="/erc20/i.test(transfer.type)" class="flex items-center">
-                <img :src="getTokenIcon(transfer.symbol)" alt="warn" class="w-4 h-4 mr-1.5">
+                <img :src="transfer.tokenIcon" alt="warn" class="w-4 h-4 mr-1.5">
                 {{ transfer.value | parseToken(transfer.decimals, 6) }}
                 <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main ml-1 text-xs font-mono">
                   {{ transfer.symbol }}
@@ -172,7 +172,7 @@
           </p>
           <p class="text-xs text-gray-800 flex items-center">
             <template v-if="/erc20/i.test(transfer.type)">
-              <img :src="getTokenIcon(transfer.token)" alt="warn" class="w-4 h-4 mr-1.5">
+              <img :src="transfer.tokenIcon" alt="warn" class="w-4 h-4 mr-1.5">
               {{ transfer.value | parseToken(transfer.decimals, 6) }}
               <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
@@ -204,14 +204,6 @@
 </template>
 
 <script>
-import FILADOGE from '@/assets/img/token/filadoge.png'
-import FILEDOGE from '@/assets/img/token/filedoge.png'
-import SC from '@/assets/img/token/sc.png'
-import THS from '@/assets/img/token/ths.png'
-import CELERUSDT from '@/assets/img/token/celerusdt.png'
-import WFIL from '@/assets/img/token/wfil.png'
-import STFIL from '@/assets/img/token/stfil.png'
-import DEFAULT from '@/assets/img/token/default.png'
 import { TOKEN_ICONS } from '@/filecoin/filecoin.config'
 
 export default {
@@ -232,16 +224,7 @@ export default {
       total: 0,
       page: 0,
       pageSize: 20,
-      loading: false,
-      iconImages: {
-        FILADOGE,
-        FILEDOGE,
-        SC,
-        THS,
-        CELERUSDT,
-        WFIL,
-        STFIL
-      }
+      loading: false
     }
   },
 
@@ -261,17 +244,16 @@ export default {
   },
 
   methods: {
-    getTokenIcon(token) {
-      return this.iconImages[TOKEN_ICONS[token]] || DEFAULT
-    },
-
     async getTokenTxList() {
       if (!this.address) return
 
       const params = { pageSize: this.pageSize, page: this.page }
       if (this.trans !== 'All') params.type = this.trans
+
       this.loading = true
-      this.transferList = await this.$axios.$get(`/address/${this.address}/token-transfers`, { params })
+      const res = await this.$axios.$get(`/address/${this.address}/token-transfers`, { params })
+      res.transfers = res.transfers.map(t => ({ ...t, tokenIcon: TOKEN_ICONS[t.token] || TOKEN_ICONS.DEFAULT }))
+      this.transferList = res
       this.loading = false
       this.total = this.transferList.totalCount
     }
