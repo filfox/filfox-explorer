@@ -11,10 +11,9 @@ const getMedalSrc = (ranking) => {
   }
 }
 
-const formatNum = function(num, isCurrency=false) {
+const formatNum = function(num) {
   const formatter = new Intl.NumberFormat( 'en-US', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short" });
-  const newNum = formatter.format(Number(num));
-  return isCurrency ? '$'+newNum : newNum;
+  return formatter.format(Number(num));
 }
 
 export { getMedalSrc, formatNum };

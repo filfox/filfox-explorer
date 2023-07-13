@@ -1,6 +1,6 @@
 <template>
-  <div class="mx-64 mt-5">
-    <div class="bg-white px-10 pb-8 rounded relative">
+  <div class="container mx-auto flex-grow">
+    <div class="bg-white px-10 pb-8 rounded relative my-4">
       <div class="font-bold h-13 leading-13">Dapp Details</div>
       <div class="border-customBackground border-solid border-b absolute left-1 right-1 w-auto"></div>
       <div class="rounded shadow-panel flex items-center p-5 relative lg:flex-row flex-col mt-8 relative">
@@ -56,7 +56,7 @@
         <tbody class="text-center text-sm">
           <tr class="border-b border-background h-10">
             <td>
-              <ChangeRate :data="formatNum(dapp.balance.data, true)" :changeRate="dapp.balance.changeRate" />
+              <ChangeRate :data="dapp.balance.data | filecoin(2)" :changeRate="dapp.balance.changeRate" />
             </td>
             <td>
               <ChangeRate :data="formatNum(dapp.userCount.data)" :changeRate="dapp.userCount.changeRate" />
@@ -65,7 +65,7 @@
               <ChangeRate :data="formatNum(dapp.invokeCount.data)" :changeRate="dapp.invokeCount.changeRate" />
             </td>
             <td>
-              <ChangeRate :data="formatNum(dapp.totalFee.data, true)" :changeRate="dapp.totalFee.changeRate" />
+              <ChangeRate :data="dapp.totalFee.data | filecoin(2)" :changeRate="dapp.totalFee.changeRate" />
             </td>
           </tr>
         </tbody>
@@ -115,7 +115,7 @@ import { getMedalSrc, formatNum } from'@/utils/dapp';
 export default {
   async asyncData({ $axios, error, params }) {
     try {
-      const dapp = await $axios.$get(`/stats/dapp/${params.id}`)
+      const dapp = await $axios.$get(`http://36.189.234.235:61000/stats/dapp/${params.id}`)
       return { dapp }
     } catch (err) {
       if (err?.response) {
@@ -163,7 +163,7 @@ export default {
       this.getDappList(value);
     },
     async getDappList(time) {
-      this.dapp = await this.$axios.$get(`/stats/dapp/${this.id}`, { params: {days: time} });
+      this.dapp = await this.$axios.$get(`http://36.189.234.235:61000/stats/dapp/${this.id}`, { params: {days: time} });
     },
     openShare() {
       this.shareVisible = true;

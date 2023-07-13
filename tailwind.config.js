@@ -102,6 +102,9 @@ module.exports = {
         30: '7.5rem',
         36: '9rem',
         38: '9.5rem',
+        68: '19.25rem',
+        69: '19.5rem',
+        69.5: '19.75rem',
         70: '20rem'
       },
       height: {
@@ -112,6 +115,8 @@ module.exports = {
         13: '3.25rem',
         14: '3.5rem',
         15: '3.75rem',
+        25: '6.25rem',
+        27: '6.75rem',
         29: '7rem',
         30: '7.5rem',
         32: '8rem',
@@ -152,6 +157,9 @@ module.exports = {
       lineHeight: {
         '12': '3rem',
         '13': '3.5rem'
+      },
+      gridTemplateColumns: {
+        'dappList': 'repeat(auto-fill, 20rem)'
       }
     },
     minWidth: {

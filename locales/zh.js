@@ -233,8 +233,8 @@ export default {
       tableFilterOptions: {
         sort: {
           uniqueAdders: '独立地址数',
-          contractBalance: '合约余额',
-          transactionBalance: '交易额'
+          contractBalance: '余额',
+          transactionBalance: '燃气费用'
         },
         category: {
           all: '全部',
@@ -256,10 +256,10 @@ export default {
       tableHeaders: {
         name: '名称',
         category: '类别',
-        contractBalance: '合约余额',
+        contractBalance: '余额',
         uniqueAdders: '独立地址数',
         transactionAmount: '交易数量',
-        transactionBalance: '交易额'
+        transactionBalance: '燃气费用'
       },
       titleHeader: {
         sortBy: '排序',
@@ -973,8 +973,9 @@ export default {
     share: '分享',
     category: '类型',
     description: '描述',
-    data: '数据',
     social: '社交',
-    copyLink: '复制链接'
+    copyLink: '复制链接',
+    transactionBalance: '燃气费用',
+    activeUniqueAdders: '活跃独立地址数'
   }
 }

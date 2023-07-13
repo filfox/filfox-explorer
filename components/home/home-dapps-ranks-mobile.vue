@@ -24,13 +24,13 @@
         <span>{{ $t('home.dappRanks.tableHeaders.category') }}</span>
         <span class="text-right text-black">{{ dapp.category }}</span>
         <span>{{ $t('home.dappRanks.tableHeaders.contractBalance') }}</span>
-        <ChangeRate class="text-right text-black" :data="formatNum(dapp.balance.data, true)" :changeRate="dapp.balance.changeRate" />
+        <ChangeRate class="text-right text-black" :data="dapp.balance.data | filecoin(2)" :changeRate="dapp.balance.changeRate" />
         <span>{{ $t('home.dappRanks.tableHeaders.uniqueAdders') }}</span>
         <ChangeRate class="text-right text-black" :data="formatNum(dapp.userCount.data)" :changeRate="dapp.userCount.changeRate" />
         <span>{{ $t('home.dappRanks.tableHeaders.transactionAmount') }}</span>
         <ChangeRate class="text-right text-black" :data="formatNum(dapp.invokeCount.data)" :changeRate="dapp.invokeCount.changeRate" />
         <span>{{ $t('home.dappRanks.tableHeaders.transactionBalance') }}</span>
-        <ChangeRate class="text-right text-black" :data="formatNum(dapp.totalFee.data, true)" :changeRate="dapp.totalFee.changeRate" />
+        <ChangeRate class="text-right text-black" :data="dapp.totalFee.data | filecoin(2)" :changeRate="dapp.totalFee.changeRate" />
         <div v-if="index < dappList.dappList.length-1" class="border-b col-span-2 mb-2"></div>
       </div>
     </div>
@@ -74,7 +74,7 @@ export default {
     },
     async getDappList(params={}) {
       this.dappListLoading = true
-      this.dappList = await this.$axios.$get('/stats/dapp/list', { params: { ...params, limit: 10 }});
+      this.dappList = await this.$axios.$get('http://36.189.234.235:61000/stats/dapp/list', { params: { ...params, limit: 10 }});
       this.dappListLoading = false
     }
   }
