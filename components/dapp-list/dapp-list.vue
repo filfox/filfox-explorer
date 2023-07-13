@@ -1,6 +1,6 @@
 <template>
-  <div class="mx-56 w-full">
-    <div class="bg-white rounded mt-5 flex justify-between p-3 flex-col lg:flex-row">
+  <div class="container mx-auto flex-grow">
+    <div class="bg-white rounded my-4 flex justify-between p-3 flex-col lg:flex-row">
       <span class="font-bold mb-2 lg:mb-0">FEVM Dapp Stats</span>
       <div class="flex flex-col lg:flex-row gap-x-5 gap-y-2">
         <FilterSelect 
@@ -23,9 +23,10 @@
         />
       </div>
     </div>
-    <div class="flex flex-wrap gap-4 mt-5">
+    <div v-if="dappListLoading" v-loading="dappListLoading" class="flex h-24"></div>
+    <div :class="`flex flex-wrap gap-4 mt-5 ${dappListLoading ? 'hidden' : 'block'}`">
       <div v-for="item, index in dappList.dappList" :key="item.contractId" class="relative">
-        <DappBlock :id="item.contractId" :name="item.name" :category="item.category" :data="formatNum(item.balance.data, true)" :icon="item.logoPath" :rank="(page-1)*pageNum+index+1"/>
+        <DappBlock :id="item.contractId" :name="item.name" :category="item.category" :data="item.balance.data | filecoin(2)" :icon="item.logoPath" :rank="(page-1)*pageNum+index+1"/>
         <img class="w-9 h-9 absolute top-0 right-0" :src="getMedalSrc((page-1)*pageNum+index+1)" :class="`${(page-1)*pageNum+index+1 <= 3 ? 'visible' : 'invisible'}`" />
       </div>
     </div>
@@ -129,11 +130,11 @@ export default {
       if(this.timeValue) {
         params = {...params, days: this.timeValue}
       }
-      this.dappList = await this.$axios.$get('/stats/dapp/list', { params });
+      this.dappList = await this.$axios.$get('https://filfox.info/api/xj/stats/dapp/list', { params });
       this.dappListLoading = false
     },
     async getCategoryOptions() {
-      const options = await this.$axios.$get('/dapp/category/list');
+      const options = await this.$axios.$get('https://filfox.info/api/xj/dapp/category/list');
       let categoryOptions = [];
       if(options) {
         categoryOptions = options.map(item => {

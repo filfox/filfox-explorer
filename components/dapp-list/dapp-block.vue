@@ -1,6 +1,6 @@
 <template>
-  <div class="flex bg-white w-70 h-34 p-5 rounded hover:shadow-card">
-    <div class="w-26 h-25 rounded-full bg-iconShadow flex items-center justify-center">
+  <div class="flex bg-white w-68 p-5 rounded hover:shadow-card">
+    <div class="w-27 h-27 rounded-full bg-iconShadow flex items-center justify-center">
       <img class="w-24 h-24 rounded-full" :src="icon" />
     </div>
     <div class="flex flex-col gap-3 ml-5">
@@ -8,10 +8,12 @@
         <a @click="clickName" class="text-customBlue-300 text-xl font-bold">{{ name }}</a>
       </nuxt-link>
       <div class="text-customGray-650 text-sm">{{ $t('dapp.category') }} : {{ category }}</div>
-      <div class="bg-iconShadow w-32 h-9 text-sm p-2 rounded">
-        <span class="text-customGray-650 mr-2">{{ $t('dapp.data') }}:</span>
-        <span class="text-customBlue-300">{{ data }}</span>
-      </div>
+      <el-tooltip :content="data" placement="top">
+        <div class="bg-iconShadow w-32 h-9 text-sm p-2 rounded truncate" @mouseenter="visibilityChange($event)">
+          <span class="text-customGray-650 mr-2">{{ getDataLabel(category) }}</span>
+          <span class="text-customBlue-300">{{ data }}</span>
+        </div>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -26,10 +28,35 @@ export default {
     icon: { type: String, required: true },
     rank: { type: Number }
   },
+  data() {
+    return {
+      isShowToolTip: false
+    }
+  },
   methods: {
     clickName() {
-      console.log("rank", this.rank)
       this.$store.commit('dapp/setRank', this.rank);
+    },
+    getDataLabel(type) {
+      switch(type) {
+        case 'DEFI':
+        case 'LSD':
+          return 'TVL:';
+        case 'MarketPlace':
+          return this.$t('dapp.transactionBalance')+":"
+        case 'NFT': 
+          return '';
+        default:
+          return this.$t('dapp.activeUniqueAddress')+":"
+      }
+    },
+    visibilityChange(event) {
+      const ev = event.target;
+      if (ev.scrollWidth > ev.clientWidth) {
+        this.isShowTooltip = true;
+      } else {
+        this.isShowTooltip = false;
+      }
     }
   }
 }

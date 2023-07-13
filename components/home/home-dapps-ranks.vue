@@ -37,7 +37,7 @@
             <span>{{ dapp.category }}</span>
           </td>
           <td>
-            <ChangeRate :data="formatNum(dapp.balance.data, true)" :changeRate="dapp.balance.changeRate" />
+            <ChangeRate :data="dapp.balance.data | filecoin(2)" :changeRate="dapp.balance.changeRate" />
           </td>
           <td>
             <ChangeRate :data="formatNum(dapp.userCount.data)" :changeRate="dapp.userCount.changeRate" />
@@ -46,7 +46,7 @@
             <ChangeRate :data="formatNum(dapp.invokeCount.data)" :changeRate="dapp.invokeCount.changeRate" />
           </td>
           <td>
-            <ChangeRate :data="formatNum(dapp.totalFee.data, true)" :changeRate="dapp.totalFee.changeRate" />
+            <ChangeRate :data="dapp.totalFee.data | filecoin(2)" :changeRate="dapp.totalFee.changeRate" />
           </td>
         </tr>
       </tbody>
@@ -91,7 +91,7 @@ export default {
     },
     async getDappList(params={}) {
       this.dappListLoading = true
-      this.dappList = await this.$axios.$get('/stats/dapp/list', { params: { ...params, limit: 10 }});
+      this.dappList = await this.$axios.$get('https://filfox.info/api/xj/stats/dapp/list', { params: { ...params, limit: 10 }});
       this.dappListLoading = false
     }
   }

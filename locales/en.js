@@ -266,10 +266,10 @@ export default {
           others: 'Other'
         },
         time: {
-          day: '24H',
-          week: '7D',
-          month: '30D',
-          year: '1Y'
+          day: '1Day',
+          week: '7Day',
+          month: '30Day',
+          year: '1Year'
         }
       },
       tableHeaders: {

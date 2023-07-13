@@ -263,7 +263,7 @@ export default {
           others: '기타'
         },
         time: {
-          day: '24시간',
+          day: '1일',
           week: '7일',
           month: '30일',
           year: '1년'
