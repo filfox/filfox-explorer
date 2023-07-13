@@ -247,7 +247,7 @@ export default {
           others: '其他'
         },
         time: {
-          day: '24小时',
+          day: '1日',
           week: '7日',
           month: '30日',
           year: '1年'

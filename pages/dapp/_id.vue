@@ -115,7 +115,7 @@ import { getMedalSrc, formatNum } from'@/utils/dapp';
 export default {
   async asyncData({ $axios, error, params }) {
     try {
-      const dapp = await $axios.$get(`https://filfox.info/api/v1/stats/dapp/${params.id}`)
+      const dapp = await $axios.$get(`https://filfox.info/api/xj/stats/dapp/${params.id}`)
       return { dapp }
     } catch (err) {
       if (err?.response) {
@@ -163,7 +163,7 @@ export default {
       this.getDappList(value);
     },
     async getDappList(time) {
-      this.dapp = await this.$axios.$get(`https://filfox.info/api/v1/stats/dapp/${this.id}`, { params: {days: time} });
+      this.dapp = await this.$axios.$get(`https://filfox.info/api/xj/stats/dapp/${this.id}`, { params: {days: time} });
     },
     openShare() {
       this.shareVisible = true;

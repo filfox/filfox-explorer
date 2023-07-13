@@ -91,7 +91,7 @@ export default {
     },
     async getDappList(params={}) {
       this.dappListLoading = true
-      this.dappList = await this.$axios.$get('https://filfox.info/api/v1/stats/dapp/list', { params: { ...params, limit: 10 }});
+      this.dappList = await this.$axios.$get('https://filfox.info/api/xj/stats/dapp/list', { params: { ...params, limit: 10 }});
       this.dappListLoading = false
     }
   }
