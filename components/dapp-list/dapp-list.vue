@@ -130,11 +130,11 @@ export default {
       if(this.timeValue) {
         params = {...params, days: this.timeValue}
       }
-      this.dappList = await this.$axios.$get('http://36.189.234.235:61000/stats/dapp/list', { params });
+      this.dappList = await this.$axios.$get('https://filfox.info/api/v1/stats/dapp/list', { params });
       this.dappListLoading = false
     },
     async getCategoryOptions() {
-      const options = await this.$axios.$get('http://36.189.234.235:61000/dapp/category/list');
+      const options = await this.$axios.$get('https://filfox.info/api/v1/dapp/category/list');
       let categoryOptions = [];
       if(options) {
         categoryOptions = options.map(item => {
