@@ -284,7 +284,7 @@ export default {
         { label: 'No', value: false }
       ],
       verifiedResult: {},
-      viaIR: true,
+      viaIR: false,
       viaIROptions: [
         { label: 'Yes', value: true },
         { label: 'No', value: false }

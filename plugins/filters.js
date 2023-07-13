@@ -1,9 +1,25 @@
 import moment from 'moment'
 import Vue from 'vue'
 import exitCodes from '@/filecoin/exit-codes.json'
+import { BigNumber as BN } from 'ethers'
+import BigNumber from 'bignumber.js/bignumber.mjs'
 
 function toLocaleString(n) {
   return n.toLocaleString('en') || n.toString()
+}
+
+function toFixed(value, digits = 0) {
+  if (value < 1 && value > 0) {
+    return new BigNumber(value)
+      .toFixed()
+      .replace(new RegExp(`^(0.0*[1-9][0-9]{${digits - 1}}).*`), '$1')
+      .replace(/0+$/, '')
+  }
+  return new BigNumber(value)
+    .times(10 ** digits)
+    .dp(0, BigNumber.ROUND_DOWN)
+    .div(10 ** digits)
+    .toFixed()
 }
 
 Vue.filter('locale', value => {
@@ -30,6 +46,25 @@ Vue.filter('coin', (value, decimals, precision = null) => {
   } else {
     return addAmountDelimiters((value / 10 ** decimals).toFixed(precision))
   }
+})
+
+Vue.filter('parseToken', (value, decimals = 18, digits = decimals, simple = false) => {
+  // check for ethers' BigNumber
+  if (BN.isBigNumber(value)) {
+    value = value.toString()
+  }
+  value = new BigNumber(value)
+  // is 0 ?
+  if (value.eq(0)) {
+    return '0'
+  }
+
+  const units = toFixed(value.div(10 ** decimals), digits)
+  if (digits < decimals && Number(units) < 1 / 10 ** digits && simple) {
+    return `< 0.${'1'.padStart(digits, '0')}`
+  }
+
+  return addAmountDelimiters(units)
 })
 
 Vue.filter('filecoin', (value, precision = null, nanoFixed = false) => {

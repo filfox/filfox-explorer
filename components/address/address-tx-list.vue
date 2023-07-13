@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-8">
+  <div v-loading="loading" class="mx-8">
     <div class="flex items-center justify-between border-b border-background">
       <p class="flex items-center h-12 text-sm">
         {{ $t('detail.transfer.total') }}
