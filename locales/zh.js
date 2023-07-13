@@ -234,7 +234,8 @@ export default {
         sort: {
           uniqueAdders: '独立地址数',
           contractBalance: '余额',
-          transactionBalance: '燃气费用'
+          transactionBalance: '燃气费用',
+          transactionAmount: '交易数量'
         },
         category: {
           all: '全部',

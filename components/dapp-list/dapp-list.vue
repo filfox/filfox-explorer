@@ -61,7 +61,7 @@ export default {
       dappListLoading: false,
       categoryValue: "",
       categoryOptions: [],
-      sortValue: "",
+      sortValue: "transaction",
       sortOptions: [
         {
           value: 'users',
@@ -72,11 +72,15 @@ export default {
           label: this.$t('home.dappRanks.tableFilterOptions.sort.contractBalance')
         },
         {
-          value: 'transactions',
+          value: 'fee',
           label: this.$t('home.dappRanks.tableFilterOptions.sort.transactionBalance')
+        },
+        {
+          value: 'transaction',
+          label: this.$t('home.dappRanks.tableFilterOptions.sort.transactionAmount')
         }
       ],
-      timeValue: "",
+      timeValue: '1',
       timeOptions: [
         {
           value: '1',
