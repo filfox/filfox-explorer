@@ -172,7 +172,7 @@
           </p>
           <p class="text-xs text-gray-800 flex items-center">
             <template v-if="/erc20/i.test(transfer.type)">
-              <img :src="getTokenIcon(transfer.symbol)" alt="warn" class="w-4 h-4 mr-1.5">
+              <img :src="getTokenIcon(transfer.token)" alt="warn" class="w-4 h-4 mr-1.5">
               {{ transfer.value | parseToken(transfer.decimals, 6) }}
               <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
@@ -208,11 +208,11 @@ import FILADOGE from '@/assets/img/token/filadoge.png'
 import FILEDOGE from '@/assets/img/token/filedoge.png'
 import SC from '@/assets/img/token/sc.png'
 import THS from '@/assets/img/token/ths.png'
-import USDT from '@/assets/img/token/usdt.png'
+import CELERUSDT from '@/assets/img/token/celerusdt.png'
 import WFIL from '@/assets/img/token/wfil.png'
-import FIL from '@/assets/img/token/fil.png'
-import DOGE from '@/assets/img/token/doge.png'
+import STFIL from '@/assets/img/token/stfil.png'
 import DEFAULT from '@/assets/img/token/default.png'
+import { TOKEN_ICONS } from '@/filecoin/filecoin.config'
 
 export default {
   props: {
@@ -233,15 +233,14 @@ export default {
       page: 0,
       pageSize: 20,
       loading: false,
-      tokenIcon: {
-        FIL,
+      iconImages: {
         FILADOGE,
         FILEDOGE,
-        DOGE,
         SC,
         THS,
-        USDT,
-        WFIL
+        CELERUSDT,
+        WFIL,
+        STFIL
       }
     }
   },
@@ -262,8 +261,8 @@ export default {
   },
 
   methods: {
-    getTokenIcon(symbol) {
-      return this.tokenIcon[symbol] || DEFAULT
+    getTokenIcon(token) {
+      return this.iconImages[TOKEN_ICONS[token]] || DEFAULT
     },
 
     async getTokenTxList() {
