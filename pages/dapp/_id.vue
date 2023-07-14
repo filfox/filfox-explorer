@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto flex-grow">
+  <div class="container mx-auto flex-grow dappIdDialog">
     <div class="bg-white px-10 pb-8 rounded relative my-4">
       <div class="font-bold h-13 leading-13">Dapp Details</div>
       <div class="border-customBackground border-solid border-b absolute left-1 right-1 w-auto"></div>
@@ -266,31 +266,31 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
-/deep/ .el-dialog__header {
+<style lang="postcss">
+.dappIdDialog .el-dialog__header {
   background: #1950C9;
   border-radius: 10px 10px 0 0;
 }
 
-/deep/ .el-dialog {
+.dappIdDialog .el-dialog {
   border-radius: 10px;
   width: fit-content;
 }
 
-/deep/ .el-dialog__title {
+.dappIdDialog .el-dialog__title {
   color: white;
   font-size: 24px;
   font-weight: 700;
 }
 
-/deep/ .el-dialog__headerbtn .el-dialog__close {
+.dappIdDialog .el-dialog__headerbtn .el-dialog__close {
   color: #1950C9;
   background: white;
   border-radius: 10px;
   font-weight: 600;
 }
 
-/deep/ .el-dialog--center .el-dialog__body {
+.dappIdDialog .el-dialog--center .el-dialog__body {
   padding: 0px 25px;
 }
 </style>

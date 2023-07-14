@@ -1,5 +1,5 @@
 <template>
-  <div class="inline">
+  <div class="inline filterSelect">
     <span class="mr-2.5">{{ label }}</span>
     <el-select :value="value" @change="onSelect" :placeholder="this.$t('shared.select')">
       <el-option
@@ -28,21 +28,21 @@ export default {
 </script>
 
 <style lang="postcss">
-.el-select input {
+.filterSelect .el-select input {
   border-radius: 76px;
   width: 140px;
   height: 28px;
 }
 
-.el-input__inner {
+.filterSelect .el-input__inner {
   padding: 12px;
 }
 
-.el-input__icon {
+.filterSelect .el-input__icon {
   line-height: 28px;
 }
 
-.el-select .el-input .el-select__caret::before {
+ .filterSelect .el-select .el-input .el-select__caret::before {
   content: "";
   background: url(../../assets/img/home/arrow-down.svg) no-repeat;
   position: absolute;
@@ -53,7 +53,7 @@ export default {
   transform: translate(-50%, -50%) rotateZ(180deg);
 }
 
-.el-select .el-input .el-select__caret.is-reverse {
+.filterSelect .el-select .el-input .el-select__caret.is-reverse {
   transform: rotateZ(0deg);
 }
 </style>

@@ -30,7 +30,7 @@
         <img class="w-9 h-9 absolute top-0 right-0" :src="getMedalSrc((page-1)*pageNum+index+1)" :class="`${(page-1)*pageNum+index+1 <= 3 ? 'visible' : 'invisible'}`" />
       </div>
     </div>
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center dappListPager">
       <span>Found something interesting? <a class="text-customBlue-300" href="https://docs.google.com/forms/d/e/1FAIpQLSciXwagRx-D8zeTCIEa9y2pwkoaDqNw2nPSk9bLYdQRsFm3Sw/viewform">Submit it here</a></span>
       <el-pagination 
         small 
@@ -167,7 +167,7 @@ export default {
 </script>
 
 <style lang="postcss">
-.el-pager li {
+.dappListPager .el-pager li {
   background: transparent;
 }
 </style>

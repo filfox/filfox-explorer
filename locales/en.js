@@ -253,7 +253,8 @@ export default {
         sort: {
           uniqueAdders: 'Number of Unique Addressed',
           contractBalance: 'Contract Balance',
-          transactionBalance: 'Transaction Balance'
+          transactionBalance: 'Transaction Balance',
+          transactionAmount: 'Transactions'
         },
         category: {
           all: 'All',
