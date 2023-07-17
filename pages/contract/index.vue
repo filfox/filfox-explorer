@@ -103,7 +103,7 @@ export default {
         { label: 'Mozilla Public License 2.0 (MPL-2.0)', value: 10 },
         { label: 'Open Software License 3.0 (OSL-3.0)', value: 11 },
         { label: 'Apache 2.0 (Apache-2.0)', value: 12 },
-        { label: 'GNU Affero General Public License (GNU AGPLv3)', value: 14 },
+        { label: 'GNU Affero General Public License (GNU AGPLv3)', value: 13 },
         { label: 'Business Source License (BSL 1.1)', value: 14 }
       ],
       compilerVersion: '',

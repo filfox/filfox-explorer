@@ -134,6 +134,30 @@
               class="w-full bg-customGray-200 rounded px-4 md:px-8 py-3 mt-2 text-sm font-light border border-customGray-300 outline-none focus:border-main transition duration-200"
             >
           </div>
+
+          <div class="w-full md:w-1/2 px-0 md:pl-2 mt-4 md:mt-0">
+            <p class="text-base md:text-lg">
+              {{ $t('contract.verify.optimizerDetails') }}
+            </p>
+            <el-upload
+              ref="metadataUpload"
+              class="metadata-upload mt-3 lg:flex items-center font-light text-sm"
+              :limit="1"
+              :multiple="false"
+              accept=".json"
+              :show-file-list="true"
+              :auto-upload="false"
+              :on-change="onMetadataFileAdded"
+              :on-remove="clearMetadata"
+              :on-exceed="onMetadataFileExceed"
+              action="/api/upload"
+            >
+              <button slot="trigger" class="rounded px-4 py-2 bg-main text-white hover:opacity-75 font-medium transition duration-200">
+                {{ $t('contract.verify.uploadMetadataFile') }}
+              </button>
+              <span class="ml-2 text-customGray-500">{{ $t('contract.verify.uploadMetadataFileTo') }}</span>
+            </el-upload>
+          </div>
         </div>
       </div>
 
@@ -285,6 +309,8 @@ export default {
       ],
       verifiedResult: {},
       viaIR: false,
+      optimizerDetails: '',
+      metadataFileList: [],
       viaIROptions: [
         { label: 'Yes', value: true },
         { label: 'No', value: false }
@@ -349,7 +375,8 @@ export default {
         optimizeRuns: Number(this.optimizeRuns),
         sourceFiles: this.sourceFiles,
         parameters: this.parameters,
-        license: this.licenseType
+        license: this.licenseType,
+        optimizerDetails: this.optimizerDetails
       })
       this.loading = false
       this.verifiedResult = res
@@ -378,6 +405,43 @@ export default {
       const oldFiles = Object.keys(this.sourceFiles)
       const addFiles = files.filter(({ name }) => !oldFiles.includes(name))
       this.readFiles(addFiles)
+    },
+
+    readMetadataFile(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = event => resolve(event.target.result)
+        reader.onerror = error => reject(error)
+        reader.readAsText(file, 'utf-8')
+      })
+    },
+
+    async readConfigFromMetadataFile(file) {
+      const result = await this.readMetadataFile(file)
+      const config = JSON.parse(result)
+
+      const { details } = config.settings.optimizer
+      this.optimizerDetails = JSON.stringify(details)
+
+      console.log(this.optimizerDetails)
+    },
+
+    async onMetadataFileAdded({ raw }) {
+      try {
+        await this.readConfigFromMetadataFile(raw)
+      } catch {
+        this.$message.error(this.$t('contract.verify.uploadMetadataFileError'))
+        this.clearMetadata()
+      }
+    },
+
+    onMetadataFileExceed() {
+      this.$message.error(this.$t('contract.verify.onlyAllowOneMetadataFile'))
+    },
+
+    clearMetadata() {
+      this.$refs.metadataUpload.clearFiles()
+      this.optimizerDetails = ''
     },
 
     onRemoveFile(file) {
@@ -442,5 +506,25 @@ export default {
 
 .optimize-select .is-focus .el-input__inner {
   @apply border-main !important;
+}
+
+.metadata-upload {
+  & .el-upload-list {
+    margin-left: auto;
+    .el-upload-list__item {
+      margin-top: 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .metadata-upload {
+    & .el-upload-list {
+      margin-left: 0;
+      .el-upload-list__item {
+        margin-top: 15px;
+      }
+    }
+  }
 }
 </style>
