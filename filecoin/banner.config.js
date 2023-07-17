@@ -2,6 +2,11 @@ import { FNS } from './filecoin.config'
 
 export const enBanners = [
   {
+    url: 'https://fil.hashking.fi/stake',
+    img: require('~/assets/img/home/banner-en-hashking.svg'),
+    mobileImg: require('~/assets/img/home/banner-en-mobile-hashking.svg')
+  },
+  {
     url: 'https://www.glif.io',
     img: require('~/assets/img/home/banner-en-glif.svg'),
     mobileImg: require('~/assets/img/home/banner-en-mobile-glif.svg')
@@ -34,6 +39,11 @@ export const enBanners = [
 ]
 
 export const zhBanners = [
+  {
+    url: 'https://fil.hashking.fi/stake',
+    img: require('~/assets/img/home/banner-zh-hashking.svg'),
+    mobileImg: require('~/assets/img/home/banner-zh-mobile-hashking.svg')
+  },
   {
     url: 'https://www.glif.io',
     img: require('~/assets/img/home/banner-en-glif.svg'),
