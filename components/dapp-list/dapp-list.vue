@@ -120,7 +120,8 @@ export default {
       this.dappListLoading = true;
       let params = {
         limit: this.pageNum, 
-        offset: (this.page-1)*this.pageNum
+        offset: (this.page-1)*this.pageNum,
+        withoutChangeRate: true
       };
 
       if(this.sortValue) {
