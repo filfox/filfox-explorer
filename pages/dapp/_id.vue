@@ -111,6 +111,7 @@
 <script>
 import copy from '@/utils/copy';
 import { getMedalSrc, formatNum } from'@/utils/dapp';
+import { DOMAIN } from '@/filecoin/filecoin.config';
 
 export default {
   async asyncData({ $axios, error, params }) {
@@ -233,7 +234,7 @@ export default {
       return links;
     },
     currentUrl() {
-      return `https://filfox.info/dapp/${this.id}`;
+      return `${DOMAIN}/dapp/${this.id}`;
     },
     shareUrl() {
       return encodeURIComponent(this.currentUrl);
