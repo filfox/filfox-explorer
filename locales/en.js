@@ -999,6 +999,8 @@ export default {
     description: 'Description',
     data: 'Data',
     social: 'Social',
-    copyLink: 'Copy Link'
+    copyLink: 'Copy Link',
+    transactionBalance: 'Gas Fee',
+    activeUniqueAddress: 'Unique Address'
   }
 }

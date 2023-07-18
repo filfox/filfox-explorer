@@ -982,6 +982,6 @@ export default {
     social: '社交',
     copyLink: '复制链接',
     transactionBalance: '燃气费用',
-    activeUniqueAdders: '活跃独立地址数'
+    activeUniqueAddress: '活跃独立地址数'
   }
 }

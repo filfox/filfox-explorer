@@ -26,7 +26,7 @@
     <div v-if="dappListLoading" v-loading="dappListLoading" class="flex h-24"></div>
     <div :class="`flex flex-wrap gap-4 mt-5 ${dappListLoading ? 'hidden' : 'block'}`">
       <div v-for="item, index in dappList.dappList" :key="item.contractId" class="relative">
-        <DappBlock :id="item.contractId" :name="item.name" :category="item.category" :data="item.balance.data | filecoin(2)" :icon="item.logoPath" :rank="(page-1)*pageNum+index+1"/>
+        <DappBlock :id="item.contractId" :name="item.name" :category="item.category" :data="getData(item)" :icon="item.logoPath" :rank="(page-1)*pageNum+index+1"/>
         <img class="w-9 h-9 absolute top-0 right-0" :src="getMedalSrc((page-1)*pageNum+index+1)" :class="`${(page-1)*pageNum+index+1 <= 3 ? 'visible' : 'invisible'}`" />
       </div>
     </div>
@@ -61,7 +61,7 @@ export default {
       dappListLoading: false,
       categoryValue: "",
       categoryOptions: [],
-      sortValue: "transaction",
+      sortValue: "users",
       sortOptions: [
         {
           value: 'users',
@@ -162,6 +162,19 @@ export default {
     prevPage() {
       this.page--;
       this.getDappList();
+    },
+    getData(item) {
+      switch(item.category) {
+        case 'DEFI':
+        case 'LSD':
+          return this.formatNum(item.userCount.data);
+        case 'MarketPlace':
+          return item.balance.data | this.filecoin(2);
+        case 'NFT': 
+          return '';
+        default:
+          return this.formatNum(item.userCount.data);
+      }
     }
   }
 }

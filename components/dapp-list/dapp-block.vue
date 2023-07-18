@@ -8,7 +8,7 @@
         <a @click="clickName" class="text-customBlue-300 text-xl font-bold">{{ name }}</a>
       </nuxt-link>
       <div class="text-customGray-650 text-sm">{{ $t('dapp.category') }} : {{ category }}</div>
-      <el-tooltip :content="data" placement="top">
+      <el-tooltip :content="getDataLabel(category)+data" placement="top">
         <div class="bg-iconShadow w-32 h-9 text-sm p-2 rounded truncate" @mouseenter="visibilityChange($event)">
           <span class="text-customGray-650 mr-2">{{ getDataLabel(category) }}</span>
           <span class="text-customBlue-300">{{ data }}</span>
@@ -41,7 +41,7 @@ export default {
       switch(type) {
         case 'DEFI':
         case 'LSD':
-          return 'TVL:';
+          return this.$t('dapp.activeUniqueAddress')+":"
         case 'MarketPlace':
           return this.$t('dapp.transactionBalance')+":"
         case 'NFT': 
