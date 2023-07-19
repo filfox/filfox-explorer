@@ -7,11 +7,6 @@ export const enBanners = [
     mobileImg: require('~/assets/img/home/banner-en-hashking-mobile.jpg')
   },
   {
-    url: 'https://www.glif.io',
-    img: require('~/assets/img/home/banner-en-glif.svg'),
-    mobileImg: require('~/assets/img/home/banner-en-mobile-glif.svg')
-  },
-  {
     url: FNS,
     img: require('~/assets/img/home/banner-en-fns.png'),
     mobileImg: require('~/assets/img/home/banner-en-fns-mobile.png')
@@ -43,11 +38,6 @@ export const zhBanners = [
     url: 'https://fil.hashking.fi/stake',
     img: require('~/assets/img/home/banner-zh-hashking.jpg'),
     mobileImg: require('~/assets/img/home/banner-zh-hashking-mobile.jpg')
-  },
-  {
-    url: 'https://www.glif.io',
-    img: require('~/assets/img/home/banner-en-glif.svg'),
-    mobileImg: require('~/assets/img/home/banner-en-mobile-glif.svg')
   },
   {
     url: FNS,
