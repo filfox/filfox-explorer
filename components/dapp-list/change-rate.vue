@@ -9,8 +9,8 @@
 <script>
 export default {
   props: {
-    data: { type: Number, required: true },
-    changeRate: { type: Number || undefined, required: true }
+    data: { required: true },
+    changeRate: { required: true }
   }
 }
 </script>
