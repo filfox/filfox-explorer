@@ -16,8 +16,8 @@
     </el-carousel>
   </div>
 </template>
+
 <script>
-import { enBanners, zhBanners } from '@/filecoin/banner.config.js'
 export default {
   data() {
     const locale = this.$i18n.locale
@@ -25,10 +25,12 @@ export default {
       bannerHeight: 0,
       mobileBannerHeight: 0,
       locale: locale === 'zh' ? 'zh' : 'en',
-      banners: locale === 'zh' ? zhBanners : enBanners
+      banners: []
     }
   },
+
   mounted() {
+    this.getBanners()
     this.imgLoad()
     window.addEventListener('resize', () => {
       this.bannerHeight = this.$refs.bannerHeight[0].height
@@ -36,6 +38,7 @@ export default {
       this.imgLoad()
     }, false)
   },
+
   methods: {
     imgLoad() {
       this.$nextTick(() => {
@@ -44,6 +47,16 @@ export default {
           this.mobileBannerHeight = this.$refs.mobileBannerHeight[0].height
         }, 500)
       })
+    },
+
+    async getBanners() {
+      const res = await this.$axios.$get(`https://hyperspace.filfox.info/admin/api/banner/list`)
+
+      if (this.locale === 'zh') {
+        this.banners = res.result.map(({ urlZh, imgZh, imgMobileZh }) => ({ url: urlZh, img: imgZh, mobileImg: imgMobileZh }))
+      } else {
+        this.banners = res.result.map(({ url, img, imgMobile }) => ({ url, img, mobileImg: imgMobile }))
+      }
     }
   }
 }
