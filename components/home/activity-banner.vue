@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-carousel indicator-position="none" class="hidden md:block mt-2 lg:mt-4" :height="bannerHeight+'px'" :direction="bannerHeight < 50 ? 'vertical' : 'horizontal'">
+    <el-carousel indicator-position="none" class="hidden md:block mt-2 lg:mt-4 rounded-md" :height="bannerHeight+'px'" :direction="bannerHeight < 50 ? 'vertical' : 'horizontal'">
       <el-carousel-item v-for="item in banners" :key="item.url">
         <a :href="item.url" target="_black">
           <img ref="bannerHeight" :src="item.img" alt="home-page-banner">
@@ -29,8 +29,8 @@ export default {
     }
   },
 
-  mounted() {
-    this.getBanners()
+  async mounted() {
+    await this.getBanners()
     this.imgLoad()
     window.addEventListener('resize', () => {
       this.bannerHeight = this.$refs.bannerHeight[0].height
