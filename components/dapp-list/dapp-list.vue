@@ -26,7 +26,12 @@
     <div v-if="dappListLoading" v-loading="dappListLoading" class="flex h-24"></div>
     <div :class="`flex flex-wrap gap-4 mt-5 ${dappListLoading ? 'hidden' : 'block'}`">
       <div v-for="item, index in dappList.dappList" :key="item.contractId" class="relative">
-        <DappBlock :id="item.contractId" :name="item.name" :category="item.category" :data="getData(item)" :icon="item.logoPath" :rank="(page-1)*pageNum+index+1"/>
+        <DappBlock :id="item.contractId" :name="item.name" :category="item.category" :data="getData(item)" :icon="item.logoPath" :rank="(page-1)*pageNum+index+1">
+          <div class="flex justify-start items-center gap-2"> 
+            <img class="w-4 h-4" :src="getIcon(item.category)" />
+            <span class="text-customGray-700">{{ getData(item) }}</span>
+          </div>
+        </DappBlock>
         <img class="w-9 h-9 absolute top-0 right-0" :src="getMedalSrc((page-1)*pageNum+index+1)" :class="`${(page-1)*pageNum+index+1 <= 3 ? 'visible' : 'invisible'}`" />
       </div>
     </div>
@@ -175,6 +180,19 @@ export default {
           return '';
         default:
           return this.formatNum(item.userCount.data);
+      }
+    },
+    getIcon(category) {
+      switch(category) {
+        case 'DEFI':
+        case 'LSD':
+          return require('@/assets/img/dapp/user.png');
+        case 'MarketPlace':
+          return require('@/assets/img/dapp/fee.png');
+        case 'NFT': 
+          return '';
+        default:
+          return require('@/assets/img/dapp/user.png');
       }
     }
   }
