@@ -5,7 +5,7 @@
       <div class="border-customBackground border-solid border-b absolute left-1 right-1 w-auto"></div>
       <div class="rounded shadow-panel flex p-5 lg:flex-row flex-col mt-8 relative">
         <img class="w-9 h-9 absolute top-0 right-0" :src="getMedalSrc(rank)" :class="`${rank > 0 && rank < 4 ? 'visible' : 'invisible'}`" />
-        <div class="w-28 h-29 rounded-full bg-iconShadow flex items-center justify-center lg:mr-12 mr-0 flex-shrink-0">
+        <div class="w-28 h-29 rounded-full bg-iconShadow flex items-center justify-center lg:mr-6 mr-0 flex-shrink-0">
           <img class="w-24 rounded-full" :src="dapp.logoPath" />
         </div>
         <div class="flex gap-1 flex-col">

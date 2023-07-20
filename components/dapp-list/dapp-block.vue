@@ -3,13 +3,13 @@
     <div class="w-25 h-25 rounded-full bg-iconShadow flex items-center justify-center">
       <img class="w-24 h-24 rounded-full" :src="icon" />
     </div>
-    <div class="flex flex-col gap-3 ml-5">
+    <div class="flex flex-col gap-1.5 ml-5 justify-center">
       <nuxt-link :to="localePath(`/dapp/${id}`)">
         <a @click="clickName" class="text-customBlue-300 text-xl font-bold">{{ name }}</a>
       </nuxt-link>
       <div class="text-customGray-650 text-sm">{{ $t('dapp.category') }} : {{ category }}</div>
       <el-tooltip :content="getDataLabel(category)+data" placement="top">
-        <div class="w-32 h-9 text-sm p-2 rounded truncate" @mouseenter="visibilityChange($event)">
+        <div class="w-32 text-sm rounded truncate" @mouseenter="visibilityChange($event)">
           <!-- <span class="text-customGray-650 mr-2">{{ getDataLabel(category) }}</span>
           <span class="text-customBlue-300">{{ data }}</span> -->
           <slot></slot>

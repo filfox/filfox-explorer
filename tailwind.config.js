@@ -154,7 +154,8 @@ module.exports = {
         '-2': '-0.5rem',
         '-4': '-1rem',
         '-6': '-1.5rem',
-        '-8': '-2rem'
+        '-8': '-2rem',
+        1.5: '0.75rem'
       },
       lineHeight: {
         '12': '3rem',
