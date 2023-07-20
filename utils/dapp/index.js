@@ -16,4 +16,12 @@ const formatNum = function(num) {
   return formatter.format(Number(num));
 }
 
-export { getMedalSrc, formatNum };
+function getTextWith(text, fontStyle) {
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+  context.font = fontStyle || '16px'
+  const dimension = context.measureText(text)
+  return dimension.width
+}
+
+export { getMedalSrc, formatNum, getTextWith };

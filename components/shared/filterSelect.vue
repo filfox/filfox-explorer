@@ -1,7 +1,7 @@
 <template>
-  <div class="inline filterSelect">
+  <div class="inline filterSelect text-xs">
     <span class="mr-2.5">{{ label }}</span>
-    <el-select :value="value" @change="onSelect" :placeholder="this.$t('shared.select')">
+    <el-select :value="value" @change="onSelect" :placeholder="this.$t('shared.select')" ref="select">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -13,16 +13,30 @@
 </template>
 
 <script>
+import { getTextWith } from '@/utils/dapp';
+
 export default {
   props: {
-    value: { type: String, required: true },
+    value: { required: true },
     label: { type: String, required: true },
     options: { type: Array, required: true }
   },
   methods: {
     onSelect(value) {
       this.$emit('selected', value);
+    },
+    updateSelectInputWidth() {
+      const option = this.options.find(item => item.value === this.value);
+      if(option) {
+        this.$refs.select.$children[0].$el.children[0].style.width = getTextWith(option.label, '12px')+80+"px";
+      }
     }
+  },
+  mounted() {
+    this.updateSelectInputWidth();
+  },
+  updated() {
+    this.updateSelectInputWidth();
   }
 }
 </script>
@@ -30,12 +44,16 @@ export default {
 <style lang="postcss">
 .filterSelect .el-select input {
   border-radius: 76px;
-  width: 140px;
   height: 28px;
+}
+
+.filterSelect .el-input {
+  font-size: 12px;
 }
 
 .filterSelect .el-input__inner {
   padding: 12px;
+  font-size: 12px;
 }
 
 .filterSelect .el-input__icon {

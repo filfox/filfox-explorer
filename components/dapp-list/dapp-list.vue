@@ -33,6 +33,7 @@
     <div class="flex justify-between items-center dappListPager">
       <span>Found something interesting? <a class="text-customBlue-300" href="https://docs.google.com/forms/d/e/1FAIpQLSciXwagRx-D8zeTCIEa9y2pwkoaDqNw2nPSk9bLYdQRsFm3Sw/viewform">Submit it here</a></span>
       <el-pagination 
+        :class="page > 1 ? 'visible' : 'invisible'"
         small 
         layout="prev, pager, next" 
         class="mt-5 mb-5" 
