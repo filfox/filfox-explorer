@@ -49,18 +49,24 @@
               </div>
             </td>
             <td>
-              <template v-if="/erc20/i.test(transfer.type)">
-                {{ transfer.value | coin(transfer.decimals) }}
-                <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
+              <div v-if="/erc20/i.test(transfer.type)" class="flex items-center justify-center">
+                <img :src="transfer.tokenIcon" :alt="transfer.symbol" class="w-4 h-4 mr-1.5">
+                {{ transfer.value | parseToken(transfer.decimals, 6) }}
+                <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main ml-1">
                   {{ transfer.symbol }}
                 </NuxtLink>
-              </template>
-              <span v-else class="text-xs">
-                <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
-                  {{ transfer.symbol }}
-                </NuxtLink>
-                <div class="font-light">{{ transfer.name }}</div>
-              </span>
+              </div>
+              <div v-else class="text-xs">
+                <div class="flex items-center justify-center">
+                  <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
+                  <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
+                    {{ transfer.symbol }}
+                  </NuxtLink>
+                </div>
+                <div class="font-light">
+                  {{ transfer.name }}
+                </div>
+              </div>
             </td>
             <td>
               {{ transfer.type }}

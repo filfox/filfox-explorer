@@ -317,14 +317,16 @@
           <p>
             {{ $t('detail.message.transfer.value') }}:
           </p>
-          <p>
+          <p class="flex items-center">
             <template v-if="/erc20/i.test(transfer.type)">
+              <img :src="transfer.tokenIcon" :alt="transfer.symbol" class="w-3 h-3 mr-1">
               {{ transfer.value | coin(transfer.decimals) }}
-              <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
+              <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main ml-1">
                 {{ transfer.symbol }}
               </NuxtLink>
             </template>
             <template v-else>
+              <img src="@/assets/img/token/nft.png" alt="warn" class="w-3 h-3 mr-1">
               <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
               </NuxtLink> / {{ transfer.name }}
