@@ -1,6 +1,6 @@
 <template>
   <div class="flex bg-white w-68 p-5 rounded hover:shadow-card">
-    <div class="w-25 h-25 rounded-full bg-iconShadow flex items-center justify-center">
+    <div class="w-24.5 h-24.5 rounded-full bg-iconShadow flex items-center justify-center">
       <img class="w-24 h-24 rounded-full" :src="icon" />
     </div>
     <div class="flex flex-col gap-1.5 ml-5 justify-center">
