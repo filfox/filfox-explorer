@@ -1,7 +1,7 @@
 <template>
   <div class="text-sm font-light">
     <div class="rounded-md bg-customGray-200 text-customGray-600 flex items-center p-2">
-      <img src="@/assets/img/contract/warn.svg" alt="warn" class="w-4.5 h-4.5 mr-2">
+      <img src="@/assets/img/contract/warn.svg" alt="warn" class="w-4.5 h-4.5 mr-1">
       <span>{{ $t('detail.contract.verifyTip.0') }}?
         <nuxt-link :to="localePath(`/contract?address=${contract.address}`)" class="text-main hover:underline">
           {{ $t('detail.contract.verifyTip.1') }}

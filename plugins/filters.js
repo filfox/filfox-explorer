@@ -67,6 +67,8 @@ Vue.filter('parseToken', (value, decimals = 18, digits = decimals, simple = fals
   return addAmountDelimiters(units)
 })
 
+Vue.filter('addAmountDelimiters', value => addAmountDelimiters(value))
+
 Vue.filter('filecoin', (value, precision = null, nanoFixed = false) => {
   if (value == null) {
     return 'N/A'

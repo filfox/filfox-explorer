@@ -33,7 +33,20 @@ export const TOKEN_ICONS = {
   f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: require('@/assets/img/token/celerusdt.png'),
   f410fmdqxonrwz5peuit5tlbe6ih6zibu5ys223xctfi: require('@/assets/img/token/wfil.png'),
   f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: require('@/assets/img/token/stfil.png'),
-  DEFAULT: require('@/assets/img/token/default.png')
+  DEFAULT: require('@/assets/img/token/default.png'),
+  '': require('@/assets/img/token/default.png')
+}
+
+export const TOKEN_PROFILES = {
+  f410fpoidg73f7krlfohnla52dotowde5p2sejxnd4mq: '',
+  f410fezdlwnrykhjr3sr54bc6b23d2cx6wqt52caxhaq: '',
+  f410f74s7vn5esqhmglfszihjkztjj3m3wkfbacg26oi: '',
+  f410fabpafjfjgqkc3douo3yzfug5tq4bwfvuhsewxji: '',
+  f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: '',
+  f410fmdqxonrwz5peuit5tlbe6ih6zibu5ys223xctfi: '',
+  f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: '',
+  DEFAULT: 'Token introduction',
+  '': 'Token introduction'
 }
 
 export const epochsInDay = 2880

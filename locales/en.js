@@ -22,7 +22,8 @@ export default {
     backToHome: 'Back to home page',
     currentNetwork: 'Current network: ',
     openApp: 'DOWNLOAD/OPEN APP',
-    select: 'Select'
+    select: 'Select',
+    amount: 'Amount'
   },
   nav: {
     home: {
@@ -555,7 +556,8 @@ export default {
           lastSeenTime: 'Latest Transaction',
           ownedMiners: 'Owned Miner',
           workers: 'Active Miner',
-          benefitedMiners: 'Benefited Miners'
+          benefitedMiners: 'Benefited Miners',
+          tokenInfo: 'Token Information'
         }
       },
       miner: {
@@ -665,6 +667,40 @@ export default {
         miners: 'Miner',
         IP: 'IP List'
       }
+    },
+    token: {
+      title: 'Token',
+      overview: {
+        title: 'Token Overview',
+        maxSupply: 'Max Supply',
+        numberOfHolders: 'Number of Holders',
+        totalTransactionVolume: 'Total Transaction Volume',
+        contractAddress: 'Contract Address'
+      },
+      data: {
+        totalOfTxs: '{amount} Total Transactions',
+        totalOfHolders: '{amount} Total Holders',
+        tx: {
+          title: 'Transaction',
+          time: 'Time',
+          id: 'ID',
+          sender: 'Sender',
+          receiver: 'Receiver',
+          tokenId: 'Token ID'
+        },
+        holder: {
+          title: 'Holder',
+          rank: 'Rank',
+          address: 'Address',
+          proportion: 'Proportion'
+        },
+        info: {
+          title: 'Information'
+        },
+        contract: {
+          title: 'Contract'
+        }
+      }
     }
   },
   actor: {
@@ -769,7 +805,8 @@ export default {
       wiki: 'Wiki',
       notify: 'In-station notification',
       fevm: 'FEVM Stats',
-      dapp: 'FEVM Dapp Status'
+      dapp: 'FEVM Dapp Status',
+      token: 'Token'
     },
     description: {
       default: 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'

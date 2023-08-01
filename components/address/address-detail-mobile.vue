@@ -157,6 +157,23 @@
       </div>
     </div>
 
+    <div v-if="addressData.tokenInfo" class="flex justify-between mx-4 mt-2 text-xs">
+      <p class="w-1/4">
+        {{ $t('detail.address.normal.headers.tokenInfo') }}
+      </p>
+      <div class="w-3/4">
+        <NuxtLink :to="localePath(`/token/${addressData.robust}`)" class="hover:underline hover:text-main">
+          <span v-if="/erc20/i.test(addressData.tokenInfo.type)" class="flex items-center">
+            <TokenIcon class="mr-1.5" :token-id="addressData.tokenInfo.id" /> {{ addressData.tokenInfo.symbol }}
+          </span>
+          <span v-else class="flex items-center">
+            <img src="@/assets/img/token/nft.png" :alt="addressData.tokenInfo.symbol" class="w-4 h-4 mr-1.5">
+            {{ addressData.tokenInfo.symbol }} {{ addressData.tokenInfo.name }}
+          </span>
+        </NuxtLink>
+      </div>
+    </div>
+
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
     <div v-loading="loading" class="pt-3 mt-2 bg-white border-t border-background">
