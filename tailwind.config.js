@@ -17,7 +17,8 @@ module.exports = {
       2: '1rem',
       3: '1.5rem',
       3.5: '1.75rem',
-      4: '2rem'
+      4: '2rem',
+      '1px': '1px'
     },
     extend: {
       colors: {

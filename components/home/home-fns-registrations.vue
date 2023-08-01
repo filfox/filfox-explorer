@@ -42,7 +42,7 @@
         <div v-if="type == 0" class="p-4 ">
           <div v-for="(item, index) in fnsRanks" :key="item.ethAddr" class="rounded mb-3 flex flex-col lg:flex-row relative" :class="[index ? 'bg-card' : 'bg-background']">
             <div class="w-20 flex items-start justify-center">
-              <img :src="require(`@/assets/img/fns/ranking${index+1}.svg`)" class="w-12" alt="ranking">
+              <img :src="require(`@/assets/img/fns/ranking${index+1}.svg`)" class="w-9" alt="ranking">
             </div>
             <div class="flex-1 w-full p-3">
               <p class="font-semibold text-main text-base lg:text-lg flex items-center">
@@ -77,7 +77,6 @@
                       class="h-5.5 cursor-pointer hover:opacity-75 transition duration-200"
                       :class="{ 'ml-3': linkIndex !== 0 }"
                       :alt="key"
-                      :style="{ filter: item.texts[key] ? 'grayscale(0%)' : 'grayscale(100%)' }"
                     >
                   </el-tooltip>
                 </a>
