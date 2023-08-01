@@ -124,11 +124,10 @@
 
 <script>
 import copy from 'copy-to-clipboard'
+import editor from 'vue2-ace-editor'
 
 export default {
-  components: {
-    editor: require('vue2-ace-editor')
-  },
+  components: { editor },
   props: {
     contract: {
       type: Object,

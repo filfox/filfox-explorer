@@ -23,7 +23,7 @@
         {{ $t(`detail.token.data.${tab == 'tx' ? 'totalOfTxs':'totalOfHolders'}`, { amount: totalCount }) }}
       </span>
     </section>
-    <component :is="tabComponent" ref="tabComponent" :token="token" @setTotalCount="val => totalCount = val" />
+    <component :is="tabComponent" :token="token" @setTotalCount="val => totalCount = val" />
   </div>
 </template>
 
