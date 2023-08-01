@@ -11,8 +11,8 @@ export default {
   async asyncData({ $axios, params, query, error }) {
     const id = params.id
     try {
-      const tokenInfo = await $axios.$get(`/token/${id}`, { params: query })
-      return { tokenInfo: { ...tokenInfo, id } }
+      const tokenInfo = await $axios.$get(`/token/${id}`)
+      return { tokenInfo }
     } catch (err) {
       if (err?.response) {
         if (err.response.code === 404) {
@@ -29,12 +29,6 @@ export default {
   data() {
     return {
       tokenInfo: {}
-    }
-  },
-
-  computed: {
-    id() {
-      return this.$route.params.id
     }
   },
 
