@@ -24,8 +24,8 @@
       </span>
     </section>
     <TokenDataTx v-if="tab == tabs[0]" @setTotalCount="val => totalCount = val" />
-    <TokenDataInfo v-if="tab == tabs[1]" :token="token" @setTotalCount="val => totalCount = val" />
-    <TokenDataHolder v-if="tab == tabs[2]" :token="token" />
+    <TokenDataHolder v-if="tab == tabs[1]" :token="token" @setTotalCount="val => totalCount = val" />
+    <TokenDataInfo v-if="tab == tabs[2]" :token="token" />
     <TokenDataContract v-if="tab == tabs[3]" />
   </div>
 </template>
