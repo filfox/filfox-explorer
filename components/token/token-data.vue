@@ -23,16 +23,14 @@
         {{ $t(`detail.token.data.${tab == 'tx' ? 'totalOfTxs':'totalOfHolders'}`, { amount: totalCount }) }}
       </span>
     </section>
-    <component :is="tabComponent" :token="token" @setTotalCount="val => totalCount = val" />
+    <TokenDataTx v-if="tab == tabs[0]" @setTotalCount="val => totalCount = val" />
+    <TokenDataInfo v-if="tab == tabs[1]" :token="token" @setTotalCount="val => totalCount = val" />
+    <TokenDataHolder v-if="tab == tabs[2]" :token="token" />
+    <TokenDataContract v-if="tab == tabs[3]" />
   </div>
 </template>
 
 <script>
-import Tx from '~/components/token/token-data-tx'
-import Info from '~/components/token/token-data-info'
-import Holder from '~/components/token/token-data-holder'
-import Contract from '~/components/token/token-data-contract'
-
 export default {
   props: {
     token: {
@@ -46,17 +44,6 @@ export default {
       tab: 'tx',
       tabs: ['tx', 'holder', 'info', 'contract'],
       totalCount: 0
-    }
-  },
-
-  computed: {
-    tabComponent() {
-      return {
-        tx: Tx,
-        info: Info,
-        holder: Holder,
-        contract: Contract
-      }[this.tab]
     }
   },
 
