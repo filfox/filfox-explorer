@@ -24,7 +24,8 @@ export default {
     openApp: 'APP 다운로드/열기',
     select: '선택하다',
     amount: '수량',
-    value: '값'
+    value: '값',
+    item: '안건'
   },
   nav: {
     home: {

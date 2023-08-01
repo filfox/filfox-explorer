@@ -18,7 +18,7 @@
               {{ $t('detail.token.data.tx.receiver') }}
             </th>
             <th class="sticky top-0 z-10 bg-white font-normal">
-              {{ $t('shared.value') }}
+              {{ /erc20/i.test(list.tokenType) ? $t('shared.value') : $t('shared.item') }}
             </th>
           </tr>
         </thead>
@@ -56,7 +56,10 @@
             </td>
             <td>
               <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
-              <span v-else>{{ transfer.value }}</span>
+              <span v-else class="flex items-center justify-center">
+                <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />
+                {{ transfer.value }}
+              </span>
             </td>
           </tr>
         </tbody>
@@ -93,9 +96,12 @@
           </span>
         </div>
         <div class="flex justify-between">
-          <span class="text-gray-600">{{ $t('shared.value') }}</span>
+          <span class="text-gray-600">{{ /erc20/i.test(list.tokenType) ? $t('shared.value') : $t('shared.item') }}</span>
           <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
-          <span v-else>{{ transfer.value }}</span>
+          <span v-else class="flex items-center justify-center">
+            <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />
+            {{ transfer.value }}
+          </span>
         </div>
       </li>
     </ul>
@@ -104,7 +110,6 @@
       <el-pagination
         layout="prev, pager, next, jumper"
         class="mx-auto hidden md:block"
-        :jumper-text="['', '']"
         :total="list.totalCount"
         :page-size="pageSize"
         :current-page="page + 1"

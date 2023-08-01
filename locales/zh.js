@@ -24,7 +24,8 @@ export default {
     openApp: '下载APP/APP内打开',
     select: '请选择',
     amount: '数量',
-    value: '金额'
+    value: '金额',
+    item: '项目'
   },
   nav: {
     home: {

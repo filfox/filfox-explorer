@@ -24,7 +24,8 @@ export default {
     openApp: 'DOWNLOAD/OPEN APP',
     select: 'Select',
     amount: 'Amount',
-    value: 'Value'
+    value: 'Value',
+    item: 'Item'
   },
   nav: {
     home: {

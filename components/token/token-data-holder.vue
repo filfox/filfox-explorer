@@ -72,7 +72,6 @@
       <el-pagination
         layout="prev, pager, next, jumper"
         class="mx-auto hidden md:block"
-        :jumper-text="['', '']"
         :total="list.totalCount"
         :page-size="pageSize"
         :current-page="page + 1"
