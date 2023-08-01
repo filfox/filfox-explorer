@@ -23,7 +23,8 @@ export default {
     currentNetwork: '当前网络:',
     openApp: '下载APP/APP内打开',
     select: '请选择',
-    amount: '数量'
+    amount: '数量',
+    value: '金额'
   },
   nav: {
     home: {
@@ -653,10 +654,11 @@ export default {
       title: '通证',
       overview: {
         title: '通证概览',
-        maxSupply: '最大供应量',
+        totalSupply: '总供应量',
         numberOfHolders: '持有者数量',
         totalTransactionVolume: '总交易量',
-        contractAddress: '合约地址'
+        contractAddress: '合约地址',
+        contractType: '通证类型'
       },
       data: {
         totalOfTxs: '累计 {amount} 条交易',
@@ -664,10 +666,10 @@ export default {
         tx: {
           title: '交易',
           time: '时间',
-          id: 'ID',
-          sender: '发送者',
-          receiver: '接收者',
-          tokenId: '通证 ID'
+          id: '消息ID',
+          sender: '发送方',
+          receiver: '接收方',
+          tokenId: '通证ID'
         },
         holder: {
           title: '持有者',

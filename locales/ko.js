@@ -23,7 +23,8 @@ export default {
     currentNetwork: '현재 네트워크: ',
     openApp: 'APP 다운로드/열기',
     select: '선택하다',
-    amount: '수량'
+    amount: '수량',
+    value: '값'
   },
   nav: {
     home: {
@@ -652,10 +653,11 @@ export default {
       title: '토큰',
       overview: {
         title: '토큰 개요',
-        maxSupply: '최대 공급량',
+        totalSupply: '총 공급량',
         numberOfHolders: '보유자 수',
         totalTransactionVolume: '총 거래량',
-        contractAddress: '계약 주소'
+        contractAddress: '계약 주소',
+        contractType: '토큰 유형'
       },
       data: {
         totalOfTxs: '총 {amount} 건 거래',
@@ -663,7 +665,7 @@ export default {
         tx: {
           title: '거래',
           time: '시간',
-          id: 'ID',
+          id: '메시지 ID',
           sender: '송신자',
           receiver: '수신자',
           tokenId: '토큰 ID'

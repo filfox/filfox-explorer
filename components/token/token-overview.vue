@@ -10,9 +10,10 @@
         </dt>
         <dd class="flex items-center">
           <span v-if="index == 0 && token.decimals">{{ tokenData[item] | parseToken(token.decimals) }}</span>
-          <span v-else-if="index == 3">
-            <AddressLink :id="tokenData[item]" class="hover:text-main" />
-          </span>
+          <AddressLink v-else-if="index == 3" :id="tokenData[item]" class="hover:text-main" />
+          <el-tag v-else-if="index == 4" size="mini" class="rounded-full" effect="dark">
+            {{ tokenData[item] }}
+          </el-tag>
           <span v-else>{{ tokenData[item] }}</span>
           <img
             v-if="index == 3"
@@ -39,7 +40,7 @@ export default {
 
   data() {
     return {
-      overviewItems: ['maxSupply', 'numberOfHolders', 'totalTransactionVolume', 'contractAddress']
+      overviewItems: ['totalSupply', 'numberOfHolders', 'totalTransactionVolume', 'contractAddress', 'contractType']
     }
   },
 
@@ -49,14 +50,15 @@ export default {
       td[this.overviewItems[0]] = this.token.totalSupply
       td[this.overviewItems[1]] = this.token.holderCount
       td[this.overviewItems[2]] = this.token.exchangeCount
-      td[this.overviewItems[3]] = this.token.ethAddress
+      td[this.overviewItems[3]] = this.token.address
+      td[this.overviewItems[4]] = this.token.type
       return td
     }
   },
 
   methods: {
     didCopyContractAddrClicked() {
-      copy(this.token.ethAddress)
+      copy(this.token.address)
       this.$message.success(this.$t('shared.copySuccess'))
     }
   }

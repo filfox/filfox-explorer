@@ -103,3 +103,15 @@ button:focus {
 .min-h-screen {
     min-height: 100vh;
 }
+
+.el-pagination .el-input__inner {
+    height: 20px !important;
+}
+
+.el-pagination .el-icon-arrow-left:before {
+    content: "\e792" !important;
+}
+
+.el-pagination .el-icon-arrow-right:before {
+    content: "\e791" !important;
+}

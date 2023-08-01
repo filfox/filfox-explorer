@@ -23,7 +23,8 @@ export default {
     currentNetwork: 'Current network: ',
     openApp: 'DOWNLOAD/OPEN APP',
     select: 'Select',
-    amount: 'Amount'
+    amount: 'Amount',
+    value: 'Value'
   },
   nav: {
     home: {
@@ -97,7 +98,7 @@ export default {
         averageGasPrice: 'Average Gas Price',
         burntSupply: 'Burnt FIL',
         totalMarketBalance: 'Total Market Balance',
-        totalMaxSupply: 'Total Max Supply',
+        totalMaxSupply: 'Total Supply',
         circulatingSupplyRate: 'Circulating Rate',
         sectorInitialPledge: 'Current Sector Initial Pledge',
         currentBaseFee: 'Current Base Fee',
@@ -672,10 +673,11 @@ export default {
       title: 'Token',
       overview: {
         title: 'Token Overview',
-        maxSupply: 'Max Supply',
+        totalSupply: 'Total Supply',
         numberOfHolders: 'Number of Holders',
         totalTransactionVolume: 'Total Transaction Volume',
-        contractAddress: 'Contract Address'
+        contractAddress: 'Contract Address',
+        contractType: 'Contract Type'
       },
       data: {
         totalOfTxs: '{amount} Total Transactions',
@@ -683,9 +685,9 @@ export default {
         tx: {
           title: 'Transaction',
           time: 'Time',
-          id: 'ID',
-          sender: 'Sender',
-          receiver: 'Receiver',
+          id: 'Message ID',
+          sender: 'From',
+          receiver: 'To',
           tokenId: 'Token ID'
         },
         holder: {

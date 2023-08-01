@@ -11,7 +11,7 @@
               {{ $t('detail.token.data.holder.address') }}
             </th>
             <th class="sticky top-0 z-10 bg-white">
-              {{ $t('shared.amount') }}
+              {{ $t('shared.value') }}
             </th>
             <th class="sticky top-0 z-10 bg-white w-1/8">
               {{ $t('detail.token.data.holder.proportion') }}
@@ -30,7 +30,14 @@
             <td>
               <AddressLink :id="holder.address" :format="22" />
             </td>
-            <td>{{ holder.balance | addAmountDelimiters }}</td>
+            <td>
+              <template v-if="/erc20/i.test(token.type)">
+                {{ holder.balance | parseToken(token.decimals) }}
+              </template>
+              <template v-else>
+                {{ holder.balance | addAmountDelimiters }}
+              </template>
+            </td>
             <td>{{ holder.percentage | percentage }}</td>
           </tr>
         </tbody>
@@ -50,8 +57,9 @@
           <AddressLink :id="holder.address" :format="22" />
         </div>
         <div class="flex justify-between">
-          <span class="text-gray-600">{{ $t('shared.amount') }}</span>
-          <span>{{ holder.balance | addAmountDelimiters }}</span>
+          <span class="text-gray-600">{{ $t('shared.value') }}</span>
+          <span v-if="/erc20/i.test(token.type)">{{ holder.balance | parseToken(token.decimals) }}</span>
+          <span v-else>{{ holder.balance | addAmountDelimiters }}</span>
         </div>
         <div class="flex justify-between">
           <span class="text-gray-600">{{ $t('detail.token.data.holder.proportion') }}</span>
@@ -64,6 +72,7 @@
       <el-pagination
         layout="prev, pager, next, jumper"
         class="mx-auto hidden md:block"
+        :jumper-text="['', '']"
         :total="list.totalCount"
         :page-size="pageSize"
         :current-page="page + 1"
@@ -84,6 +93,13 @@
 
 <script>
 export default {
+  props: {
+    token: {
+      type: Object,
+      required: true
+    }
+  },
+
   data() {
     return {
       list: {

@@ -11,21 +11,7 @@
       <div class="flex-1 pb-2 mr-4 text-sm bg-white rounded-md">
         <div class="flex py-4 pl-8 font-medium border-b border-background">
           <span class="mr-6">{{ $t('detail.address.normal.headers.overview') }}</span>
-          <template v-if="addressData.actor == 'evm' && contract.address">
-            <span v-if="contract.verified" class="flex items-center font-light">
-              <img src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 mr-1">
-              <span class="text-sm">{{ $t('detail.contract.codeVerified') }}</span>
-            </span>
-            <div v-else class="font-light rounded-md text-customGray-600 flex items-center">
-              <img src="@/assets/img/contract/warn.svg" alt="warn" class="w-4.5 h-4.5 mr-1">
-              <span>{{ $t('detail.contract.verifyTip.0') }}?
-                <nuxt-link :to="localePath(`/contract?address=${contract.address}`)" class="text-main hover:underline">
-                  {{ $t('detail.contract.verifyTip.1') }}
-                </nuxt-link>
-                {{ $t('detail.contract.verifyTip.2') }}!
-              </span>
-            </div>
-          </template>
+          <ContractCodeStatus v-if="addressData.actor == 'evm' && contract.address" :contract="contract" />
         </div>
 
         <dl class="flex items-center my-2">
@@ -171,14 +157,10 @@
             {{ $t('detail.address.normal.headers.tokenInfo') }}
           </dt>
           <dd class="mr-4 flex items-center">
-            <NuxtLink :to="localePath(`/token/${addressData.robust}`)" class="hover:underline hover:text-main">
-              <span v-if="/erc20/i.test(addressData.tokenInfo.type)" class="flex items-center">
-                <TokenIcon class="mr-1.5" :token-id="addressData.tokenInfo.id" /> {{ addressData.tokenInfo.symbol }}
-              </span>
-              <span v-else class="flex items-center">
-                <img src="@/assets/img/token/nft.png" :alt="addressData.tokenInfo.symbol" class="w-4 h-4 mr-1.5">
-                {{ addressData.tokenInfo.symbol }} {{ addressData.tokenInfo.name }}
-              </span>
+            <NuxtLink :to="localePath(`/token/${addressData.robust}`)" class="flex items-center hover:underline hover:text-main">
+              <TokenIcon v-if="/erc20/i.test(addressData.tokenInfo.type)" class="mr-1.5" :token-id="addressData.tokenInfo.id" />
+              <img v-else src="@/assets/img/token/nft.png" :alt="addressData.tokenInfo.symbol" class="w-4 h-4 mr-1.5">
+              {{ addressData.tokenInfo.name }} ({{ addressData.tokenInfo.symbol }})
             </NuxtLink>
           </dd>
         </dl>

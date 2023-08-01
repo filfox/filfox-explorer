@@ -4,21 +4,21 @@
       <table class="w-full table-fixed">
         <thead class="m-2 text-gray-600">
           <tr class="h-8">
-            <th class="sticky top-0 z-10 bg-white w-1/8">
+            <th class="sticky top-0 z-10 bg-white font-normal w-1/8">
               {{ $t('detail.token.data.tx.time') }}
             </th>
-            <th class="sticky top-0 z-10 w-1/4 bg-white">
+            <th class="sticky top-0 z-10 bg-white font-normal  w-1/4">
               {{ $t('detail.token.data.tx.id') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-1/5">
+            <th class="sticky top-0 z-10 bg-white font-normal w-1/5">
               {{ $t('detail.token.data.tx.sender') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-1/16"></th>
-            <th class="sticky top-0 z-10 bg-white w-1/5">
+            <th class="sticky top-0 z-10 bg-white font-normal w-1/16"></th>
+            <th class="sticky top-0 z-10 bg-white font-normal w-1/5">
               {{ $t('detail.token.data.tx.receiver') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white">
-              {{ $t('shared.amount') }}
+            <th class="sticky top-0 z-10 bg-white font-normal">
+              {{ $t('shared.value') }}
             </th>
           </tr>
         </thead>
@@ -93,7 +93,7 @@
           </span>
         </div>
         <div class="flex justify-between">
-          <span class="text-gray-600">{{ $t('shared.amount') }}</span>
+          <span class="text-gray-600">{{ $t('shared.value') }}</span>
           <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
           <span v-else>{{ transfer.value }}</span>
         </div>
@@ -104,6 +104,7 @@
       <el-pagination
         layout="prev, pager, next, jumper"
         class="mx-auto hidden md:block"
+        :jumper-text="['', '']"
         :total="list.totalCount"
         :page-size="pageSize"
         :current-page="page + 1"
