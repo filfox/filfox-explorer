@@ -1,9 +1,7 @@
 <template>
   <Affix v-if="show" :use-capture="true" :offset-top="0" :offset-bottom="-1" class="hidden md:block">
-    <div class="z-40 absolute right-0 p-4 mr-2 bg-white mt-2 rounded-md shadow-container">
-      <div class="text-xs w-4 h-4 flex items-center justify-center absolute right-0 -mt-6 -mr-2 text-black cursor-pointer border border-gray-500 bg-white rounded-full hover:bg-opacity-75" @click="show=false">
-        ✕
-      </div>
+    <div class="z-40 fixed right-0 bottom-1 p-4 mr-2 bg-white mt-2 rounded-md shadow-container">
+      <i class="el-icon-circle-close bg-white rounded-full text-xl cursor-pointer absolute right-0 -mt-6 -mr-2" @click="show = false"></i>
       <div class="text-sm">
         {{ $t('nav.app.downloadApp') }}
       </div>
@@ -15,16 +13,13 @@
         <img v-else src="~/assets/img/download/fox-wallet-web-en.jpg" alt="foxwallet" class="w-20 border border-dashed border-gray-500" draggable="false">
         <div class="w-40 flex flex-wrap">
           <a class="bg-black text-white py-2 rounded-md ml-2 text-xs flex items-center justify-center w-16 hover:opacity-75 cursor-pointer" @click="download('ios')">
-            <img src="@/assets/img/download/ios.svg" class="mr-1">
-            iOS
+            <img src="@/assets/img/download/ios.svg" class="mr-1">iOS
           </a>
           <a class="bg-black text-white py-2 px-2 rounded-md ml-2 text-xs flex items-center justify-center w-20 hover:opacity-75 cursor-pointer" @click="download('android')">
-            <img src="@/assets/img/download/android.svg" class="mr-1">
-            Android
+            <img src="@/assets/img/download/android.svg" class="mr-1">Android
           </a>
           <a class="bg-black text-white py-2 px-3 rounded-md ml-2 mt-1 text-xs flex items-center justify-center hover:opacity-75 cursor-pointer" @click="download('googlePlay')">
-            <img src="@/assets/img/download/googleplay.svg" class="mr-1">
-            Google Play
+            <img src="@/assets/img/download/googleplay.svg" class="mr-1">Google Play
           </a>
         </div>
       </div>
@@ -34,9 +29,7 @@
 <script>
 export default {
   data() {
-    return {
-      show: true
-    }
+    return { show: true }
   },
   methods: {
     download(platform) {

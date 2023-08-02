@@ -57,8 +57,7 @@
             <td>
               <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
               <span v-else class="flex items-center justify-center">
-                <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />
-                {{ transfer.value }}
+                <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />#{{ transfer.value }}
               </span>
             </td>
           </tr>
@@ -99,17 +98,16 @@
           <span class="text-gray-600">{{ /erc20/i.test(list.tokenType) ? $t('shared.value') : $t('shared.item') }}</span>
           <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
           <span v-else class="flex items-center justify-center">
-            <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />
-            {{ transfer.value }}
+            <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />#{{ transfer.value }}
           </span>
         </div>
       </li>
     </ul>
 
-    <div class="flex items-center text-center h-16">
+    <div class="flex items-center h-16">
       <el-pagination
         layout="prev, pager, next, jumper"
-        class="mx-auto hidden md:block"
+        class="ml-auto hidden md:block"
         :total="list.totalCount"
         :page-size="pageSize"
         :current-page="page + 1"

@@ -4,16 +4,16 @@
       <table class=" w-full table-fixed">
         <thead class="m-2 text-sm text-gray-600">
           <tr class="h-8">
-            <th class="sticky top-0 z-10 bg-white w-1/8">
+            <th class="sticky top-0 z-10 bg-white font-normal w-1/8">
               {{ $t('detail.token.data.holder.rank') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-1/4">
+            <th class="sticky top-0 z-10 bg-white font-normal w-1/4">
               {{ $t('detail.token.data.holder.address') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white">
+            <th class="sticky top-0 z-10 bg-white font-normal">
               {{ $t('shared.value') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-1/8">
+            <th class="sticky top-0 z-10 bg-white font-normal w-1/8">
               {{ $t('detail.token.data.holder.proportion') }}
             </th>
           </tr>
@@ -68,10 +68,10 @@
       </li>
     </ul>
 
-    <div class="flex items-center text-center h-16">
+    <div class="flex items-center h-16">
       <el-pagination
         layout="prev, pager, next, jumper"
-        class="mx-auto hidden md:block"
+        class="ml-auto hidden md:block"
         :total="list.totalCount"
         :page-size="pageSize"
         :current-page="page + 1"

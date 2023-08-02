@@ -25,10 +25,15 @@ export default {
 
   methods: {
     async init() {
-      this.loading = true
-      const data = await this.$axios.$get(`/address/${this.address}/contract`)
-      this.loading = false
-      this.contract = { ...data, address: this.address }
+      try {
+        this.loading = true
+        const data = await this.$axios.$get(`/address/${this.address}/contract`)
+        this.contract = { ...data, address: this.address }
+      } catch (error) {
+        this.$message.error(error)
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

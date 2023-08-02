@@ -16,10 +16,7 @@
         </el-button>
       </el-row>
       <span v-if="/tx|holder/.test(tab)" class="text-xs text-main flex items-center mt-2.5 md:mt-0">
-        <img
-          src="@/assets/img/token/pie.svg"
-          class="w-3 h-3 mr-1"
-        />
+        <img src="@/assets/img/token/pie.svg" class="w-3 h-3 mr-1" />
         {{ $t(`detail.token.data.${tab == 'tx' ? 'totalOfTxs':'totalOfHolders'}`, { amount: totalCount }) }}
       </span>
     </section>
