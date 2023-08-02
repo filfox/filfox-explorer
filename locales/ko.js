@@ -22,7 +22,10 @@ export default {
     backToHome: '홈페이지로 돌아 가기',
     currentNetwork: '현재 네트워크: ',
     openApp: 'APP 다운로드/열기',
-    select: '선택하다'
+    select: '선택하다',
+    amount: '수량',
+    value: '값',
+    item: '안건'
   },
   nav: {
     home: {
@@ -543,7 +546,8 @@ export default {
           lastSeenTime: '최근 거래',
           ownedMiners: '보유 채굴자',
           workers: '유효 채굴자',
-          benefitedMiners: '광부 혜택'
+          benefitedMiners: '광부 혜택',
+          tokenInfo: '토큰 정보'
         }
       },
       miner: {
@@ -644,6 +648,41 @@ export default {
         id: 'ID',
         miners: '채굴자',
         IP: 'IP 리스트'
+      }
+    },
+    token: {
+      title: '토큰',
+      overview: {
+        title: '토큰 개요',
+        totalSupply: '총 공급량',
+        numberOfHolders: '보유자 수',
+        totalTransactionVolume: '총 거래량',
+        contractAddress: '계약 주소',
+        contractType: '토큰 유형'
+      },
+      data: {
+        totalOfTxs: '총 {amount} 건 거래',
+        totalOfHolders: '총 {amount} 명 보유자',
+        tx: {
+          title: '거래',
+          time: '시간',
+          id: '메시지 ID',
+          sender: '송신자',
+          receiver: '수신자',
+          tokenId: '토큰 ID'
+        },
+        holder: {
+          title: '보유자',
+          rank: '순위',
+          address: '주소',
+          proportion: '비율'
+        },
+        info: {
+          title: '정보'
+        },
+        contract: {
+          title: '계약'
+        }
       }
     }
   },

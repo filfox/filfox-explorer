@@ -74,7 +74,8 @@ export default {
     '~/components/fns',
     '~/components/contract',
     '~/components/stats',
-    '~/components/dapp-list'
+    '~/components/dapp-list',
+    '~/components/token'
   ],
   extendPlugins(plugins) {
     const pluginIndex = plugins.findIndex(src => src === '@/plugins/i18n.js')

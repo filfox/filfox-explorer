@@ -22,7 +22,10 @@ export default {
     backToHome: '回到首页',
     currentNetwork: '当前网络:',
     openApp: '下载APP/APP内打开',
-    select: '请选择'
+    select: '请选择',
+    amount: '数量',
+    value: '金额',
+    item: '项目'
   },
   nav: {
     home: {
@@ -536,7 +539,8 @@ export default {
           lastSeenTime: '最新交易',
           ownedMiners: '名下存储提供者',
           workers: '实际工作存储提供者',
-          benefitedMiners: '受益矿工'
+          benefitedMiners: '受益矿工',
+          tokenInfo: '通证信息'
         }
       },
       miner: {
@@ -645,6 +649,41 @@ export default {
         id: 'ID',
         miners: '存储提供者',
         IP: 'IP列表'
+      }
+    },
+    token: {
+      title: '通证',
+      overview: {
+        title: '通证概览',
+        totalSupply: '总供应量',
+        numberOfHolders: '持有者数量',
+        totalTransactionVolume: '总交易量',
+        contractAddress: '合约地址',
+        contractType: '通证类型'
+      },
+      data: {
+        totalOfTxs: '累计 {amount} 条交易',
+        totalOfHolders: '累计 {amount} 个持有者',
+        tx: {
+          title: '交易',
+          time: '时间',
+          id: '消息ID',
+          sender: '发送方',
+          receiver: '接收方',
+          tokenId: '通证ID'
+        },
+        holder: {
+          title: '持有者',
+          rank: '排名',
+          address: '地址',
+          proportion: '占比'
+        },
+        info: {
+          title: '信息'
+        },
+        contract: {
+          title: '合约'
+        }
       }
     }
   },
