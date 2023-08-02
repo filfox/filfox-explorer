@@ -64,7 +64,7 @@ export default {
   async mounted() {
     try {
       const id = this.id || ''
-      if (id.startsWith('f4')) {
+      if (id.startsWith('f4') || id.startsWith('t4')) {
         let name = localStorage.getItem(`fns:${id}`)
         if (name) {
           name = JSON.parse(name)
