@@ -28,7 +28,10 @@
               {{ holder.rank }}
             </td>
             <td>
-              <AddressLink :id="holder.address" :format="22" />
+              <span
+                class="hover:text-main cursor-pointer"
+                @click="didHolderAddressClicked(holder.address)"
+              >{{ holder.address }}</span>
             </td>
             <td>
               <template v-if="/erc20/i.test(token.type)">
@@ -54,7 +57,10 @@
         </div>
         <div class="flex justify-between">
           <span class="text-gray-600">{{ $t('detail.token.data.holder.address') }}</span>
-          <AddressLink :id="holder.address" :format="22" />
+          <span
+            class="text-main"
+            @click="didHolderAddressClicked(holder.address)"
+          >{{ holder.address }}</span>
         </div>
         <div class="flex justify-between">
           <span class="text-gray-600">{{ $t('shared.value') }}</span>
@@ -143,6 +149,10 @@ export default {
       this.loading = false
       this.list = res
       this.$emit('setTotalCount', this.list.totalCount || 0)
+    },
+
+    didHolderAddressClicked(holder) {
+      window.location.href = `${window.location.origin}${this.$route.path}?h=${holder}`
     }
   }
 }

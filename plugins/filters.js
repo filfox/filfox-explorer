@@ -145,3 +145,20 @@ Vue.filter('actor', actor => ({
 }[actor]))
 
 Vue.filter('exit-code', code => exitCodes[code] ?? code)
+
+Vue.filter('trim', (string, len) => {
+  const id = string
+  let head
+  let tail
+  if (Number.isInteger(len)) {
+    head = tail = len
+    if (head + tail + 1 >= id.length) {
+      return id
+    } else {
+      return `${id.slice(0, head)}...${id.slice(-tail)}`
+    }
+  } else {
+    return id
+  }
+})
+

@@ -164,6 +164,25 @@
             </NuxtLink>
           </dd>
         </dl>
+
+        <dl v-if="addressData.tokens" class="flex items-center my-2">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
+            {{ $t('detail.address.normal.headers.tokenHoldings') }}
+          </dt>
+          <dd class="mr-4 flex items-center">
+            <el-popover
+              placement="bottom"
+              width="500"
+              trigger="click"
+              popper-class="rounded-lg border-none shadow-popover p-0"
+            >
+              <button slot="reference" class="flex items-center px-3 py-0.5 border rounded-full transition duration-200 hover:bg-customBlue-250">
+                {{ addressData.tokens }} Tokens<i class="el-icon-arrow-down ml-3"></i>
+              </button>
+              <AddressTokenHoldings />
+            </el-popover>
+          </dd>
+        </dl>
       </div>
       <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
         <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="block h-full border border-gray-500 border-dashed">

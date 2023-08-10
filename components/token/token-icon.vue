@@ -1,5 +1,5 @@
 <template>
-  <img :src="tokenIcon" alt="TOKEN" class="w-4 h-4 md:w-5 md:h-5">
+  <img :src="tokenIcon" alt="TOKEN" class="w-4 h-4">
 </template>
 
 <script>

@@ -37,9 +37,10 @@
             </td>
             <td>
               <div class="flex flex-row items-center justify-center">
-                <AddressLink v-if="transfer.from" :id="transfer.from" :format="12" />
+                <NuxtLink v-if="transfer.from" :to="`${$route.path}?h=${transfer.from}`" class="hover:text-main cursor-pointer">
+                  {{ transfer.from | trim(12) }}
+                </NuxtLink>
                 <span v-else>N/A</span>
-                <AddressTag :tag="transfer.fromTag" type="pc" :style="{ maxWidth: '66%' }" />
               </div>
             </td>
             <td>
@@ -49,9 +50,10 @@
             </td>
             <td>
               <div class="flex flex-row items-center justify-center">
-                <AddressLink v-if="transfer.to" :id="transfer.to" :format="12" />
+                <NuxtLink v-if="transfer.to" :to="`${$route.path}?h=${transfer.to}`" class="hover:text-main cursor-pointer">
+                  {{ transfer.to | trim(12) }}
+                </NuxtLink>
                 <span v-else>N/A</span>
-                <AddressTag :tag="transfer.toTag" type="pc" :style="{ maxWidth:'66%' }" />
               </div>
             </td>
             <td>
@@ -83,14 +85,14 @@
         <div class="flex justify-between">
           <span class="text-gray-600">{{ $t('detail.token.data.tx.sender') }}</span>
           <span>
-            <AddressLink v-if="transfer.from" :id="transfer.from" :format="12" />
+            <NuxtLink v-if="transfer.from" :to="`${$route.path}?h=${transfer.from}`">{{ transfer.from | trim(12) }}</NuxtLink>
             <span v-else>N/A</span>
           </span>
         </div>
         <div class="flex justify-between">
           <span class="text-gray-600">{{ $t('detail.token.data.tx.receiver') }}</span>
           <span>
-            <AddressLink v-if="transfer.from" :id="transfer.to" :format="12" />
+            <NuxtLink v-if="transfer.to" :to="`${$route.path}?h=${transfer.to}`">{{ transfer.to | trim(12) }}</NuxtLink>
             <span v-else>N/A</span>
           </span>
         </div>
@@ -146,11 +148,20 @@ export default {
   computed: {
     address() {
       return this.$route.params.id
+    },
+
+    holder() {
+      return this.$route.query.h ?? null
     }
   },
 
   watch: {
     page() {
+      this.getList()
+    },
+
+    holder() {
+      this.page = 0
       this.getList()
     }
   },
@@ -163,7 +174,7 @@ export default {
     async getList() {
       if (!this.address) return
 
-      const params = { limit: this.pageSize, offset: this.page * this.pageSize }
+      const params = { limit: this.pageSize, offset: this.page * this.pageSize, userAddress: this.holder }
       this.loading = true
       const res = await this.$axios.$get(`/token/${this.address}/token-transfers`, { params })
       this.loading = false

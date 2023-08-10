@@ -525,6 +525,10 @@ export default {
       }
     },
     address: {
+      holdings: {
+        searchTokenName: '搜索通证名',
+        noTokens: '没有匹配的通证'
+      },
       normal: {
         title: '账户',
         headers: {
@@ -540,7 +544,8 @@ export default {
           ownedMiners: '名下存储提供者',
           workers: '实际工作存储提供者',
           benefitedMiners: '受益矿工',
-          tokenInfo: '通证信息'
+          tokenInfo: '通证信息',
+          tokenHoldings: '持币信息'
         }
       },
       miner: {
@@ -660,6 +665,13 @@ export default {
         totalTransactionVolume: '总交易量',
         contractAddress: '合约地址'
       },
+      holder: {
+        filteredByTokenHolder: '持币地址过滤',
+        balance: '余额',
+        nfts: 'NFTs',
+        backToOverview: '返回概览',
+        filterAddress: '地址筛选'
+      },
       data: {
         totalOfTxs: '累计 {amount} 条交易',
         totalOfHolders: '累计 {amount} 个持有者',
@@ -681,7 +693,7 @@ export default {
           title: '信息',
           noIntroductionYet: '暂无介绍',
           f410fpoidg73f7krlfohnla52dotowde5p2sejxnd4mq: '',
-          f410fezdlwnrykhjr3sr54bc6b23d2cx6wqt52caxhaq: '',
+          f410fezdlwnrykhjr3sr54bc6b23d2cx6wqt52caxhaq: '2023年2月，FILEDOGE诞生，它是Filecoin上的MEME代币。基于FIL的智能合约，FILEDOGE项目公平发布了Genesis。它是一个100%社区化的项目，致力于将DOGE的MEME文化精神带入FIL生态及其他领域。没有中心化的团队，只有一个欢迎所有人的公平竞争环境。FILEDOGE军团的社区成员是一群爱冒险的疯子，喊着“吃零或归零！”',
           f410f74s7vn5esqhmglfszihjkztjj3m3wkfbacg26oi: 'SC是Themis 协议的贡献值代币，最大供应量为1亿枚，用户通过邀请质押做出贡献所产生的贡献代币，只有这一种产生渠道。',
           f410fabpafjfjgqkc3douo3yzfug5tq4bwfvuhsewxji: 'THS是Themis Pro的平台代币，最大供应量为1000万枚，THS完全是用户用稳定币资产、THS-USDT LP资产以及主流蓝筹资产铸造并发行的。',
           f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: '',

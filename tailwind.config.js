@@ -52,6 +52,7 @@ module.exports = {
         customBlue: {
           100: '#F1F6FA',
           200: '#F8FAFD',
+          250: '#EEF7FF',
           300: '#1950C9'
         },
         customGray: {
@@ -149,9 +150,12 @@ module.exports = {
       boxShadow: {
         container: '2px 2px 20px rgb(0 0 0 / 60%)',
         card: '0px 4px 4px 0px #0000000F',
-        panel: '0px 4px 10px 0px #00000014'
+        panel: '0px 4px 10px 0px #00000014',
+        popover: '0 0 20px #00000020'
       },
       spacing: {
+        0.5: '0.125rem',
+        1.25: '0.3125rem',
         1.5: '0.375rem',
         2.5: '0.625rem',
         5.5: '1.375rem'
@@ -165,11 +169,11 @@ module.exports = {
         1.5: '0.75rem'
       },
       lineHeight: {
-        '12': '3rem',
-        '13': '3.5rem'
+        12: '3rem',
+        13: '3.5rem'
       },
       gridTemplateColumns: {
-        'dappList': 'repeat(auto-fill, 20rem)'
+        dappList: 'repeat(auto-fill, 20rem)'
       }
     },
     minWidth: {

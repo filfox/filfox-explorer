@@ -2,6 +2,7 @@
   <div class="container mx-auto text-xs md:text-sm">
     <TokenHeader :token="tokenInfo" />
     <TokenOverview :token="tokenInfo" />
+    <TokenHolderFilter v-if="holder" class="my-4" />
     <TokenData :token="tokenInfo" class="my-4" />
   </div>
 </template>
@@ -27,8 +28,12 @@ export default {
   },
 
   data() {
-    return {
-      tokenInfo: {}
+    return { tokenInfo: {} }
+  },
+
+  computed: {
+    holder() {
+      return this.$route.query.h
     }
   },
 
