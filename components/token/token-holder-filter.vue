@@ -9,7 +9,7 @@
         {{ $t('detail.token.holder.filteredByTokenHolder') }}
       </h1>
       <div class="flex items-center mt-0.5 md:mt-2">
-        <span class="text-main font-medium">{{ holder }}</span>
+        <AddressLink :id="holder" class="text-main font-medium" />
         <img
           src="@/assets/img/token/copy.svg"
           class="w-4 h-4 ml-1 cursor-pointer"

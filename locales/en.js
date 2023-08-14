@@ -680,8 +680,8 @@ export default {
       overview: {
         title: 'Token Overview',
         totalSupply: 'Total Supply',
-        numberOfHolders: 'Number of Holders',
-        totalTransactionVolume: 'Total Transaction Volume',
+        numberOfHolders: 'Holders',
+        totalTransactionVolume: 'Total Transactions',
         contractAddress: 'Contract Address'
       },
       holder: {
