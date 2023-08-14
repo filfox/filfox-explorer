@@ -4,12 +4,12 @@
       <ActivityBanner />
       <HomeOverview :overview="overview" />
 
-      <HomeDappsRanks
+      <!-- <HomeDappsRanks
         class="hidden lg:block"
       />
       <HomeDappsRanksMobile
         class="lg:hidden"
-      />
+      /> -->
 
       <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
         <div class="bg-white mb-2">
