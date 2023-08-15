@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="p-2.5 md:p-3 border-b">
-      <div class="token-search flex items-center rounded md:rounded-md px-2 md:px-3 py-2 md:py-2.25 bg-customGray-280 border border-transparent transition duration-200">
+      <div class="token-search flex items-center rounded md:rounded-md px-2 md:px-3 py-2 bg-customGray-280 border border-transparent transition duration-200">
         <input v-model="tokenName" :placeholder="$t('detail.address.holdings.searchTokenName')" class="outline-none bg-transparent flex-1 text-xs md:text-sm" @keydown.enter="getTokenHoldings">
         <img slot="suffix" src="@/assets/img/shared/search.svg" class="ml-2 cursor-pointer w-3 md:w-4.5" @click="getTokenHoldings" />
       </div>

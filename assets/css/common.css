@@ -115,3 +115,7 @@ button:focus {
 .el-pagination .el-icon-arrow-right:before {
     content: "\e791" !important;
 }
+
+.el-pager .number.active {
+    color: #1a4fc9;
+}

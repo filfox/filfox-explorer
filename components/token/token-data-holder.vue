@@ -148,6 +148,7 @@ export default {
       const res = await this.$axios.$get(`/token/${this.address}/holders`, { params })
       this.loading = false
       this.list = res
+      this.$emit('setTotalCount', this.list.totalCount || 0)
     },
 
     didHolderAddressClicked(holder) {

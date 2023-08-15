@@ -28,8 +28,14 @@
         <img slot="suffix" src="@/assets/img/shared/search.svg" class="ml-2 el-icon-search text-base cursor-pointer transition duration-200 hover:opacity-50" @click="filterByHolder" />
       </div>
     </section>
-    <TokenDataTx v-if="tab == tabs[0]" />
-    <TokenDataHolder v-if="tab == tabs[1]" :token="token" />
+
+    <div v-if="/tx|holder/.test(tab)" class="text-xs text-main flex items-center px-4 md:px-8 mt-3 md:mt-4">
+      <img src="@/assets/img/token/pie.svg" class="w-3 h-3 mr-1" />
+      {{ $t(`detail.token.data.${tab == 'tx' ? 'totalOfTxs':'totalOfHolders'}`, { amount: totalCount }) }}
+    </div>
+
+    <TokenDataTx v-if="tab == tabs[0]" @setTotalCount="val => totalCount = val" />
+    <TokenDataHolder v-if="tab == tabs[1]" :token="token" @setTotalCount="val => totalCount = val" />
     <TokenDataInfo v-if="tab == tabs[2]" :token="token" />
     <TokenDataContract v-if="tab == tabs[3]" />
   </div>
@@ -106,6 +112,9 @@ export default {
 .el-tooltip__popper {
   @apply bg-main !important;
   .popper__arrow {
+    border-top-color: #1a4fc9 !important;
+  }
+  .popper__arrow::after {
     border-top-color: #1a4fc9 !important;
   }
 }

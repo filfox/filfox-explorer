@@ -16,24 +16,24 @@
       <table class="w-full table-fixed">
         <thead class="m-2 text-sm text-gray-600">
           <tr class="h-8">
-            <th class="sticky top-0 z-10 bg-white w-1/8">
+            <th class="sticky top-0 z-10 bg-white" style="width: 15%">
               {{ $t('detail.transfer.tableHeaders.time') }}
             </th>
-            <th class="sticky top-0 z-10 w-1/4 bg-white">
+            <th class="sticky top-0 z-10 bg-white" style="width: 25%">
               {{ $t('detail.transfer.tableHeaders.message') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-5/32">
+            <th class="sticky top-0 z-10 bg-white" style="width: 10%">
               {{ $t('detail.transfer.tableHeaders.from') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-1/16">
+            <th class="sticky top-0 z-10 bg-white" style="width: 10%">
             </th>
-            <th class="sticky top-0 z-10 bg-white w-5/32">
+            <th class="sticky top-0 z-10 bg-white " style="width: 10%">
               {{ $t('detail.transfer.tableHeaders.to') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-1/8">
+            <th class="sticky top-0 z-10 bg-white" style="width: 13%">
               {{ $t('detail.transfer.tableHeaders.type') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white w-1/8">
+            <th class="sticky top-0 z-10 bg-white">
               {{ 'Token' }}
             </th>
           </tr>
@@ -76,14 +76,14 @@
               </el-tag>
             </td>
             <td>
-              <div v-if="/erc20/i.test(transfer.type)" class="flex items-center">
+              <div v-if="/erc20/i.test(transfer.type)" class="flex justify-center items-center">
                 <img :src="transfer.tokenIcon" alt="warn" class="w-4 h-4 mr-1.5">
                 {{ transfer.value | parseToken(transfer.decimals, 6) }}
                 <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main ml-1 text-xs font-mono">
                   {{ transfer.symbol }}
                 </NuxtLink>
               </div>
-              <span v-else class="text-xs flex items-center">
+              <span v-else class="text-xs flex justify-center items-center">
                 <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
                 <div>
                   <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
