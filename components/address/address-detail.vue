@@ -171,7 +171,7 @@
           </dt>
           <dd class="mr-4 flex items-center">
             <el-popover
-              placement="bottom"
+              placement="bottom-start"
               width="500"
               trigger="click"
               popper-class="rounded-lg border-none shadow-popover p-0"

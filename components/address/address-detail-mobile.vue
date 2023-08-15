@@ -170,6 +170,25 @@
       </div>
     </div>
 
+    <div v-if="addressData.tokens" class="flex justify-between mx-4 mt-2 text-xs">
+      <p class="w-1/4">
+        {{ $t('detail.address.normal.headers.tokenHoldings') }}
+      </p>
+      <div class="w-3/4">
+        <el-popover
+          width="360"
+          placement="bottom"
+          trigger="click"
+          popper-class="rounded md:rounded-lg border-none shadow-popover p-0"
+        >
+          <button slot="reference" class="flex items-center px-3 py-0.5 border rounded-full transition duration-200 hover:bg-customBlue-250">
+            {{ addressData.tokens }} Tokens<i class="el-icon-arrow-down ml-3"></i>
+          </button>
+          <AddressTokenHoldings />
+        </el-popover>
+      </div>
+    </div>
+
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
     <div v-loading="loading" class="pt-3 mt-2 bg-white border-t border-background">

@@ -45,7 +45,7 @@ export default {
         formatter(params) {
           return [
             params[0].name,
-            params.map(({ marker, seriesName, value }) => `${marker}${seriesName}: ${value[1]} FIL`)
+            ...params.map(({ marker, seriesName, value }) => `${marker}${seriesName}: ${value[1]} FIL`)
           ].join('<br>')
         }
       }

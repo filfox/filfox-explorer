@@ -20,21 +20,16 @@
         </template>
       </el-row>
 
-      <span v-if="/tx|holder/.test(tab)" class="text-xs text-main flex items-center mt-2.5 md:mt-0 md:ml-auto mr-6">
-        <img src="@/assets/img/token/pie.svg" class="w-3 h-3 mr-1" />
-        {{ $t(`detail.token.data.${tab == 'tx' ? 'totalOfTxs':'totalOfHolders'}`, { amount: totalCount }) }}
-      </span>
-
-      <div class="address-search w-full lg:w-70 mt-2 lg:mt-0 flex items-center rounded-full px-3 py-1.25 bg-customGray-270 border border-transparent transition duration-200">
-        <input v-model="filterAddress" :placeholder="$t('detail.token.holder.filterAddress')" class="outline-none bg-transparent flex-1 font-light" @keydown.enter="filterByHolder">
+      <div class="address-search w-full lg:w-60 mt-2 lg:mt-0 flex items-center rounded-full px-3 py-1.5 bg-customGray-270 border border-transparent transition duration-200">
+        <input v-model="filterAddress" :placeholder="$t('detail.token.holder.filterAddress')" class="outline-none bg-transparent flex-1 text-xs text-customGray-400" @keydown.enter="filterByHolder">
         <el-tooltip v-if="filterAddress" :content="$t('detail.token.holder.backToOverview')" placement="top">
-          <i class="ml-2 el-icon-error text-customGray-600 text-base cursor-pointer" @click="clearFilterAddress"></i>
+          <i class="ml-2 el-icon-error text-customGray-400 text-base cursor-pointer" @click="clearFilterAddress"></i>
         </el-tooltip>
-        <i slot="suffix" class="ml-2 el-icon-search text-base cursor-pointer transition duration-200 hover:opacity-50" @click="filterByHolder"></i>
+        <img slot="suffix" src="@/assets/img/shared/search.svg" class="ml-2 el-icon-search text-base cursor-pointer transition duration-200 hover:opacity-50" @click="filterByHolder" />
       </div>
     </section>
-    <TokenDataTx v-if="tab == tabs[0]" @setTotalCount="val => totalCount = val" />
-    <TokenDataHolder v-if="tab == tabs[1]" :token="token" @setTotalCount="val => totalCount = val" />
+    <TokenDataTx v-if="tab == tabs[0]" />
+    <TokenDataHolder v-if="tab == tabs[1]" :token="token" />
     <TokenDataInfo v-if="tab == tabs[2]" :token="token" />
     <TokenDataContract v-if="tab == tabs[3]" />
   </div>
@@ -110,5 +105,8 @@ export default {
 
 .el-tooltip__popper {
   @apply bg-main !important;
+  .popper__arrow {
+    border-top-color: #1a4fc9 !important;
+  }
 }
 </style>
