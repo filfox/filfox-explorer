@@ -157,8 +157,8 @@
             {{ $t('detail.address.normal.headers.tokenInfo') }}
           </dt>
           <dd class="mr-4 flex items-center">
-            <NuxtLink :to="localePath(`/token/${addressData.robust}`)" class="flex items-center hover:underline hover:text-main">
-              <TokenIcon v-if="/erc20/i.test(addressData.tokenInfo.type)" class="mr-1.5" :token-id="addressData.tokenInfo.address" />
+            <NuxtLink :to="localePath(`/token/${addressData.address}`)" class="flex items-center hover:underline hover:text-main">
+              <TokenIcon v-if="/erc20/i.test(addressData.tokenInfo.type)" class="mr-1.5" :token-id="addressData.address" />
               <img v-else src="@/assets/img/token/nft.png" :alt="addressData.tokenInfo.symbol" class="w-4 h-4 mr-1.5">
               {{ addressData.tokenInfo.name }} ({{ addressData.tokenInfo.symbol }})
             </NuxtLink>

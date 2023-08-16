@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <!-- <HomeFnsRegistrations /> -->
+      <HomeFnsRegistrations />
 
       <HomeMinerRanksMobile
         class="lg:hidden"
@@ -114,9 +114,7 @@
 </template>
 
 <script>
-import homeFnsRegistrations from '../components/home/home-fns-registrations.vue'
 export default {
-  components: { homeFnsRegistrations },
   async asyncData({ $axios, error }) {
     try {
       const overview = await $axios.$get('/overview')
@@ -125,7 +123,7 @@ export default {
       if (err?.response) {
         error({ code: err.response.status, message: err.response.statusText })
       } else {
-        error({ code: 500, message: 'Server Error'() })
+        error({ code: 500, message: 'Server Error' })
       }
     }
   },

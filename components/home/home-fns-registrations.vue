@@ -6,9 +6,15 @@
           <img src="../../assets/img/home/icon-fns.svg" alt="FNS" class="h-5 mr-2">
           {{ $t('fns.registrations.title') }}
         </span>
+
+        <nuxt-link :to="localePath('/fns')" class="ml-auto">
+          <el-button size="mini" round>
+            {{ $t('shared.more') }}
+          </el-button>
+        </nuxt-link>
       </div>
 
-      <div class="flex justify-between mb-2 px-4">
+      <div class="flex justify-between mb-2 px-4 hidden">
         <div class="flex h-12 items-center">
           <el-row>
             <el-button
@@ -137,7 +143,7 @@
 <script>
 import { fnsServer } from '@/filecoin/filecoin.config'
 import FNS from '@filfox/fnsjs'
-const fns = new FNS('calibration')
+const fns = new FNS('mainnet')
 
 export default {
   data() {
@@ -149,7 +155,7 @@ export default {
         { key: 'handle', label: this.$t('fns.registrations.handle') }
       ],
       names: [],
-      type: 0,
+      type: 1,
       fnsLinks: ['url', 'com.twitter', 'com.discord', 'com.telegram', 'com.github'],
       fnsRanks: [],
       loading: false
@@ -202,7 +208,7 @@ export default {
     },
 
     async getRanking() {
-      const data = await this.$axios.$get(`https://testapp.fns.space/api/fns/inviteRanking`, {
+      const data = await this.$axios.$get(`${fnsServer}/fns/inviteRanking`, {
         params: { pageSize: 3 }
       })
       const addrs = data.data.records.map(({ ethAddr }) => ethAddr)
