@@ -986,7 +986,7 @@ export default {
       title: ['Verify & Publish Contract Source Code', 'COMPILER TYPE AND VERSION SELECTION'],
       tips: [
         'Source code verification provides transparency for users interacting with smart contracts. By uploading the source code, Filfox will match the compiled code with that on the blockchain. Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.',
-        'Please be informed that advanced settings (e.g. bytecodeHash: "none" or viaIR: "true") can be accessed via Solidity (Standard-Json-Input) verification method. More information can be found under Solidity\'s \"Compiler Input and Output JSON Description\" documentation section.'
+        'Please be informed that advanced settings (e.g. bytecodeHash: "none" or viaIR: "true") can be accessed via Solidity (Standard-Json-Input) verification method. More information can be found under Solidity\'s "Compiler Input and Output JSON Description" documentation section.'
       ],
       pleaseSelect: 'Please Select',
       pleaseCenterAddress: 'Please center address',

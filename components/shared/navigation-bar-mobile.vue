@@ -60,7 +60,7 @@
           <nuxt-link :to="localePath('/wiki/0')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.resources.subMenus.1') }}
           </nuxt-link>
-          <a href="https://wallet.filfox.info" target="_blank" class="link">
+          <a :href="filfoxWalletHost" target="_blank" class="link">
             {{ $t('nav.resources.subMenus.2') }}
           </a>
           <nuxt-link :to="localePath('/fns')" class="link" @click.native="hideIfNeeded">
@@ -70,7 +70,7 @@
       </el-collapse>
 
       <div class="block py-2 text-sm cursor-pointer ranks" @click="hideIfNeeded">
-        <a href="https://wallet.filfox.info" target="_blank">
+        <a :href="filfoxWalletHost" target="_blank">
           {{ $t('wallet.title') }}
         </a>
       </div>
@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import { filfoxWalletHost } from '../../filecoin/filecoin.config'
+
 export default {
   props: {
     mobileNavHidden: {
@@ -104,7 +106,8 @@ export default {
   },
   data() {
     return {
-      searchText: ''
+      searchText: '',
+      filfoxWalletHost
     }
   },
   methods: {

@@ -3,22 +3,22 @@
     <div class="bg-white rounded my-4 flex justify-between p-3 flex-col lg:flex-row">
       <span class="font-bold mb-2 lg:mb-0">FEVM Dapp Stats</span>
       <div class="flex flex-col lg:flex-row gap-x-5 gap-y-2">
-        <FilterSelect 
+        <FilterSelect
           :value="categoryValue"
-          :label="$t('home.dappRanks.titleHeader.category')" 
-          :options="categoryOptions" 
+          :label="$t('home.dappRanks.titleHeader.category')"
+          :options="categoryOptions"
           @selected="selectCategory"
         />
-        <FilterSelect 
+        <FilterSelect
           :value="sortValue"
-          :label="$t('home.dappRanks.titleHeader.sortBy')" 
-          :options="sortOptions" 
+          :label="$t('home.dappRanks.titleHeader.sortBy')"
+          :options="sortOptions"
           @selected="selectSort"
         />
-        <FilterSelect 
+        <FilterSelect
           :value="timeValue"
-          :label="$t('home.dappRanks.titleHeader.time')" 
-          :options="timeOptions" 
+          :label="$t('home.dappRanks.titleHeader.time')"
+          :options="timeOptions"
           @selected="selectTime"
         />
       </div>
@@ -26,8 +26,15 @@
     <div v-if="dappListLoading" v-loading="dappListLoading" class="flex h-24"></div>
     <div :class="`flex flex-wrap gap-4 mt-5 ${dappListLoading ? 'hidden' : 'block'}`">
       <div v-for="item, index in dappList.dappList" :key="item.contractId" class="relative">
-        <DappBlock :id="item.contractId" :name="item.name" :category="item.category" :data="getData(item)" :icon="item.logoPath" :rank="(page-1)*pageNum+index+1">
-          <div class="flex justify-start items-center gap-2"> 
+        <DappBlock
+          :id="item.contractId"
+          :name="item.name"
+          :category="item.category"
+          :data="getData(item)"
+          :icon="item.logoPath"
+          :rank="(page-1)*pageNum+index+1"
+        >
+          <div class="flex justify-start items-center gap-2">
             <img class="w-4 h-4" :src="getIcon(item.category)" />
             <span class="text-customGray-700">{{ getData(item) }}</span>
           </div>
@@ -37,11 +44,11 @@
     </div>
     <div class="flex justify-between items-center dappListPager">
       <span>Found something interesting? <a class="text-customBlue-300" href="https://docs.google.com/forms/d/e/1FAIpQLSciXwagRx-D8zeTCIEa9y2pwkoaDqNw2nPSk9bLYdQRsFm3Sw/viewform">Submit it here</a></span>
-      <el-pagination 
+      <el-pagination
         :class="page > 1 ? 'visible' : 'invisible'"
-        small 
-        layout="prev, pager, next" 
-        class="mt-5 mb-5" 
+        small
+        layout="prev, pager, next"
+        class="mt-5 mb-5"
         :total="dappList.totalCount"
         :page-size="pageNum"
         @prev-click="prevPage"
@@ -52,22 +59,19 @@
 </template>
 
 <script>
-import { getMedalSrc, formatNum } from'@/utils/dapp';
+import { getMedalSrc, formatNum } from '@/utils/dapp'
+import { HOST } from '../../filecoin/filecoin.config'
 
 export default {
-  mounted() {
-    this.getDappList();
-    this.getCategoryOptions();
-  },
   data() {
     return {
       dappList: {},
       pageNum: 16,
       page: 1,
       dappListLoading: false,
-      categoryValue: "",
+      categoryValue: '',
       categoryOptions: [],
-      sortValue: "users",
+      sortValue: 'users',
       sortOptions: [
         {
           value: 'users',
@@ -107,92 +111,94 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.getDappList()
+    this.getCategoryOptions()
+  },
   methods: {
     getMedalSrc,
     formatNum,
     selectCategory(value) {
-      this.categoryValue = value;
-      this.getDappList();
+      this.categoryValue = value
+      this.getDappList()
     },
     selectSort(value) {
-      this.sortValue = value;
-      this.getDappList();
+      this.sortValue = value
+      this.getDappList()
     },
     selectTime(value) {
-      this.timeValue = value;
-      this.getDappList();
+      this.timeValue = value
+      this.getDappList()
     },
     async getDappList() {
-      this.dappListLoading = true;
+      this.dappListLoading = true
       let params = {
-        limit: this.pageNum, 
-        offset: (this.page-1)*this.pageNum,
+        limit: this.pageNum,
+        offset: (this.page - 1) * this.pageNum,
         withoutChangeRate: true
-      };
-
-      if(this.sortValue) {
-        params = {...params, sortBy: this.sortValue}
       }
 
-      if(this.categoryValue && this.categoryValue !== 'all') {
-        params = {...params, category: this.categoryValue}
+      if (this.sortValue) {
+        params = { ...params, sortBy: this.sortValue }
       }
 
-      if(this.timeValue) {
-        params = {...params, days: this.timeValue}
+      if (this.categoryValue && this.categoryValue !== 'all') {
+        params = { ...params, category: this.categoryValue }
       }
-      this.dappList = await this.$axios.$get('https://filfox.info/api/xj/stats/dapp/list', { params });
+
+      if (this.timeValue) {
+        params = { ...params, days: this.timeValue }
+      }
+      this.dappList = await this.$axios.$get(`${HOST}/api/xj/stats/dapp/list`, { params })
       this.dappListLoading = false
     },
     async getCategoryOptions() {
-      const options = await this.$axios.$get('https://filfox.info/api/xj/dapp/category/list');
-      let categoryOptions = [];
-      if(options) {
-        categoryOptions = options.map(item => {
-          return {
-            value: item.category,
-            label: item.displayName
-          }
-        });
+      const options = await this.$axios.$get(`${HOST}/api/xj/dapp/category/list`)
+      let categoryOptions = []
+      if (options) {
+        categoryOptions = options.map(item => ({
+          value: item.category,
+          label: item.displayName
+        }))
         categoryOptions.unshift({
           value: 'all',
           label: this.$t('home.dappRanks.tableFilterOptions.category.all')
-        });
+        })
       }
-      this.categoryOptions = categoryOptions;
+      this.categoryOptions = categoryOptions
     },
     nextPage() {
-      this.page++;
-      this.getDappList();
+      this.page++
+      this.getDappList()
     },
     prevPage() {
-      this.page--;
-      this.getDappList();
+      this.page--
+      this.getDappList()
     },
     getData(item) {
-      switch(item.category) {
+      switch (item.category) {
         case 'DEFI':
         case 'LSD':
-          return this.formatNum(item.userCount.data);
+          return this.formatNum(item.userCount.data)
         case 'MarketPlace':
-          return item.balance.data | this.filecoin(2);
-        case 'NFT': 
-          return '';
+          return item.balance.data | this.filecoin(2)
+        case 'NFT':
+          return ''
         default:
-          return this.formatNum(item.userCount.data);
+          return this.formatNum(item.userCount.data)
       }
     },
     getIcon(category) {
-      switch(category) {
+      switch (category) {
         case 'DEFI':
         case 'LSD':
-          return require('@/assets/img/dapp/user.png');
+          return require('@/assets/img/dapp/user.png')
         case 'MarketPlace':
-          return require('@/assets/img/dapp/fee.png');
-        case 'NFT': 
-          return '';
+          return require('@/assets/img/dapp/fee.png')
+        case 'NFT':
+          return ''
         default:
-          return require('@/assets/img/dapp/user.png');
+          return require('@/assets/img/dapp/user.png')
       }
     }
   }

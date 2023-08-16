@@ -5,9 +5,11 @@
     </div>
     <div class="flex flex-col gap-1.5 ml-5 justify-center">
       <nuxt-link :to="localePath(`/dapp/${id}`)">
-        <a @click="clickName" class="text-customBlue-300 text-xl font-bold">{{ name }}</a>
+        <a class="text-customBlue-300 text-xl font-bold" @click="clickName">{{ name }}</a>
       </nuxt-link>
-      <div class="text-customGray-650 text-sm">{{ $t('dapp.category') }} : {{ category }}</div>
+      <div class="text-customGray-650 text-sm">
+        {{ $t('dapp.category') }} : {{ category }}
+      </div>
       <el-tooltip :content="getDataLabel(category)+data" placement="top">
         <div class="w-32 text-sm rounded truncate" @mouseenter="visibilityChange($event)">
           <!-- <span class="text-customGray-650 mr-2">{{ getDataLabel(category) }}</span>
@@ -27,7 +29,7 @@ export default {
     category: { type: String, required: true },
     data: { type: String, required: true },
     icon: { type: String, required: true },
-    rank: { type: Number }
+    rank: { type: Number, required: true }
   },
   data() {
     return {
@@ -36,27 +38,27 @@ export default {
   },
   methods: {
     clickName() {
-      this.$store.commit('dapp/setRank', this.rank);
+      this.$store.commit('dapp/setRank', this.rank)
     },
     getDataLabel(type) {
-      switch(type) {
+      switch (type) {
         case 'DEFI':
         case 'LSD':
-          return this.$t('dapp.activeUniqueAddress')+":"
+          return `${this.$t('dapp.activeUniqueAddress')}:`
         case 'MarketPlace':
-          return this.$t('dapp.transactionBalance')+":"
-        case 'NFT': 
-          return '';
+          return `${this.$t('dapp.transactionBalance')}:`
+        case 'NFT':
+          return ''
         default:
-          return this.$t('dapp.activeUniqueAddress')+":"
+          return `${this.$t('dapp.activeUniqueAddress')}:`
       }
     },
     visibilityChange(event) {
-      const ev = event.target;
+      const ev = event.target
       if (ev.scrollWidth > ev.clientWidth) {
-        this.isShowTooltip = true;
+        this.isShowTooltip = true
       } else {
-        this.isShowTooltip = false;
+        this.isShowTooltip = false
       }
     }
   }

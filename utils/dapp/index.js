@@ -1,19 +1,19 @@
-const getMedalSrc = (ranking) => {
-  switch(ranking) {
+const getMedalSrc = ranking => {
+  switch (ranking) {
     case 1:
-      return require('@/assets/img/dapp/1st.svg');
+      return require('@/assets/img/dapp/1st.svg')
     case 2:
-      return require('@/assets/img/dapp/2nd.svg');
+      return require('@/assets/img/dapp/2nd.svg')
     case 3:
-      return require('@/assets/img/dapp/3rd.svg');
+      return require('@/assets/img/dapp/3rd.svg')
     default:
-      return "";
+      return ''
   }
 }
 
-const formatNum = function(num) {
-  const formatter = new Intl.NumberFormat( 'en-US', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short" });
-  return formatter.format(Number(num));
+function formatNum(num) {
+  const formatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1, notation: 'compact', compactDisplay: 'short' })
+  return formatter.format(Number(num))
 }
 
 function getTextWith(text, fontStyle) {
@@ -24,4 +24,4 @@ function getTextWith(text, fontStyle) {
   return dimension.width
 }
 
-export { getMedalSrc, formatNum, getTextWith };
+export { getMedalSrc, formatNum, getTextWith }

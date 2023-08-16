@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { adminServer } from '../../filecoin/filecoin.config'
 export default {
   data() {
     const locale = this.$i18n.locale
@@ -50,7 +51,7 @@ export default {
     },
 
     async getBanners() {
-      const res = await this.$axios.$get(`https://admin.filfox.info/api/banner/list`)
+      const res = await this.$axios.$get(`${adminServer}/api/banner/list`)
 
       if (this.locale === 'zh') {
         this.banners = res.result.map(({ urlZh, imgZh, imgMobileZh }) => ({ url: urlZh, img: imgZh, mobileImg: imgMobileZh }))

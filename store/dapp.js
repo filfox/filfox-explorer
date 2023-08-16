@@ -4,6 +4,6 @@ export const state = () => ({
 
 export const mutations = {
   setRank(state, rank) {
-    state.rank = rank;
+    state.rank = rank
   }
 }

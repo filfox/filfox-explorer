@@ -103,6 +103,7 @@ export default {
     'nuxt-i18n'
   ],
   axios: {
+    // 切换环境需修改
     baseURL: 'https://filfox.info/api/v1'
   },
   i18n: {

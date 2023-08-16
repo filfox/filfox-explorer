@@ -2,6 +2,7 @@ import Vue from 'vue'
 import io from 'socket.io-client'
 
 export default function({ app }) {
+  // 切换环境需修改
   const ws = io('wss://filfox.info', { transports: ['websocket'] })
 
   ws.on('tipset', tipset => app.store.commit('blockchain/height', tipset.height))

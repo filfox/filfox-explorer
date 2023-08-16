@@ -4,10 +4,10 @@
       <HomeTitle type="dappRanks" />
       <div class="absolute right-0 text-sm">
         <FilterSelect
-          class="mr-2.5" 
+          class="mr-2.5"
           :value="sortValue"
-          :label="$t('home.dappRanks.titleHeader.sortBy')" 
-          :options="sortOptions" 
+          :label="$t('home.dappRanks.titleHeader.sortBy')"
+          :options="sortOptions"
           @selected="onSelect"
         />
         <nuxt-link :to="localePath('/dapp')" class="mr-4">
@@ -37,16 +37,16 @@
             <span>{{ dapp.category }}</span>
           </td>
           <td>
-            <ChangeRate :data="dapp.balance.data | filecoin(2)" :changeRate="dapp.balance.changeRate" />
+            <ChangeRate :data="dapp.balance.data | filecoin(2)" :change-rate="dapp.balance.changeRate" />
           </td>
           <td>
-            <ChangeRate :data="formatNum(dapp.userCount.data)" :changeRate="dapp.userCount.changeRate" />
+            <ChangeRate :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" />
           </td>
           <td>
-            <ChangeRate :data="formatNum(dapp.invokeCount.data)" :changeRate="dapp.invokeCount.changeRate" />
+            <ChangeRate :data="formatNum(dapp.invokeCount.data)" :change-rate="dapp.invokeCount.changeRate" />
           </td>
           <td>
-            <ChangeRate :data="dapp.totalFee.data | filecoin(2)" :changeRate="dapp.totalFee.changeRate" />
+            <ChangeRate :data="dapp.totalFee.data | filecoin(2)" :change-rate="dapp.totalFee.changeRate" />
           </td>
         </tr>
       </tbody>
@@ -56,15 +56,13 @@
 </template>
 
 <script>
-import {formatNum} from '@/utils/dapp';
+import { formatNum } from '@/utils/dapp'
+import { HOST } from '../../filecoin/filecoin.config'
 
 export default {
-  mounted() {
-    this.getDappList();
-  },
   data() {
     return {
-      sortValue: "transaction",
+      sortValue: 'transaction',
       dappList: [],
       dappListLoading: false,
       sortOptions: [
@@ -87,15 +85,18 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.getDappList()
+  },
   methods: {
     formatNum,
     onSelect(value) {
-      this.sortValue = value;
-      this.getDappList({sortBy: value});
+      this.sortValue = value
+      this.getDappList({ sortBy: value })
     },
-    async getDappList(params={}) {
+    async getDappList(params = {}) {
       this.dappListLoading = true
-      this.dappList = await this.$axios.$get('https://filfox.info/api/xj/stats/dapp/list', { params: { ...params, limit: 10 }});
+      this.dappList = await this.$axios.$get(`${HOST}/api/xj/stats/dapp/list`, { params: { ...params, limit: 10 } })
       this.dappListLoading = false
     }
   }

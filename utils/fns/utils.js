@@ -1,7 +1,6 @@
-// 0x76346faC442F153ED8691fF88b1297643260d8a0
 import { ethers, utils } from 'ethers'
 import { newFromString, validateAddressString } from '@glif/filecoin-address'
-import { RPC } from '@/filecoin/filecoin.config'
+import { RPC, FNS_CONTRACT_ADDRESS } from '@/filecoin/filecoin.config'
 import registrarAbi from './abi/registrar.abi.json'
 import registryAbi from './abi/registry.abi.json'
 import registrarControllerAbi from './abi/registrar.controller.abi.json'
@@ -11,31 +10,31 @@ import publicResolverAbi from './abi/public.resolver.abi.json'
 const provider = new ethers.providers.JsonRpcProvider(RPC)
 
 const registryContract = new ethers.Contract(
-  '0x916915d0d41EaA8AAEd70b2A5Fb006FFc213961b',
+  FNS_CONTRACT_ADDRESS.FNSRegistry,
   registryAbi,
   provider
 )
 
 const registryControllerContract = new ethers.Contract(
-  '0xDA3c407a23Ef96930f1A07903fB8360D8926991E',
+  FNS_CONTRACT_ADDRESS.RegistrarController,
   registrarControllerAbi,
   provider
 )
 
 const registarContract = new ethers.Contract(
-  '0x45d9d6408d5159a379924cf423cb7e15C00fA81f',
+  FNS_CONTRACT_ADDRESS.Registrar,
   registrarAbi,
   provider
 )
 
 const reverseRegistarContract = new ethers.Contract(
-  '0xc49833d827b01e1465c65221A59885Fb71614a26',
+  FNS_CONTRACT_ADDRESS.ReverseRegistrar,
   reverseRegistrarAbi,
   provider
 )
 
 const publicResolverContract = new ethers.Contract(
-  '0xed9bd04b1BB87Abe2EfF583A977514940c95699c',
+  FNS_CONTRACT_ADDRESS.PublicResolver,
   publicResolverAbi,
   provider
 )

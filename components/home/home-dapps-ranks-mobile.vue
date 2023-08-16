@@ -4,10 +4,10 @@
       <HomeTitle type="dappRanks" />
       <div class="text-sm ml-4 mb-4 flex justify-between">
         <FilterSelect
-          class="mr-2.5" 
+          class="mr-2.5"
           :value="sortValue"
-          :label="$t('home.dappRanks.titleHeader.sortBy')" 
-          :options="sortOptions" 
+          :label="$t('home.dappRanks.titleHeader.sortBy')"
+          :options="sortOptions"
           @selected="onSelect"
         />
         <nuxt-link :to="localePath('/dapp')" class="mr-4">
@@ -24,13 +24,13 @@
         <span>{{ $t('home.dappRanks.tableHeaders.category') }}</span>
         <span class="text-right text-black">{{ dapp.category }}</span>
         <span>{{ $t('home.dappRanks.tableHeaders.contractBalance') }}</span>
-        <ChangeRate class="text-right text-black" :data="dapp.balance.data | filecoin(2)" :changeRate="dapp.balance.changeRate" />
+        <ChangeRate class="text-right text-black" :data="dapp.balance.data | filecoin(2)" :change-rate="dapp.balance.changeRate" />
         <span>{{ $t('home.dappRanks.tableHeaders.uniqueAdders') }}</span>
-        <ChangeRate class="text-right text-black" :data="formatNum(dapp.userCount.data)" :changeRate="dapp.userCount.changeRate" />
+        <ChangeRate class="text-right text-black" :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" />
         <span>{{ $t('home.dappRanks.tableHeaders.transactionAmount') }}</span>
-        <ChangeRate class="text-right text-black" :data="formatNum(dapp.invokeCount.data)" :changeRate="dapp.invokeCount.changeRate" />
+        <ChangeRate class="text-right text-black" :data="formatNum(dapp.invokeCount.data)" :change-rate="dapp.invokeCount.changeRate" />
         <span>{{ $t('home.dappRanks.tableHeaders.transactionBalance') }}</span>
-        <ChangeRate class="text-right text-black" :data="dapp.totalFee.data | filecoin(2)" :changeRate="dapp.totalFee.changeRate" />
+        <ChangeRate class="text-right text-black" :data="dapp.totalFee.data | filecoin(2)" :change-rate="dapp.totalFee.changeRate" />
         <div v-if="index < dappList.dappList.length-1" class="border-b col-span-2 mb-2"></div>
       </div>
     </div>
@@ -39,15 +39,13 @@
 </template>
 
 <script>
-import {formatNum} from '@/utils/dapp';
+import { formatNum } from '@/utils/dapp'
+import { HOST } from '../../filecoin/filecoin.config'
 
 export default {
-  mounted() {
-    this.getDappList();
-  },
   data() {
     return {
-      sortValue: "",
+      sortValue: '',
       dappList: [],
       dappListLoading: false,
       sortOptions: [
@@ -66,15 +64,18 @@ export default {
       ]
     }
   },
+  mounted() {
+    this.getDappList()
+  },
   methods: {
     formatNum,
     onSelect(value) {
-      this.sortValue = value;
-      this.getDappList({sort: value});
+      this.sortValue = value
+      this.getDappList({ sort: value })
     },
-    async getDappList(params={}) {
+    async getDappList(params = {}) {
       this.dappListLoading = true
-      this.dappList = await this.$axios.$get('https://filfox.info/api/xj/stats/dapp/list', { params: { ...params, limit: 10 }});
+      this.dappList = await this.$axios.$get(`${HOST}/api/xj/stats/dapp/list`, { params: { ...params, limit: 10 } })
       this.dappListLoading = false
     }
   }

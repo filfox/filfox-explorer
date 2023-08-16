@@ -1,7 +1,7 @@
 <template>
   <div class="inline filterSelect text-xs">
     <span class="mr-2.5">{{ label }}</span>
-    <el-select :value="value" @change="onSelect" :placeholder="this.$t('shared.select')" ref="select">
+    <el-select ref="select" :value="value" :placeholder="this.$t('shared.select')" @change="onSelect">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -13,30 +13,30 @@
 </template>
 
 <script>
-import { getTextWith } from '@/utils/dapp';
+import { getTextWith } from '@/utils/dapp'
 
 export default {
   props: {
-    value: { required: true },
+    value: { type: String, required: true },
     label: { type: String, required: true },
     options: { type: Array, required: true }
   },
-  methods: {
-    onSelect(value) {
-      this.$emit('selected', value);
-    },
-    updateSelectInputWidth() {
-      const option = this.options.find(item => item.value === this.value);
-      if(option) {
-        this.$refs.select.$children[0].$el.children[0].style.width = getTextWith(option.label, '12px')+80+"px";
-      }
-    }
-  },
   mounted() {
-    this.updateSelectInputWidth();
+    this.updateSelectInputWidth()
   },
   updated() {
-    this.updateSelectInputWidth();
+    this.updateSelectInputWidth()
+  },
+  methods: {
+    onSelect(value) {
+      this.$emit('selected', value)
+    },
+    updateSelectInputWidth() {
+      const option = this.options.find(item => item.value === this.value)
+      if (option) {
+        this.$refs.select.$children[0].$el.children[0].style.width = `${getTextWith(option.label, '12px') + 80}px`
+      }
+    }
   }
 }
 </script>

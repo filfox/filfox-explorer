@@ -1,6 +1,6 @@
 export const network = {
   multipleNetworks: true,
-  currentNetwork: 0,
+  currentNetwork: 0, // 切换环境需修改
   networks: [
     {
       name: 'Mainnet',
@@ -19,10 +19,12 @@ export const wiki = {
   url: 'https://filfox.info/wiki'
 }
 
-export const DOMAIN = network.networks[network.currentNetwork].url
-export const RPC = `${DOMAIN}/rpc/v1`
+export const HOST = network.networks[network.currentNetwork].url
+export const RPC = `${HOST}/rpc/v1`
 export const FNS = network.networks[network.currentNetwork].fns
 export const fnsServer = `${FNS}/api`
+export const adminServer = `https://admin.filfox.info`
+export const filfoxWalletHost = `https://wallet.filfox.info`
 
 export const TOKEN_ICONS = {
   f410fpoidg73f7krlfohnla52dotowde5p2sejxnd4mq: require('@/assets/img/token/filadoge.png'),
@@ -34,6 +36,17 @@ export const TOKEN_ICONS = {
   f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: require('@/assets/img/token/stfil.png'),
   DEFAULT: require('@/assets/img/token/default.png'),
   '': require('@/assets/img/token/default.png')
+}
+
+// 切换环境需修改
+export const FNS_CONTRACT_ADDRESS = {
+  Multicall: '0x8ccEEf57F2E092562DBB969f38B68711F493b543',
+  FNSRegistry: '0x916915d0d41EaA8AAEd70b2A5Fb006FFc213961b',
+  ReverseRegistrar: '0xc49833d827b01e1465c65221A59885Fb71614a26',
+  Registrar: '0x45d9d6408d5159a379924cf423cb7e15C00fA81f',
+  FixedPriceOracle: '0x5e838eF42d5D1D8B3F691d7dbFC49D8a9f6aC577',
+  RegistrarController: '0xDA3c407a23Ef96930f1A07903fB8360D8926991E',
+  PublicResolver: '0xed9bd04b1BB87Abe2EfF583A977514940c95699c'
 }
 
 export const epochsInDay = 2880

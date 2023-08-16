@@ -60,4 +60,4 @@ Vue.use(CarouselItem)
 Vue.use(Loading.directive)
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$message = Message
-Vue.prototype.$notify = Notification;
+Vue.prototype.$notify = Notification

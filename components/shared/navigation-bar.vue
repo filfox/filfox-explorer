@@ -78,7 +78,7 @@
         <nuxt-link :to="localePath('/wiki/0')">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
-        <a href="https://wallet.filfox.info" target="_blank">
+        <a :href="filfoxWalletHost" target="_blank">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.2') }}</el-dropdown-item>
         </a>
         <nuxt-link :to="localePath('/fns')">
@@ -87,7 +87,7 @@
       </el-dropdown-menu>
     </el-dropdown>
 
-    <!-- <a class="flex items-center px-2 mx-2 xl:mx-3" href="https://wallet.filfox.info" target="_blank">
+    <!-- <a class="flex items-center px-2 mx-2 xl:mx-3" :href="filfoxWalletHost" target="_blank">
       <div class="flex items-center text-sm text-background">
         {{ $t('wallet.title') }}
         <img src="~/assets/img/space-race/hot.svg" alt="hot" class="h-4 mt-1 ml-2">
@@ -145,12 +145,14 @@
 </template>
 
 <script>
+import { filfoxWalletHost } from '../../filecoin/filecoin.config'
 
 export default {
   name: 'NavBar',
   data() {
     return {
-      searchText: ''
+      searchText: '',
+      filfoxWalletHost
     }
   },
   methods: {
