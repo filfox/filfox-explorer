@@ -1,0 +1,125 @@
+<template>
+  <div>
+    <client-only>
+      <VeLine
+        :data="chartData"
+        :settings="chartSettings"
+        :loading="loading"
+        :data-empty="dataEmpty"
+        :extend="chartExtend"
+        :legend-visible="false"
+        class="hidden lg:block mx-4"
+      />
+      <VeLine
+        :data="chartData"
+        :settings="chartSettings"
+        :loading="loading"
+        :data-empty="dataEmpty"
+        :extend="chartExtend"
+        :legend-visible="false"
+        :grid="{top: 20, bottom: 20}"
+        height="280px"
+        class="lg:hidden mx-4"
+      />
+    </client-only>
+  </div>
+</template>
+
+<script>
+import moment from 'moment'
+
+function toLocaleString(n) {
+  return n.toLocaleString() ?? n.toString()
+}
+
+function formatValue(value) {
+  if (value < 1e6) {
+    return `${toLocaleString(value)} attoFIL`
+  } else if (value < 1e15) {
+    return `${toLocaleString(value / 1e9)} nanoFIL`
+  } else if (value < 1e24) {
+    return `${toLocaleString(value / 1e18)} FIL`
+  } else if (value < 1e33) {
+    return `${toLocaleString(value / 1e27)} Billion FIL`
+  } else {
+    return `${toLocaleString(value / 1e36)} Quintillion FIL`
+  }
+}
+
+export default {
+  components: {
+    VeLine: () => import('v-charts/lib/line').then(x => x.default)
+  },
+  props: {
+    duration: { type: String, default: '24h' }
+  },
+  data() {
+    this.chartSettings = {
+      offsetY: 0,
+      legendName: {},
+      labelMap: {
+        baseFee: 'Base Fee'
+      }
+    }
+    this.chartExtend = {
+      yAxis: {
+        type: 'value',
+        axisLabel: {
+          formatter: formatValue
+        }
+      },
+      tooltip: {
+        trigger: 'axis',
+        formatter: params => [
+          this.getDateTime(this.rawData[params[0].dataIndex].timestamp),
+          ...params.map(param => `${param.marker}${param.seriesName}: ${formatValue(param.value[1])}`)
+        ].join('<br>')
+      }
+    }
+    return {
+      chartData: {
+        columns: [],
+        rows: []
+      },
+      loading: false,
+      dataEmpty: false,
+      rawData: []
+    }
+  },
+  watch: {
+    duration() {
+      this.getLineChartData()
+    }
+  },
+  mounted() {
+    this.getLineChartData()
+  },
+  methods: {
+    async getLineChartData() {
+      this.loading = true
+      this.rawData = await this.$axios.$get('stats/base-fee', { params: { duration: this.duration, samples: 48 } })
+      if (this.rawData == null) {
+        this.dataEmpty = true
+        this.loading = false
+        return
+      }
+      this.chartData.rows = this.rawData.map(info => ({
+        time: this.getTime(info.timestamp),
+        baseFee: info.baseFee
+      }))
+      this.chartData.columns = ['time', 'baseFee']
+      this.loading = false
+    },
+    getTime(time) {
+      if (this.duration === '24h') {
+        return moment(time * 1000).format('HH:mm')
+      } else {
+        return moment(time * 1000).format('MM-DD HH:mm')
+      }
+    },
+    getDateTime(time) {
+      return moment(time * 1000).format('YYYY-MM-DD HH:mm')
+    }
+  }
+}
+</script>

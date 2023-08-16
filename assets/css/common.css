@@ -1,0 +1,121 @@
+@import 'v-charts/lib/style.css';
+
+@font-face {
+    font-family: 'Filfox';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('~assets/fonts/Alibaba-PuHuiTi-Regular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Filfox';
+    font-style: medium;
+    font-weight: 500;
+    font-display: swap;
+    src: url('~assets/fonts/Alibaba-PuHuiTi-Bold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Filfox';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('~assets/fonts/Alibaba-PuHuiTi-Bold.otf') format('truetype');
+}
+
+.social {
+    font-family: 'Filfox';
+}
+
+html {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif, "Helvetica Neue", Helvetica, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYiMicro Hei";
+}
+
+button {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+.el-button {
+    outline: none;
+}
+
+.el-button:focus {
+    outline: none;
+}
+
+.el-radio-button {
+    outline: none;
+}
+
+.el-radio-button:focus {
+    outline: none;
+}
+
+.el-dropdown {
+    outline: none;
+}
+
+.el-dropdown:focus {
+    outline: none;
+}
+
+.el-dropdown-link {
+    outline: none;
+}
+
+.el-dropdown-link:focus {
+    outline: none;
+}
+
+.el-loading-spinner svg {
+    display: inline-block;
+}
+
+.el-button--text {
+    color: #606266
+}
+
+.el-button--text:focus,
+.el-button--text:hover {
+    color: #606266;
+}
+
+.el-tabs__item {
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+.el-popover {
+    word-break: normal;
+    text-align: left;
+}
+
+.el-loading-spinner .el-loading-text {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.el-pagination .el-input__inner {
+    height: 20px !important;
+}
+
+.el-pagination .el-icon-arrow-left:before {
+    content: "\e792" !important;
+}
+
+.el-pagination .el-icon-arrow-right:before {
+    content: "\e791" !important;
+}
+
+.el-pager .number.active {
+    color: #1a4fc9;
+}

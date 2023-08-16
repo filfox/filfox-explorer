@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-hot</title>
+    <defs>
+        <linearGradient x1="50%" y1="3.061617e-15%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#B100EA" offset="0%"></stop>
+            <stop stop-color="#2500A1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Filfox" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Filfox-首页" transform="translate(-806.000000, -90.000000)">
+            <g id="TOP" transform="translate(-2.000000, 0.000000)">
+                <g id="icon-hot" transform="translate(808.000000, 90.000000)">
+                    <rect id="矩形" fill="#000000" fill-rule="nonzero" opacity="0" x="0" y="0" width="18" height="18"></rect>
+                    <path d="M13.1517618,5.8494375 L11.7486902,7.1994375 C11.7486902,7.1994375 11.7486902,1.7994375 7.06813077,0 C7.06813077,0 6.60082483,4.95 4.26025668,6.748875 C1.92026545,8.55 -2.76087086,13.9483125 6.59851715,17.9983125 C6.59851715,17.9983125 1.91795776,13.0483125 8.00158881,9.45 C8.00158881,9.45 7.53428287,11.248875 9.8742741,13.05 C12.2148423,14.8494375 9.8742741,18 9.8742741,18 C9.8742741,18 21.1063474,15.2994375 13.1517618,5.8494375 Z" id="路径" fill="url(#linearGradient-1)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
