@@ -104,7 +104,7 @@ export default {
   ],
   axios: {
     // 切换环境需修改
-    baseURL: 'https://filfox.info/api/v1'
+    baseURL: 'https://calibration.filfox.info/api/v1'
   },
   i18n: {
     locales: [

@@ -1,6 +1,6 @@
 export const network = {
   multipleNetworks: true,
-  currentNetwork: 0, // 切换环境需修改
+  currentNetwork: 1, // 切换环境需修改
   networks: [
     {
       name: 'Mainnet',
@@ -40,13 +40,13 @@ export const TOKEN_ICONS = {
 
 // 切换环境需修改
 export const FNS_CONTRACT_ADDRESS = {
-  Multicall: '0x8ccEEf57F2E092562DBB969f38B68711F493b543',
-  FNSRegistry: '0x916915d0d41EaA8AAEd70b2A5Fb006FFc213961b',
-  ReverseRegistrar: '0xc49833d827b01e1465c65221A59885Fb71614a26',
-  Registrar: '0x45d9d6408d5159a379924cf423cb7e15C00fA81f',
-  FixedPriceOracle: '0x5e838eF42d5D1D8B3F691d7dbFC49D8a9f6aC577',
-  RegistrarController: '0xDA3c407a23Ef96930f1A07903fB8360D8926991E',
-  PublicResolver: '0xed9bd04b1BB87Abe2EfF583A977514940c95699c'
+  Multicall: '0x486755bC0946ECbB760Af4ed171B2C549812A961',
+  FNSRegistry: '0x0381f0c42f542DEcEBC3ea1A27B3eF4ac1F258b6',
+  ReverseRegistrar: '0xc2ef6a6dd61529325290894fDC02F7dD3B7D7275',
+  Registrar: '0x392d1959CFbdCA10342e7D32BCeF87e2Ac25221e',
+  FixedPriceOracle: '0xbbbdf64e9624fb9d1907953fc55a912e31ec4d97',
+  RegistrarController: '0xc5b7f7f5dFB7f16F74476564Fe2e3B5a7C182Cd4',
+  PublicResolver: '0x7EEa7D977fff536d9B8752a5dF24A00E288c1B43'
 }
 
 export const epochsInDay = 2880

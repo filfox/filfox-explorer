@@ -6,15 +6,9 @@
           <img src="../../assets/img/home/icon-fns.svg" alt="FNS" class="h-5 mr-2">
           {{ $t('fns.registrations.title') }}
         </span>
-
-        <nuxt-link :to="localePath('/fns')" class="ml-auto">
-          <el-button size="mini" round>
-            {{ $t('shared.more') }}
-          </el-button>
-        </nuxt-link>
       </div>
 
-      <div class="flex justify-between mb-2 px-4 hidden">
+      <div class="flex justify-between mb-2 px-4">
         <div class="flex h-12 items-center">
           <el-row>
             <el-button
@@ -143,7 +137,7 @@
 <script>
 import { fnsServer } from '@/filecoin/filecoin.config'
 import FNS from '@filfox/fnsjs'
-const fns = new FNS('mainnet')
+const fns = new FNS('calibration')
 
 export default {
   data() {
