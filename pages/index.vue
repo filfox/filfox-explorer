@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <HomeFnsRegistrations />
+      <!-- <HomeFnsRegistrations /> -->
 
       <HomeMinerRanksMobile
         class="lg:hidden"

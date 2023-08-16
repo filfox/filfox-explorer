@@ -1,6 +1,6 @@
 export const network = {
   multipleNetworks: true,
-  currentNetwork: 1,
+  currentNetwork: 0,
   networks: [
     {
       name: 'Mainnet',
@@ -22,7 +22,7 @@ export const wiki = {
 export const DOMAIN = network.networks[network.currentNetwork].url
 export const RPC = `${DOMAIN}/rpc/v1`
 export const FNS = network.networks[network.currentNetwork].fns
-export const fnsServer = 'https://app.fns.space/api/lookup'
+export const fnsServer = `${FNS}/api/lookup`
 
 export const TOKEN_ICONS = {
   f410fpoidg73f7krlfohnla52dotowde5p2sejxnd4mq: require('@/assets/img/token/filadoge.png'),

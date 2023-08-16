@@ -70,7 +70,7 @@ import store from 'store'
 
 export default {
   async asyncData({ $axios }) {
-    const { result } = await $axios.$get(`https://hyperspace.filfox.info/admin/api/blog/category/list`)
+    const { result } = await $axios.$get(`https://admin.filfox.info/api/blog/category/list`)
     return { categories: result }
   },
 
@@ -134,7 +134,7 @@ export default {
   methods: {
     async getNotifyList() {
       this.loading = true
-      const data = await this.$axios.$get('https://hyperspace.filfox.info/admin/api/blog/list', { params: this.params })
+      const data = await this.$axios.$get('https://admin.filfox.info/api/blog/list', { params: this.params })
       this.loading = false
 
       const { result: { blogs, totalCount } } = data
@@ -143,7 +143,7 @@ export default {
     },
 
     async getAllIds() {
-      const { result: { blogs } } = await this.$axios.$get('https://hyperspace.filfox.info/admin/api/blog/list', { params: { limit: 100000 } })
+      const { result: { blogs } } = await this.$axios.$get('https://admin.filfox.info/api/blog/list', { params: { limit: 100000 } })
       return blogs.map(({ _id }) => _id)
     },
 

@@ -50,7 +50,7 @@ export default {
     },
 
     async getBanners() {
-      const res = await this.$axios.$get(`https://hyperspace.filfox.info/admin/api/banner/list`)
+      const res = await this.$axios.$get(`https://admin.filfox.info/api/banner/list`)
 
       if (this.locale === 'zh') {
         this.banners = res.result.map(({ urlZh, imgZh, imgMobileZh }) => ({ url: urlZh, img: imgZh, mobileImg: imgMobileZh }))
