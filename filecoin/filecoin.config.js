@@ -34,6 +34,8 @@ export const TOKEN_ICONS = {
   f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: require('@/assets/img/token/celerusdt.png'),
   f410fmdqxonrwz5peuit5tlbe6ih6zibu5ys223xctfi: require('@/assets/img/token/wfil.png'),
   f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: require('@/assets/img/token/stfil.png'),
+  f410fyxvjnxjwlgb473eq44vwulnmsvrpiwf2c4i4k5i: require('@/assets/img/token/SFT.png'),
+  f410fcrysfupl3j3ojeimzxctv23klbqf5nmonbahudi: require('@/assets/img/token/rSFT.png'),
   DEFAULT: require('@/assets/img/token/default.png'),
   '': require('@/assets/img/token/default.png')
 }
