@@ -179,12 +179,12 @@
               <button slot="reference" class="flex items-center px-3 py-0.5 border rounded-full transition duration-200 hover:bg-customBlue-250">
                 {{ addressData.tokens }} Tokens<i class="el-icon-arrow-down ml-3"></i>
               </button>
-              <AddressTokenHoldings />
+              <AddressTokenHoldings :address="addressData.ethAddress || addressData.id" />
             </el-popover>
           </dd>
         </dl>
       </div>
-      <a target="_blank" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
+      <a target="_blank" :href="$i18n.locale === 'zh' ? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
         <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="block h-full border border-gray-500 border-dashed">
       </a>
     </div>
