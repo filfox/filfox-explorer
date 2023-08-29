@@ -70,7 +70,8 @@
 <script>
 export default {
   props: {
-    plain: { type: Boolean, default: false }
+    plain: { type: Boolean, default: false },
+    address: { type: String, default: '' }
   },
 
   data() {
@@ -85,12 +86,6 @@ export default {
         tokenList: []
       },
       loading: false
-    }
-  },
-
-  computed: {
-    address() {
-      return this.$route.params.id
     }
   },
 
