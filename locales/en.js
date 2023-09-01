@@ -438,7 +438,7 @@ export default {
       viewYourTransaction: 'View Your Transaction',
       response: 'Response',
 
-      verifyTip: ['Are you the contract creator', 'Verify and Publish', 'your contract source code today'],
+      verifyTip: ['Are you the contract creator', 'Verify and Publish', 'your contract source code today', 'Bytecode of implementation Contract at {address}, but not verified.'],
       codeVerified: 'Contract Source Code Verified',
       contractName: 'Contract Name',
       compilerVersion: 'Compiler Version',

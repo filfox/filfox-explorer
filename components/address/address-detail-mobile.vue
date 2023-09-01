@@ -9,7 +9,7 @@
         </span>
         <div v-else class="font-light rounded-md text-customGray-600 flex items-center">
           <img src="@/assets/img/contract/warn.svg" alt="warn" class="w-4.5 h-4.5 mr-1.5">
-          <span>{{ $t('detail.contract.verifyTip.0') }}?
+          <span>{{ $t('detail.contract.verifyTip.0') }}
             <nuxt-link :to="localePath(`/contract?address=${contract.address}`)" class="text-main hover:underline">
               {{ $t('detail.contract.verifyTip.1') }}
             </nuxt-link>
