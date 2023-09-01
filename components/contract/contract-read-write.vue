@@ -246,7 +246,7 @@ export default {
       abis.forEach(abi => {
         const params = {}
         abi.inputs.forEach(({ name, type }) => (params[`${name} [ ${type} ]`] = ''))
-        temp[`${abi.name}( ${abi.inputs.map(({ name }) => name).join(', ')} )`] = params
+        temp[`${abi.name}( ${abi.inputs.map(({ name, type }) => name || type).join(', ')} )`] = params
       })
       this.functions = temp
     },
