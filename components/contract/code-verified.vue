@@ -8,8 +8,8 @@
       <img src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 mr-2">
       <span class="font-semibold text-sm">{{ $t('detail.contract.codeVerified') }}</span>
     </div>
-    <div class="bg-customGray-200 px-3 text-sm rounded-md mt-2.5">
-      <div class="border-b border-customGray-300 flex flex-col md:flex-row justify-between p-4">
+    <div class="bg-customGray-200 px-1.5 md:px-3 text-xs md:text-sm rounded-md mt-2.5">
+      <div class="border-b border-customGray-300 flex flex-col md:flex-row justify-between p-2 md:p-4">
         <div class="flex justify-between md:justify-start">
           <div class="w-48 text-customGray-450">
             {{ $t('detail.contract.contractName') }}
@@ -23,7 +23,7 @@
           <span>{{ contract.optimize ? `Yes with ${contract.optimizeRuns} runs` : 'No' }}</span>
         </div>
       </div>
-      <div class="flex flex-col md:flex-row md:justify-between p-4">
+      <div class="flex flex-col md:flex-row md:justify-between p-2 md:p-4">
         <div class="flex justify-between md:justify-start">
           <div class="w-48 text-customGray-450">
             {{ $t('detail.contract.compilerVersion') }}
@@ -43,8 +43,8 @@
       <div class="flex items-center justify-between px-1">
         <span class="text-sm">{{ $t('detail.contract.contractSourceCode') }} <span class="text-customGray-400">( {{ contract.language }} )</span></span>
       </div>
-      <template v-for="({ name, content }, index) in contract.sourceFiles">
-        <div :key="name" class="flex items-end mt-4 px-1">
+      <div v-for="({ name, content }, index) in contract.sourceFiles" :key="name" class="mt-4">
+        <div class="flex items-end px-1">
           <span class="text-sm el-icon-document flex-1"> {{ name }}
             <span class="text-customGray-500 text-xs">
               - {{ index + 1 }}/{{ contract.sourceFiles.length }} Files
@@ -64,7 +64,6 @@
           </div>
         </div>
         <editor
-          :key="name"
           v-model="contract.sourceFiles[index].content"
           class="bg-customGray-200 mt-2 rounded-md border"
           height="350"
@@ -72,7 +71,7 @@
           :options="{ readOnly: true, mode: 'ace/mode/solidity' }"
           @init="editorInit"
         ></editor>
-      </template>
+      </div>
     </div>
     <div class="rounded-md mt-5 bg-white">
       <div class="flex items-center justify-between px-1">

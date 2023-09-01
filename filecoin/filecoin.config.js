@@ -5,12 +5,16 @@ export const network = {
     {
       name: 'Mainnet',
       url: 'https://filfox.info',
-      fns: 'https://app.fns.space'
+      fns: 'https://app.fns.space',
+      chainId: '0x13a',
+      nativeCurrency: 'FIL'
     },
     {
       name: 'Calibration',
       url: 'https://calibration.filfox.info',
-      fns: 'https://testapp.fns.space'
+      fns: 'https://testapp.fns.space',
+      chainId: '0x4cb2f',
+      nativeCurrency: 'TFIL'
     }
   ]
 }
@@ -19,12 +23,18 @@ export const wiki = {
   url: 'https://filfox.info/wiki'
 }
 
-export const HOST = network.networks[network.currentNetwork].url
+export const NETWORK = network.networks[network.currentNetwork]
+export const CHAIN_NAME = NETWORK.name
+export const CHAIN_ID = NETWORK.chainId
+export const NATIVE_CURRENCY = NETWORK.nativeCurrency
+
+export const HOST = NETWORK.url
 export const RPC = `${HOST}/rpc/v1`
-export const FNS = network.networks[network.currentNetwork].fns
+export const FNS = NETWORK.fns
 export const fnsServer = `${FNS}/api`
 export const adminServer = `https://admin.filfox.info`
 export const filfoxWalletHost = `https://wallet.filfox.info`
+export const METAMASK_PLUGIN_URL = 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?utm_source=ext_sidebar'
 
 export const TOKEN_ICONS = {
   f410fpoidg73f7krlfohnla52dotowde5p2sejxnd4mq: require('@/assets/img/token/filadoge.png'),
