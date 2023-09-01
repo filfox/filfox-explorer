@@ -191,34 +191,21 @@
 
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />
 
-    <div class="pt-4 my-4 bg-white rounded-md">
-      <div class="flex items-center h-12 ml-8">
-        <el-radio-group v-model="listType" size="mini" fill="#1a4fc9">
-          <el-radio-button :label="0">
-            {{ $t('blockchain.message.title') }}
-          </el-radio-button>
-          <el-radio-button :label="1">
-            {{ $t('detail.transfer.title') }}
-          </el-radio-button>
-          <el-radio-button v-if="addressData.ethAddress" :label="4">
-            {{ $t('detail.tokenTransfer.title') }}
-          </el-radio-button>
-          <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
-            {{ $t('detail.contract.title') }}
-            <img v-if="contract.verified" src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 absolute -top-2 -right-1 z-10">
-          </el-radio-button>
-          <el-radio-button v-if="addressData.actor == 'evm'" :label="3">
-            {{ $t('detail.eventLogs.title') }}
-          </el-radio-button>
-        </el-radio-group>
+    <client-only>
+      <div class="pt-4 my-4 bg-white rounded-md">
+        <div class="flex items-center h-12 ml-8">
+          <CapsuleRadioGroup large :radios="radios" :value="listType" @change="v => listType = v" />
+        </div>
+        <AddressMessageList v-if="listType === 0" :address="addressData.address" />
+        <AddressTxList v-if="listType === 1" :address="addressData.address" />
+        <AddressTxTokenList v-if="listType === 2" :address="addressData.address" />
+        <div v-if="listType === 3" class="border-t py-4 mt-2">
+          <Contract :contract="contract" />
+        </div>
+        <AddressEventLogs v-if="listType === 4" :address="addressData.address" />
+        <div v-if="loading" v-loading="loading" class="flex h-24"></div>
       </div>
-      <AddressMessageList v-if="listType === 0" :address="addressData.address" />
-      <AddressTxList v-if="listType === 1" :address="addressData.address" />
-      <ContractCode v-if="listType === 2" :contract="contract" />
-      <AddressEventLogs v-if="listType === 3" :address="addressData.address" />
-      <AddressTxTokenList v-if="listType === 4" :address="addressData.address" />
-      <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-    </div>
+    </client-only>
   </div>
 </template>
 
@@ -233,9 +220,25 @@ export default {
   data() {
     return {
       loading: false,
-      listType: 0,
+      listType: Number(this.$route.query?.t) || 0,
       eventLogs: {},
       contract: {}
+    }
+  },
+
+  computed: {
+    radios() {
+      return [
+        { key: 0, name: this.$t('blockchain.message.title') },
+        { key: 1, name: this.$t('detail.transfer.title') },
+        { key: 2, name: this.$t('detail.tokenTransfer.title') },
+        { key: 3, name: this.$t('detail.contract.title'), verified: this.contract?.verified },
+        { key: 4, name: this.$t('detail.eventLogs.title') }
+      ].filter(({ key }) => {
+        if (key === 2) return Boolean(this.addressData.ethAddress)
+        if (key > 2) return this.addressData.actor === 'evm'
+        return true
+      })
     }
   },
 
@@ -245,13 +248,20 @@ export default {
 
   methods: {
     async getContractAddrData() {
-      const { actor, address } = this.addressData
-      if (actor !== 'evm') return
+      if (this.addressData.actor !== 'evm') return
+      const { address, ethAddress } = this.addressData
 
       this.loading = true
-      const data = await this.$axios.$get(`/address/${address}/contract`)
+      const contractSelf = await this.$axios.$get(`/address/${address}/contract`)
+      let contractImpl = null
+      if (contractSelf?.proxyImpl) {
+        contractImpl = await this.$axios.$get(`/address/${contractSelf.proxyImpl}/contract`)
+        contractImpl.address = contractSelf.proxyImpl
+        contractImpl.ethAddress = ethAddress
+        contractImpl.implAddress = contractSelf.proxyImpl
+      }
       this.loading = false
-      this.contract = { ...data, address }
+      this.contract = { ...contractSelf, address, ethAddress, contractImpl }
     }
   }
 }

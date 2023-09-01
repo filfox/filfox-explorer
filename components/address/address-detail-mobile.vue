@@ -212,11 +212,14 @@
           </el-radio-button>
         </el-radio-group>
       </div>
-      <AddressMessageListMobile v-if="listType === 0" :address="addressData.address" />
-      <AddressTxListMobile v-if="listType === 1" :address="addressData.address" />
-      <ContractCode v-if="listType === 2" :address="addressData.address" />
-      <AddressEventLogs v-if="listType === 3" :address="addressData.address" />
-      <AddressTxTokenList v-if="listType === 4" :address="addressData.address" />
+
+      <client-only>
+        <AddressMessageListMobile v-if="listType === 0" :address="addressData.address" />
+        <AddressTxListMobile v-if="listType === 1" :address="addressData.address" />
+        <Contract v-if="listType === 2" :contract="contract" />
+        <AddressEventLogs v-if="listType === 3" :address="addressData.address" />
+        <AddressTxTokenList v-if="listType === 4" :address="addressData.address" />
+      </client-only>
     </div>
   </div>
 </template>
@@ -244,13 +247,21 @@ export default {
 
   methods: {
     async getContractAddrData() {
-      const { actor, address } = this.addressData
-      if (actor !== 'evm') return
+      if (this.addressData.actor !== 'evm') return
+      let contractImpl = null
+      const { address, ethAddress } = this.addressData
 
       this.loading = true
-      const data = await this.$axios.$get(`/address/${address}/contract`)
+      const contractSelf = await this.$axios.$get(`/address/${address}/contract`)
+
+      if (contractSelf?.proxyImpl) {
+        contractImpl = await this.$axios.$get(`/address/${contractSelf.proxyImpl}/contract`)
+        contractImpl.address = contractSelf.proxyImpl
+        contractImpl.ethAddress = ethAddress
+        contractImpl.implAddress = contractSelf.proxyImpl
+      }
       this.loading = false
-      this.contract = { ...data, address }
+      this.contract = { ...contractSelf, address, ethAddress, contractImpl }
     }
   }
 }

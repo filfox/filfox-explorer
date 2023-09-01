@@ -119,3 +119,7 @@ button:focus {
 .el-pager .number.active {
     color: #1a4fc9;
 }
+
+.el-pager .number:hover {
+    color: #1a4fc9;
+}
