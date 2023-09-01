@@ -42,7 +42,7 @@
             </div>
 
             <div class="flex items-center" :class="{ 'mt-4': Object.keys(f).length }">
-              <el-tooltip :content="$t('detail.contract.connectWalletFirst')" placement="top" :disabled="isAllowRequest(No)">
+              <el-tooltip :content="$t('detail.contract.connectWalletFirst')" placement="top" :disabled="isDisableTooltip">
                 <button
                   :class="[isAllowRequest(No) ? 'bg-main' : 'bg-customGray-375 cursor-not-allowed']"
                   class="flex items-center px-5 py-1.5 text-white font-medium  rounded-md transition duration-200 hover:opacity-75"
@@ -90,7 +90,7 @@
       </template>
     </template>
     <template v-else>
-      <CodeNotVerified v-if="active > 2" :contract="contract" />
+      <CodeNotVerified v-if="active > 2" :contract="contract" proxy class="mt-5" />
     </template>
   </div>
 </template>
@@ -153,6 +153,14 @@ export default {
       } else {
         return this.contractRead
       }
+    },
+
+    isDisableTooltip() {
+      if (this.write) {
+        return this.isConnected
+      } else {
+        return true
+      }
     }
   },
 
@@ -214,7 +222,7 @@ export default {
     },
 
     createContractWrite() {
-      if (typeof window.ethereum === 'undefined') return
+      if (!this.contract.abi || typeof window.ethereum === 'undefined') return
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       this.contractWrite = new ethers.Contract(
         this.contract.ethAddress,
@@ -224,6 +232,7 @@ export default {
     },
 
     resolveCurAbis() {
+      if (!this.contract.abi) return []
       const regx = new RegExp(this.write ? 'payable' : 'view')
       const abis = JSON.parse(this.contract.abi).filter(abi => abi.type === 'function' && regx.test(abi.stateMutability))
       return abis
@@ -310,7 +319,6 @@ export default {
         Vue.set(this.requestResultArr, No, this.transformData(res, No))
       } catch (error) {
         Vue.set(this.requestErrorArr, No, error)
-        Vue.set(this.requestResultArr, No, null)
       } finally {
         Vue.set(this.loadingArr, No, false)
       }
@@ -325,11 +333,13 @@ export default {
         outputs.map(({ name, type }, i) => {
           const pro = name ? `[${name}](${type})` : `(${type})`
           const res = Array.isArray(response) ? response[i] : response
-          if (/int/.test(type)) {
+
+          if (/int\d+$/.test(type)) {
             result[pro] = ethers.BigNumber.from(res).toString()
-          } else {
-            result[pro] = res
+            return
           }
+
+          result[pro] = res
         })
       }
       return result

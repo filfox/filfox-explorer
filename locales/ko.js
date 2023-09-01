@@ -387,29 +387,29 @@ export default {
       }
     },
     transfer: {
-      title: 'Transaction List',
+      title: '거래 목록',
       tableHeaders: {
-        time: 'Time',
-        message: 'Message ID',
-        from: 'From',
-        to: 'To',
-        income: 'Net Income',
-        type: 'Type'
+        time: '시간',
+        message: '메시지 ID',
+        from: '보내는 주소',
+        to: '받는 주소',
+        income: '순 수입',
+        type: '유형'
       },
       types: {
         genesis: 'Genesis',
-        fee: 'Fee',
-        burn: 'Burn',
-        reward: 'Reward',
-        send: 'Send',
-        receive: 'Receive',
-        transfer: 'Transfer',
-        'miner-fee': 'Miner Fee',
-        'burn-fee': 'Burn Fee',
-        penalty: 'Penalty'
+        fee: '수수료',
+        burn: '소각',
+        reward: '보상',
+        send: '전송',
+        receive: '수신',
+        transfer: '이체',
+        'miner-fee': '마이너 수수료',
+        'burn-fee': '소각 수수료',
+        penalty: '벌금'
       },
-      total: 'Total',
-      transaction: 'transactions'
+      total: '합계',
+      transaction: '건'
     },
     contract: {
       title: '계약',
@@ -431,7 +431,7 @@ export default {
       viewYourTransaction: '거래 보기',
       response: '응답',
 
-      verifyTip: ['계약 작성자입니까', '확인 및 게시', '컨트랙트 소스 코드'],
+      verifyTip: ['계약 작성자입니까', '확인 및 게시', '컨트랙트 소스 코드', '계약의 바이트 코드는 {address}에 위치하지만 검증되지 않았습니다.'],
       codeVerified: '컨트랙트 소스 코드가 확인되었습니다',
       contractName: '계약명',
       compilerVersion: '컴파일러 버전',

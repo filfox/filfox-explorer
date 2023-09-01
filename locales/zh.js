@@ -419,7 +419,7 @@ export default {
       viewYourTransaction: '查看交易',
       response: '响应',
 
-      verifyTip: ['你是合约创建者吗', '验证并发布', '你的合约源代码'],
+      verifyTip: ['你是合约创建者吗?', '验证并发布', '你的合约源代码', '实现合约的字节码位于 {address} 但未验证。'],
       codeVerified: '合约源代码已通过验证',
       contractName: '合约名',
       compilerVersion: '编译器版本',
