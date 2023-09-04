@@ -184,7 +184,7 @@
           <button slot="reference" class="flex items-center px-3 py-0.5 border rounded-full transition duration-200 hover:bg-customBlue-250">
             {{ addressData.tokens }} Tokens<i class="el-icon-arrow-down ml-3"></i>
           </button>
-          <AddressTokenHoldings />
+          <AddressTokenHoldings :address="addressData.ethAddress || addressData.id" />
         </el-popover>
       </div>
     </div>
