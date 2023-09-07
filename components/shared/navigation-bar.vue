@@ -78,12 +78,9 @@
         <nuxt-link :to="localePath('/wiki/0')">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.1') }}</el-dropdown-item>
         </nuxt-link>
-        <a :href="filfoxWalletHost" target="_blank">
+        <!-- <a :href="filfoxWalletHost" target="_blank">
           <el-dropdown-item>{{ $t('nav.resources.subMenus.2') }}</el-dropdown-item>
-        </a>
-        <nuxt-link :to="localePath('/fns')">
-          <el-dropdown-item>{{ $t('nav.resources.subMenus.3') }}</el-dropdown-item>
-        </nuxt-link>
+        </a> -->
       </el-dropdown-menu>
     </el-dropdown>
 
@@ -94,7 +91,7 @@
       </div>
     </a> -->
 
-    <el-popover
+    <!-- <el-popover
       placement="bottom"
       trigger="hover"
       popper-class="p-0"
@@ -128,7 +125,7 @@
           </div>
         </div>
       </div>
-    </el-popover>
+    </el-popover> -->
 
     <div class="flex-grow"></div>
     <el-input

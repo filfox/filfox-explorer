@@ -25,7 +25,7 @@
           <div v-else class="apply-tag" @click="showDialog">
             {{ $t('tag.apply') }}>
           </div>
-          <MinerAppGuide />
+          <!-- <MinerAppGuide /> -->
         </div>
         <button
           v-if="$i18n.locale == 'zh' && false"
