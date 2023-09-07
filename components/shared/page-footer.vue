@@ -25,7 +25,7 @@
               </p>
               <img src="~/assets/img/wechat/group.png" class="min-w-20 h-20 mx-auto bg-white p-1">
             </div>
-            <div class="p-1 rounded mr-4">
+            <!-- <div class="p-1 rounded mr-4">
               <a class="block text-xs text-center text-white mb-2 hover:text-main" :href="$i18n.locale === 'zh'? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" target="_blank">
                 {{ $t("nav.app.download") }}
               </a>
@@ -37,9 +37,9 @@
                 class="min-w-20 h-20 mx-auto bg-white p-1"
                 draggable="false"
               >
-            </div>
+            </div> -->
           </div>
-          <div class="items-center flex mt-4 xl:mt-0 -ml-4 xl:ml-0">
+          <!-- <div class="items-center flex mt-4 xl:mt-0 -ml-4 xl:ml-0">
             <span class="text-white text-xs text-center flex items-center flex-col w-16 hover:opacity-75 cursor-pointer" @click="download('ios')">
               <img src="@/assets/img/download/ios.svg" class="h-5">
               iOS
@@ -52,7 +52,7 @@
               <img src="@/assets/img/download/googleplay.svg" class="h-5">
               Google Play
             </span>
-          </div>
+          </div> -->
         </div>
       </div>
       <footer class="text-gray-300 text-opacity-25 mx-auto border-t border-gray-300 border-opacity-25 py-3 px-6 text-center">

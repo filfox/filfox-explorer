@@ -4,11 +4,11 @@
       <span class="mr-2 font-medium">{{ $t('detail.address.normal.title') }}</span>
       <AddressLink :id="addressData.address" />
       <AddressTag :tag="addressData.tag" type="pc" :style="{ maxWidth: '66%' }" />
-      <MinerAppGuide />
+      <!-- <MinerAppGuide /> -->
     </div>
 
     <div class="flex my-4">
-      <div class="flex-1 pb-2 mr-4 text-sm bg-white rounded-md">
+      <div class="flex-1 pb-2 text-sm bg-white rounded-md">
         <div class="flex py-4 pl-8 font-medium border-b border-background">
           <span class="mr-6">{{ $t('detail.address.normal.headers.overview') }}</span>
           <ContractCodeStatus v-if="addressData.actor == 'evm' && contract.address" :contract="contract" />
@@ -184,9 +184,9 @@
           </dd>
         </dl>
       </div>
-      <a target="_blank" :href="$i18n.locale === 'zh' ? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
+      <!-- <a target="_blank" :href="$i18n.locale === 'zh' ? 'https://foxwallet.com/zh?invite=evkZv8g5TG' : 'https://foxwallet.com/en?invite=evkZv8g5TG'" class="inline-block h-68">
         <img src="@/assets/img/foxwallet/address-portal.png" draggable="false" class="block h-full border border-gray-500 border-dashed">
-      </a>
+      </a> -->
     </div>
 
     <AddressBalanceDetailChart v-if="addressData.id" :address-data="addressData" />

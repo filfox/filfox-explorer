@@ -60,20 +60,17 @@
           <nuxt-link :to="localePath('/wiki/0')" class="link" @click.native="hideIfNeeded">
             {{ $t('nav.resources.subMenus.1') }}
           </nuxt-link>
-          <a :href="filfoxWalletHost" target="_blank" class="link">
+          <!-- <a :href="filfoxWalletHost" target="_blank" class="link">
             {{ $t('nav.resources.subMenus.2') }}
-          </a>
-          <nuxt-link :to="localePath('/fns')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.resources.subMenus.3') }}
-          </nuxt-link>
+          </a> -->
         </el-collapse-item>
       </el-collapse>
 
-      <div class="block py-2 text-sm cursor-pointer ranks" @click="hideIfNeeded">
+      <!-- <div class="block py-2 text-sm cursor-pointer ranks" @click="hideIfNeeded">
         <a :href="filfoxWalletHost" target="_blank">
           {{ $t('wallet.title') }}
         </a>
-      </div>
+      </div> -->
       <div class="block py-2 text-sm cursor-pointer ranks" @click="hideIfNeeded">
         <a href="https://t.me/Filfoxofficial" target="_blank">
           Telegram
