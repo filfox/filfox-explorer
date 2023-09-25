@@ -24,29 +24,27 @@ export default {
       return { addressData }
     } catch (err) {
       if (err?.response) {
-        if (err.response.code === 404) {
-          error({ code: 404, message: `Address ${id} not found` })
-        } else {
-          error({
-            code: err.response.status,
-            message: err.response.statusText
-          })
-        }
+        const code = err.response.status
+        const message = code === 404 ? `Address ${id} Not Found` : err.response.statusText
+        error({ code, message })
       } else {
         error({ code: 500, message: 'Server Error' })
       }
     }
   },
+
   data() {
     return {
       addressData: {}
     }
   },
+
   computed: {
     id() {
       return this.$route.params.id
     }
   },
+
   head() {
     return {
       title: `${this.$t('meta.titles.address')} ${this.id}`

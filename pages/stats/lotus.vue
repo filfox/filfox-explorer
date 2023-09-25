@@ -12,13 +12,11 @@
 </template>
 
 <script>
-
 export default {
   head() {
     return {
-      title: `${this.$t('nav.charts.subMenus.2')}`
+      title: `${this.$t('nav.fevm.subMenus.0')}`
     }
   }
 }
-
 </script>

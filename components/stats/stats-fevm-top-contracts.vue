@@ -6,13 +6,11 @@
         <span v-if="more" class="ml-1">( {{ $t('home.fvmTopContracts.latest24') }} )</span>
       </div>
 
-      <template v-if="timeRange && (sortBy !== 'balance')">
-        <el-radio-group v-model="activeDays" size="mini" fill="#1a4fc9" class="ml-4 mr-2 mb-2.5 lg:ml-auto lg:mb-0">
-          <el-radio-button v-for="{ days, label } in timeTabs" :key="days" :label="days">
-            {{ label }}
-          </el-radio-button>
-        </el-radio-group>
-      </template>
+      <DurationSelect
+        v-if="timeRange && (sortBy !== 'balance')"
+        v-model="duration"
+        class="ml-4 mr-2 mb-2.5 lg:ml-auto lg:mb-0"
+      />
 
       <div class="ml-4 mb-2.5 lg:mb-0 mr-3 lg:mr-4 flex items-center">
         <span class="text-sm">{{ $t('home.fvmTopContracts.orderBy') }}</span>
@@ -25,7 +23,7 @@
             class="capitalize"
           />
         </el-select>
-        <NuxtLink v-if="more" :to="localePath('/stats/fevm/contracts')" class="ml-auto lg:ml-4">
+        <NuxtLink v-if="more" :to="localePath('/fevm/contracts')" class="ml-auto lg:ml-4">
           <el-button round size="mini">
             {{ $t('shared.more') }}
           </el-button>
@@ -33,7 +31,7 @@
       </div>
     </div>
     <div class="p-4 pt-0 border-t border-background">
-      <StatsFevmContracts :sort-by="sortBy" :page-size="pageSize" :pagination="pagination" :days="activeDays" />
+      <StatsFevmContracts :sort-by="sortBy" :page-size="pageSize" :pagination="pagination" :days="days" />
     </div>
   </div>
 </template>
@@ -58,15 +56,10 @@ export default {
       default: 10
     }
   },
+
   data() {
     return {
-      activeDays: 1,
-      timeTabs: [
-        { days: 1, label: `24 ${this.$t('shared.time.hour')}` },
-        { days: 7, label: `7 ${this.$t('shared.time.day')}` },
-        { days: 30, label: `1 ${this.$t('shared.time.month')}` },
-        { days: 365, label: `1 ${this.$t('shared.time.year')}` }
-      ],
+      duration: '24h',
       sortBy: 'transaction',
       sorts: [
         { label: 'Transaction', value: 'transaction' },
@@ -74,6 +67,17 @@ export default {
         { label: 'Balance', value: 'balance' },
         { label: 'Fee', value: 'fee' }
       ]
+    }
+  },
+
+  computed: {
+    days() {
+      return {
+        '24h': 1,
+        '7d': 7,
+        '30d': 30,
+        '1y': 365
+      }[this.duration]
     }
   }
 }

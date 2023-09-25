@@ -31,6 +31,10 @@ export default {
     home: {
       title: 'Home'
     },
+    fevm: {
+      title: 'FEVM',
+      subMenus: ['FEVM Stats', 'Verified Contracts', 'FNS Lookup', 'Filecoin Ecosystem']
+    },
     blocks: {
       title: 'Blockchain',
       subMenus: [
@@ -39,7 +43,6 @@ export default {
         'Rich List',
         'Deal List',
         'Mempool',
-        'FNS Lookup',
         'Verify Contract'
       ]
     },
@@ -50,10 +53,7 @@ export default {
       title: 'Stats',
       subMenus: [
         'Mining Charts',
-        'Gas Stats',
-        'FEVM Stats',
-        'Verified Contracts',
-        'Lotus Version Distribution'
+        'Gas Stats'
       ]
     },
     resources: {
@@ -61,8 +61,7 @@ export default {
       subMenus: [
         'Tools',
         'Wiki',
-        'Web Wallet',
-        'FNS Lookup'
+        'Web Wallet'
       ]
     },
     searchPlaceHolder: 'Search for Block/Account/Address/Message...',
@@ -140,6 +139,7 @@ export default {
       orderBy: 'Order By',
       more: 'More',
       contractAddress: 'Contract Address',
+      contractName: 'Contract Name',
       transactions: 'Transactions',
       uniqueUsers: 'Unique Users',
       balance: 'Balance',
@@ -153,6 +153,10 @@ export default {
       compiler: 'Compiler',
       optimization: 'Optimization',
       license: 'License'
+    },
+    fevmNavigation: {
+      title: 'Filecoin Ecosystem',
+      defiListColumns: ['Rank', 'Name', 'Transactions', 'Number of Unique Addresses', 'TVL', 'Tokens']
     },
     entireQualityAdjPower: {
       title: 'Storage power trend',
@@ -510,7 +514,9 @@ export default {
         from: 'From',
         to: 'To',
         value: 'Value',
-        type: 'Type'
+        type: 'Type',
+        filTransactions: 'FIL Transactions',
+        tokenTransactions: 'Token Transactions'
       },
       description: {
         transfer: '{sender} sends {value} to {receiver}',
@@ -576,6 +582,7 @@ export default {
           actor: 'Actor',
           balance: 'Balance',
           messages: 'Messages',
+          contractUserAddresses: 'Unique Addresses',
           createTime: 'Create Time',
           lastSeenTime: 'Latest Transaction',
           ownedMiners: 'Owned Miner',
@@ -1077,7 +1084,18 @@ export default {
     data: 'Data',
     social: 'Social',
     copyLink: 'Copy Link',
-    transactionBalance: 'Gas Fee',
-    activeUniqueAddress: 'Unique Address'
+    details: 'Details',
+    contractAddress: 'Address',
+    contractLabel: 'Label',
+    smartContractList: 'Smart Contract List',
+
+    defi: {
+      sortBy: 'Sort By',
+      sortOptions: {
+        tvl: 'TVL',
+        users: 'Unique Addresses',
+        transactions: 'Transactions'
+      }
+    }
   }
 }

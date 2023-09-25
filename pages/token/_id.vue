@@ -17,7 +17,7 @@ export default {
     } catch (err) {
       if (err?.response) {
         if (err.response.code === 404) {
-          error({ code: 404, message: `Token ${id} not found` })
+          error({ code: 404, message: `Token ${id} Not Found` })
         } else {
           error({ code: err.response.status, message: err.response.statusText })
         }

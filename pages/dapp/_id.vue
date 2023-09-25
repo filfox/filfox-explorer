@@ -1,125 +1,213 @@
 <template>
-  <div class="container mx-auto flex-grow dappIdDialog">
-    <div class="bg-white px-10 pb-8 rounded relative my-4">
-      <div class="font-bold h-13 leading-13">
-        Dapp Details
+  <div class="container mx-auto flex-1 my-4 dapp-detail">
+    <div class="bg-white lg:rounded-md">
+      <div class="flex items-center px-4 lg:px-10 py-3 text-sm lg:text-base font-semibold border-b border-background">
+        <img
+          src="@/assets/img/shared/back.svg"
+          class="transition duration-200 cursor-pointer hover:opacity-75 mr-1.5"
+          @click="$router.back()"
+        >{{ $t('dapp.details') }}
       </div>
-      <div class="border-customBackground border-solid border-b absolute left-1 right-1 w-auto"></div>
-      <div class="rounded shadow-panel flex p-5 lg:flex-row flex-col mt-8 relative">
-        <img class="w-9 h-9 absolute top-0 right-0" :src="getMedalSrc(rank)" :class="`${rank > 0 && rank < 4 ? 'visible' : 'invisible'}`" />
-        <div class="w-28 h-29 rounded-full bg-iconShadow flex items-center justify-center lg:mr-6 mr-0 flex-shrink-0">
-          <img class="w-24 rounded-full" :src="dapp.logoPath" />
-        </div>
-        <div class="flex gap-1 flex-col">
-          <div class="text-customBlue-300 text-xl font-bold">
-            {{ dapp.name }}
+      <div class="px-4 lg:px-10 py-4 lg:py-6">
+        <div class="rounded-1 lg:rounded-md bg-background flex p-5 lg:flex-row flex-col">
+          <div
+            class="w-28 h-29 bg-white rounded-full flex items-center justify-center lg:mr-6 mr-0 flex-shrink-0"
+          >
+            <img
+              class="rounded-full"
+              :class="[ dapp.logoPath ? 'w-24' : 'w-28' ]"
+              :src="dapp.logoPath || require('@/assets/img/fns/logo.png')"
+            />
           </div>
-          <div class="text-customGray-650 text-sm">
-            {{ this.$t('dapp.category') }}:<span class="ml-2">{{ dapp.category }}</span>
-          </div>
-          <div class="text-customGray-650 text-sm">
-            {{ this.$t('dapp.description') }}:<span class="ml-2">{{ dapp.description }}</span>
-          </div>
-          <div class="text-customGray-650 text-sm mt-2 flex">
-            {{ this.$t('dapp.social') }}:
-            <div class="flex mb-5 lg:mb-3 lg:mr-4 ml-2">
-              <a v-for="(link, linkIndex) in socialLinks" :key="link.key" target="_blank" :href="link.link">
-                <img
-                  :src="require(`@/assets/img/fns/com.${link.key}.png`)"
-                  class="h-5.5 cursor-pointer hover:opacity-75 transition duration-200"
-                  :class="{ 'ml-3': linkIndex !== 0 }"
-                  :alt="link.key"
+          <div class="flex flex-col gap-1 w-full mt-3 lg:mt-0">
+            <div class="text-customBlue-300 text-xl font-semibold">
+              {{ dapp.name }}
+            </div>
+            <div class="text-customGray-625 text-sm">
+              {{ this.$t('dapp.category') }}:<span class="ml-2">{{ dapp.category || 'DeFi' }}</span>
+            </div>
+            <div class="text-customGray-625 text-sm">
+              {{ this.$t('dapp.description') }}:<span class="ml-2 text-black">{{ dapp.description }}</span>
+            </div>
+            <div class="text-customGray-625 text-sm mt-2 flex flex-col lg:flex-row lg:items-center">
+              {{ this.$t('dapp.social') }}:
+              <div class="flex items-center mt-3 lg:mt-0 lg:mx-4">
+                <a v-for="(link, linkIndex) in socialLinks" :key="link.key" target="_blank" :href="link.link">
+                  <img
+                    :src="require(`@/assets/img/fns/com.${link.key}.png`)"
+                    class="h-5.5 cursor-pointer hover:opacity-75 transition duration-200"
+                    :class="{ 'ml-4': linkIndex !== 0 }"
+                    :alt="link.key"
+                  >
+                </a>
+              </div>
+              <span class="lg:ml-auto mt-4 lg:mt-0">
+                <el-button
+                  v-if="dapp.officialWebSite"
+                  size="medium"
+                  type="primary"
+                  class="text-xs lg:text-sm bg-main hover:bg-main border-main hover:border-main hover:opacity-75 transition duration-200 mr-1"
+                  @click="accessDapp"
                 >
-              </a>
+                  {{ this.$t('dapp.accessDapp') }}
+                </el-button>
+                <el-button
+                  type="primary"
+                  size="medium"
+                  class="text-xs lg:text-sm bg-main hover:bg-main border-main hover:border-main hover:opacity-75 transition duration-200 mr-1"
+                  @click="openShare"
+                >
+                  {{ this.$t('dapp.share') }}
+                </el-button>
+              </span>
             </div>
           </div>
         </div>
-        <div class="static lg:absolute right-2 bottom-2">
-          <el-button v-if="dapp.officialWebSite" type="primary" class="bg-customBlue-300 text-white border-transparent mr-2" @click="accessDapp">
-            {{ this.$t('dapp.accessDapp') }}
-          </el-button>
-          <el-button type="primary" class="bg-customBlue-300 text-white border-transparent" @click="openShare">
-            {{ this.$t('dapp.share') }}
-          </el-button>
-        </div>
       </div>
     </div>
-    <div class="bg-white rounded mt-5 mb-5">
-      <div class="flex items-center justify-between border-b border-background px-8 py-3">
-        <span class="font-bold text-lg">Data</span>
-        <div class="text-sm">
-          <FilterSelect
-            class="mr-2.5"
-            :value="timeValue"
-            :label="$t('home.dappRanks.titleHeader.time')"
-            :options="timeOptions"
-            @selected="selectTime"
-          />
-        </div>
+    <div v-if="dapp.tvl" class="bg-white rounded-md mt-4 pb-4">
+      <div class="flex items-center justify-between border-b border-background px-4 lg:px-10 py-3">
+        <span class="font-semibold text-sm lg:text-base">{{ $t('dapp.data') }}</span>
+        <DurationSelect v-model="duration" />
       </div>
-      <table class="w-full table-fixed mt-2 lg:table hidden">
+      <table class="w-full table-fixed mt-3 lg:table hidden">
         <thead class="text-gray-600 text-sm">
           <tr>
-            <th>{{ $t('home.dappRanks.tableHeaders.contractBalance') }}</th>
-            <th>{{ $t('home.dappRanks.tableHeaders.uniqueAdders') }}</th>
-            <th>{{ $t('home.dappRanks.tableHeaders.transactionAmount') }}</th>
-            <th>{{ $t('home.dappRanks.tableHeaders.transactionBalance') }}</th>
+            <th class="font-normal" style="width: 20%">
+              {{ $t('home.fevmNavigation.defiListColumns.4') }}
+            </th>
+            <th class="font-normal">
+              {{ $t('home.fevmNavigation.defiListColumns.3') }}
+            </th>
+            <th class="font-normal">
+              {{ $t('home.fevmNavigation.defiListColumns.2') }}
+            </th>
+            <th class="font-normal">
+              {{ $t('home.fevmNavigation.defiListColumns.5') }}
+            </th>
           </tr>
         </thead>
         <tbody class="text-center text-sm">
-          <tr class="border-b border-background h-10">
-            <td>
-              <ChangeRate :data="dapp.balance.data | filecoin(2)" :change-rate="dapp.balance.changeRate" />
-            </td>
-            <td>
-              <ChangeRate :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" />
-            </td>
-            <td>
-              <ChangeRate :data="formatNum(dapp.invokeCount.data)" :change-rate="dapp.invokeCount.changeRate" />
-            </td>
-            <td>
-              <ChangeRate :data="dapp.totalFee.data | filecoin(2)" :change-rate="dapp.totalFee.changeRate" />
-            </td>
+          <tr class="border-background h-10">
+            <td><ChangeRate :data="formatNum(dapp.tvl.data)" :change-rate="dapp.tvl.changeRate" data-format="$% USD" /></td>
+            <td><ChangeRate :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" /></td>
+            <td><ChangeRate :data="dapp.invokeCount.data" :change-rate="dapp.invokeCount.changeRate" /></td>
+            <td><ChangeRate :data="formatNum(dapp.tokens.data)" :change-rate="dapp.tokens.changeRate" data-format="$% FIL" /></td>
           </tr>
         </tbody>
       </table>
-      <div class="w-full pb-2 mt-2 lg:hidden">
-        <div class="border-background text-gray-600 text-sm px-4 grid grid-cols-2 gap-2">
-          <span>{{ $t('home.dappRanks.tableHeaders.contractBalance') }}</span>
-          <ChangeRate class="text-right text-black" :data="formatNum(dapp.balance.data)" :change-rate="dapp.balance.changeRate" />
-          <span>{{ $t('home.dappRanks.tableHeaders.uniqueAdders') }}</span>
-          <ChangeRate class="text-right text-black" :data="dapp.userCount.data" :change-rate="dapp.userCount.changeRate" />
-          <span>{{ $t('home.dappRanks.tableHeaders.transactionAmount') }}</span>
-          <ChangeRate class="text-right text-black" :data="dapp.invokeCount.data" :change-rate="dapp.invokeCount.changeRate" />
-          <span>{{ $t('home.dappRanks.tableHeaders.transactionBalance') }}</span>
-          <ChangeRate class="text-right text-black" :data="dapp.totalFee.data" :change-rate="dapp.totalFee.changeRate" />
-        </div>
-      </div>
+      <ul class="block lg:hidden bg-white p-3 text-xs border-t border-customGray-100">
+        <li
+          v-for="item in [dapp]"
+          :key="item.name"
+          class="border-customGray-100 py-1.5"
+        >
+          <div class="flex justify-between items-center my-1.5">
+            <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.1') }}</span>
+            <span>{{ item.name }}</span>
+          </div>
+          <div class="flex justify-between items-center my-1.5">
+            <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.2') }}</span>
+            <ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" />
+          </div>
+          <div class="flex justify-between items-center my-1.5">
+            <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.3') }}</span>
+            <ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" />
+          </div>
+          <div class="flex justify-between items-center my-1.5">
+            <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.4') }}</span>
+            <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+          </div>
+          <div class="flex justify-between items-center my-1.5">
+            <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.5') }}</span>
+            <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
+          </div>
+        </li>
+      </ul>
     </div>
+
+    <div v-if="dapp.contractAddressList && dapp.contractAddressList.length" class="bg-white lg:rounded-md mt-4 lg:pb-4">
+      <div class="flex items-center justify-between border-b border-background px-4 lg:px-10 py-3 font-semibold text-sm lg:text-base">
+        {{ $t('dapp.smartContractList') }}
+      </div>
+      <table class="w-full table-fixed mt-3 lg:table hidden">
+        <thead class="text-gray-600 text-sm">
+          <tr>
+            <th class="font-normal text-left pl-10">
+              {{ $t('dapp.contractAddress') }}
+            </th>
+            <th class="font-normal">
+              {{ $t('dapp.contractLabel') }}
+            </th>
+          </tr>
+        </thead>
+        <tbody class="text-center text-sm">
+          <tr
+            v-for="({ tag, contractAddress }, index) in dapp.contractAddressList"
+            :key="contractAddress"
+            :class="{ 'border-t': index != 0 }"
+            class="border-background h-10"
+          >
+            <td class="text-left pl-10">
+              <AddressLink :id="contractAddress" class="hover:text-main hover:underline" />
+            </td>
+            <td>{{ tag }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="block lg:hidden bg-white p-3 text-xs border-t border-customGray-100">
+        <li
+          v-for="({ tag, contractAddress }, index) in dapp.contractAddressList"
+          :key="contractAddress"
+          :class="{ 'border-t': index != 0 }"
+          class="border-customGray-100 py-1.5"
+        >
+          <div class="flex justify-between items-center my-1.5">
+            <span class="text-customGray-400">{{ $t('dapp.contractAddress') }}</span>
+            <span>{{ contractAddress }}</span>
+          </div>
+          <div class="flex justify-between items-center my-1.5">
+            <span class="text-customGray-400">{{ $t('dapp.contractLabel') }}</span>
+            <span>{{ tag }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <el-dialog
       :visible.sync="shareVisible"
-      :title="this.$t('dapp.share')"
-      center
+      :show-close="false"
+      custom-class="rounded-md lg:rounded-xl overflow-hidden w-11/12 lg:w-140"
     >
-      <div class="flex px-24 flex-col items-center">
+      <div slot="title" class="h-12 lg:h-13 bg-main text-white flex items-center justify-center">
+        <span class="text-base lg:text-lg font-medium">{{ `${$t('dapp.share')} ${dapp.name}` }}</span>
+        <i
+          class="el-icon-error text-xl transition duration-200 cursor-pointer hover:opacity-75 absolute right-2"
+          @click="shareVisible = false"
+        ></i>
+      </div>
+      <div class="flex px-10 flex-col items-center">
         <img src="@/assets/img/dapp/shareBg.svg" />
-        <div class="flex flex-col gap-4 relative -top-6">
-          <div class="flex mb-5 lg:mb-3 lg:mr-4 ml-2 justify-center gap-5">
-            <a v-for="plat in sharePlatform" :key="plat.key" :href="plat.link" target="_blank">
-              <img
-                :src="require(`@/assets/img/fns/com.${plat.key}.png`)"
-                class="h-7 cursor-pointer hover:opacity-75 transition duration-200"
-                :alt="plat.key"
-              >
-            </a>
-          </div>
-          <div class="bg-customGray-270 text-black px-10 py-3 rounded-sm">
-            {{ currentUrl }}
-          </div>
-          <el-button class="self-center bg-customBlue-300 text-white border-transparent" type="primary" @click="copy">
-            {{ this.$t('dapp.copyLink') }}
-          </el-button>
+        <div class="flex mb-5 lg:mb-3 lg:mr-4 ml-2 justify-center gap-5">
+          <a v-for="plat in sharePlatform" :key="plat.key" :href="plat.link" target="_blank">
+            <img
+              :src="require(`@/assets/img/fns/com.${plat.key}.png`)"
+              class="h-7 cursor-pointer hover:opacity-75 transition duration-200"
+              :alt="plat.key"
+            >
+          </a>
         </div>
+        <div class="bg-customGray-270 text-black px-5 py-2.5 mt-3 rounded">
+          {{ currentUrl }}
+        </div>
+        <el-button
+          size="medium"
+          class="my-6 self-center text-xs lg:text-sm bg-main hover:bg-main border-main hover:border-main hover:opacity-75 transition duration-200 mr-1"
+          type="primary"
+          @click="copy"
+        >
+          {{ this.$t('dapp.copyLink') }}
+        </el-button>
       </div>
     </el-dialog>
   </div>
@@ -127,13 +215,18 @@
 
 <script>
 import copy from '@/utils/copy'
-import { getMedalSrc, formatNum } from '@/utils/dapp'
+import { formatNum } from '@/utils/dapp'
 import { HOST } from '@/filecoin/filecoin.config'
 
 export default {
   async asyncData({ $axios, error, params }) {
     try {
-      const dapp = await $axios.$get(`${HOST}/api/xj/stats/dapp/${params.id}`)
+      const [category, key] = params.id.split('_')
+      const apiUrl = category === 'defi'
+        ? `/stats/defi/info/${key}`
+        : `/dapp/info/${key}`
+
+      const dapp = await $axios.$get(apiUrl)
       return { dapp }
     } catch (err) {
       if (err?.response) {
@@ -147,96 +240,52 @@ export default {
       }
     }
   },
+
   data() {
     return {
       dapp: {},
+      duration: '24h',
       shareVisible: false,
-      timeValue: 1,
-      shareText: encodeURIComponent('Discover Filecoin Dapp on #Filfox'),
-      timeOptions: [
-        {
-          value: 1,
-          label: this.$t('home.dappRanks.tableFilterOptions.time.day')
-        },
-        {
-          value: 7,
-          label: this.$t('home.dappRanks.tableFilterOptions.time.week')
-        },
-        {
-          value: 30,
-          label: this.$t('home.dappRanks.tableFilterOptions.time.month')
-        },
-        {
-          value: 365,
-          label: this.$t('home.dappRanks.tableFilterOptions.time.year')
-        }
-      ]
+      shareText: encodeURIComponent('Discover Filecoin Dapp on #Filfox')
     }
   },
+
   computed: {
+    days() {
+      return {
+        '24h': 1,
+        '7d': 7,
+        '30d': 30,
+        '1y': 365
+      }[this.duration]
+    },
+
     id() {
-      return Number(this.$route.params.id)
+      const _id = this.$route.params.id
+      return _id?.split('_')?.[1]
     },
-    rank() {
-      return this.$store.state.dapp.rank
-    },
+
     socialLinks() {
-      const links = []
-      if (this.dapp.twitterLink) {
-        links.push({
-          key: 'twitter',
-          link: this.dapp.twitterLink
-        })
-      }
-
-      if (this.dapp.telegramLink) {
-        links.push({
-          key: 'telegram',
-          link: this.dapp.telegramLink
-        })
-      }
-
-      if (this.dapp.discordLink) {
-        links.push({
-          key: 'discord',
-          link: this.dapp.discordLink
-        })
-      }
-
-      if (this.dapp.githubLink) {
-        links.push({
-          key: 'github',
-          link: this.dapp.githubLink
-        })
-      }
-
-      if (this.dapp.mediumLink) {
-        links.push({
-          key: 'medium',
-          link: this.dapp.mediumLink
-        })
-      }
-
-      if (this.dapp.youtubeLink) {
-        links.push({
-          key: 'youtube',
-          link: this.dapp.youtubeLink
-        })
-      }
-      return links
+      return Object.entries(this.dapp)
+        .filter(([k, v]) => /^.+Link$/.test(k) && v)
+        .map(([key, val]) => ({ key: key.replace(/Link$/, ''), link: val }))
     },
+
     currentUrl() {
       return `${HOST}/dapp/${this.id}`
     },
+
     shareUrl() {
       return encodeURIComponent(this.currentUrl)
     },
+
     sharePlatform() {
       return [
         {
           key: 'twitter',
           link: `https://twitter.com/intent/tweet?text=${this.shareText}&url=${this.shareUrl}`
-        }, {
+        },
+        {
           key: 'telegram',
           link: `https://t.me/share?text=${this.shareText}&url=${this.shareUrl}`
         },
@@ -251,31 +300,34 @@ export default {
       ]
     }
   },
+
+  watch: {
+    days() {
+      this.getDefiDapp()
+    }
+  },
+
   methods: {
-    getMedalSrc,
     formatNum,
-    selectTime(value) {
-      this.timeValue = value
-      this.getDappList(value)
+
+    async getDefiDapp() {
+      this.dapp = await this.$axios.$get(`/stats/defi/info/${this.id}`, { params: { days: this.days } })
     },
-    async getDappList(time) {
-      this.dapp = await this.$axios.$get(`${HOST}/api/xj/stats/dapp/${this.id}`, { params: { days: time } })
-    },
+
     openShare() {
       this.shareVisible = true
     },
+
     copy() {
       copy(this.currentUrl)
-      this.$notify({
-        title: '提示',
-        message: '复制成功',
-        type: 'success'
-      })
+      this.$message.success(this.$t('shared.copySuccess'))
     },
+
     accessDapp() {
       window.open(this.dapp.officialWebSite, '_blank')
     }
   },
+
   head() {
     return {
       title: `${this.$t('meta.titles.dapp')} ${this.id}`
@@ -285,30 +337,12 @@ export default {
 </script>
 
 <style lang="postcss">
-.dappIdDialog .el-dialog__header {
-  background: #1950C9;
-  border-radius: 10px 10px 0 0;
-}
-
-.dappIdDialog .el-dialog {
-  border-radius: 10px;
-  width: fit-content;
-}
-
-.dappIdDialog .el-dialog__title {
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.dappIdDialog .el-dialog__headerbtn .el-dialog__close {
-  color: #1950C9;
-  background: white;
-  border-radius: 10px;
-  font-weight: 600;
-}
-
-.dappIdDialog .el-dialog--center .el-dialog__body {
-  padding: 0px 25px;
+.dapp-detail {
+  .el-dialog__header {
+    padding: 0;
+  },
+  & .el-dialog__body {
+    padding: 0 !important;
+  }
 }
 </style>

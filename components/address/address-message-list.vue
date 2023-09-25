@@ -60,7 +60,15 @@
             <td>
               <AddressLink :id="message.to" :format="8" />
             </td>
-            <td>{{ message.method || 'N/A' }}</td>
+            <td>
+              <el-tooltip
+                :content="`${message.method} ( Contract created )`"
+                placement="top"
+                :disabled="!/CreateExternal/i.test(message.method)"
+              >
+                <span>{{ message.method || 'N/A' }}</span>
+              </el-tooltip>
+            </td>
             <td>{{ message.value | filecoin(4) }}</td>
             <td v-if="message.receipt">
               {{ message.receipt.exitCode | exit-code }}
@@ -91,6 +99,7 @@ export default {
     address: { type: String, required: true },
     pageSize: { type: Number, default: 20 }
   },
+
   data() {
     return {
       messageList: {
@@ -103,23 +112,28 @@ export default {
       method: 'All'
     }
   },
+
   computed: {
     totalPageCount() {
       return Math.ceil(this.messageList.totalCount / this.pageSize)
     },
+
     methodOptions() {
       return ['All', ...this.messageList.methods]
     }
   },
+
   watch: {
     method() {
       this.page = 0
       this.getMessageList()
     }
   },
+
   mounted() {
     this.getMessageList()
   },
+
   methods: {
     async getMessageList() {
       this.loading = true
@@ -130,6 +144,7 @@ export default {
       this.messageList = await this.$axios.$get(`/address/${this.address}/messages`, { params })
       this.loading = false
     },
+
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
       this.getMessageList()

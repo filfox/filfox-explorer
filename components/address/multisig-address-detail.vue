@@ -168,170 +168,71 @@
           </p>
         </dd>
       </dl>
+
+      <!-- token holdings -->
+      <dl v-if="addressData.tokens" class="flex items-center my-2">
+        <dt class="w-1/8 px-2 pl-8 text-gray-600">
+          {{ $t('detail.address.normal.headers.tokenHoldings') }}
+        </dt>
+        <dd class="mr-4 flex items-center">
+          <el-popover
+            placement="bottom-start"
+            width="500"
+            trigger="click"
+            popper-class="rounded-lg border-none shadow-popover p-0"
+          >
+            <button slot="reference" class="flex items-center px-3 py-0.5 border rounded-full transition duration-200 hover:bg-customBlue-250">
+              {{ addressData.tokens }} Tokens<i class="el-icon-arrow-down ml-3"></i>
+            </button>
+            <AddressTokenHoldings :address="addressData.ethAddress || addressData.id" />
+          </el-popover>
+        </dd>
+      </dl>
     </div>
 
     <AddressBalanceDetailChart :address-data="addressData" />
 
-    <div class="rounded-md my-4 bg-white pt-4">
-      <div class="flex h-12 items-center ml-8">
-        <el-radio-group v-model="listType" size="mini" fill="#1a4fc9" @change="didListTypeChanged">
-          <el-radio-button :label="0">
-            {{ $t('blockchain.message.title') }}
-          </el-radio-button>
-          <el-radio-button :label="1">
-            {{ $t('detail.transfer.title') }}
-          </el-radio-button>
-        </el-radio-group>
-      </div>
+    <div class="rounded-md my-4 bg-white pt-5">
+      <CapsuleRadioGroup large :radios="radios" :value="listType" class="ml-8" @change="v => listType = v" />
       <AddressMessageList v-if="listType === 0" :address="addressData.address" />
-      <div v-if="listType === 1" class="mx-8">
-        <div class="flex items-center justify-between border-b border-background">
-          <p class="flex h-12 items-center text-sm">
-            {{ $t('detail.transfer.total') }}
-            {{ total }}
-            {{ $t('detail.transfer.transaction') }}
-          </p>
-          <TransferTypeSelect
-            v-model="trans"
-            :methods="transferList.types"
-            :el-select-options="{size: 'mini'}"
-          />
-        </div>
-        <table v-if="!loading" class="w-full table-fixed">
-          <thead class="text-gray-600 text-sm m-2">
-            <tr class="h-8">
-              <th class="sticky top-0 bg-white z-10 w-1/8">
-                {{ $t('detail.transfer.tableHeaders.time') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10 w-1/4">
-                {{ $t('detail.transfer.tableHeaders.message') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32">
-                {{ $t('detail.transfer.tableHeaders.from') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10 w-1/16">
-              </th>
-              <th class="sticky top-0 bg-white z-10 w-5/32">
-                {{ $t('detail.transfer.tableHeaders.to') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10 w-1/8">
-                {{ $t('detail.transfer.tableHeaders.income') }}
-              </th>
-              <th class="sticky top-0 bg-white z-10 w-1/8">
-                {{ $t('detail.transfer.tableHeaders.type') }}
-              </th>
-            </tr>
-          </thead>
-          <tbody class="text-center">
-            <tr
-              v-for="(transfer, index) in transferList.transfers"
-              :key="index"
-              class="h-12 border-b border-background text-sm"
-            >
-              <td>
-                {{ transfer.timestamp | timestamp('datetime') }}
-              </td>
-              <td>
-                <MessageLink v-if="transfer.message" :id="transfer.message" :format="12" />
-                <span v-else>N/A</span>
-              </td>
-              <td>
-                <div class="flex items-center flex-row justify-center">
-                  <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
-                  <span v-else>N/A</span>
-                  <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
-                </div>
-              </td>
-              <td>
-                <div class="flex justify-center">
-                  <img src="~/assets/img/shared/to.svg" alt="3" class="w-4">
-                </div>
-              </td>
-              <td>
-                <div class="flex items-center flex-row justify-center">
-                  <AddressLink v-if="transfer.to" :id="transfer.to" :format="4" />
-                  <span v-else>N/A</span>
-                  <AddressTag :tag="transfer.toTag" type="pc" :style="{maxWidth:'66%'}" />
-                </div>
-              </td>
-              <td>
-                {{ transfer.value | filecoin(4) }}
-              </td>
-              <td>
-                {{ $t('detail.transfer.types.' + transfer.type ) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div v-if="loading" v-loading="loading" class="flex h-24"></div>
-      <div v-if="listType != 0" class="flex items-center text-center h-16">
-        <el-pagination
-          layout="prev, pager, next, jumper"
-          :page-count="totalPageCount"
-          :current-page="page + 1"
-          class="mx-auto"
-          @current-change="didCurrentPageChanged"
-        />
-      </div>
+      <AddressTxList v-if="listType === 1" :address="addressData.address" />
+      <AddressTxTokenList v-if="listType === 2" :address="addressData.id" />
     </div>
   </div>
 </template>
 
 <script>
+import { matchTabToUrl } from '@/utils'
+
 export default {
   props: {
     addressData: { type: Object, required: true }
   },
+
   data() {
     return {
-      trans: 'All',
-      transferList: {
-        totalCount: 0,
-        transfers: [],
-        types: []
-      },
-      listType: 0,
-      page: 0,
-      pageSize: 20,
-      loading: false,
-      total: 0
+      listType: Number(this.$route.query?.t) || 0,
+      loading: false
     }
   },
+
   computed: {
-    totalPageCount() {
-      return Math.ceil(this.total / this.pageSize)
+    radios() {
+      return [
+        { key: 0, name: this.$t('blockchain.message.title') },
+        { key: 1, name: this.$t('detail.transfer.title') },
+        { key: 2, name: this.$t('detail.tokenTransfer.title') }
+      ].filter(({ key }) => {
+        if (key === 1) return this.addressData.transferCount > 0
+        if (key === 2) return this.addressData.tokenTransferCount > 0
+        return true
+      })
     }
   },
+
   watch: {
-    trans() {
-      this.page = 0
-      this.getTransferList()
-    }
-  },
-  methods: {
-    async getTransferList() {
-      this.loading = true
-      const params = { pageSize: this.pageSize, page: this.page }
-      if (this.trans !== 'All') {
-        params.type = this.trans
-      }
-      this.transferList = await this.$axios.$get(`/address/${this.addressData.address}/transfers`, { params })
-      this.loading = false
-      this.total = this.transferList.totalCount
-    },
-    didCurrentPageChanged(currentPage) {
-      this.page = currentPage - 1
-      if (this.listType === 1) {
-        this.getTransferList()
-      }
-    },
-    didListTypeChanged() {
-      this.page = 0
-      this.total = 0
-      if (this.listType === 1) {
-        this.getTransferList()
-      }
+    listType(val) {
+      matchTabToUrl(val)
     }
   }
 }

@@ -3,6 +3,7 @@
     <div class="flex items-center text-base">
       <span class="mr-2 font-medium">{{ $t('detail.address.normal.title') }}</span>
       <AddressLink :id="addressData.address" />
+      <Address0x0Tag v-if="is0x0Address(addressData.address)" class="ml-2" />
       <AddressTag :tag="addressData.tag" type="pc" :style="{ maxWidth: '66%' }" />
       <!-- <MinerAppGuide /> -->
     </div>
@@ -20,6 +21,7 @@
           </dt>
           <dd class="mr-4">
             <AddressLink :id="addressData.address" plain />
+            <Address0x0Tag v-if="is0x0Address(addressData.address)" class="ml-1" />
           </dd>
         </dl>
 
@@ -83,6 +85,15 @@
           </dt>
           <dd class="mr-4">
             {{ addressData.messageCount || 0 }}
+          </dd>
+        </dl>
+
+        <dl v-if="addressData.contractUserCount" class="flex items-center my-2">
+          <dt class="w-1/5 px-2 pl-8 text-gray-600">
+            {{ $t('detail.address.normal.headers.contractUserAddresses') }}
+          </dt>
+          <dd class="mr-4">
+            {{ addressData.contractUserCount || 0 }}
           </dd>
         </dl>
 
@@ -198,7 +209,7 @@
         </div>
         <AddressMessageList v-if="listType === 0" :address="addressData.address" />
         <AddressTxList v-if="listType === 1" :address="addressData.address" />
-        <AddressTxTokenList v-if="listType === 2" :address="addressData.address" />
+        <AddressTxTokenList v-if="listType === 2" :address="isFevmAddress ? addressData.address : addressData.id" />
         <div v-if="listType === 3" class="border-t py-4 mt-2">
           <Contract :contract="contract" />
         </div>
@@ -210,6 +221,8 @@
 </template>
 
 <script>
+import { matchTabToUrl, is0x0Address } from '@/utils'
+
 export default {
   props: {
     addressData: {
@@ -217,6 +230,7 @@ export default {
       required: true
     }
   },
+
   data() {
     return {
       loading: false,
@@ -227,6 +241,14 @@ export default {
   },
 
   computed: {
+    isEvmActor() {
+      return this.addressData.actor === 'evm'
+    },
+
+    isFevmAddress() {
+      return Boolean(this.addressData.ethAddress)
+    },
+
     radios() {
       return [
         { key: 0, name: this.$t('blockchain.message.title') },
@@ -235,10 +257,18 @@ export default {
         { key: 3, name: this.$t('detail.contract.title'), verified: this.contract?.verified },
         { key: 4, name: this.$t('detail.eventLogs.title') }
       ].filter(({ key }) => {
-        if (key === 2) return Boolean(this.addressData.ethAddress)
-        if (key > 2) return this.addressData.actor === 'evm'
-        return true
+        if (key === 0) return true
+        if (key === 1) return this.addressData.transferCount > 0
+        if (key === 2) return this.addressData.tokenTransferCount > 0
+        if (key === 3) return this.isEvmActor
+        if (key === 4) return this.isEvmActor && this.addressData.eventLogCount > 0
       })
+    }
+  },
+
+  watch: {
+    listType(val) {
+      matchTabToUrl(val)
     }
   },
 
@@ -247,6 +277,7 @@ export default {
   },
 
   methods: {
+    is0x0Address,
     async getContractAddrData() {
       if (this.addressData.actor !== 'evm') return
       const { address, ethAddress } = this.addressData

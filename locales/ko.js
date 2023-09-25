@@ -31,6 +31,10 @@ export default {
     home: {
       title: '홈페이지'
     },
+    fevm: {
+      title: 'FEVM',
+      subMenus: ['FEVM 통계', '확인된 계약', 'FNS Lookup', 'FEVM 네비게이션']
+    },
     blocks: {
       title: '블록체인',
       subMenus: [
@@ -39,7 +43,6 @@ export default {
         '자산 순위',
         '주문',
         'Mempool',
-        'FNS Lookup',
         '컨트랙트 검증'
       ]
     },
@@ -50,10 +53,7 @@ export default {
       title: '통계량',
       subMenus: [
         '채굴',
-        '가스 데이터',
-        'FEVM 통계',
-        '확인된 계약',
-        '버전 배포'
+        '가스 데이터'
       ]
     },
     resources: {
@@ -61,8 +61,7 @@ export default {
       subMenus: [
         '도구',
         '정보',
-        '웹 지갑',
-        'FNS Lookup'
+        '웹 지갑'
       ]
     },
     searchPlaceHolder: '\b블록/계정/주소/소식 검색',
@@ -138,6 +137,7 @@ export default {
       orderBy: '정렬 기준',
       more: '더 보기',
       contractAddress: '계약 주소',
+      contractName: '계약명',
       transactions: '거래 수',
       uniqueUsers: '고유 사용자 수',
       balance: '잔액',
@@ -151,6 +151,10 @@ export default {
       compiler: '컴파일러',
       optimization: '최적화',
       license: '라이선스'
+    },
+    fevmNavigation: {
+      title: 'FEVM 생태 투어',
+      defiListColumns: ['순위', '이름', '업무', '고유 주소 수', 'TVL', '토큰']
     },
     entireQualityAdjPower: {
       title: '에너지 저장 추세',
@@ -503,7 +507,9 @@ export default {
         from: '보내는 이',
         to: '받는 이',
         value: '금액',
-        type: '유형'
+        type: '유형',
+        filTransactions: 'FIL 거래',
+        tokenTransactions: '토큰 거래'
       },
       tips: {
         gasFeeCap: 'The total fee rate set by sender',
@@ -564,6 +570,7 @@ export default {
           actor: '유형',
           balance: '잔액',
           messages: '메시지 개수',
+          contractUserAddresses: '독립 주소 수',
           createTime: '생성 시간',
           lastSeenTime: '최근 거래',
           ownedMiners: '보유 채굴자',
@@ -1046,12 +1053,25 @@ export default {
     cancelHideReaded: '숨기기 취소'
   },
   dapp: {
-    accessDapp: 'Dapp 접근',
+    accessDapp: 'Dapp 접속',
     share: '공유',
     category: '카테고리',
     description: '설명',
     data: '데이터',
     social: '소셜',
-    copyLink: '링크 복사'
+    copyLink: '링크 복사',
+    details: '상세 정보',
+    contractAddress: '계약 주소',
+    contractLabel: '라벨',
+    smartContractList: '스마트 계약 목록',
+
+    defi: {
+      sortBy: '정렬 기준',
+      sortOptions: {
+        tvl: 'TVL',
+        users: '고유 주소',
+        transactions: '거래'
+      }
+    }
   }
 }

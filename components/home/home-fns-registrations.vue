@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import { fnsServer } from '@/filecoin/filecoin.config'
+import { FNS_SERVER } from '@/filecoin/filecoin.config'
 import FNS from '@filfox/fnsjs'
 const fns = new FNS('mainnet')
 
@@ -201,14 +201,14 @@ export default {
     },
 
     async getRegistrations() {
-      const data = await this.$axios.$get(`${fnsServer}/registration/list`, {
+      const data = await this.$axios.$get(`${FNS_SERVER}/registration/list`, {
         params: { pageSize: 5, page: 0 }
       })
       this.names = data.data.list
     },
 
     async getRanking() {
-      const data = await this.$axios.$get(`${fnsServer}/fns/inviteRanking`, {
+      const data = await this.$axios.$get(`${FNS_SERVER}/fns/inviteRanking`, {
         params: { pageSize: 3 }
       })
       const addrs = data.data.records.map(({ ethAddr }) => ethAddr)

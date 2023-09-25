@@ -67,11 +67,11 @@
 
 <script>
 import store from 'store'
-import { adminServer } from '../../filecoin/filecoin.config'
+import { ADMIN_SERVER } from '@/filecoin/filecoin.config'
 
 export default {
   async asyncData({ $axios }) {
-    const { result } = await $axios.$get(`${adminServer}/api/blog/category/list`)
+    const { result } = await $axios.$get(`${ADMIN_SERVER}/api/blog/category/list`)
     return { categories: result }
   },
 
@@ -135,7 +135,7 @@ export default {
   methods: {
     async getNotifyList() {
       this.loading = true
-      const data = await this.$axios.$get(`${adminServer}/api/blog/list`, { params: this.params })
+      const data = await this.$axios.$get(`${ADMIN_SERVER}/api/blog/list`, { params: this.params })
       this.loading = false
 
       const { result: { blogs, totalCount } } = data
@@ -144,7 +144,7 @@ export default {
     },
 
     async getAllIds() {
-      const { result: { blogs } } = await this.$axios.$get(`${adminServer}/api/blog/list`, { params: { limit: 100000 } })
+      const { result: { blogs } } = await this.$axios.$get(`${ADMIN_SERVER}/api/blog/list`, { params: { limit: 100000 } })
       return blogs.map(({ _id }) => _id)
     },
 

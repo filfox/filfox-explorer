@@ -1,12 +1,12 @@
 <template>
   <div class="inline filterSelect text-xs">
     <span class="mr-2.5">{{ label }}</span>
-    <el-select ref="select" :value="value" :placeholder="this.$t('shared.select')" @change="onSelect">
+    <el-select ref="select" :value="value" :placeholder="this.$t('shared.select')" @change="val => sortBy = val">
       <el-option
-        v-for="item in options"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
+        v-for="(val, key) in options"
+        :key="key"
+        :label="val"
+        :value="key"
       />
     </el-select>
   </div>
@@ -19,7 +19,20 @@ export default {
   props: {
     value: { type: String, required: true },
     label: { type: String, required: true },
-    options: { type: Array, required: true }
+    options: { type: Object, default: () => ({}) }
+  },
+  data() {
+    return {
+      sortBy: this.value
+    }
+  },
+  watch: {
+    value() {
+      this.sortBy = this.value
+    },
+    sortBy() {
+      this.$emit('input', this.sortBy)
+    }
   },
   mounted() {
     this.updateSelectInputWidth()
@@ -28,13 +41,10 @@ export default {
     this.updateSelectInputWidth()
   },
   methods: {
-    onSelect(value) {
-      this.$emit('selected', value)
-    },
     updateSelectInputWidth() {
-      const option = this.options.find(item => item.value === this.value)
+      const option = this.options[this.sortBy]
       if (option) {
-        this.$refs.select.$children[0].$el.children[0].style.width = `${getTextWith(option.label, '12px') + 80}px`
+        this.$refs.select.$children[0].$el.children[0].style.width = `${getTextWith(option, '12px') + 80}px`
       }
     }
   }

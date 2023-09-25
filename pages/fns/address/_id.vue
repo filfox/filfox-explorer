@@ -5,7 +5,7 @@
 </template>
 <script>
 import { getDomaisByAddress } from '@/utils/fns/utils'
-import { fnsServer } from '../../../filecoin/filecoin.config'
+import { FNS_SERVER } from '@/filecoin/filecoin.config'
 
 export default {
   layout: 'fns',
@@ -42,7 +42,7 @@ export default {
         this.addressInfo.names = names
         this.addressInfo.reverseRecord = reverseRecord
         this.addressInfo.address = address
-        const transactions = await this.$axios.$get(`${fnsServer}/address/transactions`, { params: { address } })
+        const transactions = await this.$axios.$get(`${FNS_SERVER}/address/transactions`, { params: { address } })
         this.addressInfo.transactions = transactions.data
       } catch (e) {
         this.$message.error(this.$t('fns.search.failWords'))

@@ -59,7 +59,7 @@
   </div>
 </template>
 <script>
-import { fnsServer } from '../../filecoin/filecoin.config'
+import { FNS_SERVER } from '@/filecoin/filecoin.config'
 export default {
   data() {
     return {
@@ -83,7 +83,7 @@ export default {
   methods: {
     async getRegistrationList() {
       this.loading = true
-      const result = await this.$axios.$get(`${fnsServer}/registration/list`, { params: { pageSize: this.pageSize, page: this.page } })
+      const result = await this.$axios.$get(`${FNS_SERVER}/registration/list`, { params: { pageSize: this.pageSize, page: this.page } })
       this.registrationList = result.data
       this.loading = false
     },

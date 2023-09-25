@@ -6,15 +6,29 @@
           <th
             v-for="(key, index) in columns"
             :key="key"
-            :class="[index ? 'w-auto' : 'w-1/4']"
-            class="text-customGray-400 text-sm pt-4 pb-1"
+            :style="{ width: ['20%', 'auto', 'auto', '15%', 'auto', 'auto'][index] }"
+            class="text-customGray-400 text-sm font-normal pt-4 pb-1"
           >
             {{ $t(`home.fvmTopContracts.${key}`) }}
           </th>
         </tr>
-        <tr v-for="{ address, invokeCount, userCount, balance, totalFee } in contracts" :key="address" class="text-center text-sm">
+        <tr
+          v-for="{ address, contractName, contractVerified, invokeCount, userCount, balance, totalFee } in contracts"
+          :key="address"
+          class="text-center text-sm"
+        >
           <td class="text-left pl-4">
-            <AddressLink :id="address" :format="18" class="text-main" />
+            <AddressLink :id="address" :format="14" class="text-main" />
+          </td>
+          <td class="flex items-center justify-center">
+            <img
+              :src="require(`@/assets/img/contract/${contractVerified ? 'ok' : 'warn'}.svg`)"
+              class="mr-1"
+            >
+            <span v-if="contractVerified">{{ contractName }}</span>
+            <nuxt-link v-else :to="localePath(`/contract?address=${address}`)" class="font-light hover:underline hover:text-main">
+              {{ $t('detail.contract.verifyTip.1') }}
+            </nuxt-link>
           </td>
           <td>{{ invokeCount }}</td>
           <td>{{ userCount }}</td>
@@ -26,7 +40,7 @@
 
     <ul class="block lg:hidden">
       <li
-        v-for="{ address, invokeCount, userCount, balance, totalFee } in contracts"
+        v-for="{ address, contractName, contractVerified, invokeCount, userCount, balance, totalFee } in contracts"
         :key="address"
         class="border-b border-background py-2 text-xs"
       >
@@ -36,18 +50,31 @@
         </div>
         <div class="mobile-table-item">
           <span>{{ $t(`home.fvmTopContracts.${columns[1]}`) }}</span>
-          <span>{{ invokeCount }}</span>
+          <span class="flex items-center justify-end">
+            <img
+              :src="require(`@/assets/img/contract/${contractVerified ? 'ok' : 'warn'}.svg`)"
+              class="w-4 h-4 mr-1"
+            >
+            <span v-if="contractVerified">{{ contractName }}</span>
+            <nuxt-link v-else :to="localePath(`/contract?address=${address}`)" class="font-light hover:underline hover:text-main">
+              {{ $t('detail.contract.verifyTip.1') }}
+            </nuxt-link>
+          </span>
         </div>
         <div class="mobile-table-item">
           <span>{{ $t(`home.fvmTopContracts.${columns[2]}`) }}</span>
-          <span>{{ userCount }}</span>
+          <span>{{ invokeCount }}</span>
         </div>
         <div class="mobile-table-item">
           <span>{{ $t(`home.fvmTopContracts.${columns[3]}`) }}</span>
-          <span>{{ balance.$numberDecimal | filecoin(2) }}</span>
+          <span>{{ userCount }}</span>
         </div>
         <div class="mobile-table-item">
           <span>{{ $t(`home.fvmTopContracts.${columns[4]}`) }}</span>
+          <span>{{ balance.$numberDecimal | filecoin(2) }}</span>
+        </div>
+        <div class="mobile-table-item">
+          <span>{{ $t(`home.fvmTopContracts.${columns[5]}`) }}</span>
           <span class="">{{ totalFee.$numberDecimal | filecoin(2) }}</span>
         </div>
       </li>
@@ -90,7 +117,7 @@ export default {
   data() {
     return {
       loading: false,
-      columns: ['contractAddress', 'transactions', 'uniqueUsers', 'balance', 'gasCost'],
+      columns: ['contractAddress', 'contractName', 'transactions', 'uniqueUsers', 'balance', 'gasCost'],
       contracts: [],
       page: 1,
       totalCount: 0

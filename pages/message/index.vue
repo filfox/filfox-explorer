@@ -163,7 +163,13 @@
                   <AddressLink :id="message.to" :format="8" />
                 </td>
                 <td>
-                  {{ message.method }}
+                  <el-tooltip
+                    :content="`${message.method} ( Contract created )`"
+                    placement="top"
+                    :disabled="!/CreateExternal/i.test(message.method)"
+                  >
+                    <span>{{ message.method }}</span>
+                  </el-tooltip>
                 </td>
                 <td>
                   {{ message.value | filecoin(4) }}
