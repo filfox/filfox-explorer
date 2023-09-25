@@ -3,6 +3,7 @@ import Vue from 'vue'
 import exitCodes from '@/filecoin/exit-codes.json'
 import { BigNumber as BN } from 'ethers'
 import BigNumber from 'bignumber.js/bignumber.mjs'
+import { resolve0x0Address } from '@/utils'
 
 function toLocaleString(n) {
   return n.toLocaleString('en') || n.toString()
@@ -162,3 +163,4 @@ Vue.filter('trim', (string, len) => {
   }
 })
 
+Vue.filter('address0x0', resolve0x0Address)

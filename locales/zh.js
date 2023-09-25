@@ -31,20 +31,24 @@ export default {
     home: {
       title: '首页'
     },
+    fevm: {
+      title: 'FEVM',
+      subMenus: ['FEVM 统计', '已验证合约', 'FNS Lookup', '生态导览']
+    },
     blocks: {
       title: '区块链',
-      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池', 'FNS Lookup', '合约验证']
+      subMenus: ['区块', '消息', '富豪榜', '订单', '内存池', '合约验证']
     },
     ranks: {
       title: '排行榜'
     },
     charts: {
       title: '统计',
-      subMenus: ['存储服务图表', 'Gas 统计', 'FEVM 统计', '已验证合约', 'Lotus版本分布']
+      subMenus: ['存储服务图表', 'Gas 统计']
     },
     resources: {
       title: '资源',
-      subMenus: ['常用工具', '知识库', '网页钱包', 'FNS Lookup']
+      subMenus: ['常用工具', '知识库', '网页钱包']
     },
     searchPlaceHolder: '搜索区块/账户/地址/消息...',
     language: '语言',
@@ -121,6 +125,7 @@ export default {
       orderBy: '排序方式',
       more: '更多',
       contractAddress: '合约地址',
+      contractName: '合约名称',
       transactions: '交易数量',
       uniqueUsers: '独立用户数',
       balance: '余额',
@@ -134,6 +139,10 @@ export default {
       compiler: '编译器',
       optimization: '优化',
       license: '许可证'
+    },
+    fevmNavigation: {
+      title: '生态导览',
+      defiListColumns: ['排名', '名称', '交易次数', '独立地址数', 'TVL', '通证']
     },
     entireQualityAdjPower: {
       title: '全网算力走势',
@@ -442,7 +451,7 @@ export default {
     message: {
       title: '消息详情',
       replaced: '消息 {oldCid} 已被 {cid} 覆盖',
-      testNetOnly: '此消息只支持Calibration网络',
+      testNetOnly: '此消息只支持 Calibration 网络',
       modules: {
         overview: '消息概览',
         logs: '交易事件',
@@ -491,7 +500,9 @@ export default {
         from: '发送方',
         to: '接收方',
         value: '金额',
-        type: '类型'
+        type: '类型',
+        filTransactions: 'FIL 交易',
+        tokenTransactions: 'Token 交易'
       },
       description: {
         transfer: '{sender} 将 {value} 转入 {receiver}',
@@ -557,6 +568,7 @@ export default {
           actor: '类型',
           balance: '余额',
           messages: '消息数',
+          contractUserAddresses: '独立地址数',
           createTime: '创建时间',
           lastSeenTime: '最新交易',
           ownedMiners: '名下存储提供者',
@@ -1051,13 +1063,25 @@ export default {
     cancelHideReaded: '取消隐藏'
   },
   dapp: {
-    accessDapp: '访问Dapp',
+    accessDapp: '访问 Dapp',
     share: '分享',
-    category: '类型',
+    category: '分类',
     description: '描述',
+    data: '数据',
     social: '社交',
     copyLink: '复制链接',
-    transactionBalance: '燃气费用',
-    activeUniqueAddress: '活跃独立地址数'
+    details: '详情',
+    contractAddress: '地址',
+    contractLabel: '标签',
+    smartContractList: '合约地址列表',
+
+    defi: {
+      sortBy: '排序',
+      sortOptions: {
+        tvl: '代币市值',
+        users: '独立地址数',
+        transactions: '交易次数'
+      }
+    }
   }
 }

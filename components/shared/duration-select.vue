@@ -68,3 +68,14 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss">
+.el-radio-button {
+  &:first-child span {
+    border-radius: 50px 0 0 50px !important;
+  }
+  &:last-child span {
+    border-radius: 0 50px 50px 0 !important;
+  }
+}
+</style>

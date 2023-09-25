@@ -91,6 +91,15 @@
       </p>
     </div>
 
+    <div v-if="addressData.contractUserCount" class="flex items-center justify-between mx-4 mt-2 text-xs">
+      <p class="flex w-1/4">
+        {{ $t('detail.address.normal.headers.contractUserAddresses') }}
+      </p>
+      <p class="flex w-3/4">
+        {{ addressData.contractUserCount || 0 }}
+      </p>
+    </div>
+
     <div class="flex items-center justify-between mx-4 mt-2 text-xs">
       <p class="flex w-1/4">
         {{ $t('detail.address.normal.headers.createTime') }}
@@ -194,20 +203,26 @@
     <div v-loading="loading" class="pt-3 mt-2 bg-white border-t border-background">
       <div class="flex items-center justify-center h-10 mb-3">
         <el-radio-group v-model="listType" size="mini" fill="#1a4fc9">
-          <el-radio-button :label="0">
+          <el-radio-button v-if="addressData.messageCount > 0" :label="0">
             {{ $t('blockchain.message.title') }}
           </el-radio-button>
-          <el-radio-button :label="1">
+          <el-radio-button v-if="addressData.transferCount > 0" :label="1">
             {{ $t('detail.transfer.title') }}
           </el-radio-button>
-          <el-radio-button v-if="addressData.ethAddress" :label="4">
+          <el-radio-button
+            v-if="addressData.ethAddress && addressData.tokenTransferCount > 0"
+            :label="4"
+          >
             {{ $t('detail.tokenTransfer.title') }}
           </el-radio-button>
-          <el-radio-button v-if="addressData.actor == 'evm'" :label="2">
+          <el-radio-button v-if="addressData.actor == 'evm' " :label="2">
             {{ $t('detail.contract.title') }}
             <img v-if="contract.verified" src="@/assets/img/contract/ok.svg" alt="warn" class="w-4 h-4 absolute -top-2 -right-1 z-10">
           </el-radio-button>
-          <el-radio-button v-if="addressData.actor == 'evm'" :label="3">
+          <el-radio-button
+            v-if="addressData.actor == 'evm' && addressData.eventLogCount > 0"
+            :label="3"
+          >
             {{ $t('detail.eventLogs.title') }}
           </el-radio-button>
         </el-radio-group>

@@ -79,14 +79,14 @@
               <div v-if="/erc20/i.test(transfer.type)" class="flex justify-center items-center">
                 <img :src="transfer.tokenIcon" alt="warn" class="w-4 h-4 mr-1.5">
                 {{ transfer.value | parseToken(transfer.decimals, 6) }}
-                <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main ml-1 text-xs font-mono">
+                <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="hover:underline hover:text-main ml-1 text-xs font-mono">
                   {{ transfer.symbol }}
                 </NuxtLink>
               </div>
               <span v-else class="text-xs flex justify-center items-center">
                 <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
                 <div>
-                  <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
+                  <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
                     {{ transfer.symbol }}
                   </NuxtLink>
                   <div class="font-light">{{ transfer.name }}</div>
@@ -174,13 +174,13 @@
             <template v-if="/erc20/i.test(transfer.type)">
               <img :src="transfer.tokenIcon" alt="warn" class="w-4 h-4 mr-1.5">
               {{ transfer.value | parseToken(transfer.decimals, 6) }}
-              <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
+              <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
               </NuxtLink>
             </template>
             <template v-else>
               <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
-              <NuxtLink :to="localePath(`/address/${transfer.token}`)" class="hover:underline hover:text-main">
+              <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
               </NuxtLink> / {{ transfer.name }}
             </template>

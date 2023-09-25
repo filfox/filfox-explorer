@@ -73,7 +73,7 @@
         </button>
       </div>
 
-      <NuxtLink :to="localePath('/stats/verified-contracts')" class="mb-8 md:mb-16 underline text-main text-sm font-normal">
+      <NuxtLink :to="localePath('/fevm/verified-contracts')" class="mb-8 md:mb-16 underline text-main text-sm font-normal">
         {{ $t('contract.verifiedContractList') }}
       </NuxtLink>
     </div>

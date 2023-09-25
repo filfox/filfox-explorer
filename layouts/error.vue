@@ -7,7 +7,7 @@
         {{ error.message }}
       </p>
       <div class="mt-10">
-        <a href="/" class="inline-block px-4 py-2 rounded-full bg-button hover:bg-main text-white text-sm">
+        <a href="/" class="inline-block px-4 py-1.5 rounded-full bg-button hover:bg-main text-white text-sm">
           {{ $t('shared.backToHome') }}
         </a>
       </div>

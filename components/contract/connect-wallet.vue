@@ -12,8 +12,14 @@
 </template>
 
 <script>
-import { CHAIN_ID, CHAIN_NAME, HOST, NATIVE_CURRENCY, RPC } from '@/filecoin/filecoin.config'
-import { METAMASK_PLUGIN_URL } from '../../filecoin/filecoin.config'
+import {
+  CHAIN_ID,
+  CHAIN_NAME,
+  HOST,
+  NATIVE_CURRENCY,
+  RPC,
+  METAMASK_PLUGIN_URL
+} from '@/filecoin/filecoin.config'
 
 export default {
   props: {

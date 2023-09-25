@@ -1,0 +1,160 @@
+<template>
+  <div v-loading="loading" class="bg-white min-h-60">
+    <table class="hidden lg:table w-full table-fixed mt-3">
+      <thead class="text-gray-600 text-sm">
+        <tr>
+          <th
+            v-for="(colName, index) in $t('home.fevmNavigation.defiListColumns')"
+            :key="colName"
+            class="font-normal"
+            :class="{ 'text-left': index == 1 }"
+            :style="{ 'width': ['10%', '15%', '15%', 'auto', 'auto', 'auto'][index] }"
+          >
+            {{ colName }}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="text-center text-sm">
+        <tr
+          v-for="(item, index) in defi.defiList"
+          :key="item.name"
+          :class="{ 'border-t': index != 0 }"
+          class="border-background h-10 transition duration-200 hover:bg-customBlue-200"
+        >
+          <td>{{ item.rank + 1 }}</td>
+          <td>
+            <span
+              class="flex justify items-center cursor-pointer text-main hover:underline"
+              @click="$router.push(localePath(`/dapp/defi_${item.defi}`))"
+            >
+              <img
+                :src="item.logoPath || require('@/assets/img/fns/logo.png')"
+                class="w-4 h-4 rounded-full shadow-picture mr-1"
+              >
+              {{ item.name }}
+            </span>
+          </td>
+          <td><ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" /></td>
+          <td><ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" /></td>
+          <td><ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" /></td>
+          <td><ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul class="block lg:hidden bg-white p-3 text-xs border-t border-customGray-100">
+      <li
+        v-for="(item, index) in defi.defiList"
+        :key="item.name"
+        :class="{ 'border-t': index != 0 }"
+        class="border-customGray-100 py-1.5"
+      >
+        <div class="flex justify-between items-center my-1.5">
+          <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.0') }}</span>
+          <span>{{ item.rank + 1 }}</span>
+        </div>
+        <div class="flex justify-between items-center my-1.5">
+          <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.1') }}</span>
+          <span
+            class="flex items-center justify-end cursor-pointer text-main hover:underline"
+            @click="$router.push(localePath(`/dapp/defi_${item.defi}`))"
+          >
+            <img
+              :src="item.logoPath || require('@/assets/img/fns/logo.png')"
+              class="w-4 h-4 rounded-full shadow-picture mr-1"
+            >
+            {{ item.name }}</span>
+        </div>
+        <div class="flex justify-between items-center my-1.5">
+          <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.2') }}</span>
+          <ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" />
+        </div>
+        <div class="flex justify-between items-center my-1.5">
+          <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.3') }}</span>
+          <ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" />
+        </div>
+        <div class="flex justify-between items-center my-1.5">
+          <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.4') }}</span>
+          <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+        </div>
+        <div class="flex justify-between items-center my-1.5">
+          <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.5') }}</span>
+          <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
+        </div>
+      </li>
+    </ul>
+
+    <div v-if="limit > 5" class="flex flex-col lg:flex-row justify-between items-center mt-4 px-8">
+      <span class="text-sm">Found something interesting? <a
+        class="text-customBlue-300"
+        target="_blank"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSciXwagRx-D8zeTCIEa9y2pwkoaDqNw2nPSk9bLYdQRsFm3Sw/viewform"
+      >Submit it here</a></span>
+      <el-pagination
+        class="mt-3 lg:mt-0"
+        small
+        layout="prev, pager, next"
+        :total="defi.totalCount"
+        :page-size="limit"
+        :current-page="page + 1"
+        @current-change="p => page = p - 1"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import { formatNum } from '@/utils/dapp'
+
+export default {
+  props: {
+    days: { type: Number, default: 1 },
+    limit: { type: Number, default: 5 },
+    sortBy: { type: String, default: 'tvl' }
+  },
+
+  data() {
+    return {
+      defi: {},
+      page: 0,
+      loading: false
+    }
+  },
+
+  computed: {
+    params() {
+      return {
+        days: this.days,
+        limit: this.limit,
+        offset: this.page * this.limit,
+        sortBy: this.sortBy
+      }
+    }
+  },
+
+  watch: {
+    params() {
+      this.getList()
+    }
+  },
+
+  mounted() {
+    this.getList()
+  },
+
+  methods: {
+    formatNum,
+
+    async getList() {
+      try {
+        this.loading = true
+        this.defi = await this.$axios.$get('/stats/defi/list', { params: this.params })
+      } catch (error) {
+        console.log(error)
+      } finally {
+        this.loading = false
+      }
+    }
+  }
+}
+</script>

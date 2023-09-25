@@ -13,7 +13,7 @@
       />
     </div>
     <table v-if="!loading" class="w-full table-fixed">
-      <thead class="m-2 text-sm text-gray-600">
+      <thead class="text-sm text-gray-600">
         <tr class="h-8">
           <th class="sticky top-0 z-10 bg-white w-1/8">
             {{ $t('detail.transfer.tableHeaders.time') }}
@@ -54,7 +54,7 @@
             <div class="flex flex-row items-center justify-center">
               <AddressLink v-if="transfer.from" :id="transfer.from" :format="4" />
               <span v-else>N/A</span>
-              <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
+              <AddressTag :tag="transfer.fromTag" type="pc" :style="{ maxWidth:'66%' }" />
             </div>
           </td>
           <td>

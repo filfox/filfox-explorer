@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <MessageDetail :message="message" class="hidden lg:block" />
-    <MessageDetailMobile :message="message" class="lg:hidden" />
-  </div>
+  <MessageDetail :message="message" />
 </template>
 
 <script>
@@ -21,29 +18,27 @@ export default {
       return { message }
     } catch (err) {
       if (err?.response) {
-        if (err.response.code === 404) {
-          error({ code: 404, message: `Message ${id} not found` })
-        } else {
-          error({ code: err.response.status, message: err.response.statusText })
-        }
+        const code = err.response.status
+        const message = code === 404 ? `Message ${id} Not Found` : err.response.statusText
+        error({ code, message })
       } else {
-        error({ code: 500, message: 'Server Error'() })
+        error({ code: 500, message: 'Server Error' })
       }
     }
   },
+
   data() {
     return {
       message: {}
     }
   },
+
   computed: {
     id() {
       return this.$route.params.id
     }
   },
-  mounted() {
-    console.log(this.message)
-  },
+
   head() {
     return {
       title: `${this.$t('meta.titles.message')} ${this.id}`

@@ -7,6 +7,7 @@ export const network = {
       url: 'https://filfox.info',
       fns: 'https://app.fns.space',
       chainId: '0x13a',
+      chainName: 'Filecoin - Mainnet',
       nativeCurrency: 'FIL'
     },
     {
@@ -14,7 +15,8 @@ export const network = {
       url: 'https://calibration.filfox.info',
       fns: 'https://testapp.fns.space',
       chainId: '0x4cb2f',
-      nativeCurrency: 'TFIL'
+      chainName: 'Filecoin - Calibration testnet',
+      nativeCurrency: 'tFIL'
     }
   ]
 }
@@ -24,16 +26,17 @@ export const wiki = {
 }
 
 export const NETWORK = network.networks[network.currentNetwork]
-export const CHAIN_NAME = NETWORK.name
+export const NETWORK_NAME = NETWORK.name
 export const CHAIN_ID = NETWORK.chainId
+export const CHAIN_NAME = NETWORK.chainName
 export const NATIVE_CURRENCY = NETWORK.nativeCurrency
 
 export const HOST = NETWORK.url
 export const RPC = `${HOST}/rpc/v1`
 export const FNS = NETWORK.fns
-export const fnsServer = `${FNS}/api`
-export const adminServer = `https://admin.filfox.info`
-export const filfoxWalletHost = `https://wallet.filfox.info`
+export const FNS_SERVER = `${FNS}/api`
+export const ADMIN_SERVER = `https://admin.filfox.info`
+export const FILFOX_WALLET_HOST = `https://wallet.filfox.info`
 export const METAMASK_PLUGIN_URL = 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?utm_source=ext_sidebar'
 
 export const TOKEN_ICONS = {

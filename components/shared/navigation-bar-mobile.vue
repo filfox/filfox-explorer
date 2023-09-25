@@ -19,21 +19,26 @@
             {{ $t('nav.blocks.subMenus.4') }}
           </nuxt-link>
           <nuxt-link :to="localePath('/contract')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.blocks.subMenus.6') }}
+            {{ $t('nav.blocks.subMenus.5') }}
           </nuxt-link>
         </el-collapse-item>
       </el-collapse>
 
+      <!-- FEVM -->
       <el-collapse class="w-full">
-        <el-collapse-item title="FEVM">
-          <nuxt-link :to="localePath('/stats/fevm')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.charts.subMenus.2') }}
-          </nuxt-link>
-          <nuxt-link :to="localePath('/stats/verified-contracts')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.charts.subMenus.3') }}
-          </nuxt-link>
-          <nuxt-link :to="localePath('/fns')" class="link" @click.native="hideIfNeeded">
-            {{ $t('nav.blocks.subMenus.5') }}
+        <el-collapse-item :title="$t('nav.fevm.title')">
+          <nuxt-link
+            v-for="(menu, index) in $t('nav.fevm.subMenus')"
+            :key="menu"
+            class="link"
+            :to="localePath([
+              '/fevm/stats',
+              '/fevm/verified-contracts',
+              '/fns',
+              '/fevm/navigation'][index])"
+            @click.native="hideIfNeeded"
+          >
+            {{ menu }}
           </nuxt-link>
         </el-collapse-item>
       </el-collapse>
@@ -88,7 +93,7 @@
 </template>
 
 <script>
-import { filfoxWalletHost } from '../../filecoin/filecoin.config'
+import { FILFOX_WALLET_HOST } from '@/filecoin/filecoin.config'
 
 export default {
   props: {
@@ -104,7 +109,7 @@ export default {
   data() {
     return {
       searchText: '',
-      filfoxWalletHost
+      FILFOX_WALLET_HOST
     }
   },
   methods: {

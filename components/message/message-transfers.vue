@@ -1,24 +1,24 @@
 <template>
-  <div class="rounded-md my-4 py-4 bg-white mt-4">
-    <p class="pl-8 pb-3 border-b border-background">
-      {{ $t('detail.message.modules.transfer') }}
-    </p>
-    <div class="px-8">
-      <table class="w-full table-fixed">
+  <div class="bg-white">
+    <div class="px-4 lg:px-8 py-3 text-xs lg:text-sm text-gray-600 border-b border-background">
+      {{ $t('detail.message.transfer.filTransactions') }}
+    </div>
+    <div class="px-4 py-2">
+      <table class="hidden lg:table w-full table-fixed">
         <thead class="text-gray-600 text-sm m-2">
           <tr class="h-8">
-            <th class="sticky top-0 bg-white z-10 w-1/4">
+            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
               {{ $t('detail.message.transfer.from') }}
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/8">
+            <th class="sticky top-0 bg-white z-10 w-1/8 font-normal">
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/4">
+            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
               {{ $t('detail.message.transfer.to') }}
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/4">
+            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
               {{ $t('detail.message.transfer.value') }}
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/8">
+            <th class="sticky top-0 bg-white z-10 w-1/8 font-normal">
               {{ $t('detail.message.transfer.type') }}
             </th>
           </tr>
@@ -27,13 +27,14 @@
           <tr
             v-for="(transfer, index) in message.transfers"
             :key="index"
-            class="h-12 border-b border-background text-sm"
+            :class="{ 'border-t': index }"
+            class="h-11 border-background text-sm"
           >
             <td>
               <div class="flex items-center flex-row justify-center">
                 <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" />
                 <span v-else>N/A</span>
-                <AddressTag :tag="transfer.fromTag" type="pc" :style="{maxWidth:'66%'}" />
+                <AddressTag :tag="transfer.fromTag" type="pc" :style="{ maxWidth: '66%' }" />
               </div>
             </td>
             <td>
@@ -42,11 +43,11 @@
               </div>
             </td>
             <td>
-              <div class="flex items-center flex-row justify-center">
-                <AddressLink v-if="transfer.to" :id="transfer.to" :format="8" />
-                <span v-else>N/A</span>
-                <AddressTag :tag="transfer.toTag" type="pc" :style="{maxWidth:'66%'}" />
-              </div>
+              <AddressLink v-if="transfer.to" :id="transfer.to" :format="8" />
+              <span v-else>N/A</span>
+              <span class="absolute inline-block" style="max-width: 66%">
+                <AddressTag :tag="transfer.toTag" type="pc" />
+              </span>
             </td>
             <td>
               {{ transfer.value | filecoin }}
@@ -57,6 +58,32 @@
           </tr>
         </tbody>
       </table>
+      <!-- mobile -->
+      <ul class="lg:hidden">
+        <li
+          v-for="(transfer, index) in message.transfers"
+          :key="index"
+          :class="{ 'border-t': index }"
+          class="py-2 text-xs leading-5"
+        >
+          <div class="flex justify-between">
+            <span class="text-gray-600">{{ $t('detail.message.transfer.from') }}</span>
+            <AddressLink v-if="transfer.from" :id="transfer.from" :format="12" />
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">{{ $t('detail.message.transfer.to') }}</span>
+            <AddressLink v-if="transfer.to" :id="transfer.to" :format="12" />
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">{{ $t('detail.message.transfer.value') }}</span>
+            <span>{{ transfer.value | filecoin }}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-600">{{ $t('detail.message.transfer.type') }}</span>
+            <span>{{ $t('detail.transfer.types.' + transfer.type ) }}</span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -68,15 +95,3 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss" scoped>
-  .message-item {
-    @apply flex items-center my-2;
-  }
-  .message-key {
-    @apply w-56 flex-shrink-0 pl-8 pr-2 text-gray-600;
-  }
-  .message-value {
-    @apply mr-8 flex flex-row items-center;
-  }
-</style>

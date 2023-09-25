@@ -38,7 +38,7 @@
             <td>
               <div class="flex flex-row items-center justify-center">
                 <NuxtLink v-if="transfer.from" :to="`${$route.path}?h=${transfer.from}`" class="hover:text-main cursor-pointer">
-                  {{ transfer.from | trim(12) }}
+                  {{ transfer.from | address0x0 | trim(12) }}
                 </NuxtLink>
                 <span v-else>N/A</span>
               </div>
@@ -51,7 +51,7 @@
             <td>
               <div class="flex flex-row items-center justify-center">
                 <NuxtLink v-if="transfer.to" :to="`${$route.path}?h=${transfer.to}`" class="hover:text-main cursor-pointer">
-                  {{ transfer.to | trim(12) }}
+                  {{ transfer.to | address0x0 | trim(12) }}
                 </NuxtLink>
                 <span v-else>N/A</span>
               </div>

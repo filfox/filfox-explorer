@@ -4,13 +4,6 @@
       <ActivityBanner />
       <HomeOverview :overview="overview" />
 
-      <!-- <HomeDappsRanks
-        class="hidden lg:block"
-      />
-      <HomeDappsRanksMobile
-        class="lg:hidden"
-      /> -->
-
       <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
         <div class="bg-white mb-2">
           <HomeTitle type="baseFee" class="border-b border-background h-10 pr-4" />
@@ -58,7 +51,7 @@
         </div>
       </div>
 
-      <HomeFnsRegistrations />
+      <HomeFevmNavigation more />
 
       <HomeMinerRanksMobile
         class="lg:hidden"

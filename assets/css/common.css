@@ -123,3 +123,19 @@ button:focus {
 .el-pager .number:hover {
     color: #1a4fc9;
 }
+
+.el-tooltip__popper {
+    @apply bg-main !important;
+}
+
+.el-tooltip__popper .popper__arrow {
+    border-top-color: #1a4fc9 !important;
+}
+
+.el-tooltip__popper .popper__arrow::after {
+    border-top-color: #1a4fc9 !important;
+}
+
+table th {
+    @apply font-normal !important;
+}

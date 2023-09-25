@@ -1,17 +1,20 @@
 <template>
   <div class="flex items-center h-10 lg:h-12 pl-4">
-    <img v-if="type == 'overview'" src="~/assets/img/home/overview.svg" alt="icon" class="image">
-    <img v-else-if="type == 'entireQualityAdjPower'" src="~/assets/img/home/line-chart.svg" alt="icon" class="image">
-    <img v-else-if="type == 'powerDistribution'" src="~/assets/img/home/power-distribution.svg" alt="icon" class="image">
-    <img v-else-if="type == 'powerDelta'" src="~/assets/img/home/power-delta.svg" alt="icon" class="image">
-    <img v-else-if="type == 'baseFee'" src="~/assets/img/home/line-chart.svg" alt="icon" class="image">
-    <img v-else-if="type == 'minerRanks'" src="~/assets/img/home/miner-ranks.svg" alt="icon" class="image">
-    <img v-else-if="type == 'recentTipsets'" src="~/assets/img/home/blocks.svg" alt="icon" class="image">
-    <img v-else-if="type == 'richManRanks'" src="~/assets/img/home/rich.svg" alt="icon" class="image">
-    <img v-else-if="type == 'fvmOverview'" src="~/assets/img/home/fvmOverview.svg" alt="icon" class="image">
-    <img v-else-if="type == 'fvmTopContracts'" src="~/assets/img/home/fvmTopContracts.svg" alt="icon" class="image">
-    <img v-else-if="type == 'verifiedContracts'" src="~/assets/img/home/verifiedContracts.svg" alt="icon" class="image">
-    <img v-else-if="type == 'dappRanks'" src="~/assets/img/home/dapp.svg" alt="icon" class="image">
+    <template v-if="icon">
+      <img v-if="type == 'overview'" src="~/assets/img/home/overview.svg" alt="icon" class="image">
+      <img v-else-if="type == 'entireQualityAdjPower'" src="~/assets/img/home/line-chart.svg" alt="icon" class="image">
+      <img v-else-if="type == 'powerDistribution'" src="~/assets/img/home/power-distribution.svg" alt="icon" class="image">
+      <img v-else-if="type == 'powerDelta'" src="~/assets/img/home/power-delta.svg" alt="icon" class="image">
+      <img v-else-if="type == 'baseFee'" src="~/assets/img/home/line-chart.svg" alt="icon" class="image">
+      <img v-else-if="type == 'minerRanks'" src="~/assets/img/home/miner-ranks.svg" alt="icon" class="image">
+      <img v-else-if="type == 'recentTipsets'" src="~/assets/img/home/blocks.svg" alt="icon" class="image">
+      <img v-else-if="type == 'richManRanks'" src="~/assets/img/home/rich.svg" alt="icon" class="image">
+      <img v-else-if="type == 'fvmOverview'" src="~/assets/img/home/fvmOverview.svg" alt="icon" class="image">
+      <img v-else-if="type == 'fvmTopContracts'" src="~/assets/img/home/fvmTopContracts.svg" alt="icon" class="image">
+      <img v-else-if="type == 'verifiedContracts'" src="~/assets/img/home/verifiedContracts.svg" alt="icon" class="image">
+      <img v-else-if="type == 'dappRanks'" src="~/assets/img/home/dapp.svg" alt="icon" class="image">
+      <img v-else-if="type == 'fevmNavigation'" src="~/assets/img/home/fevmNavigation.svg" alt="icon" class="image">
+    </template>
     <div class="ml-2 text-sm lg:text-base">
       {{ $t(`home.${type}.title`) }}
     </div>
@@ -21,7 +24,8 @@
 <script>
 export default {
   props: {
-    type: { type: String, required: true }
+    type: { type: String, required: true },
+    icon: { type: Boolean, default: true }
   }
 }
 </script>

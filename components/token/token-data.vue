@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { matchTabToUrl } from '@/utils'
+
 export default {
   props: {
     token: {
@@ -52,7 +54,7 @@ export default {
 
   data() {
     return {
-      tab: 'tx',
+      tab: '',
       tabs: ['tx', 'holder', 'info', 'contract'],
       totalCount: 0,
       filterAddress: ''
@@ -68,10 +70,15 @@ export default {
   watch: {
     holder() {
       this.filterAddress = this.holder
+    },
+
+    tab(val) {
+      matchTabToUrl(val)
     }
   },
 
   mounted() {
+    this.setDefaultTab()
     this.filterAddress = this.holder
   },
 
@@ -97,6 +104,11 @@ export default {
     clearFilterAddress() {
       this.filterAddress = ''
       this.$router.push(`${this.$route.path}?h=${this.filterAddress}`)
+    },
+
+    setDefaultTab() {
+      const t = this.$route.query?.t
+      this.tab = this.tabs.includes(t) ? t : this.tabs[0]
     }
   }
 }
@@ -106,16 +118,6 @@ export default {
 .address-search {
   &:has(input:focus) {
     @apply border-blue-500 !important;
-  }
-}
-
-.el-tooltip__popper {
-  @apply bg-main !important;
-  .popper__arrow {
-    border-top-color: #1a4fc9 !important;
-  }
-  .popper__arrow::after {
-    border-top-color: #1a4fc9 !important;
   }
 }
 </style>

@@ -6,6 +6,7 @@
       </div>
     </nuxt-link>
 
+    <!-- Block Chain -->
     <el-dropdown class="flex items-center mx-2 xl:mx-3">
       <span class="px-2 text-sm el-dropdown-link text-background">
         {{ $t('nav.blocks.title') }} <i class="el-icon-arrow-down el-icon--right"></i>
@@ -27,24 +28,27 @@
           <el-dropdown-item>{{ $t('nav.blocks.subMenus.4') }}</el-dropdown-item>
         </nuxt-link>
         <nuxt-link :to="localePath('/contract')">
-          <el-dropdown-item>{{ $t('nav.blocks.subMenus.6') }}</el-dropdown-item>
+          <el-dropdown-item>{{ $t('nav.blocks.subMenus.5') }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>
 
+    <!-- FEVM -->
     <el-dropdown class="flex items-center mx-2 xl:mx-3">
       <span class="px-2 text-sm el-dropdown-link text-background">
-        FEVM <i class="el-icon-arrow-down el-icon--right"></i>
+        {{ $t('nav.fevm.title') }} <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <nuxt-link :to="localePath('/stats/fevm')">
-          <el-dropdown-item>{{ $t('nav.charts.subMenus.2') }}</el-dropdown-item>
-        </nuxt-link>
-        <nuxt-link :to="localePath('/stats/verified-contracts')">
-          <el-dropdown-item>{{ $t('nav.charts.subMenus.3') }}</el-dropdown-item>
-        </nuxt-link>
-        <nuxt-link :to="localePath('/fns')">
-          <el-dropdown-item>{{ $t('nav.blocks.subMenus.5') }}</el-dropdown-item>
+        <nuxt-link
+          v-for="(menu, index) in $t('nav.fevm.subMenus')"
+          :key="menu"
+          :to="localePath([
+            '/fevm/stats',
+            '/fevm/verified-contracts',
+            '/fns',
+            '/fevm/navigation'][index])"
+        >
+          <el-dropdown-item>{{ menu }}</el-dropdown-item>
         </nuxt-link>
       </el-dropdown-menu>
     </el-dropdown>
@@ -142,14 +146,14 @@
 </template>
 
 <script>
-import { filfoxWalletHost } from '../../filecoin/filecoin.config'
+import { FILFOX_WALLET_HOST } from '@/filecoin/filecoin.config'
 
 export default {
   name: 'NavBar',
   data() {
     return {
       searchText: '',
-      filfoxWalletHost
+      FILFOX_WALLET_HOST
     }
   },
   methods: {

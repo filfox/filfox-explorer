@@ -20,6 +20,7 @@ module.exports = {
     'plugin:nuxt/recommended'
   ],
   rules: {
+    'vue/require-prop-types': 0,
     'array-bracket-newline': ['off', 'consistent'],
     'arrow-body-style': ['warn', 'as-needed'],
     'arrow-parens': ['warn', 'as-needed'],
@@ -33,7 +34,7 @@ module.exports = {
     curly: ['error', 'multi-line'],
     'dot-notation': 'warn',
     'eol-last': 'error',
-    eqeqeq: ['error', 'smart'],
+    eqeqeq: 'off',
     'for-direction': 'error',
     'func-call-spacing': 'warn',
     'func-name-matching': 'warn',

@@ -233,7 +233,7 @@ export default {
 
     resolveCurAbis() {
       if (!this.contract.abi) return []
-      const regx = new RegExp(this.write ? 'payable' : 'view')
+      const regx = new RegExp(this.write ? 'payable' : 'view|pure')
       const abis = JSON.parse(this.contract.abi).filter(abi => abi.type === 'function' && regx.test(abi.stateMutability))
       return abis
     },
