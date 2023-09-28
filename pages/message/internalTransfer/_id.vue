@@ -10,6 +10,7 @@ export default {
   asyncData({ params }) {
     return { cid: params.id }
   },
+
   data() {
     return {
       cid: '',
@@ -17,15 +18,17 @@ export default {
       loading: false
     }
   },
+
   mounted() { this.getSubcalls() },
+
   methods: {
     async getSubcalls() {
       this.loading = true
-      const { subcalls } = await this.$axios.$get(`/message/${this.cid}`)
-      this.subcalls = subcalls
+      this.subcalls = await this.$axios.$get(`/message/${this.cid}/subcalls`)
       this.loading = false
     }
   },
+
   head() {
     return {
       title: this.$t('meta.titles.messages')

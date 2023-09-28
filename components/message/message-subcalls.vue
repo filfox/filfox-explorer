@@ -8,71 +8,49 @@
         <AddressLink v-if="message.to" :id="message.to" :format="8" class="text-main mr-1 lg:mx-2" />
         {{ $t('detail.message.internaltransfer.produced', { amount: subcalls.length }) }}
       </span>
-      <nuxt-link
-        :to="localePath(`/message/internalTransfer/${message.cid}`)"
-        target="_blank"
-        class="ml-auto"
-      >
-        <el-button size="mini" round>
-          {{ $t('shared.more') }}
-        </el-button>
-      </nuxt-link>
     </div>
     <div class="px-4 overflow-auto">
-      <table class="hidden lg:table w-full table-fixed">
-        <thead class="text-gray-600 text-sm m-2">
-          <tr class="h-8">
-            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
-              {{ $t('detail.message.internaltransfer.method') }}
-            </th>
-            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
-              {{ $t('detail.message.internaltransfer.from') }}
-            </th>
-            <th class="sticky top-0 bg-white z-10 w-1/8">
-            </th>
-            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
-              {{ $t('detail.message.internaltransfer.to') }}
-            </th>
-            <th class="sticky top-0 bg-white z-10 w-1/8 font-normal">
-              {{ $t('detail.message.internaltransfer.value') }}
-            </th>
-          </tr>
-        </thead>
-        <tbody class="text-center">
-          <tr
-            v-for="(transfer, index) in subcalls"
-            :key="index"
-            :class="{ 'border-t': index }"
-            class="h-11 border-background text-sm"
-          >
-            <td>
-              <div class="flex items-center flex-row justify-center">
-                {{ transfer.method }}
-              </div>
-            </td>
-            <td>
-              <div class="flex items-center flex-row justify-center">
-                <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" />
-              </div>
-            </td>
-            <td>
-              <div class="flex justify-center">
-                <img src="~/assets/img/shared/to.svg" alt="3" class="w-4">
-              </div>
-            </td>
-            <td>
-              <div class="flex items-center flex-row justify-center">
-                <AddressLink v-if="transfer.to" :id="transfer.to" :format="8" />
-                <span v-else>N/A</span>
-                <AddressTag :tag="transfer.toTag" type="pc" :style="{ maxWidth:'66%' }" />
-              </div>
-            </td>
-            <td>
-              {{ transfer.value | filecoin }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="mt-2 hidden lg:block">
+        <div class="flex text-center text-gray-600">
+          <span style="width: 5%"></span>
+          <span style="width: 19%">{{ $t('detail.message.internaltransfer.method') }}</span>
+          <span style="width: 19%">{{ $t('detail.message.internaltransfer.from') }}</span>
+          <span class="flex-1"></span>
+          <span style="width: 19%">{{ $t('detail.message.internaltransfer.to') }}</span>
+          <span style="width: 19%">{{ $t('detail.message.internaltransfer.value') }}</span>
+        </div>
+        <div
+          v-for="(transfer, index) in subcalls"
+          :key="index"
+          :class="{ 'border-t': index }"
+          class="border-background py-2.75 cursor-pointer hover:bg-gray-100 transition duration-200"
+          @click="transfer.expand = !transfer.expand"
+        >
+          <div class="flex items-center text-center">
+            <span style="width: 5%"><i
+              class="el-icon-arrow-right transform duration-200 transition"
+              :class="{ 'rotate-90': transfer.expand }"
+            ></i></span>
+            <span style="width: 19%">{{ transfer.method || 'N/A' }}</span>
+            <span style="width: 19%">
+              <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" class="hover:text-main hover:underline" />
+            </span>
+            <span class="flex-1">
+              <img src="~/assets/img/shared/to.svg" alt="3" class="mx-auto w-4">
+            </span>
+            <span style="width: 19%">
+              <AddressLink v-if="transfer.to" :id="transfer.to" :format="8" class="hover:text-main hover:underline" />
+              <span v-else>N/A</span>
+              <AddressTag :tag="transfer.toTag" type="pc" :style="{ maxWidth:'66%' }" />
+            </span>
+            <span style="width: 19%">{{ transfer.value | filecoin }}</span>
+          </div>
+          <div v-if="transfer.expand" class="px-6.5 py-4">
+            <vue-json-pretty :data="transfer" />
+          </div>
+        </div>
+      </div>
+
       <!-- mobile -->
       <ul class="lg:hidden">
         <li
@@ -97,6 +75,16 @@
             <span class="text-gray-600">{{ $t('detail.message.internaltransfer.value') }}</span>
             <span>{{ transfer.value | filecoin }}</span>
           </div>
+          <div class="flex justify-between items-center" @click="transfer.expand = !transfer.expand">
+            <span class="text-gray-600">{{ $t('shared.more') }}</span>
+            <i
+              class="el-icon-arrow-right transform duration-200 transition"
+              :class="{ 'rotate-90': transfer.expand }"
+            ></i>
+          </div>
+          <div v-if="transfer.expand">
+            <vue-json-pretty :data="transfer" />
+          </div>
         </li>
       </ul>
     </div>
@@ -115,7 +103,8 @@ export default {
 
   async mounted() {
     this.loading = true
-    this.subcalls = await this.$axios.$get(`/message/${this.message.cid}/subcalls`)
+    const list = await this.$axios.$get(`/message/${this.message.cid}/subcalls`)
+    this.subcalls = list.map(item => ({ ...item, expand: false }))
     this.loading = false
   }
 }

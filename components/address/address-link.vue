@@ -16,7 +16,11 @@
         </span>
       </el-tooltip>
 
-      <a :href="`${FNS}/domain/` + name" target="_blank" class="cursor-pointer text-main hover:opacity-75">{{ nameExist }}</a>
+      <a
+        :href="`${FNS}/domain/` + name"
+        target="_blank"
+        class="cursor-pointer text-main hover:opacity-75"
+      >{{ nameExist }}</a>
     </span>
     <slot v-else></slot>
   </span>

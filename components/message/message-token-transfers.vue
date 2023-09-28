@@ -1,24 +1,24 @@
 <template>
   <div class="py-4 bg-white">
-    <div class="px-4 lg:px-8 py-3 text-xs lg:text-sm text-gray-600 border-t border-b border-background">
+    <div class="px-4 lg:px-8 pt-3 text-xs lg:text-sm text-gray-600 border-t border-background">
       {{ $t('detail.message.transfer.tokenTransactions') }}
     </div>
     <div class="px-4 py-2">
       <table class="hidden lg:table w-full table-fixed">
         <thead class="text-gray-600 text-sm m-2">
           <tr class="h-8">
-            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
+            <th class="sticky top-0 bg-white z-10 w-1/4 text-left pl-4">
               {{ $t('detail.message.transfer.from') }}
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/8 font-normal">
+            <th class="sticky top-0 bg-white z-10 w-1/8">
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
+            <th class="sticky top-0 bg-white z-10 w-1/4">
               {{ $t('detail.message.transfer.to') }}
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/4 font-normal">
+            <th class="sticky top-0 bg-white z-10 w-1/4">
               {{ $t('detail.message.transfer.value') }}
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/8 font-normal">
+            <th class="sticky top-0 bg-white z-10 w-1/8">
               {{ $t('detail.message.transfer.type') }}
             </th>
           </tr>
@@ -31,7 +31,7 @@
             class="h-11 border-background text-sm"
           >
             <td>
-              <div class="flex items-center flex-row justify-center">
+              <div class="flex items-center flex-row pl-4">
                 <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" />
                 <span v-else>N/A</span>
                 <AddressTag :tag="transfer.fromTag" type="pc" :style="{ maxWidth:'66%' }" />
