@@ -116,11 +116,13 @@
       <dd
         v-if="message.receipt"
         class="message-value"
-        :class="[ message.receipt.exitCode ? 'text-red-500' : 'text-green-600' ]"
+        :class="[ message.receipt.exitCode ? 'text-red-600' : 'text-green-600' ]"
       >
-        <img v-if="message.receipt.exitCode == 0" src="@/assets/img/shared/success.svg" class="w-3 h-3 lg:w-4 lg:h-4">
+        <template v-if="message.receipt.exitCode == 0">
+          <img src="@/assets/img/shared/ok.svg" class="mr-1 w-3 h-3 lg:w-3.5 lg:h-3.5">OK
+        </template>
         <template v-else>
-          {{ message.receipt.exitCode | exit-code }}
+          <img src="@/assets/img/shared/error-red.svg" class="mr-1 w-3 h-3 lg:w-3.5 lg:h-3.5">{{ message.receipt.exitCode | exit-code }}
         </template>
       </dd>
       <dd

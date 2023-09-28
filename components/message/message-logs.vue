@@ -20,7 +20,7 @@
             Name
           </dt>
           <dd class="message-value">
-            {{ item.name }}
+            {{ item.name.replace(/,/ig, ', ') }}
           </dd>
         </dl>
         <dl class="message-item">
