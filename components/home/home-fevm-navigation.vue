@@ -9,14 +9,14 @@
       </nuxt-link>
     </div>
 
-    <div :class="`flex flex-wrap items-center mb-3 -mt-2 lg:-mt-3 ${more ? 'px-4' : 'px-6'}`">
-      <div id="typeBar" class="flex items-center overflow-auto lg:overflow-hidden bg-customGray-250 p-1.25 rounded-full mt-3">
+    <div :class="`flex flex-wrap items-center mb-5 -mt-1 ${more ? 'px-4' : 'px-6'}`">
+      <div id="typeBar" class="flex items-center overflow-auto lg:overflow-hidden bg-customGray-250 px-2 py-1.25 rounded-full mt-3">
         <template v-for="{ category, displayName, count } in dappTypes">
           <div
             v-if="count > 0 || category == 'fns'"
             :key="category"
-            class="px-2 py-0.5 text-xs whitespace-nowrap rounded-full cursor-pointer transition duration-200 select-none"
-            :class="category == type ? 'text-white bg-main' : 'text-customGray-375 hover:bg-customGray-335'"
+            class="px-2 py-0.5 text-xs whitespace-nowrap cursor-pointer transition duration-200 select-none hover:text-main"
+            :class="category == type ? 'text-main' : 'text-customGray-375'"
             @click="type = category"
           >
             {{ displayName }}<span v-if="category != 'fns'">({{ count || 0 }})</span>
