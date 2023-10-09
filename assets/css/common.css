@@ -139,3 +139,13 @@ button:focus {
 table th {
     @apply font-normal !important;
 }
+
+.el-radio-button__inner {
+    font-weight: normal !important;
+  }
+
+.is-active .el-radio-button__inner {
+    color: #5D9DF8 !important;
+    border-color: #BED9FC !important;
+    background: #EEF5FE !important;
+  }

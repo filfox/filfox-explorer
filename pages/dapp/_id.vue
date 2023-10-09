@@ -11,7 +11,7 @@
       <div class="px-4 lg:px-10 py-4 lg:py-6">
         <div class="rounded-1 lg:rounded-md bg-background flex p-5 lg:flex-row flex-col">
           <div
-            class="w-28 h-29 bg-white rounded-full flex items-center justify-center lg:mr-6 mr-0 flex-shrink-0"
+            class="w-28 h-29 bg-customBlue-260 rounded-full flex items-center justify-center lg:mr-6 mr-0 flex-shrink-0"
           >
             <img
               class="rounded-full"
@@ -46,7 +46,7 @@
                   v-if="dapp.officialWebSite"
                   size="medium"
                   type="primary"
-                  class="text-xs lg:text-sm bg-main hover:bg-main border-main hover:border-main hover:opacity-75 transition duration-200 mr-1"
+                  class="share-btn text-xs lg:text-sm bg-main hover:bg-main border-main hover:border-main hover:opacity-75 transition duration-200 mr-1"
                   @click="accessDapp"
                 >
                   {{ this.$t('dapp.accessDapp') }}
@@ -54,7 +54,7 @@
                 <el-button
                   type="primary"
                   size="medium"
-                  class="text-xs lg:text-sm bg-main hover:bg-main border-main hover:border-main hover:opacity-75 transition duration-200 mr-1"
+                  class="share-btn text-xs lg:text-sm bg-main hover:bg-main border-main hover:border-main hover:opacity-75 transition duration-200 mr-1"
                   @click="openShare"
                 >
                   {{ this.$t('dapp.share') }}
@@ -73,26 +73,26 @@
       <table class="w-full table-fixed mt-3 lg:table hidden">
         <thead class="text-gray-600 text-sm">
           <tr>
-            <th class="font-normal" style="width: 20%">
+            <th class="font-normal text-left pl-10" style="width: 30%">
               {{ $t('home.fevmNavigation.defiListColumns.4') }}
             </th>
-            <th class="font-normal">
+            <th class="font-normal text-left">
               {{ $t('home.fevmNavigation.defiListColumns.3') }}
             </th>
-            <th class="font-normal">
+            <th class="font-normal text-left">
               {{ $t('home.fevmNavigation.defiListColumns.2') }}
             </th>
-            <th class="font-normal">
+            <th class="font-normal text-left" style="width: 20%">
               {{ $t('home.fevmNavigation.defiListColumns.5') }}
             </th>
           </tr>
         </thead>
         <tbody class="text-center text-sm">
           <tr class="border-background h-10">
-            <td><ChangeRate :data="formatNum(dapp.tvl.data)" :change-rate="dapp.tvl.changeRate" data-format="$% USD" /></td>
-            <td><ChangeRate :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" /></td>
-            <td><ChangeRate :data="dapp.invokeCount.data" :change-rate="dapp.invokeCount.changeRate" /></td>
-            <td><ChangeRate :data="formatNum(dapp.tokens.data)" :change-rate="dapp.tokens.changeRate" data-format="$% FIL" /></td>
+            <td class="text-left pl-10"><ChangeRate :data="formatNum(dapp.tvl.data)" :change-rate="dapp.tvl.changeRate" data-format="$% USD" /></td>
+            <td class="text-left"><ChangeRate :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" /></td>
+            <td class="text-left"><ChangeRate :data="dapp.invokeCount.data" :change-rate="dapp.invokeCount.changeRate" /></td>
+            <td class="text-left"><ChangeRate :data="formatNum(dapp.tokens.data)" :change-rate="dapp.tokens.changeRate" data-format="$% FIL" /></td>
           </tr>
         </tbody>
       </table>
@@ -343,6 +343,10 @@ export default {
   },
   & .el-dialog__body {
     padding: 0 !important;
+  }
+  .share-btn {
+    padding: 8px 20px !important;
+    font-weight: normal;
   }
 }
 </style>

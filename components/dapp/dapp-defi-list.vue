@@ -7,8 +7,8 @@
             v-for="(colName, index) in $t('home.fevmNavigation.defiListColumns')"
             :key="colName"
             class="font-normal"
-            :class="{ 'text-left': index == 1 }"
-            :style="{ 'width': ['10%', '15%', '15%', 'auto', 'auto', 'auto'][index] }"
+            :class="{ 'text-left': index != 0 }"
+            :style="{ 'width': ['12%', '18%', 'auto', 'auto', 'auto', '15%'][index] }"
           >
             {{ colName }}
           </th>
@@ -34,10 +34,10 @@
               {{ item.name }}
             </span>
           </td>
-          <td><ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" /></td>
-          <td><ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" /></td>
-          <td><ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" /></td>
-          <td><ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" /></td>
+          <td class="text-left"><ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" /></td>
+          <td class="text-left"><ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" /></td>
+          <td class="text-left"><ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" /></td>
+          <td class="text-left"><ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" /></td>
         </tr>
       </tbody>
     </table>
