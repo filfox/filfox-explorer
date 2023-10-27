@@ -1,6 +1,6 @@
 <template>
   <div v-loading="loading" class="bg-white min-h-60">
-    <table class="hidden lg:table w-full table-fixed mt-3">
+    <table class="hidden lg:table w-full table-fixed border-background mt-3" :class="{ 'border-b': limit > 5 }">
       <thead class="text-gray-600 text-sm">
         <tr>
           <th
@@ -19,12 +19,12 @@
           v-for="(item, index) in defi.defiList"
           :key="item.name"
           :class="{ 'border-t': index != 0 }"
-          class="border-background h-10 transition duration-200 hover:bg-customBlue-200"
+          class="border-background h-11 transition duration-200 hover:bg-customBlue-200"
         >
           <td>{{ item.rank + 1 }}</td>
           <td>
             <span
-              class="flex justify items-center cursor-pointer text-main hover:underline"
+              class="flex justify items-center cursor-pointer hover:text-customBlue-290"
               @click="$router.push(localePath(`/dapp/defi_${item.defi}`))"
             >
               <img
@@ -34,10 +34,18 @@
               {{ item.name }}
             </span>
           </td>
-          <td class="text-left"><ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" /></td>
-          <td class="text-left"><ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" /></td>
-          <td class="text-left"><ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" /></td>
-          <td class="text-left"><ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" /></td>
+          <td class="text-left">
+            <ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" />
+          </td>
+          <td class="text-left">
+            <ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" />
+          </td>
+          <td class="text-left">
+            <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+          </td>
+          <td class="text-left">
+            <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -56,7 +64,7 @@
         <div class="flex justify-between items-center my-1.5">
           <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.1') }}</span>
           <span
-            class="flex items-center justify-end cursor-pointer text-main hover:underline"
+            class="flex items-center justify-end cursor-pointer hover:text-customBlue-290"
             @click="$router.push(localePath(`/dapp/defi_${item.defi}`))"
           >
             <img

@@ -33,7 +33,7 @@ export default {
     },
     fevm: {
       title: 'FEVM',
-      subMenus: ['FEVM 统计', '已验证合约', 'FNS Lookup', '生态导览']
+      subMenus: ['FEVM 统计', '已验证合约', 'FNS Lookup', '生态导览', '通证', 'NFTs']
     },
     blocks: {
       title: '区块链',
@@ -143,6 +143,17 @@ export default {
     fevmNavigation: {
       title: '生态导览',
       defiListColumns: ['排名', '名称', '交易次数', '独立地址数', 'TVL', '通证']
+    },
+    tokenList: {
+      title: '代币追踪器',
+      totalTokens: '共找到 {count} 个代币合约',
+      tableColumns: ['代币', '总供应量', '交易量', '持有者']
+    },
+    nftList: {
+      title: '热门 NFTs',
+      totalNfts: '共找到 {count} 个 NFT',
+      tableColumns: ['集合', '总供应量', '交易量', '持有者'],
+      disclaimer: '所有 Token 均在链上发现，并不构成投资建议'
     },
     entireQualityAdjPower: {
       title: '全网算力走势',
@@ -299,7 +310,9 @@ export default {
       title: '消息列表',
       info: {
         total: '共',
-        messages: '条消息'
+        messages: '条消息',
+        pendingMessages: '共 {count} 条消息待处理',
+        confirmedMessages: '{count} 条已上链消息'
       },
       tableHeaders: {
         id: '消息ID',
@@ -429,7 +442,7 @@ export default {
       response: '响应',
 
       verifyTip: ['你是合约创建者吗?', '验证并发布', '你的合约源代码', '实现合约的字节码位于 {address} 但未验证。'],
-      codeVerified: '合约源代码已通过验证',
+      codeVerified: '合约源码已验证',
       contractName: '合约名',
       compilerVersion: '编译器版本',
       optimizeEnabled: '优化开启',
@@ -690,6 +703,7 @@ export default {
       title: '通证',
       overview: {
         title: '通证概览',
+        warning: '警告：以下 token 只是在链上发现，并不构成投资建议',
         totalSupply: '总供应量',
         numberOfHolders: '持有者数量',
         totalTransactionVolume: '总交易量',
@@ -839,7 +853,10 @@ export default {
       wiki: '知识库',
       notify: '站内通知',
       fevm: 'FEVM 统计',
-      dapp: 'FEVM Dapp Status'
+      dapp: 'FEVM Dapp Status',
+      token: '通证',
+      tokens: '通证',
+      nfts: 'NFTs'
     },
     description: {
       default: '飞狐浏览器（Filfox）是 Filecoin 区块链浏览器及数据服务平台，为用户稳定地提供 Filecoin 相关的各类数据、信息和可视化图表等内容，具体包括矿工信息、区块信息、消息信息、FIL代币相关信息、常用工具等。'
@@ -1020,6 +1037,7 @@ export default {
       optimizations: '优化参数',
       selectFiles: '选择 *.sol 文件',
       selectFilesDes: '选择单个或多个 Solidity 文件',
+      pleaseSelectSolidityFiles: '请上传 Solidity（*.sol） 文件',
       clearFiles: '清除文件',
       uploadMetadataFile: '上传 metadata.json 文件',
       uploadMetadataFileTo: '以设置优化器详细信息',
@@ -1042,6 +1060,15 @@ export default {
       verifySuccess: '验证成功',
       whatWeGot: '编译的',
       whatWeLookingFor: '链上的',
+      contractLibraryAddress: '合约引用库地址',
+      supportsUpToTenLibraries: '适用于使用外部的合约库，最多支持 10 个库地址。',
+      libraryNote: '注意：合约库名称区分大小写，会影响 keccak 库哈希值。',
+      sourceCodeFileName: '合约库所在的源代码文件名',
+      libraryName: '合约库名称',
+      libraryContractAddress: '库合约地址',
+      add: '添加',
+      metadataSettings: '元数据设置',
+      optional: '可选',
       error: {
         1: '未找到源代码：调用 api 时未提供源代码',
         2: '未找到合约 initcode：后端没解析到该合约的 initcode；调用 api 时提供的地址不是 evm 地址',

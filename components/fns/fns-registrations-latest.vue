@@ -18,7 +18,7 @@
           v-for="({ owner, name, expires }, index) in names"
           :key="name"
           :class="{ 'border-t': index != 0 }"
-          class="border-background h-10 transition duration-200 hover:bg-customBlue-200"
+          class="border-background h-11 transition duration-200 hover:bg-customBlue-200"
         >
           <td>
             <AddressLink :id="owner" :format="18" class="text-main" />

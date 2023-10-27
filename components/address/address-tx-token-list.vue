@@ -84,7 +84,7 @@
                 </NuxtLink>
               </div>
               <span v-else class="text-xs flex justify-center items-center">
-                <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
+                <TokenIcon class="mr-1.5" :token-id="transfer.token" token-type="ERC721" />
                 <div>
                   <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
                     {{ transfer.symbol }}
@@ -179,7 +179,7 @@
               </NuxtLink>
             </template>
             <template v-else>
-              <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
+              <TokenIcon class="mr-1.5" :token-id="transfer.token" token-type="ERC721" />
               <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
               </NuxtLink> / {{ transfer.name }}

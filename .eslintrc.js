@@ -20,6 +20,7 @@ module.exports = {
     'plugin:nuxt/recommended'
   ],
   rules: {
+    'vue/singleline-html-element-content-newline': 'off',
     'vue/require-prop-types': 0,
     'array-bracket-newline': ['off', 'consistent'],
     'arrow-body-style': ['warn', 'as-needed'],

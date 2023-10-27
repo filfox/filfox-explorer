@@ -49,8 +49,13 @@ export const TOKEN_ICONS = {
   f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: require('@/assets/img/token/stfil.png'),
   f410fyxvjnxjwlgb473eq44vwulnmsvrpiwf2c4i4k5i: require('@/assets/img/token/SFT.png'),
   f410fcrysfupl3j3ojeimzxctv23klbqf5nmonbahudi: require('@/assets/img/token/rSFT.png'),
+  f410fpxccfcxe7attnkkxyqpnss7rj2kvoyduiflzp4y: require('@/assets/img/token/FFD.png'),
   DEFAULT: require('@/assets/img/token/default.png'),
-  '': require('@/assets/img/token/default.png')
+  f410fxq5eiu65kljyedvlcsmmizz4nfgfy3yj563cfri: require('@/assets/img/token/FileBunnies.png'),
+  f410f67hkuxnhgbnyonq7tw3kgaf5nv2mm5gsqrl67mq: require('@/assets/img/token/FilPunks.png'),
+  f410fuawl6hohkbmmy3zplohhveehijpveshd3z5ciza: require('@/assets/img/token/RICARDO.png'),
+  f410fixm5mqenkfm2g6msjt2chs36cxaa7ka745xo2jq: require('@/assets/img/token/FNS_DAO.jpeg'),
+  NFT_DEFAULT: require('@/assets/img/token/nft.png')
 }
 
 // 切换环境需修改

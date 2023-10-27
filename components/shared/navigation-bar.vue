@@ -46,7 +46,9 @@
             '/fevm/stats',
             '/fevm/verified-contracts',
             '/fns',
-            '/fevm/navigation'][index])"
+            '/fevm/navigation',
+            '/tokens',
+            '/nfts'][index])"
         >
           <el-dropdown-item>{{ menu }}</el-dropdown-item>
         </nuxt-link>

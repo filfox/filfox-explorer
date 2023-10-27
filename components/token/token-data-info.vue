@@ -2,13 +2,10 @@
   <div class="px-4 md:px-8 py-4 pb-5">
     <template v-if="token.address">
       <div class="flex items-center mb-2 md:mb-3">
-        <TokenIcon v-if="/erc20/i.test(token.type)" class="mr-1.5" :token-id="token.address" />
-        <img v-else src="@/assets/img/token/nft.png" class="w-4 h-4 md:w-5 md:h-5 ml-2 mr-1" />
+        <TokenIcon class="mr-1.5" :token-id="token.address" :token-type="token.type" />
         {{ token.name }} ({{ token.symbol }})
       </div>
-      <p>
-        {{ profile }}
-      </p>
+      <p>{{ profile }}</p>
     </template>
   </div>
 </template>

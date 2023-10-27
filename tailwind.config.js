@@ -50,12 +50,15 @@ module.exports = {
         decreaseNum: '#DE1B0B',
         iconShadow: '#EEF5FE',
         customBlue: {
+          50: '#FAFCFD',
           100: '#F1F6FA',
           200: '#F8FAFD',
+          225: '#EEF5FE',
           250: '#EEF7FF',
           260: '#DDE7F6',
           275: '#BCD7FB',
           290: '#5D9DF8',
+          295: '#44A0FF',
           300: '#1950C9'
         },
         customGray: {
@@ -70,12 +73,13 @@ module.exports = {
           310: '#e6e6e6',
           325: '#E0E0E0',
           335: '#E5EAF7',
+          340: '#DDDFE5',
           350: '#B6BDC7',
           375: '#979797',
+          380: '#7D7E7E',
           400: '#858E98',
           450: '#748094',
           500: '#6F7B88',
-          550: '#748094',
           600: '#3F4449',
           625: '#6E757C',
           650: '#606264',
@@ -168,13 +172,22 @@ module.exports = {
         2.5: '0.6rem',
         3.5: '0.9rem'
       },
+      maxWidth: {
+        32: '8rem',
+        48: '12rem',
+        64: '16rem',
+        80: '20rem'
+      },
       minHeight: {
         32: '8rem',
-        60: '15rem'
+        60: '15rem',
+        100: '25rem'
       },
       maxHeight: {
+        0: '0rem',
         100: '25rem',
-        200: '50rem'
+        200: '50rem',
+        1000: '250rem'
       },
       boxShadow: {
         container: '2px 2px 20px rgb(0 0 0 / 60%)',
@@ -223,7 +236,9 @@ module.exports = {
         9.25: '2.3125rem',
         9.5: '2.375rem',
         9.75: '2.4375rem',
-        10: '2.5rem'
+        10: '2.5rem',
+        11: '2.75rem',
+        12: '3rem'
       },
       inset: {
         '-1': '-0.25rem',

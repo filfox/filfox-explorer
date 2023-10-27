@@ -33,7 +33,7 @@ export default {
     },
     fevm: {
       title: 'FEVM',
-      subMenus: ['FEVM 통계', '확인된 계약', 'FNS Lookup', 'FEVM 네비게이션']
+      subMenus: ['FEVM 통계', '확인된 계약', 'FNS Lookup', 'FEVM 네비게이션', '토큰', 'NFTs']
     },
     blocks: {
       title: '블록체인',
@@ -155,6 +155,17 @@ export default {
     fevmNavigation: {
       title: 'FEVM 생태 투어',
       defiListColumns: ['순위', '이름', '업무', '고유 주소 수', 'TVL', '토큰']
+    },
+    tokenList: {
+      title: '토큰 추적기',
+      totalTokens: '총 {count} 개의 토큰 계약이 발견되었습니다',
+      tableColumns: ['토큰', '총 공급량', '이체 횟수', '보유자']
+    },
+    nftList: {
+      title: '인기 NFT',
+      totalNfts: '총 {count} 개의 NFT 발견',
+      tableColumns: ['컬렉션', '총 공급량', '이체 횟수', '보유자'],
+      disclaimer: '모든 토큰은 온체인 데이터에서 스캔됩니다. 제공된 모든 정보는 투자 조언을 구성하지 않습니다.'
     },
     entireQualityAdjPower: {
       title: '에너지 저장 추세',
@@ -309,7 +320,9 @@ export default {
       title: '메시지 리스트',
       info: {
         total: '총',
-        messages: '개의 메시지'
+        messages: '개의 메시지',
+        pendingMessages: '아래에 {count} 개의 메시지 대기 중',
+        confirmedMessages: '성공 메시지 {count} 개 있음'
       },
       tableHeaders: {
         id: '메시지 ID',
@@ -684,6 +697,7 @@ export default {
       title: '토큰',
       overview: {
         title: '토큰 개요',
+        warning: '주의: 다음 토큰은 체인에서 발견되었으며 투자 조언이 아닙니다',
         totalSupply: '총 공급량',
         numberOfHolders: '보유자 수',
         totalTransactionVolume: '총 거래량',
@@ -829,7 +843,10 @@ export default {
       wiki: '위키',
       notify: '사이트 내 알림',
       fevm: 'FEVM 통계',
-      dapp: 'FEVM Dapp Status'
+      dapp: 'FEVM Dapp Status',
+      token: 'Token',
+      tokens: 'Tokens',
+      nfts: 'NFTs'
     },
     description: {
       default: 'Filfox는 파일코인(Filecoin)의 익스플로러이자 데이터 서비스 플랫폼으로 파일코인과 관련된 채굴 랭킹, 블록 데이터 조회, 차트 등을 제공합니다.'
@@ -1010,6 +1027,7 @@ export default {
       optimizations: '최적화',
       selectFiles: '*.sol 파일 선택',
       selectFilesDes: '하나 이상의 Solidity 파일 선택',
+      pleaseSelectSolidityFiles: '업로드할 Solidity(*.sol) 파일을 선택하세요',
       clearFiles: '파일 지우기',
       uploadMetadataFile: 'metadata.json 파일 업로드',
       uploadMetadataFileTo: '최적화 도구 세부 정보 설정을 위해 업로드하세요',
@@ -1032,6 +1050,15 @@ export default {
       verifySuccess: '인증 성공',
       whatWeGot: '우리가 얻은 것',
       whatWeLookingFor: '우리가 찾는 것',
+      contractLibraryAddress: '라이브러리 컨트랙트 주소',
+      supportsUpToTenLibraries: '라이브러리를 사용하는 계약에 대한 연락처, 최대 10개의 라이브러리를 지원합니다.',
+      libraryNote: '참고: 라이브러리 이름은 대소문자를 구분하며, keccak 라이브러리 해시에 영향을 줍니다.',
+      sourceCodeFileName: '라이브러리가 위치한 소스 코드 파일 이름',
+      libraryName: '라이브러리 이름',
+      libraryContractAddress: '라이브러리 컨트랙트 주소',
+      add: '추가',
+      metadataSettings: '메타데이터 설정',
+      optional: '선택 사항',
       error: {
         1: '소스 코드를 찾을 수 없음 : API 호출 시 소스 코드가 제공되지 않았음',
         2: '컨트랙트 initcode를 찾을 수 없음 : 백엔드에서 컨트랙트의 initcode를 파싱하지 못함; API 호출 시 제공된 주소가 EVM 주소가 아님',

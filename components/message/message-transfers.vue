@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    <div class="px-4 lg:px-8 pt-3 text-xs lg:text-sm text-gray-600 border-background">
+    <div class="px-4 lg:px-8 pt-3 text-xs lg:text-sm text-gray-600">
       {{ $t('detail.message.transfer.filTransactions') }}
     </div>
     <div class="px-4 py-2">
