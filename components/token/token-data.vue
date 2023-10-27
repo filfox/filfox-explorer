@@ -29,12 +29,11 @@
       </div>
     </section>
 
-    <div v-if="/tx|holder/.test(tab)" class="text-xs text-main flex items-center px-4 md:px-8 mt-3 md:mt-4">
+    <div v-if="/tx|holder/.test(tab)" class="text-xs text-customBlue-290 flex items-center px-4 md:px-8 mt-3 md:mt-4">
       <img src="@/assets/img/token/pie.svg" class="w-3 h-3 mr-1" />
       {{ $t(`detail.token.data.${tab == 'tx' ? 'totalOfTxs':'totalOfHolders'}`, { amount: totalCount }) }}
     </div>
-
-    <TokenDataTx v-if="tab == tabs[0]" @setTotalCount="val => totalCount = val" />
+    <TokenDataTx v-if="tab == tabs[0]" :token-id="token.address" @setTotalCount="val => totalCount = val" />
     <TokenDataHolder v-if="tab == tabs[1]" :token="token" @setTotalCount="val => totalCount = val" />
     <TokenDataInfo v-if="tab == tabs[2]" :token="token" />
     <TokenDataContract v-if="tab == tabs[3]" :token="token" />

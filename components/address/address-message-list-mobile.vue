@@ -1,87 +1,158 @@
 <template>
-  <div v-loading="loading" class="mx-auto">
-    <div class="flex items-center justify-between pb-1 mb-2">
-      <p class="flex ml-4 h-8 items-center text-xs">
-        {{ $t('blockchain.message.info.total') }} {{ messageList.totalCount }} {{ $t('blockchain.message.info.messages') }}
-      </p>
-      <MessageMethodSelect
-        v-model="method"
-        :methods="messageList.methods"
-        :el-select-options="{size: 'mini'}"
-        class="mr-3"
-      />
+  <div class="mx-auto">
+    <div v-if="pending.totalCount" v-loading="pending.loading" class="mb-8">
+      <p class="text-xs text-red-600 mx-4 mb-4">{{ $t('blockchain.message.info.pendingMessages', { count: pending.totalCount }) }}</p>
+      <div v-for="(message, index) in pending.list" :key="index" class="rounded-sm mx-3 mb-3 pt-2 pb-px shadow bg-white">
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.id') }}:
+          </p>
+          <MessageLink :id="message.cid" :format="10" class="text-gray-800 text-xs" />
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.time') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            <FromNow :timestamp="message.createTimestamp" />
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.from') }}:
+          </p>
+          <AddressLink :id="message.from" :format="12" class="text-main text-xs" />
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.to') }}:
+          </p>
+          <AddressLink :id="message.to" :format="12" class="text-main text-xs" />
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.method') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            {{ message.method || 'N/A' }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.value') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            {{ message.value | filecoin(4) }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1 mb-3">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.exitCode') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            Pending...
+          </p>
+        </div>
+      </div>
+      <div
+        v-if="pending.totalCount > pending.pageSize"
+        class="mb-5 pt-2 pb-2.5 flex border-b border-background"
+      >
+        <el-pagination
+          layout="prev, pager, next"
+          class="mx-auto"
+          :total="pending.totalCount"
+          :page-size="pending.pageSize"
+          :current-page="pending.page"
+          @current-change="p => pending.page = p"
+        />
+      </div>
     </div>
 
-    <div v-for="(message, index) in messageList.messages" :key="index" class="rounded-sm mx-3 mb-3 pt-2 pb-px shadow bg-white">
-      <div class="flex items-center justify-between mx-3 mt-1">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.id') }}:
+    <div v-loading="loading">
+      <div class="flex items-center justify-between pb-1 mb-2">
+        <p class="flex ml-4 h-8 items-center text-xs">
+          {{ $t('blockchain.message.info.total') }} {{ messageList.totalCount }} {{ $t('blockchain.message.info.messages') }}
         </p>
-        <MessageLink :id="message.cid" :format="10" class="text-gray-800 text-xs" />
+        <MessageMethodSelect
+          v-model="method"
+          :methods="messageList.methods"
+          :el-select-options="{size: 'mini'}"
+          class="mr-3"
+        />
       </div>
-      <div class="flex items-center justify-between mx-3 mt-1">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.height') }}:
-        </p>
-        <TipsetLink :id="message.height" class="text-main text-xs" />
+
+      <div v-for="(message, index) in messageList.messages" :key="index" class="rounded-sm mx-3 mb-3 pt-2 pb-px shadow bg-white">
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.id') }}:
+          </p>
+          <MessageLink :id="message.cid" :format="10" class="text-gray-800 text-xs" />
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.height') }}:
+          </p>
+          <TipsetLink :id="message.height" class="text-main text-xs" />
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.time') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            {{ message.timestamp | timestamp('datetime') }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.from') }}:
+          </p>
+          <AddressLink :id="message.from" :format="12" class="text-main text-xs" />
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.to') }}:
+          </p>
+          <AddressLink :id="message.to" :format="12" class="text-main text-xs" />
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.method') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            {{ message.method || 'N/A' }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.value') }}:
+          </p>
+          <p class="text-xs text-gray-800">
+            {{ message.value | filecoin(4) }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3 mt-1 mb-3">
+          <p class="text-xs text-gray-800">
+            {{ $t('blockchain.message.tableHeaders.exitCode') }}:
+          </p>
+          <p v-if="message.receipt" class="text-xs text-gray-800">
+            {{ message.receipt.exitCode | exit-code }}
+          </p>
+          <p v-else class="text-xs text-gray-800">
+            N/A
+          </p>
+        </div>
       </div>
-      <div class="flex items-center justify-between mx-3 mt-1">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.time') }}:
-        </p>
-        <p class="text-xs text-gray-800">
-          {{ message.timestamp | timestamp('datetime') }}
-        </p>
+      <div class="flex items-center text-center h-16 bg-white">
+        <el-pagination
+          layout="prev, pager, next"
+          :page-count="totalPageCount"
+          :pager-count="5"
+          :current-page="page + 1"
+          class="mx-auto"
+          @current-change="didCurrentPageChanged"
+        />
       </div>
-      <div class="flex items-center justify-between mx-3 mt-1">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.from') }}:
-        </p>
-        <AddressLink :id="message.from" :format="12" class="text-main text-xs" />
-      </div>
-      <div class="flex items-center justify-between mx-3 mt-1">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.to') }}:
-        </p>
-        <AddressLink :id="message.to" :format="12" class="text-main text-xs" />
-      </div>
-      <div class="flex items-center justify-between mx-3 mt-1">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.method') }}:
-        </p>
-        <p class="text-xs text-gray-800">
-          {{ message.method || 'N/A' }}
-        </p>
-      </div>
-      <div class="flex items-center justify-between mx-3 mt-1">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.value') }}:
-        </p>
-        <p class="text-xs text-gray-800">
-          {{ message.value | filecoin(4) }}
-        </p>
-      </div>
-      <div class="flex items-center justify-between mx-3 mt-1 mb-3">
-        <p class="text-xs text-gray-800">
-          {{ $t('blockchain.message.tableHeaders.exitCode') }}:
-        </p>
-        <p v-if="message.receipt" class="text-xs text-gray-800">
-          {{ message.receipt.exitCode | exit-code }}
-        </p>
-        <p v-else class="text-xs text-gray-800">
-          N/A
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center text-center h-16 bg-white">
-      <el-pagination
-        layout="prev, pager, next"
-        :page-count="totalPageCount"
-        :pager-count="5"
-        :current-page="page + 1"
-        class="mx-auto"
-        @current-change="didCurrentPageChanged"
-      />
     </div>
   </div>
 </template>
@@ -92,8 +163,17 @@ export default {
     address: { type: String, required: true },
     pageSize: { type: Number, default: 3 }
   },
+
   data() {
     return {
+      pending: {
+        list: [],
+        page: 1,
+        pageSize: 3,
+        totalCount: 0,
+        loading: false
+      },
+
       messageList: {
         totalCount: 0,
         messages: [],
@@ -104,23 +184,31 @@ export default {
       method: 'All'
     }
   },
+
   computed: {
     totalPageCount() {
       return Math.ceil(this.messageList.totalCount / this.pageSize)
-    },
-    methodOptions() {
-      return ['All', ...this.messageList.methods]
     }
   },
+
   watch: {
     method() {
       this.page = 0
       this.getMessageList()
+    },
+
+    'pending.page': {
+      immediate: true,
+      handler() {
+        this.getPendingList()
+      }
     }
   },
+
   mounted() {
     this.getMessageList()
   },
+
   methods: {
     async getMessageList() {
       this.loading = true
@@ -131,6 +219,16 @@ export default {
       this.messageList = await this.$axios.$get(`/address/${this.address}/messages`, { params })
       this.loading = false
     },
+
+    async getPendingList() {
+      this.pending.loading = true
+      const params = { limit: this.pending.pageSize, offset: (this.pending.page - 1) * this.pending.pageSize }
+      const { messages, totalCount } = await this.$axios.$get(`/address/${this.address}/pending-messages`, { params })
+      this.pending.loading = false
+      this.pending.list = messages
+      this.pending.totalCount = totalCount
+    },
+
     didCurrentPageChanged(currentPage) {
       this.page = currentPage - 1
       this.getMessageList()

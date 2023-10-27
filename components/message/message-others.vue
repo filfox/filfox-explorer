@@ -8,7 +8,6 @@
           target="_blank"
           class="text-main"
         >
-          (API)
         </a>
       </dt>
       <dd class="message-value">

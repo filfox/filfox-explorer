@@ -33,7 +33,7 @@ export default {
     },
     fevm: {
       title: 'FEVM',
-      subMenus: ['FEVM Stats', 'Verified Contracts', 'FNS Lookup', 'Filecoin Ecosystem']
+      subMenus: ['FEVM Stats', 'Verified Contracts', 'FNS Lookup', 'Filecoin Ecosystem', 'Tokens', 'NFTs']
     },
     blocks: {
       title: 'Blockchain',
@@ -157,6 +157,17 @@ export default {
     fevmNavigation: {
       title: 'Filecoin Ecosystem',
       defiListColumns: ['Rank', 'Name', 'Transactions', 'Number of Unique Addresses', 'TVL', 'Tokens']
+    },
+    tokenList: {
+      title: 'Token Tracker',
+      totalTokens: 'A total of {count} Token Contracts found',
+      tableColumns: ['Token', 'Total supply', 'Transfer count', 'Holders']
+    },
+    nftList: {
+      title: 'Top NFTs',
+      totalNfts: 'A total of {count} NFT found',
+      tableColumns: ['Collection', 'Total supply', 'Transfer count', 'Holders'],
+      disclaimer: 'All tokens are scanned from on-chain data. All the information provided do not constitute investment advice.'
     },
     entireQualityAdjPower: {
       title: 'Storage power trend',
@@ -313,7 +324,9 @@ export default {
       title: 'Message List',
       info: {
         total: 'Total',
-        messages: 'Messages'
+        messages: 'Messages',
+        pendingMessages: 'There are {count} messages pending below',
+        confirmedMessages: '{count} Confirmed Messages'
       },
       tableHeaders: {
         id: 'Message ID',
@@ -704,6 +717,7 @@ export default {
       title: 'Token',
       overview: {
         title: 'Token Overview',
+        warning: 'Warning: The following tokens are found on the chain and do not constitute investment advice',
         totalSupply: 'Total Supply',
         numberOfHolders: 'Holders',
         totalTransactionVolume: 'Total Transactions',
@@ -853,7 +867,9 @@ export default {
       notify: 'In-station notification',
       fevm: 'FEVM Stats',
       dapp: 'FEVM Dapp Status',
-      token: 'Token'
+      token: 'Token',
+      tokens: 'Tokens',
+      nfts: 'NFTs'
     },
     description: {
       default: 'Filfox is a Filecoin blockchain explorer and data service platform, providing one-stop data services based on Filecoin, including various mining rankings, blockchain data queries, and visualization charts.'
@@ -1034,6 +1050,7 @@ export default {
       optimizations: 'Optimizations',
       selectFiles: 'Select *.sol files',
       selectFilesDes: 'Select single or multiple Solidity files',
+      pleaseSelectSolidityFiles: 'Please select the Solidity (*.sol) files for upload',
       clearFiles: 'Clear files',
       uploadMetadataFile: 'Upload a metadata.json file',
       uploadMetadataFileTo: 'to set optimizer in detail',
@@ -1056,6 +1073,15 @@ export default {
       verifySuccess: 'Verification success',
       whatWeGot: 'What we got',
       whatWeLookingFor: 'What we looking for',
+      contractLibraryAddress: 'Contract Library Address',
+      supportsUpToTenLibraries: 'for contracts that use libraries, supports up to 10 libraries.',
+      libraryNote: 'Note: Library names are case sensitive and affect the keccak library hash.',
+      sourceCodeFileName: 'The source code file name the library located',
+      libraryName: 'Library Name',
+      libraryContractAddress: 'Library Contract Address',
+      add: 'Add',
+      metadataSettings: 'Metadata Settings',
+      optional: 'Optional',
       error: {
         1: 'Source code not found: source code was not provided when calling the API',
         2: 'Contract initcode not found: backend failed to parse the initcode of the contract; the provided address when calling the API is not an EVM address',

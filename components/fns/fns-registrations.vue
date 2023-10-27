@@ -22,9 +22,9 @@
           </tr>
         </thead>
         <tbody class="text-center">
-          <tr v-for="(item, index) in registrationList.list" :key="index" class="border-b border-background h-16">
+          <tr v-for="(item, index) in registrationList.list" :key="index" class="border-b border-background h-14">
             <td class="text-main">
-              <AddressLink :id="item.owner" :format="10" class="text-main" />
+              <AddressLink :id="item.owner" :format="16" class="text-main" />
             </td>
             <td>
               <NuxtLink :to="localePath(`/fns/name/${item.name}`)" class="text-main cursor-pointer">

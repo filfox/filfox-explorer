@@ -35,7 +35,9 @@
               '/fevm/stats',
               '/fevm/verified-contracts',
               '/fns',
-              '/fevm/navigation'][index])"
+              '/fevm/navigation',
+              '/tokens',
+              '/nfts'][index])"
             @click.native="hideIfNeeded"
           >
             {{ menu }}

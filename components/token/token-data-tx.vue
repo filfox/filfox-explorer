@@ -56,16 +56,17 @@
                 <span v-else>N/A</span>
               </div>
             </td>
-            <td>
+            <td class="truncate">
               <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
               <span v-else class="flex items-center justify-center">
-                <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />#{{ transfer.value }}
+                <TokenIcon class="mr-1.5" :token-id="tokenId" :token-type="list.tokenType" />#{{ transfer.value | truncateN }}
               </span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
 
     <ul class="md:hidden">
       <li v-for="(transfer, index) in list.transfers" :key="index" class="py-2 border-b leading-loose">
@@ -100,7 +101,7 @@
           <span class="text-gray-600">{{ /erc20/i.test(list.tokenType) ? $t('shared.value') : $t('shared.item') }}</span>
           <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
           <span v-else class="flex items-center justify-center">
-            <img src="@/assets/img/token/nft.png" class="w-4 h-4 mr-1" />#{{ transfer.value }}
+            <TokenIcon class="mr-1.5" :token-id="tokenId" :token-type="list.tokenType" />#{{ transfer.value | truncateN }}
           </span>
         </div>
       </li>
@@ -130,6 +131,13 @@
 
 <script>
 export default {
+  props: {
+    tokenId: {
+      type: String,
+      default: ''
+    }
+  },
+
   data() {
     return {
       list: {

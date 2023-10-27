@@ -136,6 +136,14 @@ button:focus {
     border-top-color: #1a4fc9 !important;
 }
 
+.el-tooltip__popper .popper__arrow {
+    border-bottom-color: #1a4fc9 !important;
+}
+
+.el-tooltip__popper .popper__arrow::after {
+    border-bottom-color: #1a4fc9 !important;
+}
+
 table th {
     @apply font-normal !important;
 }
@@ -154,3 +162,7 @@ table th {
 .el-radio-group label:has(+label.is-active) .el-radio-button__inner {
     border-right-color: #BED9FC !important;
 }
+
+.el-select .el-input--mini input {
+    border-radius: 99px !important;
+  }

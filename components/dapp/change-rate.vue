@@ -3,7 +3,7 @@
     <div class="hidden lg:block">
       <span>{{ formatData }}</span>
       <span
-        class="text-xs absolute top-1px  whitespace-pre"
+        class="text-xs absolute ml-1 top-1px whitespace-pre"
         :class="[ changeRate > 0 ? 'text-increaseNum' : 'text-decreaseNum' ]"
       >  {{ formatChangeRate }}</span>
     </div>

@@ -172,8 +172,7 @@
       </p>
       <div class="w-3/4">
         <NuxtLink :to="localePath(`/token/${addressData.robust}`)" class="flex items-center hover:underline hover:text-main">
-          <TokenIcon v-if="/erc20/i.test(addressData.tokenInfo.type)" class="mr-1.5" :token-id="addressData.tokenInfo.address" />
-          <img v-else src="@/assets/img/token/nft.png" :alt="addressData.tokenInfo.symbol" class="w-4 h-4 mr-1.5">
+          <TokenIcon class="mr-1.5" :token-id="addressData.tokenInfo.address" :token-type="addressData.tokenInfo.type" />
           {{ addressData.tokenInfo.name }} ({{ addressData.tokenInfo.symbol }})
         </NuxtLink>
       </div>
@@ -229,7 +228,7 @@
       </div>
 
       <client-only>
-        <AddressMessageListMobile v-if="listType === 0" :address="addressData.address" />
+        <AddressMessageListMobile v-if="listType === 0" :address="addressData.id || addressData.address" />
         <AddressTxListMobile v-if="listType === 1" :address="addressData.address" />
         <Contract v-if="listType === 2" :contract="contract" />
         <AddressEventLogs v-if="listType === 3" :address="addressData.address" />

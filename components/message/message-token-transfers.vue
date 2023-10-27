@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4 bg-white">
+  <div class="pb-4 bg-white">
     <div class="px-4 lg:px-8 pt-3 text-xs lg:text-sm text-gray-600 border-t border-background">
       {{ $t('detail.message.transfer.tokenTransactions') }}
     </div>
@@ -59,7 +59,7 @@
               </div>
               <div v-else class="text-xs">
                 <div class="flex items-center justify-center">
-                  <img src="@/assets/img/token/nft.png" alt="warn" class="w-4 h-4 mr-1.5">
+                  <TokenIcon class="mr-1.5" :token-id="transfer.token" token-type="ERC721" />
                   <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
                     {{ transfer.symbol }}
                   </NuxtLink>
@@ -103,7 +103,7 @@
               </div>
               <div v-else class="text-xs">
                 <div class="flex items-center justify-center">
-                  <img src="@/assets/img/token/nft.png" alt="warn" class="w-3 h-3 mr-1.5">
+                  <TokenIcon class="mr-1.5" :token-id="transfer.token" token-type="ERC721" />
                   <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
                     {{ transfer.symbol }}
                   </NuxtLink>

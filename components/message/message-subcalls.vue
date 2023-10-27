@@ -23,25 +23,24 @@
           v-for="(transfer, index) in subcalls"
           :key="index"
           :class="{ 'border-t': index }"
-          class="border-background py-2.75 cursor-pointer hover:bg-gray-100 transition duration-200"
-          @click="transfer.expand = !transfer.expand"
+          class="border-background py-2.75 hover:bg-gray-100 transition duration-200"
         >
-          <div class="flex items-center text-center">
+          <div class="flex items-center text-center cursor-pointer" @click="transfer.expand = !transfer.expand">
             <span style="width: 5%"><i
               class="el-icon-arrow-right transform duration-200 transition"
               :class="{ 'rotate-90': transfer.expand }"
             ></i></span>
             <span style="width: 19%">{{ transfer.method || 'N/A' }}</span>
             <span style="width: 19%">
-              <AddressLink v-if="transfer.from" :id="transfer.from" :format="8" class="hover:text-main hover:underline" />
+              <span @click.stop=""><AddressLink v-if="transfer.from" :id="transfer.from" :format="8" class="hover:text-main hover:underline" /></span>
             </span>
             <span class="flex-1">
               <img src="~/assets/img/shared/to.svg" alt="3" class="mx-auto w-4">
             </span>
             <span style="width: 19%">
-              <AddressLink v-if="transfer.to" :id="transfer.to" :format="8" class="hover:text-main hover:underline" />
+              <span v-if="transfer.to" @click.stop=""><AddressLink :id="transfer.to" :format="8" class="hover:text-main hover:underline" /></span>
               <span v-else>N/A</span>
-              <AddressTag :tag="transfer.toTag" type="pc" :style="{ maxWidth:'66%' }" />
+              <span @click.stop=""><AddressTag :tag="transfer.toTag" type="pc" :style="{ maxWidth:'66%' }" /></span>
             </span>
             <span style="width: 19%">{{ transfer.value | filecoin }}</span>
           </div>

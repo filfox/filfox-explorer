@@ -164,3 +164,12 @@ Vue.filter('trim', (string, len) => {
 })
 
 Vue.filter('address0x0', resolve0x0Address)
+
+Vue.filter('truncateN', (numberString, n = 8) => {
+  if (numberString.length <= n) {
+    return numberString
+  } else {
+    return `${numberString.slice(0, n)}...`
+  }
+})
+

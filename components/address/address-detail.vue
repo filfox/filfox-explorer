@@ -169,8 +169,7 @@
           </dt>
           <dd class="mr-4 flex items-center">
             <NuxtLink :to="localePath(`/token/${addressData.address}`)" class="flex items-center hover:underline hover:text-main">
-              <TokenIcon v-if="/erc20/i.test(addressData.tokenInfo.type)" class="mr-1.5" :token-id="addressData.address" />
-              <img v-else src="@/assets/img/token/nft.png" :alt="addressData.tokenInfo.symbol" class="w-4 h-4 mr-1.5">
+              <TokenIcon class="mr-1.5" :token-id="addressData.address" :token-type="addressData.tokenInfo.type" />
               {{ addressData.tokenInfo.name }} ({{ addressData.tokenInfo.symbol }})
             </NuxtLink>
           </dd>
@@ -207,7 +206,7 @@
         <div class="flex items-center h-12 ml-8">
           <CapsuleRadioGroup large :radios="radios" :value="listType" @change="v => listType = v" />
         </div>
-        <AddressMessageList v-if="listType === 0" :address="addressData.address" />
+        <AddressMessageList v-if="listType === 0" :address="addressData.id || addressData.address" />
         <AddressTxList v-if="listType === 1" :address="addressData.address" />
         <AddressTxTokenList v-if="listType === 2" :address="isFevmAddress ? addressData.address : addressData.id" />
         <div v-if="listType === 3" class="border-t py-4 mt-2">

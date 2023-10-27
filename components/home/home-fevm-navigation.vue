@@ -2,7 +2,11 @@
   <div class="bg-white lg:rounded-md pb-2 mb-4">
     <div class="flex items-center">
       <HomeTitle type="fevmNavigation" :icon="more" />
-      <nuxt-link v-if="more" :to="localePath('/fevm/navigation')" class="ml-auto mr-4">
+      <nuxt-link
+        v-if="more"
+        :to="localePath(type == 'fns' ? '/fns' : '/fevm/navigation')"
+        class="ml-auto mr-4"
+      >
         <el-button size="mini" round>
           {{ $t('shared.more') }}
         </el-button>
@@ -15,8 +19,8 @@
           <div
             v-if="count > 0 || category == 'fns'"
             :key="category"
-            class="px-2 py-0.5 text-xs whitespace-nowrap cursor-pointer transition duration-200 select-none hover:text-main"
-            :class="category == type ? 'text-main' : 'text-customGray-375'"
+            class="px-2 py-0.5 text-xs whitespace-nowrap cursor-pointer transition duration-200 select-none hover:text-customBlue-290"
+            :class="category == type ? 'text-customBlue-290' : 'text-customGray-375'"
             @click="type = category"
           >
             {{ displayName }}<span v-if="category != 'fns'">({{ count || 0 }})</span>

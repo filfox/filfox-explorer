@@ -20,7 +20,7 @@
       <input
         v-model.trim="contractAddress"
         :class="{ 'text-red-500': !isRightAddress(contractAddress) }"
-        class="bg-customGray-200 rounded h-11 px-8 mt-4 text-sm font-light w-11/12 md:w-1/2 border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-customGray-600"
+        class="bg-customGray-200 rounded h-10 px-8 mt-4 text-sm font-light w-11/12 md:w-1/2 border border-customGray-300 outline-none focus:border-main transition duration-200 placeholder-customGray-600"
         :placeholder="$t('contract.guide.pleaseCenterAddress')"
       >
 
@@ -58,7 +58,7 @@
 
       <div class="flex items-center mb-8">
         <button
-          class="rounded w-26 py-2 md:py-2.5 bg-main text-white hover:opacity-75 mr-4 font-medium transition duration-200"
+          class="rounded w-26 py-2 bg-main text-white hover:opacity-75 mr-4 font-medium transition duration-200"
           :class="{ 'cursor-not-allowed bg-customGray-400': !allowNextStep }"
           :disabled="!allowNextStep"
           @click="nextStep"
@@ -66,7 +66,7 @@
           {{ $t('contract.continue') }}
         </button>
         <button
-          class="rounded w-26 py-2 md:py-2.5 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200"
+          class="rounded w-26 py-2 bg-customGray-200 text-customGray-400 hover:opacity-75 font-medium transition duration-200"
           @click="resetForm"
         >
           {{ $t('contract.reset') }}
@@ -238,7 +238,7 @@ export default {
 
 <style lang="postcss">
   .compiler-select.el-select .el-input__inner {
-    @apply bg-customGray-200 border-customGray-300 h-11 pl-8 font-light;
+    @apply bg-customGray-200 border-customGray-300 h-10 pl-8 font-light;
     &::placeholder {
       color: black;
     }

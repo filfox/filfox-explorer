@@ -89,10 +89,18 @@
         </thead>
         <tbody class="text-center text-sm">
           <tr class="border-background h-10">
-            <td class="text-left pl-10"><ChangeRate :data="formatNum(dapp.tvl.data)" :change-rate="dapp.tvl.changeRate" data-format="$% USD" /></td>
-            <td class="text-left"><ChangeRate :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" /></td>
-            <td class="text-left"><ChangeRate :data="dapp.invokeCount.data" :change-rate="dapp.invokeCount.changeRate" /></td>
-            <td class="text-left"><ChangeRate :data="formatNum(dapp.tokens.data)" :change-rate="dapp.tokens.changeRate" data-format="$% FIL" /></td>
+            <td class="text-left pl-10">
+              <ChangeRate :data="formatNum(dapp.tvl.data)" :change-rate="dapp.tvl.changeRate" data-format="$% USD" />
+            </td>
+            <td class="text-left">
+              <ChangeRate :data="formatNum(dapp.userCount.data)" :change-rate="dapp.userCount.changeRate" />
+            </td>
+            <td class="text-left">
+              <ChangeRate :data="dapp.invokeCount.data" :change-rate="dapp.invokeCount.changeRate" />
+            </td>
+            <td class="text-left">
+              <ChangeRate :data="formatNum(dapp.tokens.data)" :change-rate="dapp.tokens.changeRate" data-format="$% FIL" />
+            </td>
           </tr>
         </tbody>
       </table>

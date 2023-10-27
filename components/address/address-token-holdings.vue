@@ -49,7 +49,7 @@
           >
             <div class="flex-1">
               <div class="flex items-center">
-                <img src="@/assets/img/token/nft.png" :alt="item.name" class="w-4 h-4 mr-2">
+                <TokenIcon class="mr-2" :token-id="item.tokenAddress" token-type="ERC721" />
                 <span class="text-black">{{ item.name }}</span>
               </div>
               <p class="text-gray-500 font-light leading-6 ml-6">
