@@ -25,7 +25,8 @@ export default {
     select: 'Select',
     amount: 'Amount',
     value: 'Value',
-    item: 'NFT ID'
+    item: 'NFT ID',
+    proportion: 'Proportion'
   },
   nav: {
     home: {
@@ -156,7 +157,32 @@ export default {
     },
     fevmNavigation: {
       title: 'Filecoin Ecosystem',
-      defiListColumns: ['Rank', 'Name', 'Transactions', 'Number of Unique Addresses', 'TVL', 'Tokens']
+      defiListColumns: ['Rank', 'Name', 'Transactions', 'Number of Unique Addresses', 'Locked FIL', 'TVL'],
+      marketCap: 'Market Cap',
+      tvlUSD: 'TVL USD',
+      tvlFIL: 'TVL FIL',
+      tvlProportion: 'TVL Proportion'
+    },
+    tokenList: {
+      title: 'Token Tracker',
+      totalTokens: 'A total of {count} Token Contracts found',
+      tableColumns: ['Token', 'Total supply', 'Transfer count', 'Holders']
+    },
+    nftList: {
+      title: 'Top NFTs',
+      totalNfts: 'A total of {count} NFT found',
+      tableColumns: ['Collection', 'Total supply', 'Transfer count', 'Holders'],
+      disclaimer: 'All tokens are scanned from on-chain data. All the information provided do not constitute investment advice.'
+    },
+    fevmChart: {
+      title: 'FEVM Contract Metrics',
+      durations: ['7 Days', '30 Days', '180 Days'],
+      createContractCount: 'Contract Deployments',
+      accumulateCreateContractCount: 'Total Deployments',
+      gasFee: 'Contract Gas',
+      accumulateGasFee: 'Total Contract Gas',
+      invokeCount: 'Contract Calls',
+      accumulateInvokeCount: 'Total Calls'
     },
     tokenList: {
       title: 'Token Tracker',
@@ -1043,7 +1069,8 @@ export default {
       tips: [
         'If the contract compiles correctly at REMIX, it should also compile correctly here.',
         'We have limited support for verifying contracts created by another contract and there is a timeout of up to 45 seconds for each contract compiled.',
-        'For programatic contract verification, check out the Contract API Endpoint.'
+        'For programatic contract verification, check out the ',
+        'Contract API Endpoint.'
       ],
       contractAddress: 'Contract Address',
       complier: 'Complier',
@@ -1121,7 +1148,8 @@ export default {
         tvl: 'TVL',
         users: 'Unique Addresses',
         transactions: 'Transactions'
-      }
+      },
+      dataAnalysis: 'Data Analysis'
     }
   }
 }

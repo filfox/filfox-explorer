@@ -1,29 +1,34 @@
 <template>
   <div>
-    <VeLine
-      :y-axis="yAxis"
-      :data="chartData"
-      :settings="chartSettings"
-      :loading="loading"
-      :data-empty="dataEmpty"
-      :tooltip-visible="false"
-      :extend="chartExtend"
-      class="hidden lg:block"
-    />
-    <VeLine
-      :y-axis="yAxis"
-      :data="chartData"
-      :settings="mobileChartSettings"
-      :loading="loading"
-      :data-empty="dataEmpty"
-      :extend="mobileChartExtend"
-      :grid="{top: 75, bottom: 20}"
-      class="lg:hidden"
-      width="100%"
-      height="380px"
-    />
+    <div class="h-8.5 hidden lg:block"></div>
+    <client-only>
+      <VeLine
+        :y-axis="yAxis"
+        :data="chartData"
+        :settings="chartSettings"
+        :loading="loading"
+        :data-empty="dataEmpty"
+        :tooltip-visible="false"
+        :extend="chartExtend"
+        :grid="{ left: '4%', right: '4%', bottom: '10%' }"
+        class="hidden lg:block"
+      />
+      <VeLine
+        :y-axis="yAxis"
+        :data="chartData"
+        :settings="mobileChartSettings"
+        :loading="loading"
+        :data-empty="dataEmpty"
+        :extend="mobileChartExtend"
+        :grid="{ top: 75, bottom: 20 }"
+        class="lg:hidden"
+        width="100%"
+        height="380px"
+      />
+    </client-only>
   </div>
 </template>
+
 <script>
 import moment from 'moment'
 
@@ -43,7 +48,9 @@ export default {
         type: 'value',
         position: 'left',
         axisLabel: {
-          formatter: '{value} Eib'
+          formatter(value) {
+            return `${Number(value).toFixed(0)} Eib`
+          }
         },
         interval: 0,
         min: 0,
@@ -57,7 +64,9 @@ export default {
         type: 'value',
         position: 'right',
         axisLabel: {
-          formatter: '{value} Pib'
+          formatter(value) {
+            return `${Number(value).toFixed(0)} Pib`
+          }
         },
         min: 0,
         interval: 0,
@@ -76,10 +85,12 @@ export default {
         right: [this.$t('home.entireQualityAdjPower.qualityAdjPowerDelta')]
       }
     }
+
     this.mobileChartSettings = {
       offsetY: 0,
       legendName: {}
     }
+
     this.chartExtend = {
       tooltip: {
         trigger: 'axis',
@@ -89,6 +100,7 @@ export default {
         ].join('<br>')
       }
     }
+
     this.mobileChartExtend = {
       tooltip: {
         trigger: 'axis',
@@ -99,6 +111,7 @@ export default {
         position: ['20%', '50%']
       }
     }
+
     return {
       chartData: {
         columns: [],
@@ -109,12 +122,15 @@ export default {
       rawData: []
     }
   },
+
   mounted() {
     this.getlineChartData()
   },
+
   methods: {
     async getlineChartData() {
       this.loading = true
+
       const data = await this.$axios.$get(`/stats/power`, {
         params: { duration: '30d', samples: 30 }
       })
@@ -123,10 +139,12 @@ export default {
         this.loading = false
         return
       }
+
       this.rawData = data
       const rows = []
       const qualityAdjPower = this.$t('home.entireQualityAdjPower.qualityAdjPower')
       const qualityAdjPowerDelta = this.$t('home.entireQualityAdjPower.qualityAdjPowerDelta')
+
       data.forEach(item => {
         rows.push({
           time: this.getTime(item.timestamp),
@@ -137,12 +155,12 @@ export default {
 
       // 解决双坐标轴线不对齐
       this.yAxis[0].max = (Math.ceil(Math.max(...rows.map(item => item[qualityAdjPower]))) / 10) * 10
-      this.yAxis[0].interval = this.yAxis[0].max / 5
+      this.yAxis[0].interval = this.yAxis[0].max / 7
       this.yAxis[1].min = Math.floor(Math.floor(Math.min(...rows.map(item => item[qualityAdjPowerDelta]))) / 10) * 10
       this.yAxis[1].min = this.yAxis[1].min < 0 ? this.yAxis[1].min : 0
       this.yAxis[1].max = Math.ceil(Math.ceil(Math.max(...rows.map(item => item[qualityAdjPowerDelta]))) / 10) * 10
       this.yAxis[1].max = this.yAxis[1].max > 0 ? this.yAxis[1].max : 0
-      this.yAxis[1].interval = (this.yAxis[1].max - this.yAxis[1].min) / 5
+      this.yAxis[1].interval = (this.yAxis[1].max - this.yAxis[1].min) / 7
 
       this.chartSettings.legendName = {
         [qualityAdjPower]: qualityAdjPower,
@@ -161,9 +179,11 @@ export default {
       this.chartData.rows = rows
       this.loading = false
     },
+
     getTime(time) {
       return moment(time * 1000).format('MM-DD')
     },
+
     getDateTime(time) {
       return moment(time * 1000).format('YYYY-MM-DD HH:mm')
     }

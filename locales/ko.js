@@ -25,7 +25,8 @@ export default {
     select: '선택하다',
     amount: '수량',
     value: '값',
-    item: 'NFT ID'
+    item: 'NFT ID',
+    proportion: '비율'
   },
   nav: {
     home: {
@@ -154,7 +155,32 @@ export default {
     },
     fevmNavigation: {
       title: 'FEVM 생태 투어',
-      defiListColumns: ['순위', '이름', '업무', '고유 주소 수', 'TVL', '토큰']
+      defiListColumns: ['순위', '이름', '업무', '고유 주소 수', 'FIL 잠금', 'TVL'],
+      marketCap: '시가총액',
+      tvlUSD: '총 잠긴 가치 (USD)',
+      tvlFIL: '총 잠긴 가치 (FIL)',
+      tvlProportion: 'TVL 비율'
+    },
+    tokenList: {
+      title: '토큰 추적기',
+      totalTokens: '총 {count} 개의 토큰 계약이 발견되었습니다',
+      tableColumns: ['토큰', '총 공급량', '이체 횟수', '보유자']
+    },
+    nftList: {
+      title: '인기 NFT',
+      totalNfts: '총 {count} 개의 NFT 발견',
+      tableColumns: ['컬렉션', '총 공급량', '이체 횟수', '보유자'],
+      disclaimer: '모든 토큰은 온체인 데이터에서 스캔됩니다. 제공된 모든 정보는 투자 조언을 구성하지 않습니다.'
+    },
+    fevmChart: {
+      title: 'FEVM 계약 지표',
+      durations: ['7일', '30일', '180일'],
+      createContractCount: '계약 배포',
+      accumulateCreateContractCount: '누적 배포',
+      gasFee: '계약 Gas 소비',
+      accumulateGasFee: '누적 계약 Gas 소비',
+      invokeCount: '계약 호출 수',
+      accumulateInvokeCount: '누적 호출 수'
     },
     tokenList: {
       title: '토큰 추적기',
@@ -1020,7 +1046,8 @@ export default {
       tips: [
         '컨트랙트가 REMIX에서 올바르게 컴파일된 경우 여기에서도 올바르게 컴파일되어야 합니다.',
         '다른 컨트랙트에 의해 작성된 컨트랙트의 유효성 검증에 대한 지원은 제한적이며 컴파일된 각 컨트랙트의 타임아웃 설정은 최대 45초입니다.',
-        '프로그래밍 컨트랙트 검증의 경우 컨트랙트 API 엔드포인트를 확인해야 합니다.'
+        '코드를 사용하여 계약을 확인하려면 다음을 확인하세요 ',
+        '계약 확인 API.'
       ],
       contractAddress: '컨트랙트 주소',
       complier: '컴파일러',
@@ -1098,7 +1125,8 @@ export default {
         tvl: 'TVL',
         users: '고유 주소',
         transactions: '거래'
-      }
+      },
+      dataAnalysis: '데이터 분석'
     }
   }
 }

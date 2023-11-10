@@ -3,11 +3,11 @@
     v-if="portable"
     trigger="click"
     :hide-on-click="true"
-    class="border border-background px-2 rounded-sm"
+    class="border border-cusotmGray-337 pl-2.5 pr-2 py-0.75 rounded-full"
     @command="command => duration = command"
   >
-    <span class="el-dropdown-link text-sm">
-      {{ durationName }} <i class="el-icon-arrow-down el-icon--right"></i>
+    <span class="el-dropdown-link text-xs">
+      {{ durationName }}<i class="el-icon-arrow-down el-icon--right"></i>
     </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item v-for="item in durations" :key="item.value" :command="item.value">

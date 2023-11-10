@@ -25,7 +25,8 @@ export default {
     select: '请选择',
     amount: '数量',
     value: '金额',
-    item: 'NFT ID'
+    item: 'NFT ID',
+    proportion: '占比'
   },
   nav: {
     home: {
@@ -142,7 +143,32 @@ export default {
     },
     fevmNavigation: {
       title: '生态导览',
-      defiListColumns: ['排名', '名称', '交易次数', '独立地址数', 'TVL', '通证']
+      defiListColumns: ['排名', '名称', '交易次数', '独立地址数', '锁定 FIL', 'TVL'],
+      marketCap: '市值',
+      tvlUSD: '锁定市值',
+      tvlFIL: '锁定FIL',
+      tvlProportion: 'TVL 占比'
+    },
+    tokenList: {
+      title: '代币追踪器',
+      totalTokens: '共找到 {count} 个代币合约',
+      tableColumns: ['代币', '总供应量', '转账数', '持有者']
+    },
+    nftList: {
+      title: '热门 NFTs',
+      totalNfts: '共找到 {count} 个 NFT',
+      tableColumns: ['集合', '总供应量', '转账数', '持有者'],
+      disclaimer: '所有 Token 均在链上发现，并不构成投资建议'
+    },
+    fevmChart: {
+      title: 'FEVM 合约指标',
+      durations: ['7天', '30天', '180天'],
+      createContractCount: '合约部署',
+      accumulateCreateContractCount: '累计部署',
+      gasFee: '合约Gas消耗',
+      accumulateGasFee: '累计Gas消耗',
+      invokeCount: '合约调用数',
+      accumulateInvokeCount: '累计调用数'
     },
     tokenList: {
       title: '代币追踪器',
@@ -1030,7 +1056,8 @@ export default {
       tips: [
         '如果合同在 REMIX 处编译正确，则此处也应编译正确',
         '我们对验证由另一个合约创建的合约的支持有限，编译的每个合约的超时时间最多为45秒',
-        '对于编程合同验证，请查看合同 API 端点'
+        '对于使用代码验证合约，请查看',
+        '合约验证 API'
       ],
       contractAddress: '合约地址',
       complier: '编译器',
@@ -1108,7 +1135,8 @@ export default {
         tvl: '代币市值',
         users: '独立地址数',
         transactions: '交易次数'
-      }
+      },
+      dataAnalysis: '数据分析'
     }
   }
 }

@@ -5,7 +5,7 @@
       <el-dropdown class="ml-auto" @command="type => method = type">
         <span class="el-dropdown-link flex items-center">
           {{ method }}
-          <img src="@/assets/img/message/filter.svg" alt="filter" class="w-4.25 ml-1">
+          <img src="@/assets/img/shared/filter.svg" alt="filter" class="w-4.25 ml-1">
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item v-for="type in ['All', ...methods]" :key="type" :command="type">

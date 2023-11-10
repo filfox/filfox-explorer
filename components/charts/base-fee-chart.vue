@@ -1,25 +1,29 @@
 <template>
   <div>
+    <div class="h-8.5 hidden lg:block"></div>
     <client-only>
       <VeLine
         :data="chartData"
+        :y-axis="yAxis"
         :settings="chartSettings"
         :loading="loading"
         :data-empty="dataEmpty"
         :extend="chartExtend"
         :legend-visible="false"
-        class="hidden lg:block mx-4"
+        :grid="{ left: '4%', right: '4%', bottom: '10%' }"
+        class="hidden lg:block"
       />
       <VeLine
         :data="chartData"
+        :y-axis="yAxis"
         :settings="chartSettings"
         :loading="loading"
         :data-empty="dataEmpty"
         :extend="chartExtend"
         :legend-visible="false"
-        :grid="{top: 20, bottom: 20}"
+        :grid="{ top: 20, bottom: 20 }"
         height="280px"
-        class="lg:hidden mx-4"
+        class="lg:hidden"
       />
     </client-only>
   </div>
@@ -50,9 +54,11 @@ export default {
   components: {
     VeLine: () => import('v-charts/lib/line').then(x => x.default)
   },
+
   props: {
     duration: { type: String, default: '24h' }
   },
+
   data() {
     this.chartSettings = {
       offsetY: 0,
@@ -61,13 +67,15 @@ export default {
         baseFee: 'Base Fee'
       }
     }
+
+    this.yAxis = {
+      type: 'value',
+      axisLabel: { formatter: formatValue },
+      axisTick: { show: false },
+      alignTicks: true
+    }
+
     this.chartExtend = {
-      yAxis: {
-        type: 'value',
-        axisLabel: {
-          formatter: formatValue
-        }
-      },
       tooltip: {
         trigger: 'axis',
         formatter: params => [
@@ -76,6 +84,7 @@ export default {
         ].join('<br>')
       }
     }
+
     return {
       chartData: {
         columns: [],
@@ -86,30 +95,43 @@ export default {
       rawData: []
     }
   },
+
   watch: {
     duration() {
       this.getLineChartData()
     }
   },
+
   mounted() {
     this.getLineChartData()
   },
+
   methods: {
     async getLineChartData() {
       this.loading = true
+
       this.rawData = await this.$axios.$get('stats/base-fee', { params: { duration: this.duration, samples: 48 } })
       if (this.rawData == null) {
         this.dataEmpty = true
         this.loading = false
         return
       }
-      this.chartData.rows = this.rawData.map(info => ({
+
+      const rows = this.rawData.map(info => ({
         time: this.getTime(info.timestamp),
         baseFee: info.baseFee
       }))
+
+      // 解决坐标轴线分段问题
+      const max = Math.max(...rows.map(i => i.baseFee))
+      this.yAxis.max = max
+      this.yAxis.interval = max / 7
+
+      this.chartData.rows = rows
       this.chartData.columns = ['time', 'baseFee']
       this.loading = false
     },
+
     getTime(time) {
       if (this.duration === '24h') {
         return moment(time * 1000).format('HH:mm')
@@ -117,6 +139,7 @@ export default {
         return moment(time * 1000).format('MM-DD HH:mm')
       }
     },
+
     getDateTime(time) {
       return moment(time * 1000).format('YYYY-MM-DD HH:mm')
     }

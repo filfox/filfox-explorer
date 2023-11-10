@@ -6,7 +6,19 @@
       </div>
     </div>
 
-    <div v-if="limit > 12" class="flex px-4 mt-4">
+    <!-- mobile more button -->
+    <div
+      v-if="limit <= 12"
+      class="lg:hidden text-xs text-center text-gray-700 pt-2.5"
+      @click="$router.push(localePath('/fevm/navigation'))"
+    >
+      {{ $t('shared.more') }}
+    </div>
+
+    <div
+      v-if="limit > 12 && nondefi.totalCount > limit"
+      class="flex px-4 mt-4"
+    >
       <el-pagination
         small
         layout="prev, pager, next"

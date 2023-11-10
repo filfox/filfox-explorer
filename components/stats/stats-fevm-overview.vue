@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="loading" class="bg-white rounded-md mt-4">
+  <div v-loading="loading" class="bg-white lg:rounded-md mt-4">
     <HomeTitle type="fvmOverview" />
     <div class="flex flex-wrap p-2 border-t border-customBackground">
       <div v-for="{ k, v } in overview" :key="k" class="w-1/2 lg:w-1/4 h-24 lg:h-32 p-1 lg:p-2">

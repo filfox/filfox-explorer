@@ -24,7 +24,8 @@
               {{ dapp.name }}
             </div>
             <div class="text-customGray-625 text-sm">
-              {{ this.$t('dapp.category') }}:<span class="ml-2">{{ dapp.category || 'DeFi' }}</span>
+              {{ this.$t('dapp.category') }}:
+              <el-tag v-for="tag in dapp.tags" :key="tag" effect="dark" size="mini" class="ml-2">{{ tag }}</el-tag>
             </div>
             <div class="text-customGray-625 text-sm">
               {{ this.$t('dapp.description') }}:<span class="ml-2 text-black">{{ dapp.description }}</span>
@@ -65,7 +66,10 @@
         </div>
       </div>
     </div>
-    <div v-if="dapp.tvl" class="bg-white rounded-md mt-4 pb-4">
+
+    <DexProportionChart class="my-4 hidden" />
+
+    <div v-if="dapp.tvl" class="bg-white lg:rounded-md mt-4 pb-4">
       <div class="flex items-center justify-between border-b border-background px-4 lg:px-10 py-3">
         <span class="font-semibold text-sm lg:text-base">{{ $t('dapp.data') }}</span>
         <DurationSelect v-model="duration" />

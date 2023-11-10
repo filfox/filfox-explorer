@@ -1,23 +1,11 @@
 <template>
-  <div class="container mx-auto bg-white my-4 rounded-md">
+  <div class="container mx-auto my-4">
     <HomeFevmNavigation sort />
   </div>
 </template>
 <script>
 
 export default {
-  data() {
-    return {}
-  },
-
-  computed: {
-  },
-
-  mounted() {
-  },
-
-  methods: {},
-
   head() {
     return {
       title: this.$t('home.fevmNavigation.title')
