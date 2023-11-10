@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <div class="px-4 lg:px-1 mt-4">
       <p class="text-sm lg:text-base font-semibold">{{ $t('home.nftList.title') }}</p>
-      <p class="text-xs font-light text-customGray-450 italic mt-0.5">{{ $t('home.nftList.disclaimer') }}</p>
+      <p class="text-xs text-customGray-450 italic mt-0.75">{{ $t('home.nftList.disclaimer') }}</p>
     </div>
 
     <div class="my-4 lg:rounded-md bg-white text-xs md:text-sm">
@@ -14,8 +14,9 @@
           <tr class="font-normal text-customGray-450">
             <th class="text-left pl-11" style="width: 8%">#</th>
             <th
-              v-for="col in $t('home.nftList.tableColumns')"
+              v-for="(col, index) in $t('home.nftList.tableColumns')"
               :key="col"
+              :style="{ width: index == 0 ? '30%' : 'auto' }"
               class="text-left font-normal text-customGray-450 pl-11"
             >
               {{ col }}
@@ -37,12 +38,12 @@
                 <span class="text-customGray-450">({{ token.symbol }})</span>
               </span>
             </td>
-            <td class="pl-11">{{ token.totalValue || 'N/A' }}</td>
+            <td class="pl-11">{{ token.totalValue }}</td>
             <td class="pl-11">
-              {{ token.transferCount || 'N/A' }}
+              {{ token.transferCount }}
             </td>
             <td class="pl-11">
-              {{ token.holderCount || 'N/A' }}
+              {{ token.holderCount }}
             </td>
           </tr>
         </tbody>

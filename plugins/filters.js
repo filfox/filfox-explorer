@@ -33,8 +33,8 @@ Vue.filter('locale', value => {
 
 Vue.filter('percentage', (x, decimals = 2) => `${(x * 100).toFixed(decimals)}%`)
 
-function addAmountDelimiters(string) {
-  return string.replace(
+export function addAmountDelimiters(string) {
+  return string.toString().replace(
     /^(-?)(\d{1,3})((\d{3})*)(\.\d+|)$/g,
     (_, sign, before, middle, __, after) => sign + before + middle.replace(/(\d{3})/g, ',$1') + after
   )
@@ -173,3 +173,9 @@ Vue.filter('truncateN', (numberString, n = 8) => {
   }
 })
 
+export function parseFIL(minUnitAmount) {
+  const FIL_PER_MIN_UNIT = new BigNumber('1000000000000000000')
+  const minUnitAmountBN = new BigNumber(minUnitAmount)
+  const filAmountBN = minUnitAmountBN.div(FIL_PER_MIN_UNIT)
+  return filAmountBN.toFixed(2)
+}

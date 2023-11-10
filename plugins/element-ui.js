@@ -29,7 +29,9 @@ import Upload from 'element-ui/lib/upload'
 import Tooltip from 'element-ui/lib/tooltip'
 import Tag from 'element-ui/lib/tag'
 import Notification from 'element-ui/lib/notification'
+import DatePicker from 'element-ui/lib/date-picker'
 
+Vue.use(DatePicker)
 Vue.use(Tag)
 Vue.use(Tooltip)
 Vue.use(Upload)

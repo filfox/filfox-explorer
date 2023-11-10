@@ -1,13 +1,13 @@
 <template>
-  <div v-loading="loading" class="bg-white min-h-60">
+  <div v-loading="loading" class="bg-white">
     <table class="hidden lg:table w-full table-fixed border-background mt-3" :class="{ 'border-b': limit > 5 }">
       <thead class="text-gray-600 text-sm">
         <tr>
           <th
             v-for="(colName, index) in $t('home.fevmNavigation.defiListColumns')"
             :key="colName"
-            class="font-normal"
-            :class="{ 'text-left': index != 0 }"
+            class="font-normal text-left"
+            :class="{ 'text-center': index == 0 }"
             :style="{ 'width': ['12%', '18%', 'auto', 'auto', 'auto', '15%'][index] }"
           >
             {{ colName }}
@@ -19,9 +19,9 @@
           v-for="(item, index) in defi.defiList"
           :key="item.name"
           :class="{ 'border-t': index != 0 }"
-          class="border-background h-11 transition duration-200 hover:bg-customBlue-200"
+          class="border-background h-14 transition duration-200 hover:bg-customBlue-200"
         >
-          <td>{{ item.rank + 1 }}</td>
+          <td>#{{ item.rank + 1 }}</td>
           <td>
             <span
               class="flex justify items-center cursor-pointer hover:text-customBlue-290"
@@ -41,10 +41,17 @@
             <ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" />
           </td>
           <td class="text-left">
-            <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+            <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
           </td>
           <td class="text-left">
-            <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
+            <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+            <el-progress
+              :percentage="+Number(100 * item.tvl.data / defi.totalTvl).toFixed(2)"
+              :stroke-width="4"
+              text-color="#68A4F7"
+              define-back-color="#F0F6F9"
+              class="w-2/3 tvl-percentage"
+            />
           </td>
         </tr>
       </tbody>
@@ -52,10 +59,9 @@
 
     <ul class="block lg:hidden bg-white p-3 text-xs border-t border-customGray-100">
       <li
-        v-for="(item, index) in defi.defiList"
+        v-for="(item) in defi.defiList"
         :key="item.name"
-        :class="{ 'border-t': index != 0 }"
-        class="border-customGray-100 py-1.5"
+        class="border-b border-customGray-100 py-1.5"
       >
         <div class="flex justify-between items-center my-1.5">
           <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.0') }}</span>
@@ -83,22 +89,41 @@
         </div>
         <div class="flex justify-between items-center my-1.5">
           <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.4') }}</span>
-          <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+          <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
         </div>
         <div class="flex justify-between items-center my-1.5">
           <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.5') }}</span>
-          <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
+          <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
         </div>
+        <div class="flex justify-between items-center my-1.5">
+          <span class="text-customGray-400">{{ $t('shared.proportion') }}</span>
+          <el-progress
+            :percentage="+Number(100 * item.tvl.data / defi.totalTvl).toFixed(2)"
+            :stroke-width="4"
+            text-color="#68A4F7"
+            define-back-color="#F0F6F9"
+            class="w-1/3 text-right tvl-percentage"
+          />
+        </div>
+      </li>
+      <!-- mobile more button -->
+      <li
+        v-if="limit <= 5"
+        class="text-center text-gray-700 pt-2.5"
+        @click="$router.push(localePath('/fevm/navigation'))"
+      >
+        {{ $t('shared.more') }}
       </li>
     </ul>
 
-    <div v-if="limit > 5" class="flex flex-col lg:flex-row justify-between items-center mt-4 px-8">
+    <div v-if="limit > 5" class="flex flex-col lg:flex-row justify-between items-center my-5 px-8">
       <span class="text-sm">Found something interesting? <a
         class="text-customBlue-300"
         target="_blank"
         href="https://docs.google.com/forms/d/e/1FAIpQLSciXwagRx-D8zeTCIEa9y2pwkoaDqNw2nPSk9bLYdQRsFm3Sw/viewform"
       >Submit it here</a></span>
       <el-pagination
+        v-if="defi.totalCount > limit"
         class="mt-3 lg:mt-0"
         small
         layout="prev, pager, next"
@@ -166,3 +191,11 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss">
+.tvl-percentage {
+  & .el-progress__text {
+    @apply text-xs font-light text-customGray-450 !important;
+  }
+}
+</style>

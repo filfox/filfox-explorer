@@ -5,7 +5,7 @@
       <span class="font-semibold mr-1.5">{{ $t('detail.token.title') }}</span> {{ token.name }} ({{ token.symbol }})
       <ContractCodeStatus :contract="token" is-token class="ml-auto lg:ml-4" />
     </div>
-    <p class="text-xs font-light text-customGray-450 italic ml-5.5 lg:ml-7.5 mt-2 lg:mt-0.5">{{ $t('home.nftList.disclaimer') }}</p>
+    <p class="text-xs text-customGray-450 italic ml-5.5 lg:ml-7.5 mt-2 lg:mt-0.5">{{ $t('home.nftList.disclaimer') }}</p>
   </div>
 </template>
 

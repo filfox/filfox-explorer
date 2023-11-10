@@ -6,52 +6,57 @@
 
       <div class="lg:hidden grid-flow-col grid-rows-1 grid-cols-2 mb-2">
         <div class="bg-white mb-2">
+          <HomeTitle type="fevmChart" class="border-b border-background h-10 pr-4" />
+          <FevmDataChart small class="mt-2" />
+        </div>
+
+        <div class="bg-white mb-2">
           <HomeTitle type="baseFee" class="border-b border-background h-10 pr-4" />
           <BaseFeeChart class="mt-2" />
         </div>
 
         <div class="mb-2 bg-white">
           <HomeTitle type="entireQualityAdjPower" class="border-b border-background h-10 pr-4" />
-          <client-only>
-            <!-- <PowerDistributionChart class="mt-2 mx-1" /> -->
-            <EntirePowerChart class="mt-2" />
-          </client-only>
+          <EntirePowerChart class="mt-2" />
         </div>
       </div>
 
-      <div class="hidden lg:grid grid-flow-col grid-rows-1 grid-cols-2 mb-4">
-        <div class="rounded-md mr-2 mb-0 bg-white">
+      <div class="hidden lg:flex mb-4">
+        <div class="w-1/3 rounded-md bg-white">
+          <div class="flex items-center justify-between border-b border-background h-12">
+            <HomeTitle type="fevmChart" />
+            <nuxt-link :to="localePath('/fevm/stats')" class="mr-4">
+              <i class="el-icon-arrow-right text-customGray-650 hover:text-customBlue-295"></i>
+            </nuxt-link>
+          </div>
+          <FevmDataChart small :bar-max-width="3" />
+        </div>
+        <div class="w-4"></div>
+        <div class="w-1/3 rounded-md bg-white">
           <div class="flex items-center justify-between border-b border-background h-12">
             <HomeTitle type="entireQualityAdjPower" />
             <nuxt-link :to="localePath('/stats/miner')" class="mr-4">
-              <el-button round size="mini">
-                {{ $t('shared.more') }}
-              </el-button>
+              <i class="el-icon-arrow-right text-customGray-650 hover:text-customBlue-295"></i>
             </nuxt-link>
           </div>
-          <client-only>
-            <!-- <PowerDistributionChart class="mx-4 mt-12" /> -->
-            <EntirePowerChart class="mt-2" />
-          </client-only>
+          <EntirePowerChart />
         </div>
-
-        <div class="ml-2 rounded-md bg-white">
+        <div class="w-4"></div>
+        <div class="w-1/3 rounded-md bg-white">
           <div class="flex items-center justify-between border-b border-background h-12">
             <div class="flex items-center">
               <HomeTitle type="baseFee" />
               <Tip class="ml-1" :content="$t('chart.gas.baseFeeChart.tips')" />
             </div>
             <nuxt-link :to="localePath('/stats/gas')" class="mr-4">
-              <el-button round size="mini">
-                {{ $t('shared.more') }}
-              </el-button>
+              <i class="el-icon-arrow-right text-customGray-650 hover:text-customBlue-295"></i>
             </nuxt-link>
           </div>
-          <BaseFeeChart class="rounded-md mt-2 ml-2 mr-4" />
+          <BaseFeeChart />
         </div>
       </div>
 
-      <HomeFevmNavigation more />
+      <HomeFevmNavigation more class="my-4" />
 
       <HomeMinerRanksMobile
         class="lg:hidden"

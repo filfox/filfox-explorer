@@ -13,8 +13,9 @@
       />
 
       <div class="ml-4 mb-2.5 lg:mb-0 mr-3 lg:mr-4 flex items-center">
-        <span class="text-sm">{{ $t('home.fvmTopContracts.orderBy') }}</span>
-        <el-select v-model="sortBy" size="mini" class="ml-2 order-by">
+        <span class="text-xs">{{ $t('home.fvmTopContracts.orderBy') }}</span>
+        <el-select v-model="sortBy" size="mini" class="ml-2 auto-width">
+          <template slot="prefix">{{ sortBy }}</template>
           <el-option
             v-for="{ label, value } in sorts"
             :key="value"
@@ -82,9 +83,3 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss">
-.order-by .el-input input {
-  @apply rounded-full !important;
-}
-</style>

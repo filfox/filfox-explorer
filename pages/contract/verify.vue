@@ -23,7 +23,11 @@
       <p class="text-sm font-light text-customGray-500 bg-customGray-250 p-3 mt-4 rounded-md leading-loose">
         1. {{ $t('contract.verify.tips.0') }}<br>
         2. {{ $t('contract.verify.tips.1') }}<br>
-        3. {{ $t('contract.verify.tips.2') }}
+        3. {{ $t('contract.verify.tips.2') }}<a
+          target="_blank"
+          href="https://medium.com/@filfox.io/filfox-contract-verification-api-documents-c73f801a8200"
+          class="text-customBlue-295"
+        >{{ $t('contract.verify.tips.3') }}</a>
       </p>
       <template v-if="activeTab == 2 && hasOutput">
         <div class="text-sm font-light text-customGray-500 bg-customGray-250 p-3 mt-4 rounded-md leading-loose">

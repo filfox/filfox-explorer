@@ -3,44 +3,38 @@
     <div class="border-b border-background">
       <div class="flex items-center pt-1">
         <HomeTitle type="minerRanks" />
-        <nuxt-link :to="localePath('/ranks/' + ['power', 'blocks', 'power-growth'][type])" class="ml-auto mr-4">
-          <el-button size="mini" round>
-            {{ $t('home.minerRanks.moreBtn') }}
-          </el-button>
-        </nuxt-link>
       </div>
-      <div class="flex justify-between mb-2 px-4">
-        <div class="flex h-12 items-center">
-          <el-row>
-            <el-button
-              size="mini"
-              round
-              v-bind="type === 0 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
-              @click="e => didRankTypeSwitched(e, 0)"
-            >
-              {{ $t('home.minerRanks.filters.qualityAdjPower') }}
-            </el-button>
-            <el-button
-              size="mini"
-              round
-              v-bind="type === 1 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
-              @click="e => didRankTypeSwitched(e, 1)"
-            >
-              {{ $t('home.minerRanks.filters.blocks') }}
-            </el-button>
-            <el-button
-              size="mini"
-              round
-              v-bind="type === 2 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
-              @click="e => didRankTypeSwitched(e, 2)"
-            >
-              {{ $t('home.minerRanks.filters.powerDelta') }}
-            </el-button>
-          </el-row>
-        </div>
-        <div class="flex items-center">
-          <DurationSelect v-if="type !== 0" v-model="duration" class="flex items-center" />
-        </div>
+      <div class="flex justify-between items-center mb-2 px-4">
+        <el-row class="flex h-12 items-center mr-auto">
+          <el-button
+            size="mini"
+            round
+            v-bind="type === 0 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
+            @click="e => didRankTypeSwitched(e, 0)"
+          >
+            {{ $t('home.minerRanks.filters.qualityAdjPower') }}
+          </el-button>
+          <el-button
+            size="mini"
+            round
+            v-bind="type === 1 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
+            @click="e => didRankTypeSwitched(e, 1)"
+          >
+            {{ $t('home.minerRanks.filters.blocks') }}
+          </el-button>
+          <el-button
+            size="mini"
+            round
+            v-bind="type === 2 ? {type: 'primary', plain: true, class: ['pointer-events-none']} : {}"
+            @click="e => didRankTypeSwitched(e, 2)"
+          >
+            {{ $t('home.minerRanks.filters.powerDelta') }}
+          </el-button>
+        </el-row>
+        <DurationSelect v-if="type !== 0" v-model="duration" portable />
+        <nuxt-link :to="localePath('/ranks/' + ['power', 'blocks', 'power-growth'][type])" class="ml-2">
+          <el-button size="mini" round>{{ $t('home.minerRanks.moreBtn') }}</el-button>
+        </nuxt-link>
       </div>
     </div>
 

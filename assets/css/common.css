@@ -165,4 +165,22 @@ table th {
 
 .el-select .el-input--mini input {
     border-radius: 99px !important;
-  }
+}
+
+.auto-width {
+    min-width: 50px !important;
+    text-align: start !important;
+}
+.auto-width .el-input__prefix {
+    position: relative !important;
+    box-sizing: border-box !important;
+    padding: 0 32px 0 15px !important;
+    height: 29px !important;
+    line-height: 29px !important;
+    right: 0 !important;
+    visibility: hidden !important;
+}
+.auto-width .el-input__inner {
+    position: absolute !important;
+    padding-left: 15px !important;
+}

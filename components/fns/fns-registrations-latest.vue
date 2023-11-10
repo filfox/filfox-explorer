@@ -48,6 +48,13 @@
           <span v-else class="w-2/3 break-all text-right">{{ item[key] | lookfortime('datetime') }}</span>
         </div>
       </li>
+      <!-- mobile more button -->
+      <li
+        class="text-center text-gray-700 pt-2.5"
+        @click="$router.push(localePath('/fns'))"
+      >
+        {{ $t('shared.more') }}
+      </li>
     </ul>
   </div>
 </template>
