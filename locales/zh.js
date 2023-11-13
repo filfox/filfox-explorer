@@ -1036,6 +1036,7 @@ export default {
     return: '返回',
     publish: '验证并发布',
     verifiedContractList: '已验证的合约列表',
+    apiDocuments: '合约验证API文档',
     guide: {
       title: ['验证并发布合同源代码', '编译器类型和版本选择'],
       tips: [

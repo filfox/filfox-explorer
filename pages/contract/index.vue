@@ -73,9 +73,14 @@
         </button>
       </div>
 
-      <NuxtLink :to="localePath('/fevm/verified-contracts')" class="mb-8 md:mb-16 underline text-main text-sm font-normal">
+      <NuxtLink :to="localePath('/fevm/verified-contracts')" class="hover:underline text-main text-sm font-normal">
         {{ $t('contract.verifiedContractList') }}
       </NuxtLink>
+      <a
+        href="https://filfox.notion.site/Filfox-Contract-Verification-API-Documents-c48d361c949348acb0bf806871ddd2c2"
+        class="mb-8 md:mb-16 hover:underline text-main text-sm font-normal"
+        target="_blank"
+      >{{ $t('contract.apiDocuments') }}</a>
     </div>
   </div>
 </template>
