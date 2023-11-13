@@ -1049,6 +1049,7 @@ export default {
     return: 'Return to Main',
     publish: 'Verify and Publish',
     verifiedContractList: 'Verified Contract List',
+    apiDocuments: 'API Documents',
     guide: {
       title: ['Verify & Publish Contract Source Code', 'COMPILER TYPE AND VERSION SELECTION'],
       tips: [

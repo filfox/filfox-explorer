@@ -1026,6 +1026,7 @@ export default {
     return: '메인 페이지',
     publish: '검증 및 배포',
     verifiedContractList: '검증된 계약서 목록',
+    apiDocuments: '계약 확인 API 문서',
     guide: {
       title: ['컨트랙트 소스 코드 검증 및 배포', '컴파일러 유형 및 버전 선택'],
       tips: [

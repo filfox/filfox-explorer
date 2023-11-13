@@ -25,7 +25,7 @@
         2. {{ $t('contract.verify.tips.1') }}<br>
         3. {{ $t('contract.verify.tips.2') }}<a
           target="_blank"
-          href="https://medium.com/@filfox.io/filfox-contract-verification-api-documents-c73f801a8200"
+          href="https://filfox.notion.site/Filfox-Contract-Verification-API-Documents-c48d361c949348acb0bf806871ddd2c2"
           class="text-customBlue-295"
         >{{ $t('contract.verify.tips.3') }}</a>
       </p>
