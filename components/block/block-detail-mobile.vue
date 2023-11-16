@@ -155,7 +155,7 @@
             {{ $t('blockchain.message.tableHeaders.method') }}:
           </p>
           <p class="text-xs text-gray-800">
-            {{ message.method || 'N/A' }}
+            <MessageMethod :evm-method="message.evmMethod" :method="message.method" />
           </p>
         </div>
         <div class="message-item">

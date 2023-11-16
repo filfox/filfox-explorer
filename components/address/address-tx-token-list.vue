@@ -71,9 +71,7 @@
               </div>
             </td>
             <td>
-              <el-tag size="mini" type="info">
-                {{ transfer.type }}
-              </el-tag>
+              <MessageMethod :evm-method="transfer.evmMethod" :method="transfer.type" />
             </td>
             <td>
               <div v-if="/erc20/i.test(transfer.type)" class="flex justify-center items-center">
@@ -162,8 +160,8 @@
           <p class="text-xs text-gray-800">
             {{ $t('detail.transfer.tableHeaders.type') }}:
           </p>
-          <p class="text-xs text-gray-800">
-            {{ transfer.type }}
+          <p>
+            <MessageMethod :evm-method="transfer.evmMethod" :method="transfer.type" />
           </p>
         </div>
         <div class="flex items-center justify-between mx-3 mt-1">

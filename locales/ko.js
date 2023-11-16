@@ -518,6 +518,7 @@ export default {
         to: '받는 이',
         nonce: 'Nonce',
         method: '방법',
+        evmMethod: 'EVM 방법',
         params: '변수',
         value: '금액',
         address: '주소',
@@ -742,6 +743,7 @@ export default {
         tx: {
           title: '거래',
           time: '시간',
+          method: '메시지 유형',
           id: '메시지 ID',
           sender: '송신자',
           receiver: '수신자',
