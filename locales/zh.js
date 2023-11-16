@@ -511,6 +511,7 @@ export default {
         to: '接收方',
         nonce: 'Nonce',
         method: '方法',
+        evmMethod: 'EVM 方法',
         params: '参数',
         value: '金额',
         address: '地址',
@@ -748,6 +749,7 @@ export default {
         tx: {
           title: '交易',
           time: '时间',
+          method: '方法',
           id: '消息ID',
           sender: '发送方',
           receiver: '接收方',

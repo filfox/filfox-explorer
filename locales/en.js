@@ -525,6 +525,7 @@ export default {
         to: 'To',
         nonce: 'Nonce',
         method: 'Method',
+        evmMethod: 'EVM Method',
         params: 'Parameters',
         value: 'Value',
         address: 'Address',
@@ -762,6 +763,7 @@ export default {
         tx: {
           title: 'Transaction',
           time: 'Time',
+          method: 'Method',
           id: 'Message ID',
           sender: 'From',
           receiver: 'To',

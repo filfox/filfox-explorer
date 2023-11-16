@@ -39,7 +39,7 @@
       <dd class="message-value">
         <template v-if="message.height">
           <TipsetLink :id="message.height" class="text-main" />
-          <el-tag class="ml-2" size="mini" type="info">
+          <el-tag class="ml-2 border-none" size="mini" type="info">
             {{ message.confirmations }} Block Confirmations
           </el-tag>
         </template>
@@ -99,6 +99,14 @@
       </dt>
       <dd class="message-value">
         {{ message.method || 'N/A' }}
+      </dd>
+    </dl>
+    <dl v-if="message.evmMethod" class="message-item">
+      <dt class="message-key">
+        {{ $t('detail.message.headers.evmMethod') }}
+      </dt>
+      <dd class="message-value">
+        {{ message.evmMethod || 'N/A' }}
       </dd>
     </dl>
     <dl class="message-item">

@@ -54,7 +54,7 @@
               {{ $t('blockchain.message.tableHeaders.method') }}:
             </p>
             <p>
-              {{ message.method || 'N/A' }}
+              <MessageMethod :evm-method="message.evmMethod" :method="message.method" />
             </p>
           </div>
           <div class="message-item">
@@ -164,7 +164,7 @@
                   <AddressLink :id="message.to" :format="8" />
                 </td>
                 <td>
-                  {{ message.method }}
+                  <MessageMethod :evm-method="message.evmMethod" :method="message.method" />
                 </td>
                 <td>
                   {{ message.value | filecoin(4) }}

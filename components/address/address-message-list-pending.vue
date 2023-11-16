@@ -54,13 +54,7 @@
               <AddressLink :id="message.to" :format="8" />
             </td>
             <td>
-              <el-tooltip
-                :content="`${message.method} ( Contract created )`"
-                placement="top"
-                :disabled="!/CreateExternal/i.test(message.method)"
-              >
-                <span>{{ message.method || 'N/A' }}</span>
-              </el-tooltip>
+              <MessageMethod :evm-method="message.evmMethod" :method="message.method" />
             </td>
             <td>{{ message.value | filecoin(4) }}</td>
             <td>Pending</td>

@@ -4,17 +4,20 @@
       <table class="w-full table-fixed">
         <thead class="m-2 text-gray-600">
           <tr class="h-8">
-            <th class="sticky top-0 z-10 bg-white font-normal w-1/8">
+            <th class="sticky top-0 z-10 bg-white font-normal">
               {{ $t('detail.token.data.tx.time') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white font-normal  w-1/4">
+            <th class="sticky top-0 z-10 bg-white font-normal">
+              {{ $t('detail.token.data.tx.method') }}
+            </th>
+            <th class="sticky top-0 z-10 bg-white font-normal">
               {{ $t('detail.token.data.tx.id') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white font-normal w-1/5">
+            <th class="sticky top-0 z-10 bg-white font-normal">
               {{ $t('detail.token.data.tx.sender') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white font-normal w-1/16"></th>
-            <th class="sticky top-0 z-10 bg-white font-normal w-1/5">
+            <th class="sticky top-0 z-10 bg-white font-normal"></th>
+            <th class="sticky top-0 z-10 bg-white font-normal">
               {{ $t('detail.token.data.tx.receiver') }}
             </th>
             <th class="sticky top-0 z-10 bg-white font-normal">
@@ -32,13 +35,16 @@
               {{ transfer.timestamp | timestamp('datetime') }}
             </td>
             <td>
-              <MessageLink v-if="transfer.message" :id="transfer.message" :format="14" />
+              <MessageMethod :evm-method="transfer.evmMethod" :method="transfer.method" />
+            </td>
+            <td>
+              <MessageLink v-if="transfer.message" :id="transfer.message" :format="8" />
               <span v-else>N/A</span>
             </td>
             <td>
               <div class="flex flex-row items-center justify-center">
                 <NuxtLink v-if="transfer.from" :to="`${$route.path}?h=${transfer.from}`" class="hover:text-main cursor-pointer">
-                  {{ transfer.from | address0x0 | trim(12) }}
+                  {{ transfer.from | address0x0 | trim(8) }}
                 </NuxtLink>
                 <span v-else>N/A</span>
               </div>
@@ -51,7 +57,7 @@
             <td>
               <div class="flex flex-row items-center justify-center">
                 <NuxtLink v-if="transfer.to" :to="`${$route.path}?h=${transfer.to}`" class="hover:text-main cursor-pointer">
-                  {{ transfer.to | address0x0 | trim(12) }}
+                  {{ transfer.to | address0x0 | trim(10) }}
                 </NuxtLink>
                 <span v-else>N/A</span>
               </div>
@@ -74,6 +80,12 @@
           <span class="text-gray-600">{{ $t('detail.token.data.tx.time') }}</span>
           <span>
             {{ transfer.timestamp | timestamp('datetime') }}
+          </span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-600">{{ $t('detail.token.data.tx.method') }}</span>
+          <span class="leading-normal flex">
+            <MessageMethod :evm-method="transfer.evmMethod" :method="transfer.method" />
           </span>
         </div>
         <div class="flex justify-between">
