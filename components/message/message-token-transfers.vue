@@ -15,9 +15,7 @@
             <th class="sticky top-0 bg-white z-10 w-1/4">
               {{ $t('detail.message.transfer.to') }}
             </th>
-            <th class="sticky top-0 bg-white z-10 w-1/4">
-              {{ $t('detail.message.transfer.value') }}
-            </th>
+            <th class="sticky top-0 bg-white z-10 w-1/4">Token</th>
             <th class="sticky top-0 bg-white z-10 w-1/8">
               {{ $t('detail.message.transfer.type') }}
             </th>
@@ -65,12 +63,18 @@
                   </NuxtLink>
                 </div>
                 <div class="font-light">
-                  {{ transfer.name }}
+                  <span>{{ transfer.name }}</span>
+                  <a
+                    v-if="transfer.fnsName"
+                    class="text-customBlue-295 hover:underline ml-1"
+                    target="_blank"
+                    :href="`${FNS}/domain/${transfer.fnsName}.fil?tab=details`"
+                  ># {{ transfer.fnsName }}.fil</a>
                 </div>
               </div>
             </td>
             <td>
-              {{ transfer.type }}
+              <MessageMethod :evm-method="transfer.type" />
             </td>
           </tr>
         </tbody>
@@ -110,6 +114,12 @@
                 </div>
                 <div class="font-light">
                   {{ transfer.name }}
+                  <a
+                    v-if="transfer.fnsName"
+                    class="text-customBlue-295 hover:underline ml-1"
+                    target="_blank"
+                    :href="`${FNS}/domain/${transfer.fnsName}.fil?tab=details`"
+                  ># {{ transfer.fnsName }}.fil</a>
                 </div>
               </div>
             </span>
@@ -125,9 +135,15 @@
 </template>
 
 <script>
+import { FNS } from '@/filecoin/filecoin.config'
+
 export default {
   props: {
     message: { type: Object, required: true }
+  },
+
+  data() {
+    return { FNS }
   }
 }
 </script>

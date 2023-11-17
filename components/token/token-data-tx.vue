@@ -65,14 +65,20 @@
             <td class="truncate">
               <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
               <span v-else class="flex items-center justify-center">
-                <TokenIcon class="mr-1.5" :token-id="tokenId" :token-type="list.tokenType" />#{{ transfer.value | truncateN }}
+                <TokenIcon class="mr-1.5" :token-id="tokenId" :token-type="list.tokenType" />
+                <a
+                  v-if="transfer.fnsName"
+                  class="text-customBlue-295 hover:underline"
+                  target="_blank"
+                  :href="`${FNS}/domain/${transfer.fnsName}.fil?tab=details`"
+                ># {{ transfer.fnsName }}.fil</a>
+                <span v-else>#{{ transfer.value | truncateN }}</span>
               </span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
 
     <ul class="md:hidden">
       <li v-for="(transfer, index) in list.transfers" :key="index" class="py-2 border-b leading-loose">
@@ -113,7 +119,14 @@
           <span class="text-gray-600">{{ /erc20/i.test(list.tokenType) ? $t('shared.value') : $t('shared.item') }}</span>
           <span v-if="/erc20/i.test(list.tokenType)">{{ transfer.value | parseToken(list.decimals) }}</span>
           <span v-else class="flex items-center justify-center">
-            <TokenIcon class="mr-1.5" :token-id="tokenId" :token-type="list.tokenType" />#{{ transfer.value | truncateN }}
+            <TokenIcon class="mr-1.5" :token-id="tokenId" :token-type="list.tokenType" />
+            <a
+              v-if="transfer.fnsName"
+              class="text-customBlue-295 hover:underline"
+              target="_blank"
+              :href="`${FNS}/domain/${transfer.fnsName}.fil?tab=details`"
+            ># {{ transfer.fnsName }}.fil</a>
+            <span v-else>#{{ transfer.value | truncateN }}</span>
           </span>
         </div>
       </li>
@@ -142,6 +155,9 @@
 </template>
 
 <script>
+import { FNS } from '@/filecoin/filecoin.config'
+
+
 export default {
   props: {
     tokenId: {
@@ -152,6 +168,7 @@ export default {
 
   data() {
     return {
+      FNS,
       list: {
         symbol: '',
         tokenType: '',
