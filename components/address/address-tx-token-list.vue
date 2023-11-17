@@ -81,13 +81,21 @@
                   {{ transfer.symbol }}
                 </NuxtLink>
               </div>
-              <span v-else class="text-xs flex justify-center items-center">
-                <TokenIcon class="mr-1.5" :token-id="transfer.token" token-type="ERC721" />
-                <div>
+              <span v-else class="text-xs flex flex-col items-center">
+                <div class="flex items-center">
+                  <TokenIcon class="mr-1.5" :token-id="transfer.token" token-type="ERC721" />
                   <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="font-semibold hover:underline hover:text-main">
                     {{ transfer.symbol }}
                   </NuxtLink>
-                  <div class="font-light">{{ transfer.name }}</div>
+                </div>
+                <div class="font-light">
+                  <span>{{ transfer.name }}</span>
+                  <a
+                    v-if="transfer.fnsName"
+                    class="text-customBlue-295 hover:underline ml-1"
+                    target="_blank"
+                    :href="`${FNS}/domain/${transfer.fnsName}.fil?tab=details`"
+                  ># {{ transfer.fnsName }}.fil</a>
                 </div>
               </span>
             </td>
@@ -181,6 +189,12 @@
               <NuxtLink :to="localePath(`/token/${transfer.token}`)" class="hover:underline hover:text-main">
                 {{ transfer.symbol }}
               </NuxtLink> / {{ transfer.name }}
+              <a
+                v-if="transfer.fnsName"
+                class="text-customBlue-295 hover:underline ml-1"
+                target="_blank"
+                :href="`${FNS}/domain/${transfer.fnsName}.fil?tab=details`"
+              ># {{ transfer.fnsName }}.fil</a>
             </template>
           </p>
         </div>
@@ -202,7 +216,7 @@
 </template>
 
 <script>
-import { TOKEN_ICONS } from '@/filecoin/filecoin.config'
+import { TOKEN_ICONS, FNS } from '@/filecoin/filecoin.config'
 
 export default {
   props: {
@@ -211,8 +225,10 @@ export default {
       required: true
     }
   },
+
   data() {
     return {
+      FNS,
       trans: 'All',
       transferList: {
         totalCount: 0,
