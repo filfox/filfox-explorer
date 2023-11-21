@@ -433,6 +433,7 @@ export default {
       title: '거래 목록',
       tableHeaders: {
         time: '시간',
+        method: '방법',
         message: '메시지 ID',
         from: '보내는 주소',
         to: '받는 주소',

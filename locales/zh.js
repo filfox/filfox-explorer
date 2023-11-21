@@ -425,6 +425,7 @@ export default {
       title: '转账列表',
       tableHeaders: {
         time: '时间',
+        method: '方法',
         message: '消息ID',
         from: '发送方',
         to: '接收方',
