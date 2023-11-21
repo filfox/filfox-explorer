@@ -68,7 +68,7 @@
                 <TokenIcon class="mr-1.5" :token-id="tokenId" :token-type="list.tokenType" />
                 <a
                   v-if="transfer.fnsName"
-                  class="text-customBlue-295 hover:underline"
+                  class="text-customBlue-295 text-xs hover:underline"
                   target="_blank"
                   :href="`${FNS}/domain/${transfer.fnsName}.fil?tab=details`"
                 ># {{ transfer.fnsName }}.fil</a>

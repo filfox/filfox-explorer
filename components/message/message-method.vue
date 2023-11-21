@@ -6,6 +6,7 @@
   >
     <div
       ref="method"
+      :style="styleObj"
       class="inline-block align-bottom m-auto max-w-48 lg:max-w-36 truncate rounded-sm lg:rounded px-1.5 lg:py-0.25 text-customBlue-290 bg-customBlue-225 text-xs"
     >
       {{ methodText }}
@@ -17,7 +18,8 @@
 export default {
   props: {
     method: { type: String, default: null },
-    evmMethod: { type: String, default: null }
+    evmMethod: { type: String, default: null },
+    styleObj: { type: Object, default: () => ({}) }
   },
 
   data() {

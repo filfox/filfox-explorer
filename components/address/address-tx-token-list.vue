@@ -16,21 +16,24 @@
       <table class="w-full table-fixed">
         <thead class="m-2 text-sm text-gray-600">
           <tr class="h-8">
-            <th class="sticky top-0 z-10 bg-white" style="width: 15%">
+            <th class="sticky top-0 z-10 bg-white">
               {{ $t('detail.transfer.tableHeaders.time') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white" style="width: 25%">
+            <th class="sticky top-0 z-10 bg-white">
+              {{ $t('detail.transfer.tableHeaders.method') }}
+            </th>
+            <th class="sticky top-0 z-10 bg-white">
               {{ $t('detail.transfer.tableHeaders.message') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white" style="width: 10%">
+            <th class="sticky top-0 z-10 bg-white">
               {{ $t('detail.transfer.tableHeaders.from') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white" style="width: 10%">
+            <th class="sticky top-0 z-10 bg-white" style="width: 4%">
             </th>
-            <th class="sticky top-0 z-10 bg-white " style="width: 10%">
+            <th class="sticky top-0 z-10 bg-white">
               {{ $t('detail.transfer.tableHeaders.to') }}
             </th>
-            <th class="sticky top-0 z-10 bg-white" style="width: 13%">
+            <th class="sticky top-0 z-10 bg-white">
               {{ $t('detail.transfer.tableHeaders.type') }}
             </th>
             <th class="sticky top-0 z-10 bg-white">
@@ -48,7 +51,10 @@
               {{ transfer.timestamp | timestamp('datetime') }}
             </td>
             <td>
-              <MessageLink v-if="transfer.message" :id="transfer.message" :format="12" />
+              <MessageMethod :evm-method="transfer.evmMethod" :style-obj="{ maxWidth: '100px' }" />
+            </td>
+            <td>
+              <MessageLink v-if="transfer.message" :id="transfer.message" :format="6" />
               <span v-else>N/A</span>
             </td>
             <td>
@@ -71,7 +77,7 @@
               </div>
             </td>
             <td>
-              <MessageMethod :evm-method="transfer.evmMethod" :method="transfer.type" />
+              <MessageMethod :method="transfer.type" />
             </td>
             <td>
               <div v-if="/erc20/i.test(transfer.type)" class="flex justify-center items-center">
@@ -135,6 +141,14 @@
           </p>
           <p class="text-xs text-gray-800">
             {{ transfer.timestamp | timestamp('datetime') }}
+          </p>
+        </div>
+        <div class="flex items-center justify-between mx-3">
+          <p class="text-xs text-gray-800">
+            {{ $t('detail.transfer.tableHeaders.method') }}:
+          </p>
+          <p>
+            <MessageMethod :method="transfer.evmMethod" />
           </p>
         </div>
         <div class="flex items-center justify-between mx-3 mt-1">

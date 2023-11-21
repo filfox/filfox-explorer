@@ -439,6 +439,7 @@ export default {
       title: 'Transaction List',
       tableHeaders: {
         time: 'Time',
+        method: 'Method',
         message: 'Message ID',
         from: 'From',
         to: 'To',
