@@ -41,10 +41,10 @@
             <ChangeRate :data="formatNum(item.userCount.data)" :change-rate="item.userCount.changeRate" />
           </td>
           <td class="text-left">
-            <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
+            <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="% FIL" />
           </td>
           <td class="text-left">
-            <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+            <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="% USD" />
             <el-progress
               :percentage="+Number(100 * item.tvl.data / defi.totalTvl).toFixed(2)"
               :stroke-width="4"
@@ -89,11 +89,11 @@
         </div>
         <div class="flex justify-between items-center my-1.5">
           <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.4') }}</span>
-          <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="$% FIL" />
+          <ChangeRate :data="formatNum(item.tokens.data)" :change-rate="item.tokens.changeRate" data-format="% FIL" />
         </div>
         <div class="flex justify-between items-center my-1.5">
           <span class="text-customGray-400">{{ $t('home.fevmNavigation.defiListColumns.5') }}</span>
-          <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="$% USD" />
+          <ChangeRate :data="formatNum(item.tvl.data)" :change-rate="item.tvl.changeRate" data-format="% USD" />
         </div>
         <div class="flex justify-between items-center my-1.5">
           <span class="text-customGray-400">{{ $t('shared.proportion') }}</span>
