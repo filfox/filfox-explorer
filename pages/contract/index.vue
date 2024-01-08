@@ -124,7 +124,7 @@ export default {
 
   async mounted() {
     try {
-      const res = await this.$axios.$get('http://binaries.soliditylang.org/bin/list.json')
+      const res = await this.$axios.$get('https://binaries.soliditylang.org/bin/list.json')
       this.compilerVersions = this.processVersions(res.releases)
     } catch (error) {}
   },
