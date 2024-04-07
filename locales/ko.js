@@ -765,7 +765,7 @@ export default {
           f410fabpafjfjgqkc3douo3yzfug5tq4bwfvuhsewxji: 'THS is the platform token of Themis Pro, with a maximum supply of 10 million. THS is completely minted and issued by users with stablecoin assets, THS-USDT LP assets and mainstream blue-chip assets.',
           f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: '',
           f410fmdqxonrwz5peuit5tlbe6ih6zibu5ys223xctfi: '',
-          f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: 'Staked FIL(stFIL) is a cryptocurrency token designed to represent "staked" or depositing tokens as collateral to support the Filecoin storage network. The token is designed on the decentralized finance protocol STFIL. It is designed as a liquidity token, where you can deposit FIL into the smart contract of STFIL on the blockchain and receive an equivalent amount of stFIL, which can be traded, exchanged, borrowed against, or used for any other liquidity purposes.'
+          f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: '' // Staked FIL(stFIL) is a cryptocurrency token designed to represent "staked" or depositing tokens as collateral to support the Filecoin storage network. The token is designed on the decentralized finance protocol STFIL. It is designed as a liquidity token, where you can deposit FIL into the smart contract of STFIL on the blockchain and receive an equivalent amount of stFIL, which can be traded, exchanged, borrowed against, or used for any other liquidity purposes.
         },
         contract: {
           title: '계약'

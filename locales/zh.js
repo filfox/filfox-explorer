@@ -771,7 +771,7 @@ export default {
           f410fabpafjfjgqkc3douo3yzfug5tq4bwfvuhsewxji: 'THS是Themis Pro的平台代币，最大供应量为1000万枚，THS完全是用户用稳定币资产、THS-USDT LP资产以及主流蓝筹资产铸造并发行的。',
           f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: '',
           f410fmdqxonrwz5peuit5tlbe6ih6zibu5ys223xctfi: '',
-          f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: 'stFIL是一种加密货币代币，旨在代表“质押”或存入以支持作为Filecoin存储网络抵押品的代币。该代币是在去中心化金融协议 STFIL 上设计的。它被设计为流动性代币，您可以将 FIL 存入  区块链上STFIL的智能合约中，并收到等量的 stFIL，可以进行交易、交换、借贷或用于任何其他流动性目的。'
+          f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: '' // stFIL是一种加密货币代币，旨在代表“质押”或存入以支持作为Filecoin存储网络抵押品的代币。该代币是在去中心化金融协议 STFIL 上设计的。它被设计为流动性代币，您可以将 FIL 存入  区块链上STFIL的智能合约中，并收到等量的 stFIL，可以进行交易、交换、借贷或用于任何其他流动性目的。
         },
         contract: {
           title: '合约'
