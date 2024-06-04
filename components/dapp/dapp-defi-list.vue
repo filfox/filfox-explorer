@@ -23,16 +23,16 @@
         >
           <td>#{{ item.rank + 1 }}</td>
           <td>
-            <span
+            <nuxt-link
               class="flex justify items-center cursor-pointer hover:text-customBlue-290"
-              @click="$router.push(localePath(`/dapp/defi_${item.defi}`))"
+              :to="localePath(`/dapp/defi_${item.defi}`)"
             >
               <img
                 :src="item.logoPath || require('@/assets/img/fns/logo.png')"
                 class="w-4 h-4 rounded-full shadow-picture mr-1"
               >
               {{ item.name }}
-            </span>
+            </nuxt-link>
           </td>
           <td class="text-left">
             <ChangeRate :data="item.invokeCount.data" :change-rate="item.invokeCount.changeRate" />

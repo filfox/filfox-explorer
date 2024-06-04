@@ -70,6 +70,9 @@
           <!-- <a :href="filfoxWalletHost" target="_blank" class="link">
             {{ $t('nav.resources.subMenus.2') }}
           </a> -->
+          <a href="https://filfox.info/api/v1/docs/static/index.html" target="_blank">
+            <el-dropdown-item>{{ $t('nav.resources.subMenus.3') }}</el-dropdown-item>
+          </a>
         </el-collapse-item>
       </el-collapse>
 

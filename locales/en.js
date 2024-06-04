@@ -62,7 +62,8 @@ export default {
       subMenus: [
         'Tools',
         'Wiki',
-        'Web Wallet'
+        'Web Wallet',
+        'API Docs'
       ]
     },
     searchPlaceHolder: 'Search for Block/Account/Address/Message...',
