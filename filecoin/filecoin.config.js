@@ -44,7 +44,7 @@ export const TOKEN_ICONS = {
   f410fezdlwnrykhjr3sr54bc6b23d2cx6wqt52caxhaq: require('@/assets/img/token/filedoge.png'),
   f410f74s7vn5esqhmglfszihjkztjj3m3wkfbacg26oi: require('@/assets/img/token/sc.png'),
   f410fabpafjfjgqkc3douo3yzfug5tq4bwfvuhsewxji: require('@/assets/img/token/ths.png'),
-  f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: require('@/assets/img/token/celerusdt.png'),
+  // f410fiiuetm2vaon4ldzhqdgeqvert7e47l4upp6ugly: require('@/assets/img/token/celerusdt.png'),
   f410fmdqxonrwz5peuit5tlbe6ih6zibu5ys223xctfi: require('@/assets/img/token/wfil.png'),
   f410fhq2qdzwdkpn25xp2sa3ws5ooplhevr5ittlp6by: require('@/assets/img/token/stfil.png'),
   f410fyxvjnxjwlgb473eq44vwulnmsvrpiwf2c4i4k5i: require('@/assets/img/token/SFT.png'),

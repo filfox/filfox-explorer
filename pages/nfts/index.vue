@@ -29,14 +29,15 @@
               {{ index + 1 }}
             </td>
             <td class="pl-11">
-              <span class="flex items-center">
+              <nuxt-link :to="localePath(`/token/${token.address}`)" class="flex items-center">
                 <TokenIcon :token-id="token.address" token-type="ERC721" class="w-5 h-5" />
                 <span
                   class="ml-2 mr-1 cursor-pointer hover:text-customBlue-290"
-                  @click="$router.push(localePath(`/token/${token.address}`))"
-                >{{ token.name }}</span>
+                >
+                  {{ token.name }}
+                </span>
                 <span class="text-customGray-450">({{ token.symbol }})</span>
-              </span>
+              </nuxt-link>
             </td>
             <td class="pl-11">{{ token.totalValue }}</td>
             <td class="pl-11">

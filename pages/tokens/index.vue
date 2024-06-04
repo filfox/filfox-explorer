@@ -32,14 +32,13 @@
               {{ index + 1 }}
             </td>
             <td class="pl-11">
-              <span class="flex items-center">
+              <nuxt-link :to="localePath(`/token/${token.address}`)" class="flex items-center">
                 <img :src="token.tokenIcon" class="w-5 h-5 rounded-full">
                 <span
                   class="ml-2 mr-1 cursor-pointer hover:text-customBlue-290"
-                  @click="$router.push(localePath(`/token/${token.address}`))"
                 >{{ token.name }}</span>
                 <span class="text-customGray-450">({{ token.symbol }})</span>
-              </span>
+              </nuxt-link>
             </td>
             <td class="pl-11 truncate">{{ token.totalSupply | parseToken(token.decimals) }}</td>
             <td class="pl-11">
