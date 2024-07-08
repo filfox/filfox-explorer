@@ -437,7 +437,7 @@ export default {
       }
     },
     transfer: {
-      title: 'Transaction List',
+      title: 'Transfer List',
       tableHeaders: {
         time: 'Time',
         method: 'Method',
