@@ -74,7 +74,6 @@ export default {
     '~/components/fns',
     '~/components/contract',
     '~/components/stats',
-    '~/components/dapp-list',
     '~/components/token',
     '~/components/icon',
     '~/components/dapp'
