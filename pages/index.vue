@@ -110,6 +110,8 @@
       <RanksShare v-if="sharing" :loading="sharingLoading" :url="sharingImageURL" @didDismissAreaClicked="didDismissAreaClicked" />
     </div>
     <HomeFnsDialog />
+
+    <HomeBouncingPopup />
   </div>
 </template>
 

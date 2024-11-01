@@ -57,6 +57,7 @@ export default {
     }
   },
   home: {
+    browserCloseTip: 'filfox.info 域名因备案流程将立即暂停使用，域名暂停解析期间请使用 IP 地址访问',
     overview: {
       title: '全网概览',
       unfoldBtn: '展开全部',

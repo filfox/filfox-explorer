@@ -76,6 +76,7 @@ export default {
     }
   },
   home: {
+    browserCloseTip: 'filfox.info 도메인은 등록 절차로 인해 즉시 사용이 중단됩니다. 도메인 해제가 중단된 동안에는 IP 주소를 사용하여 접속해 주시기 바랍니다.',
     overview: {
       title: '네트워크 현황',
       unfoldBtn: '전체 보기',
