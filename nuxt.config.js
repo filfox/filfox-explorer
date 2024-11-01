@@ -133,7 +133,6 @@ export default {
     },
     detectBrowserLanguage: {
       useCookie: true
-      // alwaysRedirect: true,
     },
     seo: true
   },
