@@ -76,7 +76,7 @@ export default {
     }
   },
   home: {
-    browserCloseTip: 'The domain filfox.info will be suspended immediately due to the filing process. During the suspension of domain resolution, please use the IP address to access.',
+    browserCloseTip: 'The domain filfox.info will be suspended immediately due to the filing process. During the suspension of domain resolution, please use the IP address to access',
     overview: {
       title: 'Network Overview',
       unfoldBtn: 'Unfold',

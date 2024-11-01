@@ -1,5 +1,6 @@
 <template>
   <div class="container mx-auto relative">
+    <HomeBouncingPopup />
     <div v-if="!sharing">
       <ActivityBanner />
       <HomeOverview :overview="overview" />
@@ -111,7 +112,6 @@
     </div>
     <HomeFnsDialog />
 
-    <HomeBouncingPopup />
   </div>
 </template>
 
