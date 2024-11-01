@@ -124,7 +124,7 @@ export default {
 }
 
 .closeButton:hover {
-  color: #ff5b5b;
+  color: #868686;
 }
 
 .content {
