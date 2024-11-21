@@ -58,7 +58,7 @@
       <footer class="text-gray-300 text-opacity-25 mx-auto border-t border-gray-300 border-opacity-25 py-3 px-6 text-center">
         © 2020 FilFox Project. All Rights Reserved.
         <br>
-        <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备19028217号-3</a>
+        <a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2024102876号-1</a>
       </footer>
     </div>
   </div>
