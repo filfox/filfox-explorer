@@ -18,6 +18,9 @@
         </nuxt-link>
         {{ $t('detail.contract.verifyTip.2') }}!
       </span>
+      <span class="ml-4">{{ $t('detail.contract.orGoThere') }}
+        <a target="_blank" :href="`https://filecoin.blockscout.com/address/${contract.ethAddress}?tab=contract`" class="text-main hover:underline">Blockscout</a>
+      </span>
     </div>
   </div>
 </template>

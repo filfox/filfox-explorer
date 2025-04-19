@@ -469,6 +469,7 @@ export default {
       response: '响应',
 
       verifyTip: ['你是合约创建者吗?', '验证并发布', '你的合约源代码', '实现合约的字节码位于 {address} 但未验证。'],
+      orGoThere: '或者前往',
       codeVerified: '合约源码已验证',
       contractName: '合约名',
       compilerVersion: '编译器版本',

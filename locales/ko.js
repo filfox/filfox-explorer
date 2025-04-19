@@ -477,6 +477,7 @@ export default {
       response: '응답',
 
       verifyTip: ['계약 작성자입니까', '확인 및 게시', '컨트랙트 소스 코드', '계약의 바이트 코드는 {address}에 위치하지만 검증되지 않았습니다.'],
+      orGoThere: '또는 가다',
       codeVerified: '컨트랙트 소스 코드가 확인되었습니다',
       contractName: '계약명',
       compilerVersion: '컴파일러 버전',
