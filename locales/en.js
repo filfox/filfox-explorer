@@ -484,7 +484,7 @@ export default {
       response: 'Response',
 
       verifyTip: ['Are you the contract creator', 'Verify and Publish', 'your contract source code today', 'Bytecode of implementation Contract at {address}, but not verified.'],
-      orGoThere: 'Or go there',
+      orGoThere: 'Or check',
       codeVerified: 'Contract Source Code Verified',
       contractName: 'Contract Name',
       compilerVersion: 'Compiler Version',
