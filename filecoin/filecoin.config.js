@@ -62,6 +62,7 @@ export const TOKEN_ICONS = {
   f410fuawl6hohkbmmy3zplohhveehijpveshd3z5ciza: require('@/assets/img/token/RICARDO.png'),
   f410fixm5mqenkfm2g6msjt2chs36cxaa7ka745xo2jq: require('@/assets/img/token/FNS_DAO.jpeg'),
   f410fqc4y2ovat777evodxjfcieir74jgf4cfcyah4wq: require('@/assets/img/token/usdfc.svg'),
+  f410ffifk7bvs7jsordjxheer453tcbxt5phvnr64xuy: require('@/assets/img/token/Glif.svg'),
   DEFAULT: require('@/assets/img/token/default.png'),
   NFT_DEFAULT: require('@/assets/img/token/nft.png')
 }
